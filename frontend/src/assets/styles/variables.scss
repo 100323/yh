@@ -1,0 +1,162 @@
+// 颜色变量
+:root {
+  // 主题色
+  --primary-color: #5b7cff;
+  --primary-color-hover: #4b68df;
+  --primary-color-light: #edf2ff;
+  --primary-color-soft: rgba(91, 124, 255, 0.12);
+
+  // 辅助色
+  --secondary-color: #7c5cff;
+  --secondary-color-soft: rgba(124, 92, 255, 0.16);
+  --success-color: #18a058;
+  --success-color-soft: rgba(24, 160, 88, 0.14);
+  --warning-color: #f5a623;
+  --warning-color-soft: rgba(245, 166, 35, 0.16);
+  --error-color: #d03050;
+  --error-color-soft: rgba(208, 48, 80, 0.14);
+  --info-color: #2080f0;
+  --info-color-soft: rgba(32, 128, 240, 0.14);
+
+  // 中性色
+  --text-primary: #182033;
+  --text-secondary: #52607a;
+  --text-tertiary: #7f8aa3;
+  --text-disabled: #b3bdd1;
+
+  // 背景色
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f7ff;
+  --bg-tertiary: #edf1fb;
+  --bg-elevated: rgba(255, 255, 255, 0.82);
+  --bg-elevated-strong: rgba(255, 255, 255, 0.94);
+  --bg-overlay: rgba(13, 21, 38, 0.52);
+  --bg-page-gradient:
+    radial-gradient(circle at top left, rgba(91, 124, 255, 0.18), transparent 32%),
+    radial-gradient(circle at top right, rgba(124, 92, 255, 0.16), transparent 24%),
+    linear-gradient(180deg, #f8faff 0%, #f3f6fd 38%, #eef2fb 100%);
+  --bg-sidebar:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.96) 0%, rgba(25, 37, 66, 0.98) 100%);
+
+  // 边框色
+  --border-light: rgba(138, 151, 185, 0.2);
+  --border-medium: rgba(128, 143, 181, 0.34);
+  --border-dark: rgba(104, 119, 157, 0.55);
+
+  // 阴影
+  --shadow-light: 0 10px 30px rgba(24, 39, 75, 0.08);
+  --shadow-medium: 0 18px 45px rgba(24, 39, 75, 0.12);
+  --shadow-heavy: 0 28px 70px rgba(24, 39, 75, 0.18);
+  --shadow-glass: 0 14px 38px rgba(31, 45, 79, 0.12);
+
+  // 圆角
+  --border-radius-small: 10px;
+  --border-radius-medium: 16px;
+  --border-radius-large: 22px;
+  --border-radius-xl: 28px;
+  --border-radius-pill: 999px;
+
+  // 间距
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  // 字体
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // 行高
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  // 动画
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  // Z-index
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  // 容器
+  --page-max-width: 1440px;
+  --page-padding: clamp(14px, 2.2vw, 24px);
+  --touch-target: 42px;
+}
+
+// 暗色主题
+[data-theme="dark"] {
+  --text-primary: #f8fbff;
+  --text-secondary: #c3cee4;
+  --text-tertiary: #93a1bf;
+  --text-disabled: #64708a;
+
+  --bg-primary: #131a2b;
+  --bg-secondary: #182135;
+  --bg-tertiary: #212c45;
+  --bg-elevated: rgba(19, 26, 43, 0.78);
+  --bg-elevated-strong: rgba(19, 26, 43, 0.92);
+  --bg-overlay: rgba(0, 0, 0, 0.72);
+  --bg-page-gradient:
+    radial-gradient(circle at top left, rgba(91, 124, 255, 0.22), transparent 24%),
+    radial-gradient(circle at top right, rgba(124, 92, 255, 0.18), transparent 22%),
+    linear-gradient(180deg, #101827 0%, #141d2f 48%, #182134 100%);
+  --bg-sidebar:
+    linear-gradient(180deg, rgba(8, 13, 25, 0.96) 0%, rgba(18, 29, 52, 0.98) 100%);
+
+  --border-light: rgba(146, 163, 196, 0.18);
+  --border-medium: rgba(146, 163, 196, 0.3);
+  --border-dark: rgba(146, 163, 196, 0.46);
+
+  --shadow-light: 0 14px 34px rgba(0, 0, 0, 0.26);
+  --shadow-medium: 0 20px 50px rgba(0, 0, 0, 0.34);
+  --shadow-heavy: 0 28px 80px rgba(0, 0, 0, 0.42);
+  --shadow-glass: 0 16px 38px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-xs: 12px;
+    --font-size-sm: 13px;
+    --font-size-md: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 22px;
+    --font-size-3xl: 28px;
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --font-size-md: 14px;
+    --spacing-md: 10px;
+  }
+}

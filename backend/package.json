@@ -1,0 +1,27 @@
+{
+  "name": "xyzw-backend",
+  "version": "1.0.0",
+  "description": "XYZW游戏自动化后端服务",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "lz4js": "^0.2.0",
+    "node-cron": "^3.0.3",
+    "node-fetch": "^3.3.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

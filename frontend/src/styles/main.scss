@@ -1,0 +1,19 @@
+@use "../assets/styles/variables.scss";
+@use "../assets/styles/global.scss";
+
+html,
+body,
+#app {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--bg-page-gradient);
+}
+
+#app {
+  overflow-x: clip;
+}
