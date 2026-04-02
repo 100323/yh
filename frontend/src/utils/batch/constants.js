@@ -2,6 +2,9 @@
  * 批量日常任务常量配置
  */
 
+export const FISH_TARGET = 320;
+export const ARENA_TARGET = 240;
+
 // 宝箱类型选项
 export const boxTypeOptions = [
   { label: "木质宝箱", value: 2001 },
