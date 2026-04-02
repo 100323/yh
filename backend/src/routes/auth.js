@@ -37,14 +37,14 @@ router.post('/register', async (req, res) => {
     if (username.length < 3 || username.length > 20) {
       return res.status(400).json({
         success: false,
-        error: 'ÓÃ»§Ãû³¤¶ÈĞèÒªÔÚ 3-20 ¸ö×Ö·ûÖ®¼ä'
+        error: 'ç”¨æˆ·åé•¿åº¦éœ€è¦åœ¨ 3-20 ä¸ªå­—ç¬¦ä¹‹é—´'
       });
     }
 
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
-        error: 'ÃÜÂë³¤¶ÈÖÁÉÙĞèÒª 6 ¸ö×Ö·û'
+        error: 'å¯†ç é•¿åº¦è‡³å°‘éœ€è¦ 6 ä¸ªå­—ç¬¦'
       });
     }
 
@@ -169,7 +169,7 @@ router.get('/me', authMiddleware, (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'ÓÃ»§²»´æÔÚ'
+        error: 'ç”¨æˆ·ä¸å­˜åœ¨'
       });
     }
 
@@ -196,14 +196,14 @@ router.post('/change-password', authMiddleware, (req, res) => {
     if (!oldPassword || !newPassword) {
       return res.status(400).json({
         success: false,
-        error: '¾ÉÃÜÂëºÍĞÂÃÜÂë²»ÄÜÎª¿Õ'
+        error: 'æ—§å¯†ç å’Œæ–°å¯†ç ä¸èƒ½ä¸ºç©º'
       });
     }
 
     if (newPassword.length < 6) {
       return res.status(400).json({
         success: false,
-        error: 'ĞÂÃÜÂë³¤¶ÈÖÁÉÙĞèÒª 6 ¸ö×Ö·û'
+        error: 'æ–°å¯†ç é•¿åº¦è‡³å°‘éœ€è¦ 6 ä¸ªå­—ç¬¦'
       });
     }
 
@@ -212,7 +212,7 @@ router.post('/change-password', authMiddleware, (req, res) => {
     if (!verifyPassword(oldPassword, user.password_hash, user.salt)) {
       return res.status(401).json({
         success: false,
-        error: '¾ÉÃÜÂë´íÎó'
+        error: 'æ—§å¯†ç é”™è¯¯'
       });
     }
 
@@ -239,7 +239,7 @@ router.post('/change-password', authMiddleware, (req, res) => {
 router.post('/logout', (_req, res) => {
   res.json({
     success: true,
-    message: 'ÍË³öµÇÂ¼³É¹¦'
+    message: 'é€€å‡ºç™»å½•æˆåŠŸ'
   });
 });
 router.post('/refresh-token', authMiddleware, (req, res) => {

@@ -242,7 +242,7 @@ export const useTokenStore = defineStore("tokens", () => {
     try {
       await api.delete(`/accounts/${accountId}`);
     } catch (error) {
-      tokenLogger.warn(`É¾³ıºó¶ËÕËºÅÊ§°Ü [${accountId}]`, error);
+      tokenLogger.warn(`åˆ é™¤åç«¯è´¦å·å¤±è´¥ [${accountId}]`, error);
     }
   };
 
@@ -318,7 +318,7 @@ export const useTokenStore = defineStore("tokens", () => {
 
       return nextToken;
     } catch (error) {
-      tokenLogger.warn(`×Ô¶¯Ë¢ĞÂ Token Ê§°Ü [${tokenId}]`, error);
+      tokenLogger.warn(`è‡ªåŠ¨åˆ·æ–° Token å¤±è´¥ [${tokenId}]`, error);
       return null;
     }
   };
@@ -479,7 +479,7 @@ export const useTokenStore = defineStore("tokens", () => {
     }
 
     return addToken({
-      name: tokenMeta.name || `ÕËºÅ${gameTokens.value.length + 1}`,
+      name: tokenMeta.name || `è´¦å·${gameTokens.value.length + 1}`,
       token: tokenString,
       wsUrl: tokenMeta.wsUrl || null,
       server: tokenMeta.server || "",
@@ -529,7 +529,7 @@ export const useTokenStore = defineStore("tokens", () => {
 
       return tower.level || tower.currentLevel || tower.floor || tower.stage || null;
     } catch (error) {
-      gameLogger.error("»ñÈ¡Ëş²ãĞÅÏ¢Ê§°Ü", error);
+      gameLogger.error("è·å–å¡”å±‚ä¿¡æ¯å¤±è´¥", error);
       return null;
     }
   };
@@ -538,7 +538,7 @@ export const useTokenStore = defineStore("tokens", () => {
     try {
       return gameData.value.roleInfo?.role?.tower || null;
     } catch (error) {
-      gameLogger.error("»ñÈ¡ËşĞÅÏ¢Ê§°Ü", error);
+      gameLogger.error("è·å–å¡”ä¿¡æ¯å¤±è´¥", error);
       return null;
     }
   };
@@ -552,7 +552,7 @@ export const useTokenStore = defineStore("tokens", () => {
     }
 
     await syncAccountsFromBackend();
-    tokenLogger.info("Token Store ³õÊ¼»¯Íê³É");
+    tokenLogger.info("Token Store åˆå§‹åŒ–å®Œæˆ");
   };
 
   return {
@@ -610,7 +610,7 @@ export const useTokenStore = defineStore("tokens", () => {
     validateToken,
     debugToken: (tokenString: string) => {
       const parseResult = parseBase64Token(tokenString);
-      console.log("Token µ÷ÊÔĞÅÏ¢", {
+      console.log("Token è°ƒè¯•ä¿¡æ¯", {
         tokenString,
         parseResult,
         valid: parseResult.success ? validateToken(parseResult.data.actualToken) : false,

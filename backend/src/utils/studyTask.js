@@ -237,8 +237,9 @@ export async function resolveStudySession(client, options = {}) {
 export async function executeStudyChallenge(client, options = {}) {
   const {
     maxStudyAttempts = 3,
-    answerDelayMs = 250,
-    rewardDelayMs = 120,
+    answerDelayMs = 300,
+    answerToRewardDelayMs = 1500,
+    rewardDelayMs = 200,
     betweenAttemptDelayMs = 500,
     roleInfoTimeoutMs = 8000,
     afterAttemptSnapshotRetries = 2,
@@ -289,6 +290,8 @@ export async function executeStudyChallenge(client, options = {}) {
 
     const { questionList, studyId } = resolved.session;
     const answerResults = [];
+    let matchedCount = 0;
+    let fallbackCount = 0;
 
     for (let i = 0; i < questionList.length; i += 1) {
       const question = questionList[i];
@@ -296,20 +299,52 @@ export async function executeStudyChallenge(client, options = {}) {
       const questionText = question?.question || '';
       if (!questionId) continue;
 
-      const answer = findAnswer(questionText) || 1;
+      const resolvedAnswer = findAnswer(questionText);
+      const answer =
+        typeof resolvedAnswer === 'object' && resolvedAnswer !== null
+          ? Number(resolvedAnswer.answer) || 1
+          : Number(resolvedAnswer) || 1;
+      const matched = typeof resolvedAnswer === 'object' && resolvedAnswer !== null
+        ? Boolean(resolvedAnswer.matched)
+        : resolvedAnswer != null;
+      const matchedQuestion =
+        typeof resolvedAnswer === 'object' && resolvedAnswer !== null
+          ? resolvedAnswer.matchedQuestion || null
+          : null;
+
+      if (matched) {
+        matchedCount += 1;
+      } else {
+        fallbackCount += 1;
+      }
+
       try {
         const result = await client.answerStudy(studyId, questionId, answer);
-        answerResults.push({ questionId, answer, ok: true, result });
+        answerResults.push({ questionId, answer, matched, matchedQuestion, ok: true, result });
       } catch (error) {
         answerResults.push({
           questionId,
           answer,
+          matched,
+          matchedQuestion,
           ok: false,
           error: normalizeStudyErrorMessage(error),
         });
       }
       await sleep(answerDelayMs);
     }
+
+    console.log('🧠 答题命中率', {
+      ...logContext,
+      studyAttempt: attempt,
+      studyId,
+      totalQuestions: questionList.length,
+      matchedCount,
+      fallbackCount,
+      summary: `本轮 ${questionList.length} 题里，题库命中 ${matchedCount} 题，默认答案兜底 ${fallbackCount} 题`,
+    });
+
+    await sleep(answerToRewardDelayMs);
 
     const rewardResults = [];
     for (let rewardId = 1; rewardId <= 10; rewardId += 1) {
@@ -354,6 +389,8 @@ export async function executeStudyChallenge(client, options = {}) {
       totalQuestions: questionList.length,
       answered,
       correctCount,
+      matchedCount,
+      fallbackCount,
       studyId,
       sessionSource: resolved.source,
       answerResults,

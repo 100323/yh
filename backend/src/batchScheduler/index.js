@@ -4,7 +4,7 @@ import { decrypt } from '../utils/crypto.js';
 import GameClient from '../utils/gameClient.js';
 import config from '../config/index.js';
 import { updateBatchTaskRunTime, updateBatchTaskRunTimesBatch, addBatchTaskLogEntry } from '../routes/batchScheduler.js';
-import { findAnswer } from '../utils/studyQuestions.js';
+import { resolveStudyAnswer } from '../utils/studyQuestions.js';
 import { parseTokenPayload } from '../utils/token.js';
 import { calculateNextRunAt, resolveBatchCronExpression } from '../utils/cronSchedule.js';
 import {
@@ -1320,12 +1320,15 @@ async function executeHangupClaim(client, config) {
 async function executeStudy(client, config) {
   return await executeStudyChallenge(client, {
     maxStudyAttempts: 3,
+    answerDelayMs: 300,
+    answerToRewardDelayMs: 1500,
+    rewardDelayMs: 200,
     logContext: {
       accountId: client.accountId ?? null,
       accountName: client.accountName || null,
       source: 'batch',
     },
-    findAnswer,
+    findAnswer: resolveStudyAnswer,
   });
 }
 
