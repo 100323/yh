@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="layout-container">
     <el-container>
       <el-aside width="220px" class="sidebar">

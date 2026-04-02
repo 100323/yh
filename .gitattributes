@@ -1,0 +1,33 @@
+# Normalize all text files to LF to reduce cross-platform garbling/diff noise.
+* text=auto eol=lf
+
+# Explicit text formats that should stay UTF-8/LF in the repo.
+*.css text eol=lf
+*.env text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.jsx text eol=lf
+*.md text eol=lf
+*.scss text eol=lf
+*.sh text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.vue text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Common binary assets - never normalize line endings.
+*.bin binary
+*.db binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.sqlite binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.zip binary

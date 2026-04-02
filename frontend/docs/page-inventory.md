@@ -1,4 +1,4 @@
-﻿# Frontend Page Inventory
+# Frontend Page Inventory
 
 ## Route Source of Truth
 

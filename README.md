@@ -1,4 +1,4 @@
-﻿# XYZW Token Manager
+# XYZW Token Manager
 
 一个基于 **Vue 3 + Vite + Express** 的前后端分离项目，用于管理 XYZW 游戏 Token、建立 WebSocket 通信、执行单账号/批量任务，以及查看任务日志与统计数据。
 
