@@ -17,6 +17,25 @@ log() {
   printf '\n[%s] %s\n' "$(date '+%F %T')" "$*"
 }
 
+retry() {
+  local attempts="$1"
+  local delay_seconds="$2"
+  shift 2
+
+  local i
+  for ((i = 1; i <= attempts; i += 1)); do
+    if "$@"; then
+      return 0
+    fi
+
+    if (( i < attempts )); then
+      sleep "$delay_seconds"
+    fi
+  done
+
+  return 1
+}
+
 require_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
     echo "Missing required command: $1" >&2
@@ -127,7 +146,7 @@ fi
 
 if command -v curl >/dev/null 2>&1; then
   log "Health check"
-  curl -fsS http://127.0.0.1:3001/api/health
+  retry 20 3 curl -fsS http://127.0.0.1:3001/api/health
   printf '\n'
 fi
 
