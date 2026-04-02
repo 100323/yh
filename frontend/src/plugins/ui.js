@@ -112,57 +112,89 @@ function registerComponents(app, components) {
   });
 }
 
+function loadComponentModule(loader, pick) {
+  return loader().then((mod) => pick(mod));
+}
+
 export async function ensureNaiveUi() {
   if (naiveReady) return naiveReady;
 
-  naiveReady = import('naive-ui').then((naive) => {
+  naiveReady = Promise.all([
+    loadComponentModule(() => import('naive-ui/es/alert'), (mod) => ({ NAlert: mod.NAlert })),
+    loadComponentModule(() => import('naive-ui/es/avatar'), (mod) => ({ NAvatar: mod.NAvatar })),
+    loadComponentModule(() => import('naive-ui/es/button'), (mod) => ({
+      NButton: mod.NButton,
+      NButtonGroup: mod.NButtonGroup,
+    })),
+    loadComponentModule(() => import('naive-ui/es/card'), (mod) => ({ NCard: mod.NCard })),
+    loadComponentModule(() => import('naive-ui/es/checkbox'), (mod) => ({
+      NCheckbox: mod.NCheckbox,
+      NCheckboxGroup: mod.NCheckboxGroup,
+    })),
+    loadComponentModule(() => import('naive-ui/es/collapse'), (mod) => ({
+      NCollapse: mod.NCollapse,
+      NCollapseItem: mod.NCollapseItem,
+    })),
+    loadComponentModule(() => import('naive-ui/es/collapse-transition'), (mod) => ({
+      NCollapseTransition: mod.NCollapseTransition,
+    })),
+    loadComponentModule(() => import('naive-ui/es/data-table'), (mod) => ({ NDataTable: mod.NDataTable })),
+    loadComponentModule(() => import('naive-ui/es/descriptions'), (mod) => ({
+      NDescriptions: mod.NDescriptions,
+      NDescriptionsItem: mod.NDescriptionsItem,
+    })),
+    loadComponentModule(() => import('naive-ui/es/divider'), (mod) => ({ NDivider: mod.NDivider })),
+    loadComponentModule(() => import('naive-ui/es/drawer'), (mod) => ({ NDrawer: mod.NDrawer })),
+    loadComponentModule(() => import('naive-ui/es/dropdown'), (mod) => ({ NDropdown: mod.NDropdown })),
+    loadComponentModule(() => import('naive-ui/es/empty'), (mod) => ({ NEmpty: mod.NEmpty })),
+    loadComponentModule(() => import('naive-ui/es/form'), (mod) => ({
+      NForm: mod.NForm,
+      NFormItem: mod.NFormItem,
+    })),
+    loadComponentModule(() => import('naive-ui/es/grid'), (mod) => ({
+      NGi: mod.NGi,
+      NGrid: mod.NGrid,
+      NGridItem: mod.NGridItem,
+    })),
+    loadComponentModule(() => import('naive-ui/es/icon'), (mod) => ({ NIcon: mod.NIcon })),
+    loadComponentModule(() => import('naive-ui/es/input'), (mod) => ({ NInput: mod.NInput })),
+    loadComponentModule(() => import('naive-ui/es/input-number'), (mod) => ({
+      NInputNumber: mod.NInputNumber,
+    })),
+    loadComponentModule(() => import('naive-ui/es/modal'), (mod) => ({ NModal: mod.NModal })),
+    loadComponentModule(() => import('naive-ui/es/pagination'), (mod) => ({
+      NPagination: mod.NPagination,
+    })),
+    loadComponentModule(() => import('naive-ui/es/popover'), (mod) => ({ NPopover: mod.NPopover })),
+    loadComponentModule(() => import('naive-ui/es/progress'), (mod) => ({ NProgress: mod.NProgress })),
+    loadComponentModule(() => import('naive-ui/es/radio'), (mod) => ({
+      NRadio: mod.NRadio,
+      NRadioButton: mod.NRadioButton,
+      NRadioGroup: mod.NRadioGroup,
+    })),
+    loadComponentModule(() => import('naive-ui/es/result'), (mod) => ({ NResult: mod.NResult })),
+    loadComponentModule(() => import('naive-ui/es/select'), (mod) => ({ NSelect: mod.NSelect })),
+    loadComponentModule(() => import('naive-ui/es/space'), (mod) => ({ NSpace: mod.NSpace })),
+    loadComponentModule(() => import('naive-ui/es/spin'), (mod) => ({ NSpin: mod.NSpin })),
+    loadComponentModule(() => import('naive-ui/es/statistic'), (mod) => ({
+      NStatistic: mod.NStatistic,
+    })),
+    loadComponentModule(() => import('naive-ui/es/switch'), (mod) => ({ NSwitch: mod.NSwitch })),
+    loadComponentModule(() => import('naive-ui/es/tabs'), (mod) => ({
+      NTabPane: mod.NTabPane,
+      NTabs: mod.NTabs,
+    })),
+    loadComponentModule(() => import('naive-ui/es/tag'), (mod) => ({ NTag: mod.NTag })),
+    loadComponentModule(() => import('naive-ui/es/typography'), (mod) => ({ NText: mod.NText })),
+    loadComponentModule(() => import('naive-ui/es/thing'), (mod) => ({ NThing: mod.NThing })),
+    loadComponentModule(() => import('naive-ui/es/time-picker'), (mod) => ({
+      NTimePicker: mod.NTimePicker,
+    })),
+    loadComponentModule(() => import('naive-ui/es/tooltip'), (mod) => ({ NTooltip: mod.NTooltip })),
+    loadComponentModule(() => import('naive-ui/es/upload'), (mod) => ({ NUpload: mod.NUpload })),
+  ]).then((modules) => {
     const components = {
-      NAlert: naive.NAlert,
-      NAvatar: naive.NAvatar,
-      NButton: naive.NButton,
-      NButtonGroup: naive.NButtonGroup,
-      NCard: naive.NCard,
-      NCheckbox: naive.NCheckbox,
-      NCheckboxGroup: naive.NCheckboxGroup,
-      NCollapse: naive.NCollapse,
-      NCollapseItem: naive.NCollapseItem,
-      NCollapseTransition: naive.NCollapseTransition,
-      NDataTable: naive.NDataTable,
-      NDescriptions: naive.NDescriptions,
-      NDescriptionsItem: naive.NDescriptionsItem,
-      NDivider: naive.NDivider,
-      NDrawer: naive.NDrawer,
-      NDropdown: naive.NDropdown,
-      NEmpty: naive.NEmpty,
-      NForm: naive.NForm,
-      NFormItem: naive.NFormItem,
-      NGi: naive.NGi,
-      NGrid: naive.NGrid,
-      NGridItem: naive.NGridItem,
-      NIcon: naive.NIcon,
-      NInput: naive.NInput,
-      NInputNumber: naive.NInputNumber,
-      NModal: naive.NModal,
-      NPagination: naive.NPagination,
-      NPopover: naive.NPopover,
-      NProgress: naive.NProgress,
-      NRadio: naive.NRadio,
-      NRadioButton: naive.NRadioButton,
-      NRadioGroup: naive.NRadioGroup,
-      NResult: naive.NResult,
-      NSelect: naive.NSelect,
-      NSpace: naive.NSpace,
-      NSpin: naive.NSpin,
-      NStatistic: naive.NStatistic,
-      NSwitch: naive.NSwitch,
-      NTabPane: naive.NTabPane,
-      NTabs: naive.NTabs,
-      NTag: naive.NTag,
-      NText: naive.NText,
-      NThing: naive.NThing,
-      NTimePicker: naive.NTimePicker,
-      NTooltip: naive.NTooltip,
-      NUpload: naive.NUpload,
+      ...Object.assign({}, ...modules),
     };
 
     registerComponents(ensureAppInstance(), components);
@@ -175,7 +207,14 @@ export async function ensureArcoUi() {
   if (arcoReady) return arcoReady;
 
   arcoReady = Promise.all([
-    import('@arco-design/web-vue'),
+    import('@arco-design/web-vue/es/button'),
+    import('@arco-design/web-vue/es/card'),
+    import('@arco-design/web-vue/es/date-picker'),
+    import('@arco-design/web-vue/es/form'),
+    import('@arco-design/web-vue/es/input'),
+    import('@arco-design/web-vue/es/list'),
+    import('@arco-design/web-vue/es/modal'),
+    import('@arco-design/web-vue/es/upload'),
     import('@arco-design/web-vue/es/button/style/css.js'),
     import('@arco-design/web-vue/es/card/style/css.js'),
     import('@arco-design/web-vue/es/date-picker/style/css.js'),
@@ -184,18 +223,18 @@ export async function ensureArcoUi() {
     import('@arco-design/web-vue/es/list/style/css.js'),
     import('@arco-design/web-vue/es/modal/style/css.js'),
     import('@arco-design/web-vue/es/upload/style/css.js'),
-  ]).then(([arco]) => {
+  ]).then(([button, card, datePicker, form, input, list, modal, upload]) => {
     const components = {
-      AButton: arco.Button,
-      ACard: arco.Card,
-      ADatePicker: arco.DatePicker,
-      AForm: arco.Form,
-      AFormItem: arco.FormItem,
-      AInput: arco.Input,
-      AList: arco.List,
-      AListItem: arco.ListItem,
-      AModal: arco.Modal,
-      AUpload: arco.Upload,
+      AButton: button.default,
+      ACard: card.default,
+      ADatePicker: datePicker.default,
+      AForm: form.default,
+      AFormItem: form.FormItem,
+      AInput: input.default,
+      AList: list.default,
+      AListItem: list.ListItem,
+      AModal: modal.default,
+      AUpload: upload.default,
     };
 
     registerComponents(ensureAppInstance(), components);

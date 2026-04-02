@@ -35,6 +35,15 @@ function createManualChunks(id) {
     return 'vendor-element';
   }
 
+  if (
+    normalizedId.includes('/node_modules/naive-ui/es/data-table/') ||
+    normalizedId.includes('/node_modules/naive-ui/es/date-picker/') ||
+    normalizedId.includes('/node_modules/naive-ui/es/time-picker/') ||
+    normalizedId.includes('/node_modules/naive-ui/es/upload/')
+  ) {
+    return 'vendor-naive-heavy';
+  }
+
   if (normalizedId.includes('/node_modules/naive-ui/')) {
     return 'vendor-naive';
   }
@@ -65,7 +74,13 @@ function createManualChunks(id) {
 
   if (
     normalizedId.includes('/node_modules/@vicons/') ||
-    normalizedId.includes('/node_modules/@css-render/')
+    normalizedId.includes('/node_modules/@css-render/') ||
+    normalizedId.includes('/node_modules/vooks/') ||
+    normalizedId.includes('/node_modules/vdirs/') ||
+    normalizedId.includes('/node_modules/evtd/') ||
+    normalizedId.includes('/node_modules/seemly/') ||
+    normalizedId.includes('/node_modules/treemate/') ||
+    normalizedId.includes('/node_modules/date-fns/')
   ) {
     return 'vendor-icons';
   }
