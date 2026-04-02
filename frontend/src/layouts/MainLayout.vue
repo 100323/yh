@@ -3,8 +3,8 @@
     <el-container>
       <el-aside width="220px" class="sidebar">
         <div class="logo">
-          <img src="/icons/tom_king.jpg" alt="姹ゅ涔嬬帇">
-          <span>姹ゅ涔嬬帇</span>
+          <img src="/icons/tom_king.jpg" alt="汤姆之王">
+          <span>汤姆之王</span>
         </div>
         
         <el-menu
@@ -59,8 +59,8 @@
               </template>
               <template v-else>
                 <div style="background: red; color: white; padding: 20px;">
-                  閿欒: 娌℃湁鍖归厤鐨勮矾鐢辩粍浠?
-                  <br>褰撳墠璺緞: {{ $route.path }}
+                  错误: 没有匹配的路由组件
+                  <br>当前路径: {{ $route.path }}
                 </div>
               </template>
             </router-view>
@@ -78,8 +78,8 @@
     >
       <div class="mobile-drawer-content">
         <div class="mobile-drawer-logo">
-          <img src="/icons/tom_king.jpg" alt="姹ゅ涔嬬帇">
-          <span>姹ゅ涔嬬帇</span>
+          <img src="/icons/tom_king.jpg" alt="汤姆之王">
+          <span>汤姆之王</span>
         </div>
 
         <el-menu
@@ -126,18 +126,21 @@ const authStore = useAuthStore();
 const mobileMenuOpen = ref(false);
 
 const activeMenu = computed(() => route.path);
-const pageTitle = computed(() => route.meta?.title || '姹ゅ涔嬬帇');
+const pageTitle = computed(() => route.meta?.title || '汤姆之王');
 const isAdmin = computed(() => authStore.user?.role === 'admin');
 const menuItems = [
-  { index: '/', label: '棣栭〉', icon: HomeFilled },
-  { index: '/tokens', label: '璐﹀彿绠＄悊', icon: Key },
-  { index: '/game-features', label: '娓告垙鍔熻兘', icon: Trophy },
-  { index: '/daily-tasks', label: '鏃ュ父浠诲姟', icon: Clock },
-  { index: '/tasks', label: '浠诲姟閰嶇疆', icon: Setting },
-  { index: '/logs', label: '鎵ц鏃ュ織', icon: Document },
-  { index: '/user-management', label: '鐢ㄦ埛绠＄悊', icon: User, adminOnly: true },
-  { index: '/invite-codes', label: '閭€璇风爜绠＄悊', icon: Ticket, adminOnly: true }
+  { index: '/', label: '首页', icon: HomeFilled },
+  { index: '/tokens', label: '账号管理', icon: Key },
+  { index: '/game-features', label: '游戏功能', icon: Trophy },
+  { index: '/daily-tasks', label: '日常任务', icon: Clock },
+  { index: '/tasks', label: '任务配置', icon: Setting },
+  { index: '/logs', label: '执行日志', icon: Document },
+  { index: '/user-management', label: '用户管理', icon: User, adminOnly: true },
+  { index: '/invite-codes', label: '邀请码管理', icon: Ticket, adminOnly: true }
 ];
+const visibleMenuItems = computed(() =>
+  menuItems.filter((item) => !item.adminOnly || isAdmin.value)
+);
 const handleCommand = (command) => {
   if (command === 'profile') {
     router.push('/profile');
