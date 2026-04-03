@@ -26,6 +26,7 @@
             <MonthlyTasksCard />
             <StudyChallengeCard />
             <SkinChallengeCard />
+            <Unlimitedlineup />
           </div>
         </el-tab-pane>
 
@@ -92,6 +93,7 @@ import { useTokenStore } from '@stores/tokenStore';
 const MonthlyTasksCard = defineAsyncComponent(() => import('@components/cards/MonthlyTasksCard.vue'));
 const StudyChallengeCard = defineAsyncComponent(() => import('@components/cards/StudyChallengeCard.vue'));
 const SkinChallengeCard = defineAsyncComponent(() => import('@components/cards/SkinChallengeCard.vue'));
+const Unlimitedlineup = defineAsyncComponent(() => import('@components/cards/Unlimitedlineup.vue'));
 const BoxHelperCard = defineAsyncComponent(() => import('@components/cards/BoxHelperCard.vue'));
 const FishHelperCard = defineAsyncComponent(() => import('@components/cards/FishHelperCard.vue'));
 const RecruitHelperCard = defineAsyncComponent(() => import('@components/cards/RecruitHelperCard.vue'));
