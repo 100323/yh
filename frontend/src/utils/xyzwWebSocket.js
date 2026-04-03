@@ -276,6 +276,14 @@ export function registerDefaultCommands(reg) {
     .register("presetteam_setteam")
     .register("presetteam_saveteam", { teamId: 1 })
     .register("role_gettargetteam")
+    .register("hero_gointobattle", { heroId: 0, slot: 0 })
+    .register("hero_gobackbattle", { heroId: 0 })
+    .register("hero_exchange", { heroId: 0, targetHeroId: 0 })
+    .register("hero_rebirth", { heroId: 0 })
+    .register("artifact_load", { artifactId: 0, heroId: 0 })
+    .register("artifact_unload", { heroId: 0 })
+    .register("legion_resetresearch", { advanced: false, type: 1 })
+    .register("legion_research", { isMax: false, researchId: 0 })
 
     // 武将升级相关
     .register("hero_heroupgradelevel") //武将升级
@@ -986,6 +994,14 @@ export class XyzwWebSocketClient {
         if (task.sleep) await sleep(task.sleep);
       } catch (error) {
         wsLogger.error(`发送消息失败: ${task.cmd}`, error);
+        if (task?.seq !== undefined && this.promises[task.seq]) {
+          const promiseData = this.promises[task.seq];
+          delete this.promises[task.seq];
+          if (promiseData?.timer) clearTimeout(promiseData.timer);
+          promiseData.reject(
+            error instanceof Error ? error : new Error(String(error)),
+          );
+        }
       }
     }, 50);
   }
@@ -1054,6 +1070,14 @@ export class XyzwWebSocketClient {
       arena_getarearankresp: "arena_getarearank",
       presetteam_saveteamresp: "presetteam_saveteam",
       presetteam_getinforesp: "presetteam_getinfo",
+      hero_gointobattleresp: "hero_gointobattle",
+      hero_gobackbattleresp: "hero_gobackbattle",
+      hero_exchangeresp: "hero_exchange",
+      hero_rebirthresp: "hero_rebirth",
+      artifact_loadresp: "artifact_load",
+      artifact_unloadresp: "artifact_unload",
+      legion_resetresearchresp: "legion_resetresearch",
+      legion_researchresp: "legion_research",
       mail_claimallattachmentresp: "mail_claimallattachment",
       store_buyresp: "store_purchase",
       system_getdatabundleverresp: "system_getdatabundlever",
