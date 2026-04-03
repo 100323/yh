@@ -71,9 +71,6 @@
     <!-- 洗练助手（提取组件） -->
     <RefineHelperCard v-if="activeSection === 'tools'" />
 
-    <!-- 阵容助手（提取自 zhenrong） -->
-    <Unlimitedlineup v-show="activeSection === 'tools'" />
-
     <!-- 消耗活动进度（提取组件） -->
     <ConsumptionProgressCard v-if="activeSection === 'tools'" />
     <!-- 咸王宝库（提取组件） -->
@@ -165,6 +162,9 @@
 
     <!-- 换皮闯关 -->
     <SkinChallengeCard v-show="activeSection === 'activity'" />
+
+    <!-- 阵容助手（提取自 zhenrong） -->
+    <Unlimitedlineup v-show="activeSection === 'activity'" />
 
     <!-- 盐场分组（包含盐场、周战绩、月战绩） -->
     <div class="salt-field-group" v-if="activeSection === 'saltFieldGroup'">
