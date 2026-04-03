@@ -160,7 +160,7 @@ CREATE INDEX IF NOT EXISTS idx_batch_task_templates_user ON batch_task_templates
 `;
 
 const TASK_LOG_RETENTION_DAYS = 30;
-const TASK_LOG_MAX_PER_ACCOUNT = 30;
+const TASK_LOG_MAX_PER_ACCOUNT = 50;
 const BATCH_LOG_MAX_PER_TASK = 2000;
 
 function normalizeParams(params = []) {

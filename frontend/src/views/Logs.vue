@@ -5,7 +5,7 @@
         <div class="card-header">
           <div>
             <span>执行日志</span>
-            <div class="header-tip">按游戏账号查看最近 30 条执行记录</div>
+            <div class="header-tip">按游戏账号查看最近 50 条执行记录</div>
           </div>
           <el-button @click="refreshCurrentView" :loading="loading">
             <el-icon><Refresh /></el-icon>
