@@ -157,6 +157,7 @@ watch(() => tokenStore.gameTokens, (tokens) => {
 
 <style lang="scss" scoped>
 .game-features-page {
+  position: relative;
   padding: var(--spacing-md);
 
   .header-card {

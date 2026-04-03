@@ -2,12 +2,12 @@
   <MyCard class="lineup-saver" :statusClass="{ active: state.isRunning }">
     <template #icon>
       <img
-        src="/icons/Ob7pyorzmHiJcbab2c25af264d0758b527bc1b61cc3b.png"
-        alt="阵容图标"
+        src="/icons/1733492491706152.png"
+        alt="无限阵容图标"
       />
     </template>
     <template #title>
-      <h3>阵容助手</h3>
+      <h3>无限阵容</h3>
       <p>保存阵容、快速切换</p>
     </template>
     <template #badge>
@@ -44,7 +44,7 @@
             size="small"
             @click="savedLineupsModalVisible = true"
           >
-            已保存阵容 ({{ savedLineups.length }})
+            已保存无限阵容 ({{ savedLineups.length }})
           </n-button>
           <n-button size="small" @click="clearApplyLogs">清空日志</n-button>
         </div>
@@ -199,187 +199,200 @@
         </div>
       </div>
 
-      <n-modal
-        v-model:show="savedLineupsModalVisible"
-        preset="card"
-        title="已保存的阵容"
-        style="width: 900px; max-width: 90vw"
-        :bordered="false"
-      >
-        <div v-if="savedLineups.length === 0" class="empty-tip">
-          暂无保存的阵容，点击"保存阵容"开始使用
-        </div>
-        <div v-else class="saved-lineups-modal-content">
-          <div class="team-tabs">
-            <div class="team-tabs-left">
-              <div
-                v-for="teamId in availableTeams"
-                :key="teamId"
-                class="team-tab"
-                :class="{ active: selectedTeamTab === teamId }"
-                @click="selectedTeamTab = teamId"
-              >
-                槽位{{ teamId }}
-                <span class="tab-count"
-                  >({{ getLineupsByTeamId(teamId).length }})</span
-                >
+      <Teleport :to="savedLineupsModalTarget">
+        <div
+          v-if="savedLineupsModalVisible"
+          class="lineup-page-modal-mask"
+          @click.self="savedLineupsModalVisible = false"
+        >
+          <div class="lineup-page-modal-card">
+            <div class="lineup-page-modal-header">
+              <div class="lineup-page-modal-title">
+                <h3>已保存的无限阵容</h3>
+                <p>当前页面内查看、导入、导出和应用阵容</p>
               </div>
+              <n-button quaternary circle @click="savedLineupsModalVisible = false">
+                ✕
+              </n-button>
             </div>
-            <div class="team-tabs-right">
-              <n-button size="tiny" @click="exportLineups"> 导出 </n-button>
-              <n-upload
-                :show-file-list="false"
-                :custom-request="importLineups"
-                accept=".json"
-              >
-                <n-button size="tiny">导入</n-button>
-              </n-upload>
-            </div>
-          </div>
-          <div class="lineups-list">
-            <div
-              v-for="(lineup, index) in getLineupsByTeamId(selectedTeamTab)"
-              :key="index"
-              class="lineup-card"
-            >
-              <div class="lineup-title-bar" @click="toggleLineupExpand(lineup)">
-                <div class="lineup-title-left">
-                  <span class="expand-icon">{{
-                    expandedLineup === lineup ? "▼" : "▶"
-                  }}</span>
-                  <span class="lineup-name">{{ lineup.name }}</span>
-                  <span
-                    v-if="
-                      lineup.weaponId !== undefined && lineup.weaponId !== null
-                    "
-                    class="lineup-weapon-tag"
-                  >
-                    {{ weapon[lineup.weaponId] || lineup.weaponId }}
-                  </span>
-                  <span class="lineup-time">{{
-                    formatTime(lineup.savedAt)
-                  }}</span>
-                </div>
-                <div class="lineup-quick-actions">
-                  <n-button
-                    size="tiny"
-                    @click.stop="renameLineup(savedLineups.indexOf(lineup))"
-                  >
-                    重命名
-                  </n-button>
-                  <n-button
-                    size="tiny"
-                    @click.stop="showTechModal(lineup)"
-                    :disabled="
-                      !lineup.legionResearch ||
-                      Object.keys(lineup.legionResearch).length === 0
-                    "
-                  >
-                    科技
-                  </n-button>
-                  <n-button
-                    type="error"
-                    size="tiny"
-                    @click.stop="deleteLineup(savedLineups.indexOf(lineup))"
-                  >
-                    删除
-                  </n-button>
-                  <n-button
-                    type="primary"
-                    size="tiny"
-                    @click.stop="
-                      applyLineup(lineup);
-                      savedLineupsModalVisible = false;
-                    "
-                    :loading="lineup.applying"
-                    :disabled="lineup.teamId !== currentTeamId"
-                  >
-                    应用
-                  </n-button>
-                </div>
+            <div class="lineup-page-modal-body">
+              <div v-if="savedLineups.length === 0" class="empty-tip">
+                暂无保存的阵容，点击"保存阵容"开始使用
               </div>
-              <div v-if="expandedLineup === lineup" class="lineup-detail">
-                <div class="lineup-heroes-row">
-                  <div
-                    v-for="(hero, hIdx) in lineup.heroes"
-                    :key="hIdx"
-                    class="lineup-hero-card"
-                  >
-                    <img
-                      v-if="getHeroAvatar(hero.heroId)"
-                      :src="getHeroAvatar(hero.heroId)"
-                      class="hero-avatar"
-                    />
-                    <div v-else class="hero-avatar-placeholder">
-                      {{ getHeroName(hero.heroId)?.[0] || "?" }}
+              <div v-else class="saved-lineups-modal-content">
+                <div class="team-tabs">
+                  <div class="team-tabs-left">
+                    <div
+                      v-for="teamId in availableTeams"
+                      :key="teamId"
+                      class="team-tab"
+                      :class="{ active: selectedTeamTab === teamId }"
+                      @click="selectedTeamTab = teamId"
+                    >
+                      槽位{{ teamId }}
+                      <span class="tab-count"
+                        >({{ getLineupsByTeamId(teamId).length }})</span
+                      >
                     </div>
-                    <div class="hero-info-small">
-                      <div class="hero-header-small">
-                        <div class="hero-name-small">
-                          {{ getHeroName(hero.heroId) || `武将${hero.heroId}` }}
-                        </div>
-                        <div v-if="hero.level" class="hero-level-small">
-                          Lv.{{ formatLevel(hero.level) }}
-                        </div>
+                  </div>
+                  <div class="team-tabs-right">
+                    <n-button size="tiny" @click="exportLineups"> 导出 </n-button>
+                    <n-upload
+                      :show-file-list="false"
+                      :custom-request="importLineups"
+                      accept=".json"
+                    >
+                      <n-button size="tiny">导入</n-button>
+                    </n-upload>
+                  </div>
+                </div>
+                <div class="lineups-list">
+                  <div
+                    v-for="(lineup, index) in getLineupsByTeamId(selectedTeamTab)"
+                    :key="index"
+                    class="lineup-card"
+                  >
+                    <div class="lineup-title-bar" @click="toggleLineupExpand(lineup)">
+                      <div class="lineup-title-left">
+                        <span class="expand-icon">{{
+                          expandedLineup === lineup ? "▼" : "▶"
+                        }}</span>
+                        <span class="lineup-name">{{ lineup.name }}</span>
+                        <span
+                          v-if="
+                            lineup.weaponId !== undefined && lineup.weaponId !== null
+                          "
+                          class="lineup-weapon-tag"
+                        >
+                          {{ weapon[lineup.weaponId] || lineup.weaponId }}
+                        </span>
+                        <span class="lineup-time">{{
+                          formatTime(lineup.savedAt)
+                        }}</span>
                       </div>
-                      <div v-if="hero.fishId" class="hero-fish-info">
-                        <div class="hero-fish-row">
-                          <span class="hero-fish-name">
-                            {{ getFishNameById(hero.fishId) }}
-                            <span
-                              v-if="hero.skillId"
-                              class="hero-fish-skill-name"
-                            >
-                              {{ getPearlSkillNameById(hero.skillId) }}
-                            </span>
-                          </span>
-                          <div
-                            v-if="getSlotColors(hero.slotMap)"
-                            class="hero-fish-slots"
-                          >
-                            <span
-                              v-for="(color, idx) in getSlotColors(
-                                hero.slotMap,
-                              )"
-                              :key="idx"
-                              class="slot-dot"
-                              :style="{ backgroundColor: color }"
-                            ></span>
+                      <div class="lineup-quick-actions">
+                        <n-button
+                          size="tiny"
+                          @click.stop="renameLineup(savedLineups.indexOf(lineup))"
+                        >
+                          重命名
+                        </n-button>
+                        <n-button
+                          size="tiny"
+                          @click.stop="showTechModal(lineup)"
+                          :disabled="
+                            !lineup.legionResearch ||
+                            Object.keys(lineup.legionResearch).length === 0
+                          "
+                        >
+                          科技
+                        </n-button>
+                        <n-button
+                          type="error"
+                          size="tiny"
+                          @click.stop="deleteLineup(savedLineups.indexOf(lineup))"
+                        >
+                          删除
+                        </n-button>
+                        <n-button
+                          type="primary"
+                          size="tiny"
+                          @click.stop="
+                            applyLineup(lineup);
+                            savedLineupsModalVisible = false;
+                          "
+                          :loading="lineup.applying"
+                          :disabled="lineup.teamId !== currentTeamId"
+                        >
+                          应用
+                        </n-button>
+                      </div>
+                    </div>
+                    <div v-if="expandedLineup === lineup" class="lineup-detail">
+                      <div class="lineup-heroes-row">
+                        <div
+                          v-for="(hero, hIdx) in lineup.heroes"
+                          :key="hIdx"
+                          class="lineup-hero-card"
+                        >
+                          <img
+                            v-if="getHeroAvatar(hero.heroId)"
+                            :src="getHeroAvatar(hero.heroId)"
+                            class="hero-avatar"
+                          />
+                          <div v-else class="hero-avatar-placeholder">
+                            {{ getHeroName(hero.heroId)?.[0] || "?" }}
                           </div>
-                        </div>
-                      </div>
-                      <div v-if="hero.power" class="hero-stats-small">
-                        <div class="stat-row-small">
-                          <span class="stat-power"
-                            >战力{{ formatPower(hero.power) }}</span
-                          >
-                          <span class="stat-speed" v-if="hero.speed"
-                            >速度{{ hero.speed }}</span
-                          >
-                        </div>
-                        <div class="stat-row-small">
-                          <span class="stat-attack" v-if="hero.attack"
-                            >攻击{{ formatPower(hero.attack) }}</span
-                          >
-                          <span class="stat-hp" v-if="hero.hp"
-                            >血量{{ formatPower(hero.hp) }}</span
-                          >
+                          <div class="hero-info-small">
+                            <div class="hero-header-small">
+                              <div class="hero-name-small">
+                                {{ getHeroName(hero.heroId) || `武将${hero.heroId}` }}
+                              </div>
+                              <div v-if="hero.level" class="hero-level-small">
+                                Lv.{{ formatLevel(hero.level) }}
+                              </div>
+                            </div>
+                            <div v-if="hero.fishId" class="hero-fish-info">
+                              <div class="hero-fish-row">
+                                <span class="hero-fish-name">
+                                  {{ getFishNameById(hero.fishId) }}
+                                  <span
+                                    v-if="hero.skillId"
+                                    class="hero-fish-skill-name"
+                                  >
+                                    {{ getPearlSkillNameById(hero.skillId) }}
+                                  </span>
+                                </span>
+                                <div
+                                  v-if="getSlotColors(hero.slotMap)"
+                                  class="hero-fish-slots"
+                                >
+                                  <span
+                                    v-for="(color, idx) in getSlotColors(
+                                      hero.slotMap,
+                                    )"
+                                    :key="idx"
+                                    class="slot-dot"
+                                    :style="{ backgroundColor: color }"
+                                  ></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div v-if="hero.power" class="hero-stats-small">
+                              <div class="stat-row-small">
+                                <span class="stat-power"
+                                  >战力{{ formatPower(hero.power) }}</span
+                                >
+                                <span class="stat-speed" v-if="hero.speed"
+                                  >速度{{ hero.speed }}</span
+                                >
+                              </div>
+                              <div class="stat-row-small">
+                                <span class="stat-attack" v-if="hero.attack"
+                                  >攻击{{ formatPower(hero.attack) }}</span
+                                >
+                                <span class="stat-hp" v-if="hero.hp"
+                                  >血量{{ formatPower(hero.hp) }}</span
+                                >
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    v-if="getLineupsByTeamId(selectedTeamTab).length === 0"
+                    class="no-lineup-tip"
+                  >
+                    暂无保存的阵容
+                  </div>
                 </div>
               </div>
             </div>
-            <div
-              v-if="getLineupsByTeamId(selectedTeamTab).length === 0"
-              class="no-lineup-tip"
-            >
-              暂无保存的阵容
-            </div>
           </div>
         </div>
-      </n-modal>
+      </Teleport>
 
       <n-modal
         v-model:show="techModalVisible"
@@ -676,6 +689,7 @@ const heroSearchKeyword = ref("");
 const selectedQuality = ref("全部");
 const selectedCountry = ref("全部");
 const savedLineupsModalVisible = ref(false);
+const savedLineupsModalTarget = ref("body");
 const selectedTeamTab = ref(1);
 const expandedLineup = ref(null);
 const techModalVisible = ref(false);
@@ -3220,6 +3234,10 @@ watch(
 );
 
 onMounted(() => {
+  if (document.querySelector(".game-features-page")) {
+    savedLineupsModalTarget.value = ".game-features-page";
+  }
+
   loadSavedLineups();
 
   const token = tokenStore.selectedToken;
@@ -4113,6 +4131,58 @@ onMounted(() => {
   gap: var(--spacing-md);
 }
 
+.lineup-page-modal-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(2px);
+}
+
+.lineup-page-modal-card {
+  width: min(900px, 100%);
+  max-height: calc(100% - 16px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.22);
+  overflow: hidden;
+}
+
+.lineup-page-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.lineup-page-modal-title {
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-primary);
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+}
+
+.lineup-page-modal-body {
+  padding: 20px;
+  overflow: auto;
+}
+
 .team-tabs {
   display: flex;
   gap: var(--spacing-xs);
@@ -4157,7 +4227,7 @@ onMounted(() => {
 }
 
 .lineups-list {
-  max-height: 50vh;
+  max-height: min(50vh, 560px);
   overflow-y: auto;
 }
 
