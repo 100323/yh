@@ -107,7 +107,7 @@ PY
 
 log "Fetching latest code"
 git fetch "$REMOTE_NAME" "$BRANCH"
-git reset --hard "$REMOTE_NAME/$BRANCH"
+git reset --hard FETCH_HEAD
 
 log "Current commit: $(git rev-parse --short HEAD)"
 

@@ -231,14 +231,39 @@ function getCronExecutionSlotsForToday(cronExpression, now = new Date()) {
   return pairs.sort((a, b) => (a.hour - b.hour) || (a.minute - b.minute));
 }
 
-function getTodayTaskLogSnapshots() {
+function getTodayTaskLogSnapshots(tasks = []) {
+  if (!Array.isArray(tasks) || tasks.length === 0) {
+    return new Map();
+  }
+
+  const uniquePairs = new Map();
+  tasks.forEach((task) => {
+    const accountId = Number(task?.account_id || 0);
+    const taskType = String(task?.task_type || '').trim();
+    if (!accountId || !taskType) return;
+    uniquePairs.set(`${accountId}_${taskType}`, { accountId, taskType });
+  });
+
+  if (uniquePairs.size === 0) {
+    return new Map();
+  }
+
+  const whereClauses = [];
+  const params = [];
+  uniquePairs.forEach(({ accountId, taskType }) => {
+    whereClauses.push('(account_id = ? AND task_type = ?)');
+    params.push(accountId, taskType);
+  });
+
   const rows = all(
     `SELECT account_id, task_type, status, message, created_at,
             datetime(created_at, '+8 hours') AS local_created_at
        FROM task_logs
       WHERE datetime(created_at, '+8 hours') >= date('now', '+8 hours')
         AND datetime(created_at, '+8 hours') < datetime(date('now', '+8 hours'), '+1 day')
+        AND (${whereClauses.join(' OR ')})
       ORDER BY created_at DESC, id DESC`,
+    params,
   );
 
   const snapshotMap = new Map();
@@ -299,14 +324,18 @@ function getLatestDueSlotForToday(task, now = new Date()) {
 
 function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR, now = new Date()) {
   const todayMarkerSnapshots = getTodayTaskExecutionMarkerSnapshots();
-  const todayLogSnapshots = getTodayTaskLogSnapshots();
+  const tasksWithoutMarker = tasks.filter((task) => {
+    const key = `${task.account_id}_${task.task_type}`;
+    return !todayMarkerSnapshots.has(key);
+  });
+  const todayLogSnapshots = getTodayTaskLogSnapshots(tasksWithoutMarker);
   const missingTasks = [];
   const failedTasks = [];
 
   for (const task of tasks) {
     const key = `${task.account_id}_${task.task_type}`;
     const latestMarker = todayMarkerSnapshots.get(key);
-    const latestLog = todayLogSnapshots.get(key);
+    const latestLog = latestMarker ? null : todayLogSnapshots.get(key);
     const latestDueSlot = getLatestDueSlotForToday(task, now);
     if (!latestDueSlot) {
       continue;
