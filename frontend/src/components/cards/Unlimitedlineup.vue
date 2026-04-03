@@ -21,13 +21,14 @@
             size="small"
             @click="refreshTeamInfo({ force: true })"
             :loading="loading"
+            :disabled="state.isRunning"
           >
             刷新数据
           </n-button>
           <n-button
             size="small"
             @click="saveCurrentLineup"
-            :disabled="editingHeroes.length === 0"
+            :disabled="editingHeroes.length === 0 || state.isRunning"
           >
             保存阵容
           </n-button>
@@ -35,7 +36,7 @@
             type="success"
             size="small"
             @click="openAddHeroModal"
-            :disabled="editingHeroes.length >= 5"
+            :disabled="editingHeroes.length >= 5 || state.isRunning"
           >
             上阵英雄
           </n-button>
@@ -86,6 +87,7 @@
               size="small"
               @click="switchTeam(teamId)"
               :loading="switchingTeamId === teamId"
+              :disabled="state.isRunning"
             >
               阵容{{ teamId }}
             </n-button>
@@ -274,6 +276,7 @@
                         <n-button
                           size="tiny"
                           @click.stop="renameLineup(savedLineups.indexOf(lineup))"
+                          :disabled="state.isRunning"
                         >
                           重命名
                         </n-button>
@@ -291,6 +294,7 @@
                           type="error"
                           size="tiny"
                           @click.stop="deleteLineup(savedLineups.indexOf(lineup))"
+                          :disabled="state.isRunning"
                         >
                           删除
                         </n-button>
@@ -302,7 +306,7 @@
                             savedLineupsModalVisible = false;
                           "
                           :loading="lineup.applying"
-                          :disabled="lineup.teamId !== currentTeamId"
+                          :disabled="state.isRunning || lineup.teamId !== currentTeamId"
                         >
                           应用
                         </n-button>
@@ -694,6 +698,7 @@ const selectedTeamTab = ref(1);
 const expandedLineup = ref(null);
 const techModalVisible = ref(false);
 const selectedTechData = ref(null);
+const activeApplyLineupId = ref(null);
 
 const draggedHeroId = ref(null);
 const dragOverPosition = ref(null);
@@ -2315,6 +2320,21 @@ const applyHeroLevel = async (
 };
 
 const applyLineup = async (lineup) => {
+  if (lineup?.applying || activeApplyLineupId.value) {
+    const runningLineup = savedLineups.value.find(
+      (item) => item.id === activeApplyLineupId.value,
+    );
+    const runningName = runningLineup?.name || lineup?.name || "当前阵容";
+    addApplyLog("warn", `忽略重复应用请求：${runningName}`);
+    message.warning(`阵容 "${runningName}" 正在应用，请稍候`);
+    return;
+  }
+
+  if (state.value.isRunning) {
+    message.warning("当前有操作执行中，请稍候再试");
+    return;
+  }
+
   const token = tokenStore.selectedToken;
   if (!token) {
     message.warning("请先选择Token");
@@ -2336,6 +2356,7 @@ const applyLineup = async (lineup) => {
   }
 
   lineup.applying = true;
+  activeApplyLineupId.value = lineup.id || null;
   state.value.isRunning = true;
   clearApplyLogs();
   addApplyLog(
@@ -2944,6 +2965,7 @@ const applyLineup = async (lineup) => {
     message.error(`应用阵容失败: ${error.message}`);
   } finally {
     lineup.applying = false;
+    activeApplyLineupId.value = null;
     state.value.isRunning = false;
     state.value.currentStepKey = "";
     state.value.currentStepTitle = "";
