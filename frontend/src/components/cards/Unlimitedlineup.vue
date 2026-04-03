@@ -2365,6 +2365,7 @@ const applyLineup = async (lineup) => {
         key: "load-snapshot",
         title: "加载当前快照",
         refreshSnapshot: false,
+        retry: 2,
         run: async (stepCtx) => {
           addApplyLog("info", "读取角色与阵容快照");
           const snapshot = await loadLineupSnapshot(stepCtx.tokenId, stepCtx.teamId);

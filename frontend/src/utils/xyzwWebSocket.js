@@ -280,7 +280,7 @@ export function registerDefaultCommands(reg) {
     .register("hero_gobackbattle", { heroId: 0 })
     .register("hero_exchange", { heroId: 0, targetHeroId: 0 })
     .register("hero_rebirth", { heroId: 0 })
-    .register("artifact_load", { artifactId: 0, heroId: 0 })
+    .register("artifact_load", { itemId: 0, heroId: 0, pearlId: 0 })
     .register("artifact_unload", { heroId: 0 })
     .register("legion_resetresearch", { advanced: false, type: 1 })
     .register("legion_research", { isMax: false, researchId: 0 })
