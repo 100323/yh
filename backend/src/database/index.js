@@ -71,6 +71,20 @@ CREATE TABLE IF NOT EXISTS task_logs (
   FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS task_execution_markers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  account_id INTEGER NOT NULL,
+  task_type TEXT NOT NULL,
+  business_date TEXT NOT NULL,
+  latest_status TEXT NOT NULL,
+  latest_message TEXT,
+  latest_details TEXT,
+  executed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
+  UNIQUE (account_id, task_type, business_date)
+);
+
 CREATE TABLE IF NOT EXISTS ws_connections (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   account_id INTEGER NOT NULL UNIQUE,
@@ -153,6 +167,8 @@ CREATE INDEX IF NOT EXISTS idx_game_accounts_user ON game_accounts(user_id);
 CREATE INDEX IF NOT EXISTS idx_task_configs_account ON task_configs(account_id);
 CREATE INDEX IF NOT EXISTS idx_task_logs_account ON task_logs(account_id);
 CREATE INDEX IF NOT EXISTS idx_task_logs_created ON task_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_task_execution_markers_account_date ON task_execution_markers(account_id, business_date);
+CREATE INDEX IF NOT EXISTS idx_task_execution_markers_date ON task_execution_markers(business_date);
 CREATE INDEX IF NOT EXISTS idx_batch_scheduled_tasks_user ON batch_scheduled_tasks(user_id);
 CREATE INDEX IF NOT EXISTS idx_batch_task_logs_task ON batch_task_logs(batch_task_id);
 CREATE INDEX IF NOT EXISTS idx_account_batch_settings_account ON account_batch_settings(account_id);
@@ -182,6 +198,19 @@ function getStatement(database, sql, params = []) {
 function allStatement(database, sql, params = []) {
   const stmt = database.prepare(sql);
   return stmt.all(...normalizeParams(params));
+}
+
+function getShanghaiBusinessDate(value = new Date()) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  const shifted = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+  const year = shifted.getUTCFullYear();
+  const month = String(shifted.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(shifted.getUTCDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 function createDatabaseAdapter(database) {
@@ -235,11 +264,13 @@ export async function initDatabase() {
   dirty = ensureUsersSchema() || dirty;
   dirty = ensureGameAccountSchema() || dirty;
   dirty = ensureTaskConfigSchema() || dirty;
+  dirty = ensureTaskExecutionMarkerSchema() || dirty;
   dirty = ensureSystemSettingsSchema() || dirty;
 
   console.log('🗃️ initDatabase[5/5] 执行数据规范化...');
   const normalizeResult = normalizeGameAccounts();
   dirty = normalizeResult.changed || dirty;
+  dirty = backfillTaskExecutionMarkersIfNeeded() || dirty;
 
   if (dirty) {
     console.log('💾 initDatabase 检测到结构/数据变更，better-sqlite3 已实时持久化，无需额外导出保存');
@@ -325,6 +356,59 @@ function ensureTaskConfigSchema() {
     }
   } catch (error) {
     console.warn('⚠️ 检查 task_configs 表结构失败:', error?.message || error);
+  }
+  return changed;
+}
+
+function ensureTaskExecutionMarkerSchema() {
+  let changed = false;
+  try {
+    rawDb.exec(`CREATE TABLE IF NOT EXISTS task_execution_markers (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      account_id INTEGER NOT NULL,
+      task_type TEXT NOT NULL,
+      business_date TEXT NOT NULL,
+      latest_status TEXT NOT NULL,
+      latest_message TEXT,
+      latest_details TEXT,
+      executed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
+      UNIQUE (account_id, task_type, business_date)
+    )`);
+    rawDb.exec('CREATE INDEX IF NOT EXISTS idx_task_execution_markers_account_date ON task_execution_markers(account_id, business_date)');
+    rawDb.exec('CREATE INDEX IF NOT EXISTS idx_task_execution_markers_date ON task_execution_markers(business_date)');
+  } catch (error) {
+    console.warn('⚠️ 检查 task_execution_markers 表结构失败:', error?.message || error);
+  }
+  return changed;
+}
+
+function backfillTaskExecutionMarkersIfNeeded() {
+  let changed = false;
+  try {
+    const markerCount = Number(
+      getStatement(rawDb, 'SELECT COUNT(*) AS total FROM task_execution_markers')?.total || 0
+    );
+    if (markerCount > 0) {
+      return false;
+    }
+
+    const rows = allStatement(
+      rawDb,
+      `SELECT account_id, task_type, status, message, details, created_at
+         FROM task_logs
+        WHERE created_at >= datetime('now', '-${TASK_LOG_RETENTION_DAYS} days')
+        ORDER BY datetime(created_at) ASC, id ASC`
+    );
+
+    rows.forEach((row) => {
+      upsertTaskExecutionMarker(rawDb, row.account_id, row.task_type, row.status, row.message, row.details, row.created_at);
+    });
+
+    changed = rows.length > 0;
+  } catch (error) {
+    console.warn('⚠️ 回填 task_execution_markers 失败:', error?.message || error);
   }
   return changed;
 }
@@ -459,9 +543,68 @@ export function cleanupBatchTaskLogs(targetDb = getDatabase(), batchTaskId = nul
   }
 }
 
+export function upsertTaskExecutionMarker(targetDb = rawDb, accountId, taskType, status, message = null, details = null, executedAt = new Date()) {
+  const normalizedAccountId = Number(accountId || 0);
+  const normalizedTaskType = String(taskType || '').trim();
+  const businessDate = getShanghaiBusinessDate(executedAt);
+  if (!normalizedAccountId || !normalizedTaskType || !businessDate) {
+    return;
+  }
+
+  const executedAtValue = executedAt instanceof Date
+    ? executedAt.toISOString()
+    : new Date(executedAt).toISOString();
+
+  if (!executedAtValue || executedAtValue === 'Invalid Date') {
+    return;
+  }
+
+  runStatement(
+    targetDb,
+    `INSERT INTO task_execution_markers (
+       account_id,
+       task_type,
+       business_date,
+       latest_status,
+       latest_message,
+       latest_details,
+       executed_at,
+       updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+     ON CONFLICT(account_id, task_type, business_date) DO UPDATE SET
+       latest_status = excluded.latest_status,
+       latest_message = excluded.latest_message,
+       latest_details = excluded.latest_details,
+       executed_at = excluded.executed_at,
+       updated_at = CURRENT_TIMESTAMP
+     WHERE datetime(excluded.executed_at) >= datetime(task_execution_markers.executed_at)`,
+    [
+      normalizedAccountId,
+      normalizedTaskType,
+      businessDate,
+      String(status || 'unknown'),
+      message ?? null,
+      details ?? null,
+      executedAtValue,
+    ],
+  );
+}
+
+export function cleanupTaskExecutionMarkers(targetDb = getDatabase()) {
+  try {
+    targetDb.run(
+      `DELETE FROM task_execution_markers
+       WHERE business_date < date('now', '+8 hours', '-${TASK_LOG_RETENTION_DAYS} days')`
+    );
+  } catch (error) {
+    console.warn('⚠️ 清理 task_execution_markers 失败:', error?.message || error);
+  }
+}
+
 export function cleanupLogTables(targetDb = getDatabase()) {
   cleanupTaskLogs(targetDb);
   cleanupBatchTaskLogs(targetDb);
+  cleanupTaskExecutionMarkers(targetDb);
 }
 
 export async function runDatabaseMaintenance() {
@@ -521,8 +664,10 @@ export default {
   get,
   all,
   normalizeGameAccounts,
+  upsertTaskExecutionMarker,
   cleanupTaskLogs,
   cleanupBatchTaskLogs,
+  cleanupTaskExecutionMarkers,
   cleanupLogTables,
   runDatabaseMaintenance,
   runDatabaseVacuum,

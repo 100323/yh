@@ -251,6 +251,25 @@ function getTodayTaskLogSnapshots() {
   return snapshotMap;
 }
 
+function getTodayTaskExecutionMarkerSnapshots() {
+  const rows = all(
+    `SELECT account_id, task_type, latest_status, latest_message, latest_details, executed_at,
+            datetime(executed_at, '+8 hours') AS local_executed_at
+       FROM task_execution_markers
+      WHERE business_date = date('now', '+8 hours')
+      ORDER BY datetime(executed_at) DESC, id DESC`,
+  );
+
+  const snapshotMap = new Map();
+  for (const row of rows) {
+    const key = `${row.account_id}_${row.task_type}`;
+    if (!snapshotMap.has(key)) {
+      snapshotMap.set(key, row);
+    }
+  }
+  return snapshotMap;
+}
+
 function getLatestDueSlotForToday(task, now = new Date()) {
   const cronExpression = String(task?.cron_expression || '').trim();
   if (!cronExpression) {
@@ -279,23 +298,28 @@ function getLatestDueSlotForToday(task, now = new Date()) {
 }
 
 function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR, now = new Date()) {
+  const todayMarkerSnapshots = getTodayTaskExecutionMarkerSnapshots();
   const todayLogSnapshots = getTodayTaskLogSnapshots();
   const missingTasks = [];
   const failedTasks = [];
 
   for (const task of tasks) {
     const key = `${task.account_id}_${task.task_type}`;
+    const latestMarker = todayMarkerSnapshots.get(key);
     const latestLog = todayLogSnapshots.get(key);
     const latestDueSlot = getLatestDueSlotForToday(task, now);
     if (!latestDueSlot) {
       continue;
     }
+    const latestMarkerAt = latestMarker?.local_executed_at || null;
     const latestLogAt = latestLog?.local_created_at || null;
     const lastRunAt = toShanghaiLocalDateTimeString(task?.last_run_at || null);
-    const latestEvidenceAt = [latestLogAt, lastRunAt]
+    const latestEvidenceAt = [latestMarkerAt, latestLogAt, lastRunAt]
       .filter(Boolean)
       .sort()
       .at(-1) || null;
+    const latestStatus = String(latestMarker?.latest_status || latestLog?.status || '');
+    const latestMessage = latestMarker?.latest_message || latestLog?.message || '';
 
     if (!latestEvidenceAt) {
       missingTasks.push({
@@ -311,19 +335,19 @@ function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
         ...task,
         catchupReason: 'missing_latest_due_slot',
         catchupExpectedAt: latestDueSlot,
-        catchupLastMessage: latestLog?.message || '',
-        catchupLastLogAt: latestLogAt,
+        catchupLastMessage: latestMessage,
+        catchupLastLogAt: latestMarkerAt || latestLogAt,
       });
       continue;
     }
 
-    if (String(latestLog?.status || '') === 'error') {
+    if (latestStatus === 'error') {
       failedTasks.push({
         ...task,
         catchupReason: 'latest_error',
         catchupExpectedAt: latestDueSlot,
-        catchupLastMessage: latestLog.message || '',
-        catchupLastLogAt: latestLogAt,
+        catchupLastMessage: latestMessage,
+        catchupLastLogAt: latestMarkerAt || latestLogAt,
       });
     }
   }

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { run, get, all, cleanupTaskLogs, getDatabase, saveDatabase } from '../database/index.js';
+import { run, get, all, cleanupTaskLogs, getDatabase, saveDatabase, upsertTaskExecutionMarker } from '../database/index.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { calculateNextRunAt } from '../utils/cronSchedule.js';
 
@@ -729,11 +729,14 @@ function normalizeTaskLogDetails(status, details) {
 }
 
 export function addTaskLog(accountId, taskType, status, message, details = null) {
-  run(
+  const normalizedDetails = normalizeTaskLogDetails(status, details);
+  const info = run(
     'INSERT INTO task_logs (account_id, task_type, status, message, details) VALUES (?, ?, ?, ?, ?)',
-    [accountId, taskType, status, message, normalizeTaskLogDetails(status, details)]
+    [accountId, taskType, status, message, normalizedDetails]
   );
+  upsertTaskExecutionMarker(undefined, accountId, taskType, status, message, normalizedDetails);
   cleanupTaskLogs(undefined, accountId);
+  return info;
 }
 
 export default router;
