@@ -234,9 +234,9 @@
               type="primary"
               @click="startStarTempleBattle"
               :loading="starTemple.running"
-              :disabled="!selectedStarTempleLineup || state.isRunning || starTemple.loading"
+              :disabled="!selectedStarTempleLineup || state.isRunning || starTemple.loading || selectedStarTempleStageCompleted"
             >
-              开始挑战
+              {{ starTempleActionLabel }}
             </n-button>
           </div>
 
@@ -2114,6 +2114,25 @@ const starTempleBossSummaries = computed(() => {
   });
 });
 
+const selectedStarTempleStageSummary = computed(() => {
+  return (
+    starTempleBossSummaries.value.find(
+      (stage) => stage.bossId === Number(starTemple.value.selectedBossId || 1),
+    ) || null
+  );
+});
+
+const selectedStarTempleStageCompleted = computed(() => {
+  return Number(selectedStarTempleStageSummary.value?.starCount || 0) >= 3;
+});
+
+const starTempleActionLabel = computed(() => {
+  if (selectedStarTempleStageCompleted.value) {
+    return "当前已满星";
+  }
+  return "开始挑战";
+});
+
 const starTempleResetTimeText = computed(() => {
   const resetTime = Number(starTemple.value.info?.roleNMExt?.starResetTime || 0);
   if (!resetTime) return "";
@@ -3973,6 +3992,30 @@ const syncStarTempleSelectedLineup = () => {
   starTemple.value.selectedLineupId = savedLineups.value[0]?.id || null;
 };
 
+const pickPreferredStarTempleBossId = (info, fallbackBossId = 1) => {
+  const roleNMExt = info?.roleNMExt || {};
+  const completeMap = roleNMExt.starBossCompleteMap || {};
+
+  const normalizedFallback = Number(fallbackBossId || 1);
+  const fallbackSummary = STAR_TEMPLE_BOSS_IDS.find((bossId) => {
+    if (bossId !== normalizedFallback) return false;
+    const completedStarMap = completeMap[bossId] || completeMap[String(bossId)] || {};
+    const starCount = Object.keys(completedStarMap).filter((key) => completedStarMap[key]).length;
+    return starCount < 3;
+  });
+  if (fallbackSummary) {
+    return fallbackSummary;
+  }
+
+  return (
+    STAR_TEMPLE_BOSS_IDS.find((bossId) => {
+      const completedStarMap = completeMap[bossId] || completeMap[String(bossId)] || {};
+      const starCount = Object.keys(completedStarMap).filter((key) => completedStarMap[key]).length;
+      return starCount < 3;
+    }) || normalizedFallback
+  );
+};
+
 const refreshStarTempleInfo = async (options = {}) => {
   const { silent = false } = options;
   const token = tokenStore.selectedToken;
@@ -3998,6 +4041,10 @@ const refreshStarTempleInfo = async (options = {}) => {
       10000,
     );
     starTemple.value.info = result || null;
+    starTemple.value.selectedBossId = pickPreferredStarTempleBossId(
+      result || null,
+      starTemple.value.selectedBossId,
+    );
     if (!silent) {
       message.success("星级十殿信息已更新");
     }
@@ -4062,6 +4109,16 @@ const startStarTempleBattle = async () => {
   const bossId = Number(starTemple.value.selectedBossId || 1);
   if (!STAR_TEMPLE_BOSS_IDS.includes(bossId)) {
     message.warning("请选择 1-8 关");
+    return;
+  }
+
+  const selectedStage = starTempleBossSummaries.value.find(
+    (stage) => stage.bossId === bossId,
+  );
+  if (Number(selectedStage?.starCount || 0) >= 3) {
+    const tip = `第 ${bossId} 关已满星，无需重复挑战`;
+    addStarTempleLog("warn", tip, selectedStage);
+    message.warning(tip);
     return;
   }
 
