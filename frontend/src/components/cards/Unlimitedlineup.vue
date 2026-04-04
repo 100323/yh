@@ -2850,9 +2850,21 @@ const applyLineup = async (lineup, options = {}) => {
   }
 
   const tokenId = token.id;
-  const status = tokenStore.getWebSocketStatus(tokenId);
-  if (status !== "connected") {
-    message.error("WebSocket未连接，无法应用阵容");
+  try {
+    const connection = await tokenStore.ensureWebSocketConnected(tokenId, 12000);
+    if (!connection?.client) {
+      message.error("WebSocket未连接，无法应用阵容");
+      return false;
+    }
+
+    try {
+      await tokenStore.ensureProtocolReady(tokenId, "lineup-apply-start");
+    } catch (error) {
+      console.warn("[无限阵容] 应用前协议预热失败，继续按当前连接执行:", error);
+    }
+  } catch (error) {
+    const messageText = getLineupErrorMessage(error) || "WebSocket未连接，无法应用阵容";
+    message.error(messageText);
     return false;
   }
 

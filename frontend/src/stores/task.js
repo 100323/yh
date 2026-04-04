@@ -28,12 +28,13 @@ export const useTaskStore = defineStore('task', () => {
     }
   }
 
-  async function updateTaskConfig(accountId, taskType, data) {
+  async function updateTaskConfig(accountId, taskType, data, options = {}) {
+    const { refetch = true } = options;
     const res = await api.post(`/tasks/account/${accountId}`, {
       taskType,
       ...data
     });
-    if (res.success) {
+    if (res.success && refetch) {
       await fetchAccountTasks(accountId);
     }
     return res;

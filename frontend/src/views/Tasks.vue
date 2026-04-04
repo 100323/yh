@@ -151,6 +151,9 @@ const selectedAccountId = ref(null);
 const isHydrating = ref(false);
 const autoSyncTimer = ref(null);
 const autoSyncRunning = ref(false);
+const pendingSyncAccountId = ref(null);
+const configChangeVersion = ref(0);
+const backendLoadRequestId = ref(0);
 
 const scheduleModeOptions = [
   { label: '每日固定时间', value: 'daily' },
@@ -558,7 +561,16 @@ const inferDailyRunTime = (taskConfigs = {}, fallbackRunTime = null) => {
 };
 
 const loadAccountTaskConfigsFromBackend = async (accountId) => {
+  const requestId = ++backendLoadRequestId.value;
+  const localVersionAtStart = configChangeVersion.value;
   const res = await taskStore.fetchAccountTasks(accountId);
+  if (requestId !== backendLoadRequestId.value || selectedAccountId.value !== accountId) {
+    return;
+  }
+  if (localVersionAtStart !== configChangeVersion.value) {
+    console.warn(`[Tasks] 账号 ${accountId} 在后端配置加载期间已发生本地修改，跳过本次回填`);
+    return;
+  }
   if (!res?.success || !Array.isArray(res.data)) {
     return;
   }
@@ -610,6 +622,10 @@ const loadAccountTaskConfigsFromBackend = async (accountId) => {
 };
 
 const handleAccountChange = async (accountId) => {
+  if (autoSyncTimer.value) {
+    clearTimeout(autoSyncTimer.value);
+    autoSyncTimer.value = null;
+  }
   isHydrating.value = true;
   try {
     if (accountId && allAccountsConfig.value[accountId]) {
@@ -663,9 +679,24 @@ const handleConfigSave = (configs) => {
 };
 
 const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
-  if (!selectedAccountId.value || autoSyncRunning.value) {
+  if (!selectedAccountId.value) {
     return { success: false };
   }
+
+  if (autoSyncRunning.value) {
+    pendingSyncAccountId.value = selectedAccountId.value;
+    if (notify) {
+      message.info('当前正在同步，已自动排队本次最新修改');
+    }
+    return { success: true, queued: true };
+  }
+
+  const accountId = selectedAccountId.value;
+  const accountName = currentAccountName.value;
+  const configSnapshot = normalizeAccountConfig(
+    JSON.parse(JSON.stringify(currentAccountConfig.value))
+  );
+  const syncStartedVersion = configChangeVersion.value;
 
   autoSyncRunning.value = true;
   if (notify) {
@@ -673,16 +704,14 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
   }
 
   try {
-    allAccountsConfig.value[selectedAccountId.value] = JSON.parse(
-      JSON.stringify(currentAccountConfig.value)
-    );
+    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(configSnapshot));
     saveAllToLocalStorage();
 
     let syncedCount = 0;
     let skippedCount = 0;
     const syncErrors = [];
 
-    for (const [taskKey, taskValue] of Object.entries(currentAccountConfig.value.taskConfigs)) {
+    for (const [taskKey, taskValue] of Object.entries(configSnapshot.taskConfigs)) {
       if (localOnlyTaskKeys.has(taskKey)) {
         continue;
       }
@@ -696,10 +725,12 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
       const cronExpression = buildCronExpression(taskKey, taskValue);
       const config = mapFrontendConfigToBackend(taskKey, taskValue);
       try {
-        const res = await taskStore.updateTaskConfig(selectedAccountId.value, backendTaskType, {
+        const res = await taskStore.updateTaskConfig(accountId, backendTaskType, {
           enabled: !!taskValue.enabled,
           cronExpression,
           config,
+        }, {
+          refetch: false,
         });
         if (res?.success) {
           syncedCount++;
@@ -715,7 +746,7 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
       if (syncErrors.length > 0) {
         message.error(`后端同步失败 ${syncErrors.length} 项，请检查账号与登录状态`);
       } else {
-        message.success(`${currentAccountName.value} 的配置已保存，已同步 ${syncedCount} 项任务`);
+        message.success(`${accountName} 的配置已保存，已同步 ${syncedCount} 项任务`);
       }
 
       if (skippedCount > 0) {
@@ -729,19 +760,44 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
     if (notify) {
       saving.value = false;
     }
+
+    const queuedAccountId = pendingSyncAccountId.value;
+    const hasNewerLocalChanges =
+      selectedAccountId.value === accountId && configChangeVersion.value > syncStartedVersion;
+    const shouldResyncSelectedAccount =
+      (queuedAccountId && selectedAccountId.value === queuedAccountId)
+      || hasNewerLocalChanges;
+
+    if (shouldResyncSelectedAccount) {
+      pendingSyncAccountId.value = null;
+      queueAutoSync(true);
+    }
   }
 };
 
-const queueAutoSync = () => {
+const queueAutoSync = (immediate = false) => {
   if (!selectedAccountId.value || isHydrating.value) {
+    return;
+  }
+  const accountId = selectedAccountId.value;
+  if (autoSyncRunning.value) {
+    pendingSyncAccountId.value = accountId;
     return;
   }
   if (autoSyncTimer.value) {
     clearTimeout(autoSyncTimer.value);
   }
   autoSyncTimer.value = setTimeout(() => {
+    autoSyncTimer.value = null;
+    if (selectedAccountId.value !== accountId) {
+      return;
+    }
+    if (autoSyncRunning.value) {
+      pendingSyncAccountId.value = accountId;
+      return;
+    }
     syncCurrentConfigToBackend({ notify: false });
-  }, 1000);
+  }, immediate ? 0 : 1000);
 };
 
 const saveCurrentConfig = async () => {
@@ -808,7 +864,10 @@ watch(
       );
       saveAllToLocalStorage();
     }
-    queueAutoSync();
+    if (!isHydrating.value) {
+      configChangeVersion.value += 1;
+      queueAutoSync();
+    }
   },
   { deep: true }
 );
