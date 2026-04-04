@@ -199,6 +199,123 @@
             </div>
           </div>
         </div>
+
+        <div class="star-temple-section">
+          <div class="star-temple-header">
+            <div>
+              <h4>星级十殿</h4>
+              <p>绑定无限阵容后，按所选阵容与玩具挑战 1-8 关</p>
+            </div>
+            <div class="star-temple-header-actions">
+              <span v-if="starTempleResetTimeText" class="star-temple-reset">
+                重置：{{ starTempleResetTimeText }}
+              </span>
+              <n-button
+                size="small"
+                @click="refreshStarTempleInfo"
+                :loading="starTemple.loading"
+                :disabled="state.isRunning || starTemple.running"
+              >
+                刷新十殿
+              </n-button>
+            </div>
+          </div>
+
+          <div class="star-temple-toolbar">
+            <n-select
+              v-model:value="starTemple.selectedLineupId"
+              class="star-temple-lineup-select"
+              :options="starTempleLineupOptions"
+              placeholder="选择要用于十殿的无限阵容"
+              :disabled="state.isRunning || starTemple.running"
+            />
+            <div class="star-temple-selected-boss">
+              当前关卡：第 {{ starTemple.selectedBossId }} 关
+            </div>
+            <n-button
+              type="primary"
+              @click="startStarTempleBattle"
+              :loading="starTemple.running"
+              :disabled="!selectedStarTempleLineup || state.isRunning || starTemple.loading"
+            >
+              开始挑战
+            </n-button>
+          </div>
+
+          <div class="star-temple-stage-grid">
+            <button
+              v-for="stage in starTempleBossSummaries"
+              :key="stage.bossId"
+              type="button"
+              class="star-stage-card"
+              :class="{
+                active: starTemple.selectedBossId === stage.bossId,
+                completed: stage.starCount > 0,
+              }"
+              :disabled="state.isRunning || starTemple.running"
+              @click="starTemple.selectedBossId = stage.bossId"
+            >
+              <span class="stage-name">第{{ stage.bossId }}关</span>
+              <span class="stage-stars">{{ formatStarDisplay(stage.starCount) }}</span>
+              <span class="stage-meta">已达成 {{ stage.starCount }}/3 星</span>
+              <span class="stage-meta">次数值 {{ stage.fightCount }}</span>
+              <span
+                v-if="stage.rewardClaimed"
+                class="stage-reward claimed"
+              >
+                奖励已领
+              </span>
+              <span v-else class="stage-reward">奖励未领</span>
+            </button>
+          </div>
+
+          <div class="star-temple-summary" v-if="selectedStarTempleLineup">
+            <span>
+              已选阵容：槽位{{ selectedStarTempleLineup.teamId }} ·
+              {{ selectedStarTempleLineup.name }}
+            </span>
+            <span>
+              玩具：{{ weapon[selectedStarTempleLineup.weaponId] || selectedStarTempleLineup.weaponId || "沿用当前阵容" }}
+            </span>
+          </div>
+
+          <div v-if="starTemple.lastResult" class="star-temple-result">
+            <span :class="['result-badge', starTemple.lastResult.isWin ? 'win' : 'loss']">
+              {{ starTemple.lastResult.isWin ? "挑战成功" : "挑战失败" }}
+            </span>
+            <span>
+              第 {{ starTemple.lastResult.bossId }} 关 ·
+              {{ starTemple.lastResult.isWin ? `${starTemple.lastResult.starCount} 星` : "0 星" }}
+            </span>
+            <span v-if="starTemple.lastResult.starIndexes.length > 0">
+              星标：{{ starTemple.lastResult.starIndexes.map((index) => index + 1).join(", ") }}
+            </span>
+          </div>
+
+          <div
+            v-if="starTemple.logs.length > 0"
+            class="star-temple-log-panel"
+          >
+            <div class="star-temple-log-header">
+              <span>十殿日志</span>
+              <n-button text size="tiny" @click="clearStarTempleLogs">
+                清空
+              </n-button>
+            </div>
+            <div class="star-temple-log-list">
+              <div
+                v-for="log in starTemple.logs"
+                :key="log.id"
+                class="star-temple-log-item"
+                :class="`level-${log.level}`"
+              >
+                <span class="log-time">{{ log.time }}</span>
+                <span class="log-level">{{ log.level.toUpperCase() }}</span>
+                <span class="log-message">{{ log.message }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Teleport :to="savedLineupsModalTarget">
@@ -609,7 +726,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, h } from "vue";
+import { ref, computed, onMounted, watch, h, nextTick } from "vue";
 import { useMessage, useDialog, NInput } from "naive-ui";
 import { useTokenStore } from "@/stores/tokenStore";
 import MyCard from "../Common/MyCard.vue";
@@ -705,8 +822,10 @@ const dragOverPosition = ref(null);
 
 const STORAGE_KEY = "saved_lineups";
 const TEAM_SLOT_COUNT = 5;
+const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 let applyLogId = 0;
+let starTempleLogId = 0;
 const STEP_RETRY_DELAY = 1200;
 
 const addApplyLog = (level, message, extra = null) => {
@@ -733,6 +852,47 @@ const addApplyLog = (level, message, extra = null) => {
 
 const clearApplyLogs = () => {
   state.value.stepLogs = [];
+};
+
+const starTemple = ref({
+  loading: false,
+  running: false,
+  selectedBossId: 1,
+  selectedLineupId: null,
+  info: null,
+  lastResult: null,
+  logs: [],
+});
+
+const addStarTempleLog = (level, message, extra = null) => {
+  const entry = {
+    id: `${Date.now()}-star-${starTempleLogId++}`,
+    level,
+    message,
+    time: new Date().toLocaleTimeString(),
+  };
+  starTemple.value.logs.unshift(entry);
+  if (starTemple.value.logs.length > 120) {
+    starTemple.value.logs.length = 120;
+  }
+
+  const prefix = "[StarTemple]";
+  if (level === "error") {
+    console.error(prefix, message, extra || "");
+  } else if (level === "warn") {
+    console.warn(prefix, message, extra || "");
+  } else {
+    console.log(prefix, message, extra || "");
+  }
+};
+
+const clearStarTempleLogs = () => {
+  starTemple.value.logs = [];
+};
+
+const getSavedLineupsStorageKey = () => {
+  const token = tokenStore.selectedToken;
+  return token ? `${STORAGE_KEY}_${token.id}` : null;
 };
 
 const formatHeroListForLog = (heroes = []) => {
@@ -1641,6 +1801,56 @@ const getLineupsByTeamId = (teamId) => {
   return savedLineups.value.filter((lineup) => lineup.teamId === teamId);
 };
 
+const starTempleLineupOptions = computed(() =>
+  savedLineups.value.map((lineup) => ({
+    label: `槽位${lineup.teamId} · ${lineup.name}`,
+    value: lineup.id,
+  })),
+);
+
+const selectedStarTempleLineup = computed(() =>
+  savedLineups.value.find(
+    (lineup) => lineup.id === starTemple.value.selectedLineupId,
+  ) || null,
+);
+
+const starTempleBossSummaries = computed(() => {
+  const roleNMExt = starTemple.value.info?.roleNMExt || {};
+  const fightCntMap = roleNMExt.starFightCntMap || {};
+  const completeMap = roleNMExt.starBossCompleteMap || {};
+  const rewardMap = roleNMExt.starRewardsClaimedMap || {};
+
+  return STAR_TEMPLE_BOSS_IDS.map((bossId) => {
+    const completedStarMap = completeMap[bossId] || completeMap[String(bossId)] || {};
+    const starIndexes = Object.keys(completedStarMap)
+      .filter((key) => completedStarMap[key])
+      .map((key) => Number(key))
+      .filter((value) => !Number.isNaN(value))
+      .sort((a, b) => a - b);
+
+    return {
+      bossId,
+      fightCount: Number(fightCntMap[bossId] ?? fightCntMap[String(bossId)] ?? 0),
+      starIndexes,
+      starCount: starIndexes.length,
+      rewardClaimed: Boolean(
+        rewardMap[bossId] ?? rewardMap[String(bossId)] ?? false,
+      ),
+    };
+  });
+});
+
+const starTempleResetTimeText = computed(() => {
+  const resetTime = Number(starTemple.value.info?.roleNMExt?.starResetTime || 0);
+  if (!resetTime) return "";
+  return new Date(resetTime * 1000).toLocaleString();
+});
+
+const formatStarDisplay = (starCount = 0) =>
+  `${"★".repeat(Math.max(0, Math.min(3, starCount)))}${"☆".repeat(
+    Math.max(0, 3 - Math.min(3, starCount)),
+  )}`;
+
 const toggleLineupExpand = (lineup) => {
   if (expandedLineup.value === lineup) {
     expandedLineup.value = null;
@@ -1938,9 +2148,8 @@ const onDrop = (event, targetHero) => {
 
 const loadSavedLineups = () => {
   try {
-    const token = tokenStore.selectedToken;
-    if (!token) return;
-    const key = `${STORAGE_KEY}_${token.id}`;
+    const key = getSavedLineupsStorageKey();
+    if (!key) return;
     const data = localStorage.getItem(key);
     if (data) {
       savedLineups.value = JSON.parse(data);
@@ -1955,9 +2164,8 @@ const loadSavedLineups = () => {
 
 const saveLineupsToStorage = () => {
   try {
-    const token = tokenStore.selectedToken;
-    if (!token) return;
-    const key = `${STORAGE_KEY}_${token.id}`;
+    const key = getSavedLineupsStorageKey();
+    if (!key) return;
     localStorage.setItem(key, JSON.stringify(savedLineups.value));
   } catch (e) {
     console.error("保存阵容到缓存失败:", e);
@@ -2364,7 +2572,8 @@ const applyHeroLevel = async (
   return { success: true, message: `等级已升至 ${actualCurrentLevel}` };
 };
 
-const applyLineup = async (lineup) => {
+const applyLineup = async (lineup, options = {}) => {
+  const { silentSuccess = false } = options;
   if (lineup?.applying || activeApplyLineupId.value) {
     const runningLineup = savedLineups.value.find(
       (item) => item.id === activeApplyLineupId.value,
@@ -2372,32 +2581,32 @@ const applyLineup = async (lineup) => {
     const runningName = runningLineup?.name || lineup?.name || "当前阵容";
     addApplyLog("warn", `忽略重复应用请求：${runningName}`);
     message.warning(`阵容 "${runningName}" 正在应用，请稍候`);
-    return;
+    return false;
   }
 
   if (state.value.isRunning) {
     message.warning("当前有操作执行中，请稍候再试");
-    return;
+    return false;
   }
 
   const token = tokenStore.selectedToken;
   if (!token) {
     message.warning("请先选择Token");
-    return;
+    return false;
   }
 
   const tokenId = token.id;
   const status = tokenStore.getWebSocketStatus(tokenId);
   if (status !== "connected") {
     message.error("WebSocket未连接，无法应用阵容");
-    return;
+    return false;
   }
 
   if (lineup.teamId !== currentTeamId.value) {
     message.warning(
       `此阵容仅适用于阵容槽位 ${lineup.teamId}，当前槽位为 ${currentTeamId.value}`,
     );
-    return;
+    return false;
   }
 
   lineup.applying = true;
@@ -3093,10 +3302,14 @@ const applyLineup = async (lineup) => {
     lastRefreshTime = 0;
     await refreshTeamInfo();
     addApplyLog("info", `阵容 "${lineup.name}" 应用完成`);
-    message.success(`阵容 "${lineup.name}" 已应用`);
+    if (!silentSuccess) {
+      message.success(`阵容 "${lineup.name}" 已应用`);
+    }
+    return true;
   } catch (error) {
     addApplyLog("error", `应用阵容失败：${error.message}`, error);
     message.error(`应用阵容失败: ${error.message}`);
+    return false;
   } finally {
     lineup.applying = false;
     activeApplyLineupId.value = null;
@@ -3316,20 +3529,21 @@ const importLineups = async ({ file }) => {
   }
 };
 
-const switchTeam = async (teamId) => {
-  if (teamId === currentTeamId.value) return;
+const switchTeam = async (teamId, options = {}) => {
+  const { silent = false } = options;
+  if (teamId === currentTeamId.value) return true;
 
   const token = tokenStore.selectedToken;
   if (!token) {
     message.warning("请先选择Token");
-    return;
+    return false;
   }
 
   const tokenId = token.id;
   const status = tokenStore.getWebSocketStatus(tokenId);
   if (status !== "connected") {
     message.error("WebSocket未连接，无法切换阵容");
-    return;
+    return false;
   }
 
   switchingTeamId.value = teamId;
@@ -3343,14 +3557,189 @@ const switchTeam = async (teamId) => {
     await delay(500);
 
     currentTeamId.value = teamId;
-    message.success(`已切换到阵容 ${teamId}`);
+    if (!silent) {
+      message.success(`已切换到阵容 ${teamId}`);
+    }
 
     await refreshTeamInfo();
+    return true;
   } catch (error) {
     message.error(`切换阵容失败: ${error.message}`);
+    return false;
   } finally {
     switchingTeamId.value = null;
     state.value.isRunning = false;
+  }
+};
+
+const syncStarTempleSelectedLineup = () => {
+  if (
+    starTemple.value.selectedLineupId &&
+    savedLineups.value.some(
+      (lineup) => lineup.id === starTemple.value.selectedLineupId,
+    )
+  ) {
+    return;
+  }
+
+  starTemple.value.selectedLineupId = savedLineups.value[0]?.id || null;
+};
+
+const refreshStarTempleInfo = async (options = {}) => {
+  const { silent = false } = options;
+  const token = tokenStore.selectedToken;
+  if (!token) {
+    if (!silent) message.warning("请先选择Token");
+    return null;
+  }
+
+  const tokenId = token.id;
+  const status = tokenStore.getWebSocketStatus(tokenId);
+  if (status !== "connected") {
+    if (!silent) message.warning("请先建立WS连接");
+    return null;
+  }
+
+  starTemple.value.loading = true;
+  try {
+    addStarTempleLog("info", "刷新星级十殿信息");
+    const result = await tokenStore.sendMessageWithPromise(
+      tokenId,
+      "nmext_getinfo",
+      {},
+      10000,
+    );
+    starTemple.value.info = result || null;
+    if (!silent) {
+      message.success("星级十殿信息已更新");
+    }
+    return result || null;
+  } catch (error) {
+    addStarTempleLog("error", `刷新星级十殿失败：${error.message}`, error);
+    if (!silent) {
+      message.error(`刷新星级十殿失败: ${error.message}`);
+    }
+    return null;
+  } finally {
+    starTemple.value.loading = false;
+  }
+};
+
+const prepareLineupForStarTemple = async (lineup) => {
+  if (!lineup) {
+    throw new Error("请先选择无限阵容");
+  }
+
+  if (lineup.teamId !== currentTeamId.value) {
+    addStarTempleLog("info", `切换到阵容槽位 ${lineup.teamId}`);
+    const switched = await switchTeam(lineup.teamId, { silent: true });
+    if (!switched) {
+      throw new Error(`切换到阵容槽位 ${lineup.teamId} 失败`);
+    }
+  }
+
+  await nextTick();
+
+  addStarTempleLog("info", `应用无限阵容：${lineup.name}`);
+  const applied = await applyLineup(lineup, { silentSuccess: true });
+  if (!applied) {
+    throw new Error(`应用阵容 "${lineup.name}" 失败`);
+  }
+
+  addStarTempleLog("info", "读取最新阵容快照用于十殿挑战");
+  const snapshot = await loadLineupSnapshot(tokenStore.selectedToken.id, lineup.teamId, {
+    ensureTeamFresh: true,
+  });
+  return snapshot;
+};
+
+const startStarTempleBattle = async () => {
+  const token = tokenStore.selectedToken;
+  if (!token) {
+    message.warning("请先选择Token");
+    return;
+  }
+
+  if (state.value.isRunning || starTemple.value.running) {
+    message.warning("当前有操作执行中，请稍候");
+    return;
+  }
+
+  const lineup = selectedStarTempleLineup.value;
+  if (!lineup) {
+    message.warning("请先选择一个无限阵容");
+    return;
+  }
+
+  const bossId = Number(starTemple.value.selectedBossId || 1);
+  if (!STAR_TEMPLE_BOSS_IDS.includes(bossId)) {
+    message.warning("请选择 1-8 关");
+    return;
+  }
+
+  starTemple.value.running = true;
+  starTemple.value.lastResult = null;
+  clearStarTempleLogs();
+  addStarTempleLog(
+    "info",
+    `开始挑战星级十殿：第 ${bossId} 关，阵容 ${lineup.name}`,
+  );
+
+  try {
+    const snapshot = await prepareLineupForStarTemple(lineup);
+    const battleWeaponId =
+      normalizeId(snapshot?.weaponId) ?? normalizeId(lineup.weaponId) ?? 0;
+
+    addStarTempleLog(
+      "info",
+      `发送十殿战斗：bossId=${bossId}, lordWeaponId=${battleWeaponId}`,
+    );
+
+    const result = await tokenStore.sendMessageWithPromise(
+      token.id,
+      "nmext_startboss",
+      {
+        bossId,
+        battleTeam: {},
+        lordWeaponId: battleWeaponId,
+      },
+      15000,
+    );
+
+    const isWin = Boolean(result?.isWin ?? result?.battleData?.result?.isWin);
+    const starIndexes = Array.isArray(result?.nowStarIdxList)
+      ? result.nowStarIdxList
+          .map((item) => Number(item))
+          .filter((item) => !Number.isNaN(item))
+      : [];
+    const starCount = isWin ? starIndexes.length : 0;
+
+    starTemple.value.lastResult = {
+      bossId,
+      isWin,
+      starIndexes,
+      starCount,
+      raw: result,
+    };
+
+    addStarTempleLog(
+      isWin ? "info" : "warn",
+      `十殿挑战${isWin ? "成功" : "失败"}：第 ${bossId} 关，${isWin ? `${starCount} 星` : "0 星"}`,
+      result,
+    );
+
+    await refreshStarTempleInfo({ silent: true });
+
+    if (isWin) {
+      message.success(`星级十殿第 ${bossId} 关挑战成功，获得 ${starCount} 星`);
+    } else {
+      message.warning(`星级十殿第 ${bossId} 关挑战失败`);
+    }
+  } catch (error) {
+    addStarTempleLog("error", `十殿挑战失败：${error.message}`, error);
+    message.error(`星级十殿挑战失败: ${error.message}`);
+  } finally {
+    starTemple.value.running = false;
   }
 };
 
@@ -3359,6 +3748,10 @@ watch(
   (newToken, oldToken) => {
     if (newToken && newToken.id !== oldToken?.id) {
       loadSavedLineups();
+      syncStarTempleSelectedLineup();
+      starTemple.value.info = null;
+      starTemple.value.lastResult = null;
+      clearStarTempleLogs();
       currentTeamInfo.value = null;
       presetTeamData.value = null;
       allHeroesData.value = {};
@@ -3367,6 +3760,7 @@ watch(
       const status = tokenStore.getWebSocketStatus(newToken.id);
       if (status === "connected") {
         refreshTeamInfo({ silent: true });
+        refreshStarTempleInfo({ silent: true });
       }
     }
   },
@@ -3385,9 +3779,18 @@ watch(
   ) {
     setTimeout(() => {
         refreshTeamInfo({ silent: true });
+        refreshStarTempleInfo({ silent: true });
       }, 500);
     }
   },
+);
+
+watch(
+  savedLineups,
+  () => {
+    syncStarTempleSelectedLineup();
+  },
+  { deep: true, immediate: true },
 );
 
 onMounted(() => {
@@ -3402,6 +3805,7 @@ onMounted(() => {
     const status = tokenStore.getWebSocketStatus(token.id);
     if (status === "connected") {
       refreshTeamInfo({ silent: true });
+      refreshStarTempleInfo({ silent: true });
     }
   }
 });
@@ -3422,6 +3826,194 @@ onMounted(() => {
   display: flex;
   gap: var(--spacing-sm);
   align-items: center;
+}
+
+.star-temple-section {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.star-temple-header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+
+  h4 {
+    margin: 0 0 4px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+}
+
+.star-temple-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.star-temple-reset {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.star-temple-toolbar {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.star-temple-lineup-select {
+  min-width: 260px;
+  flex: 1;
+}
+
+.star-temple-selected-boss {
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.star-temple-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.star-stage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  }
+
+  &.completed .stage-stars {
+    color: #f7b500;
+  }
+}
+
+.stage-name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stage-stars {
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+}
+
+.stage-meta,
+.stage-reward {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.stage-reward.claimed {
+  color: var(--success-color);
+}
+
+.star-temple-summary,
+.star-temple-result {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: var(--font-size-sm);
+}
+
+.result-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+
+  &.win {
+    background: color-mix(in srgb, var(--success-color) 16%, transparent);
+    color: var(--success-color);
+  }
+
+  &.loss {
+    background: color-mix(in srgb, var(--error-color) 16%, transparent);
+    color: var(--error-color);
+  }
+}
+
+.star-temple-log-panel {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-sm);
+}
+
+.star-temple-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.star-temple-log-list {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.star-temple-log-item {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 6px 8px;
+  border-radius: var(--border-radius-small);
+  background: var(--bg-primary);
+}
+
+.star-temple-log-item.level-error {
+  border-left: 3px solid #d03050;
+}
+
+.star-temple-log-item.level-warn {
+  border-left: 3px solid #f0a020;
+}
+
+.star-temple-log-item.level-info {
+  border-left: 3px solid #2080f0;
 }
 
 .apply-log-panel {
@@ -4568,5 +5160,36 @@ onMounted(() => {
   font-size: var(--font-size-sm);
   text-align: center;
   padding: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  .toolbar,
+  .star-temple-header,
+  .star-temple-toolbar,
+  .star-temple-summary,
+  .star-temple-result {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .star-temple-lineup-select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .star-temple-stage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-selector,
+  .lineup-title-bar,
+  .lineup-quick-actions,
+  .team-tabs {
+    flex-wrap: wrap;
+  }
+
+  .team-tabs {
+    align-items: flex-start;
+  }
 }
 </style>

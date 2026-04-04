@@ -299,6 +299,12 @@ export function registerDefaultCommands(reg) {
 
     // 梦魇相关
     .register("nightmare_getroleinfo")
+    .register("nmext_getinfo")
+    .register("nmext_startboss", {
+      bossId: 1,
+      battleTeam: {},
+      lordWeaponId: 0,
+    })
     .register("dungeon_selecthero")
     .register("bosstower_gethelprank")
     .register("dungeon_buymerchant")
@@ -1052,6 +1058,8 @@ export class XyzwWebSocketClient {
       legionwar_getdetailsresp: "legionwar_getdetails",
       legionwar_getgoldmonthwarrankresp: "legionwar_getgoldmonthwarrank",
       nightmare_getroleinforesp: "nightmare_getroleinfo",
+      nmext_getinforesp: "nmext_getinfo",
+      nmext_startbossresp: "nmext_startboss",
       studyresp: "study_startgame",
       role_getroleinforesp: "role_getroleinfo",
       hero_recruitresp: "hero_recruit",
