@@ -286,7 +286,7 @@ export const taskConfigDefinitions = {
       { key: "useFreeRecruit", label: "免费招募", type: "switch", default: true },
       { key: "usePaidRecruit", label: "付费招募", type: "switch", default: true },
       { key: "freeRecruitCount", label: "免费次数", type: "number", min: 1, max: 10, default: 1 },
-      { key: "paidRecruitCount", label: "付费次数", type: "number", min: 1, max: 100, default: 1 },
+      { key: "paidRecruitCount", label: "付费次数", type: "number", min: 0, max: 100, default: 1, description: "输入0等于关闭付费招募" },
     ],
   },
   batchFish: {

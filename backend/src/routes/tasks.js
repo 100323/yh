@@ -139,6 +139,32 @@ function getTaskDefaultConfigJson(taskType) {
   return JSON.stringify(seed.config || {});
 }
 
+function normalizeRecruitTaskConfig(config = {}) {
+  const next = { ...(config || {}) };
+
+  const rawPaidCount = Math.max(0, Number(next.paidRecruitCount ?? (next.usePaidRecruit === false ? 0 : 1)) || 0);
+  const usePaidRecruit = next.usePaidRecruit !== false && rawPaidCount > 0;
+
+  next.useFreeRecruit = next.useFreeRecruit !== false;
+  next.usePaidRecruit = usePaidRecruit;
+  next.freeRecruitCount = Math.max(1, Number(next.freeRecruitCount ?? 1) || 1);
+  next.paidRecruitCount = usePaidRecruit ? Math.max(1, rawPaidCount || 1) : 0;
+
+  return next;
+}
+
+function normalizeTaskConfigPayload(taskType, config = {}) {
+  if (!config || typeof config !== 'object') {
+    return config || {};
+  }
+
+  if (taskType === 'RECRUIT') {
+    return normalizeRecruitTaskConfig(config);
+  }
+
+  return config;
+}
+
 function insertDefaultTaskConfig(targetDb, accountId, taskType, seed = {}) {
   const taskMeta = TASK_TYPES[taskType];
   if (!taskMeta) {
@@ -442,7 +468,8 @@ router.post('/account/:accountId', async (req, res) => {
     );
 
     const cron = cronExpression || TASK_TYPES[taskType].cron;
-    const configJson = config ? JSON.stringify(config) : null;
+    const normalizedConfig = normalizeTaskConfigPayload(taskType, config);
+    const configJson = normalizedConfig ? JSON.stringify(normalizedConfig) : null;
     const cronIsCustomized = Number(cron !== TASK_TYPES[taskType].cron);
     const defaultCronVersion = cronIsCustomized ? null : getTaskDefaultCronVersion(taskType);
 
@@ -541,7 +568,7 @@ router.put('/:id', async (req, res) => {
     }
     if (config !== undefined) {
       updateFields.push('config_json = ?');
-      updateValues.push(JSON.stringify(config));
+      updateValues.push(JSON.stringify(normalizeTaskConfigPayload(taskConfig.task_type, config)));
     }
 
     if (updateFields.length === 0) {

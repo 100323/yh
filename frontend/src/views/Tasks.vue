@@ -444,16 +444,21 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
     mapped.buyGoldTimes = backendConfig.buyNum;
   }
   if (taskKey === 'batchRecruit') {
+    const rawPaidRecruitCount = Math.max(0, Number(backendConfig.paidRecruitCount ?? 1) || 0);
     mapped.useFreeRecruit = backendConfig.useFreeRecruit ?? true;
-    mapped.usePaidRecruit = backendConfig.usePaidRecruit ?? true;
-    mapped.freeRecruitCount = backendConfig.freeRecruitCount ?? 1;
-    mapped.paidRecruitCount = backendConfig.paidRecruitCount ?? 1;
+    mapped.usePaidRecruit = (backendConfig.usePaidRecruit ?? true) && rawPaidRecruitCount > 0;
+    mapped.freeRecruitCount = Math.max(1, Number(backendConfig.freeRecruitCount ?? 1) || 1);
+    mapped.paidRecruitCount = mapped.usePaidRecruit ? Math.max(1, rawPaidRecruitCount || 1) : 0;
     // 兼容旧配置
     if (backendConfig.recruitType !== undefined && backendConfig.count !== undefined) {
       mapped.useFreeRecruit = Number(backendConfig.recruitType) === 3;
       mapped.usePaidRecruit = Number(backendConfig.recruitType) === 1;
       if (mapped.useFreeRecruit) mapped.freeRecruitCount = backendConfig.count;
-      if (mapped.usePaidRecruit) mapped.paidRecruitCount = backendConfig.count;
+      if (mapped.usePaidRecruit) {
+        mapped.paidRecruitCount = backendConfig.count;
+      } else {
+        mapped.paidRecruitCount = 0;
+      }
     }
   }
   if (taskKey === 'batchOpenBox') {
@@ -521,11 +526,14 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
     };
   }
   if (taskKey === 'batchRecruit') {
+    const rawPaidRecruitCount = Math.max(0, Number(sourceConfig.paidRecruitCount ?? (sourceConfig.usePaidRecruit === false ? 0 : 1)) || 0);
+    const useFreeRecruit = sourceConfig.useFreeRecruit !== false;
+    const usePaidRecruit = sourceConfig.usePaidRecruit !== false && rawPaidRecruitCount > 0;
     return {
-      useFreeRecruit: sourceConfig.useFreeRecruit ?? true,
-      usePaidRecruit: sourceConfig.usePaidRecruit ?? true,
-      freeRecruitCount: sourceConfig.freeRecruitCount ?? 1,
-      paidRecruitCount: sourceConfig.paidRecruitCount ?? 1,
+      useFreeRecruit,
+      usePaidRecruit,
+      freeRecruitCount: Math.max(1, Number(sourceConfig.freeRecruitCount ?? 1) || 1),
+      paidRecruitCount: usePaidRecruit ? Math.max(1, rawPaidRecruitCount || 1) : 0,
     };
   }
   if (taskKey === 'batchOpenBox') {

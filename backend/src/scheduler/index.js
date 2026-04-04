@@ -2473,10 +2473,12 @@ async function executeRecruit(client, config) {
 
   const hasNewSwitches = config?.useFreeRecruit !== undefined || config?.usePaidRecruit !== undefined;
   if (hasNewSwitches) {
-    const useFreeRecruit = config?.useFreeRecruit !== false;
-    const usePaidRecruit = config?.usePaidRecruit !== false;
-    const freeRecruitCount = Math.max(1, Number(config?.freeRecruitCount ?? 1) || 1);
-    const paidRecruitCount = Math.max(1, Number(config?.paidRecruitCount ?? 1) || 1);
+    const rawFreeRecruitCount = Math.max(0, Number(config?.freeRecruitCount ?? 1) || 0);
+    const rawPaidRecruitCount = Math.max(0, Number(config?.paidRecruitCount ?? 1) || 0);
+    const useFreeRecruit = config?.useFreeRecruit !== false && rawFreeRecruitCount > 0;
+    const usePaidRecruit = config?.usePaidRecruit !== false && rawPaidRecruitCount > 0;
+    const freeRecruitCount = useFreeRecruit ? Math.max(1, rawFreeRecruitCount || 1) : 0;
+    const paidRecruitCount = usePaidRecruit ? Math.max(1, rawPaidRecruitCount || 1) : 0;
 
     if (!useFreeRecruit && !usePaidRecruit) {
       return { message: '招募已关闭（免费/付费都未启用）', data: { results: [], successCount: 0, totalCount: 0 } };

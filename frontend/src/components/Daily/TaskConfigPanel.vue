@@ -286,6 +286,47 @@ onMounted(() => {
     initializeConfigs();
   });
 });
+
+watch(
+  () => taskConfigs.value.batchRecruit?.config?.usePaidRecruit,
+  (enabled) => {
+    const recruitConfig = taskConfigs.value.batchRecruit?.config;
+    if (!recruitConfig) {
+      return;
+    }
+
+    const currentCount = Math.max(0, Number(recruitConfig.paidRecruitCount) || 0);
+    if (enabled === false && currentCount !== 0) {
+      recruitConfig.paidRecruitCount = 0;
+      return;
+    }
+
+    if (enabled === true && currentCount <= 0) {
+      recruitConfig.paidRecruitCount = 1;
+    }
+  }
+);
+
+watch(
+  () => taskConfigs.value.batchRecruit?.config?.paidRecruitCount,
+  (value) => {
+    const recruitConfig = taskConfigs.value.batchRecruit?.config;
+    if (!recruitConfig) {
+      return;
+    }
+
+    const normalizedCount = Math.max(0, Number(value) || 0);
+    if (value !== normalizedCount) {
+      recruitConfig.paidRecruitCount = normalizedCount;
+      return;
+    }
+
+    const shouldEnable = normalizedCount > 0;
+    if (recruitConfig.usePaidRecruit !== shouldEnable) {
+      recruitConfig.usePaidRecruit = shouldEnable;
+    }
+  }
+);
 </script>
 
 <style scoped lang="scss">
