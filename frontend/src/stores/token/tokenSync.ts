@@ -233,17 +233,19 @@ export function createTokenSyncManager({
           backendAccounts.map(async (account: any) => {
             const accountId = String(account.id);
             const existingToken = existingBackendTokens.get(accountId);
-            let rawToken = String(existingToken?.token || '').trim();
+            let rawToken = '';
+
+            try {
+              const tokenRes = await request.get(`/accounts/${accountId}/token`);
+              if (tokenRes?.success) {
+                rawToken = String(tokenRes?.data?.token || '').trim();
+              }
+            } catch (error) {
+              tokenLogger.warn(`获取后端账号Token失败 [${accountId}]`, error);
+            }
 
             if (!rawToken) {
-              try {
-                const tokenRes = await request.get(`/accounts/${accountId}/token`);
-                if (tokenRes?.success) {
-                  rawToken = String(tokenRes?.data?.token || '').trim();
-                }
-              } catch (error) {
-                tokenLogger.warn(`获取后端账号Token失败 [${accountId}]`, error);
-              }
+              rawToken = String(existingToken?.token || '').trim();
             }
 
             return {
