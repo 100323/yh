@@ -4099,6 +4099,18 @@ const buildStarTempleBattleTeam = (snapshot) => {
   return battleTeam;
 };
 
+const formatStarTempleBattleTeam = (battleTeam = {}) => {
+  return Object.entries(battleTeam)
+    .map(([slot, heroId]) => {
+      const normalizedHeroId = normalizeId(heroId) ?? 0;
+      if (!normalizedHeroId) {
+        return `${Number(slot) + 1}号位: 空`;
+      }
+      return `${Number(slot) + 1}号位: ${getHeroName(normalizedHeroId) || `武将${normalizedHeroId}`}(${normalizedHeroId})`;
+    })
+    .join("，");
+};
+
 const startStarTempleBattle = async () => {
   const token = tokenStore.selectedToken;
   if (!token) {
@@ -4157,7 +4169,7 @@ const startStarTempleBattle = async () => {
 
     addStarTempleLog(
       "info",
-      `发送十殿战斗：bossId=${bossId}, lordWeaponId=${battleWeaponId}, battleTeam=${JSON.stringify(battleTeam)}`,
+      `发送十殿战斗：bossId=${bossId}, lordWeaponId=${battleWeaponId}, 阵容=${formatStarTempleBattleTeam(battleTeam)}`,
     );
 
     const result = await tokenStore.sendMessageWithPromise(
