@@ -234,7 +234,7 @@
               type="primary"
               @click="startStarTempleBattle"
               :loading="starTemple.running"
-              :disabled="!selectedStarTempleLineup || state.isRunning || starTemple.loading || selectedStarTempleStageCompleted"
+              :disabled="!selectedStarTempleLineup || state.isRunning || starTemple.loading"
             >
               {{ starTempleActionLabel }}
             </n-button>
@@ -2122,16 +2122,7 @@ const selectedStarTempleStageSummary = computed(() => {
   );
 });
 
-const selectedStarTempleStageCompleted = computed(() => {
-  return Number(selectedStarTempleStageSummary.value?.starCount || 0) >= 3;
-});
-
-const starTempleActionLabel = computed(() => {
-  if (selectedStarTempleStageCompleted.value) {
-    return "当前已满星";
-  }
-  return "开始挑战";
-});
+const starTempleActionLabel = computed(() => "开始挑战");
 
 const starTempleResetTimeText = computed(() => {
   const resetTime = Number(starTemple.value.info?.roleNMExt?.starResetTime || 0);
@@ -4088,6 +4079,26 @@ const prepareLineupForStarTemple = async (lineup) => {
   return snapshot;
 };
 
+const buildStarTempleBattleTeam = (snapshot) => {
+  const battleTeam = {};
+  let hasHero = false;
+
+  for (let i = 0; i < 5; i += 1) {
+    const hero = snapshot?.teamHeroes?.find((item) => Number(item.position) === i);
+    const heroId = normalizeId(hero?.heroId) ?? 0;
+    battleTeam[i.toString()] = heroId;
+    if (heroId) {
+      hasHero = true;
+    }
+  }
+
+  if (!hasHero) {
+    throw new Error("当前阵容为空，无法挑战星级十殿");
+  }
+
+  return battleTeam;
+};
+
 const startStarTempleBattle = async () => {
   const token = tokenStore.selectedToken;
   if (!token) {
@@ -4115,11 +4126,19 @@ const startStarTempleBattle = async () => {
   const selectedStage = starTempleBossSummaries.value.find(
     (stage) => stage.bossId === bossId,
   );
-  if (Number(selectedStage?.starCount || 0) >= 3) {
-    const tip = `第 ${bossId} 关已满星，无需重复挑战`;
-    addStarTempleLog("warn", tip, selectedStage);
-    message.warning(tip);
-    return;
+  if (bossId > 1) {
+    const previousStage = starTempleBossSummaries.value.find(
+      (stage) => stage.bossId === bossId - 1,
+    );
+    if (Number(previousStage?.starCount || 0) <= 0) {
+      const tip = `第 ${bossId} 关可能需要先通关第 ${bossId - 1} 关`;
+      addStarTempleLog("warn", tip, {
+        previousStage,
+        currentStage: selectedStage,
+      });
+      message.warning(tip);
+      return;
+    }
   }
 
   starTemple.value.running = true;
@@ -4132,12 +4151,13 @@ const startStarTempleBattle = async () => {
 
   try {
     const snapshot = await prepareLineupForStarTemple(lineup);
+    const battleTeam = buildStarTempleBattleTeam(snapshot);
     const battleWeaponId =
       normalizeId(snapshot?.weaponId) ?? normalizeId(lineup.weaponId) ?? 0;
 
     addStarTempleLog(
       "info",
-      `发送十殿战斗：bossId=${bossId}, lordWeaponId=${battleWeaponId}`,
+      `发送十殿战斗：bossId=${bossId}, lordWeaponId=${battleWeaponId}, battleTeam=${JSON.stringify(battleTeam)}`,
     );
 
     const result = await tokenStore.sendMessageWithPromise(
@@ -4145,7 +4165,7 @@ const startStarTempleBattle = async () => {
       "nmext_startboss",
       {
         bossId,
-        battleTeam: {},
+        battleTeam,
         lordWeaponId: battleWeaponId,
       },
       15000,
@@ -4181,6 +4201,17 @@ const startStarTempleBattle = async () => {
       message.warning(`星级十殿第 ${bossId} 关挑战失败`);
     }
   } catch (error) {
+    if (String(error?.message || "").includes("2600020")) {
+      addStarTempleLog(
+        "warn",
+        "命中十殿通用校验错误：可能是前置关卡未通关、必选咸将未上阵，或服务端未接受当前阵容快照",
+        {
+          bossId,
+          selectedStage,
+          selectedLineup: lineup,
+        },
+      );
+    }
     addStarTempleLog("error", `十殿挑战失败：${error.message}`, error);
     message.error(`星级十殿挑战失败: ${error.message}`);
   } finally {
