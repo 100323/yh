@@ -26,7 +26,6 @@
             <MonthlyTasksCard />
             <StudyChallengeCard />
             <SkinChallengeCard />
-            <Unlimitedlineup />
           </div>
         </el-tab-pane>
 
@@ -78,6 +77,10 @@
 
         <el-tab-pane label="切磋" name="fightPvp" lazy>
           <FightPvp />
+        </el-tab-pane>
+
+        <el-tab-pane label="无限阵容" name="unlimitedLineup" lazy>
+          <Unlimitedlineup />
         </el-tab-pane>
       </el-tabs>
     </template>

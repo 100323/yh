@@ -2,7 +2,7 @@
   <div
     class="game-status-container"
     :class="{
-      'full-grid': activeSection === 'fightPvp',
+      'full-grid': activeSection === 'fightPvp' || activeSection === 'unlimitedLineup',
       'full-page-mode': activeSection === 'saltFieldGroup' || activeSection === 'peachGroup' || activeSection === 'rankGroup',
       'club-mode': activeSection === 'club'
     }"
@@ -26,6 +26,7 @@
       <n-tab-pane name="peachGroup" tab="蟠桃园" />
       <n-tab-pane name="rankGroup" tab="排行榜" />
       <n-tab-pane name="fightPvp" tab="切磋" />
+      <n-tab-pane name="unlimitedLineup" tab="无限阵容" />
     </n-tabs>
 
     <!-- 阵容（仅日常） -->
@@ -163,9 +164,6 @@
     <!-- 换皮闯关 -->
     <SkinChallengeCard v-show="activeSection === 'activity'" />
 
-    <!-- 阵容助手（提取自 zhenrong） -->
-    <Unlimitedlineup v-show="activeSection === 'activity'" />
-
     <!-- 盐场分组（包含盐场、周战绩、月战绩） -->
     <div class="salt-field-group" v-if="activeSection === 'saltFieldGroup'">
       <div class="sub-nav" style="padding: 8px; background: var(--n-color); display: flex; justify-content: center;">
@@ -250,6 +248,8 @@
     </div>
     <!-- 切磋（提取组件） -->
     <FightPvp v-if="activeSection === 'fightPvp'" />
+    <!-- 无限阵容 -->
+    <Unlimitedlineup v-if="activeSection === 'unlimitedLineup'" />
   </div>
 </template>
 
