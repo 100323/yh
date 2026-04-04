@@ -10,9 +10,6 @@
       <h3>无限阵容</h3>
       <p>保存阵容、快速切换</p>
     </template>
-    <template #badge>
-      <span>{{ state.isRunning ? "运行中" : "已停止" }}</span>
-    </template>
     <template #default>
       <div class="lineup-container">
         <div class="toolbar">
@@ -3605,6 +3602,7 @@ const applyLineup = async (lineup, options = {}) => {
             );
           } catch (err) {
             addApplyLog("warn", `切换玩具失败：${err.message}`, err);
+            throw err;
           }
           await delay(COMMAND_DELAY);
         },
@@ -4215,6 +4213,10 @@ onMounted(() => {
 <style scoped lang="scss">
 .lineup-saver {
   min-height: 300px;
+
+  :deep(.status-badge) {
+    display: none;
+  }
 }
 
 .lineup-container {

@@ -282,6 +282,7 @@ export function registerDefaultCommands(reg) {
     .register("hero_rebirth", { heroId: 0 })
     .register("artifact_load", { itemId: 0, heroId: 0, pearlId: 0 })
     .register("artifact_unload", { heroId: 0 })
+    .register("lordweapon_changedefaultweapon", { weaponId: 0 })
     .register("legion_resetresearch", { advanced: false, type: 1 })
     .register("legion_research", { isMax: false, researchId: 0 })
 
