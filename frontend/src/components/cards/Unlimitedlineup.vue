@@ -46,7 +46,7 @@
             @click="savedLineupsModalVisible = true"
             :loading="lineupsLoading"
           >
-            已保存无限阵容 ({{ savedLineups.length }}){{ lineupsSyncing ? " · 同步中" : "" }}
+            已保存无限阵容 ({{ savedLineups.length }}/{{ MAX_SAVED_LINEUPS }}){{ lineupsSyncing ? " · 同步中" : "" }}
           </n-button>
           <n-button size="small" @click="clearApplyLogs">清空日志</n-button>
         </div>
@@ -329,7 +329,7 @@
             <div class="lineup-page-modal-header">
               <div class="lineup-page-modal-title">
                 <h3>已保存的无限阵容</h3>
-                <p>当前页面内查看、导入、导出和应用阵容</p>
+                <p>当前页面内查看、导入、导出和应用阵容（{{ savedLineups.length }}/{{ MAX_SAVED_LINEUPS }}）</p>
               </div>
               <n-button quaternary circle @click="savedLineupsModalVisible = false">
                 ✕
