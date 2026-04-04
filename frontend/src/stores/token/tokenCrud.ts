@@ -175,6 +175,7 @@ export function createTokenCrudManager({
     await deleteBackendTokenAccount(tokenId);
 
     gameTokens.value = gameTokens.value.filter((token) => token.id !== tokenId);
+    localStorage.removeItem(`saved_lineups_${tokenId}`);
 
     if (wsConnections.value[tokenId]) {
       closeWebSocketConnection(tokenId);

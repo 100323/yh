@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { run, get, all, normalizeGameAccounts } from '../database/index.js';
+import { run, get, all, normalizeGameAccounts, getDatabase } from '../database/index.js';
 import { encrypt, decrypt } from '../utils/crypto.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { parseTokenPayload } from '../utils/token.js';
@@ -12,6 +12,7 @@ import { isLikelyBase64, normalizeBase64Text } from '../utils/binStorage.js';
 import { refreshAccountTokenFromStoredBin } from '../utils/accountTokenRefresh.js';
 
 const router = Router();
+const MAX_ACCOUNT_LINEUPS = 30;
 
 router.use(authMiddleware);
 
@@ -89,6 +90,61 @@ function resolveWsUrl(wsUrl, token) {
   }
   const sep = raw.includes('?') ? '&' : '?';
   return `${raw}${sep}p=${encodeURIComponent(payload)}&e=x&lang=chinese`;
+}
+
+function normalizeLineupPayload(lineup = {}) {
+  const lineupId = String(lineup?.id ?? lineup?.lineupKey ?? '').trim();
+  const lineupName = String(lineup?.name ?? '').trim();
+  const teamId = Number(lineup?.teamId ?? lineup?.team_id ?? 1);
+  const savedAt = Number(lineup?.savedAt ?? lineup?.saved_at ?? Date.now());
+
+  if (!lineupId || !lineupName || !Number.isInteger(teamId) || teamId <= 0) {
+    return null;
+  }
+
+  return {
+    ...lineup,
+    id: lineupId,
+    name: lineupName,
+    teamId,
+    savedAt: Number.isFinite(savedAt) ? savedAt : Date.now(),
+    applying: false,
+  };
+}
+
+function parseStoredLineup(row) {
+  try {
+    const payload = JSON.parse(row?.payload_json || '{}');
+    const normalized = normalizeLineupPayload({
+      ...payload,
+      id: payload?.id || row?.lineup_key,
+      name: payload?.name || row?.name,
+      teamId: payload?.teamId ?? row?.team_id,
+      savedAt: payload?.savedAt ?? row?.saved_at,
+    });
+    return normalized;
+  } catch (error) {
+    console.warn('⚠️ 解析账号阵容记录失败，已跳过', {
+      accountId: Number(row?.account_id) || null,
+      lineupKey: row?.lineup_key || null,
+      error: error?.message || String(error || ''),
+    });
+    return null;
+  }
+}
+
+function getOwnedAccountId(accountId, userId) {
+  const normalizedAccountId = Number(accountId);
+  if (!Number.isInteger(normalizedAccountId) || normalizedAccountId <= 0) {
+    return null;
+  }
+
+  const account = get(
+    'SELECT id FROM game_accounts WHERE id = ? AND user_id = ?',
+    [normalizedAccountId, userId]
+  );
+
+  return account ? normalizedAccountId : null;
 }
 
 router.get('/', (req, res) => {
@@ -370,6 +426,109 @@ router.put('/:id', (req, res) => {
     res.status(500).json({
       success: false,
       error: '更新账号失败'
+    });
+  }
+});
+
+router.get('/:id/lineups', (req, res) => {
+  try {
+    const accountId = getOwnedAccountId(req.params.id, req.user.userId);
+    if (!accountId) {
+      return res.status(404).json({
+        success: false,
+        error: '账号不存在'
+      });
+    }
+
+    const rows = all(
+      `SELECT id, account_id, lineup_key, name, team_id, saved_at, payload_json
+       FROM account_lineups
+       WHERE account_id = ?
+       ORDER BY saved_at DESC, id DESC`,
+      [accountId]
+    );
+
+    const lineups = rows
+      .map(parseStoredLineup)
+      .filter(Boolean);
+
+    res.json({
+      success: true,
+      data: lineups
+    });
+  } catch (error) {
+    console.error('获取账号阵容列表错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '获取账号阵容失败'
+    });
+  }
+});
+
+router.put('/:id/lineups', (req, res) => {
+  try {
+    const accountId = getOwnedAccountId(req.params.id, req.user.userId);
+    if (!accountId) {
+      return res.status(404).json({
+        success: false,
+        error: '账号不存在'
+      });
+    }
+
+    const inputLineups = Array.isArray(req.body?.lineups) ? req.body.lineups : [];
+    const normalizedLineups = inputLineups
+      .map(normalizeLineupPayload)
+      .filter(Boolean);
+
+    if (normalizedLineups.length !== inputLineups.length) {
+      return res.status(400).json({
+        success: false,
+        error: '阵容数据格式不正确'
+      });
+    }
+
+    if (normalizedLineups.length > MAX_ACCOUNT_LINEUPS) {
+      return res.status(400).json({
+        success: false,
+        error: `每个账号最多只能保存 ${MAX_ACCOUNT_LINEUPS} 套阵容`
+      });
+    }
+
+    const db = getDatabase();
+    const replaceLineups = db.transaction((lineups) => {
+      db.run('DELETE FROM account_lineups WHERE account_id = ?', [accountId]);
+
+      for (const lineup of lineups) {
+        db.run(
+          `INSERT INTO account_lineups (account_id, lineup_key, name, team_id, saved_at, payload_json, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`,
+          [
+            accountId,
+            lineup.id,
+            lineup.name,
+            lineup.teamId,
+            lineup.savedAt,
+            JSON.stringify({
+              ...lineup,
+              applying: false,
+            }),
+          ]
+        );
+      }
+    });
+
+    replaceLineups(normalizedLineups);
+
+    res.json({
+      success: true,
+      message: '账号阵容已保存',
+      data: normalizedLineups
+    });
+  } catch (error) {
+    console.error('保存账号阵容错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '保存账号阵容失败'
     });
   }
 });

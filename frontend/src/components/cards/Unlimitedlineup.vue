@@ -44,8 +44,9 @@
             type="info"
             size="small"
             @click="savedLineupsModalVisible = true"
+            :loading="lineupsLoading"
           >
-            已保存无限阵容 ({{ savedLineups.length }})
+            已保存无限阵容 ({{ savedLineups.length }}){{ lineupsSyncing ? " · 同步中" : "" }}
           </n-button>
           <n-button size="small" @click="clearApplyLogs">清空日志</n-button>
         </div>
@@ -729,6 +730,7 @@
 import { ref, computed, onMounted, watch, h, nextTick } from "vue";
 import { useMessage, useDialog, NInput } from "naive-ui";
 import { useTokenStore } from "@/stores/tokenStore";
+import api from "@/utils/api";
 import MyCard from "../Common/MyCard.vue";
 import {
   HERO_DICT,
@@ -755,6 +757,8 @@ const availableTeams = ref([1, 2, 3, 4, 5, 6]);
 const currentTeamInfo = ref(null);
 const presetTeamData = ref(null);
 const savedLineups = ref([]);
+const lineupsLoading = ref(false);
+const lineupsSyncing = ref(false);
 const allHeroesData = ref({});
 const roleHeroesData = ref({});
 const editingTeamHeroes = ref({});
@@ -821,8 +825,10 @@ const draggedHeroId = ref(null);
 const dragOverPosition = ref(null);
 
 const STORAGE_KEY = "saved_lineups";
+const MAX_SAVED_LINEUPS = 30;
 const TEAM_SLOT_COUNT = 5;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
+let lineupSyncPromise = Promise.resolve(false);
 
 let applyLogId = 0;
 let starTempleLogId = 0;
@@ -890,9 +896,124 @@ const clearStarTempleLogs = () => {
   starTemple.value.logs = [];
 };
 
-const getSavedLineupsStorageKey = () => {
-  const token = tokenStore.selectedToken;
-  return token ? `${STORAGE_KEY}_${token.id}` : null;
+const getSelectedAccountId = () => {
+  const rawId = tokenStore.selectedToken?.id;
+  return rawId === undefined || rawId === null || rawId === ""
+    ? null
+    : String(rawId);
+};
+
+const getSavedLineupsStorageKey = (accountId = getSelectedAccountId()) =>
+  accountId ? `${STORAGE_KEY}_${accountId}` : null;
+
+const normalizeSavedLineup = (lineup = {}) => {
+  const id = String(lineup?.id || lineup?.lineupKey || "").trim();
+  if (!id) return null;
+
+  const name = String(lineup?.name || "未命名阵容").trim() || "未命名阵容";
+  const teamIdRaw = Number(lineup?.teamId ?? lineup?.team_id ?? 1);
+  const savedAtRaw = Number(lineup?.savedAt ?? lineup?.saved_at ?? Date.now());
+
+  return {
+    ...lineup,
+    id,
+    name,
+    heroes: Array.isArray(lineup?.heroes) ? lineup.heroes : [],
+    teamId:
+      Number.isInteger(teamIdRaw) && teamIdRaw > 0 ? teamIdRaw : 1,
+    savedAt: Number.isFinite(savedAtRaw) ? savedAtRaw : Date.now(),
+    applying: false,
+    legionResearch:
+      lineup?.legionResearch && typeof lineup.legionResearch === "object"
+        ? lineup.legionResearch
+        : {},
+  };
+};
+
+const normalizeSavedLineupList = (lineups = []) =>
+  (Array.isArray(lineups) ? lineups : [])
+    .map((lineup) => normalizeSavedLineup(lineup))
+    .filter(Boolean)
+    .sort((a, b) => Number(b.savedAt || 0) - Number(a.savedAt || 0))
+    .slice(0, MAX_SAVED_LINEUPS);
+
+const serializeLineupForPersistence = (lineup) => {
+  const normalized = normalizeSavedLineup(lineup);
+  if (!normalized) return null;
+  const { applying, ...rest } = normalized;
+  return rest;
+};
+
+const readSavedLineupsFromLocalStorage = (accountId = getSelectedAccountId()) => {
+  try {
+    const key = getSavedLineupsStorageKey(accountId);
+    if (!key) return [];
+    const raw = localStorage.getItem(key);
+    if (!raw) return [];
+    return normalizeSavedLineupList(JSON.parse(raw));
+  } catch (error) {
+    console.error("加载本地阵容缓存失败:", error);
+    return [];
+  }
+};
+
+const persistLineupsToLocalStorage = (
+  lineups,
+  accountId = getSelectedAccountId(),
+) => {
+  try {
+    const key = getSavedLineupsStorageKey(accountId);
+    if (!key) return;
+    const payload = normalizeSavedLineupList(lineups)
+      .map((lineup) => serializeLineupForPersistence(lineup))
+      .filter(Boolean);
+    localStorage.setItem(key, JSON.stringify(payload));
+  } catch (error) {
+    console.error("保存阵容到缓存失败:", error);
+    message.error("保存阵容失败");
+  }
+};
+
+const fetchSavedLineupsFromBackend = async (accountId = getSelectedAccountId()) => {
+  if (!accountId) return [];
+  const response = await api.get(`/accounts/${accountId}/lineups`);
+  return normalizeSavedLineupList(response?.data || []);
+};
+
+const queueSyncSavedLineupsToBackend = ({
+  accountId = getSelectedAccountId(),
+  lineups = savedLineups.value,
+  silent = true,
+} = {}) => {
+  if (!accountId) {
+    return Promise.resolve(false);
+  }
+
+  const payload = normalizeSavedLineupList(lineups)
+    .map((lineup) => serializeLineupForPersistence(lineup))
+    .filter(Boolean);
+
+  lineupSyncPromise = lineupSyncPromise
+    .catch(() => false)
+    .then(async () => {
+      lineupsSyncing.value = true;
+      try {
+        await api.put(`/accounts/${accountId}/lineups`, {
+          lineups: payload,
+        });
+        return true;
+      } catch (error) {
+        console.error("同步阵容到后端失败:", error);
+        if (!silent && getSelectedAccountId() === accountId) {
+          message.error(error?.message || "同步阵容到后端失败");
+        }
+        return false;
+      } finally {
+        lineupsSyncing.value = false;
+      }
+    });
+
+  return lineupSyncPromise;
 };
 
 const formatHeroListForLog = (heroes = []) => {
@@ -2146,31 +2267,56 @@ const onDrop = (event, targetHero) => {
   draggedHeroId.value = null;
 };
 
-const loadSavedLineups = () => {
-  try {
-    const key = getSavedLineupsStorageKey();
-    if (!key) return;
-    const data = localStorage.getItem(key);
-    if (data) {
-      savedLineups.value = JSON.parse(data);
-    } else {
-      savedLineups.value = [];
-    }
-  } catch (e) {
-    console.error("加载保存的阵容失败:", e);
+const loadSavedLineups = async () => {
+  const accountId = getSelectedAccountId();
+  if (!accountId) {
     savedLineups.value = [];
+    return;
+  }
+
+  const localLineups = readSavedLineupsFromLocalStorage(accountId);
+  savedLineups.value = localLineups;
+  lineupsLoading.value = true;
+
+  try {
+    const backendLineups = await fetchSavedLineupsFromBackend(accountId);
+    if (getSelectedAccountId() !== accountId) return;
+
+    if (backendLineups.length === 0 && localLineups.length > 0) {
+      savedLineups.value = localLineups;
+      persistLineupsToLocalStorage(localLineups, accountId);
+      await queueSyncSavedLineupsToBackend({
+        accountId,
+        lineups: localLineups,
+        silent: true,
+      });
+      return;
+    }
+
+    savedLineups.value = backendLineups;
+    persistLineupsToLocalStorage(backendLineups, accountId);
+  } catch (error) {
+    console.error("加载保存的阵容失败:", error);
+    if (getSelectedAccountId() === accountId) {
+      savedLineups.value = localLineups;
+    }
+  } finally {
+    if (getSelectedAccountId() === accountId) {
+      lineupsLoading.value = false;
+    }
   }
 };
 
 const saveLineupsToStorage = () => {
-  try {
-    const key = getSavedLineupsStorageKey();
-    if (!key) return;
-    localStorage.setItem(key, JSON.stringify(savedLineups.value));
-  } catch (e) {
-    console.error("保存阵容到缓存失败:", e);
-    message.error("保存阵容失败");
-  }
+  const accountId = getSelectedAccountId();
+  const normalizedLineups = normalizeSavedLineupList(savedLineups.value);
+  savedLineups.value = normalizedLineups;
+  persistLineupsToLocalStorage(normalizedLineups, accountId);
+  void queueSyncSavedLineupsToBackend({
+    accountId,
+    lineups: normalizedLineups,
+    silent: true,
+  });
 };
 
 const refreshTeamInfo = async (options = {}) => {
@@ -2298,6 +2444,13 @@ const saveCurrentLineup = async () => {
     return;
   }
 
+  if (savedLineups.value.length >= MAX_SAVED_LINEUPS) {
+    message.warning(
+      `每个账号最多只能保存 ${MAX_SAVED_LINEUPS} 套阵容，请先删除旧阵容`,
+    );
+    return;
+  }
+
   const token = tokenStore.selectedToken;
   if (!token) {
     message.warning("请先选择Token");
@@ -2389,7 +2542,9 @@ const saveCurrentLineup = async () => {
     });
 
     saveLineupsToStorage();
-    message.success(`阵容已保存: ${lineupName}`);
+    message.success(
+      `阵容已保存: ${lineupName}（${savedLineups.value.length}/${MAX_SAVED_LINEUPS}）`,
+    );
   } catch (error) {
     message.error(`保存阵容失败: ${error.message}`);
   } finally {
@@ -3466,6 +3621,22 @@ const importLineups = async ({ file }) => {
             }
           }
 
+          const availableSlots = Math.max(
+            0,
+            MAX_SAVED_LINEUPS - (savedLineups.value.length - duplicateLineups.length),
+          );
+          const acceptedNewLineups = newLineups.slice(0, availableSlots);
+          const skippedForLimit = Math.max(
+            0,
+            newLineups.length - acceptedNewLineups.length,
+          );
+
+          if (skippedForLimit > 0) {
+            message.warning(
+              `每个账号最多只能保存 ${MAX_SAVED_LINEUPS} 套阵容，已跳过 ${skippedForLimit} 个超出上限的阵容`,
+            );
+          }
+
           if (duplicateLineups.length > 0) {
             dialog.warning({
               title: "发现重复阵容",
@@ -3485,24 +3656,35 @@ const importLineups = async ({ file }) => {
                     };
                   }
                 }
-                savedLineups.value = [...savedLineups.value, ...newLineups];
+                savedLineups.value = [
+                  ...savedLineups.value,
+                  ...acceptedNewLineups,
+                ];
                 saveLineupsToStorage();
                 message.success(
-                  `已导入 ${newLineups.length + duplicateLineups.length} 个阵容`,
+                  `已导入 ${acceptedNewLineups.length + duplicateLineups.length} 个阵容${skippedForLimit > 0 ? `，另有 ${skippedForLimit} 个因超出上限被跳过` : ""}`,
                 );
               },
               onNegativeClick: () => {
-                savedLineups.value = [...savedLineups.value, ...newLineups];
+                savedLineups.value = [
+                  ...savedLineups.value,
+                  ...acceptedNewLineups,
+                ];
                 saveLineupsToStorage();
                 message.success(
-                  `已导入 ${newLineups.length} 个阵容，跳过 ${duplicateLineups.length} 个重复`,
+                  `已导入 ${acceptedNewLineups.length} 个阵容，跳过 ${duplicateLineups.length} 个重复${skippedForLimit > 0 ? `，另有 ${skippedForLimit} 个因超出上限被跳过` : ""}`,
                 );
               },
             });
           } else {
-            savedLineups.value = [...savedLineups.value, ...newLineups];
+            savedLineups.value = [
+              ...savedLineups.value,
+              ...acceptedNewLineups,
+            ];
             saveLineupsToStorage();
-            message.success(`已导入 ${newLineups.length} 个阵容`);
+            message.success(
+              `已导入 ${acceptedNewLineups.length} 个阵容${skippedForLimit > 0 ? `，另有 ${skippedForLimit} 个因超出上限被跳过` : ""}`,
+            );
           }
         };
 
@@ -3746,8 +3928,13 @@ const startStarTempleBattle = async () => {
 watch(
   () => tokenStore.selectedToken,
   (newToken, oldToken) => {
-    if (newToken && newToken.id !== oldToken?.id) {
-      loadSavedLineups();
+    if (!newToken) {
+      savedLineups.value = [];
+      return;
+    }
+
+    if (newToken.id !== oldToken?.id) {
+      void loadSavedLineups();
       syncStarTempleSelectedLineup();
       starTemple.value.info = null;
       starTemple.value.lastResult = null;
@@ -3798,7 +3985,7 @@ onMounted(() => {
     savedLineupsModalTarget.value = ".game-features-page";
   }
 
-  loadSavedLineups();
+  void loadSavedLineups();
 
   const token = tokenStore.selectedToken;
   if (token) {

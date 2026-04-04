@@ -145,6 +145,20 @@ CREATE TABLE IF NOT EXISTS batch_task_templates (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS account_lineups (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  account_id INTEGER NOT NULL,
+  lineup_key TEXT NOT NULL,
+  name TEXT NOT NULL,
+  team_id INTEGER NOT NULL DEFAULT 1,
+  saved_at INTEGER NOT NULL DEFAULT 0,
+  payload_json TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
+  UNIQUE (account_id, lineup_key)
+);
+
 CREATE TABLE IF NOT EXISTS invite_codes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   code TEXT UNIQUE NOT NULL,
@@ -173,6 +187,8 @@ CREATE INDEX IF NOT EXISTS idx_batch_scheduled_tasks_user ON batch_scheduled_tas
 CREATE INDEX IF NOT EXISTS idx_batch_task_logs_task ON batch_task_logs(batch_task_id);
 CREATE INDEX IF NOT EXISTS idx_account_batch_settings_account ON account_batch_settings(account_id);
 CREATE INDEX IF NOT EXISTS idx_batch_task_templates_user ON batch_task_templates(user_id);
+CREATE INDEX IF NOT EXISTS idx_account_lineups_account ON account_lineups(account_id);
+CREATE INDEX IF NOT EXISTS idx_account_lineups_account_team ON account_lineups(account_id, team_id);
 `;
 
 const TASK_LOG_RETENTION_DAYS = 30;
@@ -217,6 +233,15 @@ function createDatabaseAdapter(database) {
   return {
     run(sql, params = []) {
       return runStatement(database, sql, params);
+    },
+    get(sql, params = []) {
+      return getStatement(database, sql, params);
+    },
+    all(sql, params = []) {
+      return allStatement(database, sql, params);
+    },
+    transaction(fn) {
+      return database.transaction(fn);
     },
   };
 }

@@ -26,15 +26,18 @@
         </div>
       </div>
       <div class="action-row">
-        <button
-          class="action-button secondary"
+        <n-button
+          class="action-button refresh-button"
+          secondary
+          strong
           :disabled="monthLoading || fishToppingUp || arenaToppingUp"
           @click="fetchMonthlyActivity"
         >
           {{ monthLoading ? "刷新中..." : "刷新进度" }}
-        </button>
+        </n-button>
 
-        <n-button-group>
+        <div class="action-group">
+          <n-button-group class="action-button-group">
           <n-button
             class="action-button"
             :disabled="monthLoading || fishToppingUp"
@@ -47,11 +50,18 @@
             trigger="click"
             @select="onFishMoreSelect"
           >
-            <n-button :disabled="monthLoading || fishToppingUp">▾</n-button>
+            <n-button
+              class="action-dropdown-button"
+              :disabled="monthLoading || fishToppingUp"
+            >
+              ▾
+            </n-button>
           </n-dropdown>
-        </n-button-group>
+          </n-button-group>
+        </div>
 
-        <n-button-group>
+        <div class="action-group">
+          <n-button-group class="action-button-group">
           <n-button
             class="action-button"
             :disabled="monthLoading || arenaToppingUp || !isArenaActivityOpen"
@@ -64,9 +74,15 @@
             trigger="click"
             @select="onArenaMoreSelect"
           >
-            <n-button :disabled="monthLoading || arenaToppingUp || !isArenaActivityOpen">▾</n-button>
+            <n-button
+              class="action-dropdown-button"
+              :disabled="monthLoading || arenaToppingUp || !isArenaActivityOpen"
+            >
+              ▾
+            </n-button>
           </n-dropdown>
-        </n-button-group>
+          </n-button-group>
+        </div>
       </div>
       <p class="description muted">
         补齐规则：让“当前天数比例”和“完成比例”一致；若无剩余天数则按满额（{{
@@ -391,38 +407,17 @@ defineExpose({ fetchMonthlyActivity });
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  .action-button {
-    flex: 1;
-    min-width: 80px;
-  }
+  align-items: stretch;
 }
 
-.action-button {
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: #3b82f6;
-  color: #ffffff;
-  &:hover:not(:disabled) {
-    background: #2563eb;
-    transform: translateY(-1px);
-  }
-  &:disabled {
-    background: #d1d5db;
-    color: #9ca3af;
-    cursor: not-allowed;
-  }
-  &.secondary {
-    background: #6b7280;
-    &:hover:not(:disabled) {
-      background: #4b5563;
-    }
-  }
+.refresh-button {
+  flex: 0 0 auto;
+  min-width: 112px;
+}
+
+.action-group {
+  flex: 1 1 220px;
+  min-width: 220px;
 }
 
 .status-indicator {
@@ -436,34 +431,37 @@ defineExpose({ fetchMonthlyActivity });
   }
 }
 
-:deep(.n-button-group) {
-  .n-button {
-    font-size: 13px;
-    font-weight: 500;
-    
-    &:first-child {
-      background: #3b82f6;
-      color: #ffffff;
-      &:hover:not(:disabled) {
-        background: #2563eb;
-      }
-      &:disabled {
-        background: #d1d5db;
-        color: #9ca3af;
-      }
-    }
-    
-    &:last-child {
-      background: #3b82f6;
-      color: #ffffff;
-      &:hover:not(:disabled) {
-        background: #2563eb;
-      }
-      &:disabled {
-        background: #d1d5db;
-        color: #9ca3af;
-      }
-    }
+:deep(.refresh-button.n-button) {
+  height: 36px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+:deep(.action-button-group.n-button-group) {
+  display: flex;
+  width: 100%;
+}
+
+:deep(.action-button-group .n-button) {
+  height: 36px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+:deep(.action-button-group .n-button:first-child) {
+  flex: 1;
+}
+
+:deep(.action-button-group .n-button:last-child) {
+  min-width: 42px;
+}
+
+@media (max-width: 640px) {
+  .refresh-button,
+  .action-group {
+    width: 100%;
+    min-width: 100%;
   }
 }
 </style>
