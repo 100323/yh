@@ -704,6 +704,7 @@ const draggedHeroId = ref(null);
 const dragOverPosition = ref(null);
 
 const STORAGE_KEY = "saved_lineups";
+const TEAM_SLOT_COUNT = 5;
 
 let applyLogId = 0;
 const STEP_RETRY_DELAY = 1200;
@@ -1585,11 +1586,55 @@ const editingHeroes = computed(() => {
 });
 
 const getFirstEmptySlot = () => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < TEAM_SLOT_COUNT; i++) {
     const hero = editingHeroes.value.find((h) => h.position === i);
     if (!hero) return i;
   }
   return 0;
+};
+
+const getEmptySlotsFromTeamHeroes = (teamHeroes = []) => {
+  const occupiedSlots = new Set(
+    teamHeroes
+      .map((hero) => Number(hero.position))
+      .filter((position) => !Number.isNaN(position)),
+  );
+
+  const emptySlots = [];
+  for (let i = 0; i < TEAM_SLOT_COUNT; i++) {
+    if (!occupiedSlots.has(i)) {
+      emptySlots.push(i);
+    }
+  }
+  return emptySlots;
+};
+
+const findAttachmentTempRemovalCandidate = (
+  teamHeroes = [],
+  targetState,
+  protectedHeroIds = new Set(),
+) => {
+  const targetHeroMap = new Map(
+    (targetState?.heroes || []).map((hero) => [hero.heroId, hero]),
+  );
+
+  return [...teamHeroes]
+    .filter((hero) => !protectedHeroIds.has(hero.heroId))
+    .sort((a, b) => {
+      const aTarget = targetHeroMap.get(a.heroId);
+      const bTarget = targetHeroMap.get(b.heroId);
+      const aExtra = !aTarget;
+      const bExtra = !bTarget;
+      if (aExtra !== bExtra) return aExtra ? -1 : 1;
+
+      const aNeedsAttachment = !!aTarget?.attachmentUid;
+      const bNeedsAttachment = !!bTarget?.attachmentUid;
+      if (aNeedsAttachment !== bNeedsAttachment) {
+        return aNeedsAttachment ? 1 : -1;
+      }
+
+      return (b.position ?? 0) - (a.position ?? 0);
+    })[0] || null;
 };
 
 const getLineupsByTeamId = (teamId) => {
@@ -2419,7 +2464,7 @@ const applyLineup = async (lineup) => {
         run: async (stepCtx) => {
           const { heroesMap, teamHeroes } = stepCtx.currentSnapshot;
           const attachmentToHero = { ...stepCtx.currentSnapshot.attachmentOwnerMap };
-          const currentHeroIds = new Set(teamHeroes.map((hero) => hero.heroId));
+          const workingTeamHeroes = teamHeroes.map((hero) => ({ ...hero }));
 
           for (const targetHero of stepCtx.targetState.heroes) {
             if (!targetHero.attachmentUid) continue;
@@ -2429,51 +2474,106 @@ const applyLineup = async (lineup) => {
               continue;
             }
 
-            const holderInTeam = currentHeroIds.has(currentHolderId);
-            const targetInTeam = currentHeroIds.has(targetHero.heroId);
+            const stagedHeroIds = [currentHolderId, targetHero.heroId].filter(
+              (heroId) =>
+                !workingTeamHeroes.some((hero) => hero.heroId === heroId),
+            );
 
-            if (!holderInTeam && !targetInTeam) {
-              const emptySlot = teamHeroes.length < 5 ? teamHeroes.length : 0;
-              addApplyLog(
-                "info",
-                `挂件冲突预处理：临时上阵 ${getHeroName(currentHolderId) || currentHolderId} 与 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
-              );
-              try {
-                await tokenStore.sendMessageWithPromise(
-                  tokenId,
-                  "hero_gointobattle",
-                  {
-                    heroId: currentHolderId,
-                    slot: emptySlot,
-                  },
+            if (stagedHeroIds.length > 0) {
+              const protectedHeroIds = new Set([currentHolderId, targetHero.heroId]);
+
+              while (
+                getEmptySlotsFromTeamHeroes(workingTeamHeroes).length < stagedHeroIds.length
+              ) {
+                const removalCandidate = findAttachmentTempRemovalCandidate(
+                  workingTeamHeroes,
+                  stepCtx.targetState,
+                  protectedHeroIds,
                 );
-              } catch (err) {
-                addApplyLog(
-                  "error",
-                  `临时上阵 ${getHeroName(currentHolderId) || currentHolderId} 失败：${err.message}`,
-                  err,
-                );
+
+                if (!removalCandidate) {
+                  addApplyLog(
+                    "warn",
+                    `挂件预处理失败：无法为 ${getHeroName(targetHero.heroId) || targetHero.heroId} 腾出临时空位`,
+                  );
+                  break;
+                }
+
+                try {
+                  addApplyLog(
+                    "info",
+                    `挂件冲突预处理：临时下阵 ${getHeroName(removalCandidate.heroId) || removalCandidate.heroId}（位置${removalCandidate.position + 1}）`,
+                  );
+                  await tokenStore.sendMessageWithPromise(
+                    tokenId,
+                    "hero_gobackbattle",
+                    {
+                      slot: removalCandidate.position,
+                    },
+                  );
+                  const removalIndex = workingTeamHeroes.findIndex(
+                    (hero) =>
+                      hero.heroId === removalCandidate.heroId &&
+                      hero.position === removalCandidate.position,
+                  );
+                  if (removalIndex !== -1) {
+                    workingTeamHeroes.splice(removalIndex, 1);
+                  }
+                } catch (err) {
+                  addApplyLog(
+                    "warn",
+                    `临时下阵 ${getHeroName(removalCandidate.heroId) || removalCandidate.heroId} 失败：${err.message}`,
+                    err,
+                  );
+                  break;
+                }
+                await delay(COMMAND_DELAY);
+              }
+
+              let emptySlots = getEmptySlotsFromTeamHeroes(workingTeamHeroes);
+              if (emptySlots.length < stagedHeroIds.length) {
                 continue;
               }
-              await delay(COMMAND_DELAY);
 
-              try {
-                await tokenStore.sendMessageWithPromise(
-                  tokenId,
-                  "hero_gointobattle",
-                  {
-                    heroId: targetHero.heroId,
-                    slot: emptySlot + 1,
-                  },
-                );
-              } catch (err) {
-                addApplyLog(
-                  "warn",
-                  `临时上阵 ${getHeroName(targetHero.heroId) || targetHero.heroId} 失败：${err.message}`,
-                  err,
-                );
+              let stageFailed = false;
+              for (const stagedHeroId of stagedHeroIds) {
+                const stageSlot = emptySlots.shift();
+                if (stageSlot === undefined) {
+                  stageFailed = true;
+                  break;
+                }
+
+                try {
+                  addApplyLog(
+                    "info",
+                    `挂件冲突预处理：临时上阵 ${getHeroName(stagedHeroId) || stagedHeroId} -> 位置${stageSlot + 1}`,
+                  );
+                  await tokenStore.sendMessageWithPromise(
+                    tokenId,
+                    "hero_gointobattle",
+                    {
+                      heroId: stagedHeroId,
+                      slot: stageSlot,
+                    },
+                  );
+                  workingTeamHeroes.push({
+                    heroId: stagedHeroId,
+                    position: stageSlot,
+                  });
+                } catch (err) {
+                  addApplyLog(
+                    "warn",
+                    `临时上阵 ${getHeroName(stagedHeroId) || stagedHeroId} 失败：${err.message}`,
+                    err,
+                  );
+                  stageFailed = true;
+                }
+                await delay(COMMAND_DELAY);
               }
-              await delay(COMMAND_DELAY);
+
+              if (stageFailed) {
+                continue;
+              }
             }
 
             try {
@@ -2494,11 +2594,28 @@ const applyLineup = async (lineup) => {
             }
             await delay(COMMAND_DELAY);
 
-            const latestAttachmentUid =
-              heroesMap[currentHolderId]?.attachmentUid || targetHero.attachmentUid;
-            if (latestAttachmentUid) {
-              attachmentToHero[latestAttachmentUid] = targetHero.heroId;
+            const holderAttachmentUid = normalizeId(
+              heroesMap[currentHolderId]?.attachmentUid,
+            );
+            const targetAttachmentUid = normalizeId(
+              heroesMap[targetHero.heroId]?.attachmentUid,
+            );
+
+            if (holderAttachmentUid) {
+              attachmentToHero[holderAttachmentUid] = targetHero.heroId;
             }
+            if (targetAttachmentUid) {
+              attachmentToHero[targetAttachmentUid] = currentHolderId;
+            }
+
+            heroesMap[currentHolderId] = {
+              ...(heroesMap[currentHolderId] || {}),
+              attachmentUid: targetAttachmentUid,
+            };
+            heroesMap[targetHero.heroId] = {
+              ...(heroesMap[targetHero.heroId] || {}),
+              attachmentUid: holderAttachmentUid,
+            };
           }
         },
         verify: async (stepCtx) =>
@@ -2549,21 +2666,38 @@ const applyLineup = async (lineup) => {
           const currentHeroIds = new Set(
             stepCtx.currentSnapshot.teamHeroes.map((hero) => hero.heroId),
           );
+          const occupiedSlots = new Set(
+            stepCtx.currentSnapshot.teamHeroes.map((hero) => hero.position),
+          );
           for (const targetHero of stepCtx.targetState.heroes) {
             if (currentHeroIds.has(targetHero.heroId)) continue;
+
+            const availableSlot = getEmptySlotsFromTeamHeroes(
+              [...occupiedSlots].map((position) => ({ position })),
+            )[0];
+            if (availableSlot === undefined) {
+              addApplyLog(
+                "warn",
+                `补位失败：当前没有可用空位给 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+              );
+              continue;
+            }
+
             try {
               addApplyLog(
                 "info",
-                `上阵目标武将：${getHeroName(targetHero.heroId) || targetHero.heroId} -> 位置${targetHero.position + 1}`,
+                `上阵目标武将：${getHeroName(targetHero.heroId) || targetHero.heroId} -> 临时位置${availableSlot + 1}（目标位置${targetHero.position + 1}）`,
               );
               await tokenStore.sendMessageWithPromise(
                 tokenId,
                 "hero_gointobattle",
                 {
                   heroId: targetHero.heroId,
-                  slot: targetHero.position,
+                  slot: availableSlot,
                 },
               );
+              currentHeroIds.add(targetHero.heroId);
+              occupiedSlots.add(availableSlot);
             } catch (err) {
               addApplyLog(
                 "warn",
