@@ -833,6 +833,19 @@ let lineupSyncPromise = Promise.resolve(false);
 let applyLogId = 0;
 let starTempleLogId = 0;
 const STEP_RETRY_DELAY = 1200;
+const LINEUP_WS_RECOVERY_RETRY_LIMIT = 1;
+const RECOVERABLE_WS_ERROR_PATTERNS = [
+  "websocket 连接关闭",
+  "websocket连接关闭",
+  "websocket未连接",
+  "websocket 未连接",
+  "websocket客户端不存在",
+  "socket hang up",
+  "connection closed",
+  "not connected",
+  "1005",
+  "1006",
+];
 
 const addApplyLog = (level, message, extra = null) => {
   const entry = {
@@ -894,6 +907,46 @@ const addStarTempleLog = (level, message, extra = null) => {
 
 const clearStarTempleLogs = () => {
   starTemple.value.logs = [];
+};
+
+const getLineupErrorMessage = (error) =>
+  String(error?.message || error || "").trim();
+
+const isRecoverableLineupError = (error) => {
+  const message = getLineupErrorMessage(error).toLowerCase();
+  if (!message) return false;
+  return RECOVERABLE_WS_ERROR_PATTERNS.some((pattern) =>
+    message.includes(pattern.toLowerCase()),
+  );
+};
+
+const recoverLineupWebSocket = async (tokenId, stepTitle = "") => {
+  addApplyLog(
+    "warn",
+    `检测到连接异常，准备自动重连${stepTitle ? `：${stepTitle}` : ""}`,
+  );
+  const connection = await tokenStore.ensureWebSocketConnected(tokenId, 12000);
+  if (!connection?.client) {
+    throw new Error("WebSocket 自动重连失败");
+  }
+
+  try {
+    await tokenStore.ensureProtocolReady(
+      tokenId,
+      stepTitle ? `lineup:${stepTitle}` : "lineup-recovery",
+    );
+  } catch (error) {
+    addApplyLog(
+      "warn",
+      `重连后协议预热失败，继续按当前连接重试：${error.message}`,
+      error,
+    );
+  }
+
+  addApplyLog(
+    "info",
+    `WebSocket 自动重连成功${stepTitle ? `：${stepTitle}` : ""}`,
+  );
 };
 
 const getSelectedAccountId = () => {
@@ -1447,6 +1500,32 @@ const verifyFinalLineupState = (snapshot, targetState) => {
   return verifySuccess("阵容最终校验通过");
 };
 
+const loadLineupSnapshotWithRecovery = async (
+  ctx,
+  step,
+  consumeRecovery = null,
+) => {
+  try {
+    return await loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
+      ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
+    });
+  } catch (error) {
+    if (!isRecoverableLineupError(error) || !consumeRecovery?.()) {
+      throw error;
+    }
+
+    addApplyLog(
+      "warn",
+      `刷新阵容快照时连接异常，准备自动重连：${error.message}`,
+      error,
+    );
+    await recoverLineupWebSocket(ctx.tokenId, step.title);
+    return loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
+      ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
+    });
+  }
+};
+
 const executeLineupSteps = async (ctx, steps) => {
   state.value.totalSteps = steps.length;
   state.value.stepResults = [];
@@ -1456,9 +1535,18 @@ const executeLineupSteps = async (ctx, steps) => {
     state.value.currentStepKey = step.key;
     state.value.currentStepTitle = step.title;
     state.value.currentStepIndex = index + 1;
-    const maxAttempts = Math.max(1, (step.retry || 0) + 1);
+    const baseAttempts = Math.max(1, (step.retry || 0) + 1);
+    const maxAttempts = baseAttempts + LINEUP_WS_RECOVERY_RETRY_LIMIT;
     let lastVerifyResult = null;
     let lastError = null;
+    let wsRecoveryUsed = 0;
+    const consumeRecovery = () => {
+      if (wsRecoveryUsed >= LINEUP_WS_RECOVERY_RETRY_LIMIT) {
+        return false;
+      }
+      wsRecoveryUsed += 1;
+      return true;
+    };
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       addApplyLog(
@@ -1473,9 +1561,11 @@ const executeLineupSteps = async (ctx, steps) => {
 
         if (step.refreshSnapshot !== false) {
           addApplyLog("info", `步骤 ${step.title} 执行完毕，刷新快照校验`);
-          ctx.currentSnapshot = await loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
-            ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
-          });
+          ctx.currentSnapshot = await loadLineupSnapshotWithRecovery(
+            ctx,
+            step,
+            consumeRecovery,
+          );
         }
 
         const verifyResult = await step.verify(ctx);
@@ -1516,14 +1606,23 @@ const executeLineupSteps = async (ctx, steps) => {
       }
 
       if (attempt < maxAttempts) {
+        const shouldRecover = isRecoverableLineupError(lastError)
+          && consumeRecovery();
+
+        if (shouldRecover) {
+          await recoverLineupWebSocket(ctx.tokenId, step.title);
+        }
+
         addApplyLog(
           "warn",
-          `步骤 ${step.title} 将在 ${STEP_RETRY_DELAY}ms 后重试`,
+          `步骤 ${step.title} 将在 ${STEP_RETRY_DELAY}ms 后重试${shouldRecover ? "（已自动重连）" : ""}`,
         );
         await delay(STEP_RETRY_DELAY);
-        ctx.currentSnapshot = await loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
-          ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
-        });
+        ctx.currentSnapshot = await loadLineupSnapshotWithRecovery(
+          ctx,
+          step,
+          consumeRecovery,
+        );
       }
     }
 
