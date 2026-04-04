@@ -393,7 +393,7 @@
                       <div class="lineup-quick-actions">
                         <n-button
                           size="tiny"
-                          @click.stop="renameLineup(savedLineups.indexOf(lineup))"
+                          @click.stop="openRenameLineupDialog(savedLineups.indexOf(lineup))"
                           :disabled="state.isRunning"
                         >
                           重命名
@@ -411,7 +411,7 @@
                         <n-button
                           type="error"
                           size="tiny"
-                          @click.stop="deleteLineup(savedLineups.indexOf(lineup))"
+                          @click.stop="openDeleteLineupDialog(savedLineups.indexOf(lineup))"
                           :disabled="state.isRunning"
                         >
                           删除
@@ -419,10 +419,7 @@
                         <n-button
                           type="primary"
                           size="tiny"
-                          @click.stop="
-                            applyLineup(lineup);
-                            savedLineupsModalVisible = false;
-                          "
+                          @click.stop="handleApplySavedLineup(lineup)"
                           :loading="lineup.applying"
                           :disabled="state.isRunning || lineup.teamId !== currentTeamId"
                         >
@@ -509,6 +506,59 @@
                   >
                     暂无保存的阵容
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              v-if="lineupActionDialog.visible"
+              class="lineup-inline-dialog-mask"
+              @click.self="closeLineupActionDialog"
+            >
+              <div class="lineup-inline-dialog-card" @click.stop>
+                <div class="lineup-inline-dialog-header">
+                  <h4>
+                    {{ lineupActionDialog.mode === "rename" ? "重命名阵容" : "删除阵容" }}
+                  </h4>
+                  <n-button quaternary circle @click="closeLineupActionDialog">
+                    ✕
+                  </n-button>
+                </div>
+                <div class="lineup-inline-dialog-body">
+                  <template v-if="lineupActionDialog.mode === 'rename'">
+                    <p class="lineup-inline-dialog-tip">
+                      直接在当前弹窗内修改名称，不再额外跳窗。
+                    </p>
+                    <n-input
+                      v-model:value="lineupActionDialog.inputValue"
+                      placeholder="请输入阵容名称"
+                      maxlength="24"
+                      show-count
+                      @keydown.enter.prevent="confirmRenameLineup"
+                    />
+                  </template>
+                  <template v-else>
+                    <p class="lineup-inline-dialog-tip danger">
+                      确定删除阵容“{{ lineupActionDialog.targetName }}”吗？删除后不可恢复。
+                    </p>
+                  </template>
+                </div>
+                <div class="lineup-inline-dialog-actions">
+                  <n-button @click="closeLineupActionDialog">取消</n-button>
+                  <n-button
+                    v-if="lineupActionDialog.mode === 'rename'"
+                    type="primary"
+                    @click="confirmRenameLineup"
+                  >
+                    确定
+                  </n-button>
+                  <n-button
+                    v-else
+                    type="error"
+                    @click="confirmDeleteLineup"
+                  >
+                    删除
+                  </n-button>
                 </div>
               </div>
             </div>
@@ -727,8 +777,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, h, nextTick } from "vue";
-import { useMessage, useDialog, NInput } from "naive-ui";
+import { ref, computed, onMounted, watch, nextTick } from "vue";
+import { useMessage, useDialog } from "naive-ui";
 import { useTokenStore } from "@/stores/tokenStore";
 import api from "@/utils/api";
 import MyCard from "../Common/MyCard.vue";
@@ -820,6 +870,13 @@ const expandedLineup = ref(null);
 const techModalVisible = ref(false);
 const selectedTechData = ref(null);
 const activeApplyLineupId = ref(null);
+const lineupActionDialog = ref({
+  visible: false,
+  mode: "rename",
+  lineupIndex: -1,
+  inputValue: "",
+  targetName: "",
+});
 
 const draggedHeroId = ref(null);
 const dragOverPosition = ref(null);
@@ -3592,43 +3649,83 @@ const showTechModal = (lineup) => {
   techModalVisible.value = true;
 };
 
-const renameLineup = (index) => {
-  const currentName = savedLineups.value[index].name;
-  let newName = currentName;
-  dialog.create({
-    title: "重命名阵容",
-    content: () =>
-      h(NInput, {
-        defaultValue: currentName,
-        onInput: (val) => {
-          newName = val;
-        },
-        placeholder: "请输入阵容名称",
-      }),
-    positiveText: "确定",
-    negativeText: "取消",
-    onPositiveClick: () => {
-      if (newName && newName.trim()) {
-        savedLineups.value[index].name = newName.trim();
-        saveLineupsToStorage();
-        message.success("阵容名称已更新");
-      }
-    },
-  });
+const closeLineupActionDialog = () => {
+  lineupActionDialog.value = {
+    visible: false,
+    mode: "rename",
+    lineupIndex: -1,
+    inputValue: "",
+    targetName: "",
+  };
 };
 
-const deleteLineup = (index) => {
-  dialog.warning({
-    title: "删除阵容",
-    content: `确定要删除阵容 "${savedLineups.value[index].name}" 吗？`,
-    positiveText: "删除",
-    negativeText: "取消",
-    onPositiveClick: () => {
-      savedLineups.value.splice(index, 1);
-      saveLineupsToStorage();
-      message.success("阵容已删除");
-    },
-  });
+const openRenameLineupDialog = async (index) => {
+  const lineup = savedLineups.value[index];
+  if (!lineup) return;
+  lineupActionDialog.value = {
+    visible: true,
+    mode: "rename",
+    lineupIndex: index,
+    inputValue: lineup.name || "",
+    targetName: lineup.name || "",
+  };
+  await nextTick();
+};
+
+const confirmRenameLineup = () => {
+  const { lineupIndex, inputValue } = lineupActionDialog.value;
+  const lineup = savedLineups.value[lineupIndex];
+  const nextName = String(inputValue || "").trim();
+
+  if (!lineup) {
+    closeLineupActionDialog();
+    return;
+  }
+  if (!nextName) {
+    message.warning("请输入阵容名称");
+    return;
+  }
+
+  lineup.name = nextName;
+  saveLineupsToStorage();
+  closeLineupActionDialog();
+  message.success("阵容名称已更新");
+};
+
+const openDeleteLineupDialog = (index) => {
+  const lineup = savedLineups.value[index];
+  if (!lineup) return;
+  lineupActionDialog.value = {
+    visible: true,
+    mode: "delete",
+    lineupIndex: index,
+    inputValue: "",
+    targetName: lineup.name || "未命名阵容",
+  };
+};
+
+const confirmDeleteLineup = () => {
+  const { lineupIndex } = lineupActionDialog.value;
+  const lineup = savedLineups.value[lineupIndex];
+  if (!lineup) {
+    closeLineupActionDialog();
+    return;
+  }
+
+  savedLineups.value.splice(lineupIndex, 1);
+  saveLineupsToStorage();
+  if (expandedLineup.value === lineup) {
+    expandedLineup.value = null;
+  }
+  closeLineupActionDialog();
+  message.success("阵容已删除");
+};
+
+const handleApplySavedLineup = async (lineup) => {
+  const success = await applyLineup(lineup);
+  if (success) {
+    savedLineupsModalVisible.value = false;
+  }
 };
 
 const exportLineups = async () => {
@@ -4090,6 +4187,12 @@ watch(
   },
   { deep: true, immediate: true },
 );
+
+watch(savedLineupsModalVisible, (visible) => {
+  if (!visible) {
+    closeLineupActionDialog();
+  }
+});
 
 onMounted(() => {
   if (document.querySelector(".game-features-page")) {
@@ -5179,7 +5282,7 @@ onMounted(() => {
 }
 
 .lineup-page-modal-mask {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 2200;
   display: flex;
@@ -5193,6 +5296,7 @@ onMounted(() => {
 .lineup-page-modal-card {
   width: min(900px, 100%);
   max-height: calc(100% - 16px);
+  position: relative;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -5228,6 +5332,64 @@ onMounted(() => {
 .lineup-page-modal-body {
   padding: 20px;
   overflow: auto;
+}
+
+.lineup-inline-dialog-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.24);
+  backdrop-filter: blur(4px);
+}
+
+.lineup-inline-dialog-card {
+  width: min(460px, 100%);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  overflow: hidden;
+}
+
+.lineup-inline-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border-color);
+
+  h4 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+}
+
+.lineup-inline-dialog-body {
+  padding: 18px;
+}
+
+.lineup-inline-dialog-tip {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+
+  &.danger {
+    color: #d03050;
+  }
+}
+
+.lineup-inline-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 18px 18px;
 }
 
 .team-tabs {

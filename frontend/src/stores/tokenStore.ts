@@ -589,6 +589,10 @@ export const useTokenStore = defineStore("tokens", () => {
     sendClaimDailyReward,
     sendGetTeamInfo,
     sendGameMessage,
+    ensureWebSocketConnected: (tokenId: string, waitMs?: number) =>
+      ensureWebSocketConnectedRef(tokenId, waitMs),
+    ensureProtocolReady: (tokenId: string, reason?: string) =>
+      ensureProtocolReadyRef(tokenId, reason),
 
     exportTokens,
     importTokens,
@@ -651,7 +655,6 @@ export const useTokenStore = defineStore("tokens", () => {
     syncAccountsFromBackend,
   };
 });
-
 
 
 
