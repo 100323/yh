@@ -178,6 +178,7 @@ export function registerDefaultCommands(reg) {
     // 竞技场
     .register("arena_startarea")
     .register("fight_startlevel") // 获取 battleVersion
+    .register("fight_startareaarena", { targetId: 0, battleVersion: 241201 })
     .register("arena_getareatarget", { refresh: false })
     .register("arena_getarearank")
 
@@ -282,6 +283,9 @@ export function registerDefaultCommands(reg) {
     .register("hero_rebirth", { heroId: 0 })
     .register("artifact_load", { itemId: 0, heroId: 0, pearlId: 0 })
     .register("artifact_unload", { heroId: 0 })
+    .register("pearl_unloadskill", { pearlId: 0 })
+    .register("pearl_replaceskill", { pearlId: 0, skillId: 0 })
+    .register("pearl_exchangeskill", { pearlId1: 0, pearlId2: 0 })
     .register("lordweapon_changedefaultweapon", { weaponId: 0 })
     .register("legion_resetresearch", { advanced: false, type: 1 })
     .register("legion_research", { isMax: false, researchId: 0 })
@@ -1085,6 +1089,9 @@ export class XyzwWebSocketClient {
       hero_rebirthresp: "hero_rebirth",
       artifact_loadresp: "artifact_load",
       artifact_unloadresp: "artifact_unload",
+      pearl_unloadskillresp: "pearl_unloadskill",
+      pearl_replaceskillresp: "pearl_replaceskill",
+      pearl_exchangeskillresp: "pearl_exchangeskill",
       legion_resetresearchresp: "legion_resetresearch",
       legion_researchresp: "legion_research",
       mail_claimallattachmentresp: "mail_claimallattachment",
