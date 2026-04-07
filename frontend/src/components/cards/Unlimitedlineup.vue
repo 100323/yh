@@ -829,9 +829,11 @@ const pearlMap = ref({});
 let lastRefreshTime = 0;
 const REFRESH_DEBOUNCE = 3000;
 const COMMAND_DELAY = 500;
-const ARTIFACT_COMMAND_DELAY = 1200;
-const ARTIFACT_RETRY_DELAY = 1800;
-const SNAPSHOT_TOO_FAST_RETRY_DELAY = 1500;
+const ARTIFACT_UNLOAD_DELAY = 300;
+const ARTIFACT_LOAD_DELAY = 0;
+const OPERATION_TOO_FAST_RETRY_DELAY = 2500;
+const ARTIFACT_RETRY_DELAY = OPERATION_TOO_FAST_RETRY_DELAY;
+const SNAPSHOT_TOO_FAST_RETRY_DELAY = OPERATION_TOO_FAST_RETRY_DELAY;
 const SNAPSHOT_TOO_FAST_RETRY_LIMIT = 2;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -1247,6 +1249,12 @@ const formatHeroListForLog = (heroes = []) => {
       return `${name}@${position}`;
     })
     .join("、");
+};
+
+const formatHeroIdentity = (heroId) => {
+  const normalizedHeroId = normalizeId(heroId);
+  if (!normalizedHeroId) return "-";
+  return `${getHeroName(normalizedHeroId) || normalizedHeroId}#${normalizedHeroId}`;
 };
 
 const normalizeId = (value) => {
@@ -1848,11 +1856,20 @@ const verifyHeroArtifacts = (snapshot, targetState) => {
           );
           const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
           const candidateIds = getArtifactCandidatesForHero(snapshot, hero);
+          const candidateHolders = candidateIds
+            .map((artifactId) => {
+              const holderHeroId = Object.entries(snapshot.heroesMap || {}).find(
+                ([, heroData]) =>
+                  normalizeId(heroData?.artifactId) === normalizeId(artifactId),
+              )?.[0];
+              return `${normalizeId(artifactId) ?? "-"}->${holderHeroId ? formatHeroIdentity(holderHeroId) : "空闲"}`;
+            })
+            .join("，");
           const fishName =
             getFishNameById(
               hero.fishTypeId || hero.artifactBookKey || hero.fishId || targetArtifactId,
             ) || "鱼灵";
-          return `${getHeroName(hero.heroId) || hero.heroId}[${fishName}${formatArtifactMarker(hero) ? ` ${formatArtifactMarker(hero)}` : ""}](当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"}, 候选:${candidateIds.join("/") || "-"})`;
+          return `${formatHeroIdentity(hero.heroId)}[${fishName}${formatArtifactMarker(hero) ? ` ${formatArtifactMarker(hero)}` : ""}](当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"}, 候选:${candidateIds.join("/") || "-"}, 持有:${candidateHolders || "-"})`;
         })
         .join("、")}`,
       { mismatches },
@@ -2067,11 +2084,14 @@ const executeLineupSteps = async (ctx, steps) => {
           await recoverLineupWebSocket(ctx.tokenId, step.title);
         }
 
+        const retryDelay = isOperationTooFastError(lastError)
+          ? OPERATION_TOO_FAST_RETRY_DELAY
+          : STEP_RETRY_DELAY;
         addApplyLog(
           "warn",
-          `步骤 ${step.title} 将在 ${STEP_RETRY_DELAY}ms 后重试${shouldRecover ? "（已自动重连）" : ""}`,
+          `步骤 ${step.title} 将在 ${retryDelay}ms 后重试${shouldRecover ? "（已自动重连）" : ""}`,
         );
-        await delay(STEP_RETRY_DELAY);
+        await delay(retryDelay);
         ctx.currentSnapshot = await loadLineupSnapshotWithRecovery(
           ctx,
           step,
@@ -4095,6 +4115,17 @@ const applyLineup = async (lineup, options = {}) => {
             };
           };
 
+          const describeCandidateHolders = (candidateIds, targetHeroId) =>
+            (candidateIds || [])
+              .map((artifactId) => {
+                const holderHeroId = findArtifactHolderHeroId(
+                  artifactId,
+                  targetHeroId,
+                );
+                return `${normalizeId(artifactId) ?? "-"}->${holderHeroId ? formatHeroIdentity(holderHeroId) : "空闲"}`;
+              })
+              .join("，");
+
           const unsatisfiedHeroes = [];
 
           for (const targetHero of stepCtx.targetState.heroes) {
@@ -4158,9 +4189,9 @@ const applyLineup = async (lineup, options = {}) => {
             }
             addApplyLog(
               "info",
-              `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
+              `鱼灵卸下后冷却 ${ARTIFACT_UNLOAD_DELAY}ms，避免触发操作过快限制`,
             );
-            await delay(ARTIFACT_COMMAND_DELAY);
+            await delay(ARTIFACT_UNLOAD_DELAY);
           }
 
           const artifactsNeededFromBench = new Set();
@@ -4206,9 +4237,9 @@ const applyLineup = async (lineup, options = {}) => {
             }
             addApplyLog(
               "info",
-              `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
+              `鱼灵卸下后冷却 ${ARTIFACT_UNLOAD_DELAY}ms，避免触发操作过快限制`,
             );
-            await delay(ARTIFACT_COMMAND_DELAY);
+            await delay(ARTIFACT_UNLOAD_DELAY);
           }
 
           // 第二阶段：再统一装配
@@ -4249,7 +4280,7 @@ const applyLineup = async (lineup, options = {}) => {
             if (blockedByHeroId) {
               addApplyLog(
                 "warn",
-                `跳过拆取已上阵武将鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} 需要的同类鱼灵当前仅在 ${getHeroName(blockedByHeroId) || blockedByHeroId} 身上，按规则不拆已上阵目标武将`,
+                `跳过拆取已上阵武将鱼灵：${formatHeroIdentity(targetHero.heroId)} 需要的同类鱼灵当前仅在 ${formatHeroIdentity(blockedByHeroId)} 身上，按规则不拆已上阵目标武将。候选持有：${describeCandidateHolders(targetHero.candidateIds, targetHero.heroId)}`,
               );
               continue;
             }
@@ -4268,7 +4299,7 @@ const applyLineup = async (lineup, options = {}) => {
                 : `${targetFishName} 候选[${(targetHero.candidateIds || []).join("/") || artifactId}]`;
               addApplyLog(
                 "info",
-                `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}（目标:${preferredLabel}）`,
+                `装备鱼灵：${formatHeroIdentity(targetHero.heroId)} -> artifact ${artifactId}, pearl ${pearlId || 0}（目标:${preferredLabel}；候选持有:${describeCandidateHolders(targetHero.candidateIds, targetHero.heroId)}）`,
               );
               await sendArtifactCommandWithRetry(
                 tokenId,
@@ -4289,11 +4320,13 @@ const applyLineup = async (lineup, options = {}) => {
                 err,
               );
             }
-            addApplyLog(
-              "info",
-              `鱼灵装备后冷却 ${ARTIFACT_COMMAND_DELAY}ms，等待服务器状态稳定`,
-            );
-            await delay(ARTIFACT_COMMAND_DELAY);
+            if (ARTIFACT_LOAD_DELAY > 0) {
+              addApplyLog(
+                "info",
+                `鱼灵装备后冷却 ${ARTIFACT_LOAD_DELAY}ms，等待服务器状态稳定`,
+              );
+              await delay(ARTIFACT_LOAD_DELAY);
+            }
           }
 
           if (fishApplied > 0) {
