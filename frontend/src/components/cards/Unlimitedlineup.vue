@@ -450,10 +450,17 @@
                                 Lv.{{ formatLevel(hero.level) }}
                               </div>
                             </div>
-                            <div v-if="hero.fishId" class="hero-fish-info">
+                            <div
+                              v-if="hero.fishId || hero.artifactId || hero.fishTypeId"
+                              class="hero-fish-info"
+                            >
                               <div class="hero-fish-row">
                                 <span class="hero-fish-name">
-                                  {{ getFishNameById(hero.fishId) }}
+                                  {{
+                                    getFishNameById(
+                                      hero.fishId || hero.fishTypeId || hero.artifactId,
+                                    )
+                                  }}
                                   <span
                                     v-if="hero.skillId"
                                     class="hero-fish-skill-name"
@@ -1224,6 +1231,33 @@ const normalizePearlSkillId = (value) => {
   return normalized === 0 ? null : normalized;
 };
 
+const resolveArtifactTypeId = (value) => {
+  const normalized = normalizeId(value);
+  if (!normalized) return null;
+
+  const raw = String(normalized).trim();
+  if (/^\d{4}$/.test(raw) && FishMap[raw]) {
+    return Number(raw);
+  }
+
+  const prefix = raw.slice(0, 4);
+  if (/^\d{4}$/.test(prefix) && FishMap[prefix]) {
+    return Number(prefix);
+  }
+
+  return null;
+};
+
+const buildArtifactSignature = (hero = {}) => ({
+  artifactId: normalizeId(hero.artifactId ?? hero.savedArtifactId),
+  fishId: normalizeId(hero.fishId),
+  fishTypeId: resolveArtifactTypeId(
+    hero.fishTypeId ?? hero.fishId ?? hero.artifactId ?? hero.savedArtifactId,
+  ),
+  pearlId: normalizeId(hero.pearlId),
+  skillId: normalizePearlSkillId(hero.skillId),
+});
+
 const resolveSnapshotWeaponId = (role = {}, currentTeam = {}) => {
   return normalizeId(
     role?.lordWeaponId
@@ -1257,9 +1291,7 @@ const buildTargetState = (lineup) => {
         position: Number(hero.position),
         level: hero.level || null,
         attachmentUid: normalizeId(hero.attachmentUid),
-        fishId: normalizeId(hero.fishId),
-        pearlId: normalizeId(hero.pearlId),
-        skillId: normalizePearlSkillId(hero.skillId),
+        ...buildArtifactSignature(hero),
       }))
       .filter((hero) => hero.heroId)
       .sort((a, b) => a.position - b.position),
@@ -1371,18 +1403,86 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
   }
 
   const fishToArtifactMap = {};
+  const artifactMetaMap = {};
+  const artifactIdsByFishId = {};
+  const artifactIdsByFishType = {};
   for (const [fishId, book] of Object.entries(artifactBooksRaw)) {
+    const normalizedFishId = normalizeId(fishId);
     const artifactId = normalizeId(book?.artifactId);
     if (artifactId) {
-      fishToArtifactMap[normalizeId(fishId)] = artifactId;
+      const fishTypeId = resolveArtifactTypeId(fishId) || resolveArtifactTypeId(artifactId);
+      fishToArtifactMap[normalizedFishId] = artifactId;
+      artifactMetaMap[artifactId] = {
+        ...(artifactMetaMap[artifactId] || {}),
+        artifactId,
+        fishId: normalizedFishId,
+        fishTypeId,
+        claimedStar: Number(book?.claimedStar || 0),
+      };
+      if (normalizedFishId) {
+        artifactIdsByFishId[normalizedFishId] = [
+          ...(artifactIdsByFishId[normalizedFishId] || []).filter(
+            (id) => id !== artifactId,
+          ),
+          artifactId,
+        ];
+      }
+      if (fishTypeId) {
+        artifactIdsByFishType[fishTypeId] = [
+          ...(artifactIdsByFishType[fishTypeId] || []).filter(
+            (id) => id !== artifactId,
+          ),
+          artifactId,
+        ];
+      }
     }
   }
 
   const pearlSkillMap = {};
   for (const [pearlId, pearlData] of Object.entries(pearlMapRaw)) {
-    pearlSkillMap[normalizeId(pearlId)] = normalizePearlSkillId(
+    const normalizedPearlId = normalizeId(pearlId);
+    const artifactId = normalizeId(pearlData?.artifactId);
+    pearlSkillMap[normalizedPearlId] = normalizePearlSkillId(
       pearlData?.skillId,
     );
+    if (artifactId) {
+      const fishTypeId =
+        artifactMetaMap[artifactId]?.fishTypeId || resolveArtifactTypeId(artifactId);
+      artifactMetaMap[artifactId] = {
+        ...(artifactMetaMap[artifactId] || {}),
+        artifactId,
+        fishTypeId,
+        pearlId: normalizedPearlId,
+      };
+      if (fishTypeId) {
+        artifactIdsByFishType[fishTypeId] = [
+          ...(artifactIdsByFishType[fishTypeId] || []).filter(
+            (id) => id !== artifactId,
+          ),
+          artifactId,
+        ];
+      }
+    }
+  }
+
+  for (const hero of Object.values(heroesMap)) {
+    const artifactId = normalizeId(hero?.artifactId);
+    if (!artifactId) continue;
+    const fishTypeId =
+      artifactMetaMap[artifactId]?.fishTypeId || resolveArtifactTypeId(artifactId);
+    artifactMetaMap[artifactId] = {
+      ...(artifactMetaMap[artifactId] || {}),
+      artifactId,
+      fishTypeId,
+    };
+    if (fishTypeId) {
+      artifactIdsByFishType[fishTypeId] = [
+        ...(artifactIdsByFishType[fishTypeId] || []).filter(
+          (id) => id !== artifactId,
+        ),
+        artifactId,
+      ];
+    }
   }
 
   return {
@@ -1399,6 +1499,9 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
     attachmentOwnerMap,
     artifactOwnerMap,
     fishToArtifactMap,
+    artifactMetaMap,
+    artifactIdsByFishId,
+    artifactIdsByFishType,
     pearlSkillMap,
   };
 };
@@ -1533,21 +1636,91 @@ const verifyHeroLevels = (snapshot, targetState) => {
   return verifySuccess("武将等级同步完成");
 };
 
-const resolveTargetArtifactId = (snapshot, targetHero) => {
-  if (targetHero.fishId) {
-    return normalizeId(snapshot.fishToArtifactMap[targetHero.fishId]);
-  }
+const getArtifactCandidatesForHero = (snapshot, targetHero) => {
+  const candidateIds = [];
+
+  const appendCandidate = (artifactId) => {
+    const normalizedArtifactId = normalizeId(artifactId);
+    if (!normalizedArtifactId || candidateIds.includes(normalizedArtifactId)) {
+      return;
+    }
+    candidateIds.push(normalizedArtifactId);
+  };
+
+  appendCandidate(targetHero.artifactId);
+
   if (targetHero.pearlId) {
-    return normalizeId(snapshot.pearlMap[targetHero.pearlId]?.artifactId);
+    appendCandidate(snapshot.pearlMap[targetHero.pearlId]?.artifactId);
   }
-  return null;
+
+  if (targetHero.fishId) {
+    for (const artifactId of snapshot.artifactIdsByFishId?.[targetHero.fishId] || []) {
+      appendCandidate(artifactId);
+    }
+  }
+
+  const fishTypeId = resolveArtifactTypeId(
+    targetHero.fishTypeId ?? targetHero.fishId ?? targetHero.artifactId,
+  );
+  if (fishTypeId) {
+    for (const artifactId of snapshot.artifactIdsByFishType?.[fishTypeId] || []) {
+      appendCandidate(artifactId);
+    }
+  }
+
+  return candidateIds;
+};
+
+const resolveTargetArtifactId = (
+  snapshot,
+  targetHero,
+  workingHeroArtifactMap = null,
+  reservedArtifactIds = null,
+) => {
+  const reserved = reservedArtifactIds || new Set();
+  const currentArtifactId = normalizeId(
+    workingHeroArtifactMap?.[targetHero.heroId] ??
+      snapshot.heroesMap?.[targetHero.heroId]?.artifactId,
+  );
+  const candidateIds = getArtifactCandidatesForHero(snapshot, targetHero);
+
+  if (targetHero.artifactId && candidateIds.includes(normalizeId(targetHero.artifactId))) {
+    const exactArtifactId = normalizeId(targetHero.artifactId);
+    if (!reserved.has(exactArtifactId)) {
+      return exactArtifactId;
+    }
+  }
+
+  if (currentArtifactId && candidateIds.includes(currentArtifactId) && !reserved.has(currentArtifactId)) {
+    return currentArtifactId;
+  }
+
+  for (const artifactId of candidateIds) {
+    if (!reserved.has(artifactId)) {
+      return artifactId;
+    }
+  }
+
+  return currentArtifactId && candidateIds.includes(currentArtifactId)
+    ? currentArtifactId
+    : null;
 };
 
 const verifyHeroArtifacts = (snapshot, targetState) => {
   const mismatches = targetState.heroes.filter((hero) => {
-    const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
     const currentArtifactId = normalizeId(snapshot.heroesMap[hero.heroId]?.artifactId);
-    return targetArtifactId !== currentArtifactId;
+    const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
+    const candidateIds = getArtifactCandidatesForHero(snapshot, hero);
+
+    if (!targetArtifactId) {
+      return Boolean(currentArtifactId);
+    }
+
+    if (hero.artifactId && normalizeId(hero.artifactId) === targetArtifactId) {
+      return currentArtifactId !== targetArtifactId;
+    }
+
+    return !candidateIds.includes(currentArtifactId);
   });
 
   if (mismatches.length > 0) {
@@ -1558,7 +1731,8 @@ const verifyHeroArtifacts = (snapshot, targetState) => {
             snapshot.heroesMap[hero.heroId]?.artifactId,
           );
           const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
-          return `${getHeroName(hero.heroId) || hero.heroId}(当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"})`;
+          const candidateIds = getArtifactCandidatesForHero(snapshot, hero);
+          return `${getHeroName(hero.heroId) || hero.heroId}(当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"}, 候选:${candidateIds.join("/") || "-"})`;
         })
         .join("、")}`,
       { mismatches },
@@ -1957,10 +2131,12 @@ const getFishInfo = (artifactId) => {
 
   for (const [fishId, book] of Object.entries(artifactBooks.value)) {
     if (book.artifactId === artifactId) {
-      const fishData = FishMap[fishId];
+      const normalizedFishTypeId = resolveArtifactTypeId(fishId);
+      const fishData = normalizedFishTypeId ? FishMap[normalizedFishTypeId] : null;
       if (fishData) {
         return {
-          fishId: Number(fishId),
+          fishId: normalizeId(fishId),
+          fishTypeId: normalizedFishTypeId,
           name: fishData.name,
           artifactId: book.artifactId,
           star: book.claimedStar || 0,
@@ -1978,7 +2154,8 @@ const getFishNameByArtifactId = (artifactId) => {
 
 const getFishNameById = (fishId) => {
   if (!fishId) return null;
-  const fishData = FishMap[fishId];
+  const normalizedFishTypeId = resolveArtifactTypeId(fishId);
+  const fishData = normalizedFishTypeId ? FishMap[normalizedFishTypeId] : null;
   return fishData ? fishData.name : `鱼灵${fishId}`;
 };
 
@@ -2863,15 +3040,16 @@ const saveCurrentLineup = async () => {
     const fishAssignments = {};
     for (const [fishId, book] of Object.entries(currentArtifactBooks)) {
       if (book.artifactId && book.artifactId !== -1) {
-        fishAssignments[book.artifactId] = Number(fishId);
+        fishAssignments[book.artifactId] = normalizeId(fishId);
       }
     }
 
     const heroesData = editingHeroes.value.map((hero) => {
       const heroData = currentHeroes[String(hero.heroId)];
-      const artifactId = heroData?.artifactId || hero.artifactId || null;
+      const artifactId = normalizeId(heroData?.artifactId || hero.artifactId);
       const teamHeroInfo = teamInfo[hero.position];
       const fishId = artifactId ? fishAssignments[artifactId] : null;
+      const fishTypeId = resolveArtifactTypeId(fishId) || resolveArtifactTypeId(artifactId);
       const pearlId = teamHeroInfo?.pearlId || null;
       const pearlData = pearlMap[pearlId];
       const slotMap = pearlData?.slotMap || null;
@@ -2880,7 +3058,9 @@ const saveCurrentLineup = async () => {
         heroId: hero.heroId,
         level: teamHeroInfo?.level || null,
         attachmentUid: hero.attachmentUid || null,
+        artifactId: artifactId || null,
         fishId: fishId || null,
+        fishTypeId: fishTypeId || null,
         pearlId: pearlId,
         skillId: pearlData?.skillId || null,
         slotMap: slotMap,
@@ -3712,6 +3892,7 @@ const applyLineup = async (lineup, options = {}) => {
           const workingArtifactOwnerMap = {
             ...(stepCtx.currentSnapshot.artifactOwnerMap || {}),
           };
+          const reservedArtifactIds = new Set();
           const workingHeroArtifactMap = Object.fromEntries(
             Object.entries(stepCtx.currentSnapshot.heroesMap || {}).map(
               ([heroId, hero]) => [normalizeId(heroId), normalizeId(hero?.artifactId)],
@@ -3719,9 +3900,15 @@ const applyLineup = async (lineup, options = {}) => {
           );
 
           for (const targetHero of stepCtx.targetState.heroes) {
+            const candidateIds = getArtifactCandidatesForHero(
+              stepCtx.currentSnapshot,
+              targetHero,
+            );
             let artifactId = resolveTargetArtifactId(
               stepCtx.currentSnapshot,
               targetHero,
+              workingHeroArtifactMap,
+              reservedArtifactIds,
             );
             let pearlId = targetHero.pearlId || 0;
             artifactId = normalizeId(artifactId);
@@ -3763,6 +3950,7 @@ const applyLineup = async (lineup, options = {}) => {
               continue;
             }
 
+            reservedArtifactIds.add(artifactId);
             const currentHolderId = normalizeId(workingArtifactOwnerMap[artifactId]);
 
             if (currentHolderId === targetHero.heroId && currentArtifactId === artifactId) {
@@ -3800,9 +3988,12 @@ const applyLineup = async (lineup, options = {}) => {
             }
 
             try {
+              const preferredLabel = targetHero.artifactId
+                ? `实例${targetHero.artifactId}`
+                : `${getFishNameById(targetHero.fishTypeId || targetHero.fishId || artifactId) || "鱼灵"}候选[${candidateIds.join("/") || artifactId}]`;
               addApplyLog(
                 "info",
-                `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}`,
+                `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}（目标:${preferredLabel}）`,
               );
               if (currentArtifactId && currentArtifactId !== artifactId) {
                 delete workingArtifactOwnerMap[currentArtifactId];
