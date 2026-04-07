@@ -209,7 +209,7 @@
           <div class="star-temple-header">
             <div>
               <h4>星级十殿</h4>
-              <p>绑定无限阵容后，按所选阵容与玩具挑战 1-8 关</p>
+              <p>直接使用当前激活中的阵容与玩具挑战 1-8 关</p>
             </div>
             <div class="star-temple-header-actions">
               <span v-if="starTempleResetTimeText" class="star-temple-reset">
@@ -227,13 +227,9 @@
           </div>
 
           <div class="star-temple-toolbar">
-            <n-select
-              v-model:value="starTemple.selectedLineupId"
-              class="star-temple-lineup-select"
-              :options="starTempleLineupOptions"
-              placeholder="选择要用于十殿的无限阵容"
-              :disabled="state.isRunning || starTemple.running"
-            />
+            <div class="star-temple-current-team">
+              当前阵容：槽位{{ currentTeamId }} · {{ currentTeamHeroes.length }}名武将
+            </div>
             <div class="star-temple-selected-boss">
               当前关卡：第 {{ starTemple.selectedBossId }} 关
             </div>
@@ -241,7 +237,7 @@
               type="primary"
               @click="startStarTempleBattle"
               :loading="starTemple.running"
-              :disabled="!selectedStarTempleLineup || state.isRunning || starTemple.loading"
+              :disabled="state.isRunning || starTemple.loading"
             >
               {{ starTempleActionLabel }}
             </n-button>
@@ -274,13 +270,12 @@
             </button>
           </div>
 
-          <div class="star-temple-summary" v-if="selectedStarTempleLineup">
+          <div class="star-temple-summary">
             <span>
-              已选阵容：槽位{{ selectedStarTempleLineup.teamId }} ·
-              {{ selectedStarTempleLineup.name }}
+              当前激活阵容：槽位{{ currentTeamId }}
             </span>
             <span>
-              玩具：{{ weapon[selectedStarTempleLineup.weaponId] || selectedStarTempleLineup.weaponId || "沿用当前阵容" }}
+              玩具：使用当前激活玩具
             </span>
           </div>
 
@@ -984,7 +979,6 @@ const starTemple = ref({
   loading: false,
   running: false,
   selectedBossId: 1,
-  selectedLineupId: null,
   info: null,
   lastResult: null,
   logs: [],
@@ -2291,19 +2285,6 @@ const findAttachmentTempRemovalCandidate = (
 const getLineupsByTeamId = (teamId) => {
   return savedLineups.value.filter((lineup) => lineup.teamId === teamId);
 };
-
-const starTempleLineupOptions = computed(() =>
-  savedLineups.value.map((lineup) => ({
-    label: `槽位${lineup.teamId} · ${lineup.name}`,
-    value: lineup.id,
-  })),
-);
-
-const selectedStarTempleLineup = computed(() =>
-  savedLineups.value.find(
-    (lineup) => lineup.id === starTemple.value.selectedLineupId,
-  ) || null,
-);
 
 const starTempleBossSummaries = computed(() => {
   const roleNMExt = starTemple.value.info?.roleNMExt || {};
@@ -4399,19 +4380,6 @@ const switchTeam = async (teamId, options = {}) => {
   }
 };
 
-const syncStarTempleSelectedLineup = () => {
-  if (
-    starTemple.value.selectedLineupId &&
-    savedLineups.value.some(
-      (lineup) => lineup.id === starTemple.value.selectedLineupId,
-    )
-  ) {
-    return;
-  }
-
-  starTemple.value.selectedLineupId = savedLineups.value[0]?.id || null;
-};
-
 const pickPreferredStarTempleBossId = (info, fallbackBossId = 1) => {
   const roleNMExt = info?.roleNMExt || {};
   const completeMap = roleNMExt.starBossCompleteMap || {};
@@ -4480,31 +4448,18 @@ const refreshStarTempleInfo = async (options = {}) => {
   }
 };
 
-const prepareLineupForStarTemple = async (lineup) => {
-  if (!lineup) {
-    throw new Error("请先选择无限阵容");
-  }
-
-  if (lineup.teamId !== currentTeamId.value) {
-    addStarTempleLog("info", `切换到阵容槽位 ${lineup.teamId}`);
-    const switched = await switchTeam(lineup.teamId, { silent: true });
-    if (!switched) {
-      throw new Error(`切换到阵容槽位 ${lineup.teamId} 失败`);
-    }
-  }
-
-  await nextTick();
-
-  addStarTempleLog("info", `应用无限阵容：${lineup.name}`);
-  const applied = await applyLineup(lineup, { silentSuccess: true });
-  if (!applied) {
-    throw new Error(`应用阵容 "${lineup.name}" 失败`);
-  }
-
-  addStarTempleLog("info", "读取最新阵容快照用于十殿挑战");
-  const snapshot = await loadLineupSnapshot(tokenStore.selectedToken.id, lineup.teamId, {
-    ensureTeamFresh: true,
-  });
+const prepareLineupForStarTemple = async () => {
+  addStarTempleLog(
+    "info",
+    `读取当前激活阵容快照：槽位 ${currentTeamId.value}`,
+  );
+  const snapshot = await loadLineupSnapshot(
+    tokenStore.selectedToken.id,
+    currentTeamId.value,
+    {
+      ensureTeamFresh: true,
+    },
+  );
   return snapshot;
 };
 
@@ -4552,12 +4507,6 @@ const startStarTempleBattle = async () => {
     return;
   }
 
-  const lineup = selectedStarTempleLineup.value;
-  if (!lineup) {
-    message.warning("请先选择一个无限阵容");
-    return;
-  }
-
   const bossId = Number(starTemple.value.selectedBossId || 1);
   if (!STAR_TEMPLE_BOSS_IDS.includes(bossId)) {
     message.warning("请选择 1-8 关");
@@ -4587,14 +4536,13 @@ const startStarTempleBattle = async () => {
   clearStarTempleLogs();
   addStarTempleLog(
     "info",
-    `开始挑战星级十殿：第 ${bossId} 关，阵容 ${lineup.name}`,
+    `开始挑战星级十殿：第 ${bossId} 关，当前槽位 ${currentTeamId.value}`,
   );
 
   try {
-    const snapshot = await prepareLineupForStarTemple(lineup);
+    const snapshot = await prepareLineupForStarTemple();
     const battleTeam = buildStarTempleBattleTeam(snapshot);
-    const battleWeaponId =
-      normalizeId(snapshot?.weaponId) ?? normalizeId(lineup.weaponId) ?? 0;
+    const battleWeaponId = normalizeId(snapshot?.weaponId) ?? 0;
 
     addStarTempleLog(
       "info",
@@ -4649,7 +4597,7 @@ const startStarTempleBattle = async () => {
         {
           bossId,
           selectedStage,
-          selectedLineup: lineup,
+          currentTeamId: currentTeamId.value,
         },
       );
     }
@@ -4670,7 +4618,6 @@ watch(
 
     if (newToken.id !== oldToken?.id) {
       void loadSavedLineups();
-      syncStarTempleSelectedLineup();
       starTemple.value.info = null;
       starTemple.value.lastResult = null;
       clearStarTempleLogs();
@@ -4705,14 +4652,6 @@ watch(
       }, 500);
     }
   },
-);
-
-watch(
-  savedLineups,
-  () => {
-    syncStarTempleSelectedLineup();
-  },
-  { deep: true, immediate: true },
 );
 
 watch(savedLineupsModalVisible, (visible) => {
