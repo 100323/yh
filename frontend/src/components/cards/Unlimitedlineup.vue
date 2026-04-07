@@ -45,6 +45,13 @@
           >
             已保存无限阵容 ({{ savedLineups.length }}/{{ MAX_SAVED_LINEUPS }}){{ lineupsSyncing ? " · 同步中" : "" }}
           </n-button>
+          <n-button
+            size="small"
+            @click="exportApplyLogs"
+            :disabled="state.stepLogs.length === 0"
+          >
+            导出日志
+          </n-button>
           <n-button size="small" @click="clearApplyLogs">清空日志</n-button>
         </div>
 
@@ -814,6 +821,8 @@ const pearlMap = ref({});
 let lastRefreshTime = 0;
 const REFRESH_DEBOUNCE = 3000;
 const COMMAND_DELAY = 500;
+const ARTIFACT_COMMAND_DELAY = 1200;
+const ARTIFACT_RETRY_DELAY = 1800;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -927,6 +936,48 @@ const clearApplyLogs = () => {
   state.value.stepLogs = [];
 };
 
+const createDownloadUrl = (content, type = "text/plain;charset=utf-8") =>
+  URL.createObjectURL(new Blob([content], { type }));
+
+const triggerFileDownload = (url, filename) => {
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+};
+
+const exportApplyLogs = () => {
+  if (!state.value.stepLogs.length) {
+    message.warning("暂无应用日志可导出");
+    return;
+  }
+
+  const token = tokenStore.selectedToken;
+  const orderedLogs = [...state.value.stepLogs].reverse();
+  const lines = [
+    "无限阵容应用日志",
+    `导出时间: ${new Date().toLocaleString()}`,
+    `账号: ${token?.name || "未命名账号"}`,
+    `槽位: ${currentTeamId.value || "-"}`,
+    `步骤进度: ${state.value.currentStepIndex || 0}/${state.value.totalSteps || 0}`,
+    "",
+    ...orderedLogs.map(
+      (log) => `[${log.time}] [${String(log.level || "").toUpperCase()}] ${log.message}`,
+    ),
+  ];
+
+  const safeAccountName = String(token?.name || "account")
+    .replace(/[\\/:*?"<>|]/g, "_")
+    .slice(0, 32);
+  const filename = `无限阵容应用日志_${safeAccountName}_${new Date()
+    .toISOString()
+    .replace(/[:.]/g, "-")}.txt`;
+  const url = createDownloadUrl(lines.join("\n"));
+  triggerFileDownload(url, filename);
+  message.success(`已导出 ${orderedLogs.length} 条应用日志`);
+};
+
 const starTemple = ref({
   loading: false,
   running: false,
@@ -972,6 +1023,33 @@ const isRecoverableLineupError = (error) => {
   return RECOVERABLE_WS_ERROR_PATTERNS.some((pattern) =>
     message.includes(pattern.toLowerCase()),
   );
+};
+
+const isOperationTooFastError = (error) => {
+  const message = getLineupErrorMessage(error);
+  return message.includes("200400") || message.includes("操作太快");
+};
+
+const sendArtifactCommandWithRetry = async (
+  tokenId,
+  cmd,
+  params,
+  actionLabel,
+) => {
+  try {
+    return await tokenStore.sendMessageWithPromise(tokenId, cmd, params);
+  } catch (error) {
+    if (!isOperationTooFastError(error)) {
+      throw error;
+    }
+    addApplyLog(
+      "warn",
+      `${actionLabel}触发操作过快限制，等待 ${ARTIFACT_RETRY_DELAY}ms 后重试一次`,
+      error,
+    );
+    await delay(ARTIFACT_RETRY_DELAY);
+    return tokenStore.sendMessageWithPromise(tokenId, cmd, params);
+  }
 };
 
 const recoverLineupWebSocket = async (tokenId, stepTitle = "") => {
@@ -3649,12 +3727,13 @@ const applyLineup = async (lineup, options = {}) => {
                   "info",
                   `卸下鱼灵：${getHeroName(currentHolderId) || currentHolderId}`,
                 );
-                await tokenStore.sendMessageWithPromise(
+                await sendArtifactCommandWithRetry(
                   tokenId,
                   "artifact_unload",
                   {
                     heroId: currentHolderId,
                   },
+                  `卸下鱼灵 ${getHeroName(currentHolderId) || currentHolderId}`,
                 );
               } catch (err) {
                 addApplyLog(
@@ -3663,7 +3742,11 @@ const applyLineup = async (lineup, options = {}) => {
                   err,
                 );
               }
-              await delay(COMMAND_DELAY);
+              addApplyLog(
+                "info",
+                `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
+              );
+              await delay(ARTIFACT_COMMAND_DELAY);
             }
 
             try {
@@ -3671,11 +3754,16 @@ const applyLineup = async (lineup, options = {}) => {
                 "info",
                 `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}`,
               );
-              await tokenStore.sendMessageWithPromise(tokenId, "artifact_load", {
-                heroId: targetHero.heroId,
-                itemId: artifactId,
-                pearlId: pearlId,
-              });
+              await sendArtifactCommandWithRetry(
+                tokenId,
+                "artifact_load",
+                {
+                  heroId: targetHero.heroId,
+                  itemId: artifactId,
+                  pearlId: pearlId,
+                },
+                `装备鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+              );
               fishApplied++;
             } catch (err) {
               addApplyLog(
@@ -3684,7 +3772,11 @@ const applyLineup = async (lineup, options = {}) => {
                 err,
               );
             }
-            await delay(COMMAND_DELAY);
+            addApplyLog(
+              "info",
+              `鱼灵装备后冷却 ${ARTIFACT_COMMAND_DELAY}ms，等待服务器状态稳定`,
+            );
+            await delay(ARTIFACT_COMMAND_DELAY);
           }
 
           if (fishApplied > 0) {
