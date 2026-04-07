@@ -823,6 +823,8 @@ const REFRESH_DEBOUNCE = 3000;
 const COMMAND_DELAY = 500;
 const ARTIFACT_COMMAND_DELAY = 1200;
 const ARTIFACT_RETRY_DELAY = 1800;
+const SNAPSHOT_TOO_FAST_RETRY_DELAY = 1500;
+const SNAPSHOT_TOO_FAST_RETRY_LIMIT = 2;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -1539,7 +1541,6 @@ const resolveTargetArtifactId = (snapshot, targetHero) => {
 
 const verifyHeroArtifacts = (snapshot, targetState) => {
   const mismatches = targetState.heroes.filter((hero) => {
-    if (!hero.fishId && !hero.pearlId) return false;
     const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
     const currentArtifactId = normalizeId(snapshot.heroesMap[hero.heroId]?.artifactId);
     return targetArtifactId !== currentArtifactId;
@@ -1547,7 +1548,15 @@ const verifyHeroArtifacts = (snapshot, targetState) => {
 
   if (mismatches.length > 0) {
     return verifyFailure(
-      `鱼灵未完全同步: ${mismatches.map((hero) => getHeroName(hero.heroId) || hero.heroId).join("、")}`,
+      `鱼灵未完全同步: ${mismatches
+        .map((hero) => {
+          const currentArtifactId = normalizeId(
+            snapshot.heroesMap[hero.heroId]?.artifactId,
+          );
+          const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
+          return `${getHeroName(hero.heroId) || hero.heroId}(当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"})`;
+        })
+        .join("、")}`,
       { mismatches },
     );
   }
@@ -1637,24 +1646,39 @@ const loadLineupSnapshotWithRecovery = async (
   step,
   consumeRecovery = null,
 ) => {
-  try {
-    return await loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
-      ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
-    });
-  } catch (error) {
-    if (!isRecoverableLineupError(error) || !consumeRecovery?.()) {
-      throw error;
-    }
+  for (let attempt = 1; attempt <= SNAPSHOT_TOO_FAST_RETRY_LIMIT + 1; attempt++) {
+    try {
+      return await loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
+        ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
+      });
+    } catch (error) {
+      if (
+        isOperationTooFastError(error)
+        && attempt <= SNAPSHOT_TOO_FAST_RETRY_LIMIT
+      ) {
+        addApplyLog(
+          "warn",
+          `刷新阵容快照触发操作过快限制，等待 ${SNAPSHOT_TOO_FAST_RETRY_DELAY}ms 后重试（${attempt}/${SNAPSHOT_TOO_FAST_RETRY_LIMIT}）`,
+          error,
+        );
+        await delay(SNAPSHOT_TOO_FAST_RETRY_DELAY);
+        continue;
+      }
 
-    addApplyLog(
-      "warn",
-      `刷新阵容快照时连接异常，准备自动重连：${error.message}`,
-      error,
-    );
-    await recoverLineupWebSocket(ctx.tokenId, step.title);
-    return loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
-      ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
-    });
+      if (!isRecoverableLineupError(error) || !consumeRecovery?.()) {
+        throw error;
+      }
+
+      addApplyLog(
+        "warn",
+        `刷新阵容快照时连接异常，准备自动重连：${error.message}`,
+        error,
+      );
+      await recoverLineupWebSocket(ctx.tokenId, step.title);
+      return loadLineupSnapshot(ctx.tokenId, ctx.teamId, {
+        ensureTeamFresh: !!step.ensureTeamFreshSnapshot,
+      });
+    }
   }
 };
 
@@ -3694,30 +3718,63 @@ const applyLineup = async (lineup, options = {}) => {
         retry: 1,
         run: async (stepCtx) => {
           let fishApplied = 0;
+          const workingArtifactOwnerMap = {
+            ...(stepCtx.currentSnapshot.artifactOwnerMap || {}),
+          };
+          const workingHeroArtifactMap = Object.fromEntries(
+            Object.entries(stepCtx.currentSnapshot.heroesMap || {}).map(
+              ([heroId, hero]) => [normalizeId(heroId), normalizeId(hero?.artifactId)],
+            ),
+          );
+
           for (const targetHero of stepCtx.targetState.heroes) {
-            if (!targetHero.fishId && !targetHero.pearlId) continue;
-
-            let artifactId = null;
+            let artifactId = resolveTargetArtifactId(
+              stepCtx.currentSnapshot,
+              targetHero,
+            );
             let pearlId = targetHero.pearlId || 0;
-
-            if (targetHero.fishId) {
-              artifactId = stepCtx.currentSnapshot.fishToArtifactMap[targetHero.fishId];
-            }
-
-            if (!artifactId && targetHero.pearlId) {
-              const pearlData = stepCtx.currentSnapshot.pearlMap[targetHero.pearlId];
-              if (pearlData?.artifactId && pearlData.artifactId !== -1) {
-                artifactId = pearlData.artifactId;
-              }
-            }
-
             artifactId = normalizeId(artifactId);
-            if (!artifactId) continue;
+            const currentArtifactId = normalizeId(
+              workingHeroArtifactMap[targetHero.heroId],
+            );
 
-            const currentHolderId =
-              stepCtx.currentSnapshot.artifactOwnerMap[artifactId];
+            if (!artifactId) {
+              if (!currentArtifactId) continue;
 
-            if (currentHolderId === targetHero.heroId) {
+              try {
+                addApplyLog(
+                  "info",
+                  `目标无鱼灵，卸下当前鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+                );
+                await sendArtifactCommandWithRetry(
+                  tokenId,
+                  "artifact_unload",
+                  {
+                    heroId: targetHero.heroId,
+                  },
+                  `卸下鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+                );
+                delete workingArtifactOwnerMap[currentArtifactId];
+                workingHeroArtifactMap[targetHero.heroId] = null;
+                fishApplied++;
+              } catch (err) {
+                addApplyLog(
+                  "warn",
+                  `卸下 ${getHeroName(targetHero.heroId) || targetHero.heroId} 当前鱼灵失败：${err.message}`,
+                  err,
+                );
+              }
+              addApplyLog(
+                "info",
+                `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
+              );
+              await delay(ARTIFACT_COMMAND_DELAY);
+              continue;
+            }
+
+            const currentHolderId = normalizeId(workingArtifactOwnerMap[artifactId]);
+
+            if (currentHolderId === targetHero.heroId && currentArtifactId === artifactId) {
               continue;
             }
 
@@ -3735,6 +3792,8 @@ const applyLineup = async (lineup, options = {}) => {
                   },
                   `卸下鱼灵 ${getHeroName(currentHolderId) || currentHolderId}`,
                 );
+                workingHeroArtifactMap[currentHolderId] = null;
+                delete workingArtifactOwnerMap[artifactId];
               } catch (err) {
                 addApplyLog(
                   "warn",
@@ -3754,6 +3813,9 @@ const applyLineup = async (lineup, options = {}) => {
                 "info",
                 `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}`,
               );
+              if (currentArtifactId && currentArtifactId !== artifactId) {
+                delete workingArtifactOwnerMap[currentArtifactId];
+              }
               await sendArtifactCommandWithRetry(
                 tokenId,
                 "artifact_load",
@@ -3764,6 +3826,8 @@ const applyLineup = async (lineup, options = {}) => {
                 },
                 `装备鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
               );
+              workingHeroArtifactMap[targetHero.heroId] = artifactId;
+              workingArtifactOwnerMap[artifactId] = targetHero.heroId;
               fishApplied++;
             } catch (err) {
               addApplyLog(
