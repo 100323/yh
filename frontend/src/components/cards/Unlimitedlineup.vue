@@ -831,7 +831,7 @@ const REFRESH_DEBOUNCE = 3000;
 const COMMAND_DELAY = 500;
 const ARTIFACT_UNLOAD_DELAY = 300;
 const ARTIFACT_LOAD_DELAY = 0;
-const OPERATION_TOO_FAST_RETRY_DELAY = 2500;
+const OPERATION_TOO_FAST_RETRY_DELAY = 3500;
 const ARTIFACT_RETRY_DELAY = OPERATION_TOO_FAST_RETRY_DELAY;
 const SNAPSHOT_TOO_FAST_RETRY_DELAY = OPERATION_TOO_FAST_RETRY_DELAY;
 const SNAPSHOT_TOO_FAST_RETRY_LIMIT = 2;
@@ -4153,6 +4153,28 @@ const applyLineup = async (lineup, options = {}) => {
               candidateIds,
               currentArtifactId,
             });
+          }
+
+          const duplicateMarkerGroups = new Map();
+          for (const hero of stepCtx.targetState.heroes) {
+            const markerKey = getTargetArtifactMarkerKey(hero);
+            if (!duplicateMarkerGroups.has(markerKey)) {
+              duplicateMarkerGroups.set(markerKey, []);
+            }
+            duplicateMarkerGroups.get(markerKey).push(hero);
+          }
+
+          for (const heroes of duplicateMarkerGroups.values()) {
+            if (heroes.length <= 1) continue;
+            const sampleHero = heroes[0];
+            const candidateIds = getArtifactCandidatesForHero(
+              stepCtx.currentSnapshot,
+              sampleHero,
+            );
+            addApplyLog(
+              "info",
+              `检测到重复鱼灵目标组：${heroes.map((hero) => formatHeroIdentity(hero.heroId)).join("、")} -> ${getFishNameById(sampleHero.fishTypeId || sampleHero.artifactBookKey || sampleHero.fishId || sampleHero.artifactId) || "鱼灵"}（${formatArtifactMarker(sampleHero) || "无标记"}），候选[${candidateIds.join("/") || "-"}]`,
+            );
           }
 
           // 第一阶段：先卸可卸来源
