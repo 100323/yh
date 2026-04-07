@@ -4016,7 +4016,6 @@ const applyLineup = async (lineup, options = {}) => {
           const targetHeroIds = new Set(
             stepCtx.targetState.heroes.map((hero) => hero.heroId),
           );
-          const lockedHeroIds = new Set();
           const workingHeroArtifactMap = Object.fromEntries(
             Object.entries(stepCtx.currentSnapshot.heroesMap || {}).map(
               ([heroId, hero]) => [normalizeId(heroId), normalizeId(hero?.artifactId)],
@@ -4031,49 +4030,70 @@ const applyLineup = async (lineup, options = {}) => {
             workingHeroArtifactMap[normalizeId(heroId)] = normalizeId(artifactId);
           };
 
-          const findDonorHeroId = (candidateIds, targetHeroId) => {
-            const normalizedTargetHeroId = normalizeId(targetHeroId);
-            const normalizedCandidates = candidateIds
-              .map((artifactId) => normalizeId(artifactId))
-              .filter(Boolean);
+          const findArtifactHolderHeroId = (artifactId, excludeHeroId = null) => {
+            const normalizedArtifactId = normalizeId(artifactId);
+            const normalizedExcludeHeroId = normalizeId(excludeHeroId);
+            if (!normalizedArtifactId) return null;
 
-            const holders = Object.entries(workingHeroArtifactMap)
-              .filter(([heroId, artifactId]) => {
-                const normalizedHeroId = normalizeId(heroId);
-                return (
-                  normalizedHeroId !== normalizedTargetHeroId &&
-                  normalizedCandidates.includes(normalizeId(artifactId))
-                );
-              })
-              .map(([heroId]) => normalizeId(heroId));
+            for (const [heroId, ownedArtifactId] of Object.entries(workingHeroArtifactMap)) {
+              const normalizedHeroId = normalizeId(heroId);
+              if (
+                normalizedHeroId !== normalizedExcludeHeroId
+                && normalizeId(ownedArtifactId) === normalizedArtifactId
+              ) {
+                return normalizedHeroId;
+              }
+            }
 
-            const externalDonor = holders.find(
-              (heroId) =>
-                !lockedHeroIds.has(heroId) && !targetHeroIds.has(heroId),
-            );
-            if (externalDonor) return externalDonor;
-
-            return (
-              holders.find((heroId) => !lockedHeroIds.has(heroId))
-              || null
-            );
+            return null;
           };
 
-          for (const targetHero of stepCtx.targetState.heroes) {
-            const currentArtifactId = normalizeId(
-              workingHeroArtifactMap[targetHero.heroId],
-            );
-            if (
-              isArtifactAssignmentSatisfied(
-                stepCtx.currentSnapshot,
-                targetHero,
-                currentArtifactId,
-                markerCounts,
-              )
-            ) {
-              lockedHeroIds.add(targetHero.heroId);
+          const resolveArtifactSource = (candidateIds, targetHeroId) => {
+            const normalizedTargetHeroId = normalizeId(targetHeroId);
+
+            for (const artifactId of candidateIds) {
+              const holderHeroId = findArtifactHolderHeroId(
+                artifactId,
+                normalizedTargetHeroId,
+              );
+
+              if (!holderHeroId) {
+                return {
+                  artifactId: normalizeId(artifactId),
+                  donorHeroId: null,
+                  blockedByHeroId: null,
+                };
+              }
+
+              if (!targetHeroIds.has(holderHeroId)) {
+                return {
+                  artifactId: normalizeId(artifactId),
+                  donorHeroId: holderHeroId,
+                  blockedByHeroId: null,
+                };
+              }
             }
-          }
+
+            for (const artifactId of candidateIds) {
+              const holderHeroId = findArtifactHolderHeroId(
+                artifactId,
+                normalizedTargetHeroId,
+              );
+              if (holderHeroId && targetHeroIds.has(holderHeroId)) {
+                return {
+                  artifactId: normalizeId(artifactId),
+                  donorHeroId: null,
+                  blockedByHeroId: holderHeroId,
+                };
+              }
+            }
+
+            return {
+              artifactId: null,
+              donorHeroId: null,
+              blockedByHeroId: null,
+            };
+          };
 
           for (const targetHero of stepCtx.targetState.heroes) {
             const candidateIds = getArtifactCandidatesForHero(
@@ -4092,18 +4112,16 @@ const applyLineup = async (lineup, options = {}) => {
                 markerCounts,
               )
             ) {
-              lockedHeroIds.add(targetHero.heroId);
               continue;
             }
 
-            let artifactId = resolveTargetArtifactId(
-              stepCtx.currentSnapshot,
-              targetHero,
-              workingHeroArtifactMap,
-              null,
-            );
+            const {
+              artifactId: resolvedArtifactId,
+              donorHeroId,
+              blockedByHeroId,
+            } = resolveArtifactSource(candidateIds, targetHero.heroId);
+            let artifactId = normalizeId(resolvedArtifactId);
             let pearlId = targetHero.pearlId || 0;
-            artifactId = normalizeId(artifactId);
 
             if (!artifactId) {
               if (!currentArtifactId) continue;
@@ -4122,7 +4140,6 @@ const applyLineup = async (lineup, options = {}) => {
                   `卸下鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
                 );
                 removeWorkingArtifact(targetHero.heroId);
-                lockedHeroIds.delete(targetHero.heroId);
                 fishApplied++;
               } catch (err) {
                 addApplyLog(
@@ -4139,13 +4156,20 @@ const applyLineup = async (lineup, options = {}) => {
               continue;
             }
 
-            const donorHeroId = findDonorHeroId(candidateIds, targetHero.heroId);
+            if (!donorHeroId && blockedByHeroId) {
+              addApplyLog(
+                "warn",
+                `跳过拆取已上阵武将鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} 需要的同类鱼灵当前仅在 ${getHeroName(blockedByHeroId) || blockedByHeroId} 身上，按规则不拆已上阵目标武将`,
+              );
+              continue;
+            }
 
             if (donorHeroId) {
+              let donorReleased = false;
               try {
                 addApplyLog(
                   "info",
-                  `卸下同类鱼灵供转移：${getHeroName(donorHeroId) || donorHeroId}`,
+                  `从未上阵武将取鱼灵：${getHeroName(donorHeroId) || donorHeroId}`,
                 );
                 await sendArtifactCommandWithRetry(
                   tokenId,
@@ -4156,11 +4180,11 @@ const applyLineup = async (lineup, options = {}) => {
                   `卸下鱼灵 ${getHeroName(donorHeroId) || donorHeroId}`,
                 );
                 removeWorkingArtifact(donorHeroId);
-                lockedHeroIds.delete(donorHeroId);
+                donorReleased = true;
               } catch (err) {
                 addApplyLog(
                   "warn",
-                  `卸下同类鱼灵失败：${err.message}`,
+                  `从未上阵武将卸下鱼灵失败：${err.message}`,
                   err,
                 );
               }
@@ -4169,6 +4193,10 @@ const applyLineup = async (lineup, options = {}) => {
                 `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
               );
               await delay(ARTIFACT_COMMAND_DELAY);
+
+              if (!donorReleased) {
+                continue;
+              }
             }
 
             if (currentArtifactId && currentArtifactId !== artifactId) {
@@ -4227,7 +4255,6 @@ const applyLineup = async (lineup, options = {}) => {
                 `装备鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
               );
               setWorkingArtifact(targetHero.heroId, artifactId);
-              lockedHeroIds.add(targetHero.heroId);
               fishApplied++;
             } catch (err) {
               addApplyLog(
