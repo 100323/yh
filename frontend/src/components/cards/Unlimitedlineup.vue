@@ -4095,6 +4095,8 @@ const applyLineup = async (lineup, options = {}) => {
             };
           };
 
+          const unsatisfiedHeroes = [];
+
           for (const targetHero of stepCtx.targetState.heroes) {
             const candidateIds = getArtifactCandidatesForHero(
               stepCtx.currentSnapshot,
@@ -4115,117 +4117,141 @@ const applyLineup = async (lineup, options = {}) => {
               continue;
             }
 
-            const {
-              artifactId: resolvedArtifactId,
-              donorHeroId,
-              blockedByHeroId,
-            } = resolveArtifactSource(candidateIds, targetHero.heroId);
-            let artifactId = normalizeId(resolvedArtifactId);
-            let pearlId = targetHero.pearlId || 0;
+            unsatisfiedHeroes.push({
+              ...targetHero,
+              candidateIds,
+              currentArtifactId,
+            });
+          }
 
-            if (!artifactId) {
-              if (!currentArtifactId) continue;
+          // 第一阶段：先卸可卸来源
+          for (const targetHero of unsatisfiedHeroes) {
+            const currentArtifactId = normalizeId(
+              workingHeroArtifactMap[targetHero.heroId],
+            );
 
-              try {
-                addApplyLog(
-                  "info",
-                  `目标无鱼灵，卸下当前鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId}`,
-                );
-                await sendArtifactCommandWithRetry(
-                  tokenId,
-                  "artifact_unload",
-                  {
-                    heroId: targetHero.heroId,
-                  },
-                  `卸下鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
-                );
-                removeWorkingArtifact(targetHero.heroId);
-                fishApplied++;
-              } catch (err) {
-                addApplyLog(
-                  "warn",
-                  `卸下 ${getHeroName(targetHero.heroId) || targetHero.heroId} 当前鱼灵失败：${err.message}`,
-                  err,
-                );
-              }
-              addApplyLog(
-                "info",
-                `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
-              );
-              await delay(ARTIFACT_COMMAND_DELAY);
+            if (!currentArtifactId) {
               continue;
             }
 
-            if (!donorHeroId && blockedByHeroId) {
+            try {
+              addApplyLog(
+                "info",
+                `预卸当前不匹配鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+              );
+              await sendArtifactCommandWithRetry(
+                tokenId,
+                "artifact_unload",
+                {
+                  heroId: targetHero.heroId,
+                },
+                `卸下鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+              );
+              removeWorkingArtifact(targetHero.heroId);
+              fishApplied++;
+            } catch (err) {
+              addApplyLog(
+                "warn",
+                `预卸当前鱼灵失败：${err.message}`,
+                err,
+              );
+            }
+            addApplyLog(
+              "info",
+              `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
+            );
+            await delay(ARTIFACT_COMMAND_DELAY);
+          }
+
+          const artifactsNeededFromBench = new Set();
+          for (const targetHero of unsatisfiedHeroes) {
+            for (const artifactId of targetHero.candidateIds || []) {
+              const holderHeroId = findArtifactHolderHeroId(
+                artifactId,
+                targetHero.heroId,
+              );
+              if (holderHeroId && !targetHeroIds.has(holderHeroId)) {
+                artifactsNeededFromBench.add(normalizeId(artifactId));
+              }
+            }
+          }
+
+          for (const [heroId, artifactId] of Object.entries(workingHeroArtifactMap)) {
+            const normalizedHeroId = normalizeId(heroId);
+            const normalizedArtifactId = normalizeId(artifactId);
+            if (!normalizedArtifactId) continue;
+            if (targetHeroIds.has(normalizedHeroId)) continue;
+            if (!artifactsNeededFromBench.has(normalizedArtifactId)) continue;
+
+            try {
+              addApplyLog(
+                "info",
+                `预卸未上阵武将鱼灵：${getHeroName(normalizedHeroId) || normalizedHeroId}`,
+              );
+              await sendArtifactCommandWithRetry(
+                tokenId,
+                "artifact_unload",
+                {
+                  heroId: normalizedHeroId,
+                },
+                `卸下鱼灵 ${getHeroName(normalizedHeroId) || normalizedHeroId}`,
+              );
+              removeWorkingArtifact(normalizedHeroId);
+            } catch (err) {
+              addApplyLog(
+                "warn",
+                `预卸未上阵武将鱼灵失败：${err.message}`,
+                err,
+              );
+            }
+            addApplyLog(
+              "info",
+              `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
+            );
+            await delay(ARTIFACT_COMMAND_DELAY);
+          }
+
+          // 第二阶段：再统一装配
+          for (const targetHero of unsatisfiedHeroes) {
+            const currentArtifactId = normalizeId(
+              workingHeroArtifactMap[targetHero.heroId],
+            );
+
+            if (
+              isArtifactAssignmentSatisfied(
+                stepCtx.currentSnapshot,
+                targetHero,
+                currentArtifactId,
+                markerCounts,
+              )
+            ) {
+              continue;
+            }
+
+            const {
+              artifactId: resolvedArtifactId,
+              blockedByHeroId,
+            } = resolveArtifactSource(
+              targetHero.candidateIds || [],
+              targetHero.heroId,
+            );
+            const artifactId = normalizeId(resolvedArtifactId);
+            const pearlId = targetHero.pearlId || 0;
+
+            if (!artifactId) {
+              addApplyLog(
+                "warn",
+                `未找到可用鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId}，候选[${(targetHero.candidateIds || []).join("/") || "-"}]`,
+              );
+              continue;
+            }
+
+            if (blockedByHeroId) {
               addApplyLog(
                 "warn",
                 `跳过拆取已上阵武将鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} 需要的同类鱼灵当前仅在 ${getHeroName(blockedByHeroId) || blockedByHeroId} 身上，按规则不拆已上阵目标武将`,
               );
               continue;
-            }
-
-            if (donorHeroId) {
-              let donorReleased = false;
-              try {
-                addApplyLog(
-                  "info",
-                  `从未上阵武将取鱼灵：${getHeroName(donorHeroId) || donorHeroId}`,
-                );
-                await sendArtifactCommandWithRetry(
-                  tokenId,
-                  "artifact_unload",
-                  {
-                    heroId: donorHeroId,
-                  },
-                  `卸下鱼灵 ${getHeroName(donorHeroId) || donorHeroId}`,
-                );
-                removeWorkingArtifact(donorHeroId);
-                donorReleased = true;
-              } catch (err) {
-                addApplyLog(
-                  "warn",
-                  `从未上阵武将卸下鱼灵失败：${err.message}`,
-                  err,
-                );
-              }
-              addApplyLog(
-                "info",
-                `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
-              );
-              await delay(ARTIFACT_COMMAND_DELAY);
-
-              if (!donorReleased) {
-                continue;
-              }
-            }
-
-            if (currentArtifactId && currentArtifactId !== artifactId) {
-              try {
-                addApplyLog(
-                  "info",
-                  `先卸下当前不匹配鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId}`,
-                );
-                await sendArtifactCommandWithRetry(
-                  tokenId,
-                  "artifact_unload",
-                  {
-                    heroId: targetHero.heroId,
-                  },
-                  `卸下鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
-                );
-                removeWorkingArtifact(targetHero.heroId);
-              } catch (err) {
-                addApplyLog(
-                  "warn",
-                  `卸下当前鱼灵失败：${err.message}`,
-                  err,
-                );
-              }
-              addApplyLog(
-                "info",
-                `鱼灵卸下后冷却 ${ARTIFACT_COMMAND_DELAY}ms，避免触发操作过快限制`,
-              );
-              await delay(ARTIFACT_COMMAND_DELAY);
             }
 
             try {
@@ -4238,8 +4264,8 @@ const applyLineup = async (lineup, options = {}) => {
                 ) || "鱼灵";
               const preferredMarker = formatArtifactMarker(targetHero);
               const preferredLabel = preferredMarker
-                ? `${targetFishName}（${preferredMarker}） 候选[${candidateIds.join("/") || artifactId}]`
-                : `${targetFishName} 候选[${candidateIds.join("/") || artifactId}]`;
+                ? `${targetFishName}（${preferredMarker}） 候选[${(targetHero.candidateIds || []).join("/") || artifactId}]`
+                : `${targetFishName} 候选[${(targetHero.candidateIds || []).join("/") || artifactId}]`;
               addApplyLog(
                 "info",
                 `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}（目标:${preferredLabel}）`,
