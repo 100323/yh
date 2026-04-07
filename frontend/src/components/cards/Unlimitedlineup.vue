@@ -462,6 +462,12 @@
                                     )
                                   }}
                                   <span
+                                    v-if="formatArtifactMarker(hero)"
+                                    class="hero-fish-marker"
+                                  >
+                                    {{ formatArtifactMarker(hero) }}
+                                  </span>
+                                  <span
                                     v-if="hero.skillId"
                                     class="hero-fish-skill-name"
                                   >
@@ -1094,6 +1100,29 @@ const getSelectedAccountId = () => {
 const getSavedLineupsStorageKey = (accountId = getSelectedAccountId()) =>
   accountId ? `${STORAGE_KEY}_${accountId}` : null;
 
+const normalizeSavedLineupHero = (hero = {}) => {
+  const artifactId = normalizeId(hero.artifactId ?? hero.savedArtifactId);
+  const artifactBookKey = normalizeId(
+    hero.artifactBookKey ?? hero.fishBookKey ?? hero.fishId,
+  );
+  const fishTypeId = resolveArtifactTypeId(
+    hero.fishTypeId ?? artifactBookKey ?? artifactId,
+  );
+
+  return {
+    ...hero,
+    heroId: normalizeId(hero.heroId),
+    position: Number(hero.position),
+    attachmentUid: normalizeId(hero.attachmentUid),
+    artifactId,
+    artifactBookKey,
+    fishId: artifactBookKey,
+    fishTypeId,
+    pearlId: normalizeId(hero.pearlId),
+    skillId: normalizePearlSkillId(hero.skillId),
+  };
+};
+
 const normalizeSavedLineup = (lineup = {}) => {
   const id = String(lineup?.id || lineup?.lineupKey || "").trim();
   if (!id) return null;
@@ -1106,7 +1135,9 @@ const normalizeSavedLineup = (lineup = {}) => {
     ...lineup,
     id,
     name,
-    heroes: Array.isArray(lineup?.heroes) ? lineup.heroes : [],
+    heroes: Array.isArray(lineup?.heroes)
+      ? lineup.heroes.map((hero) => normalizeSavedLineupHero(hero))
+      : [],
     teamId:
       Number.isInteger(teamIdRaw) && teamIdRaw > 0 ? teamIdRaw : 1,
     savedAt: Number.isFinite(savedAtRaw) ? savedAtRaw : Date.now(),
@@ -1250,13 +1281,34 @@ const resolveArtifactTypeId = (value) => {
 
 const buildArtifactSignature = (hero = {}) => ({
   artifactId: normalizeId(hero.artifactId ?? hero.savedArtifactId),
-  fishId: normalizeId(hero.fishId),
+  artifactBookKey: normalizeId(
+    hero.artifactBookKey ?? hero.fishBookKey ?? hero.fishId,
+  ),
+  fishId: normalizeId(hero.artifactBookKey ?? hero.fishBookKey ?? hero.fishId),
   fishTypeId: resolveArtifactTypeId(
-    hero.fishTypeId ?? hero.fishId ?? hero.artifactId ?? hero.savedArtifactId,
+    hero.fishTypeId
+      ?? hero.artifactBookKey
+      ?? hero.fishBookKey
+      ?? hero.fishId
+      ?? hero.artifactId
+      ?? hero.savedArtifactId,
   ),
   pearlId: normalizeId(hero.pearlId),
   skillId: normalizePearlSkillId(hero.skillId),
 });
+
+const formatArtifactMarker = (hero = {}) => {
+  const artifactBookKey = normalizeId(
+    hero.artifactBookKey ?? hero.fishBookKey ?? hero.fishId,
+  );
+  const artifactId = normalizeId(hero.artifactId ?? hero.savedArtifactId);
+  const parts = [];
+
+  if (artifactBookKey) parts.push(`标记:${artifactBookKey}`);
+  if (artifactId) parts.push(`实例:${artifactId}`);
+
+  return parts.join(" / ");
+};
 
 const resolveSnapshotWeaponId = (role = {}, currentTeam = {}) => {
   return normalizeId(
@@ -1653,8 +1705,11 @@ const getArtifactCandidatesForHero = (snapshot, targetHero) => {
     appendCandidate(snapshot.pearlMap[targetHero.pearlId]?.artifactId);
   }
 
-  if (targetHero.fishId) {
-    for (const artifactId of snapshot.artifactIdsByFishId?.[targetHero.fishId] || []) {
+  const artifactBookKey = normalizeId(
+    targetHero.artifactBookKey ?? targetHero.fishBookKey ?? targetHero.fishId,
+  );
+  if (artifactBookKey) {
+    for (const artifactId of snapshot.artifactIdsByFishId?.[artifactBookKey] || []) {
       appendCandidate(artifactId);
     }
   }
@@ -1732,7 +1787,11 @@ const verifyHeroArtifacts = (snapshot, targetState) => {
           );
           const targetArtifactId = resolveTargetArtifactId(snapshot, hero);
           const candidateIds = getArtifactCandidatesForHero(snapshot, hero);
-          return `${getHeroName(hero.heroId) || hero.heroId}(当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"}, 候选:${candidateIds.join("/") || "-"})`;
+          const fishName =
+            getFishNameById(
+              hero.fishTypeId || hero.artifactBookKey || hero.fishId || targetArtifactId,
+            ) || "鱼灵";
+          return `${getHeroName(hero.heroId) || hero.heroId}[${fishName}${formatArtifactMarker(hero) ? ` ${formatArtifactMarker(hero)}` : ""}](当前:${currentArtifactId ?? "-"}, 目标:${targetArtifactId ?? "-"}, 候选:${candidateIds.join("/") || "-"})`;
         })
         .join("、")}`,
       { mismatches },
@@ -3059,6 +3118,7 @@ const saveCurrentLineup = async () => {
         level: teamHeroInfo?.level || null,
         attachmentUid: hero.attachmentUid || null,
         artifactId: artifactId || null,
+        artifactBookKey: fishId || null,
         fishId: fishId || null,
         fishTypeId: fishTypeId || null,
         pearlId: pearlId,
@@ -3988,9 +4048,17 @@ const applyLineup = async (lineup, options = {}) => {
             }
 
             try {
-              const preferredLabel = targetHero.artifactId
-                ? `实例${targetHero.artifactId}`
-                : `${getFishNameById(targetHero.fishTypeId || targetHero.fishId || artifactId) || "鱼灵"}候选[${candidateIds.join("/") || artifactId}]`;
+              const targetFishName =
+                getFishNameById(
+                  targetHero.fishTypeId
+                    || targetHero.artifactBookKey
+                    || targetHero.fishId
+                    || artifactId,
+                ) || "鱼灵";
+              const preferredMarker = formatArtifactMarker(targetHero);
+              const preferredLabel = preferredMarker
+                ? `${targetFishName}（${preferredMarker}） 候选[${candidateIds.join("/") || artifactId}]`
+                : `${targetFishName} 候选[${candidateIds.join("/") || artifactId}]`;
               addApplyLog(
                 "info",
                 `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}（目标:${preferredLabel}）`,
@@ -5632,6 +5700,14 @@ onMounted(() => {
   font-size: 11px;
   color: var(--primary-color);
   font-weight: 500;
+}
+
+.hero-fish-marker {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
+  color: var(--text-tertiary);
+  font-weight: 400;
 }
 
 .hero-fish-skill-name {
