@@ -2043,6 +2043,111 @@ const getEmptySlotsFromTeamHeroes = (teamHeroes = []) => {
   return emptySlots;
 };
 
+const createWorkingTeamState = (teamHeroes = []) => {
+  const heroMap = new Map();
+  const positionMap = new Map();
+
+  for (const hero of teamHeroes) {
+    const normalizedHero = {
+      ...hero,
+      heroId: normalizeId(hero?.heroId),
+      position: Number(hero?.position),
+    };
+    if (!normalizedHero.heroId || Number.isNaN(normalizedHero.position)) {
+      continue;
+    }
+    heroMap.set(normalizedHero.heroId, normalizedHero);
+    positionMap.set(normalizedHero.position, normalizedHero);
+  }
+
+  return {
+    heroMap,
+    positionMap,
+  };
+};
+
+const removeWorkingHero = (workingTeamState, heroId) => {
+  const normalizedHeroId = normalizeId(heroId);
+  const currentHero = workingTeamState?.heroMap.get(normalizedHeroId);
+  if (!currentHero) return null;
+
+  workingTeamState.heroMap.delete(normalizedHeroId);
+  workingTeamState.positionMap.delete(currentHero.position);
+  return currentHero;
+};
+
+const placeWorkingHero = (workingTeamState, hero) => {
+  const normalizedHero = {
+    ...(hero || {}),
+    heroId: normalizeId(hero?.heroId),
+    position: Number(hero?.position),
+  };
+  if (!normalizedHero.heroId || Number.isNaN(normalizedHero.position)) {
+    return null;
+  }
+
+  const existingHero = workingTeamState.heroMap.get(normalizedHero.heroId);
+  if (existingHero) {
+    workingTeamState.positionMap.delete(existingHero.position);
+  }
+
+  const existingOccupant = workingTeamState.positionMap.get(normalizedHero.position);
+  if (existingOccupant && existingOccupant.heroId !== normalizedHero.heroId) {
+    workingTeamState.heroMap.delete(existingOccupant.heroId);
+  }
+
+  workingTeamState.heroMap.set(normalizedHero.heroId, normalizedHero);
+  workingTeamState.positionMap.set(normalizedHero.position, normalizedHero);
+  return normalizedHero;
+};
+
+const removeHeroFromBattleWithWorkingState = async (
+  tokenId,
+  workingTeamState,
+  heroId,
+) => {
+  const normalizedHeroId = normalizeId(heroId);
+  const currentHero = workingTeamState?.heroMap.get(normalizedHeroId);
+  if (!currentHero) return null;
+
+  await tokenStore.sendMessageWithPromise(tokenId, "hero_gobackbattle", {
+    slot: currentHero.position,
+  });
+  removeWorkingHero(workingTeamState, normalizedHeroId);
+  return currentHero;
+};
+
+const placeHeroIntoBattleWithWorkingState = async (
+  tokenId,
+  workingTeamState,
+  hero,
+) => {
+  const normalizedHeroId = normalizeId(hero?.heroId);
+  const targetPosition = Number(hero?.position);
+  if (!normalizedHeroId || Number.isNaN(targetPosition)) {
+    throw new Error("无效的站位参数");
+  }
+
+  const occupant = workingTeamState?.positionMap.get(targetPosition);
+  if (occupant && occupant.heroId !== normalizedHeroId) {
+    throw new Error(
+      `位置 ${targetPosition + 1} 仍被 ${getHeroName(occupant.heroId) || occupant.heroId} 占用`,
+    );
+  }
+
+  await tokenStore.sendMessageWithPromise(tokenId, "hero_gointobattle", {
+    heroId: normalizedHeroId,
+    slot: targetPosition,
+  });
+
+  return placeWorkingHero(workingTeamState, {
+    ...(workingTeamState.heroMap.get(normalizedHeroId) || {}),
+    ...hero,
+    heroId: normalizedHeroId,
+    position: targetPosition,
+  });
+};
+
 const findAttachmentTempRemovalCandidate = (
   teamHeroes = [],
   targetState,
@@ -3256,50 +3361,208 @@ const applyLineup = async (lineup, options = {}) => {
         retry: 2,
         ensureTeamFreshSnapshot: true,
         run: async (stepCtx) => {
-          const currentHeroes = stepCtx.currentSnapshot.teamHeroes;
-          for (const targetHero of stepCtx.targetState.heroes) {
-            const currentHero = currentHeroes.find(
-              (hero) => hero.heroId === targetHero.heroId,
-            );
-            if (!currentHero || currentHero.position === targetHero.position) {
-              continue;
-            }
+          const workingTeamState = createWorkingTeamState(
+            stepCtx.currentSnapshot.teamHeroes,
+          );
+          const maxPasses = Math.max(3, stepCtx.targetState.heroes.length * 3);
 
-            try {
-              addApplyLog(
-                "info",
-                `调整站位：${getHeroName(targetHero.heroId) || targetHero.heroId} ${currentHero.position + 1} -> ${targetHero.position + 1}`,
-              );
-              await tokenStore.sendMessageWithPromise(
-                tokenId,
-                "hero_gobackbattle",
-                {
-                  slot: currentHero.position,
-                },
-              );
-              await delay(COMMAND_DELAY);
+          for (let pass = 1; pass <= maxPasses; pass++) {
+            let changed = false;
+
+            for (const targetHero of stepCtx.targetState.heroes) {
+              const currentHero = workingTeamState.heroMap.get(targetHero.heroId);
+              if (currentHero?.position === targetHero.position) {
+                continue;
+              }
+
+              const occupant = workingTeamState.positionMap.get(targetHero.position);
+              const heroName = getHeroName(targetHero.heroId) || targetHero.heroId;
+              const targetLabel = `${targetHero.position + 1}号位`;
+
+              if (!currentHero) {
+                let displacedHero = null;
+                try {
+                  if (occupant && occupant.heroId !== targetHero.heroId) {
+                    addApplyLog(
+                      "info",
+                      `站位补位前腾位：先下阵 ${getHeroName(occupant.heroId) || occupant.heroId}（${targetLabel}）`,
+                    );
+                    displacedHero = await removeHeroFromBattleWithWorkingState(
+                      tokenId,
+                      workingTeamState,
+                      occupant.heroId,
+                    );
+                    await delay(COMMAND_DELAY);
+                  }
+
+                  addApplyLog("info", `补回站位：${heroName} -> ${targetLabel}`);
+                  await placeHeroIntoBattleWithWorkingState(
+                    tokenId,
+                    workingTeamState,
+                    {
+                      ...targetHero,
+                      position: targetHero.position,
+                    },
+                  );
+                  await delay(COMMAND_DELAY);
+                  changed = true;
+                } catch (err) {
+                  if (displacedHero) {
+                    try {
+                      await placeHeroIntoBattleWithWorkingState(
+                        tokenId,
+                        workingTeamState,
+                        displacedHero,
+                      );
+                      await delay(COMMAND_DELAY);
+                    } catch (restoreErr) {
+                      addApplyLog(
+                        "warn",
+                        `恢复 ${getHeroName(displacedHero.heroId) || displacedHero.heroId} 原站位失败：${restoreErr.message}`,
+                        restoreErr,
+                      );
+                    }
+                  }
+                  throw new Error(`补回 ${heroName} 到${targetLabel}失败：${err.message}`);
+                }
+                continue;
+              }
+
+              if (!occupant) {
+                const originalPosition = currentHero.position;
+                try {
+                  addApplyLog(
+                    "info",
+                    `调整站位：${heroName} ${currentHero.position + 1} -> ${targetHero.position + 1}`,
+                  );
+                  await removeHeroFromBattleWithWorkingState(
+                    tokenId,
+                    workingTeamState,
+                    targetHero.heroId,
+                  );
+                  await delay(COMMAND_DELAY);
+                  await placeHeroIntoBattleWithWorkingState(
+                    tokenId,
+                    workingTeamState,
+                    {
+                      ...currentHero,
+                      position: targetHero.position,
+                    },
+                  );
+                  await delay(COMMAND_DELAY);
+                  changed = true;
+                } catch (err) {
+                  try {
+                    await placeHeroIntoBattleWithWorkingState(
+                      tokenId,
+                      workingTeamState,
+                      {
+                        ...currentHero,
+                        position: originalPosition,
+                      },
+                    );
+                    await delay(COMMAND_DELAY);
+                  } catch (restoreErr) {
+                    addApplyLog(
+                      "warn",
+                      `恢复 ${heroName} 原站位失败：${restoreErr.message}`,
+                      restoreErr,
+                    );
+                  }
+                  throw new Error(`调整 ${heroName} 站位失败：${err.message}`);
+                }
+                continue;
+              }
+
+              if (occupant.heroId === targetHero.heroId) {
+                continue;
+              }
+
+              const originalPosition = currentHero.position;
+              let displacedHero = null;
               try {
-                await tokenStore.sendMessageWithPromise(
+                addApplyLog(
+                  "info",
+                  `站位冲突处理：${heroName} 目标${targetLabel}被 ${getHeroName(occupant.heroId) || occupant.heroId} 占用，先腾位再落位`,
+                );
+                await removeHeroFromBattleWithWorkingState(
                   tokenId,
-                  "hero_gointobattle",
+                  workingTeamState,
+                  targetHero.heroId,
+                );
+                await delay(COMMAND_DELAY);
+                displacedHero = await removeHeroFromBattleWithWorkingState(
+                  tokenId,
+                  workingTeamState,
+                  occupant.heroId,
+                );
+                await delay(COMMAND_DELAY);
+                await placeHeroIntoBattleWithWorkingState(
+                  tokenId,
+                  workingTeamState,
                   {
-                    heroId: targetHero.heroId,
-                    slot: targetHero.position,
+                    ...currentHero,
+                    position: targetHero.position,
                   },
                 );
+                await delay(COMMAND_DELAY);
+                changed = true;
               } catch (err) {
-                addApplyLog(
-                  "warn",
-                  `重新上阵 ${getHeroName(targetHero.heroId) || targetHero.heroId} 失败：${err.message}`,
-                  err,
-                );
+                if (displacedHero) {
+                  try {
+                    await placeHeroIntoBattleWithWorkingState(
+                      tokenId,
+                      workingTeamState,
+                      displacedHero,
+                    );
+                    await delay(COMMAND_DELAY);
+                  } catch (restoreErr) {
+                    addApplyLog(
+                      "warn",
+                      `恢复 ${getHeroName(displacedHero.heroId) || displacedHero.heroId} 原站位失败：${restoreErr.message}`,
+                      restoreErr,
+                    );
+                  }
+                }
+
+                try {
+                  await placeHeroIntoBattleWithWorkingState(
+                    tokenId,
+                    workingTeamState,
+                    {
+                      ...currentHero,
+                      position: originalPosition,
+                    },
+                  );
+                  await delay(COMMAND_DELAY);
+                } catch (restoreErr) {
+                  addApplyLog(
+                    "warn",
+                    `恢复 ${heroName} 原站位失败：${restoreErr.message}`,
+                    restoreErr,
+                  );
+                }
+                throw new Error(`处理 ${heroName} 站位冲突失败：${err.message}`);
               }
-              await delay(COMMAND_DELAY);
-            } catch (err) {
-              addApplyLog(
-                "warn",
-                `调整站位前下阵 ${getHeroName(targetHero.heroId) || targetHero.heroId} 失败：${err.message}`,
-                err,
+            }
+
+            const remainingMismatches = stepCtx.targetState.heroes.filter(
+              (hero) =>
+                workingTeamState.heroMap.get(hero.heroId)?.position !== hero.position,
+            );
+
+            if (remainingMismatches.length === 0) {
+              return;
+            }
+
+            if (!changed) {
+              throw new Error(
+                `仍有站位未校正：${remainingMismatches
+                  .map(
+                    (hero) =>
+                      `${getHeroName(hero.heroId) || hero.heroId}->${hero.position + 1}`,
+                  )
+                  .join("、")}`,
               );
             }
           }
