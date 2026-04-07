@@ -396,6 +396,22 @@ function getTaskAccountName(task) {
   return task?.account_name || task?.name || `账号${getTaskAccountId(task) || '未知'}`;
 }
 
+function getTaskCatchupEligibility(taskId) {
+  const normalizedTaskId = Number(taskId);
+  if (!Number.isInteger(normalizedTaskId) || normalizedTaskId <= 0) {
+    return null;
+  }
+
+  return get(
+    `SELECT tc.id, tc.enabled, ga.status AS account_status, COALESCE(u.is_enabled, 1) AS user_enabled
+       FROM task_configs tc
+       JOIN game_accounts ga ON tc.account_id = ga.id
+       JOIN users u ON ga.user_id = u.id
+      WHERE tc.id = ?`,
+    [normalizedTaskId],
+  );
+}
+
 function getScheduledTaskBatchItemKey(task) {
   if (task?.id) {
     return `task:${task.id}`;
@@ -891,6 +907,43 @@ function enqueueAccountTaskBatch(task, options = {}) {
 }
 
 async function runCatchupTask(task) {
+  const latestTaskState = getTaskCatchupEligibility(task?.id);
+  if (!latestTaskState || !latestTaskState.enabled) {
+    console.log('⏭️ 跳过补偿任务：定时任务已关闭', {
+      accountId: task.account_id ?? null,
+      accountName: task.account_name || task.name || null,
+      taskType: task.task_type || null,
+      taskId: task?.id ?? null,
+    });
+    return {
+      ok: true,
+      skipped: true,
+      reason: 'task_disabled',
+      taskId: task?.id ?? null,
+      accountId: task.account_id ?? null,
+      taskType: task.task_type || null,
+    };
+  }
+
+  if (latestTaskState.account_status !== 'active' || !Number(latestTaskState.user_enabled)) {
+    console.log('⏭️ 跳过补偿任务：账号或用户不可用', {
+      accountId: task.account_id ?? null,
+      accountName: task.account_name || task.name || null,
+      taskType: task.task_type || null,
+      taskId: task?.id ?? null,
+      accountStatus: latestTaskState.account_status || null,
+      userEnabled: !!Number(latestTaskState.user_enabled),
+    });
+    return {
+      ok: true,
+      skipped: true,
+      reason: 'task_unavailable',
+      taskId: task?.id ?? null,
+      accountId: task.account_id ?? null,
+      taskType: task.task_type || null,
+    };
+  }
+
   console.log('🛟 开始补偿排队任务', {
     accountId: task.account_id ?? null,
     accountName: task.account_name || task.name || null,
