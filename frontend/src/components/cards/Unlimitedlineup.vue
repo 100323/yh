@@ -1230,6 +1230,15 @@ const normalizePearlSkillId = (value) => {
   return normalized === 0 ? null : normalized;
 };
 
+const resolveSnapshotWeaponId = (role = {}, currentTeam = {}) => {
+  return normalizeId(
+    role?.lordWeaponId
+      ?? role?.lordWeapon?.weaponId
+      ?? role?.lordWeapon?.id
+      ?? currentTeam?.weapon?.weaponId,
+  );
+};
+
 const getTeamHeroes = (teamInfo) => {
   if (!teamInfo) return [];
   return Object.entries(teamInfo)
@@ -1391,7 +1400,8 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
     artifactBooks: artifactBooksRaw,
     pearlMap: pearlMapRaw,
     legionResearch,
-    weaponId: normalizeId(currentTeam?.weapon?.weaponId),
+    weaponId: resolveSnapshotWeaponId(role, currentTeam),
+    teamWeaponId: normalizeId(currentTeam?.weapon?.weaponId),
     attachmentOwnerMap,
     artifactOwnerMap,
     fishToArtifactMap,
@@ -1615,7 +1625,7 @@ const verifyWeaponStep = (snapshot, targetState) => {
     return verifySuccess("玩具同步完成");
   }
   return verifyFailure(
-    `玩具未同步，当前 ${snapshot.weaponId ?? "-"} / 目标 ${targetState.weaponId ?? "-"}`,
+    `玩具未同步，当前激活 ${snapshot.weaponId ?? "-"} / 阵容记录 ${snapshot.teamWeaponId ?? "-"} / 目标 ${targetState.weaponId ?? "-"}`,
   );
 };
 
@@ -2864,7 +2874,7 @@ const saveCurrentLineup = async () => {
     const teamData =
       presetInfo[currentTeamId.value] ||
       presetInfo[String(currentTeamId.value)];
-    const weaponId = teamData?.weapon?.weaponId || null;
+    const weaponId = resolveSnapshotWeaponId(role, teamData);
     const teamInfo = teamData?.teamInfo || {};
 
     const lineupName = `阵容${currentTeamId.value} - ${new Date().toLocaleTimeString()}`;
