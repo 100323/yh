@@ -1450,26 +1450,41 @@ async function executeTreasureClaim(client, config) {
 }
 
 async function executeLegacyClaim(client, config) {
+  const claimLegacyScrollsWithSoftRetry = async () => {
+    try {
+      return await client.claimLegacyScrolls();
+    } catch (error) {
+      const message = String(error?.message || '');
+      if (!message.includes('出了点小问题')) {
+        throw error;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      await client.getRoleInfo(8000).catch(() => {});
+      return client.claimLegacyScrolls();
+    }
+  };
+
+  const reopenLegacyHangupWithVerify = async () => {
+    const reopenResult = await client.reopenLegacyHangup();
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    await client.getLegacyInfo().catch(() => {});
+    await client.getRoleInfo(8000).catch(() => {});
+    return reopenResult;
+  };
+
   await client.getRoleInfo(8000).catch(() => {});
+  await client.getLegacyInfo().catch(() => {});
   try {
-    const result = await client.claimLegacyScrolls();
+    const result = await claimLegacyScrollsWithSoftRetry();
     return { message: '残卷收取完成', data: result };
   } catch (error) {
     const message = String(error?.message || '');
 
     if (message.includes('新赛季已开启，请重新进入本功能')) {
-      await client.beginLegacyHangup();
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      await client.getRoleInfo(8000).catch(() => {});
-      const retryResult = await client.claimLegacyScrolls();
+      await reopenLegacyHangupWithVerify();
+      const retryResult = await claimLegacyScrollsWithSoftRetry();
       return { message: '残卷收取完成(赛季重置后重试成功)', data: retryResult };
-    }
-
-    if (message.includes('出了点小问题')) {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      await client.getRoleInfo(8000).catch(() => {});
-      const retryResult = await client.claimLegacyScrolls();
-      return { message: '残卷收取完成(重试成功)', data: retryResult };
     }
     throw error;
   }

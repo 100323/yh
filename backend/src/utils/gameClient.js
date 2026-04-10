@@ -774,12 +774,42 @@ export class GameClient {
     return this.sendWithPromise('collection_claimfreereward', {});
   }
 
+  async getLegacyInfo() {
+    return this.sendWithPromise('legacy_getinfo', {});
+  }
+
   async claimLegacyScrolls() {
     return this.sendWithPromise('legacy_claimhangup', {});
   }
 
   async beginLegacyHangup() {
     return this.sendWithPromise('legacy_beginhangup', {});
+  }
+
+  async reopenLegacyHangup() {
+    const legacyInfoBefore = await this.getLegacyInfo().catch(() => null);
+    const beginResult = await this.beginLegacyHangup();
+    const legacyInfoAfter = await this.getLegacyInfo().catch(() => null);
+
+    const beginTime =
+      beginResult?.roleLegacy?.hangUpBeginTime
+      || beginResult?.rolelegacy?.hangUpBeginTime
+      || beginResult?.rolelegacy?.hangupbegintime
+      || legacyInfoAfter?.roleLegacy?.hangUpBeginTime
+      || legacyInfoAfter?.rolelegacy?.hangUpBeginTime
+      || legacyInfoAfter?.rolelegacy?.hangupbegintime
+      || 0;
+
+    if (!Number(beginTime)) {
+      throw new Error('残卷挂机开启命令已发送，但未观察到 hangUpBeginTime 更新');
+    }
+
+    return {
+      beginResult,
+      legacyInfoBefore,
+      legacyInfoAfter,
+      hangUpBeginTime: Number(beginTime),
+    };
   }
 
   async startDreamBattle() {
