@@ -144,6 +144,36 @@ function normalizeCloseReason(reason) {
   return String(reason);
 }
 
+function extractLegacyHangUpBeginTime(payload) {
+  return Number(
+    payload?.roleLegacy?.hangUpBeginTime
+    || payload?.rolelegacy?.hangUpBeginTime
+    || payload?.rolelegacy?.hangupbegintime
+    || 0
+  );
+}
+
+function summarizeLegacyErrorContext(error) {
+  if (!error || typeof error !== 'object') {
+    return null;
+  }
+
+  const summary = {
+    cmd: error.cmd || null,
+    code: Number(error.code) || 0,
+    hint: error.hint || null,
+    rawError: error.rawError || null,
+    body: error.body ?? null,
+    raw: error.raw ?? null,
+  };
+
+  if (!summary.cmd && !summary.code && !summary.hint && !summary.rawError && summary.body == null && summary.raw == null) {
+    return null;
+  }
+
+  return summary;
+}
+
 export class GameClient {
   constructor(token, options = {}) {
     this.token = token;
@@ -382,17 +412,42 @@ export class GameClient {
         this.ack = raw.seq;
       }
 
+      const buildResponseError = () => {
+        if (raw.error) {
+          const error = new Error(raw.error);
+          error.cmd = raw.cmd || null;
+          error.code = Number(raw.code) || 0;
+          error.hint = raw.hint || null;
+          error.rawError = raw.error;
+          error.body = body;
+          error.raw = raw;
+          return error;
+        }
+
+        if (raw.code && raw.code !== 0) {
+          const errorMsg = ERROR_CODE_MAP[raw.code] || raw.hint || `错误码: ${raw.code}`;
+          const error = new Error(errorMsg);
+          error.cmd = raw.cmd || null;
+          error.code = Number(raw.code) || 0;
+          error.hint = raw.hint || null;
+          error.rawError = raw.error || null;
+          error.body = body;
+          error.raw = raw;
+          return error;
+        }
+
+        return null;
+      };
+
       const respKey = raw.resp !== undefined && raw.resp !== null ? String(raw.resp) : null;
       if (respKey && this.promises.has(respKey)) {
         const promise = this.promises.get(respKey);
         this.promises.delete(respKey);
         clearTimeout(promise.timer);
 
-        if (raw.error) {
-          promise.reject(new Error(raw.error));
-        } else if (raw.code && raw.code !== 0) {
-          const errorMsg = ERROR_CODE_MAP[raw.code] || raw.hint || `错误码: ${raw.code}`;
-          promise.reject(new Error(errorMsg));
+        const responseError = buildResponseError();
+        if (responseError) {
+          promise.reject(responseError);
         } else {
           promise.resolve(body);
         }
@@ -415,11 +470,9 @@ export class GameClient {
           this.promises.delete(matchedSeq);
           clearTimeout(promise.timer);
 
-          if (raw.error) {
-            promise.reject(new Error(raw.error));
-          } else if (raw.code && raw.code !== 0) {
-            const errorMsg = ERROR_CODE_MAP[raw.code] || raw.hint || `错误码: ${raw.code}`;
-            promise.reject(new Error(errorMsg));
+          const responseError = buildResponseError();
+          if (responseError) {
+            promise.reject(responseError);
           } else {
             promise.resolve(body);
           }
@@ -786,30 +839,89 @@ export class GameClient {
     return this.sendWithPromise('legacy_beginhangup', {});
   }
 
-  async reopenLegacyHangup() {
+  async reopenLegacyHangup(options = {}) {
+    const {
+      verifyAttempts = 5,
+      verifyDelayMs = 1200,
+    } = options;
+
     const legacyInfoBefore = await this.getLegacyInfo().catch(() => null);
-    const beginResult = await this.beginLegacyHangup();
-    const legacyInfoAfter = await this.getLegacyInfo().catch(() => null);
 
-    const beginTime =
-      beginResult?.roleLegacy?.hangUpBeginTime
-      || beginResult?.rolelegacy?.hangUpBeginTime
-      || beginResult?.rolelegacy?.hangupbegintime
-      || legacyInfoAfter?.roleLegacy?.hangUpBeginTime
-      || legacyInfoAfter?.rolelegacy?.hangUpBeginTime
-      || legacyInfoAfter?.rolelegacy?.hangupbegintime
-      || 0;
-
-    if (!Number(beginTime)) {
-      throw new Error('残卷挂机开启命令已发送，但未观察到 hangUpBeginTime 更新');
+    let beginResult = null;
+    let beginError = null;
+    try {
+      beginResult = await this.beginLegacyHangup();
+    } catch (error) {
+      beginError = error;
     }
 
-    return {
-      beginResult,
+    const beginTimeFromResult = extractLegacyHangUpBeginTime(beginResult);
+    if (beginTimeFromResult > 0) {
+      return {
+        beginResult,
+        beginError: null,
+        legacyInfoBefore,
+        legacyInfoAfter: beginResult,
+        hangUpBeginTime: beginTimeFromResult,
+      };
+    }
+
+    const verificationSnapshots = [];
+    let legacyInfoAfter = null;
+
+    for (let attempt = 0; attempt < Math.max(1, Number(verifyAttempts) || 1); attempt += 1) {
+      if (attempt > 0) {
+        await sleep(Number(verifyDelayMs) || 1200);
+      }
+
+      legacyInfoAfter = await this.getLegacyInfo().catch((error) => {
+        verificationSnapshots.push({
+          attempt: attempt + 1,
+          error: error?.message || String(error),
+          context: summarizeLegacyErrorContext(error),
+        });
+        return null;
+      });
+
+      const beginTime = extractLegacyHangUpBeginTime(legacyInfoAfter);
+      verificationSnapshots.push({
+        attempt: attempt + 1,
+        hangUpBeginTime: beginTime,
+        roleLegacy: legacyInfoAfter?.roleLegacy || legacyInfoAfter?.rolelegacy || null,
+      });
+
+      if (beginTime > 0) {
+        return {
+          beginResult,
+          beginError: null,
+          legacyInfoBefore,
+          legacyInfoAfter,
+          verificationSnapshots,
+          hangUpBeginTime: beginTime,
+        };
+      }
+    }
+
+    if (beginError) {
+      beginError.legacyContext = {
+        stage: 'legacy_beginhangup',
+        legacyInfoBefore,
+        verificationSnapshots,
+        beginResult,
+        beginError: summarizeLegacyErrorContext(beginError),
+      };
+      throw beginError;
+    }
+
+    const verifyError = new Error('残卷挂机开启命令已发送，但在轮询校验后仍未观察到 hangUpBeginTime 更新');
+    verifyError.legacyContext = {
+      stage: 'legacy_beginhangup_verify',
       legacyInfoBefore,
+      beginResult,
       legacyInfoAfter,
-      hangUpBeginTime: Number(beginTime),
+      verificationSnapshots,
     };
+    throw verifyError;
   }
 
   async startDreamBattle() {
