@@ -692,6 +692,117 @@ export class GameCommands {
       time: Date.now(),
     };
   }
+
+  /**
+   * 获取功法信息
+   */
+  legacy_getinfo(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        ...params,
+      }),
+      cmd: "legacy_getinfo",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 开启功法挂机
+   */
+  legacy_beginhangup(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        ...params,
+      }),
+      cmd: "legacy_beginhangup",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 领取功法挂机残卷
+   */
+  legacy_claimhangup(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        ...params,
+      }),
+      cmd: "legacy_claimhangup",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 获取功法赠送列表
+   */
+  legacy_gift_getlist(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        ...params,
+      }),
+      cmd: "legacy_gift_getlist",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 赠送功法残卷
+   */
+  legacy_gift_send(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        recipientId: 0,
+        itemId: 0,
+        quantity: 0,
+        ...params,
+      }),
+      cmd: "legacy_gift_send",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 领取收到的功法残卷
+   */
+  legacy_gift_received(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        ...params,
+      }),
+      cmd: "legacy_gift_received",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 老版功法残卷发送
+   */
+  legacy_sendgift(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({
+        itemCnt: 0,
+        legacyUIds: [],
+        targetId: 0,
+        ...params,
+      }),
+      cmd: "legacy_sendgift",
+      seq,
+      time: Date.now(),
+    };
+  }
 }
 
 // 三国答题题库（基于mirror代码中的题目）
