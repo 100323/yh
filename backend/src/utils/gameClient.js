@@ -67,6 +67,7 @@ const COMMAND_RESPONSE_ALIASES = {
   car_claim: ['car_claimresp'],
   store_purchase: ['store_buyresp'],
   collection_claimfreereward: ['collection_claimfreerewardresp'],
+  legacy_beginhangup: ['legacy_beginhangupresp'],
   legacy_claimhangup: ['legacy_claimhangupresp'],
   evotower_getinfo: ['evotowerinforesp'],
   evotower_readyfight: ['evotower_readyfightresp'],
@@ -775,6 +776,10 @@ export class GameClient {
 
   async claimLegacyScrolls() {
     return this.sendWithPromise('legacy_claimhangup', {});
+  }
+
+  async beginLegacyHangup() {
+    return this.sendWithPromise('legacy_beginhangup', {});
   }
 
   async startDreamBattle() {

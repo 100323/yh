@@ -1455,7 +1455,17 @@ async function executeLegacyClaim(client, config) {
     const result = await client.claimLegacyScrolls();
     return { message: '残卷收取完成', data: result };
   } catch (error) {
-    if (String(error?.message || '').includes('出了点小问题')) {
+    const message = String(error?.message || '');
+
+    if (message.includes('新赛季已开启，请重新进入本功能')) {
+      await client.beginLegacyHangup();
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      await client.getRoleInfo(8000).catch(() => {});
+      const retryResult = await client.claimLegacyScrolls();
+      return { message: '残卷收取完成(赛季重置后重试成功)', data: retryResult };
+    }
+
+    if (message.includes('出了点小问题')) {
       await new Promise((resolve) => setTimeout(resolve, 700));
       await client.getRoleInfo(8000).catch(() => {});
       const retryResult = await client.claimLegacyScrolls();
