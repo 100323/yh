@@ -2824,16 +2824,20 @@ async function executeLegacyClaim(client, config) {
 
   const reopenLegacyHangupWithVerify = async (retryCount = 0) => {
     const MAX_REOPEN_RETRIES = 2;
+    const verifyDelayMs = 2000 + retryCount * 1000;
+    const retryDelayMs = 1000 + retryCount * 1000;
     try {
       const reopenResult = await client.reopenLegacyHangup();
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log(`⏳ 残卷开启后等待状态稳定 ${verifyDelayMs}ms (第${retryCount + 1}次尝试)`);
+      await new Promise((resolve) => setTimeout(resolve, verifyDelayMs));
       await client.getLegacyInfo().catch(() => {});
       await client.getRoleInfo(8000).catch(() => {});
       return reopenResult;
     } catch (error) {
       console.warn(`⚠️ 残卷开启失败 (第${retryCount + 1}次尝试):`, error?.message);
       if (retryCount < MAX_REOPEN_RETRIES) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        console.log(`🔁 ${retryDelayMs}ms 后重试残卷开启...`);
+        await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
         return reopenLegacyHangupWithVerify(retryCount + 1);
       }
       throw error;
