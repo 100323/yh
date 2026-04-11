@@ -2100,6 +2100,9 @@ async function runTaskByType(client, taskType, config) {
     
     case 'LEGACY_CLAIM':
       return await executeLegacyClaim(client, config);
+
+    case 'LEGACY_REOPEN':
+      return await executeLegacyReopen(client, config);
     
     case 'WELFARE_CLAIM':
       return await executeWelfareClaim(client, config);
@@ -2819,12 +2822,22 @@ async function executeLegacyClaim(client, config) {
     }
   };
 
-  const reopenLegacyHangupWithVerify = async () => {
-    const reopenResult = await client.reopenLegacyHangup();
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    await client.getLegacyInfo().catch(() => {});
-    await client.getRoleInfo(8000).catch(() => {});
-    return reopenResult;
+  const reopenLegacyHangupWithVerify = async (retryCount = 0) => {
+    const MAX_REOPEN_RETRIES = 2;
+    try {
+      const reopenResult = await client.reopenLegacyHangup();
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await client.getLegacyInfo().catch(() => {});
+      await client.getRoleInfo(8000).catch(() => {});
+      return reopenResult;
+    } catch (error) {
+      console.warn(`⚠️ 残卷开启失败 (第${retryCount + 1}次尝试):`, error?.message);
+      if (retryCount < MAX_REOPEN_RETRIES) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return reopenLegacyHangupWithVerify(retryCount + 1);
+      }
+      throw error;
+    }
   };
 
   await client.getRoleInfo(8000).catch(() => {});
@@ -2842,6 +2855,20 @@ async function executeLegacyClaim(client, config) {
     }
     throw error;
   }
+}
+
+async function executeLegacyReopen(client, config) {
+  const result = await client.reopenLegacyHangup();
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+  const latestLegacyInfo = await client.getLegacyInfo().catch(() => null);
+
+  return {
+    message: '残卷挂机重新开启成功',
+    data: {
+      ...result,
+      latestLegacyInfo,
+    },
+  };
 }
 
 async function executeWelfareClaim(client, config) {

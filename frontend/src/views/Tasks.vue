@@ -34,6 +34,14 @@
         <n-tag v-if="selectedAccountId" type="success" size="small">
           已加载该账号的配置
         </n-tag>
+        <n-space v-if="selectedAccountId" size="small">
+          <n-button secondary type="warning" :loading="debugReopening" @click="handleManualLegacyReopen">
+            调试开启残卷
+          </n-button>
+          <n-button secondary type="primary" :loading="debugClaiming" @click="handleManualLegacyClaim">
+            立即收取残卷
+          </n-button>
+        </n-space>
       </div>
     </n-card>
 
@@ -146,6 +154,8 @@ const taskStore = useTaskStore();
 const accountStore = useAccountStore();
 
 const saving = ref(false);
+const debugReopening = ref(false);
+const debugClaiming = ref(false);
 const dailyRunTime = ref(null);
 const selectedAccountId = ref(null);
 const isHydrating = ref(false);
@@ -684,6 +694,48 @@ const applyDailyTime = () => {
 const handleConfigSave = (configs) => {
   currentAccountConfig.value.taskConfigs = configs;
   saveCurrentConfig();
+};
+
+const handleManualLegacyReopen = async () => {
+  if (!selectedAccountId.value) {
+    message.warning('请先选择账号');
+    return;
+  }
+
+  debugReopening.value = true;
+  try {
+    const res = await taskStore.executeTask(selectedAccountId.value, 'LEGACY_REOPEN');
+    if (!res?.success) {
+      throw new Error(res?.error || '调试开启失败');
+    }
+
+    const beginTime = res?.data?.hangUpBeginTime || res?.data?.data?.hangUpBeginTime || '';
+    message.success(beginTime ? `残卷已主动开启，hangUpBeginTime=${beginTime}` : '残卷已主动开启');
+  } catch (error) {
+    message.error(error?.message || '调试开启失败');
+  } finally {
+    debugReopening.value = false;
+  }
+};
+
+const handleManualLegacyClaim = async () => {
+  if (!selectedAccountId.value) {
+    message.warning('请先选择账号');
+    return;
+  }
+
+  debugClaiming.value = true;
+  try {
+    const res = await taskStore.executeTask(selectedAccountId.value, 'LEGACY_CLAIM');
+    if (!res?.success) {
+      throw new Error(res?.error || '残卷收取失败');
+    }
+    message.success(res?.message || '残卷收取成功');
+  } catch (error) {
+    message.error(error?.message || '残卷收取失败');
+  } finally {
+    debugClaiming.value = false;
+  }
 };
 
 const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
