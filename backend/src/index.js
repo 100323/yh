@@ -1,9 +1,10 @@
+import { randomUUID } from 'crypto';
 import express from 'express';
 import cors from 'cors';
 import cron from 'node-cron';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { initDatabase, closeDatabase, runDatabaseMaintenance, runDatabaseVacuum } from './database/index.js';
+import { initDatabase, closeDatabase, getDatabasePathDiagnostics, runDatabaseMaintenance, runDatabaseVacuum } from './database/index.js';
 import authRoutes from './routes/auth.js';
 import accountRoutes from './routes/accounts.js';
 import taskRoutes from './routes/tasks.js';
@@ -38,6 +39,7 @@ const startupState = {
   database: {
     status: 'pending',
     lastError: null,
+    pathDiagnostics: null,
   },
   scheduler: {
     status: 'pending',
@@ -81,6 +83,15 @@ app.use(express.json({
   }
 }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use((req, res, next) => {
+  const headerRequestId = req.headers['x-request-id'];
+  const requestId = typeof headerRequestId === 'string' && headerRequestId.trim()
+    ? headerRequestId.trim()
+    : randomUUID();
+  req.requestId = requestId;
+  res.setHeader('X-Request-Id', requestId);
+  next();
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/accounts', accountRoutes);
@@ -311,13 +322,16 @@ function logServerBootInfo() {
 async function startServer() {
   try {
     startupState.database.status = 'starting';
+    startupState.database.pathDiagnostics = getDatabasePathDiagnostics();
     await initDatabase();
     startupState.database.status = 'ready';
     startupState.database.lastError = null;
+    startupState.database.pathDiagnostics = getDatabasePathDiagnostics();
     preloadStudyQuestionBank();
   } catch (error) {
     startupState.database.status = 'failed';
     startupState.database.lastError = error?.message || String(error);
+    startupState.database.pathDiagnostics = getDatabasePathDiagnostics();
     console.error('启动服务器失败（数据库初始化）:', error);
     process.exit(1);
   }

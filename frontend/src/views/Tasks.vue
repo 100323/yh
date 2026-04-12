@@ -136,7 +136,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
 import { useMessage } from 'naive-ui';
 import { Refresh } from '@vicons/ionicons5';
 import TaskConfigPanel from '@/components/Daily/TaskConfigPanel.vue';
@@ -164,6 +164,13 @@ const autoSyncRunning = ref(false);
 const pendingSyncAccountId = ref(null);
 const configChangeVersion = ref(0);
 const backendLoadRequestId = ref(0);
+const TASK_CONFIG_STORAGE_KEY = 'allAccountsTaskConfig';
+const TASK_CONFIG_SYNC_STORAGE_KEY = 'xyzw-task-config-sync';
+const TASK_CONFIG_SYNC_CHANNEL = 'xyzw-task-config-sync-channel';
+const currentTaskConfigTabId = `tasks-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+const lastSyncedConfigChangeVersion = ref(0);
+const lastHandledTaskConfigSyncKey = ref('');
+let taskConfigBroadcastChannel = null;
 
 const scheduleModeOptions = [
   { label: '每日固定时间', value: 'daily' },
@@ -256,6 +263,86 @@ const createDefaultAccountConfig = () => normalizeAccountConfig();
 const currentAccountConfig = ref(createDefaultAccountConfig());
 const allAccountsConfig = ref({});
 const localOnlyTaskKeys = new Set(['startBatch']);
+
+const markCurrentConfigSynced = () => {
+  lastSyncedConfigChangeVersion.value = configChangeVersion.value;
+};
+
+const hasUnsyncedLocalChanges = (accountId = selectedAccountId.value) => {
+  return Number(accountId || 0) === Number(selectedAccountId.value || 0)
+    && configChangeVersion.value > lastSyncedConfigChangeVersion.value;
+};
+
+const buildTaskConfigSyncPayload = (accountId, revision, reason = 'save_success') => ({
+  senderTabId: currentTaskConfigTabId,
+  accountId: Number(accountId || 0),
+  revision: revision || null,
+  reason,
+  timestamp: Date.now(),
+});
+
+const broadcastTaskConfigSync = (accountId, revision, reason = 'save_success') => {
+  const payload = buildTaskConfigSyncPayload(accountId, revision, reason);
+  try {
+    if (taskConfigBroadcastChannel) {
+      taskConfigBroadcastChannel.postMessage(payload);
+    }
+    localStorage.setItem(TASK_CONFIG_SYNC_STORAGE_KEY, JSON.stringify(payload));
+  } catch (error) {
+    console.error('[Tasks] 广播配置同步事件失败:', error);
+  }
+};
+
+const handleExternalTaskConfigSync = async (payload) => {
+  if (!payload || payload.senderTabId === currentTaskConfigTabId) {
+    return;
+  }
+
+  const accountId = Number(payload.accountId || 0);
+  if (!accountId) {
+    return;
+  }
+
+  const dedupeKey = `${payload.senderTabId}:${accountId}:${payload.revision || 'no-revision'}:${payload.timestamp || 0}`;
+  if (lastHandledTaskConfigSyncKey.value === dedupeKey) {
+    return;
+  }
+  lastHandledTaskConfigSyncKey.value = dedupeKey;
+
+  if (accountId !== Number(selectedAccountId.value || 0)) {
+    return;
+  }
+
+  if (payload.revision && taskStore.taskConfigRevisions[accountId] === payload.revision) {
+    return;
+  }
+
+  if (autoSyncRunning.value || hasUnsyncedLocalChanges(accountId)) {
+    message.warning('检测到另一个标签页已更新当前账号配置；当前页仍有未同步修改，继续保存会触发冲突校验，建议先刷新配置。');
+    return;
+  }
+
+  try {
+    await loadAccountTaskConfigsFromBackend(accountId, { force: true });
+    message.info('检测到另一个标签页更新了当前账号配置，已自动刷新。');
+  } catch (error) {
+    console.error('[Tasks] 处理跨标签页配置同步失败:', error);
+    message.warning('检测到其他标签页更新了当前账号配置，请手动刷新确认最新内容。');
+  }
+};
+
+const handleTaskConfigStorageEvent = (event) => {
+  if (event.key !== TASK_CONFIG_SYNC_STORAGE_KEY || !event.newValue) {
+    return;
+  }
+
+  try {
+    const payload = JSON.parse(event.newValue);
+    void handleExternalTaskConfigSync(payload);
+  } catch (error) {
+    console.error('[Tasks] 解析跨标签页配置事件失败:', error);
+  }
+};
 
 const schedulableTasks = computed(() => {
   return availableTasks.filter((task) => !localOnlyTaskKeys.has(task.value));
@@ -578,22 +665,25 @@ const inferDailyRunTime = (taskConfigs = {}, fallbackRunTime = null) => {
   return firstDailyTask?.runTime || fallbackRunTime || null;
 };
 
-const loadAccountTaskConfigsFromBackend = async (accountId) => {
+const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
+  const { force = false } = options;
   const requestId = ++backendLoadRequestId.value;
   const localVersionAtStart = configChangeVersion.value;
   const res = await taskStore.fetchAccountTasks(accountId);
   if (requestId !== backendLoadRequestId.value || selectedAccountId.value !== accountId) {
     return;
   }
-  if (localVersionAtStart !== configChangeVersion.value) {
+  if (!force && localVersionAtStart !== configChangeVersion.value) {
     console.warn(`[Tasks] 账号 ${accountId} 在后端配置加载期间已发生本地修改，跳过本次回填`);
     return;
   }
-  if (!res?.success || !Array.isArray(res.data)) {
+
+  const backendConfigs = Array.isArray(res?.data) ? res.data : (res?.data?.items || []);
+  const revision = Array.isArray(res?.data) ? null : (res?.data?.revision || null);
+  if (!res?.success || !Array.isArray(backendConfigs)) {
     return;
   }
 
-  const backendConfigs = res.data;
   const baseConfig = normalizeAccountConfig(allAccountsConfig.value[accountId] || {});
   const mergedTaskConfigs = cloneTaskConfigs(baseConfig.taskConfigs);
   const backendToFrontendTaskMap = Object.fromEntries(
@@ -634,6 +724,8 @@ const loadAccountTaskConfigsFromBackend = async (accountId) => {
       currentAccountConfig.value.taskConfigs,
       currentAccountConfig.value.settings?.dailyRunTime || null,
     );
+    taskStore.taskConfigRevisions[accountId] = revision;
+    markCurrentConfigSynced();
   } finally {
     isHydrating.value = false;
   }
@@ -669,7 +761,7 @@ const handleAccountChange = async (accountId) => {
     await loadAccountTaskConfigsFromBackend(accountId);
   } catch (error) {
     console.error('加载后端任务配置失败:', error);
-    message.warning('读取后端任务配置失败，已使用本地缓存配置');
+    message.warning('读取后端任务配置失败，已保留当前页面配置');
   }
 };
 
@@ -757,6 +849,7 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
     JSON.parse(JSON.stringify(currentAccountConfig.value))
   );
   const syncStartedVersion = configChangeVersion.value;
+  const baselineRevision = taskStore.taskConfigRevisions[accountId] || null;
 
   autoSyncRunning.value = true;
   if (notify) {
@@ -765,11 +858,9 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
 
   try {
     allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(configSnapshot));
-    saveAllToLocalStorage();
 
-    let syncedCount = 0;
     let skippedCount = 0;
-    const syncErrors = [];
+    const tasksPayload = [];
 
     for (const [taskKey, taskValue] of Object.entries(configSnapshot.taskConfigs)) {
       if (localOnlyTaskKeys.has(taskKey)) {
@@ -782,39 +873,53 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
         continue;
       }
 
-      const cronExpression = buildCronExpression(taskKey, taskValue);
-      const config = mapFrontendConfigToBackend(taskKey, taskValue);
-      try {
-        const res = await taskStore.updateTaskConfig(accountId, backendTaskType, {
-          enabled: !!taskValue.enabled,
-          cronExpression,
-          config,
-        }, {
-          refetch: false,
-        });
-        if (res?.success) {
-          syncedCount++;
-        } else {
-          syncErrors.push(`${taskKey}: ${res?.error || '保存失败'}`);
-        }
-      } catch (error) {
-        syncErrors.push(`${taskKey}: ${error?.response?.data?.error || error?.message || '保存失败'}`);
-      }
+      tasksPayload.push({
+        taskType: backendTaskType,
+        enabled: !!taskValue.enabled,
+        cronExpression: buildCronExpression(taskKey, taskValue),
+        config: mapFrontendConfigToBackend(taskKey, taskValue),
+      });
     }
 
-    if (notify) {
-      if (syncErrors.length > 0) {
-        message.error(`后端同步失败 ${syncErrors.length} 项，请检查账号与登录状态`);
-      } else {
-        message.success(`${accountName} 的配置已保存，已同步 ${syncedCount} 项任务`);
-      }
+    const res = await taskStore.batchUpdateAccountTasks(accountId, tasksPayload, {
+      baselineRevision,
+    });
 
+    if (!res?.success) {
+      throw new Error(res?.error || '保存失败');
+    }
+
+    markCurrentConfigSynced();
+    broadcastTaskConfigSync(accountId, res?.data?.revision || taskStore.taskConfigRevisions[accountId] || null, 'save_success');
+
+    if (notify) {
+      message.success(`${accountName} 的配置已保存，已同步 ${tasksPayload.length} 项任务`);
       if (skippedCount > 0) {
         message.info(`有 ${skippedCount} 项仅本地配置任务未同步到后端调度`);
       }
     }
 
-    return { success: syncErrors.length === 0 };
+    return { success: true };
+  } catch (error) {
+    const conflictStatus = Number(error?.errorCode || error?.response?.status || 0);
+    if (conflictStatus === 409) {
+      const latestRevision = error?.response?.data?.data?.currentRevision || null;
+      if (latestRevision) {
+        taskStore.taskConfigRevisions[accountId] = latestRevision;
+      }
+      await loadAccountTaskConfigsFromBackend(accountId, { force: true });
+      if (notify) {
+        message.warning('检测到该账号任务配置已在其他页面或设备被修改，已刷新为后端最新配置');
+      }
+      return { success: false, conflict: true };
+    }
+
+    if (notify) {
+      message.error(error?.response?.data?.error || error?.message || '后端同步失败，请稍后重试');
+    } else {
+      console.error('[Tasks] 同步任务配置失败:', error);
+    }
+    return { success: false };
   } finally {
     autoSyncRunning.value = false;
     if (notify) {
@@ -868,28 +973,11 @@ const saveCurrentConfig = async () => {
   await syncCurrentConfigToBackend({ notify: true });
 };
 
-const saveAllToLocalStorage = () => {
-  try {
-    localStorage.setItem('allAccountsTaskConfig', JSON.stringify(allAccountsConfig.value));
-  } catch (error) {
-    console.error('保存配置失败:', error);
-  }
-};
-
 const loadFromLocalStorage = () => {
   try {
-    const saved = localStorage.getItem('allAccountsTaskConfig');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      allAccountsConfig.value = Object.fromEntries(
-        Object.entries(parsed || {}).map(([accountId, accountConfig]) => [
-          accountId,
-          normalizeAccountConfig(accountConfig),
-        ]),
-      );
-    }
+    localStorage.removeItem(TASK_CONFIG_STORAGE_KEY);
   } catch (error) {
-    console.error('加载配置失败:', error);
+    console.error('清理旧任务配置缓存失败:', error);
   }
 };
 
@@ -900,15 +988,14 @@ const refreshTasks = async () => {
   Object.keys(allAccountsConfig.value).forEach((accountId) => {
     if (!accountIdSet.has(String(accountId))) {
       delete allAccountsConfig.value[accountId];
+      delete taskStore.taskConfigRevisions[accountId];
     }
   });
-  saveAllToLocalStorage();
 
   if (selectedAccountId.value && !accountIdSet.has(String(selectedAccountId.value))) {
     selectedAccountId.value = accountStore.accounts[0]?.id || null;
   }
 
-  loadFromLocalStorage();
   if (selectedAccountId.value) {
     await handleAccountChange(selectedAccountId.value);
   }
@@ -922,7 +1009,6 @@ watch(
       allAccountsConfig.value[selectedAccountId.value] = JSON.parse(
         JSON.stringify(currentAccountConfig.value)
       );
-      saveAllToLocalStorage();
     }
     if (!isHydrating.value) {
       configChangeVersion.value += 1;
@@ -974,6 +1060,16 @@ watch(
 
 onMounted(() => {
   loadFromLocalStorage();
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', handleTaskConfigStorageEvent);
+    if ('BroadcastChannel' in window) {
+      taskConfigBroadcastChannel = new BroadcastChannel(TASK_CONFIG_SYNC_CHANNEL);
+      taskConfigBroadcastChannel.onmessage = (event) => {
+        void handleExternalTaskConfigSync(event?.data);
+      };
+    }
+  }
+
   Promise.all([
     accountStore.fetchAccounts(),
     taskStore.fetchTaskTypes(),
@@ -991,6 +1087,16 @@ onMounted(() => {
   }).catch((error) => {
     console.error('初始化任务配置失败:', error);
   });
+});
+
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('storage', handleTaskConfigStorageEvent);
+  }
+  if (taskConfigBroadcastChannel) {
+    taskConfigBroadcastChannel.close();
+    taskConfigBroadcastChannel = null;
+  }
 });
 </script>
 

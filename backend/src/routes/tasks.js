@@ -1,5 +1,6 @@
+import { createHash } from 'crypto';
 import { Router } from 'express';
-import { run, get, all, cleanupTaskLogs, getDatabase, saveDatabase, upsertTaskExecutionMarker } from '../database/index.js';
+import { run, get, all, addTaskConfigAuditLog, cleanupTaskLogs, getDatabase, saveDatabase, upsertTaskExecutionMarker } from '../database/index.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { calculateNextRunAt } from '../utils/cronSchedule.js';
 
@@ -163,6 +164,86 @@ function normalizeTaskConfigPayload(taskType, config = {}) {
   }
 
   return config;
+}
+
+function stableSortValue(value) {
+  if (Array.isArray(value)) {
+    return value.map((item) => stableSortValue(item));
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.keys(value).sort().reduce((acc, key) => {
+      acc[key] = stableSortValue(value[key]);
+      return acc;
+    }, {});
+  }
+
+  return value;
+}
+
+function parseTaskConfigJson(configJson) {
+  if (!configJson) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(configJson);
+  } catch {
+    return {};
+  }
+}
+
+function getAccountTaskConfigRows(accountId, targetDb = getDatabase()) {
+  return targetDb.all(
+    `SELECT id, account_id, task_type, enabled, cron_expression, config_json, last_run_at, next_run_at, created_at, updated_at
+       FROM task_configs
+      WHERE account_id = ?
+      ORDER BY task_type ASC, id ASC`,
+    [accountId]
+  );
+}
+
+function getTaskConfigsRevision(rows = []) {
+  const payload = rows.map((row) => ({
+    taskType: String(row.task_type || ''),
+    enabled: Number(row.enabled || 0),
+    cronExpression: String(row.cron_expression || ''),
+    config: stableSortValue(parseTaskConfigJson(row.config_json)),
+  }));
+
+  return createHash('sha1')
+    .update(JSON.stringify(payload))
+    .digest('hex');
+}
+
+function getAccountTaskConfigRevision(accountId, targetDb = getDatabase()) {
+  return getTaskConfigsRevision(getAccountTaskConfigRows(accountId, targetDb));
+}
+
+function summarizeTaskConfigPayload(tasks = []) {
+  return tasks.map((item) => ({
+    taskType: String(item?.taskType || item?.task_type || ''),
+    enabled: item?.enabled === undefined ? null : !!item.enabled,
+    cronExpression: item?.cronExpression || item?.cron_expression || null,
+  }));
+}
+
+function recordTaskConfigAudit(entry = {}) {
+  try {
+    addTaskConfigAuditLog(undefined, entry);
+  } catch (error) {
+    console.warn('⚠️ 写入任务配置审计日志失败:', error?.message || error);
+  }
+}
+
+function buildTaskConfigAuditContext(req, accountId, extra = {}) {
+  return {
+    requestId: req?.requestId || null,
+    accountId: Number(accountId || 0),
+    userId: Number(req?.user?.userId || 0) || null,
+    source: extra.source || 'tasks_route',
+    ...extra,
+  };
 }
 
 function insertDefaultTaskConfig(targetDb, accountId, taskType, seed = {}) {
@@ -412,22 +493,20 @@ router.get('/account/:accountId', (req, res) => {
 
     ensureDefaultTaskConfigsForAccount(accountId);
 
-    const configs = all(
-      `SELECT id, account_id, task_type, enabled, cron_expression, config_json, last_run_at, next_run_at, created_at, updated_at 
-       FROM task_configs 
-       WHERE account_id = ?`,
-      [accountId]
-    );
-
-    const parsedConfigs = configs.map(config => ({
+    const configs = getAccountTaskConfigRows(accountId);
+    const revision = getTaskConfigsRevision(configs);
+    const parsedConfigs = configs.map((config) => ({
       ...config,
       enabled: !!config.enabled,
-      config: config.config_json ? JSON.parse(config.config_json) : {}
+      config: parseTaskConfigJson(config.config_json)
     }));
 
     res.json({
       success: true,
-      data: parsedConfigs
+      data: {
+        items: parsedConfigs,
+        revision,
+      }
     });
   } catch (error) {
     console.error('获取任务配置错误:', error);
@@ -438,10 +517,201 @@ router.get('/account/:accountId', (req, res) => {
   }
 });
 
+router.put('/account/:accountId/batch', async (req, res) => {
+  try {
+    const { accountId } = req.params;
+    const { tasks, baselineRevision = null } = req.body || {};
+
+    if (!Array.isArray(tasks) || tasks.length === 0) {
+      return res.status(400).json({
+        success: false,
+        error: '请提供要保存的任务配置列表'
+      });
+    }
+
+    const account = get(
+      'SELECT id FROM game_accounts WHERE id = ? AND user_id = ?',
+      [accountId, req.user.userId]
+    );
+
+    if (!account) {
+      return res.status(404).json({
+        success: false,
+        error: '账号不存在'
+      });
+    }
+
+    ensureDefaultTaskConfigsForAccount(accountId);
+
+    const db = getDatabase();
+    let beforeRevision = null;
+    const saveBatch = db.transaction((taskList) => {
+      const currentRevision = getAccountTaskConfigRevision(accountId, db);
+      beforeRevision = currentRevision;
+      if (baselineRevision && baselineRevision !== currentRevision) {
+        const conflictError = new Error('TASK_CONFIG_CONFLICT');
+        conflictError.code = 'TASK_CONFIG_CONFLICT';
+        conflictError.currentRevision = currentRevision;
+        throw conflictError;
+      }
+
+      const existingRows = getAccountTaskConfigRows(accountId, db);
+      const existingByTaskType = new Map(existingRows.map((row) => [row.task_type, row]));
+
+      taskList.forEach((taskItem) => {
+        const taskType = String(taskItem?.taskType || '').trim();
+        if (!taskType || !TASK_TYPES[taskType]) {
+          const typeError = new Error(`INVALID_TASK_TYPE:${taskType}`);
+          typeError.code = 'INVALID_TASK_TYPE';
+          throw typeError;
+        }
+
+        const cronExpression = taskItem?.cronExpression || TASK_TYPES[taskType].cron;
+        const normalizedConfig = normalizeTaskConfigPayload(taskType, taskItem?.config);
+        const configJson = JSON.stringify(normalizedConfig || {});
+        const cronIsCustomized = Number(cronExpression !== TASK_TYPES[taskType].cron);
+        const defaultCronVersion = cronIsCustomized ? null : getTaskDefaultCronVersion(taskType);
+        const existing = existingByTaskType.get(taskType);
+
+        if (existing) {
+          db.run(
+            `UPDATE task_configs
+                SET enabled = ?,
+                    cron_expression = ?,
+                    cron_is_customized = ?,
+                    default_cron_version = ?,
+                    config_json = ?,
+                    updated_at = CURRENT_TIMESTAMP
+              WHERE id = ?`,
+            [
+              taskItem?.enabled ? 1 : 0,
+              cronExpression,
+              cronIsCustomized,
+              defaultCronVersion,
+              configJson,
+              existing.id,
+            ]
+          );
+          return;
+        }
+
+        db.run(
+          `INSERT INTO task_configs (account_id, task_type, enabled, cron_expression, cron_is_customized, default_cron_version, config_json)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [accountId, taskType, taskItem?.enabled ? 1 : 0, cronExpression, cronIsCustomized, defaultCronVersion, configJson]
+        );
+      });
+    });
+
+    saveBatch(tasks);
+
+    const { checkAndRunDueTasks } = await import('../scheduler/index.js');
+    await checkAndRunDueTasks();
+
+    const afterRevision = getAccountTaskConfigRevision(accountId);
+    recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+      action: 'batch_save',
+      status: 'success',
+      baselineRevision,
+      beforeRevision,
+      afterRevision,
+      payload: { tasks },
+      summary: {
+        updatedCount: tasks.length,
+        tasks: summarizeTaskConfigPayload(tasks),
+      },
+    }));
+
+    res.json({
+      success: true,
+      message: '任务配置已批量保存',
+      data: {
+        updatedCount: tasks.length,
+        revision: afterRevision,
+      }
+    });
+  } catch (error) {
+    if (error?.code === 'TASK_CONFIG_CONFLICT') {
+      recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+        action: 'batch_save',
+        status: 'conflict',
+        baselineRevision,
+        beforeRevision: error.currentRevision || beforeRevision || null,
+        afterRevision: error.currentRevision || null,
+        payload: { tasks },
+        summary: {
+          updatedCount: Array.isArray(tasks) ? tasks.length : 0,
+          tasks: summarizeTaskConfigPayload(tasks),
+        },
+        errorMessage: 'revision_conflict',
+      }));
+      return res.status(409).json({
+        success: false,
+        error: '任务配置已被其他页面或设备更新，请刷新后重试',
+        data: {
+          currentRevision: error.currentRevision || null,
+        }
+      });
+    }
+
+    if (error?.code === 'INVALID_TASK_TYPE') {
+      recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+        action: 'batch_save',
+        status: 'rejected',
+        baselineRevision,
+        beforeRevision,
+        payload: { tasks },
+        summary: {
+          updatedCount: Array.isArray(tasks) ? tasks.length : 0,
+          tasks: summarizeTaskConfigPayload(tasks),
+        },
+        errorMessage: error?.message || 'invalid_task_type',
+      }));
+      return res.status(400).json({
+        success: false,
+        error: '提交中包含无效的任务类型'
+      });
+    }
+
+    recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+      action: 'batch_save',
+      status: 'error',
+      baselineRevision,
+      beforeRevision,
+      payload: { tasks },
+      summary: {
+        updatedCount: Array.isArray(tasks) ? tasks.length : 0,
+        tasks: summarizeTaskConfigPayload(tasks),
+      },
+      errorMessage: error?.message || String(error),
+    }));
+    console.error('批量保存任务配置错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '批量保存任务配置失败'
+    });
+  }
+});
+
 router.post('/account/:accountId', async (req, res) => {
   try {
     const { accountId } = req.params;
-    const { taskType, enabled, cronExpression, config } = req.body;
+    const { taskType, enabled, cronExpression, config, baselineRevision = null } = req.body;
+
+    if (!baselineRevision) {
+      recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+        action: 'single_save',
+        status: 'rejected',
+        taskType,
+        payload: { enabled, cronExpression, config },
+        summary: { tasks: summarizeTaskConfigPayload([{ taskType, enabled, cronExpression }]) },
+        errorMessage: 'missing_baseline_revision',
+      }));
+      return res.status(409).json({
+        success: false,
+        error: '任务配置保存接口已升级，请刷新页面后重试'
+      });
+    }
 
     if (!taskType || !TASK_TYPES[taskType]) {
       return res.status(400).json({
@@ -459,6 +729,29 @@ router.post('/account/:accountId', async (req, res) => {
       return res.status(404).json({
         success: false,
         error: '账号不存在'
+      });
+    }
+
+    ensureDefaultTaskConfigsForAccount(accountId);
+    const currentRevision = getAccountTaskConfigRevision(accountId);
+    if (baselineRevision !== currentRevision) {
+      recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+        action: 'single_save',
+        status: 'conflict',
+        taskType,
+        baselineRevision,
+        beforeRevision: currentRevision,
+        afterRevision: currentRevision,
+        payload: { enabled, cronExpression, config },
+        summary: { tasks: summarizeTaskConfigPayload([{ taskType, enabled, cronExpression }]) },
+        errorMessage: 'revision_conflict',
+      }));
+      return res.status(409).json({
+        success: false,
+        error: '任务配置已被其他页面或设备更新，请刷新后重试',
+        data: {
+          currentRevision,
+        }
       });
     }
 
@@ -502,9 +795,24 @@ router.post('/account/:accountId', async (req, res) => {
       const { checkAndRunDueTasks } = await import('../scheduler/index.js');
       await checkAndRunDueTasks();
 
+      const afterRevision = getAccountTaskConfigRevision(accountId);
+      recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+        action: 'single_save',
+        status: 'success',
+        taskType,
+        baselineRevision,
+        beforeRevision: currentRevision,
+        afterRevision,
+        payload: { enabled, cronExpression: cron, config: normalizedConfig },
+        summary: { tasks: summarizeTaskConfigPayload([{ taskType, enabled, cronExpression: cron }]) },
+      }));
+
       res.json({
         success: true,
-        message: '任务配置更新成功'
+        message: '任务配置更新成功',
+        data: {
+          revision: afterRevision,
+        }
       });
     } else {
       const result = run(
@@ -516,13 +824,45 @@ router.post('/account/:accountId', async (req, res) => {
       const { checkAndRunDueTasks } = await import('../scheduler/index.js');
       await checkAndRunDueTasks();
 
+      const afterRevision = getAccountTaskConfigRevision(accountId);
+      recordTaskConfigAudit(buildTaskConfigAuditContext(req, accountId, {
+        action: 'single_save',
+        status: 'success',
+        taskType,
+        baselineRevision,
+        beforeRevision: currentRevision,
+        afterRevision,
+        payload: { enabled, cronExpression: cron, config: normalizedConfig },
+        summary: { tasks: summarizeTaskConfigPayload([{ taskType, enabled, cronExpression: cron }]) },
+      }));
+
       res.status(201).json({
         success: true,
         message: '任务配置创建成功',
-        data: { id: result.lastInsertRowid }
+        data: {
+          id: result.lastInsertRowid,
+          revision: afterRevision,
+        }
       });
     }
   } catch (error) {
+    recordTaskConfigAudit(buildTaskConfigAuditContext(req, req.params?.accountId, {
+      action: 'single_save',
+      status: 'error',
+      taskType: req.body?.taskType,
+      baselineRevision: req.body?.baselineRevision || null,
+      payload: {
+        enabled: req.body?.enabled,
+        cronExpression: req.body?.cronExpression,
+        config: req.body?.config,
+      },
+      summary: { tasks: summarizeTaskConfigPayload([{
+        taskType: req.body?.taskType,
+        enabled: req.body?.enabled,
+        cronExpression: req.body?.cronExpression,
+      }]) },
+      errorMessage: error?.message || String(error),
+    }));
     console.error('创建/更新任务配置错误:', error);
     res.status(500).json({
       success: false,

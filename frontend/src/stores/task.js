@@ -5,6 +5,7 @@ import api from '@/api';
 export const useTaskStore = defineStore('task', () => {
   const taskTypes = ref([]);
   const accountTasks = ref({});
+  const taskConfigRevisions = ref({});
   const loading = ref(false);
 
   async function fetchTaskTypes() {
@@ -19,29 +20,62 @@ export const useTaskStore = defineStore('task', () => {
     loading.value = true;
     try {
       const res = await api.get(`/tasks/account/${accountId}`);
+      const payload = Array.isArray(res.data)
+        ? { items: res.data, revision: null }
+        : {
+            items: res.data?.items || [],
+            revision: res.data?.revision || null,
+          };
+
       if (res.success) {
-        accountTasks.value[accountId] = res.data;
+        accountTasks.value[accountId] = payload.items;
+        taskConfigRevisions.value[accountId] = payload.revision;
       }
-      return res;
+
+      return {
+        ...res,
+        data: payload,
+      };
     } finally {
       loading.value = false;
     }
   }
 
   async function updateTaskConfig(accountId, taskType, data, options = {}) {
-    const { refetch = true } = options;
+    const { refetch = true, baselineRevision = null } = options;
     const res = await api.post(`/tasks/account/${accountId}`, {
       taskType,
+      baselineRevision,
       ...data
     });
-    if (res.success && refetch) {
-      await fetchAccountTasks(accountId);
+    if (res.success) {
+      taskConfigRevisions.value[accountId] = res.data?.revision || null;
+      if (refetch) {
+        await fetchAccountTasks(accountId);
+      }
     }
     return res;
   }
 
   async function deleteTaskConfig(taskId) {
     const res = await api.delete(`/tasks/${taskId}`);
+    return res;
+  }
+
+  async function batchUpdateAccountTasks(accountId, tasks, options = {}) {
+    const { baselineRevision = null, refetch = false } = options;
+    const res = await api.put(`/tasks/account/${accountId}/batch`, {
+      tasks,
+      baselineRevision,
+    });
+
+    if (res.success) {
+      taskConfigRevisions.value[accountId] = res.data?.revision || null;
+      if (refetch) {
+        await fetchAccountTasks(accountId);
+      }
+    }
+
     return res;
   }
 
@@ -59,10 +93,12 @@ export const useTaskStore = defineStore('task', () => {
   return {
     taskTypes,
     accountTasks,
+    taskConfigRevisions,
     loading,
     fetchTaskTypes,
     fetchAccountTasks,
     updateTaskConfig,
+    batchUpdateAccountTasks,
     deleteTaskConfig,
     executeTask,
     fetchTaskLogs

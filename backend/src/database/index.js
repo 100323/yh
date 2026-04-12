@@ -5,7 +5,11 @@ import { fileURLToPath } from 'url';
 import config from '../config/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.resolve(__dirname, '../../data', path.basename(config.database.path));
+const backendRoot = path.resolve(__dirname, '../..');
+const configuredDbPath = String(config.database.path || './data/xyzw.db').trim();
+const dbPath = path.isAbsolute(configuredDbPath)
+  ? configuredDbPath
+  : path.resolve(backendRoot, configuredDbPath);
 
 let rawDb = null;
 let db = null;
@@ -83,6 +87,26 @@ CREATE TABLE IF NOT EXISTS task_execution_markers (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
   UNIQUE (account_id, task_type, business_date)
+);
+
+CREATE TABLE IF NOT EXISTS task_config_audit_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  request_id TEXT,
+  account_id INTEGER NOT NULL,
+  user_id INTEGER,
+  action TEXT NOT NULL,
+  status TEXT NOT NULL,
+  source TEXT,
+  task_type TEXT,
+  baseline_revision TEXT,
+  before_revision TEXT,
+  after_revision TEXT,
+  payload_json TEXT,
+  summary_json TEXT,
+  error_message TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS ws_connections (
@@ -183,6 +207,8 @@ CREATE INDEX IF NOT EXISTS idx_task_logs_account ON task_logs(account_id);
 CREATE INDEX IF NOT EXISTS idx_task_logs_created ON task_logs(created_at);
 CREATE INDEX IF NOT EXISTS idx_task_execution_markers_account_date ON task_execution_markers(account_id, business_date);
 CREATE INDEX IF NOT EXISTS idx_task_execution_markers_date ON task_execution_markers(business_date);
+CREATE INDEX IF NOT EXISTS idx_task_config_audit_logs_account_created ON task_config_audit_logs(account_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_task_config_audit_logs_request ON task_config_audit_logs(request_id);
 CREATE INDEX IF NOT EXISTS idx_batch_scheduled_tasks_user ON batch_scheduled_tasks(user_id);
 CREATE INDEX IF NOT EXISTS idx_batch_task_logs_task ON batch_task_logs(batch_task_id);
 CREATE INDEX IF NOT EXISTS idx_account_batch_settings_account ON account_batch_settings(account_id);
@@ -194,11 +220,113 @@ CREATE INDEX IF NOT EXISTS idx_account_lineups_account_team ON account_lineups(a
 const TASK_LOG_RETENTION_DAYS = 30;
 const TASK_LOG_MAX_PER_ACCOUNT = 50;
 const BATCH_LOG_MAX_PER_TASK = 2000;
+const TASK_CONFIG_AUDIT_RETENTION_DAYS = 90;
+const TASK_CONFIG_AUDIT_MAX_PER_ACCOUNT = 500;
 
 function normalizeParams(params = []) {
   if (Array.isArray(params)) return params;
   if (params === undefined || params === null) return [];
   return [params];
+}
+
+function isPathInside(parentPath, targetPath) {
+  const relative = path.relative(parentPath, targetPath);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function safeStringify(value) {
+  if (value === undefined) {
+    return null;
+  }
+
+  try {
+    return JSON.stringify(value);
+  } catch (error) {
+    return JSON.stringify({ serializationError: error?.message || String(error) });
+  }
+}
+
+export function getDatabasePathDiagnostics() {
+  const parentDir = path.dirname(dbPath);
+  const exists = fs.existsSync(dbPath);
+  const parentExists = fs.existsSync(parentDir);
+  let parentWritable = false;
+  let fileSize = 0;
+
+  try {
+    if (parentExists) {
+      fs.accessSync(parentDir, fs.constants.R_OK | fs.constants.W_OK);
+      parentWritable = true;
+    }
+  } catch {
+    parentWritable = false;
+  }
+
+  try {
+    if (exists) {
+      fileSize = Number(fs.statSync(dbPath)?.size || 0);
+    }
+  } catch {
+    fileSize = 0;
+  }
+
+  return {
+    nodeEnv: process.env.NODE_ENV || 'development',
+    configuredDbPath,
+    explicitDbPath: Boolean(String(process.env.DB_PATH || '').trim()),
+    resolvedDbPath: dbPath,
+    parentDir,
+    parentExists,
+    parentWritable,
+    exists,
+    fileSize,
+    isInsideBackendRoot: isPathInside(backendRoot, dbPath),
+    backendRoot,
+  };
+}
+
+function validateDatabasePathOrThrow(diagnostics = getDatabasePathDiagnostics()) {
+  const isProduction = diagnostics.nodeEnv === 'production';
+  const allowProjectLocalDb = String(process.env.ALLOW_PROJECT_LOCAL_DB_PATH || '').trim() === '1';
+  const allowDbCreate = String(process.env.ALLOW_DB_CREATE || '').trim() === '1';
+
+  console.log('🗃️ 数据库路径诊断', {
+    nodeEnv: diagnostics.nodeEnv,
+    configuredDbPath: diagnostics.configuredDbPath,
+    resolvedDbPath: diagnostics.resolvedDbPath,
+    parentDir: diagnostics.parentDir,
+    parentExists: diagnostics.parentExists,
+    parentWritable: diagnostics.parentWritable,
+    exists: diagnostics.exists,
+    fileSize: diagnostics.fileSize,
+    isInsideBackendRoot: diagnostics.isInsideBackendRoot,
+    explicitDbPath: diagnostics.explicitDbPath,
+  });
+
+  if (isProduction && !diagnostics.explicitDbPath) {
+    throw new Error('[database] DB_PATH must be explicitly set when NODE_ENV=production');
+  }
+
+  if (isProduction && diagnostics.isInsideBackendRoot && !allowProjectLocalDb) {
+    throw new Error(`[database] resolved DB_PATH points inside the project directory (${diagnostics.resolvedDbPath}). This is risky during deployments. Move it to a persistent mount or set ALLOW_PROJECT_LOCAL_DB_PATH=1 only if you are sure.`);
+  }
+
+  if (!diagnostics.parentExists) {
+    if (isProduction && !allowDbCreate) {
+      throw new Error(`[database] parent directory does not exist: ${diagnostics.parentDir}. In production you must pre-create/mount it, or set ALLOW_DB_CREATE=1 for first-time initialization.`);
+    }
+    return diagnostics;
+  }
+
+  if (!diagnostics.parentWritable) {
+    throw new Error(`[database] parent directory is not writable: ${diagnostics.parentDir}`);
+  }
+
+  if (isProduction && !diagnostics.exists && !allowDbCreate) {
+    throw new Error(`[database] sqlite file does not exist yet: ${diagnostics.resolvedDbPath}. Pre-create/mount it, or set ALLOW_DB_CREATE=1 for first-time initialization.`);
+  }
+
+  return diagnostics;
 }
 
 function runStatement(database, sql, params = []) {
@@ -261,7 +389,8 @@ export async function initDatabase() {
 
   const startedAt = Date.now();
   let dirty = false;
-  const fileExists = fs.existsSync(dbPath);
+  const pathDiagnostics = validateDatabasePathOrThrow();
+  const fileExists = pathDiagnostics.exists;
 
   console.log('🗃️ initDatabase[1/5] 检查数据目录...');
   const dataDir = path.dirname(dbPath);
@@ -568,6 +697,74 @@ export function cleanupBatchTaskLogs(targetDb = getDatabase(), batchTaskId = nul
   }
 }
 
+export function addTaskConfigAuditLog(targetDb = rawDb, entry = {}) {
+  const normalizedAccountId = Number(entry.accountId || 0);
+  if (!normalizedAccountId) {
+    return;
+  }
+
+  runStatement(
+    targetDb,
+    `INSERT INTO task_config_audit_logs (
+       request_id,
+       account_id,
+       user_id,
+       action,
+       status,
+       source,
+       task_type,
+       baseline_revision,
+       before_revision,
+       after_revision,
+       payload_json,
+       summary_json,
+       error_message,
+       created_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`,
+    [
+      entry.requestId ? String(entry.requestId) : null,
+      normalizedAccountId,
+      entry.userId ? Number(entry.userId) : null,
+      String(entry.action || 'unknown'),
+      String(entry.status || 'unknown'),
+      entry.source ? String(entry.source) : null,
+      entry.taskType ? String(entry.taskType) : null,
+      entry.baselineRevision ? String(entry.baselineRevision) : null,
+      entry.beforeRevision ? String(entry.beforeRevision) : null,
+      entry.afterRevision ? String(entry.afterRevision) : null,
+      safeStringify(entry.payload),
+      safeStringify(entry.summary),
+      entry.errorMessage ? String(entry.errorMessage) : null,
+    ]
+  );
+}
+
+export function cleanupTaskConfigAuditLogs(targetDb = getDatabase(), accountId = null) {
+  try {
+    targetDb.run(`DELETE FROM task_config_audit_logs WHERE created_at < datetime('now', '-${TASK_CONFIG_AUDIT_RETENTION_DAYS} days')`);
+    const accountRows = accountId
+      ? [{ account_id: accountId }]
+      : all('SELECT DISTINCT account_id FROM task_config_audit_logs');
+
+    accountRows.forEach((row) => {
+      const normalizedAccountId = Number(row?.account_id || 0);
+      if (!normalizedAccountId) return;
+      targetDb.run(
+        `DELETE FROM task_config_audit_logs
+         WHERE id IN (
+           SELECT id FROM task_config_audit_logs
+           WHERE account_id = ?
+           ORDER BY datetime(created_at) DESC, id DESC
+           LIMIT -1 OFFSET ${TASK_CONFIG_AUDIT_MAX_PER_ACCOUNT}
+         )`,
+        [normalizedAccountId],
+      );
+    });
+  } catch (error) {
+    console.warn('⚠️ 清理 task_config_audit_logs 失败:', error?.message || error);
+  }
+}
+
 export function upsertTaskExecutionMarker(targetDb = rawDb, accountId, taskType, status, message = null, details = null, executedAt = new Date()) {
   const normalizedAccountId = Number(accountId || 0);
   const normalizedTaskType = String(taskType || '').trim();
@@ -630,6 +827,7 @@ export function cleanupLogTables(targetDb = getDatabase()) {
   cleanupTaskLogs(targetDb);
   cleanupBatchTaskLogs(targetDb);
   cleanupTaskExecutionMarkers(targetDb);
+  cleanupTaskConfigAuditLogs(targetDb);
 }
 
 export async function runDatabaseMaintenance() {
@@ -685,14 +883,17 @@ export default {
   flushDatabaseWrites,
   getDatabase,
   closeDatabase,
+  getDatabasePathDiagnostics,
   run,
   get,
   all,
   normalizeGameAccounts,
   upsertTaskExecutionMarker,
+  addTaskConfigAuditLog,
   cleanupTaskLogs,
   cleanupBatchTaskLogs,
   cleanupTaskExecutionMarkers,
+  cleanupTaskConfigAuditLogs,
   cleanupLogTables,
   runDatabaseMaintenance,
   runDatabaseVacuum,
