@@ -720,6 +720,7 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
       },
     };
     allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(currentAccountConfig.value));
+    saveAllToLocalStorage();
     dailyRunTime.value = inferDailyRunTime(
       currentAccountConfig.value.taskConfigs,
       currentAccountConfig.value.settings?.dailyRunTime || null,
@@ -973,11 +974,28 @@ const saveCurrentConfig = async () => {
   await syncCurrentConfigToBackend({ notify: true });
 };
 
+const saveAllToLocalStorage = () => {
+  try {
+    localStorage.setItem(TASK_CONFIG_STORAGE_KEY, JSON.stringify(allAccountsConfig.value));
+  } catch (error) {
+    console.error('保存配置失败:', error);
+  }
+};
+
 const loadFromLocalStorage = () => {
   try {
-    localStorage.removeItem(TASK_CONFIG_STORAGE_KEY);
+    const saved = localStorage.getItem(TASK_CONFIG_STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      allAccountsConfig.value = Object.fromEntries(
+        Object.entries(parsed || {}).map(([accountId, accountConfig]) => [
+          accountId,
+          normalizeAccountConfig(accountConfig),
+        ]),
+      );
+    }
   } catch (error) {
-    console.error('清理旧任务配置缓存失败:', error);
+    console.error('加载配置失败:', error);
   }
 };
 
@@ -991,11 +1009,13 @@ const refreshTasks = async () => {
       delete taskStore.taskConfigRevisions[accountId];
     }
   });
+  saveAllToLocalStorage();
 
   if (selectedAccountId.value && !accountIdSet.has(String(selectedAccountId.value))) {
     selectedAccountId.value = accountStore.accounts[0]?.id || null;
   }
 
+  loadFromLocalStorage();
   if (selectedAccountId.value) {
     await handleAccountChange(selectedAccountId.value);
   }
@@ -1009,6 +1029,7 @@ watch(
       allAccountsConfig.value[selectedAccountId.value] = JSON.parse(
         JSON.stringify(currentAccountConfig.value)
       );
+      saveAllToLocalStorage();
     }
     if (!isHydrating.value) {
       configChangeVersion.value += 1;
