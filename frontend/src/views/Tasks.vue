@@ -5,13 +5,13 @@
         <div class="card-header">
           <span>任务配置</span>
           <n-space class="header-actions">
-            <n-button @click="refreshTasks">
+            <n-button @click="refreshTasks" :disabled="taskConfigOperating">
               <template #icon>
                 <n-icon><Refresh /></n-icon>
               </template>
               刷新
             </n-button>
-            <n-button type="primary" @click="saveCurrentConfig" :loading="saving">
+            <n-button type="primary" @click="saveCurrentConfig" :loading="saving" :disabled="taskConfigOperating">
               保存当前账号配置
             </n-button>
           </n-space>
@@ -29,6 +29,7 @@
           :options="accountOptions"
           placeholder="请选择要配置的账号"
           class="account-select"
+          :disabled="taskConfigOperating"
           @update:value="handleAccountChange"
         />
         <n-tag v-if="selectedAccountId" type="success" size="small">
@@ -59,6 +60,7 @@
               secondary
               type="warning"
               :loading="legacyImporting"
+              :disabled="taskConfigOperating"
               @click="importLegacyLocalConfig"
             >
               导入旧本地配置
@@ -80,8 +82,9 @@
                     v-model:value="dailyRunTime"
                     format="HH:mm"
                     clearable
+                    :disabled="taskConfigOperating"
                   />
-                  <n-button type="primary" size="small" @click="applyDailyTime">
+                  <n-button type="primary" size="small" @click="applyDailyTime" :disabled="taskConfigOperating">
                     应用到所有启用的任务
                   </n-button>
                 </n-space>
@@ -101,6 +104,7 @@
                     <n-switch
                       :value="getTaskEnabled(task.value)"
                       size="small"
+                      :disabled="taskConfigOperating"
                       @update:value="(val) => setTaskEnabled(task.value, val)"
                     />
                     <span class="task-name">{{ task.label }}</span>
@@ -115,6 +119,7 @@
                         :options="scheduleModeOptions"
                         size="small"
                         class="task-schedule-mode"
+                        :disabled="taskConfigOperating"
                         @update:value="(val) => setTaskScheduleType(task.value, val)"
                       />
                       <n-time-picker
@@ -123,6 +128,7 @@
                         format="HH:mm"
                         size="small"
                         clearable
+                        :disabled="taskConfigOperating"
                         placeholder="默认时间"
                         @update:value="(val) => setTaskRunTime(task.value, val)"
                       />
@@ -133,6 +139,7 @@
                         :max="23"
                         size="small"
                         class="task-interval-input"
+                        :disabled="taskConfigOperating"
                         placeholder="每N小时"
                         @update:value="(val) => setTaskIntervalHours(task.value, val)"
                       />
@@ -182,10 +189,6 @@ const debugClaiming = ref(false);
 const dailyRunTime = ref(null);
 const selectedAccountId = ref(null);
 const isHydrating = ref(false);
-const autoSyncTimer = ref(null);
-const autoSyncRunning = ref(false);
-const pendingSyncAccountId = ref(null);
-const configChangeVersion = ref(0);
 const backendLoadRequestId = ref(0);
 const TASK_CONFIG_STORAGE_KEY = 'allAccountsTaskConfig';
 const TASK_CONFIG_STORAGE_BACKUP_PREFIX = 'allAccountsTaskConfig_backup_';
@@ -291,6 +294,7 @@ const createDefaultAccountConfig = () => normalizeAccountConfig();
 const currentAccountConfig = ref(createDefaultAccountConfig());
 const allAccountsConfig = ref({});
 const localOnlyTaskKeys = new Set(['startBatch']);
+const taskConfigOperating = computed(() => saving.value || legacyImporting.value);
 
 const buildCronExpressionForConfig = (taskKey, taskConfig, fallbackDailyRunTime = null) => {
   const scheduleType = taskConfig?.scheduleType || 'daily';
@@ -343,12 +347,7 @@ const hasLegacyConfigDiff = computed(() => {
 });
 
 const markCurrentConfigSynced = () => {
-  lastSyncedConfigChangeVersion.value = configChangeVersion.value;
-};
-
-const hasUnsyncedLocalChanges = (accountId = selectedAccountId.value) => {
-  return Number(accountId || 0) === Number(selectedAccountId.value || 0)
-    && configChangeVersion.value > lastSyncedConfigChangeVersion.value;
+  lastSyncedConfigChangeVersion.value = Date.now();
 };
 
 const buildTaskConfigSyncPayload = (accountId, revision, reason = 'save_success') => ({
@@ -392,11 +391,6 @@ const handleExternalTaskConfigSync = async (payload) => {
   }
 
   if (payload.revision && taskStore.taskConfigRevisions[accountId] === payload.revision) {
-    return;
-  }
-
-  if (autoSyncRunning.value || hasUnsyncedLocalChanges(accountId)) {
-    message.warning('检测到另一个标签页已更新当前账号配置；当前页仍有未同步修改，继续保存会触发冲突校验，建议先刷新配置。');
     return;
   }
 
@@ -728,13 +722,8 @@ const inferDailyRunTime = (taskConfigs = {}, fallbackRunTime = null) => {
 const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
   const { force = false } = options;
   const requestId = ++backendLoadRequestId.value;
-  const localVersionAtStart = configChangeVersion.value;
   const res = await taskStore.fetchAccountTasks(accountId);
   if (requestId !== backendLoadRequestId.value || selectedAccountId.value !== accountId) {
-    return;
-  }
-  if (!force && localVersionAtStart !== configChangeVersion.value) {
-    console.warn(`[Tasks] 账号 ${accountId} 在后端配置加载期间已发生本地修改，跳过本次回填`);
     return;
   }
 
@@ -792,10 +781,6 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
 };
 
 const handleAccountChange = async (accountId) => {
-  if (autoSyncTimer.value) {
-    clearTimeout(autoSyncTimer.value);
-    autoSyncTimer.value = null;
-  }
   isHydrating.value = true;
   try {
     currentAccountConfig.value = createDefaultAccountConfig();
@@ -886,6 +871,9 @@ const handleManualLegacyClaim = async () => {
 
 const importLegacyLocalConfig = async () => {
   const accountId = String(selectedAccountId.value || '').trim();
+  if (taskConfigOperating.value) {
+    return;
+  }
   if (!accountId || !legacyLocalConfigs.value[accountId]) {
     message.warning('当前账号没有可导入的旧本地配置');
     return;
@@ -904,7 +892,6 @@ const importLegacyLocalConfig = async () => {
     isHydrating.value = false;
   }
 
-  configChangeVersion.value += 1;
   const result = await syncCurrentConfigToBackend({ notify: true });
   if (result?.success) {
     dismissedLegacyAccounts.value[accountId] = true;
@@ -922,24 +909,13 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
   if (!selectedAccountId.value) {
     return { success: false };
   }
-
-  if (autoSyncRunning.value) {
-    pendingSyncAccountId.value = selectedAccountId.value;
-    if (notify) {
-      message.info('当前正在同步，已自动排队本次最新修改');
-    }
-    return { success: true, queued: true };
-  }
-
   const accountId = selectedAccountId.value;
   const accountName = currentAccountName.value;
   const configSnapshot = normalizeAccountConfig(
     JSON.parse(JSON.stringify(currentAccountConfig.value))
   );
-  const syncStartedVersion = configChangeVersion.value;
   const baselineRevision = taskStore.taskConfigRevisions[accountId] || null;
 
-  autoSyncRunning.value = true;
   if (notify) {
     saving.value = true;
   }
@@ -979,6 +955,9 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
 
     markCurrentConfigSynced();
     broadcastTaskConfigSync(accountId, res?.data?.revision || taskStore.taskConfigRevisions[accountId] || null, 'save_success');
+    taskStore.taskConfigRevisions[accountId] = res?.data?.revision || null;
+    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(configSnapshot));
+    currentAccountConfig.value = normalizeAccountConfig(configSnapshot);
 
     if (notify) {
       message.success(`${accountName} 的配置已保存，已同步 ${tasksPayload.length} 项任务`);
@@ -986,8 +965,6 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
         message.info(`有 ${skippedCount} 项仅本地配置任务未同步到后端调度`);
       }
     }
-
-    await loadAccountTaskConfigsFromBackend(accountId, { force: true });
 
     return { success: true };
   } catch (error) {
@@ -1011,51 +988,16 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
     }
     return { success: false };
   } finally {
-    autoSyncRunning.value = false;
     if (notify) {
       saving.value = false;
     }
-
-    const queuedAccountId = pendingSyncAccountId.value;
-    const hasNewerLocalChanges =
-      selectedAccountId.value === accountId && configChangeVersion.value > syncStartedVersion;
-    const shouldResyncSelectedAccount =
-      (queuedAccountId && selectedAccountId.value === queuedAccountId)
-      || hasNewerLocalChanges;
-
-    if (shouldResyncSelectedAccount) {
-      pendingSyncAccountId.value = null;
-      queueAutoSync(true);
-    }
   }
-};
-
-const queueAutoSync = (immediate = false) => {
-  if (!selectedAccountId.value || isHydrating.value) {
-    return;
-  }
-  const accountId = selectedAccountId.value;
-  if (autoSyncRunning.value) {
-    pendingSyncAccountId.value = accountId;
-    return;
-  }
-  if (autoSyncTimer.value) {
-    clearTimeout(autoSyncTimer.value);
-  }
-  autoSyncTimer.value = setTimeout(() => {
-    autoSyncTimer.value = null;
-    if (selectedAccountId.value !== accountId) {
-      return;
-    }
-    if (autoSyncRunning.value) {
-      pendingSyncAccountId.value = accountId;
-      return;
-    }
-    syncCurrentConfigToBackend({ notify: false });
-  }, immediate ? 0 : 1000);
 };
 
 const saveCurrentConfig = async () => {
+  if (taskConfigOperating.value) {
+    return;
+  }
   if (!selectedAccountId.value) {
     message.warning('请先选择账号');
     return;
@@ -1139,10 +1081,6 @@ watch(
       allAccountsConfig.value[selectedAccountId.value] = JSON.parse(
         JSON.stringify(currentAccountConfig.value)
       );
-    }
-    if (!isHydrating.value) {
-      configChangeVersion.value += 1;
-      queueAutoSync();
     }
   },
   { deep: true }

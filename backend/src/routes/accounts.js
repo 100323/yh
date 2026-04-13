@@ -35,6 +35,97 @@ function extractBinBase64(body = {}) {
   return '';
 }
 
+function normalizeLaunchContextInput(body = {}) {
+  const rawContext =
+    body?.launchContext ??
+    body?.launch_context ??
+    body?.launchPayload ??
+    body?.launch_payload ??
+    null;
+
+  if (!rawContext) {
+    return null;
+  }
+
+  let parsed = rawContext;
+  if (typeof parsed === 'string') {
+    const trimmed = parsed.trim();
+    if (!trimmed) {
+      return null;
+    }
+
+    try {
+      parsed = JSON.parse(trimmed);
+    } catch {
+      parsed = {
+        search: trimmed,
+      };
+    }
+  }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return null;
+  }
+
+  const safeQuery =
+    parsed.query && typeof parsed.query === 'object' && !Array.isArray(parsed.query)
+      ? Object.fromEntries(
+          Object.entries(parsed.query)
+            .map(([key, value]) => [String(key || '').trim(), value == null ? '' : String(value)])
+            .filter(([key]) => key)
+        )
+      : {};
+
+  const normalized = {
+    href: typeof parsed.href === 'string' ? parsed.href.trim() : '',
+    origin: typeof parsed.origin === 'string' ? parsed.origin.trim() : '',
+    pathname: typeof parsed.pathname === 'string' ? parsed.pathname.trim() : '',
+    search: typeof parsed.search === 'string' ? parsed.search.trim() : '',
+    hash: typeof parsed.hash === 'string' ? parsed.hash.trim() : '',
+    query: safeQuery,
+    userId:
+      typeof parsed.userId === 'string'
+        ? parsed.userId.trim()
+        : (typeof parsed.uid === 'string' ? parsed.uid.trim() : ''),
+    uid: typeof parsed.uid === 'string' ? parsed.uid.trim() : '',
+    platform: typeof parsed.platform === 'string' ? parsed.platform.trim() : '',
+    platformExt: typeof parsed.platformExt === 'string' ? parsed.platformExt.trim() : '',
+    source: typeof parsed.source === 'string' ? parsed.source.trim() : '',
+    capturedAt:
+      typeof parsed.capturedAt === 'string' && parsed.capturedAt.trim()
+        ? parsed.capturedAt.trim()
+        : new Date().toISOString(),
+  };
+
+  if (!normalized.search && Object.keys(normalized.query).length > 0) {
+    const params = new URLSearchParams();
+    Object.entries(normalized.query).forEach(([key, value]) => {
+      if (key) params.set(key, value);
+    });
+    const text = params.toString();
+    normalized.search = text ? `?${text}` : '';
+  }
+
+  if (!normalized.userId) {
+    normalized.userId = normalized.query.userId || normalized.query.uid || '';
+  }
+
+  if (!normalized.uid) {
+    normalized.uid = normalized.query.uid || normalized.query.userId || '';
+  }
+
+  if (
+    !normalized.search &&
+    !normalized.href &&
+    Object.keys(normalized.query).length === 0 &&
+    !normalized.userId
+  ) {
+    return null;
+  }
+
+  return normalized;
+}
+
 function buildWsTokenPayload(token) {
   const raw = typeof token === 'string' ? token.trim() : '';
   if (!raw) return '';
@@ -210,6 +301,7 @@ router.post('/', async (req, res) => {
       ? req.body.wsUrl.trim()
       : (typeof req.body?.ws_url === 'string' ? req.body.ws_url.trim() : '');
     const binBase64 = extractBinBase64(req.body);
+    const launchContext = normalizeLaunchContextInput(req.body);
     const normalizedName = String(name || '').trim();
 
     if (!normalizedName || !token) {
@@ -254,12 +346,30 @@ router.post('/', async (req, res) => {
     const rawTokenText = String(token).trim();
     const { encrypted, iv } = encrypt(rawTokenText);
     const encryptedBin = binBase64 ? encrypt(binBase64) : null;
+    const encryptedLaunchContext = launchContext ? encrypt(JSON.stringify(launchContext)) : null;
 
     let result;
     try {
       result = run(
-        `INSERT INTO game_accounts (user_id, name, token_encrypted, token_iv, bin_encrypted, bin_iv, bin_updated_at, ws_url, server, remark, avatar, import_method, source_url) 
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO game_accounts (
+          user_id,
+          name,
+          token_encrypted,
+          token_iv,
+          bin_encrypted,
+          bin_iv,
+          bin_updated_at,
+          launch_context_encrypted,
+          launch_context_iv,
+          launch_context_updated_at,
+          ws_url,
+          server,
+          remark,
+          avatar,
+          import_method,
+          source_url
+        )
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           req.user.userId,
           normalizedName,
@@ -268,6 +378,9 @@ router.post('/', async (req, res) => {
           encryptedBin?.encrypted || null,
           encryptedBin?.iv || null,
           encryptedBin ? new Date().toISOString() : null,
+          encryptedLaunchContext?.encrypted || null,
+          encryptedLaunchContext?.iv || null,
+          encryptedLaunchContext ? new Date().toISOString() : null,
           wsUrl || '',
           server || '',
           remark || '',
@@ -336,6 +449,7 @@ router.put('/:id', (req, res) => {
       ? req.body.wsUrl.trim()
       : (typeof req.body?.ws_url === 'string' ? req.body.ws_url.trim() : undefined);
     const binBase64 = extractBinBase64(req.body);
+    const launchContext = normalizeLaunchContextInput(req.body);
 
     const account = get(
       'SELECT * FROM game_accounts WHERE id = ? AND user_id = ?',
@@ -379,6 +493,11 @@ router.put('/:id', (req, res) => {
     if (binBase64) {
       const { encrypted, iv } = encrypt(binBase64);
       updateFields.push('bin_encrypted = ?', 'bin_iv = ?', 'bin_updated_at = ?');
+      updateValues.push(encrypted, iv, new Date().toISOString());
+    }
+    if (launchContext) {
+      const { encrypted, iv } = encrypt(JSON.stringify(launchContext));
+      updateFields.push('launch_context_encrypted = ?', 'launch_context_iv = ?', 'launch_context_updated_at = ?');
       updateValues.push(encrypted, iv, new Date().toISOString());
     }
     if (wsUrl !== undefined) {
@@ -587,6 +706,84 @@ router.get('/:id/token', (req, res) => {
     res.status(500).json({
       success: false,
       error: '获取Token失败'
+    });
+  }
+});
+
+router.get('/:id/launch-payload', async (req, res) => {
+  try {
+    const account = get(
+      `SELECT id, name, token_encrypted, token_iv, bin_encrypted, bin_iv,
+              launch_context_encrypted, launch_context_iv, ws_url, server
+       FROM game_accounts
+       WHERE id = ? AND user_id = ?`,
+      [req.params.id, req.user.userId]
+    );
+
+    if (!account) {
+      return res.status(404).json({
+        success: false,
+        error: '账号不存在'
+      });
+    }
+
+    let token = decrypt(account.token_encrypted, account.token_iv);
+    let tokenSource = 'stored-token';
+
+    if (account.bin_encrypted && account.bin_iv) {
+      try {
+        const refreshed = await refreshAccountTokenFromStoredBin(account.id, {
+          trigger: 'slim-launch',
+        });
+        if (refreshed?.refreshed && refreshed?.token) {
+          token = refreshed.token;
+          tokenSource = 'refreshed-from-bin';
+        }
+      } catch (error) {
+        console.warn('⚠️ slim 启动前 BIN 刷新 Token 失败，回退到已存 Token', {
+          accountId: account.id,
+          accountName: account.name || null,
+          error: error?.message || String(error),
+        });
+      }
+    }
+
+    const binData = account.bin_encrypted && account.bin_iv
+      ? decrypt(account.bin_encrypted, account.bin_iv)
+      : '';
+    let launchContext = null;
+    if (account.launch_context_encrypted && account.launch_context_iv) {
+      try {
+        launchContext = JSON.parse(
+          decrypt(account.launch_context_encrypted, account.launch_context_iv) || '{}'
+        );
+      } catch (error) {
+        console.warn('⚠️ 解析账号启动上下文失败，已忽略', {
+          accountId: account.id,
+          error: error?.message || String(error),
+        });
+      }
+    }
+
+    res.json({
+      success: true,
+      data: {
+        accountId: account.id,
+        name: account.name || '',
+        server: account.server || '',
+        wsUrl: account.ws_url || '',
+        token,
+        tokenSource,
+        binData,
+        hasBin: !!binData,
+        launchContext,
+      }
+    });
+  } catch (error) {
+    console.error('获取 slim 启动数据错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '获取启动数据失败'
     });
   }
 });

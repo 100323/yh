@@ -143,6 +143,16 @@
                 <span class="value">{{ formatTime(token.lastUsed) }}</span>
               </div>
             </div>
+
+            <div class="token-actions" @click.stop>
+              <el-button
+                type="primary"
+                class="enter-game-button"
+                @click.stop="enterGame(token)"
+              >
+                进入游戏
+              </el-button>
+            </div>
           </el-card>
         </el-col>
       </el-row>
@@ -208,12 +218,12 @@ import { useTokenStore, selectedTokenId } from "@/stores/tokenStore";
 import { Add } from "@vicons/ionicons5";
 import { Plus, MoreFilled, Edit, CopyDocument, Delete, Refresh as RefreshIcon } from '@element-plus/icons-vue';
 import { NIcon, useDialog, useMessage } from "naive-ui";
-import { computed, defineAsyncComponent, h, onMounted, reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import { computed, defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import { transformToken } from "@/utils/token";
 import useIndexedDB from "@/hooks/useIndexedDB";
 import api from "@/api";
 import { useAuthStore } from "@stores/auth";
+import { openSlimGameWithAccount } from "@/utils/slimGameLauncher";
 
 const BinTokenForm = defineAsyncComponent(() => import("./bin.vue"));
 const SingleBinTokenForm = defineAsyncComponent(() => import("./singlebin.vue"));
@@ -230,7 +240,6 @@ const props = defineProps({
   auto: Boolean,
 });
 
-const router = useRouter();
 const message = useMessage();
 const dialog = useDialog();
 const tokenStore = useTokenStore();
@@ -241,7 +250,6 @@ const showEditModal = ref(false);
 const editFormRef = ref(null);
 const editingToken = ref(null);
 const importMethod = ref("wxQrcode");
-const connectingTokens = ref(new Set());
 const importMethodOptions = [
   { value: "wxQrcode", label: "微信扫码" },
   { value: "bin", label: "BIN多角色" },
@@ -660,6 +668,51 @@ const deleteToken = (token) => {
   });
 };
 
+const enterGame = async (token) => {
+  try {
+    let launchAccount = {
+      ...token,
+    };
+
+    const accountId = String(token?.id || '').trim();
+    if (/^\d+$/.test(accountId)) {
+      const res = await api.get(`/accounts/${accountId}/launch-payload`);
+      if (!res?.success || !res?.data?.token) {
+        throw new Error(res?.error || '获取账号启动数据失败');
+      }
+
+      launchAccount = {
+        ...launchAccount,
+        id: String(res.data.accountId || accountId),
+        name: res.data.name || token.name,
+        server: res.data.server || token.server,
+        wsUrl: res.data.wsUrl || token.wsUrl || '',
+        token: res.data.token,
+        binData: res.data.binData || '',
+        launchContext:
+          res.data.launchContext && typeof res.data.launchContext === 'object'
+            ? res.data.launchContext
+            : launchAccount.launchContext || null,
+      };
+    } else {
+      const backendBin = await tokenStore.getBackendBinPayload(token);
+      launchAccount = {
+        ...launchAccount,
+        binData: backendBin?.binData || '',
+      };
+    }
+
+    const { openedInNewWindow } = openSlimGameWithAccount(launchAccount);
+    if (openedInNewWindow) {
+      message.success(`已打开 ${token.name} 的游戏页面`);
+      return;
+    }
+    message.success(`正在进入 ${token.name}`);
+  } catch (error) {
+    message.error(error?.message || "进入游戏失败");
+  }
+};
+
 onMounted(async () => {
   if (authStore.isAuthenticated && authStore.user && authStore.user.max_game_accounts === undefined) {
     await authStore.fetchUser();
@@ -793,6 +846,19 @@ onMounted(async () => {
         }
       }
     }
+
+    .token-actions {
+      margin-top: 14px;
+      display: flex;
+    }
+
+    .enter-game-button {
+      width: 100%;
+      border-radius: 14px;
+      min-height: 40px;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(91, 124, 255, 0.18);
+    }
   }
 }
 
@@ -847,6 +913,10 @@ onMounted(async () => {
             min-width: auto;
           }
         }
+      }
+
+      .token-actions {
+        margin-top: 12px;
       }
     }
   }

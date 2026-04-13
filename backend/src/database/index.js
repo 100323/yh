@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS game_accounts (
   bin_encrypted TEXT,
   bin_iv TEXT,
   bin_updated_at DATETIME,
+  launch_context_encrypted TEXT,
+  launch_context_iv TEXT,
+  launch_context_updated_at DATETIME,
   ws_url TEXT,
   server TEXT,
   remark TEXT,
@@ -486,6 +489,18 @@ function ensureGameAccountSchema() {
     }
     if (!columns.has('bin_updated_at')) {
       rawDb.exec('ALTER TABLE game_accounts ADD COLUMN bin_updated_at DATETIME');
+      changed = true;
+    }
+    if (!columns.has('launch_context_encrypted')) {
+      rawDb.exec('ALTER TABLE game_accounts ADD COLUMN launch_context_encrypted TEXT');
+      changed = true;
+    }
+    if (!columns.has('launch_context_iv')) {
+      rawDb.exec('ALTER TABLE game_accounts ADD COLUMN launch_context_iv TEXT');
+      changed = true;
+    }
+    if (!columns.has('launch_context_updated_at')) {
+      rawDb.exec('ALTER TABLE game_accounts ADD COLUMN launch_context_updated_at DATETIME');
       changed = true;
     }
   } catch (error) {

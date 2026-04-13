@@ -25,6 +25,8 @@ import { preloadStudyQuestionBank } from './utils/studyQuestions.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const frontendPath = path.join(__dirname, '../../frontend/dist');
+const slimGamePath = path.join(__dirname, '../../xyzw-web-slim');
 
 const app = express();
 let serverInstance = null;
@@ -104,6 +106,7 @@ app.use('/api/batch-scheduler', batchSchedulerRoutes);
 app.use('/api/batch-settings', batchSettingsRoutes);
 app.use('/api/invite-codes', inviteCodeRoutes);
 app.use('/api/admin/users', adminUsersRoutes);
+app.use('/slim-game', express.static(slimGamePath));
 
 app.get('/api/health', (req, res) => {
   res.status(getHealthStatusCode()).json({
@@ -162,7 +165,6 @@ app.post('/api/tasks/execute', authMiddleware, async (req, res) => {
   }
 });
 
-const frontendPath = path.join(__dirname, '../../frontend/dist');
 app.use(express.static(frontendPath));
 
 app.get('*', (req, res) => {
@@ -384,4 +386,3 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
   void shutdownServer('SIGTERM');
 });
-

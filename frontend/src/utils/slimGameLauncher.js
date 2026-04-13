@@ -1,0 +1,304 @@
+const SLIM_GAME_PATH = '/slim-game/index.html';
+const SLIM_LAUNCH_STORAGE_PREFIX = 'xyzw-slim-launch:';
+const SLIM_LAUNCH_TTL_MS = 15 * 60 * 1000;
+const SLIM_LAST_ACCOUNT_KEY = 'xyzw-slim-launch-account';
+const SLIM_RECENT_ACCOUNTS_KEY = 'xyzw-slim-launch-accounts';
+const SLIM_RECENT_ACCOUNTS_LIMIT = 10;
+const TOOLBOX_CONFIG_KEY = 'XYWZ_ToolboxConfig_v10.1';
+
+function getSafeStorage() {
+  try {
+    return window.localStorage;
+  } catch (error) {
+    return null;
+  }
+}
+
+function toCleanString(value) {
+  return String(value ?? '').trim();
+}
+
+function normalizeBase64(base64Text) {
+  return toCleanString(base64Text).replace(/\s+/g, '');
+}
+
+function base64ToHex(base64Text) {
+  const normalized = normalizeBase64(base64Text);
+  if (!normalized) return '';
+
+  try {
+    const binary = atob(normalized);
+    let hex = '';
+    for (let index = 0; index < binary.length; index += 1) {
+      hex += binary.charCodeAt(index).toString(16).padStart(2, '0');
+    }
+    return hex;
+  } catch {
+    return '';
+  }
+}
+
+function normalizeSearchText(searchText) {
+  const text = toCleanString(searchText);
+  if (!text) return '';
+  return text.startsWith('?') ? text : `?${text}`;
+}
+
+function normalizeLaunchContext(launchContext = null) {
+  if (!launchContext || typeof launchContext !== 'object' || Array.isArray(launchContext)) {
+    return null;
+  }
+
+  const query =
+    launchContext.query && typeof launchContext.query === 'object' && !Array.isArray(launchContext.query)
+      ? Object.fromEntries(
+          Object.entries(launchContext.query)
+            .map(([key, value]) => [toCleanString(key), toCleanString(value)])
+            .filter(([key]) => key),
+        )
+      : {};
+
+  let search = normalizeSearchText(launchContext.search);
+  if (!search && Object.keys(query).length > 0) {
+    const params = new URLSearchParams();
+    Object.entries(query).forEach(([key, value]) => {
+      params.set(key, value);
+    });
+    const queryText = params.toString();
+    search = queryText ? `?${queryText}` : '';
+  }
+
+  return {
+    href: toCleanString(launchContext.href),
+    origin: toCleanString(launchContext.origin),
+    pathname: toCleanString(launchContext.pathname),
+    search,
+    hash: toCleanString(launchContext.hash),
+    query,
+    userId:
+      toCleanString(launchContext.userId) ||
+      toCleanString(launchContext.uid) ||
+      toCleanString(query.userId) ||
+      toCleanString(query.uid),
+    uid:
+      toCleanString(launchContext.uid) ||
+      toCleanString(launchContext.userId) ||
+      toCleanString(query.uid) ||
+      toCleanString(query.userId),
+    platform: toCleanString(launchContext.platform),
+    platformExt: toCleanString(launchContext.platformExt),
+    source: toCleanString(launchContext.source),
+    capturedAt: toCleanString(launchContext.capturedAt),
+  };
+}
+
+function pruneExpiredSlimLaunches(storage) {
+  if (!storage) return;
+
+  const now = Date.now();
+
+  for (let index = storage.length - 1; index >= 0; index -= 1) {
+    const key = storage.key(index);
+    if (!key || !key.startsWith(SLIM_LAUNCH_STORAGE_PREFIX)) continue;
+
+    try {
+      const payload = JSON.parse(storage.getItem(key) || '{}');
+      const createdAt = Number(payload?.createdAt || 0);
+      if (!createdAt || now - createdAt > SLIM_LAUNCH_TTL_MS) {
+        storage.removeItem(key);
+      }
+    } catch {
+      storage.removeItem(key);
+    }
+  }
+}
+
+function createLaunchKey(accountId) {
+  const suffix =
+    typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+
+  return `${SLIM_LAUNCH_STORAGE_PREFIX}${toCleanString(accountId) || 'unknown'}:${suffix}`;
+}
+
+function createLaunchPayload(account = {}) {
+  const launchContext = normalizeLaunchContext(account.launchContext);
+  return {
+    accountId: toCleanString(account.id),
+    name: toCleanString(account.name),
+    server: toCleanString(account.server),
+    wsUrl: toCleanString(account.wsUrl),
+    token: toCleanString(account.token),
+    binData: toCleanString(account.binData),
+    userId:
+      toCleanString(account.userId) ||
+      toCleanString(account.uid) ||
+      toCleanString(launchContext?.userId) ||
+      toCleanString(launchContext?.uid),
+    launchContext,
+    createdAt: Date.now(),
+  };
+}
+
+function buildStoredAccountRecord(account = {}, createdAt = Date.now()) {
+  const accountId = toCleanString(account.id);
+  const name = toCleanString(account.name);
+  const server = toCleanString(account.server);
+  const wsUrl = toCleanString(account.wsUrl);
+  const token = toCleanString(account.token);
+  const binBase64 = normalizeBase64(account.binData);
+  const binHex = base64ToHex(binBase64);
+  const fileNameBase = name || server || accountId || 'account';
+
+  return {
+    accountId,
+    name,
+    server,
+    wsUrl,
+    token,
+    userId:
+      toCleanString(account.userId) ||
+      toCleanString(account.uid) ||
+      toCleanString(account.launchContext?.userId) ||
+      toCleanString(account.launchContext?.uid),
+    createdAt,
+    fileName: `${fileNameBase}.bin`,
+    binBase64,
+    binHex,
+    content: binHex,
+    contentEncoding: binHex ? 'hex' : (binBase64 ? 'base64' : ''),
+    hasBin: !!binBase64,
+  };
+}
+
+function persistStableSlimLaunchAccount(storage, account = {}) {
+  if (!storage) return;
+
+  const record = buildStoredAccountRecord(account);
+
+  try {
+    storage.setItem(SLIM_LAST_ACCOUNT_KEY, JSON.stringify(record));
+
+    const currentList = JSON.parse(storage.getItem(SLIM_RECENT_ACCOUNTS_KEY) || '[]');
+    const recentAccounts = Array.isArray(currentList) ? currentList : [];
+    const deduped = recentAccounts.filter((item) => {
+      const currentId = toCleanString(item?.accountId || item?.id);
+      return currentId && currentId !== record.accountId;
+    });
+
+    deduped.unshift(record);
+    storage.setItem(
+      SLIM_RECENT_ACCOUNTS_KEY,
+      JSON.stringify(deduped.slice(0, SLIM_RECENT_ACCOUNTS_LIMIT)),
+    );
+
+    const rawToolboxConfig = storage.getItem(TOOLBOX_CONFIG_KEY) || '{}';
+    const toolboxConfig = JSON.parse(rawToolboxConfig);
+    const recentRecords = deduped
+      .slice(0, SLIM_RECENT_ACCOUNTS_LIMIT)
+      .map((item) => ({
+        fileName: item.fileName,
+        content: item.content,
+      }))
+      .filter((item) => item.fileName && item.content);
+
+    toolboxConfig.accounts = recentRecords;
+    storage.setItem(TOOLBOX_CONFIG_KEY, JSON.stringify(toolboxConfig));
+  } catch {
+    // ignore localStorage quota / serialization failures
+  }
+}
+
+function buildSlimGameUrl(launchKey, account = {}) {
+  const url = new URL(SLIM_GAME_PATH, window.location.origin);
+  const accountId = toCleanString(account.id);
+  const accountName = toCleanString(account.name);
+  const server = toCleanString(account.server);
+  const wsUrl = toCleanString(account.wsUrl);
+  const token = toCleanString(account.token);
+  const launchContext = normalizeLaunchContext(account.launchContext);
+
+  if (launchContext?.search) {
+    const capturedParams = new URLSearchParams(launchContext.search);
+    capturedParams.forEach((value, key) => {
+      if (!url.searchParams.has(key)) {
+        url.searchParams.set(key, value);
+      }
+    });
+  }
+
+  url.searchParams.set('launchKey', launchKey);
+
+  if (accountId) {
+    url.searchParams.set('accountId', accountId);
+  }
+
+  if (accountName && !url.searchParams.has('name')) {
+    url.searchParams.set('name', accountName);
+  }
+
+  if (server && !url.searchParams.has('server')) {
+    url.searchParams.set('server', server);
+  }
+
+  if (wsUrl && !url.searchParams.has('wsUrl')) {
+    url.searchParams.set('wsUrl', wsUrl);
+  }
+
+  if (token && !url.searchParams.has('token')) {
+    url.searchParams.set('token', token);
+  }
+
+  const userId =
+    toCleanString(account.userId) ||
+    toCleanString(account.uid) ||
+    toCleanString(launchContext?.userId) ||
+    toCleanString(launchContext?.uid);
+  if (userId) {
+    if (!url.searchParams.has('userId')) {
+      url.searchParams.set('userId', userId);
+    }
+    if (!url.searchParams.has('uid')) {
+      url.searchParams.set('uid', userId);
+    }
+  }
+
+  return url.toString();
+}
+
+export function openSlimGameWithAccount(account = {}) {
+  const payload = createLaunchPayload(account);
+  if (!payload.token) {
+    throw new Error('当前账号缺少可用 Token，无法进入游戏');
+  }
+
+  const storage = getSafeStorage();
+  if (!storage) {
+    throw new Error('当前浏览器无法访问本地存储，无法进入游戏');
+  }
+
+  pruneExpiredSlimLaunches(storage);
+  persistStableSlimLaunchAccount(storage, payload);
+
+  const launchKey = createLaunchKey(payload.accountId);
+  storage.setItem(launchKey, JSON.stringify(payload));
+
+  const launchUrl = buildSlimGameUrl(launchKey, account);
+  const anchor = document.createElement('a');
+  anchor.href = launchUrl;
+  anchor.target = '_blank';
+  anchor.rel = 'noopener noreferrer';
+  anchor.style.display = 'none';
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+
+  return {
+    launchKey,
+    launchUrl,
+    openedInNewWindow: true,
+  };
+}
+
+export { SLIM_GAME_PATH, SLIM_LAUNCH_STORAGE_PREFIX, SLIM_LAUNCH_TTL_MS };
