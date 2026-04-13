@@ -43,6 +43,29 @@
           </n-button>
         </n-space>
       </div>
+
+      <n-alert
+        v-if="selectedAccountId && hasLegacyConfigDiff"
+        type="warning"
+        class="tasks-tip"
+      >
+        <template #header>
+          检测到当前浏览器存在旧版本地任务配置，与数据库配置不一致
+        </template>
+        <div class="legacy-migration-alert">
+          <span>当前页面已改为以后端数据库为准。若你确认要恢复这份旧本地配置，可手动导入到数据库。</span>
+          <n-space size="small">
+            <n-button
+              secondary
+              type="warning"
+              :loading="legacyImporting"
+              @click="importLegacyLocalConfig"
+            >
+              导入旧本地配置
+            </n-button>
+          </n-space>
+        </div>
+      </n-alert>
     </n-card>
 
     <template v-if="selectedAccountId">
@@ -165,11 +188,15 @@ const pendingSyncAccountId = ref(null);
 const configChangeVersion = ref(0);
 const backendLoadRequestId = ref(0);
 const TASK_CONFIG_STORAGE_KEY = 'allAccountsTaskConfig';
+const TASK_CONFIG_STORAGE_BACKUP_PREFIX = 'allAccountsTaskConfig_backup_';
 const TASK_CONFIG_SYNC_STORAGE_KEY = 'xyzw-task-config-sync';
 const TASK_CONFIG_SYNC_CHANNEL = 'xyzw-task-config-sync-channel';
 const currentTaskConfigTabId = `tasks-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const lastSyncedConfigChangeVersion = ref(0);
 const lastHandledTaskConfigSyncKey = ref('');
+const legacyLocalConfigs = ref({});
+const legacyImporting = ref(false);
+const dismissedLegacyAccounts = ref({});
 let taskConfigBroadcastChannel = null;
 
 const scheduleModeOptions = [
@@ -263,6 +290,22 @@ const createDefaultAccountConfig = () => normalizeAccountConfig();
 const currentAccountConfig = ref(createDefaultAccountConfig());
 const allAccountsConfig = ref({});
 const localOnlyTaskKeys = new Set(['startBatch']);
+
+const serializeAccountConfig = (accountConfig = {}) => JSON.stringify(normalizeAccountConfig(accountConfig));
+
+const hasLegacyConfigDiff = computed(() => {
+  const accountId = String(selectedAccountId.value || '').trim();
+  if (!accountId || dismissedLegacyAccounts.value[accountId]) {
+    return false;
+  }
+
+  const legacyConfig = legacyLocalConfigs.value[accountId];
+  if (!legacyConfig) {
+    return false;
+  }
+
+  return serializeAccountConfig(legacyConfig) !== serializeAccountConfig(currentAccountConfig.value);
+});
 
 const markCurrentConfigSynced = () => {
   lastSyncedConfigChangeVersion.value = configChangeVersion.value;
@@ -720,7 +763,6 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
       },
     };
     allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(currentAccountConfig.value));
-    saveAllToLocalStorage();
     dailyRunTime.value = inferDailyRunTime(
       currentAccountConfig.value.taskConfigs,
       currentAccountConfig.value.settings?.dailyRunTime || null,
@@ -829,6 +871,35 @@ const handleManualLegacyClaim = async () => {
   } finally {
     debugClaiming.value = false;
   }
+};
+
+const importLegacyLocalConfig = async () => {
+  const accountId = String(selectedAccountId.value || '').trim();
+  if (!accountId || !legacyLocalConfigs.value[accountId]) {
+    message.warning('当前账号没有可导入的旧本地配置');
+    return;
+  }
+
+  legacyImporting.value = true;
+  try {
+    isHydrating.value = true;
+    currentAccountConfig.value = normalizeAccountConfig(legacyLocalConfigs.value[accountId]);
+    dailyRunTime.value = inferDailyRunTime(
+      currentAccountConfig.value.taskConfigs,
+      currentAccountConfig.value.settings?.dailyRunTime || null,
+    );
+    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(currentAccountConfig.value));
+  } finally {
+    isHydrating.value = false;
+  }
+
+  configChangeVersion.value += 1;
+  const result = await syncCurrentConfigToBackend({ notify: true });
+  if (result?.success) {
+    dismissedLegacyAccounts.value[accountId] = true;
+    message.success('旧本地配置已导入到数据库');
+  }
+  legacyImporting.value = false;
 };
 
 const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
@@ -974,20 +1045,33 @@ const saveCurrentConfig = async () => {
   await syncCurrentConfigToBackend({ notify: true });
 };
 
-const saveAllToLocalStorage = () => {
+const backupLegacyLocalStorage = () => {
   try {
-    localStorage.setItem(TASK_CONFIG_STORAGE_KEY, JSON.stringify(allAccountsConfig.value));
+    const saved = localStorage.getItem(TASK_CONFIG_STORAGE_KEY);
+    if (!saved) {
+      return;
+    }
+
+    const existingBackup = Array.from({ length: localStorage.length }, (_, index) => localStorage.key(index))
+      .find((key) => String(key || '').startsWith(TASK_CONFIG_STORAGE_BACKUP_PREFIX));
+
+    if (existingBackup) {
+      return;
+    }
+
+    const backupKey = `${TASK_CONFIG_STORAGE_BACKUP_PREFIX}${Date.now()}`;
+    localStorage.setItem(backupKey, saved);
   } catch (error) {
-    console.error('保存配置失败:', error);
+    console.error('备份旧版任务配置失败:', error);
   }
 };
 
-const loadFromLocalStorage = () => {
+const loadLegacyLocalStorage = () => {
   try {
     const saved = localStorage.getItem(TASK_CONFIG_STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      allAccountsConfig.value = Object.fromEntries(
+      legacyLocalConfigs.value = Object.fromEntries(
         Object.entries(parsed || {}).map(([accountId, accountConfig]) => [
           accountId,
           normalizeAccountConfig(accountConfig),
@@ -995,7 +1079,7 @@ const loadFromLocalStorage = () => {
       );
     }
   } catch (error) {
-    console.error('加载配置失败:', error);
+    console.error('加载旧版任务配置失败:', error);
   }
 };
 
@@ -1009,13 +1093,11 @@ const refreshTasks = async () => {
       delete taskStore.taskConfigRevisions[accountId];
     }
   });
-  saveAllToLocalStorage();
 
   if (selectedAccountId.value && !accountIdSet.has(String(selectedAccountId.value))) {
     selectedAccountId.value = accountStore.accounts[0]?.id || null;
   }
 
-  loadFromLocalStorage();
   if (selectedAccountId.value) {
     await handleAccountChange(selectedAccountId.value);
   }
@@ -1029,7 +1111,6 @@ watch(
       allAccountsConfig.value[selectedAccountId.value] = JSON.parse(
         JSON.stringify(currentAccountConfig.value)
       );
-      saveAllToLocalStorage();
     }
     if (!isHydrating.value) {
       configChangeVersion.value += 1;
@@ -1080,7 +1161,8 @@ watch(
 );
 
 onMounted(() => {
-  loadFromLocalStorage();
+  backupLegacyLocalStorage();
+  loadLegacyLocalStorage();
   if (typeof window !== 'undefined') {
     window.addEventListener('storage', handleTaskConfigStorageEvent);
     if ('BroadcastChannel' in window) {
@@ -1171,6 +1253,14 @@ onBeforeUnmount(() => {
   flex-wrap: wrap;
   color: var(--text-secondary);
   font-weight: 600;
+}
+
+.legacy-migration-alert {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .account-select {
