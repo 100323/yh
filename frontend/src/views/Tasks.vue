@@ -827,6 +827,23 @@ const importLegacyLocalConfig = async () => {
   legacyImporting.value = false;
 };
 
+const dismissLegacyConfigPrompt = (accountId) => {
+  const normalizedAccountId = String(accountId || '').trim();
+  if (!normalizedAccountId) {
+    return;
+  }
+
+  dismissedLegacyAccounts.value[normalizedAccountId] = true;
+  try {
+    localStorage.setItem(
+      TASK_CONFIG_DISMISSED_STORAGE_KEY,
+      JSON.stringify(dismissedLegacyAccounts.value),
+    );
+  } catch (error) {
+    console.error('保存旧本地配置忽略状态失败:', error);
+  }
+};
+
 const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
   if (!selectedAccountId.value) {
     return { success: false };
@@ -883,6 +900,7 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
     }
 
     await loadAccountTaskConfigsFromBackend(accountId, { force: true });
+    dismissLegacyConfigPrompt(accountId);
     return { success: true };
   } catch (error) {
     const conflictStatus = Number(error?.errorCode || error?.response?.status || 0);
