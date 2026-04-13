@@ -189,6 +189,7 @@ const configChangeVersion = ref(0);
 const backendLoadRequestId = ref(0);
 const TASK_CONFIG_STORAGE_KEY = 'allAccountsTaskConfig';
 const TASK_CONFIG_STORAGE_BACKUP_PREFIX = 'allAccountsTaskConfig_backup_';
+const TASK_CONFIG_DISMISSED_STORAGE_KEY = 'allAccountsTaskConfig_legacy_dismissed';
 const TASK_CONFIG_SYNC_STORAGE_KEY = 'xyzw-task-config-sync';
 const TASK_CONFIG_SYNC_CHANNEL = 'xyzw-task-config-sync-channel';
 const currentTaskConfigTabId = `tasks-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -291,7 +292,41 @@ const currentAccountConfig = ref(createDefaultAccountConfig());
 const allAccountsConfig = ref({});
 const localOnlyTaskKeys = new Set(['startBatch']);
 
-const serializeAccountConfig = (accountConfig = {}) => JSON.stringify(normalizeAccountConfig(accountConfig));
+const buildCronExpressionForConfig = (taskKey, taskConfig, fallbackDailyRunTime = null) => {
+  const scheduleType = taskConfig?.scheduleType || 'daily';
+
+  if (scheduleType === 'interval') {
+    const intervalHours = Math.max(1, Math.min(23, Number(taskConfig?.intervalHours) || 4));
+    return `0 */${intervalHours} * * *`;
+  }
+
+  const runTime = taskConfig?.runTime || fallbackDailyRunTime || null;
+  if (runTime) {
+    const date = new Date(runTime);
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    return `${minute} ${hour} * * *`;
+  }
+
+  const backendTaskType = frontendToBackendTaskMap[taskKey];
+  return backendTypeDefaultCronMap.value[backendTaskType] || '0 8 * * *';
+};
+
+const serializeBackendComparableConfig = (accountConfig = {}) => {
+  const normalized = normalizeAccountConfig(accountConfig);
+  const fallbackDailyRunTime = normalized.settings?.dailyRunTime || null;
+  const comparable = Object.entries(normalized.taskConfigs || {})
+    .filter(([taskKey]) => !localOnlyTaskKeys.has(taskKey) && !!frontendToBackendTaskMap[taskKey])
+    .map(([taskKey, taskValue]) => ({
+      taskType: frontendToBackendTaskMap[taskKey],
+      enabled: !!taskValue.enabled,
+      cronExpression: buildCronExpressionForConfig(taskKey, taskValue, fallbackDailyRunTime),
+      config: mapFrontendConfigToBackend(taskKey, taskValue),
+    }))
+    .sort((a, b) => a.taskType.localeCompare(b.taskType));
+
+  return JSON.stringify(comparable);
+};
 
 const hasLegacyConfigDiff = computed(() => {
   const accountId = String(selectedAccountId.value || '').trim();
@@ -304,7 +339,7 @@ const hasLegacyConfigDiff = computed(() => {
     return false;
   }
 
-  return serializeAccountConfig(legacyConfig) !== serializeAccountConfig(currentAccountConfig.value);
+  return serializeBackendComparableConfig(legacyConfig) !== serializeBackendComparableConfig(currentAccountConfig.value);
 });
 
 const markCurrentConfigSynced = () => {
@@ -533,25 +568,7 @@ const parseCronToSchedule = (cronExpression) => {
   };
 };
 
-const buildCronExpression = (taskKey, taskConfig) => {
-  const scheduleType = taskConfig?.scheduleType || 'daily';
-
-  if (scheduleType === 'interval') {
-    const intervalHours = Math.max(1, Math.min(23, Number(taskConfig?.intervalHours) || 4));
-    return `0 */${intervalHours} * * *`;
-  }
-
-  const runTime = taskConfig?.runTime || dailyRunTime.value;
-  if (runTime) {
-    const date = new Date(runTime);
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    return `${minute} ${hour} * * *`;
-  }
-
-  const backendTaskType = frontendToBackendTaskMap[taskKey];
-  return backendTypeDefaultCronMap.value[backendTaskType] || '0 8 * * *';
-};
+const buildCronExpression = (taskKey, taskConfig) => buildCronExpressionForConfig(taskKey, taskConfig, dailyRunTime.value);
 
 const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
   const mapped = { ...(backendConfig || {}) };
@@ -727,7 +744,7 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
     return;
   }
 
-  const baseConfig = normalizeAccountConfig(allAccountsConfig.value[accountId] || {});
+  const baseConfig = createDefaultAccountConfig();
   const mergedTaskConfigs = cloneTaskConfigs(baseConfig.taskConfigs);
   const backendToFrontendTaskMap = Object.fromEntries(
     Object.entries(frontendToBackendTaskMap).map(([frontendTask, backendTask]) => [backendTask, frontendTask]),
@@ -781,13 +798,7 @@ const handleAccountChange = async (accountId) => {
   }
   isHydrating.value = true;
   try {
-    if (accountId && allAccountsConfig.value[accountId]) {
-      currentAccountConfig.value = normalizeAccountConfig(allAccountsConfig.value[accountId]);
-    } else if (accountId) {
-      currentAccountConfig.value = createDefaultAccountConfig();
-    } else {
-      currentAccountConfig.value = createDefaultAccountConfig();
-    }
+    currentAccountConfig.value = createDefaultAccountConfig();
     dailyRunTime.value = inferDailyRunTime(
       currentAccountConfig.value.taskConfigs,
       currentAccountConfig.value.settings?.dailyRunTime || null,
@@ -897,6 +908,11 @@ const importLegacyLocalConfig = async () => {
   const result = await syncCurrentConfigToBackend({ notify: true });
   if (result?.success) {
     dismissedLegacyAccounts.value[accountId] = true;
+    try {
+      localStorage.setItem(TASK_CONFIG_DISMISSED_STORAGE_KEY, JSON.stringify(dismissedLegacyAccounts.value));
+    } catch (error) {
+      console.error('保存旧本地配置忽略状态失败:', error);
+    }
     message.success('旧本地配置已导入到数据库');
   }
   legacyImporting.value = false;
@@ -970,6 +986,8 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
         message.info(`有 ${skippedCount} 项仅本地配置任务未同步到后端调度`);
       }
     }
+
+    await loadAccountTaskConfigsFromBackend(accountId, { force: true });
 
     return { success: true };
   } catch (error) {
@@ -1083,6 +1101,16 @@ const loadLegacyLocalStorage = () => {
   }
 };
 
+const loadDismissedLegacyState = () => {
+  try {
+    const saved = localStorage.getItem(TASK_CONFIG_DISMISSED_STORAGE_KEY);
+    dismissedLegacyAccounts.value = saved ? JSON.parse(saved) || {} : {};
+  } catch (error) {
+    console.error('加载旧本地配置忽略状态失败:', error);
+    dismissedLegacyAccounts.value = {};
+  }
+};
+
 const refreshTasks = async () => {
   await accountStore.fetchAccounts();
 
@@ -1163,6 +1191,7 @@ watch(
 onMounted(() => {
   backupLegacyLocalStorage();
   loadLegacyLocalStorage();
+  loadDismissedLegacyState();
   if (typeof window !== 'undefined') {
     window.addEventListener('storage', handleTaskConfigStorageEvent);
     if ('BroadcastChannel' in window) {
