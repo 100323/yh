@@ -65,6 +65,11 @@
           @ok="() => (showImportForm = false)"
           v-if="importMethod === 'wxQrcode'"
         />
+        <PhoneLoginForm
+          @cancel="() => (showImportForm = false)"
+          @ok="() => (showImportForm = false)"
+          v-if="importMethod === 'phone'"
+        />
         <BinTokenForm
           @cancel="() => (showImportForm = false)"
           @ok="() => (showImportForm = false)"
@@ -228,6 +233,7 @@ import { openSlimGameWithAccount } from "@/utils/slimGameLauncher";
 const BinTokenForm = defineAsyncComponent(() => import("./bin.vue"));
 const SingleBinTokenForm = defineAsyncComponent(() => import("./singlebin.vue"));
 const WxQrcodeForm = defineAsyncComponent(() => import("./wxqrcode.vue"));
+const PhoneLoginForm = defineAsyncComponent(() => import("./phone.vue"));
 
 const { getArrayBuffer, storeArrayBuffer, deleteArrayBuffer } = useIndexedDB();
 
@@ -252,6 +258,7 @@ const editingToken = ref(null);
 const importMethod = ref("wxQrcode");
 const importMethodOptions = [
   { value: "wxQrcode", label: "微信扫码" },
+  { value: "phone", label: "手机号登录" },
   { value: "bin", label: "BIN多角色" },
   { value: "singlebin", label: "BIN单角色" },
 ];
@@ -526,6 +533,7 @@ const refreshToken = async (token) => {
       message.success("Token刷新成功");
     } else if (
       token.importMethod === "wxQrcode" ||
+      token.importMethod === "phone" ||
       token.importMethod === "bin"
     ) {
       const candidateKeys = Array.from(

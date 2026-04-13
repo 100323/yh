@@ -35,7 +35,7 @@ interface TokenCrudManagerOptions {
   deleteBackendTokenAccount: (tokenId: string) => Promise<void>;
 }
 
-const SUPPORTED_IMPORT_METHODS = new Set(['manual', 'bin', 'url', 'wxQrcode']);
+const SUPPORTED_IMPORT_METHODS = new Set(['manual', 'bin', 'url', 'wxQrcode', 'phone']);
 
 export function createTokenCrudManager({
   gameTokens,
@@ -50,9 +50,10 @@ export function createTokenCrudManager({
   deleteArrayBuffer,
   deleteBackendTokenAccount,
 }: TokenCrudManagerOptions) {
-  const normalizeImportMethod = (importMethod?: string) => (
-    SUPPORTED_IMPORT_METHODS.has(String(importMethod || '')) ? importMethod : 'manual'
-  );
+  const normalizeImportMethod = (importMethod?: string) => {
+    const normalized = String(importMethod || '');
+    return SUPPORTED_IMPORT_METHODS.has(normalized) ? normalized : 'manual';
+  };
 
   const addToken = (tokenData: TokenCrudTokenData) => {
     const maxGameAccounts = getMaxGameAccounts();

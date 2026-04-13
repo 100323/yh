@@ -46,7 +46,7 @@ declare interface TokenData {
   profession?: string;
   isActive?: boolean;
   remark?: string;
-  importMethod?: "manual" | "bin" | "url" | "wxQrcode";
+  importMethod?: "manual" | "bin" | "url" | "wxQrcode" | "phone";
   sourceUrl?: string | null;
   avatar?: string;
   upgradedToPermanent?: boolean;
@@ -614,10 +614,11 @@ export const useTokenStore = defineStore("tokens", () => {
     validateToken,
     debugToken: (tokenString: string) => {
       const parseResult = parseBase64Token(tokenString);
+      const parsedActualToken = parseResult.success ? parseResult.data?.actualToken : undefined;
       console.log("Token 调试信息", {
         tokenString,
         parseResult,
-        valid: parseResult.success ? validateToken(parseResult.data.actualToken) : false,
+        valid: parsedActualToken ? validateToken(parsedActualToken) : false,
       });
       return parseResult;
     },
@@ -655,8 +656,6 @@ export const useTokenStore = defineStore("tokens", () => {
     syncAccountsFromBackend,
   };
 });
-
-
 
 
 

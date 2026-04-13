@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 const router = express.Router();
 
 router.use('/comb-login-server/api/v1/login', express.text({ type: 'text/plain' }));
+router.use('/ucenter-app-server/api/v1/login/verify/code', express.json());
 
 const weixinHeaders = {
   'User-Agent': 'Mozilla/5.0 (Linux; Android 7.0; Mi-4c Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043632 Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/WIFI Language/zh_CN',
@@ -17,7 +18,24 @@ const weixinLongHeaders = {
   'Referer': 'https://open.weixin.qq.com/'
 };
 
-const hortorHeaders = {
+const phoneVerifyHeaders = {
+  'User-Agent': 'Mozilla/5.0 (Linux; Android 12; 22081212C Build/SKQ1.220303.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/136.0.7103.60 Mobile Safari/537.36',
+  'Accept': '*/*',
+  'Host': 'ucenter-app-server.hortorgames.com',
+  'Connection': 'Keep-Alive',
+  'Content-Type': 'application/json; charset=utf-8',
+  'Accept-Encoding': 'gzip',
+};
+
+const phoneLoginHeaders = {
+  'User-Agent': 'Mozilla/5.0 (Linux; Android 12; 22081212C Build/SKQ1.220303.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/136.0.7103.60 Mobile Safari/537.36',
+  'Accept': '*/*',
+  'Host': 'comb-platform.hortorgames.com',
+  'Connection': 'keep-alive',
+  'Content-Type': 'text/plain; charset=utf-8',
+};
+
+const wechatLoginHeaders = {
   'User-Agent': 'Mozilla/5.0 (Linux; Android 12; 23117RK66C Build/V417IR; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/95.0.4638.74 Mobile Safari/537.36',
   'Accept': '*/*',
   'Host': 'comb-platform.hortorgames.com',
@@ -26,6 +44,23 @@ const hortorHeaders = {
   'Origin': 'https://open.weixin.qq.com',
   'Referer': 'https://open.weixin.qq.com/'
 };
+
+async function relayJsonResponse(response, res, fallbackErrorMessage) {
+  const text = await response.text();
+  let parsed;
+
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    parsed = {
+      success: false,
+      error: fallbackErrorMessage,
+      raw: text,
+    };
+  }
+
+  res.status(response.status).json(parsed);
+}
 
 router.get('/connect/app/qrconnect', async (req, res) => {
   try {
@@ -71,24 +106,43 @@ router.get('/connect/l/qrconnect', async (req, res) => {
   }
 });
 
+router.post('/ucenter-app-server/api/v1/login/verify/code', async (req, res) => {
+  try {
+    const url = 'https://ucenter-app-server.hortorgames.com/ucenter-app-server/api/v1/login/verify/code';
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: phoneVerifyHeaders,
+      body: JSON.stringify(req.body || {})
+    });
+
+    await relayJsonResponse(response, res, '验证码接口返回了非 JSON 数据');
+  } catch (error) {
+    console.error('手机号验证码发送失败:', error);
+    res.status(500).json({
+      success: false,
+      error: '发送验证码失败'
+    });
+  }
+});
+
 router.post('/comb-login-server/api/v1/login', async (req, res) => {
   try {
     const queryString = req._parsedUrl ? req._parsedUrl.query : '';
     const url = `https://comb-platform.hortorgames.com/comb-login-server/api/v1/login?${queryString}`;
-    
+    const loginMode = String(req.headers['x-hortor-login-mode'] || '').trim().toLowerCase();
+    const upstreamHeaders = loginMode === 'phone' ? phoneLoginHeaders : wechatLoginHeaders;
     const body = typeof req.body === 'string' ? req.body : String(req.body);
-    
+
     console.log('Hortor登录请求体长度:', body.length);
-    
+
     const response = await fetch(url, {
       method: 'POST',
-      headers: hortorHeaders,
+      headers: upstreamHeaders,
       body: body
     });
-    
-    const data = await response.json();
-    
-    res.json(data);
+
+    await relayJsonResponse(response, res, '登录接口返回了非 JSON 数据');
   } catch (error) {
     console.error('Hortor登录失败:', error);
     res.status(500).json({

@@ -73,6 +73,7 @@ export function createTokenMaintenanceManager({
         token.importMethod === 'url'
         || token.importMethod === 'bin'
         || token.importMethod === 'wxQrcode'
+        || token.importMethod === 'phone'
         || token.upgradedToPermanent
       ) {
         return false;
@@ -98,6 +99,7 @@ export function createTokenMaintenanceManager({
       && token.importMethod !== 'url'
       && token.importMethod !== 'bin'
       && token.importMethod !== 'wxQrcode'
+      && token.importMethod !== 'phone'
     ) {
       updateToken(tokenId, {
         upgradedToPermanent: true,
