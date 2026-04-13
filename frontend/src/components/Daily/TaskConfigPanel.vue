@@ -4,8 +4,8 @@
       <h3>{{ title }}</h3>
       <div class="header-actions">
         <n-button size="small" @click="expandAll">展开全部</n-button>
-        <n-button size="small" @click="collapseAll">折叠全部</n-button>
-        <n-button size="small" type="primary" @click="resetToDefault">恢复默认</n-button>
+        <n-button size="small" @click="collapseAll" :disabled="disabled">折叠全部</n-button>
+        <n-button size="small" type="primary" @click="resetToDefault" :disabled="disabled">恢复默认</n-button>
       </div>
     </div>
 
@@ -37,6 +37,7 @@
                   <n-switch
                     v-model:value="getTaskConfig(task.value).enabled"
                     size="small"
+                    :disabled="disabled"
                   />
                   <span class="task-label">{{ task.label }}</span>
                   <n-tooltip v-if="task.description" trigger="hover" placement="right" :content-style="{ maxWidth: '280px', whiteSpace: 'pre-line' }">
@@ -52,6 +53,7 @@
                   v-if="task.configFields && task.configFields.length > 0"
                   size="tiny"
                   text
+                  :disabled="disabled"
                   @click="toggleTaskConfig(task.value)"
                 >
                   {{ isTaskExpanded(task.value) ? '收起配置' : '展开配置' }}
@@ -87,6 +89,7 @@
                         v-model:value="getTaskConfig(task.value).config[field.key]"
                         :options="getOptionByRef(field.options)"
                         size="small"
+                        :disabled="disabled"
                         :placeholder="`请选择${field.label}`"
                       />
                       <n-input-number
@@ -95,17 +98,20 @@
                         :min="field.min"
                         :max="field.max"
                         size="small"
+                        :disabled="disabled"
                         :placeholder="`请输入${field.label}`"
                       />
                       <n-switch
                         v-else-if="field.type === 'switch'"
                         v-model:value="getTaskConfig(task.value).config[field.key]"
                         size="small"
+                        :disabled="disabled"
                       />
                       <n-input
                         v-else
                         v-model:value="getTaskConfig(task.value).config[field.key]"
                         size="small"
+                        :disabled="disabled"
                         :placeholder="`请输入${field.label}`"
                       />
                     </div>
@@ -119,8 +125,8 @@
     </div>
 
     <div class="panel-footer">
-      <n-button @click="handleCancel">取消</n-button>
-      <n-button type="primary" @click="handleSave">保存配置</n-button>
+      <n-button @click="handleCancel" :disabled="disabled">取消</n-button>
+      <n-button type="primary" @click="handleSave" :loading="saving" :disabled="disabled">保存配置</n-button>
     </div>
   </div>
 </template>
@@ -146,6 +152,14 @@ const props = defineProps({
   modelValue: {
     type: Object,
     default: () => ({}),
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  saving: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -154,6 +154,8 @@
             <TaskConfigPanel
               v-model="currentAccountConfig.taskConfigs"
               :title="`${currentAccountName} - 任务参数配置`"
+              :disabled="taskConfigOperating"
+              :saving="taskConfigOperating"
               @save="handleConfigSave"
             />
           </n-tab-pane>
@@ -166,7 +168,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useMessage } from 'naive-ui';
 import { Refresh } from '@vicons/ionicons5';
 import TaskConfigPanel from '@/components/Daily/TaskConfigPanel.vue';
@@ -193,15 +195,9 @@ const backendLoadRequestId = ref(0);
 const TASK_CONFIG_STORAGE_KEY = 'allAccountsTaskConfig';
 const TASK_CONFIG_STORAGE_BACKUP_PREFIX = 'allAccountsTaskConfig_backup_';
 const TASK_CONFIG_DISMISSED_STORAGE_KEY = 'allAccountsTaskConfig_legacy_dismissed';
-const TASK_CONFIG_SYNC_STORAGE_KEY = 'xyzw-task-config-sync';
-const TASK_CONFIG_SYNC_CHANNEL = 'xyzw-task-config-sync-channel';
-const currentTaskConfigTabId = `tasks-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-const lastSyncedConfigChangeVersion = ref(0);
-const lastHandledTaskConfigSyncKey = ref('');
 const legacyLocalConfigs = ref({});
 const legacyImporting = ref(false);
 const dismissedLegacyAccounts = ref({});
-let taskConfigBroadcastChannel = null;
 
 const scheduleModeOptions = [
   { label: '每日固定时间', value: 'daily' },
@@ -292,7 +288,6 @@ const normalizeAccountConfig = (accountConfig = {}) => {
 const createDefaultAccountConfig = () => normalizeAccountConfig();
 
 const currentAccountConfig = ref(createDefaultAccountConfig());
-const allAccountsConfig = ref({});
 const localOnlyTaskKeys = new Set(['startBatch']);
 const taskConfigOperating = computed(() => saving.value || legacyImporting.value);
 
@@ -345,76 +340,6 @@ const hasLegacyConfigDiff = computed(() => {
 
   return serializeBackendComparableConfig(legacyConfig) !== serializeBackendComparableConfig(currentAccountConfig.value);
 });
-
-const markCurrentConfigSynced = () => {
-  lastSyncedConfigChangeVersion.value = Date.now();
-};
-
-const buildTaskConfigSyncPayload = (accountId, revision, reason = 'save_success') => ({
-  senderTabId: currentTaskConfigTabId,
-  accountId: Number(accountId || 0),
-  revision: revision || null,
-  reason,
-  timestamp: Date.now(),
-});
-
-const broadcastTaskConfigSync = (accountId, revision, reason = 'save_success') => {
-  const payload = buildTaskConfigSyncPayload(accountId, revision, reason);
-  try {
-    if (taskConfigBroadcastChannel) {
-      taskConfigBroadcastChannel.postMessage(payload);
-    }
-    localStorage.setItem(TASK_CONFIG_SYNC_STORAGE_KEY, JSON.stringify(payload));
-  } catch (error) {
-    console.error('[Tasks] 广播配置同步事件失败:', error);
-  }
-};
-
-const handleExternalTaskConfigSync = async (payload) => {
-  if (!payload || payload.senderTabId === currentTaskConfigTabId) {
-    return;
-  }
-
-  const accountId = Number(payload.accountId || 0);
-  if (!accountId) {
-    return;
-  }
-
-  const dedupeKey = `${payload.senderTabId}:${accountId}:${payload.revision || 'no-revision'}:${payload.timestamp || 0}`;
-  if (lastHandledTaskConfigSyncKey.value === dedupeKey) {
-    return;
-  }
-  lastHandledTaskConfigSyncKey.value = dedupeKey;
-
-  if (accountId !== Number(selectedAccountId.value || 0)) {
-    return;
-  }
-
-  if (payload.revision && taskStore.taskConfigRevisions[accountId] === payload.revision) {
-    return;
-  }
-
-  try {
-    await loadAccountTaskConfigsFromBackend(accountId, { force: true });
-    message.info('检测到另一个标签页更新了当前账号配置，已自动刷新。');
-  } catch (error) {
-    console.error('[Tasks] 处理跨标签页配置同步失败:', error);
-    message.warning('检测到其他标签页更新了当前账号配置，请手动刷新确认最新内容。');
-  }
-};
-
-const handleTaskConfigStorageEvent = (event) => {
-  if (event.key !== TASK_CONFIG_SYNC_STORAGE_KEY || !event.newValue) {
-    return;
-  }
-
-  try {
-    const payload = JSON.parse(event.newValue);
-    void handleExternalTaskConfigSync(payload);
-  } catch (error) {
-    console.error('[Tasks] 解析跨标签页配置事件失败:', error);
-  }
-};
 
 const schedulableTasks = computed(() => {
   return availableTasks.filter((task) => !localOnlyTaskKeys.has(task.value));
@@ -768,13 +693,11 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
         ...(baseConfig.settings || {}),
       },
     };
-    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(currentAccountConfig.value));
     dailyRunTime.value = inferDailyRunTime(
       currentAccountConfig.value.taskConfigs,
       currentAccountConfig.value.settings?.dailyRunTime || null,
     );
     taskStore.taskConfigRevisions[accountId] = revision;
-    markCurrentConfigSynced();
   } finally {
     isHydrating.value = false;
   }
@@ -887,7 +810,6 @@ const importLegacyLocalConfig = async () => {
       currentAccountConfig.value.taskConfigs,
       currentAccountConfig.value.settings?.dailyRunTime || null,
     );
-    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(currentAccountConfig.value));
   } finally {
     isHydrating.value = false;
   }
@@ -921,8 +843,6 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
   }
 
   try {
-    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(configSnapshot));
-
     let skippedCount = 0;
     const tasksPayload = [];
 
@@ -953,11 +873,7 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
       throw new Error(res?.error || '保存失败');
     }
 
-    markCurrentConfigSynced();
-    broadcastTaskConfigSync(accountId, res?.data?.revision || taskStore.taskConfigRevisions[accountId] || null, 'save_success');
     taskStore.taskConfigRevisions[accountId] = res?.data?.revision || null;
-    allAccountsConfig.value[accountId] = JSON.parse(JSON.stringify(configSnapshot));
-    currentAccountConfig.value = normalizeAccountConfig(configSnapshot);
 
     if (notify) {
       message.success(`${accountName} 的配置已保存，已同步 ${tasksPayload.length} 项任务`);
@@ -966,6 +882,7 @@ const syncCurrentConfigToBackend = async ({ notify = false } = {}) => {
       }
     }
 
+    await loadAccountTaskConfigsFromBackend(accountId, { force: true });
     return { success: true };
   } catch (error) {
     const conflictStatus = Number(error?.errorCode || error?.response?.status || 0);
@@ -1057,9 +974,8 @@ const refreshTasks = async () => {
   await accountStore.fetchAccounts();
 
   const accountIdSet = new Set(accountStore.accounts.map((a) => String(a.id)));
-  Object.keys(allAccountsConfig.value).forEach((accountId) => {
+  Object.keys(taskStore.taskConfigRevisions || {}).forEach((accountId) => {
     if (!accountIdSet.has(String(accountId))) {
-      delete allAccountsConfig.value[accountId];
       delete taskStore.taskConfigRevisions[accountId];
     }
   });
@@ -1073,18 +989,6 @@ const refreshTasks = async () => {
   }
   message.success('已刷新配置');
 };
-
-watch(
-  () => currentAccountConfig.value,
-  () => {
-    if (selectedAccountId.value) {
-      allAccountsConfig.value[selectedAccountId.value] = JSON.parse(
-        JSON.stringify(currentAccountConfig.value)
-      );
-    }
-  },
-  { deep: true }
-);
 
 watch(dailyRunTime, (value) => {
   if (isHydrating.value) {
@@ -1130,15 +1034,6 @@ onMounted(() => {
   backupLegacyLocalStorage();
   loadLegacyLocalStorage();
   loadDismissedLegacyState();
-  if (typeof window !== 'undefined') {
-    window.addEventListener('storage', handleTaskConfigStorageEvent);
-    if ('BroadcastChannel' in window) {
-      taskConfigBroadcastChannel = new BroadcastChannel(TASK_CONFIG_SYNC_CHANNEL);
-      taskConfigBroadcastChannel.onmessage = (event) => {
-        void handleExternalTaskConfigSync(event?.data);
-      };
-    }
-  }
 
   Promise.all([
     accountStore.fetchAccounts(),
@@ -1157,16 +1052,6 @@ onMounted(() => {
   }).catch((error) => {
     console.error('初始化任务配置失败:', error);
   });
-});
-
-onBeforeUnmount(() => {
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('storage', handleTaskConfigStorageEvent);
-  }
-  if (taskConfigBroadcastChannel) {
-    taskConfigBroadcastChannel.close();
-    taskConfigBroadcastChannel = null;
-  }
 });
 </script>
 
