@@ -272,24 +272,9 @@ function persistStableSlimLaunchAccount(storage, account = {}) {
 
 function buildSlimGameUrl(launchKey, account = {}, options = {}) {
   const url = new URL(SLIM_GAME_PATH, window.location.origin);
-  const accountId = toCleanString(account.id);
-  const accountName = toCleanString(account.name);
-  const server = toCleanString(account.server);
-  const wsUrl = toCleanString(account.wsUrl);
-  const token = toCleanString(account.token);
   const slimAccessToken = toCleanString(account.slimAccessToken);
-  const launchContext = normalizeLaunchContext(account.launchContext);
   const sessionId = toCleanString(options.sessionId);
   const embed = options.embed === true || options.embed === '1';
-
-  if (launchContext?.search) {
-    const capturedParams = new URLSearchParams(launchContext.search);
-    capturedParams.forEach((value, key) => {
-      if (!url.searchParams.has(key)) {
-        url.searchParams.set(key, value);
-      }
-    });
-  }
 
   url.searchParams.set('launchKey', launchKey);
 
@@ -301,42 +286,8 @@ function buildSlimGameUrl(launchKey, account = {}, options = {}) {
     url.searchParams.set('sessionId', sessionId);
   }
 
-  if (accountId) {
-    url.searchParams.set('accountId', accountId);
-  }
-
-  if (accountName && !url.searchParams.has('name')) {
-    url.searchParams.set('name', accountName);
-  }
-
-  if (server && !url.searchParams.has('server')) {
-    url.searchParams.set('server', server);
-  }
-
-  if (wsUrl && !url.searchParams.has('wsUrl')) {
-    url.searchParams.set('wsUrl', wsUrl);
-  }
-
-  if (token && !url.searchParams.has('token')) {
-    url.searchParams.set('token', token);
-  }
-
   if (slimAccessToken) {
     url.searchParams.set('slimAccess', slimAccessToken);
-  }
-
-  const userId =
-    toCleanString(account.userId) ||
-    toCleanString(account.uid) ||
-    toCleanString(launchContext?.userId) ||
-    toCleanString(launchContext?.uid);
-  if (userId) {
-    if (!url.searchParams.has('userId')) {
-      url.searchParams.set('userId', userId);
-    }
-    if (!url.searchParams.has('uid')) {
-      url.searchParams.set('uid', userId);
-    }
   }
 
   return url.toString();
