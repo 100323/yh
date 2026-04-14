@@ -302,6 +302,7 @@ router.post('/slim-access', authMiddleware, (req, res) => {
       message: 'Slim 游戏访问授权已刷新',
       data: {
         expiresIn: SLIM_SESSION_MAX_AGE_SECONDS,
+        accessToken: token,
       },
     });
   } catch (error) {

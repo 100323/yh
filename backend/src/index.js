@@ -96,11 +96,28 @@ function parseCookieHeader(cookieHeader = '') {
     }, {});
 }
 
+function isProtectedSlimEntryRequest(req) {
+  const requestPath = String(req.path || '/').trim() || '/';
+  return (
+    requestPath === '/' ||
+    requestPath === '/index.html' ||
+    requestPath === '/index.htm'
+  );
+}
+
 function slimGameAuthMiddleware(req, res, next) {
+  if (!isProtectedSlimEntryRequest(req)) {
+    return next();
+  }
+
   const cookies = parseCookieHeader(req.headers.cookie || '');
-  const slimSessionToken = cookies[SLIM_SESSION_COOKIE]
+  const cookieToken = cookies[SLIM_SESSION_COOKIE]
     ? decodeURIComponent(cookies[SLIM_SESSION_COOKIE])
     : '';
+  const queryToken = typeof req.query?.slimAccess === 'string'
+    ? String(req.query.slimAccess).trim()
+    : '';
+  const slimSessionToken = cookieToken || queryToken;
 
   if (!slimSessionToken) {
     return res.status(401).send('需要先登录项目后再访问游戏');

@@ -724,6 +724,10 @@ const enterGame = async (token) => {
     if (!slimAccessRes?.success) {
       throw new Error(slimAccessRes?.error || '创建游戏访问授权失败');
     }
+    launchAccount.slimAccessToken =
+      slimAccessRes?.data?.accessToken ||
+      slimAccessRes?.accessToken ||
+      '';
     gameWorkbenchStore.openSession(launchAccount);
     message.success(`已在当前页打开 ${token.name}`);
   } catch (error) {

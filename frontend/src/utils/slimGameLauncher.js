@@ -277,6 +277,7 @@ function buildSlimGameUrl(launchKey, account = {}, options = {}) {
   const server = toCleanString(account.server);
   const wsUrl = toCleanString(account.wsUrl);
   const token = toCleanString(account.token);
+  const slimAccessToken = toCleanString(account.slimAccessToken);
   const launchContext = normalizeLaunchContext(account.launchContext);
   const sessionId = toCleanString(options.sessionId);
   const embed = options.embed === true || options.embed === '1';
@@ -318,6 +319,10 @@ function buildSlimGameUrl(launchKey, account = {}, options = {}) {
 
   if (token && !url.searchParams.has('token')) {
     url.searchParams.set('token', token);
+  }
+
+  if (slimAccessToken) {
+    url.searchParams.set('slimAccess', slimAccessToken);
   }
 
   const userId =
