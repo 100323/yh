@@ -35,6 +35,18 @@
           </div>
           
           <div class="header-right">
+            <el-badge
+              v-if="gameWorkbenchStore.hasSessions"
+              :value="gameWorkbenchStore.sessions.length"
+              :max="9"
+              class="workbench-badge"
+            >
+              <el-button class="workbench-toggle" text @click="toggleWorkbench">
+                <el-icon :size="18"><Monitor /></el-icon>
+                <span>游戏工作台</span>
+              </el-button>
+            </el-badge>
+
             <el-dropdown @command="handleCommand">
               <span class="user-info">
                 <el-avatar :size="32" icon="UserFilled" />
@@ -68,6 +80,8 @@
         </el-main>
       </el-container>
     </el-container>
+
+    <GameWorkbenchDock />
 
     <el-drawer
       v-model="mobileMenuOpen"
@@ -111,6 +125,7 @@ import {
   Document,
   HomeFilled,
   Key,
+  Monitor,
   Operation,
   Setting,
   Ticket,
@@ -119,10 +134,13 @@ import {
   UserFilled
 } from '@element-plus/icons-vue';
 import { useAuthStore } from '@stores/auth';
+import { useGameWorkbenchStore } from '@stores/gameWorkbench';
+import GameWorkbenchDock from '@components/GameWorkbench/GameWorkbenchDock.vue';
 
 const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
+const gameWorkbenchStore = useGameWorkbenchStore();
 const mobileMenuOpen = ref(false);
 
 const activeMenu = computed(() => route.path);
@@ -163,6 +181,10 @@ const handleMobileMenuSelect = (index) => {
   if (route.path !== index) {
     router.push(index);
   }
+};
+
+const toggleWorkbench = () => {
+  gameWorkbenchStore.toggleCollapsed();
 };
 
 watch(
@@ -336,6 +358,33 @@ watch(
       box-shadow: inset 0 0 0 1px rgba(91, 124, 255, 0.14);
     }
   }
+}
+
+.workbench-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 14px;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(120, 138, 177, 0.18);
+  box-shadow: 0 10px 24px rgba(17, 27, 48, 0.08);
+
+  &:hover {
+    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  span {
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.workbench-badge {
+  margin-right: 10px;
 }
 
 .mobile-menu-trigger {

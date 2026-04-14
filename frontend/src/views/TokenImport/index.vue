@@ -228,7 +228,7 @@ import { transformToken } from "@/utils/token";
 import useIndexedDB from "@/hooks/useIndexedDB";
 import api from "@/api";
 import { useAuthStore } from "@stores/auth";
-import { openSlimGameWithAccount } from "@/utils/slimGameLauncher";
+import { useGameWorkbenchStore } from "@stores/gameWorkbench";
 
 const BinTokenForm = defineAsyncComponent(() => import("./bin.vue"));
 const SingleBinTokenForm = defineAsyncComponent(() => import("./singlebin.vue"));
@@ -250,6 +250,7 @@ const message = useMessage();
 const dialog = useDialog();
 const tokenStore = useTokenStore();
 const authStore = useAuthStore();
+const gameWorkbenchStore = useGameWorkbenchStore();
 
 const showImportForm = ref(false);
 const showEditModal = ref(false);
@@ -676,46 +677,51 @@ const deleteToken = (token) => {
   });
 };
 
+const resolveLaunchAccount = async (token) => {
+  let launchAccount = {
+    ...token,
+  };
+
+  const accountId = String(token?.id || '').trim();
+  if (/^\d+$/.test(accountId)) {
+    const res = await api.get(`/accounts/${accountId}/launch-payload`);
+    if (!res?.success || !res?.data?.token) {
+      throw new Error(res?.error || '获取账号启动数据失败');
+    }
+
+    launchAccount = {
+      ...launchAccount,
+      id: String(res.data.accountId || accountId),
+      name: res.data.name || token.name,
+      server: res.data.server || token.server,
+      wsUrl: res.data.wsUrl || token.wsUrl || '',
+      token: res.data.token,
+      binData: res.data.binData || '',
+      authPayload:
+        res.data.authPayload && typeof res.data.authPayload === 'object'
+          ? res.data.authPayload
+          : (launchAccount.authPayload || launchAccount.launchContext?.authPayload || null),
+      launchContext:
+        res.data.launchContext && typeof res.data.launchContext === 'object'
+          ? res.data.launchContext
+          : launchAccount.launchContext || null,
+    };
+  } else {
+    const backendBin = await tokenStore.getBackendBinPayload(token);
+    launchAccount = {
+      ...launchAccount,
+      binData: backendBin?.binData || '',
+    };
+  }
+
+  return launchAccount;
+};
+
 const enterGame = async (token) => {
   try {
-    let launchAccount = {
-      ...token,
-    };
-
-    const accountId = String(token?.id || '').trim();
-    if (/^\d+$/.test(accountId)) {
-      const res = await api.get(`/accounts/${accountId}/launch-payload`);
-      if (!res?.success || !res?.data?.token) {
-        throw new Error(res?.error || '获取账号启动数据失败');
-      }
-
-      launchAccount = {
-        ...launchAccount,
-        id: String(res.data.accountId || accountId),
-        name: res.data.name || token.name,
-        server: res.data.server || token.server,
-        wsUrl: res.data.wsUrl || token.wsUrl || '',
-        token: res.data.token,
-        binData: res.data.binData || '',
-        launchContext:
-          res.data.launchContext && typeof res.data.launchContext === 'object'
-            ? res.data.launchContext
-            : launchAccount.launchContext || null,
-      };
-    } else {
-      const backendBin = await tokenStore.getBackendBinPayload(token);
-      launchAccount = {
-        ...launchAccount,
-        binData: backendBin?.binData || '',
-      };
-    }
-
-    const { openedInNewWindow } = openSlimGameWithAccount(launchAccount);
-    if (openedInNewWindow) {
-      message.success(`已打开 ${token.name} 的游戏页面`);
-      return;
-    }
-    message.success(`正在进入 ${token.name}`);
+    const launchAccount = await resolveLaunchAccount(token);
+    gameWorkbenchStore.openSession(launchAccount);
+    message.success(`已在当前页打开 ${token.name}`);
   } catch (error) {
     message.error(error?.message || "进入游戏失败");
   }

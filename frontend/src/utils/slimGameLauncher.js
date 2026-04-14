@@ -4,7 +4,6 @@ const SLIM_LAUNCH_TTL_MS = 15 * 60 * 1000;
 const SLIM_LAST_ACCOUNT_KEY = 'xyzw-slim-launch-account';
 const SLIM_RECENT_ACCOUNTS_KEY = 'xyzw-slim-launch-accounts';
 const SLIM_RECENT_ACCOUNTS_LIMIT = 10;
-const TOOLBOX_CONFIG_KEY = 'XYWZ_ToolboxConfig_v10.1';
 
 function getSafeStorage() {
   try {
@@ -42,6 +41,78 @@ function normalizeSearchText(searchText) {
   const text = toCleanString(searchText);
   if (!text) return '';
   return text.startsWith('?') ? text : `?${text}`;
+}
+
+function tryParseJsonString(value) {
+  if (typeof value !== 'string') return value;
+  const text = value.trim();
+  if (!text) return value;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return value;
+  }
+}
+
+function pickFirstDefined(...values) {
+  return values.find((value) => value !== undefined && value !== null && value !== '');
+}
+
+function normalizeAuthPayload(rawPayload = null) {
+  if (!rawPayload) return null;
+
+  let payload = rawPayload;
+  if (typeof payload === 'string') {
+    const text = payload.trim();
+    if (!text) return null;
+    try {
+      payload = JSON.parse(text);
+    } catch {
+      return null;
+    }
+  }
+
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return null;
+  }
+
+  const candidates = [
+    payload,
+    payload.authPayload,
+    payload.auth_payload,
+    payload.loginPayload,
+    payload.login_payload,
+    payload.data,
+    payload.rawData,
+    payload.result,
+    payload.payload,
+  ].filter(Boolean);
+
+  for (const item of candidates) {
+    const info = tryParseJsonString(
+      pickFirstDefined(item.info, item.authInfo, item.encryptUserInfo, item.userInfo, item.loginInfo),
+    );
+    const platformExt = pickFirstDefined(item.platformExt, item.platform_ext, item.ext);
+    const serverIdRaw = pickFirstDefined(item.serverId, item.serverID, item.sid, item.realServerId);
+    const serverId =
+      serverIdRaw === null || serverIdRaw === undefined || serverIdRaw === ''
+        ? null
+        : Number(serverIdRaw);
+
+    if (platformExt && info && (serverId === null || Number.isFinite(serverId))) {
+      return {
+        platform: toCleanString(item.platform || 'hortor'),
+        platformExt: toCleanString(platformExt),
+        info,
+        serverId,
+        scene: Number.isFinite(Number(item.scene)) ? Number(item.scene) : 0,
+        referrerInfo: toCleanString(item.referrerInfo),
+        type: toCleanString(item.type || 'launch'),
+      };
+    }
+  }
+
+  return null;
 }
 
 function normalizeLaunchContext(launchContext = null) {
@@ -124,6 +195,7 @@ function createLaunchKey(accountId) {
 
 function createLaunchPayload(account = {}) {
   const launchContext = normalizeLaunchContext(account.launchContext);
+  const authPayload = normalizeAuthPayload(account.authPayload || launchContext?.authPayload || launchContext);
   return {
     accountId: toCleanString(account.id),
     name: toCleanString(account.name),
@@ -137,6 +209,7 @@ function createLaunchPayload(account = {}) {
       toCleanString(launchContext?.userId) ||
       toCleanString(launchContext?.uid),
     launchContext,
+    authPayload,
     createdAt: Date.now(),
   };
 }
@@ -192,25 +265,12 @@ function persistStableSlimLaunchAccount(storage, account = {}) {
       SLIM_RECENT_ACCOUNTS_KEY,
       JSON.stringify(deduped.slice(0, SLIM_RECENT_ACCOUNTS_LIMIT)),
     );
-
-    const rawToolboxConfig = storage.getItem(TOOLBOX_CONFIG_KEY) || '{}';
-    const toolboxConfig = JSON.parse(rawToolboxConfig);
-    const recentRecords = deduped
-      .slice(0, SLIM_RECENT_ACCOUNTS_LIMIT)
-      .map((item) => ({
-        fileName: item.fileName,
-        content: item.content,
-      }))
-      .filter((item) => item.fileName && item.content);
-
-    toolboxConfig.accounts = recentRecords;
-    storage.setItem(TOOLBOX_CONFIG_KEY, JSON.stringify(toolboxConfig));
   } catch {
     // ignore localStorage quota / serialization failures
   }
 }
 
-function buildSlimGameUrl(launchKey, account = {}) {
+function buildSlimGameUrl(launchKey, account = {}, options = {}) {
   const url = new URL(SLIM_GAME_PATH, window.location.origin);
   const accountId = toCleanString(account.id);
   const accountName = toCleanString(account.name);
@@ -218,6 +278,8 @@ function buildSlimGameUrl(launchKey, account = {}) {
   const wsUrl = toCleanString(account.wsUrl);
   const token = toCleanString(account.token);
   const launchContext = normalizeLaunchContext(account.launchContext);
+  const sessionId = toCleanString(options.sessionId);
+  const embed = options.embed === true || options.embed === '1';
 
   if (launchContext?.search) {
     const capturedParams = new URLSearchParams(launchContext.search);
@@ -229,6 +291,14 @@ function buildSlimGameUrl(launchKey, account = {}) {
   }
 
   url.searchParams.set('launchKey', launchKey);
+
+  if (embed) {
+    url.searchParams.set('embed', '1');
+  }
+
+  if (sessionId) {
+    url.searchParams.set('sessionId', sessionId);
+  }
 
   if (accountId) {
     url.searchParams.set('accountId', accountId);
@@ -267,7 +337,7 @@ function buildSlimGameUrl(launchKey, account = {}) {
   return url.toString();
 }
 
-export function openSlimGameWithAccount(account = {}) {
+export function prepareSlimGameLaunch(account = {}, options = {}) {
   const payload = createLaunchPayload(account);
   if (!payload.token) {
     throw new Error('当前账号缺少可用 Token，无法进入游戏');
@@ -284,9 +354,21 @@ export function openSlimGameWithAccount(account = {}) {
   const launchKey = createLaunchKey(payload.accountId);
   storage.setItem(launchKey, JSON.stringify(payload));
 
-  const launchUrl = buildSlimGameUrl(launchKey, account);
+  const launchUrl = buildSlimGameUrl(launchKey, account, options);
+
+  return {
+    launchKey,
+    launchUrl,
+    payload,
+    sessionId: toCleanString(options.sessionId),
+    openedInNewWindow: false,
+  };
+}
+
+export function openSlimGameWithAccount(account = {}, options = {}) {
+  const prepared = prepareSlimGameLaunch(account, options);
   const anchor = document.createElement('a');
-  anchor.href = launchUrl;
+  anchor.href = prepared.launchUrl;
   anchor.target = '_blank';
   anchor.rel = 'noopener noreferrer';
   anchor.style.display = 'none';
@@ -295,8 +377,7 @@ export function openSlimGameWithAccount(account = {}) {
   anchor.remove();
 
   return {
-    launchKey,
-    launchUrl,
+    ...prepared,
     openedInNewWindow: true,
   };
 }

@@ -44,6 +44,7 @@ import PQueue from "p-queue";
 import useIndexedDB from "@/hooks/useIndexedDB";
 import { getTokenId, transformToken, getServerList } from "@/utils/token";
 import { g_utils } from "@/utils/bonProtocol";
+import { buildLaunchContextFromAuthPayload } from "@/utils/loginAuthPayload";
 import { formatPower } from "@/utils/legionWar";
 import { useAuthStore } from "@stores/auth";
 
@@ -210,6 +211,7 @@ const addSelectedRole = async (roleInfo: any) => {
     const newBinBuffer = g_utils.encode(newData) as ArrayBuffer;
     const tokenId = getTokenId(newBinBuffer);
     const roleToken = await transformToken(newBinBuffer);
+    const launchContext = buildLaunchContextFromAuthPayload(newData, "bin");
 
     // 刷新indexDB数据库token数据 (保存原始bin)
     const saved = await storeArrayBuffer(tokenId, newBinBuffer);
@@ -232,8 +234,12 @@ const addSelectedRole = async (roleInfo: any) => {
       roleIndex: roleIndex,
       wsUrl: "",
       importMethod: "bin",
+      launchContext,
     });
 
+    if (!launchContext?.authPayload) {
+      message.warning("BIN 已导入，但未提取到登录注入信息，进入游戏可能仍会失败");
+    }
     message.success(`已添加角色: ${finalName}`);
   } catch (e: any) {
     console.error("添加角色失败", e);
@@ -277,6 +283,9 @@ const uploadBin = (binFile: File) => {
 
         console.log("Bin文件解析:", binData);
         originalBinData.value = binData;
+        if (!buildLaunchContextFromAuthPayload(binData, "bin")) {
+          message.warning("当前 BIN 未识别到登录注入信息，只能刷新 Token，不能保证能直接进入游戏");
+        }
       } catch (err: any) {
         console.error("Bin文件解析失败", err);
         originalBinData.value = null;

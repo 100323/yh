@@ -144,6 +144,7 @@ export function createTokenSyncManager({
           importMethod: normalizeImportMethod(tokenData.importMethod),
           sourceUrl: tokenData.sourceUrl || '',
           binData: backendBin?.binData || '',
+          launchContext: tokenData.launchContext || null,
         });
 
         if (createRes?.success && createRes?.data?.id !== undefined) {
@@ -172,6 +173,7 @@ export function createTokenSyncManager({
           remark: tokenData.remark || '',
           avatar: tokenData.avatar || defaultAvatar,
           binData: backendBin?.binData || '',
+          launchContext: tokenData.launchContext || null,
         });
         await migrateTokenIdToBackendId(tokenData.id, String(exists.id));
       } catch (error) {

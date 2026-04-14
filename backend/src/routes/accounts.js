@@ -8,8 +8,9 @@ import config from '../config/index.js';
 import { ensureDefaultTaskConfigsForAccount } from './tasks.js';
 import { buildWsLogContext, normalizeDisconnectInfo, normalizeErrorMessage } from '../utils/wsDiagnostics.js';
 import { warmupGameClient } from '../utils/wsWarmup.js';
-import { isLikelyBase64, normalizeBase64Text } from '../utils/binStorage.js';
+import { base64ToBuffer, isLikelyBase64, normalizeBase64Text } from '../utils/binStorage.js';
 import { refreshAccountTokenFromStoredBin } from '../utils/accountTokenRefresh.js';
+import { g_utils } from '../../../frontend/src/utils/bonProtocol.js';
 
 const router = Router();
 const MAX_ACCOUNT_LINEUPS = 30;
@@ -33,6 +34,98 @@ function extractBinBase64(body = {}) {
   }
 
   return '';
+}
+
+function pickFirstDefined(...values) {
+  return values.find((value) => value !== undefined && value !== null && value !== '');
+}
+
+function tryParseJsonString(value) {
+  if (typeof value !== 'string') return value;
+  const trimmed = value.trim();
+  if (!trimmed) return value;
+  try {
+    return JSON.parse(trimmed);
+  } catch {
+    return value;
+  }
+}
+
+function normalizeAuthPayloadInput(rawInput, sourceLabel = 'launch') {
+  if (!rawInput) return null;
+
+  let parsed = rawInput;
+  if (typeof parsed === 'string') {
+    const trimmed = parsed.trim();
+    if (!trimmed) return null;
+    try {
+      parsed = JSON.parse(trimmed);
+    } catch {
+      return null;
+    }
+  }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return null;
+  }
+
+  const candidates = [
+    parsed,
+    parsed?.authPayload,
+    parsed?.auth_payload,
+    parsed?.loginPayload,
+    parsed?.login_payload,
+    parsed?.data,
+    parsed?.rawData,
+    parsed?.result,
+    parsed?.payload,
+    parsed?.data?.data,
+    parsed?.data?.rawData,
+    parsed?.meta?.data,
+  ].filter(Boolean);
+
+  for (const item of candidates) {
+    const combUser = tryParseJsonString(pickFirstDefined(item?.combUser, item?.data?.combUser));
+    const normalizedCandidate = combUser
+      ? {
+          platform: 'hortor',
+          platformExt: String(pickFirstDefined(item?.platformExt, item?.platform_ext, item?.ext, 'mix')),
+          info: combUser,
+          serverId: null,
+          scene: 0,
+          referrerInfo: '',
+          type: sourceLabel,
+        }
+      : null;
+
+    if (normalizedCandidate) {
+      return normalizedCandidate;
+    }
+
+    const info = tryParseJsonString(
+      pickFirstDefined(item?.info, item?.authInfo, item?.encryptUserInfo, item?.userInfo, item?.loginInfo),
+    );
+    const platformExt = pickFirstDefined(item?.platformExt, item?.platform_ext, item?.ext);
+    const serverIdRaw = pickFirstDefined(item?.serverId, item?.serverID, item?.sid, item?.realServerId);
+    const serverId =
+      serverIdRaw === null || serverIdRaw === undefined || serverIdRaw === ''
+        ? null
+        : Number(serverIdRaw);
+
+    if (platformExt && info && (serverId === null || Number.isFinite(serverId))) {
+      return {
+        platform: String(pickFirstDefined(item?.platform, 'hortor')),
+        platformExt: String(platformExt),
+        info,
+        serverId,
+        scene: Number.isFinite(Number(item?.scene)) ? Number(item.scene) : 0,
+        referrerInfo: typeof item?.referrerInfo === 'string' ? item.referrerInfo : '',
+        type: typeof item?.type === 'string' && item.type.trim() ? item.type.trim() : sourceLabel,
+      };
+    }
+  }
+
+  return null;
 }
 
 function normalizeLaunchContextInput(body = {}) {
@@ -97,6 +190,21 @@ function normalizeLaunchContextInput(body = {}) {
         : new Date().toISOString(),
   };
 
+  const authPayload = normalizeAuthPayloadInput(
+    pickFirstDefined(
+      parsed.authPayload,
+      parsed.auth_payload,
+      parsed.loginPayload,
+      parsed.login_payload,
+      body?.authPayload,
+      body?.auth_payload,
+    ),
+    typeof normalized.source === 'string' && normalized.source ? normalized.source : 'launch',
+  );
+  if (authPayload) {
+    normalized.authPayload = authPayload;
+  }
+
   if (!normalized.search && Object.keys(normalized.query).length > 0) {
     const params = new URLSearchParams();
     Object.entries(normalized.query).forEach(([key, value]) => {
@@ -124,6 +232,67 @@ function normalizeLaunchContextInput(body = {}) {
   }
 
   return normalized;
+}
+
+function extractAuthPayloadFromBinBase64(binBase64, sourceLabel = 'bin') {
+  if (!binBase64) return null;
+
+  try {
+    const binBuffer = base64ToBuffer(binBase64);
+    const binMsg = g_utils.parse(binBuffer);
+    let binData = binMsg?.getData?.();
+    if (!binData && binMsg?._raw) {
+      binData = { ...binMsg._raw };
+    }
+    return normalizeAuthPayloadInput(binData, sourceLabel);
+  } catch (error) {
+    console.warn('⚠️ 解析 BIN 登录载荷失败', {
+      source: sourceLabel,
+      error: error?.message || String(error),
+    });
+    return null;
+  }
+}
+
+function mergeLaunchContextWithBinAuth(rawLaunchContext, binBase64, sourceLabel = 'bin') {
+  const normalizedLaunchContext =
+    rawLaunchContext && typeof rawLaunchContext === 'object' && !Array.isArray(rawLaunchContext)
+      ? { ...rawLaunchContext }
+      : null;
+
+  const existingAuthPayload = normalizeAuthPayloadInput(
+    normalizedLaunchContext?.authPayload ||
+      normalizedLaunchContext?.auth_payload ||
+      normalizedLaunchContext,
+    typeof normalizedLaunchContext?.source === 'string' && normalizedLaunchContext.source
+      ? normalizedLaunchContext.source
+      : sourceLabel,
+  );
+
+  if (existingAuthPayload) {
+    return {
+      ...(normalizedLaunchContext || {}),
+      authPayload: existingAuthPayload,
+    };
+  }
+
+  const binAuthPayload = extractAuthPayloadFromBinBase64(binBase64, sourceLabel);
+  if (!binAuthPayload) {
+    return normalizedLaunchContext;
+  }
+
+  return {
+    ...(normalizedLaunchContext || {}),
+    source:
+      typeof normalizedLaunchContext?.source === 'string' && normalizedLaunchContext.source.trim()
+        ? normalizedLaunchContext.source.trim()
+        : sourceLabel,
+    capturedAt:
+      typeof normalizedLaunchContext?.capturedAt === 'string' && normalizedLaunchContext.capturedAt.trim()
+        ? normalizedLaunchContext.capturedAt.trim()
+        : new Date().toISOString(),
+    authPayload: binAuthPayload,
+  };
 }
 
 function buildWsTokenPayload(token) {
@@ -301,7 +470,7 @@ router.post('/', async (req, res) => {
       ? req.body.wsUrl.trim()
       : (typeof req.body?.ws_url === 'string' ? req.body.ws_url.trim() : '');
     const binBase64 = extractBinBase64(req.body);
-    const launchContext = normalizeLaunchContextInput(req.body);
+    const launchContext = mergeLaunchContextWithBinAuth(normalizeLaunchContextInput(req.body), binBase64, 'bin');
     const normalizedName = String(name || '').trim();
 
     if (!normalizedName || !token) {
@@ -449,7 +618,7 @@ router.put('/:id', (req, res) => {
       ? req.body.wsUrl.trim()
       : (typeof req.body?.ws_url === 'string' ? req.body.ws_url.trim() : undefined);
     const binBase64 = extractBinBase64(req.body);
-    const launchContext = normalizeLaunchContextInput(req.body);
+    const launchContext = mergeLaunchContextWithBinAuth(normalizeLaunchContextInput(req.body), binBase64, 'bin');
 
     const account = get(
       'SELECT * FROM game_accounts WHERE id = ? AND user_id = ?',
@@ -764,6 +933,13 @@ router.get('/:id/launch-payload', async (req, res) => {
         });
       }
     }
+    launchContext = mergeLaunchContextWithBinAuth(launchContext, binData, 'bin');
+    const authPayload =
+      normalizeAuthPayloadInput(
+        launchContext?.authPayload || launchContext?.auth_payload || launchContext,
+        'launch',
+      ) ||
+      extractAuthPayloadFromBinBase64(binData, 'bin');
 
     res.json({
       success: true,
@@ -777,6 +953,7 @@ router.get('/:id/launch-payload', async (req, res) => {
         binData,
         hasBin: !!binData,
         launchContext,
+        authPayload,
       }
     });
   } catch (error) {

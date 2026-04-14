@@ -32,6 +32,8 @@ import { useTokenStore } from "@/stores/tokenStore";
 import { useAuthStore } from "@stores/auth";
 import { NForm, NFormItem, NButton, useMessage } from "naive-ui";
 import useIndexedDB from "@/hooks/useIndexedDB";
+import { g_utils } from "@/utils/bonProtocol";
+import { buildLaunchContextFromAuthPayload } from "@/utils/loginAuthPayload";
 import { getTokenId, transformToken } from "@/utils/token";
 
 const emit = defineEmits(["cancel"]);
@@ -84,6 +86,20 @@ const buildFallbackName = (meta: ReturnType<typeof parseFileMeta>, tokenId: stri
   return `${roleName}-${tokenId.slice(0, 6)}`;
 };
 
+const getRoleIndex = (serverId: number | string) => {
+  const sid = Number(serverId);
+  if (sid >= 2000000) return 2;
+  if (sid >= 1000000) return 1;
+  return 0;
+};
+
+const getServerNum = (serverId: number | string) => {
+  let sid = Number(serverId);
+  if (sid >= 2000000) sid -= 2000000;
+  else if (sid >= 1000000) sid -= 1000000;
+  return sid - 27;
+};
+
 const uploadBin = async (binFile: File) => {
   if (accountLimitReached.value) {
     message.warning(`当前账号最多只能添加 ${maxGameAccounts.value} 个游戏账号，已达到上限`);
@@ -96,7 +112,23 @@ const uploadBin = async (binFile: File) => {
     const userToken = await binFile.arrayBuffer();
     const tokenId = getTokenId(userToken);
     const roleToken = await transformToken(userToken);
-    const finalName = buildFallbackName(fileMeta, tokenId);
+    let parsedBinData: any = null;
+    try {
+      const binMsg = g_utils.parse(userToken);
+      parsedBinData = binMsg?.getData?.();
+      if (!parsedBinData && (binMsg as any)?._raw) {
+        parsedBinData = { ...(binMsg as any)._raw };
+      }
+    } catch (error) {
+      console.warn("单角色 BIN 解析失败，继续按纯 BIN 导入", error);
+    }
+
+    const launchContext = buildLaunchContextFromAuthPayload(parsedBinData, "bin");
+    const authServerId = Number(launchContext?.authPayload?.serverId);
+    const finalName =
+      launchContext?.authPayload?.serverId != null && fileMeta.roleId
+        ? `${fileMeta.roleName || "未命名角色"}-${getRoleIndex(authServerId)}-${fileMeta.roleId}`
+        : buildFallbackName(fileMeta, tokenId);
 
     const exists = tokenStore.gameTokens.some((token) => {
       if (String(token.id) === tokenId) return true;
@@ -122,11 +154,18 @@ const uploadBin = async (binFile: File) => {
       roleId: fileMeta.roleId || undefined,
       token: roleToken,
       name: finalName,
-      server: fileMeta.server ? `${fileMeta.server}${fileMeta.roleIndex || ""}` : "",
+      server:
+        fileMeta.server
+          ? `${fileMeta.server}${fileMeta.roleIndex || ""}`
+          : (Number.isFinite(authServerId) ? `${getServerNum(authServerId)}服` : ""),
       wsUrl: "",
       importMethod: "bin",
+      launchContext,
     });
 
+    if (!launchContext?.authPayload) {
+      message.warning("BIN 已导入，但未提取到登录注入信息，进入游戏可能仍会失败");
+    }
     message.success("账号添加成功");
   } catch (error: any) {
     console.error("单角色BIN导入失败", error);

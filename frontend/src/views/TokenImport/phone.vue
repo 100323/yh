@@ -138,6 +138,7 @@ const statusMessage = ref("请先输入手机号并获取验证码");
 const statusType = ref("info");
 const serverListData = ref<any[]>([]);
 const originalBinData = ref<any>(null);
+const currentLaunchAuthPayload = ref<any>(null);
 const currentPhoneLoginMatchId = ref("");
 const sendCodeLeftSeconds = ref(0);
 let sendCodeTimer: ReturnType<typeof setInterval> | null = null;
@@ -441,6 +442,7 @@ const getEncryptedDataForPhone = async (phone: string, smsCode: string, activeLo
   if (!loginSource) {
     throw new Error("手机号登录成功，但未能提取认证信息，请检查返回结构");
   }
+  currentLaunchAuthPayload.value = loginSource;
 
   const encryptModule = await ensureGameEncryptModule();
   const encryptedBuffer = encryptModule.encMsg(loginSource, {
@@ -587,6 +589,13 @@ const addSelectedRole = async (roleInfo: any) => {
       roleIndex,
       wsUrl: "",
       importMethod: "phone",
+      launchContext: currentLaunchAuthPayload.value
+        ? {
+            source: "phone",
+            capturedAt: new Date().toISOString(),
+            authPayload: currentLaunchAuthPayload.value,
+          }
+        : null,
     });
 
     message.success(`已添加角色: ${finalName}`);

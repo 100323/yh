@@ -88,6 +88,7 @@ const startTime = ref<number | null>(null);
 
 const serverListData = ref<any[]>([]);
 const originalBinData = ref<any>(null);
+const currentLaunchAuthPayload = ref<any>(null);
 let encryptionModuleLoadPromise: Promise<void> | null = null;
 const maxGameAccounts = computed(() => {
   const raw = authStore.user?.max_game_accounts;
@@ -254,6 +255,13 @@ const addSelectedRole = async (roleInfo: any) => {
       roleIndex: roleIndex,
       wsUrl: "",
       importMethod: "wxQrcode",
+      launchContext: currentLaunchAuthPayload.value
+        ? {
+            source: "wxQrcode",
+            capturedAt: new Date().toISOString(),
+            authPayload: currentLaunchAuthPayload.value,
+          }
+        : null,
     });
 
     message.success(`已添加角色: ${finalName}`);
@@ -601,20 +609,22 @@ const getEncryptedData = async (code) => {
     throw new Error("登录响应结构异常");
   }
   console.log("combUser:", combUser);
+  currentLaunchAuthPayload.value = {
+    platform: "hortor",
+    platformExt: "mix",
+    info: combUser,
+    serverId: null,
+    scene: 0,
+    referrerInfo: "",
+    type: "wxQrcode",
+  };
 
   // 这里简化处理，实际应该调用游戏加密模块生成bin
   // 由于是前端环境，我们模拟生成一个token
   const dm = await ensureGameEncryptModule();
 
   const encryptedBuffer = dm.encMsg(
-    {
-      platform: "hortor",
-      platformExt: "mix",
-      info: combUser,
-      serverId: null,
-      scene: 0,
-      referrerInfo: "",
-    },
+    currentLaunchAuthPayload.value,
     { decrypt: dm.lz4XorDecode, encrypt: dm.lz4XorEncode },
   );
 
