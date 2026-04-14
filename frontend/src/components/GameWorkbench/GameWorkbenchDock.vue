@@ -61,7 +61,7 @@
           </button>
         </div>
 
-        <div class="workbench-body" :class="`layout-${layoutMode}`">
+        <div class="workbench-body" :class="`layout-${layoutMode}`" :style="bodyStyle">
           <template v-if="layoutMode === 'single'">
             <GameSessionCard
               v-if="activeSession"
@@ -130,6 +130,16 @@ const visibleSessions = computed(() => {
     return orderedSessions.value.slice(0, 4);
   }
   return activeSession.value ? [activeSession.value] : [];
+});
+
+const bodyStyle = computed(() => {
+  if (layoutMode.value === 'single') {
+    return {};
+  }
+
+  return {
+    gridTemplateColumns: `repeat(${Math.max(1, visibleSessions.value.length)}, minmax(0, 1fr))`,
+  };
 });
 
 const markLoaded = (sessionId: string) => {

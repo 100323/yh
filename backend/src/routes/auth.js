@@ -7,6 +7,26 @@ import { validateInviteCode, useInviteCode } from './inviteCodes.js';
 import { buildUserAccessSummary, getUserAvailabilityStatus } from '../utils/userAccess.js';
 
 const router = Router();
+const SLIM_SESSION_COOKIE = 'xyzw_slim_access';
+const SLIM_SESSION_MAX_AGE_SECONDS = 10 * 60;
+
+function buildSlimSessionCookie(req, token) {
+  const segments = [
+    `${SLIM_SESSION_COOKIE}=${encodeURIComponent(token)}`,
+    'Path=/slim-game',
+    `Max-Age=${SLIM_SESSION_MAX_AGE_SECONDS}`,
+    'HttpOnly',
+    'SameSite=Strict',
+  ];
+
+  const forwardedProto = String(req.headers['x-forwarded-proto'] || '').trim().toLowerCase();
+  const isSecureRequest = forwardedProto === 'https' || req.protocol === 'https';
+  if (isSecureRequest) {
+    segments.push('Secure');
+  }
+
+  return segments.join('; ');
+}
 
 router.post('/register', async (req, res) => {
   try {
@@ -263,5 +283,34 @@ router.post('/refresh-token', authMiddleware, (req, res) => {
   }
 });
 
-export default router;
+router.post('/slim-access', authMiddleware, (req, res) => {
+  try {
+    const token = jwt.sign(
+      {
+        purpose: 'slim-game',
+        userId: req.user.userId,
+        username: req.user.username,
+        role: req.user.role,
+      },
+      undefined,
+      `${SLIM_SESSION_MAX_AGE_SECONDS}s`,
+    );
 
+    res.setHeader('Set-Cookie', buildSlimSessionCookie(req, token));
+    res.json({
+      success: true,
+      message: 'Slim 游戏访问授权已刷新',
+      data: {
+        expiresIn: SLIM_SESSION_MAX_AGE_SECONDS,
+      },
+    });
+  } catch (error) {
+    console.error('创建 slim 访问授权失败:', error);
+    res.status(500).json({
+      success: false,
+      error: '创建游戏访问授权失败',
+    });
+  }
+});
+
+export default router;

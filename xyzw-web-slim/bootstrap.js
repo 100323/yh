@@ -312,6 +312,45 @@
     appendDebugLog("global-error-debug-patched");
   }
 
+  function applyEmbedModeStyles() {
+    var search = "";
+    try {
+      search = window.location.search || "";
+    } catch (error) {
+      search = "";
+    }
+
+    if (!/(?:\?|&)embed=1(?:&|$)/.test(search)) {
+      return;
+    }
+
+    if (document.getElementById("xyzw-embed-cover-style")) {
+      return;
+    }
+
+    var style = document.createElement("style");
+    style.id = "xyzw-embed-cover-style";
+    style.textContent = [
+      "html, body { background: #050912 !important; }",
+      "body.xyzw-embed-mode { overflow: hidden !important; }",
+      "body.xyzw-embed-mode #Cocos2dGameContainer { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; margin: 0 !important; display: block !important; overflow: hidden !important; }",
+      "body.xyzw-embed-mode #GameCanvas, body.xyzw-embed-mode canvas { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; background: transparent !important; }",
+      "body.xyzw-embed-mode #splash { background-color: #050912 !important; background-size: 36% !important; }",
+    ].join("");
+    document.head.appendChild(style);
+    document.documentElement.classList.add("xyzw-embed-mode");
+    if (document.body) {
+      document.body.classList.add("xyzw-embed-mode");
+    } else {
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.body) {
+          document.body.classList.add("xyzw-embed-mode");
+        }
+      }, { once: true });
+    }
+    appendDebugLog("embed-mode-style-applied");
+  }
+
   function patchFetchDebug() {
     if (typeof window.fetch !== "function" || window.fetch.__xyzwDebugPatched) {
       return;
@@ -2127,6 +2166,7 @@
   async function startGame() {
     console.log("All scripts loaded, preparing game...");
     window.HtmlIsLoaded = true;
+    applyEmbedModeStyles();
     initSlimLaunchIntegration();
     updateAppTitle("汤姆之王");
     updateVersionBadge("读取中", "正在加载版本");

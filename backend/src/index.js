@@ -20,8 +20,10 @@ import { initBatchScheduler, stopBatchScheduler } from './batchScheduler/index.j
 import { authMiddleware } from './middleware/auth.js';
 import { get } from './database/index.js';
 import { decrypt } from './utils/crypto.js';
+import jwt from './utils/jwt.js';
 import config from './config/index.js';
 import { preloadStudyQuestionBank } from './utils/studyQuestions.js';
+import { getUserAvailabilityStatus } from './utils/userAccess.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +37,7 @@ let databaseMaintenanceJob = null;
 let databaseVacuumJob = null;
 const DATABASE_MAINTENANCE_CRON = '35 3 * * *';
 const DATABASE_VACUUM_CRON = '10 4 * * 0';
+const SLIM_SESSION_COOKIE = 'xyzw_slim_access';
 
 const startupState = {
   startedAt: new Date().toISOString(),
@@ -77,6 +80,59 @@ function getHealthStatusCode() {
   return 200;
 }
 
+function parseCookieHeader(cookieHeader = '') {
+  return String(cookieHeader || '')
+    .split(';')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .reduce((acc, part) => {
+      const separatorIndex = part.indexOf('=');
+      if (separatorIndex <= 0) return acc;
+      const key = part.slice(0, separatorIndex).trim();
+      const value = part.slice(separatorIndex + 1).trim();
+      if (!key) return acc;
+      acc[key] = value;
+      return acc;
+    }, {});
+}
+
+function slimGameAuthMiddleware(req, res, next) {
+  const cookies = parseCookieHeader(req.headers.cookie || '');
+  const slimSessionToken = cookies[SLIM_SESSION_COOKIE]
+    ? decodeURIComponent(cookies[SLIM_SESSION_COOKIE])
+    : '';
+
+  if (!slimSessionToken) {
+    return res.status(401).send('需要先登录项目后再访问游戏');
+  }
+
+  const result = jwt.verify(slimSessionToken);
+  if (!result.valid || result.payload?.purpose !== 'slim-game') {
+    return res.status(401).send('游戏访问授权已失效，请返回项目重新进入游戏');
+  }
+
+  const user = get(
+    'SELECT id, username, role, is_enabled, access_start_at, access_end_at FROM users WHERE id = ?',
+    [result.payload.userId]
+  );
+
+  if (!user) {
+    return res.status(401).send('用户不存在');
+  }
+
+  const status = getUserAvailabilityStatus(user);
+  if (!status.allowed) {
+    return res.status(401).send(status.reason || '账号不可用');
+  }
+
+  req.slimUser = {
+    userId: user.id,
+    username: user.username,
+    role: user.role,
+  };
+  next();
+}
+
 app.use(cors());
 app.use(express.json({
   limit: '10mb',
@@ -106,7 +162,7 @@ app.use('/api/batch-scheduler', batchSchedulerRoutes);
 app.use('/api/batch-settings', batchSettingsRoutes);
 app.use('/api/invite-codes', inviteCodeRoutes);
 app.use('/api/admin/users', adminUsersRoutes);
-app.use('/slim-game', express.static(slimGamePath));
+app.use('/slim-game', slimGameAuthMiddleware, express.static(slimGamePath));
 
 app.get('/api/health', (req, res) => {
   res.status(getHealthStatusCode()).json({
