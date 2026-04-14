@@ -11,7 +11,6 @@
 
       <div class="session-actions">
         <button type="button" class="mini-button" @click="$emit('reload', session.id)">重载</button>
-        <button type="button" class="mini-button" @click="$emit('popout', session.id)">弹出</button>
         <button type="button" class="mini-button danger" @click="$emit('close', session.id)">关闭</button>
       </div>
     </div>
@@ -45,7 +44,6 @@ defineProps<{
 defineEmits<{
   (e: 'reload', sessionId: string): void;
   (e: 'close', sessionId: string): void;
-  (e: 'popout', sessionId: string): void;
   (e: 'loaded', sessionId: string): void;
   (e: 'error', sessionId: string): void;
 }>();

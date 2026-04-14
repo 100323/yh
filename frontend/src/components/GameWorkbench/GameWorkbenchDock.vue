@@ -69,7 +69,6 @@
               class="single-stage"
               @reload="reloadSession"
               @close="closeSession"
-              @popout="handlePopout"
               @loaded="markLoaded"
               @error="markError"
             />
@@ -82,7 +81,6 @@
               :session="session"
               @reload="reloadSession"
               @close="closeSession"
-              @popout="handlePopout"
               @loaded="markLoaded"
               @error="markError"
             />
@@ -96,11 +94,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useMessage } from 'naive-ui';
 import { useGameWorkbenchStore } from '@/stores/gameWorkbench';
 import GameSessionCard from './GameSessionCard.vue';
 
-const message = useMessage();
 const workbenchStore = useGameWorkbenchStore();
 const {
   sessions,
@@ -117,7 +113,6 @@ const {
   reloadSession,
   closeSession,
   closeAllSessions,
-  popoutSession,
   setSessionStatus,
 } = workbenchStore;
 
@@ -136,13 +131,6 @@ const visibleSessions = computed(() => {
   }
   return activeSession.value ? [activeSession.value] : [];
 });
-
-const handlePopout = (sessionId: string) => {
-  const result = popoutSession(sessionId);
-  if (result?.openedInNewWindow) {
-    message.success('已弹出独立游戏窗口');
-  }
-};
 
 const markLoaded = (sessionId: string) => {
   setSessionStatus(sessionId, 'running');
