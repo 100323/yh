@@ -5,28 +5,9 @@ import jwt from '../utils/jwt.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { validateInviteCode, useInviteCode } from './inviteCodes.js';
 import { buildUserAccessSummary, getUserAvailabilityStatus } from '../utils/userAccess.js';
+import { createSlimEntryTicket } from '../utils/slimEntryTicketStore.js';
 
 const router = Router();
-const SLIM_SESSION_COOKIE = 'xyzw_slim_access';
-const SLIM_SESSION_MAX_AGE_SECONDS = 10 * 60;
-
-function buildSlimSessionCookie(req, token) {
-  const segments = [
-    `${SLIM_SESSION_COOKIE}=${encodeURIComponent(token)}`,
-    'Path=/slim-game',
-    `Max-Age=${SLIM_SESSION_MAX_AGE_SECONDS}`,
-    'HttpOnly',
-    'SameSite=Strict',
-  ];
-
-  const forwardedProto = String(req.headers['x-forwarded-proto'] || '').trim().toLowerCase();
-  const isSecureRequest = forwardedProto === 'https' || req.protocol === 'https';
-  if (isSecureRequest) {
-    segments.push('Secure');
-  }
-
-  return segments.join('; ');
-}
 
 router.post('/register', async (req, res) => {
   try {
@@ -283,33 +264,25 @@ router.post('/refresh-token', authMiddleware, (req, res) => {
   }
 });
 
-router.post('/slim-access', authMiddleware, (req, res) => {
+router.post('/slim-entry-ticket', authMiddleware, (req, res) => {
   try {
-    const token = jwt.sign(
-      {
-        purpose: 'slim-game',
-        userId: req.user.userId,
-        username: req.user.username,
-        role: req.user.role,
-      },
-      undefined,
-      `${SLIM_SESSION_MAX_AGE_SECONDS}s`,
-    );
+    const { ticket, expiresInMs } = createSlimEntryTicket({
+      userId: req.user.userId,
+    });
 
-    res.setHeader('Set-Cookie', buildSlimSessionCookie(req, token));
     res.json({
       success: true,
-      message: 'Slim 游戏访问授权已刷新',
+      message: 'Slim 入口票据创建成功',
       data: {
-        expiresIn: SLIM_SESSION_MAX_AGE_SECONDS,
-        accessToken: token,
+        ticket,
+        expiresInMs,
       },
     });
   } catch (error) {
-    console.error('创建 slim 访问授权失败:', error);
+    console.error('创建 slim 入口票据失败:', error);
     res.status(500).json({
       success: false,
-      error: '创建游戏访问授权失败',
+      error: '创建游戏入口票据失败',
     });
   }
 });

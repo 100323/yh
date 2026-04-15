@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { openSlimGameWithAccount, prepareSlimGameLaunch } from '@/utils/slimGameLauncher';
+import api from '@/api';
 
 export type GameWorkbenchSessionStatus = 'loading' | 'running' | 'error';
 export type GameWorkbenchLayoutMode = 'single' | 'grid2' | 'grid4';
@@ -53,6 +54,21 @@ function getAccountKey(account: Record<string, any>) {
   );
 }
 
+async function attachSlimEntryTicket(account: Record<string, any>): Promise<Record<string, any>> {
+  const response = await api.post('/auth/slim-entry-ticket');
+  if (!response?.success) {
+    throw new Error(response?.error || '创建游戏入口票据失败');
+  }
+
+  return {
+    ...account,
+    slimEntryTicket:
+      response?.data?.ticket ||
+      response?.ticket ||
+      '',
+  };
+}
+
 export const useGameWorkbenchStore = defineStore('gameWorkbench', () => {
   const sessions = ref<GameWorkbenchSession[]>([]);
   const activeSessionId = ref('');
@@ -74,8 +90,8 @@ export const useGameWorkbenchStore = defineStore('gameWorkbench', () => {
     ];
   });
 
-  const openSession = (account: Record<string, any>) => {
-    const accountSnapshot = cloneLaunchAccount(account);
+  const openSession = async (account: Record<string, any>) => {
+    const accountSnapshot = await attachSlimEntryTicket(cloneLaunchAccount(account));
     const accountKey = getAccountKey(accountSnapshot);
     const existing = sessions.value.find((session) => session.accountKey === accountKey);
     const sessionId = existing?.id || createSessionId();
@@ -117,11 +133,12 @@ export const useGameWorkbenchStore = defineStore('gameWorkbench', () => {
     return nextSession;
   };
 
-  const reloadSession = (sessionId: string) => {
+  const reloadSession = async (sessionId: string) => {
     const session = sessions.value.find((item) => item.id === sessionId);
     if (!session) return null;
 
-    const prepared = prepareSlimGameLaunch(cloneLaunchAccount(session.account), {
+    const refreshedAccount = await attachSlimEntryTicket(cloneLaunchAccount(session.account));
+    const prepared = prepareSlimGameLaunch(refreshedAccount, {
       sessionId: session.id,
       embed: true,
     });
@@ -129,6 +146,7 @@ export const useGameWorkbenchStore = defineStore('gameWorkbench', () => {
     session.status = 'loading';
     session.launchKey = prepared.launchKey;
     session.launchUrl = prepared.launchUrl;
+    session.account = refreshedAccount;
     session.updatedAt = new Date().toISOString();
     activeSessionId.value = session.id;
     collapsed.value = false;

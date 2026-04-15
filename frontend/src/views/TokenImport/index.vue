@@ -720,15 +720,7 @@ const resolveLaunchAccount = async (token) => {
 const enterGame = async (token) => {
   try {
     const launchAccount = await resolveLaunchAccount(token);
-    const slimAccessRes = await api.post('/auth/slim-access');
-    if (!slimAccessRes?.success) {
-      throw new Error(slimAccessRes?.error || '创建游戏访问授权失败');
-    }
-    launchAccount.slimAccessToken =
-      slimAccessRes?.data?.accessToken ||
-      slimAccessRes?.accessToken ||
-      '';
-    gameWorkbenchStore.openSession(launchAccount);
+    await gameWorkbenchStore.openSession(launchAccount);
     message.success(`已在当前页打开 ${token.name}`);
   } catch (error) {
     message.error(error?.message || "进入游戏失败");

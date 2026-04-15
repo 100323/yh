@@ -1,4 +1,5 @@
 const SLIM_GAME_PATH = '/slim-game/index.html';
+const SLIM_GAME_ENTRY_PATH = '/slim-game/entry';
 const SLIM_LAUNCH_STORAGE_PREFIX = 'xyzw-slim-launch:';
 const SLIM_LAUNCH_TTL_MS = 15 * 60 * 1000;
 const SLIM_LAST_ACCOUNT_KEY = 'xyzw-slim-launch-account';
@@ -271,8 +272,8 @@ function persistStableSlimLaunchAccount(storage, account = {}) {
 }
 
 function buildSlimGameUrl(launchKey, account = {}, options = {}) {
-  const url = new URL(SLIM_GAME_PATH, window.location.origin);
-  const slimAccessToken = toCleanString(account.slimAccessToken);
+  const slimEntryTicket = toCleanString(account.slimEntryTicket);
+  const url = new URL(slimEntryTicket ? SLIM_GAME_ENTRY_PATH : SLIM_GAME_PATH, window.location.origin);
   const sessionId = toCleanString(options.sessionId);
   const embed = options.embed === true || options.embed === '1';
 
@@ -286,8 +287,8 @@ function buildSlimGameUrl(launchKey, account = {}, options = {}) {
     url.searchParams.set('sessionId', sessionId);
   }
 
-  if (slimAccessToken) {
-    url.searchParams.set('slimAccess', slimAccessToken);
+  if (slimEntryTicket) {
+    url.searchParams.set('ticket', slimEntryTicket);
   }
 
   return url.toString();
