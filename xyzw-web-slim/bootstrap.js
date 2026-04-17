@@ -3,11 +3,14 @@
   var VERSION_BADGE_ID = "xyzw-version-badge";
   var APP_TITLE_ID = "xyzw-app-title";
   var RUNTIME_SETTINGS_KEY = "__XYZW_RUNTIME_SETTINGS__";
-  var BOOT_PATCH_LABEL = "remotefix-13";
-  var HIDE_BUILTIN_CODE_VERSION = false;
-  var TRACE_ENABLED = true;
-  var TRACE_STORE_KEY = "__XYZW_TRACE_LOGS__";
-  var TRACE_MAX = 400;
+  var SLIM_LAUNCH_STORAGE_PREFIX = "xyzw-slim-launch:";
+  var SLIM_LAST_ACCOUNT_KEY = "xyzw-slim-launch-account";
+  var SLIM_RUNTIME_PATCH_TIMER = null;
+  var BOOT_PATCH_LABEL = "remotefix-12";
+  var DEBUG_PANEL_ID = "xyzw-slim-debug-panel";
+  var DEBUG_LOGS = [];
+  var DEBUG_COLLAPSED = false;
+  var DEBUG_PANEL_ENABLED = /(?:\?|&)slimDebug=1(?:&|$)/.test(window.location.search || "");
   var AUTO_CODE_VERSION = {
     enabled: true,
     baseVersion: "2.22.3",
@@ -27,153 +30,6 @@
     body: "",
   };
 
-  function safeTraceValue(value) {
-    if (value === null || value === undefined) {
-      return value;
-    }
-
-    if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
-      return value;
-    }
-
-    if (Array.isArray(value)) {
-      return value.slice(0, 8).map(safeTraceValue);
-    }
-
-    if (typeof value === "object") {
-      var result = {};
-      Object.keys(value)
-        .slice(0, 20)
-        .forEach(function (key) {
-          result[key] = safeTraceValue(value[key]);
-        });
-      return result;
-    }
-
-    return String(value);
-  }
-
-  function pushTrace(level, message, payload) {
-    if (!TRACE_ENABLED) {
-      return;
-    }
-
-    var entry = {
-      time: new Date().toISOString(),
-      level: level,
-      message: message,
-      payload: safeTraceValue(payload),
-    };
-
-    var store = window[TRACE_STORE_KEY];
-    if (!Array.isArray(store)) {
-      store = [];
-      window[TRACE_STORE_KEY] = store;
-    }
-    store.push(entry);
-    if (store.length > TRACE_MAX) {
-      store.splice(0, store.length - TRACE_MAX);
-    }
-
-    var logger = level === "error" ? console.error : level === "warn" ? console.warn : console.log;
-    logger("[xyzw-trace]", message, entry.payload || "");
-  }
-
-  function traceLog(message, payload) {
-    pushTrace("log", message, payload);
-  }
-
-  function traceWarn(message, payload) {
-    pushTrace("warn", message, payload);
-  }
-
-  function traceError(message, payload) {
-    pushTrace("error", message, payload);
-  }
-
-  function shouldTraceUrl(url) {
-    var text = String(url || "");
-    return (
-      /\/remote\//.test(text) ||
-      /\/assets\//.test(text) ||
-      /\/data\//.test(text) ||
-      /version\.json/.test(text) ||
-      /manifest/.test(text)
-    );
-  }
-
-  function patchFetchAndXHRTracing() {
-    if (window.fetch && !window.fetch.__xyzwTracePatched) {
-      var originalFetch = window.fetch.bind(window);
-      var tracedFetch = function (input, init) {
-        var url = typeof input === "string" ? input : input && input.url;
-        var method = (init && init.method) || "GET";
-        if (shouldTraceUrl(url)) {
-          traceLog("fetch start", { url: url, method: method });
-        }
-        return originalFetch(input, init)
-          .then(function (response) {
-            if (shouldTraceUrl(url)) {
-              traceLog("fetch done", { url: url, status: response.status, ok: response.ok });
-            }
-            return response;
-          })
-          .catch(function (error) {
-            if (shouldTraceUrl(url)) {
-              traceError("fetch fail", { url: url, error: error && error.message ? error.message : String(error) });
-            }
-            throw error;
-          });
-      };
-      tracedFetch.__xyzwTracePatched = true;
-      tracedFetch.__xyzwOriginal = originalFetch;
-      window.fetch = tracedFetch;
-    }
-
-    if (window.XMLHttpRequest && !window.XMLHttpRequest.__xyzwTracePatched) {
-      var OriginalXHR = window.XMLHttpRequest;
-      function TracedXHR() {
-        var xhr = new OriginalXHR();
-        var method = "GET";
-        var url = "";
-        var originalOpen = xhr.open;
-        var originalSend = xhr.send;
-
-        xhr.open = function (nextMethod, nextUrl) {
-          method = nextMethod || "GET";
-          url = nextUrl || "";
-          return originalOpen.apply(xhr, arguments);
-        };
-
-        xhr.send = function () {
-          if (shouldTraceUrl(url)) {
-            traceLog("xhr start", { url: url, method: method });
-            xhr.addEventListener(
-              "loadend",
-              function () {
-                traceLog("xhr done", { url: url, method: method, status: xhr.status });
-              },
-              { once: true }
-            );
-            xhr.addEventListener(
-              "error",
-              function () {
-                traceError("xhr fail", { url: url, method: method, status: xhr.status });
-              },
-              { once: true }
-            );
-          }
-          return originalSend.apply(xhr, arguments);
-        };
-
-        return xhr;
-      }
-      TracedXHR.__xyzwTracePatched = true;
-      TracedXHR.prototype = OriginalXHR.prototype;
-      window.XMLHttpRequest = TracedXHR;
-    }
-  }
-
   function clonePlainObject(source) {
     var target = {};
     if (!source || typeof source !== "object") {
@@ -184,6 +40,468 @@
       target[key] = source[key];
     });
     return target;
+  }
+
+  function ensureDebugPanel() {
+    if (!DEBUG_PANEL_ENABLED) {
+      return null;
+    }
+    if (!document || !document.body) {
+      return null;
+    }
+
+    var panel = document.getElementById(DEBUG_PANEL_ID);
+    if (panel) {
+      return panel;
+    }
+
+    panel = document.createElement("div");
+    panel.id = DEBUG_PANEL_ID;
+    panel.style.cssText = [
+      "position:fixed",
+      "top:max(10px, env(safe-area-inset-top))",
+      "left:max(10px, env(safe-area-inset-left))",
+      "z-index:1000000",
+      "width:min(88vw,420px)",
+      "max-height:58vh",
+      "overflow:auto",
+      "padding:40px 12px 10px 12px",
+      "border-radius:10px",
+      "background:rgba(0,0,0,0.82)",
+      "border:1px solid rgba(255,255,255,0.15)",
+      "box-shadow:0 8px 24px rgba(0,0,0,0.35)",
+      "color:#d8f3ff",
+      "font:12px/1.45 Menlo, Monaco, Consolas, monospace",
+      "white-space:pre-wrap",
+      "word-break:break-word",
+      "pointer-events:auto"
+    ].join(";");
+
+    function createButton(text, left, onClick) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.textContent = text;
+      button.style.cssText = [
+        "position:absolute",
+        "top:8px",
+        "left:" + left + "px",
+        "z-index:2",
+        "padding:4px 8px",
+        "border-radius:6px",
+        "border:1px solid rgba(255,255,255,0.18)",
+        "background:rgba(255,255,255,0.08)",
+        "color:#ffffff",
+        "font:12px/1.2 Arial, sans-serif",
+        "cursor:pointer",
+        "pointer-events:auto"
+      ].join(";");
+      button.addEventListener("click", onClick);
+      return button;
+    }
+
+    var toggleButton = createButton("缩小", 8, function () {
+      DEBUG_COLLAPSED = !DEBUG_COLLAPSED;
+      renderDebugPanel();
+    });
+    toggleButton.id = DEBUG_PANEL_ID + "-toggle";
+    panel.appendChild(toggleButton);
+
+    var copyButton = createButton("复制", 72, function () {
+      var text = DEBUG_LOGS.join("\n");
+      if (navigator && navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        navigator.clipboard.writeText(text).then(function () {
+          appendDebugLog("debug-log-copied");
+        }).catch(function (error) {
+          appendDebugLog("debug-copy-failed", error && error.message ? error.message : String(error));
+        });
+        return;
+      }
+    });
+    panel.appendChild(copyButton);
+
+    var exportButton = createButton("导出", 128, function () {
+      try {
+        var text = DEBUG_LOGS.join("\n");
+        var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = "xyzw-slim-debug-log.txt";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+        appendDebugLog("debug-log-exported");
+      } catch (error) {
+        appendDebugLog("debug-export-failed", error && error.message ? error.message : String(error));
+      }
+    });
+    panel.appendChild(exportButton);
+
+    var content = document.createElement("div");
+    content.setAttribute("data-role", "debug-content");
+    panel.appendChild(content);
+
+    document.body.appendChild(panel);
+    return panel;
+  }
+
+  function renderDebugPanel() {
+    if (!DEBUG_PANEL_ENABLED) {
+      return;
+    }
+    var panel = ensureDebugPanel();
+    if (!panel) {
+      return;
+    }
+
+    var toggleButton = panel.querySelector("#" + DEBUG_PANEL_ID + "-toggle");
+    var content = panel.querySelector('[data-role="debug-content"]');
+    if (toggleButton) {
+      toggleButton.textContent = DEBUG_COLLAPSED ? "展开" : "缩小";
+    }
+
+    if (DEBUG_COLLAPSED) {
+      panel.style.maxHeight = "44px";
+      panel.style.width = "220px";
+      panel.style.overflow = "hidden";
+      if (content) {
+        content.style.display = "none";
+      }
+      return;
+    }
+
+    panel.style.maxHeight = "58vh";
+    panel.style.width = "min(88vw,420px)";
+    panel.style.overflow = "auto";
+    if (content) {
+      content.style.display = "block";
+      content.textContent = DEBUG_LOGS.join("\n");
+    }
+  }
+
+  function appendDebugLog(label, payload) {
+    var line = "[slim] " + label;
+    if (payload !== undefined) {
+      try {
+        line += " " + (typeof payload === "string" ? payload : JSON.stringify(payload));
+      } catch (error) {
+        line += " " + String(payload);
+      }
+    }
+
+    DEBUG_LOGS.push(line);
+    if (DEBUG_LOGS.length > 120) {
+      DEBUG_LOGS.shift();
+    }
+    if (DEBUG_PANEL_ENABLED) {
+      console.info(line);
+      renderDebugPanel();
+    }
+  }
+
+  function shouldTraceNetwork(url) {
+    var text = String(url || "");
+    return (
+      text.indexOf("login/authuser") !== -1 ||
+      text.indexOf("login/serverlist") !== -1 ||
+      text.indexOf("login/rolequery") !== -1 ||
+      text.indexOf("login/manifest") !== -1
+    );
+  }
+
+  function shouldTraceStorageKey(key) {
+    var text = String(key || "");
+    return (
+      text.indexOf("xyzw-slim-launch") !== -1 ||
+      text === "userId" ||
+      text === "_fakeAuthed"
+    );
+  }
+
+  function summarizeValue(value, limit) {
+    var text = String(value == null ? "" : value);
+    return {
+      length: text.length,
+      preview: text.slice(0, limit || 220),
+    };
+  }
+
+  function patchStorageDebug(target, label) {
+    if (!target || target.__xyzwStorageDebugPatched) {
+      return;
+    }
+
+    var originalGetItem = typeof target.getItem === "function" ? target.getItem.bind(target) : null;
+    var originalSetItem = typeof target.setItem === "function" ? target.setItem.bind(target) : null;
+    var originalRemoveItem = typeof target.removeItem === "function" ? target.removeItem.bind(target) : null;
+
+    if (originalGetItem) {
+      target.getItem = function (key) {
+        var result = originalGetItem(key);
+        if (shouldTraceStorageKey(key)) {
+          appendDebugLog(label + "-getItem", {
+            key: String(key || ""),
+            hit: result != null,
+            value: summarizeValue(result),
+          });
+        }
+        return result;
+      };
+    }
+
+    if (originalSetItem) {
+      target.setItem = function (key, value) {
+        if (shouldTraceStorageKey(key)) {
+          appendDebugLog(label + "-setItem", {
+            key: String(key || ""),
+            value: summarizeValue(value),
+          });
+        }
+        return originalSetItem(key, value);
+      };
+    }
+
+    if (originalRemoveItem) {
+      target.removeItem = function (key) {
+        if (shouldTraceStorageKey(key)) {
+          appendDebugLog(label + "-removeItem", { key: String(key || "") });
+        }
+        return originalRemoveItem(key);
+      };
+    }
+
+    target.__xyzwStorageDebugPatched = true;
+    appendDebugLog(label + "-debug-patched");
+  }
+
+  function patchGlobalErrorDebug() {
+    if (window.__xyzwGlobalErrorDebugPatched) {
+      return;
+    }
+
+    window.__xyzwGlobalErrorDebugPatched = true;
+    window.addEventListener("error", function (event) {
+      appendDebugLog("window-error", {
+        message: event && event.message ? event.message : "",
+        source: event && event.filename ? event.filename : "",
+        line: event && event.lineno ? event.lineno : 0,
+        column: event && event.colno ? event.colno : 0,
+        stack: event && event.error && event.error.stack ? String(event.error.stack).slice(0, 2000) : "",
+      });
+    });
+
+    window.addEventListener("unhandledrejection", function (event) {
+      var reason = event ? event.reason : null;
+      appendDebugLog("unhandled-rejection", {
+        message: reason && reason.message ? reason.message : String(reason == null ? "" : reason),
+        stack: reason && reason.stack ? String(reason.stack).slice(0, 2000) : "",
+      });
+    });
+
+    var originalAlert = window.alert;
+    if (typeof originalAlert === "function") {
+      window.alert = function (message) {
+        appendDebugLog("window-alert", String(message == null ? "" : message).slice(0, 1000));
+        return originalAlert.apply(window, arguments);
+      };
+    }
+
+    appendDebugLog("global-error-debug-patched");
+  }
+
+  function applyEmbedModeStyles() {
+    var search = "";
+    try {
+      search = window.location.search || "";
+    } catch (error) {
+      search = "";
+    }
+
+    if (!/(?:\?|&)embed=1(?:&|$)/.test(search)) {
+      return;
+    }
+
+    if (document.getElementById("xyzw-embed-cover-style")) {
+      return;
+    }
+
+    var style = document.createElement("style");
+    style.id = "xyzw-embed-cover-style";
+    style.textContent = [
+      "html, body { background: #050912 !important; }",
+      "body.xyzw-embed-mode { overflow: hidden !important; }",
+      "body.xyzw-embed-mode #Cocos2dGameContainer { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; margin: 0 !important; display: block !important; overflow: hidden !important; }",
+      "body.xyzw-embed-mode #GameCanvas, body.xyzw-embed-mode canvas { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; background: transparent !important; }",
+      "body.xyzw-embed-mode #splash { background-color: #050912 !important; background-size: 36% !important; }",
+    ].join("");
+    document.head.appendChild(style);
+    document.documentElement.classList.add("xyzw-embed-mode");
+    if (document.body) {
+      document.body.classList.add("xyzw-embed-mode");
+    } else {
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.body) {
+          document.body.classList.add("xyzw-embed-mode");
+        }
+      }, { once: true });
+    }
+    appendDebugLog("embed-mode-style-applied");
+  }
+
+  function patchFetchDebug() {
+    if (typeof window.fetch !== "function" || window.fetch.__xyzwDebugPatched) {
+      return;
+    }
+
+    var originalFetch = window.fetch.bind(window);
+    var patchedFetch = async function (input, init) {
+      var url = typeof input === "string" ? input : (input && input.url) || "";
+      if (shouldTraceNetwork(url) && String(url).indexOf("login/manifest?platform=hortor") === -1) {
+        appendDebugLog("fetch-request", {
+          url: String(url).slice(0, 220),
+          method: (init && init.method) || "GET",
+        });
+      }
+
+      try {
+        var response = await originalFetch(input, init);
+        if (shouldTraceNetwork(url) && String(url).indexOf("login/manifest?platform=hortor") === -1) {
+          appendDebugLog("fetch-response", {
+            url: String(url).slice(0, 220),
+            status: response && response.status,
+            ok: !!(response && response.ok),
+          });
+        }
+        return response;
+      } catch (error) {
+        if (shouldTraceNetwork(url)) {
+          appendDebugLog("fetch-error", {
+            url: String(url).slice(0, 220),
+            message: error && error.message ? error.message : String(error),
+          });
+        }
+        throw error;
+      }
+    };
+
+    patchedFetch.__xyzwDebugPatched = true;
+    window.fetch = patchedFetch;
+    if (typeof globalThis !== "undefined") {
+      globalThis.fetch = patchedFetch;
+    }
+    appendDebugLog("fetch-debug-patched");
+  }
+
+  function toHexPreviewFromArrayBuffer(buffer, limit) {
+    try {
+      var view = new Uint8Array(buffer || new ArrayBuffer(0));
+      var max = Math.min(view.length, limit || 64);
+      var parts = [];
+      for (var index = 0; index < max; index += 1) {
+        parts.push(view[index].toString(16).padStart(2, "0"));
+      }
+      return parts.join("");
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function patchXHRDebug() {
+    if (typeof window.XMLHttpRequest !== "function" || window.XMLHttpRequest.__xyzwDebugPatched) {
+      return;
+    }
+
+    var OriginalXHR = window.XMLHttpRequest;
+
+    function PatchedXHR() {
+      var xhr = new OriginalXHR();
+      var meta = {
+        method: "GET",
+        url: "",
+        bodyPreview: "",
+        bodyLength: 0,
+        headers: {},
+      };
+
+      var originalOpen = xhr.open;
+      xhr.open = function (method, url) {
+        meta.method = method || "GET";
+        meta.url = url || "";
+        return originalOpen.apply(xhr, arguments);
+      };
+
+      var originalSetRequestHeader = xhr.setRequestHeader;
+      xhr.setRequestHeader = function (name, value) {
+        try {
+          meta.headers[String(name || "").toLowerCase()] = String(value || "");
+        } catch (error) {}
+        return originalSetRequestHeader.apply(xhr, arguments);
+      };
+
+      var originalSend = xhr.send;
+      xhr.send = function (body) {
+        if (body instanceof ArrayBuffer) {
+          meta.bodyLength = body.byteLength || 0;
+          meta.bodyPreview = toHexPreviewFromArrayBuffer(body, 64);
+        } else if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView && ArrayBuffer.isView(body)) {
+          meta.bodyLength = body.byteLength || 0;
+          meta.bodyPreview = toHexPreviewFromArrayBuffer(body.buffer, 64);
+        } else if (typeof body === "string") {
+          meta.bodyLength = body.length;
+          meta.bodyPreview = body.slice(0, 160);
+        } else {
+          meta.bodyLength = 0;
+          meta.bodyPreview = "";
+        }
+        return originalSend.apply(xhr, arguments);
+      };
+
+      xhr.addEventListener("loadstart", function () {
+        if (shouldTraceNetwork(meta.url)) {
+          appendDebugLog("xhr-request", {
+            url: String(meta.url).slice(0, 220),
+            method: meta.method,
+            bodyLength: meta.bodyLength,
+            bodyPreview: meta.bodyPreview,
+            headers: meta.headers,
+          });
+        }
+      });
+
+      xhr.addEventListener("loadend", function () {
+        if (shouldTraceNetwork(meta.url)) {
+          appendDebugLog("xhr-response", {
+            url: String(meta.url).slice(0, 220),
+            method: meta.method,
+            status: xhr.status,
+            responseType: xhr.responseType || "",
+          });
+        }
+      });
+
+      xhr.addEventListener("error", function () {
+        if (shouldTraceNetwork(meta.url)) {
+          appendDebugLog("xhr-error", {
+            url: String(meta.url).slice(0, 220),
+            method: meta.method,
+            status: xhr.status,
+          });
+        }
+      });
+
+      return xhr;
+    }
+
+    PatchedXHR.prototype = OriginalXHR.prototype;
+    PatchedXHR.__xyzwDebugPatched = true;
+    window.XMLHttpRequest = PatchedXHR;
+    if (typeof globalThis !== "undefined") {
+      globalThis.XMLHttpRequest = PatchedXHR;
+    }
+    appendDebugLog("xhr-debug-patched");
   }
 
   function resolveManifestConfig(payload) {
@@ -250,6 +568,716 @@
     } catch (error) {
       return null;
     }
+  }
+
+  function getSlimSafeStorage() {
+    try {
+      return window.localStorage;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function toCleanString(value) {
+    return String(value == null ? "" : value).trim();
+  }
+
+  function pickFirstDefined() {
+    for (var i = 0; i < arguments.length; i += 1) {
+      var value = arguments[i];
+      if (value !== undefined && value !== null && value !== "") {
+        return value;
+      }
+    }
+    return undefined;
+  }
+
+  function tryParseJsonString(value) {
+    if (typeof value !== "string") {
+      return value;
+    }
+
+    var text = value.trim();
+    if (!text) {
+      return value;
+    }
+
+    try {
+      return JSON.parse(text);
+    } catch (error) {
+      return value;
+    }
+  }
+
+  function readSlimLaunchPayload() {
+    var storage = getSlimSafeStorage();
+    if (!storage) {
+      appendDebugLog("launch-storage-unavailable");
+      return null;
+    }
+
+    var launchKey = "";
+    try {
+      var search = new URLSearchParams(window.location.search || "");
+      launchKey = search.get("launchKey") || "";
+    } catch (error) {
+      launchKey = "";
+    }
+
+    var raw = "";
+    var source = "";
+
+    if (launchKey) {
+      raw = storage.getItem(launchKey) || "";
+      source = launchKey;
+    }
+
+    if (!raw) {
+      raw = storage.getItem(SLIM_LAST_ACCOUNT_KEY) || "";
+      source = SLIM_LAST_ACCOUNT_KEY;
+    }
+
+    if (!raw) {
+      appendDebugLog("launch-payload-missing");
+      return null;
+    }
+
+    var parsed = tryParseJson(raw);
+    if (!parsed || typeof parsed !== "object") {
+      appendDebugLog("launch-payload-invalid", {
+        source: source,
+        value: summarizeValue(raw),
+      });
+      return null;
+    }
+
+    parsed.__storageSource = source;
+    return parsed;
+  }
+
+  function normalizeSlimAuthPayload(rawPayload) {
+    if (!rawPayload) {
+      return null;
+    }
+
+    var payload = rawPayload;
+    if (typeof payload === "string") {
+      var payloadText = payload.trim();
+      if (!payloadText) {
+        return null;
+      }
+      try {
+        payload = JSON.parse(payloadText);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+      return null;
+    }
+
+    var candidates = [
+      payload,
+      payload.authPayload,
+      payload.auth_payload,
+      payload.loginPayload,
+      payload.login_payload,
+      payload.launchContext,
+      payload.launch_context,
+      payload.data,
+      payload.rawData,
+      payload.result,
+      payload.payload,
+    ].filter(Boolean);
+
+    for (var i = 0; i < candidates.length; i += 1) {
+      var item = candidates[i];
+      var info = tryParseJsonString(
+        pickFirstDefined(item.info, item.authInfo, item.encryptUserInfo, item.userInfo, item.loginInfo),
+      );
+      var platformExt = pickFirstDefined(item.platformExt, item.platform_ext, item.ext);
+      var serverIdRaw = pickFirstDefined(item.serverId, item.serverID, item.sid, item.realServerId);
+      var serverId =
+        serverIdRaw === null || serverIdRaw === undefined || serverIdRaw === ""
+          ? null
+          : Number(serverIdRaw);
+
+      if (platformExt && info && (serverId === null || Number.isFinite(serverId))) {
+        return {
+          platform: toCleanString(item.platform || "hortor") || "hortor",
+          platformExt: toCleanString(platformExt),
+          info: info,
+          serverId: serverId,
+          scene: Number.isFinite(Number(item.scene)) ? Number(item.scene) : 0,
+          referrerInfo: toCleanString(item.referrerInfo),
+          type: toCleanString(item.type || "slim-launch") || "slim-launch",
+        };
+      }
+    }
+
+    return null;
+  }
+
+  function stringifySlimAuthInfo(info) {
+    if (typeof info === "string") {
+      return info;
+    }
+
+    try {
+      return JSON.stringify(info == null ? {} : info);
+    } catch (error) {
+      return "{}";
+    }
+  }
+
+  function buildSlimAuthUserParams(params, authPayload) {
+    var next = Object.assign({}, params || {});
+    if (authPayload.platformExt) {
+      next.platformExt = authPayload.platformExt;
+    }
+    next.info = stringifySlimAuthInfo(authPayload.info);
+    if (Number.isFinite(authPayload.serverId)) {
+      next.serverId = authPayload.serverId;
+    }
+    if (next.scene === undefined) {
+      next.scene = 0;
+    }
+    return next;
+  }
+
+  function buildSlimServerListParams(params, authPayload) {
+    return {
+      platform: "hortor",
+      platformExt: authPayload.platformExt || (params && params.platformExt) || "mix",
+      info: stringifySlimAuthInfo(authPayload.info),
+      serverId: Number.isFinite(authPayload.serverId) ? authPayload.serverId : null,
+      scene: 0,
+      referrerInfo: "",
+      rtt: params && Number.isFinite(Number(params.rtt)) ? Number(params.rtt) : 0,
+    };
+  }
+
+  function tryRequireModule(name) {
+    if (typeof window.__require !== "function") {
+      return null;
+    }
+
+    try {
+      return window.__require(name);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function getDataIndexModule() {
+    return tryRequireModule("data-index");
+  }
+
+  function getSlimLaunchState() {
+    return window.__XYZW_SLIM_LAUNCH__ || null;
+  }
+
+  function getSlimAuthPayload() {
+    var state = getSlimLaunchState();
+    return state && state.authPayload ? state.authPayload : null;
+  }
+
+  function getSlimTokenPayload() {
+    var state = getSlimLaunchState();
+    return state && state.tokenPayload ? state.tokenPayload : null;
+  }
+
+  function normalizeSlimTokenPayload(rawToken) {
+    if (!rawToken) {
+      return null;
+    }
+
+    var payload = rawToken;
+    if (typeof payload === "string") {
+      payload = tryParseJson(payload.trim());
+    }
+
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+      return null;
+    }
+
+    var roleToken = toCleanString(payload.roleToken || payload.token);
+    if (!roleToken) {
+      return null;
+    }
+
+    var roleId = Number(payload.roleId || payload.roleID || payload.rid || 0);
+    var sessId = Number(payload.sessId || payload.sessionId || 0);
+    var connId = Number(payload.connId || payload.connectionId || 0);
+    var isRestore = Number(payload.isRestore || 0);
+
+    return {
+      roleToken: roleToken,
+      roleId: Number.isFinite(roleId) ? roleId : 0,
+      sessId: Number.isFinite(sessId) ? sessId : 0,
+      connId: Number.isFinite(connId) ? connId : 0,
+      isRestore: Number.isFinite(isRestore) ? isRestore : 0,
+    };
+  }
+
+  function hasSlimTokenFallback() {
+    var tokenPayload = getSlimTokenPayload();
+    return !getSlimAuthPayload() && !!(tokenPayload && tokenPayload.roleToken);
+  }
+
+  function createSlimAuthResultFromToken(tokenPayload) {
+    var payload = tokenPayload || getSlimTokenPayload();
+    if (!payload || !payload.roleToken) {
+      return null;
+    }
+
+    var rawData = {
+      roleToken: payload.roleToken,
+      roleId: Number.isFinite(payload.roleId) ? payload.roleId : 0,
+      sessId: Number.isFinite(payload.sessId) ? payload.sessId : 0,
+      connId: Number.isFinite(payload.connId) ? payload.connId : 0,
+      isRestore: Number.isFinite(payload.isRestore) ? payload.isRestore : 0,
+    };
+
+    return {
+      code: 0,
+      error: "",
+      rawData: rawData,
+      getData: function () {
+        return rawData;
+      },
+    };
+  }
+
+  function getSlimResolvedPlatformExt() {
+    var authPayload = getSlimAuthPayload();
+    if (authPayload && authPayload.platformExt) {
+      return authPayload.platformExt;
+    }
+
+    var state = getSlimLaunchState();
+    var launchContext = state && state.payload && state.payload.launchContext
+      ? state.payload.launchContext
+      : null;
+    var nextValue = pickFirstDefined(
+      launchContext && launchContext.platformExt,
+      launchContext && launchContext.platform_ext,
+      state && state.payload && state.payload.platformExt,
+      state && state.payload && state.payload.platform_ext,
+      "mix"
+    );
+    return toCleanString(nextValue) || "mix";
+  }
+
+  function getSlimResolvedServerId() {
+    var authPayload = getSlimAuthPayload();
+    if (authPayload && Number.isFinite(authPayload.serverId)) {
+      return authPayload.serverId;
+    }
+
+    var state = getSlimLaunchState();
+    var payload = state && state.payload ? state.payload : null;
+    var launchContext = payload && payload.launchContext ? payload.launchContext : null;
+    var nextValue = pickFirstDefined(
+      payload && payload.serverId,
+      launchContext && launchContext.serverId,
+      launchContext && launchContext.authPayload && launchContext.authPayload.serverId,
+      launchContext && launchContext.auth_payload && launchContext.auth_payload.serverId
+    );
+    var numeric = Number(nextValue);
+    return Number.isFinite(numeric) ? numeric : null;
+  }
+
+  function patchSlimLoginService(dataIndex) {
+    if (!dataIndex || !dataIndex.LoginService) {
+      return false;
+    }
+
+    var loginService = dataIndex.LoginService;
+    var patched = false;
+
+    if (typeof loginService.authUser === "function" && !loginService.authUser.__xyzwSlimPatched) {
+      var originalAuthUser = loginService.authUser;
+      loginService.authUser = function (params) {
+        var authPayload = getSlimAuthPayload();
+        if (authPayload) {
+          var patchedParams = buildSlimAuthUserParams(params, authPayload);
+          appendDebugLog("slim-authUser-patched", patchedParams);
+          return originalAuthUser.call(this, patchedParams);
+        }
+        if (hasSlimTokenFallback()) {
+          var fakeAuthResult = createSlimAuthResultFromToken();
+          appendDebugLog("slim-authUser-roleToken-fallback", {
+            roleId: fakeAuthResult && fakeAuthResult.rawData ? fakeAuthResult.rawData.roleId : 0,
+          });
+          return Promise.resolve(fakeAuthResult);
+        }
+        return originalAuthUser.call(this, params);
+      };
+      loginService.authUser.__xyzwSlimPatched = true;
+      loginService.authUser.isSelfCreate = true;
+      loginService.authUser.__xyzwSlimOriginal = originalAuthUser;
+      patched = true;
+    }
+
+    if (typeof loginService.serverList === "function" && !loginService.serverList.__xyzwSlimPatched) {
+      var originalServerList = loginService.serverList;
+      loginService.serverList = function (params) {
+        var authPayload = getSlimAuthPayload();
+        if (!authPayload) {
+          return originalServerList.call(this, params);
+        }
+        var patchedParams = buildSlimServerListParams(params, authPayload);
+        appendDebugLog("slim-serverList-patched", patchedParams);
+        return originalServerList.call(this, patchedParams);
+      };
+      loginService.serverList.__xyzwSlimPatched = true;
+      loginService.serverList.isSelfCreate = true;
+      loginService.serverList.__xyzwSlimOriginal = originalServerList;
+      patched = true;
+    }
+
+    return patched;
+  }
+
+  function patchSlimIsolateInstance(instance) {
+    if (!instance || !instance.LoginService) {
+      return instance;
+    }
+
+    var loginService = instance.LoginService;
+
+    if (typeof loginService.authUser === "function" && !loginService.authUser.__xyzwSlimPatched) {
+      var originalAuthUser = loginService.authUser;
+      loginService.authUser = function (params) {
+        var authPayload = getSlimAuthPayload();
+        if (authPayload) {
+          var patchedParams = buildSlimAuthUserParams(params, authPayload);
+          appendDebugLog("slim-isolate-authUser-patched", patchedParams);
+          return originalAuthUser.call(this, patchedParams);
+        }
+        if (hasSlimTokenFallback()) {
+          var fakeAuthResult = createSlimAuthResultFromToken();
+          appendDebugLog("slim-isolate-authUser-roleToken-fallback", {
+            roleId: fakeAuthResult && fakeAuthResult.rawData ? fakeAuthResult.rawData.roleId : 0,
+          });
+          return Promise.resolve(fakeAuthResult);
+        }
+        return originalAuthUser.call(this, params);
+      };
+      loginService.authUser.__xyzwSlimPatched = true;
+      loginService.authUser.isSelfCreate = true;
+      loginService.authUser.__xyzwSlimOriginal = originalAuthUser;
+    }
+
+    if (typeof loginService.serverList === "function" && !loginService.serverList.__xyzwSlimPatched) {
+      var originalServerList = loginService.serverList;
+      loginService.serverList = function (params) {
+        var authPayload = getSlimAuthPayload();
+        if (!authPayload) {
+          return originalServerList.call(this, params);
+        }
+        var patchedParams = buildSlimServerListParams(params, authPayload);
+        appendDebugLog("slim-isolate-serverList-patched", patchedParams);
+        return originalServerList.call(this, patchedParams);
+      };
+      loginService.serverList.__xyzwSlimPatched = true;
+      loginService.serverList.isSelfCreate = true;
+      loginService.serverList.__xyzwSlimOriginal = originalServerList;
+    }
+
+    return instance;
+  }
+
+  function patchSlimIsolateModule(dataIndex) {
+    if (!dataIndex || !dataIndex.Isolate) {
+      return false;
+    }
+
+    var OriginalIsolate = dataIndex.Isolate;
+    var patched = false;
+    var authCmdPattern = /authuser|login_authuser|Login_AuthUserReq/i;
+    var serverListPattern = /serverlist|login_serverlist|Login_ServerListReq/i;
+
+    if (typeof OriginalIsolate.prototype.send === "function" && !OriginalIsolate.prototype.send.__xyzwSlimPatched) {
+      var originalSend = OriginalIsolate.prototype.send;
+      OriginalIsolate.prototype.send = function (cmd, params) {
+        var authPayload = getSlimAuthPayload();
+        if (authCmdPattern.test(String(cmd)) && authPayload) {
+          var authParams = buildSlimAuthUserParams(params, authPayload);
+          appendDebugLog("slim-isolate-send-auth-patched", authParams);
+          return originalSend.call(this, cmd, authParams);
+        }
+        if (authCmdPattern.test(String(cmd)) && hasSlimTokenFallback()) {
+          var fakeAuthResult = createSlimAuthResultFromToken();
+          appendDebugLog("slim-isolate-send-auth-roleToken-fallback", {
+            roleId: fakeAuthResult && fakeAuthResult.rawData ? fakeAuthResult.rawData.roleId : 0,
+          });
+          return Promise.resolve(fakeAuthResult);
+        }
+        if (serverListPattern.test(String(cmd)) && authPayload) {
+          var serverParams = buildSlimServerListParams(params, authPayload);
+          appendDebugLog("slim-isolate-send-serverList-patched", serverParams);
+          return originalSend.call(this, cmd, serverParams);
+        }
+        return originalSend.call(this, cmd, params);
+      };
+      OriginalIsolate.prototype.send.__xyzwSlimPatched = true;
+      patched = true;
+    }
+
+    if (typeof OriginalIsolate.prototype.sendEx === "function" && !OriginalIsolate.prototype.sendEx.__xyzwSlimPatched) {
+      var originalSendEx = OriginalIsolate.prototype.sendEx;
+      OriginalIsolate.prototype.sendEx = function (payload) {
+        var authPayload = getSlimAuthPayload();
+        if (!payload || typeof payload !== "object") {
+          return originalSendEx.call(this, payload);
+        }
+        var nextPayload = Object.assign({}, payload);
+        if (authCmdPattern.test(String(nextPayload.cmd)) && authPayload) {
+          nextPayload.params = buildSlimAuthUserParams(nextPayload.params, authPayload);
+          appendDebugLog("slim-isolate-sendEx-auth-patched", nextPayload);
+          return originalSendEx.call(this, nextPayload);
+        }
+        if (authCmdPattern.test(String(nextPayload.cmd)) && hasSlimTokenFallback()) {
+          var fakeAuthResult = createSlimAuthResultFromToken();
+          appendDebugLog("slim-isolate-sendEx-auth-roleToken-fallback", {
+            roleId: fakeAuthResult && fakeAuthResult.rawData ? fakeAuthResult.rawData.roleId : 0,
+          });
+          return Promise.resolve(fakeAuthResult);
+        }
+        if (serverListPattern.test(String(nextPayload.cmd)) && authPayload) {
+          nextPayload.params = buildSlimServerListParams(nextPayload.params, authPayload);
+          appendDebugLog("slim-isolate-sendEx-serverList-patched", nextPayload);
+          return originalSendEx.call(this, nextPayload);
+        }
+        return originalSendEx.call(this, payload);
+      };
+      OriginalIsolate.prototype.sendEx.__xyzwSlimPatched = true;
+      patched = true;
+    }
+
+    if (!OriginalIsolate.__xyzwSlimPatched) {
+      function PatchedIsolate() {
+        var args = Array.prototype.slice.call(arguments);
+        var instance = Reflect.construct(OriginalIsolate, args, PatchedIsolate);
+        return patchSlimIsolateInstance(instance);
+      }
+      Object.setPrototypeOf(PatchedIsolate, OriginalIsolate);
+      PatchedIsolate.prototype = OriginalIsolate.prototype;
+      PatchedIsolate.__xyzwSlimPatched = true;
+      PatchedIsolate.isSelfCreate = true;
+      dataIndex.Isolate = PatchedIsolate;
+      patched = true;
+    }
+
+    return patched;
+  }
+
+  function patchSlimCompatModules() {
+    var patched = false;
+    var authPayload = getSlimAuthPayload();
+    var tokenPayload = getSlimTokenPayload();
+    var resolvedPlatformExt = getSlimResolvedPlatformExt();
+    var resolvedServerId = getSlimResolvedServerId();
+
+    var PlatformManagerModule = tryRequireModule("PlatformManager");
+    var LocalStorageModule = tryRequireModule("LocalStorage");
+    var LoginManagerModule = tryRequireModule("LoginManager");
+
+    var platformManager =
+      PlatformManagerModule && PlatformManagerModule.PlatformManager
+        ? PlatformManagerModule.PlatformManager.instance
+        : null;
+    var storageManager =
+      LocalStorageModule && LocalStorageModule.LocalStorage
+        ? LocalStorageModule.LocalStorage.instance
+        : null;
+    var loginManager =
+      LoginManagerModule && LoginManagerModule.LoginManager
+        ? LoginManagerModule.LoginManager.instance
+        : null;
+
+    if (platformManager) {
+      if (authPayload) {
+        platformManager.encryptUserInfo = authPayload.info;
+      } else if (platformManager.encryptUserInfo == null) {
+        platformManager.encryptUserInfo = {};
+      }
+
+      if (platformManager.authorizeDeferred && typeof platformManager.authorizeDeferred.resolve === "function" && !window.__XYZWSlimAuthorizeResolved) {
+        try {
+          platformManager.authorizeDeferred.resolve(authPayload ? authPayload.info : {});
+          window.__XYZWSlimAuthorizeResolved = true;
+        } catch (error) {}
+      }
+
+      if (!window.__XYZWSlimPlatformExtPatched) {
+        var platformExtDescriptor =
+          Object.getOwnPropertyDescriptor(platformManager, "platformExt") ||
+          Object.getOwnPropertyDescriptor(Object.getPrototypeOf(platformManager || {}), "platformExt");
+
+        try {
+          Object.defineProperty(platformManager, "platformExt", {
+            configurable: true,
+            enumerable: false,
+            get: function () {
+              var current = getSlimAuthPayload();
+              var nextPlatformExt = current && current.platformExt
+                ? current.platformExt
+                : getSlimResolvedPlatformExt();
+              return nextPlatformExt
+                ? nextPlatformExt
+                : platformExtDescriptor && typeof platformExtDescriptor.get === "function"
+                  ? platformExtDescriptor.get.call(platformManager)
+                  : "mix";
+            },
+          });
+          window.__XYZWSlimPlatformExtPatched = true;
+          patched = true;
+        } catch (error) {}
+      }
+
+      patched = true;
+    }
+
+    if (storageManager && Number.isFinite(resolvedServerId) && !window.__XYZWSlimStoragePatched) {
+      var originalGetItem = typeof storageManager.getItem === "function" ? storageManager.getItem.bind(storageManager) : null;
+      if (originalGetItem) {
+        storageManager.getItem = function (key) {
+          if (key === "serverId") {
+            var currentServerId = getSlimResolvedServerId();
+            if (Number.isFinite(currentServerId)) {
+              return String(currentServerId);
+            }
+          }
+          return originalGetItem(key);
+        };
+        window.__XYZWSlimStoragePatched = true;
+        patched = true;
+      }
+    }
+
+    if (loginManager && typeof loginManager._authUser === "function" && !loginManager._authUser.__xyzwSlimPatched) {
+      var originalLoginManagerAuthUser = loginManager._authUser;
+      loginManager._authUser = function () {
+        if (hasSlimTokenFallback()) {
+          var fakeAuthResult = createSlimAuthResultFromToken(tokenPayload);
+          this._authUserResult = fakeAuthResult;
+          appendDebugLog("slim-loginManager-auth-roleToken-fallback", {
+            roleId: fakeAuthResult && fakeAuthResult.rawData ? fakeAuthResult.rawData.roleId : 0,
+            platformExt: resolvedPlatformExt,
+          });
+          return Promise.resolve(fakeAuthResult);
+        }
+        return originalLoginManagerAuthUser.apply(this, arguments);
+      };
+      loginManager._authUser.__xyzwSlimPatched = true;
+      loginManager._authUser.__xyzwSlimOriginal = originalLoginManagerAuthUser;
+      patched = true;
+    }
+
+    if (loginManager) {
+      try {
+        loginManager._tryReLoginTimes = 0;
+        if (hasSlimTokenFallback()) {
+          loginManager._authUserResult = createSlimAuthResultFromToken(tokenPayload);
+        }
+        patched = true;
+      } catch (error) {}
+    }
+
+    return patched;
+  }
+
+  function applySlimLaunchPatches(announce) {
+    var state = getSlimLaunchState();
+    if (!state || (!state.authPayload && !state.tokenPayload)) {
+      return false;
+    }
+
+    var dataIndex = getDataIndexModule();
+    var servicePatched = patchSlimLoginService(dataIndex);
+    var isolatePatched = patchSlimIsolateModule(dataIndex);
+    var compatPatched = patchSlimCompatModules();
+
+    if (announce && (servicePatched || isolatePatched || compatPatched)) {
+      appendDebugLog("slim-auth-patch-active", {
+        mode: state.authPayload ? "authPayload" : "roleTokenFallback",
+        platformExt: state.authPayload ? state.authPayload.platformExt : getSlimResolvedPlatformExt(),
+        serverId: state.authPayload ? state.authPayload.serverId : getSlimResolvedServerId(),
+        roleId: state.tokenPayload ? state.tokenPayload.roleId : 0,
+        source: state.source || "",
+        servicePatched: servicePatched,
+        isolatePatched: isolatePatched,
+        compatPatched: compatPatched,
+      });
+    }
+
+    return !!(servicePatched || isolatePatched || compatPatched);
+  }
+
+  function startSlimLaunchPatchMonitor() {
+    if (SLIM_RUNTIME_PATCH_TIMER) {
+      clearInterval(SLIM_RUNTIME_PATCH_TIMER);
+    }
+
+    applySlimLaunchPatches(true);
+    SLIM_RUNTIME_PATCH_TIMER = setInterval(function () {
+      applySlimLaunchPatches(false);
+    }, 200);
+  }
+
+  function initSlimLaunchIntegration() {
+    if (window.__XYZWSlimLaunchInitialized) {
+      return getSlimLaunchState();
+    }
+
+    window.__XYZWSlimLaunchInitialized = true;
+
+    var payload = readSlimLaunchPayload();
+    var authPayload = normalizeSlimAuthPayload(payload);
+    var tokenPayload = normalizeSlimTokenPayload(payload && payload.token);
+    var state = {
+      payload: payload,
+      authPayload: authPayload,
+      tokenPayload: tokenPayload,
+      accountId: payload ? toCleanString(payload.accountId) : "",
+      name: payload ? toCleanString(payload.name) : "",
+      source: payload ? toCleanString(payload.__storageSource) : "",
+      wsUrl: payload ? toCleanString(payload.wsUrl) : "",
+      token: payload ? toCleanString(payload.token) : "",
+      userId: payload ? toCleanString(payload.userId) : "",
+    };
+    window.__XYZW_SLIM_LAUNCH__ = state;
+
+    appendDebugLog("launch-payload-ready", {
+      accountId: state.accountId,
+      hasAuthPayload: !!authPayload,
+      hasTokenPayload: !!tokenPayload,
+      storageSource: state.source,
+      hasToken: !!state.token,
+      hasWsUrl: !!state.wsUrl,
+    });
+
+    if (state.userId) {
+      try {
+        var storage = getSlimSafeStorage();
+        if (storage) {
+          storage.setItem("userId", state.userId);
+          storage.setItem("uid", state.userId);
+        }
+      } catch (error) {}
+    }
+
+    if (authPayload || tokenPayload) {
+      startSlimLaunchPatchMonitor();
+    } else {
+      appendDebugLog("launch-auth-payload-missing");
+    }
+
+    return state;
   }
 
   function normalizeManifestResponse(payload) {
@@ -389,8 +1417,10 @@
 
     if (payload && typeof payload === "object") {
       append(payload.remoteBundles);
+      append(payload.subpackages);
       if (payload.settings && typeof payload.settings === "object") {
         append(payload.settings.remoteBundles);
+        append(payload.settings.subpackages);
       }
     }
 
@@ -398,6 +1428,7 @@
       var settings = getSettingsObject();
       if (settings && typeof settings === "object") {
         append(settings.remoteBundles);
+        append(settings.subpackages);
       }
     }
 
@@ -660,13 +1691,6 @@
       var version = shouldForceRemoteBundleVersion(bundleName)
         ? runtimeVersion || downloader.bundleVers[bundleName] || (options && options.version)
         : (options && options.version) || downloader.bundleVers[bundleName] || runtimeVersion;
-      traceLog("bundle handler start", {
-        bundle: bundleName,
-        target: target,
-        resolvedTarget: resolvedTarget,
-        version: version || "",
-        remote: shouldForceRemoteBundleVersion(bundleName),
-      });
       var finished = 0;
       var config = null;
       var error = null;
@@ -677,20 +1701,11 @@
         function (jsonError, jsonResult) {
           if (jsonError) {
             error = jsonError;
-            traceError("bundle config fail", {
-              bundle: bundleName,
-              url: resolvedTarget + "/config." + (version ? version + "." : "") + "json",
-              error: jsonError && jsonError.message ? jsonError.message : String(jsonError),
-            });
           }
 
           if (jsonResult) {
             config = jsonResult;
             config.base = resolvedTarget + "/";
-            traceLog("bundle config ok", {
-              bundle: bundleName,
-              url: resolvedTarget + "/config." + (version ? version + "." : "") + "json",
-            });
           }
 
           finished += 1;
@@ -706,16 +1721,6 @@
         function (scriptError) {
           if (scriptError) {
             error = scriptError;
-            traceError("bundle script fail", {
-              bundle: bundleName,
-              url: resolvedTarget + "/index." + (version ? version + "." : "") + "js",
-              error: scriptError && scriptError.message ? scriptError.message : String(scriptError),
-            });
-          } else {
-            traceLog("bundle script ok", {
-              bundle: bundleName,
-              url: resolvedTarget + "/index." + (version ? version + "." : "") + "js",
-            });
           }
 
           finished += 1;
@@ -765,35 +1770,7 @@
           version: runtimeVersion,
         });
       }
-      var actualVersion = (actualOptions && actualOptions.version) || runtimeVersion || "";
-      traceLog("loadBundle request", {
-        bundle: bundleName,
-        target: target,
-        resolvedTarget: resolvedTarget,
-        version: actualVersion,
-        remote: shouldForceRemoteBundleVersion(bundleName),
-      });
 
-      if (typeof actualComplete === "function") {
-        var originalComplete = actualComplete;
-        actualComplete = function (error, bundle) {
-          if (error) {
-            traceError("loadBundle fail", {
-              bundle: bundleName,
-              resolvedTarget: resolvedTarget,
-              version: actualVersion,
-              error: error && error.message ? error.message : String(error),
-            });
-          } else {
-            traceLog("loadBundle ok", {
-              bundle: bundleName,
-              resolvedTarget: resolvedTarget,
-              version: actualVersion,
-            });
-          }
-          return originalComplete.apply(this, arguments);
-        };
-      }
       return originalLoadBundle(resolvedTarget, actualOptions, actualComplete);
     };
 
@@ -820,74 +1797,12 @@
       if (type === "bundle") {
         resolvedUrl = resolveBundleRequestTarget(url);
       }
-      if (type === "bundle" || shouldTraceUrl(resolvedUrl)) {
-        traceLog("downloader request", {
-          id: id,
-          url: url,
-          resolvedUrl: resolvedUrl,
-          type: type,
-        });
-      }
       return originalDownload(id, resolvedUrl, type, options, onComplete);
     };
 
     patchedDownload.__xyzwRemotePatched = true;
     patchedDownload.__xyzwOriginal = originalDownload;
     downloader.download = patchedDownload;
-    return true;
-  }
-
-  function patchBundleAssetTracing() {
-    if (!window.cc || !cc.AssetManager || !cc.AssetManager.Bundle) {
-      return false;
-    }
-
-    var proto = cc.AssetManager.Bundle.prototype;
-    if (!proto || proto.load.__xyzwTracePatched) {
-      return true;
-    }
-
-    function wrapBundleMethod(methodName) {
-      if (typeof proto[methodName] !== "function" || proto[methodName].__xyzwTracePatched) {
-        return;
-      }
-
-      var original = proto[methodName];
-      var wrapped = function () {
-        var args = Array.prototype.slice.call(arguments);
-        var request = args[0];
-        traceLog("bundle." + methodName + " start", {
-          bundle: this && this.name ? this.name : "",
-          request: request,
-        });
-        if (typeof args[args.length - 1] === "function") {
-          var originalCallback = args[args.length - 1];
-          args[args.length - 1] = function (error, asset) {
-            if (error) {
-              traceError("bundle." + methodName + " fail", {
-                bundle: this && this.name ? this.name : "",
-                request: request,
-                error: error && error.message ? error.message : String(error),
-              });
-            } else {
-              traceLog("bundle." + methodName + " ok", {
-                bundle: this && this.name ? this.name : "",
-                request: request,
-                asset: asset && asset.name ? asset.name : "",
-              });
-            }
-            return originalCallback.apply(this, arguments);
-          };
-        }
-        return original.apply(this, args);
-      };
-      wrapped.__xyzwTracePatched = true;
-      proto[methodName] = wrapped;
-    }
-
-    wrapBundleMethod("load");
-    wrapBundleMethod("loadDir");
-    wrapBundleMethod("loadScene");
     return true;
   }
 
@@ -1005,15 +1920,8 @@
       return window._CCSettings.bundleVers.codeVersion;
     }
 
-    if (payload && typeof payload.version === "string" && payload.version) {
-      return payload.version;
-    }
-
-    return null;
-  }
-
-  function resolveEffectiveCodeVersion(payload) {
-    return resolveDisplayedCodeVersion(payload);
+    var autoResolved = resolveAutoCodeVersion(Date.now());
+    return autoResolved ? autoResolved.version : null;
   }
 
   function renderVersionBadge(payload) {
@@ -1244,7 +2152,6 @@
     window.__REMOTE_VERSION_CONFIG__ = payload;
     window.__REMOTE_MANIFEST_STATE__ = manifestState;
     window.__AUTO_CODE_VERSION__ = autoCodeVersion;
-    window.__XYZW_EFFECTIVE_CODE_VERSION__ = resolveEffectiveCodeVersion(payload);
     renderVersionBadge(payload);
     console.info("[boot] remote version config loaded:", {
       url: url,
@@ -1259,6 +2166,8 @@
   async function startGame() {
     console.log("All scripts loaded, preparing game...");
     window.HtmlIsLoaded = true;
+    applyEmbedModeStyles();
+    initSlimLaunchIntegration();
     updateAppTitle("汤姆之王");
     updateVersionBadge("读取中", "正在加载版本");
 
@@ -1267,21 +2176,14 @@
     } catch (error) {
       console.warn("[boot] failed to load remote version config, fallback to embedded settings.", error);
       mergeRuntimeSettings(window._CCSettings || {});
-      window.__XYZW_EFFECTIVE_CODE_VERSION__ = resolveEffectiveCodeVersion(null);
       renderVersionBadge(null);
     }
 
     mergeRuntimeSettings(window._CCSettings || {});
 
-    if (HIDE_BUILTIN_CODE_VERSION) {
-      globalThis.__XYZW_REAL_CODE_VERSION__ = globalThis.CODE_VERSION;
-      globalThis.CODE_VERSION = "";
-    }
-
     patchRemoteBundleDownloader();
     patchAssetManagerLoadBundle();
     patchDownloaderDownload();
-    patchBundleAssetTracing();
 
     hideSplash();
 
@@ -1295,6 +2197,4 @@
   window.addEventListener("load", function () {
     startGame();
   });
-
-  patchFetchAndXHRTracing();
 })();
