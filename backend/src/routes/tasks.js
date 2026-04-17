@@ -8,7 +8,7 @@ const router = Router();
 
 router.use(authMiddleware);
 
-export const CURRENT_DEFAULT_CRON_VERSION = 2;
+export const CURRENT_DEFAULT_CRON_VERSION = 3;
 
 export const TASK_TYPES = {
   SIGN_IN: { name: '每日签到', cron: '0 8 * * *', group: 'daily' },
@@ -32,47 +32,48 @@ export const TASK_TYPES = {
   HANGUP_ADD_TIME: { name: '一键加钟', cron: '11 */3 * * *', group: 'daily' },
   BOTTLE_RESET: { name: '重置罐子', cron: '0 */7 * * *', group: 'daily' },
   BOTTLE_CLAIM: { name: '领取罐子', cron: '13 12 * * *', group: 'daily' },
-  CAR_SEND: { name: '智能发车', cron: '7 12 * * *', group: 'daily' },
-  CAR_CLAIM: { name: '一键收车', cron: '1 18 * * *', group: 'daily' },
+  CAR_SEND: { name: '智能发车', cron: '7 8 * * 1-3', group: 'daily' },
+  CAR_CLAIM: { name: '一键收车', cron: '7 15 * * 1-3', group: 'daily' },
   BLACK_MARKET: { name: '黑市采购', cron: '4 12 * * *', group: 'daily' },
   TREASURE_CLAIM: { name: '珍宝阁领取', cron: '1 0 * * *', group: 'daily' },
   LEGACY_CLAIM: { name: '残卷收取', cron: '23 */6 * * *', group: 'daily' },
   WELFARE_CLAIM: { name: '福利奖励领取', cron: '4 12 * * *', group: 'daily' },
   DAILY_TASK_CLAIM: { name: '每日任务奖励领取', cron: '4 12 * * *', group: 'daily' },
-  DREAM: { name: '梦境', cron: '10 12 * * *', group: 'dungeon' },
+  DREAM: { name: '梦境', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', cron: '10 12 * * *', group: 'dungeon' },
-  DREAM_PURCHASE: { name: '购买梦境商品', cron: '10 12 * * *', group: 'dungeon' },
+  DREAM_PURCHASE: { name: '购买梦境商品', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   PEACH_TASK: { name: '蟠桃园任务', cron: '0 10 * * *', group: 'dungeon' },
   BOX_OPEN: { name: '批量开箱', cron: '7 12 * * *', group: 'resource' },
-  LEGION_STORE_FRAGMENT: { name: '购买四圣碎片', cron: '7 12 * * *', group: 'resource' },
+  LEGION_STORE_FRAGMENT: { name: '购买四圣碎片', cron: '0 8 * * 1', group: 'resource' },
   GENIE_SWEEP: { name: '灯神扫荡', cron: '1 0 * * *', group: 'resource' },
 };
 
 export const LEGACY_DEFAULT_TASK_CRONS = {
-  HANGUP_ADD_TIME: '0 */3 * * *',
-  LEGACY_CLAIM: '0 */6 * * *',
-  ARENA: '1 12 * * *',
-  TOWER: '1 12 * * *',
-  WEIRD_TOWER: '1 12 * * *',
-  WEIRD_TOWER_FREE_ITEM: '1 12 * * *',
-  WEIRD_TOWER_USE_ITEM: '1 12 * * *',
-  WEIRD_TOWER_MERGE_ITEM: '1 12 * * *',
-  DAILY_BOSS: '1 12 * * *',
-  FRIEND_GOLD: '1 12 * * *',
-  BUY_GOLD: '1 12 * * *',
-  FISHING: '1 12 * * *',
-  STUDY: '1 12 * * *',
-  BOTTLE_CLAIM: '1 12 * * *',
-  CAR_SEND: '1 12 * * *',
-  BLACK_MARKET: '1 12 * * *',
-  WELFARE_CLAIM: '1 12 * * *',
-  DAILY_TASK_CLAIM: '1 12 * * *',
-  DREAM: '1 12 * * *',
-  SKIN_CHALLENGE: '1 12 * * *',
-  DREAM_PURCHASE: '1 12 * * *',
-  BOX_OPEN: '1 12 * * *',
-  LEGION_STORE_FRAGMENT: '1 12 * * *',
-  RECRUIT: '1 12 * * *',
+  HANGUP_ADD_TIME: ['0 */3 * * *'],
+  LEGACY_CLAIM: ['0 */6 * * *'],
+  ARENA: ['1 12 * * *'],
+  TOWER: ['1 12 * * *'],
+  WEIRD_TOWER: ['1 12 * * *'],
+  WEIRD_TOWER_FREE_ITEM: ['1 12 * * *'],
+  WEIRD_TOWER_USE_ITEM: ['1 12 * * *'],
+  WEIRD_TOWER_MERGE_ITEM: ['1 12 * * *'],
+  DAILY_BOSS: ['1 12 * * *'],
+  FRIEND_GOLD: ['1 12 * * *'],
+  BUY_GOLD: ['1 12 * * *'],
+  FISHING: ['1 12 * * *'],
+  STUDY: ['1 12 * * *'],
+  BOTTLE_CLAIM: ['1 12 * * *'],
+  CAR_SEND: ['1 12 * * *', '7 12 * * *'],
+  BLACK_MARKET: ['1 12 * * *'],
+  WELFARE_CLAIM: ['1 12 * * *'],
+  DAILY_TASK_CLAIM: ['1 12 * * *'],
+  DREAM: ['1 12 * * *', '10 12 * * *'],
+  SKIN_CHALLENGE: ['1 12 * * *'],
+  DREAM_PURCHASE: ['1 12 * * *', '10 12 * * *'],
+  BOX_OPEN: ['1 12 * * *'],
+  LEGION_STORE_FRAGMENT: ['1 12 * * *', '7 12 * * *'],
+  RECRUIT: ['1 12 * * *'],
+  CAR_CLAIM: ['1 18 * * *'],
 };
 
 export const REBALANCED_DEFAULT_TASK_CRONS = Object.fromEntries(
@@ -334,9 +335,15 @@ export async function rebalanceDefaultTaskCronExpressions() {
   let skippedUnknown = 0;
   const skippedDetails = [];
 
-  for (const [taskType, legacyCron] of Object.entries(LEGACY_DEFAULT_TASK_CRONS)) {
+  for (const [taskType, legacyCronSource] of Object.entries(LEGACY_DEFAULT_TASK_CRONS)) {
     const targetCron = REBALANCED_DEFAULT_TASK_CRONS[taskType];
-    if (!targetCron || targetCron === legacyCron) {
+    const sourceCrons = Array.isArray(legacyCronSource) ? legacyCronSource : [legacyCronSource];
+    if (!targetCron || sourceCrons.includes(targetCron)) {
+      continue;
+    }
+
+    const normalizedSourceCrons = Array.from(new Set(sourceCrons.filter(Boolean)));
+    if (normalizedSourceCrons.length === 0) {
       continue;
     }
 
@@ -344,10 +351,12 @@ export async function rebalanceDefaultTaskCronExpressions() {
     const defaultEnabled = seed?.enabled ? 1 : 0;
     const defaultConfigJson = getTaskDefaultConfigJson(taskType);
 
+    const cronPlaceholders = normalizedSourceCrons.map(() => '?').join(', ');
+
     const eligibleRows = all(
       `SELECT id FROM task_configs
         WHERE task_type = ?
-          AND cron_expression = ?
+          AND cron_expression IN (${cronPlaceholders})
           AND (
             (
               cron_is_customized = 0
@@ -364,13 +373,13 @@ export async function rebalanceDefaultTaskCronExpressions() {
               AND COALESCE(config_json, '{}') = ?
             )
           )`,
-      [taskType, legacyCron, CURRENT_DEFAULT_CRON_VERSION, defaultEnabled, defaultConfigJson],
+      [taskType, ...normalizedSourceCrons, CURRENT_DEFAULT_CRON_VERSION, defaultEnabled, defaultConfigJson],
     );
 
     const unknownRows = all(
       `SELECT id FROM task_configs
         WHERE task_type = ?
-          AND cron_expression = ?
+          AND cron_expression IN (${cronPlaceholders})
           AND (
             (
               (
@@ -388,7 +397,7 @@ export async function rebalanceDefaultTaskCronExpressions() {
               AND default_cron_version IS NULL
             )
           )`,
-      [taskType, legacyCron, defaultEnabled, defaultConfigJson],
+      [taskType, ...normalizedSourceCrons, defaultEnabled, defaultConfigJson],
     );
 
     if (eligibleRows.length === 0 && unknownRows.length === 0) {
@@ -401,7 +410,7 @@ export async function rebalanceDefaultTaskCronExpressions() {
         `UPDATE task_configs
             SET cron_expression = ?, next_run_at = ?, cron_is_customized = 0, default_cron_version = ?, updated_at = CURRENT_TIMESTAMP
           WHERE task_type = ?
-            AND cron_expression = ?
+            AND cron_expression IN (${cronPlaceholders})
             AND (
               (
                 cron_is_customized = 0
@@ -423,7 +432,7 @@ export async function rebalanceDefaultTaskCronExpressions() {
           nextRunAt,
           CURRENT_DEFAULT_CRON_VERSION,
           taskType,
-          legacyCron,
+          ...normalizedSourceCrons,
           CURRENT_DEFAULT_CRON_VERSION,
           defaultEnabled,
           defaultConfigJson,
@@ -433,7 +442,7 @@ export async function rebalanceDefaultTaskCronExpressions() {
       updated += eligibleRows.length;
       details.push({
         taskType,
-        from: legacyCron,
+        from: normalizedSourceCrons,
         to: targetCron,
         affectedCount: eligibleRows.length,
       });
@@ -443,7 +452,7 @@ export async function rebalanceDefaultTaskCronExpressions() {
       skippedUnknown += unknownRows.length;
       skippedDetails.push({
         taskType,
-        cronExpression: legacyCron,
+        cronExpression: normalizedSourceCrons,
         skippedCount: unknownRows.length,
       });
     }

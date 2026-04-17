@@ -82,6 +82,9 @@ const DAILY_REWARD_DIRTY_TASKS = new Set([
   'BLACK_MARKET'
 ]);
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
+const TASK_EXTRA_CRON_EXPRESSIONS = {
+  LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
+};
 const DAILY_CATCHUP_CRON = '15 19 * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
@@ -173,6 +176,24 @@ function resolveWsUrl(wsUrl, token) {
   return `${raw}${sep}p=${encodeURIComponent(payload)}&e=x&lang=chinese`;
 }
 
+function getTaskCronExpressions(task) {
+  const primaryCron = String(task?.cron_expression || '').trim();
+  const extras = TASK_EXTRA_CRON_EXPRESSIONS[String(task?.task_type || '').trim()] || [];
+  return Array.from(new Set([primaryCron, ...extras].filter(Boolean)));
+}
+
+function getTaskCronSignature(task) {
+  return getTaskCronExpressions(task).join('||');
+}
+
+function getTaskNextRunAt(task) {
+  const nextRuns = getTaskCronExpressions(task)
+    .map((cronExpression) => calculateNextRunAt(cronExpression))
+    .filter(Boolean)
+    .sort();
+  return nextRuns[0] || null;
+}
+
 function shouldIgnoreFailure(error) {
   const message = String(error?.message || '');
   return [
@@ -224,7 +245,7 @@ function getCronExecutionSlotsForToday(cronExpression, now = new Date()) {
 
   for (const hour of hours) {
     for (const minute of minutes) {
-      pairs.push({ hour, minute });
+      pairs.push({ hour, minute, cronExpression });
     }
   }
 
@@ -296,12 +317,12 @@ function getTodayTaskExecutionMarkerSnapshots() {
 }
 
 function getLatestDueSlotForToday(task, now = new Date()) {
-  const cronExpression = String(task?.cron_expression || '').trim();
-  if (!cronExpression) {
+  const cronExpressions = getTaskCronExpressions(task);
+  if (cronExpressions.length === 0) {
     return null;
   }
 
-  const pairs = getCronExecutionSlotsForToday(cronExpression, now);
+  const pairs = cronExpressions.flatMap((cronExpression) => getCronExecutionSlotsForToday(cronExpression, now));
   if (pairs.length === 0) {
     return null;
   }
@@ -1253,7 +1274,7 @@ export function scheduleTask(task, options = {}) {
   
   if (scheduledJobs.has(jobKey)) {
     const existing = scheduledJobs.get(jobKey);
-    existing.job.stop();
+    (existing.jobs || []).forEach((job) => job.stop());
     scheduledJobs.delete(jobKey);
   }
 
@@ -1262,9 +1283,10 @@ export function scheduleTask(task, options = {}) {
   }
 
   try {
-    const cronExpression = task.cron_expression;
-    const nextRunAt = calculateNextRunAt(cronExpression);
-    const job = cron.schedule(cronExpression, async () => {
+    const cronExpressions = getTaskCronExpressions(task);
+    const cronSignature = getTaskCronSignature(task);
+    const nextRunAt = getTaskNextRunAt(task);
+    const jobs = cronExpressions.map((cronExpression) => cron.schedule(cronExpression, async () => {
       try {
         console.log('⏰ 定时任务命中', {
           accountId: task.account_id ?? null,
@@ -1277,15 +1299,15 @@ export function scheduleTask(task, options = {}) {
           now: new Date(),
         });
       } finally {
-        updateTaskRunTime(task.id, calculateNextRunAt(cronExpression));
+        updateTaskRunTime(task.id, getTaskNextRunAt(task));
       }
     }, {
       timezone: config.cron.timezone
-    });
+    }));
 
     scheduledJobs.set(jobKey, {
-      job,
-      cronExpression
+      jobs,
+      cronSignature
     });
     
     if (persistNextRun) {
@@ -1293,7 +1315,7 @@ export function scheduleTask(task, options = {}) {
     }
     
     if (logScheduled) {
-      console.log(`📅 已调度任务: ${task.account_name} - ${task.task_type} (${task.cron_expression})`);
+      console.log(`📅 已调度任务: ${task.account_name} - ${task.task_type} (${cronExpressions.join(' | ')})`);
     }
     return { scheduled: true, nextRunAt };
   } catch (error) {
@@ -1311,12 +1333,12 @@ export async function checkAndRunDueTasks() {
   for (const [jobKey, scheduled] of scheduledJobs) {
     const task = enabledTaskMap.get(jobKey);
     if (!task) {
-      scheduled.job.stop();
+      (scheduled.jobs || []).forEach((job) => job.stop());
       scheduledJobs.delete(jobKey);
       continue;
     }
 
-    if (scheduled.cronExpression !== task.cron_expression) {
+    if (scheduled.cronSignature !== getTaskCronSignature(task)) {
       scheduleTask(task);
     }
   }
@@ -3053,8 +3075,8 @@ export function stopScheduler() {
     dailyCatchupJob = null;
   }
 
-  for (const [key, { job }] of scheduledJobs) {
-    job.stop();
+  for (const [, { jobs = [] }] of scheduledJobs) {
+    jobs.forEach((job) => job.stop());
   }
   scheduledJobs.clear();
   connectionPromises.clear();

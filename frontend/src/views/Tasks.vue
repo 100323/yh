@@ -122,8 +122,19 @@
                         :disabled="taskConfigOperating"
                         @update:value="(val) => setTaskScheduleType(task.value, val)"
                       />
+                      <n-select
+                        v-if="getTaskScheduleType(task.value) === 'weekly'"
+                        :value="getTaskWeekdays(task.value)"
+                        :options="weekdayOptions"
+                        multiple
+                        size="small"
+                        class="task-weekday-select"
+                        :disabled="taskConfigOperating"
+                        placeholder="选择星期"
+                        @update:value="(val) => setTaskWeekdays(task.value, val)"
+                      />
                       <n-time-picker
-                        v-if="getTaskScheduleType(task.value) === 'daily'"
+                        v-if="['daily', 'weekly'].includes(getTaskScheduleType(task.value))"
                         :value="getTaskRunTime(task.value)"
                         format="HH:mm"
                         size="small"
@@ -201,8 +212,19 @@ const dismissedLegacyAccounts = ref({});
 
 const scheduleModeOptions = [
   { label: '每日固定时间', value: 'daily' },
+  { label: '每周指定星期', value: 'weekly' },
   { label: '每N小时执行', value: 'interval' },
 ];
+const weekdayOptions = [
+  { label: '周一', value: 1 },
+  { label: '周二', value: 2 },
+  { label: '周三', value: 3 },
+  { label: '周四', value: 4 },
+  { label: '周五', value: 5 },
+  { label: '周六', value: 6 },
+  { label: '周日', value: 0 },
+];
+const weekdayOrder = [1, 2, 3, 4, 5, 6, 0];
 
 const frontendToBackendTaskMap = {
   claimHangUpRewards: 'HANGUP_CLAIM',
@@ -290,6 +312,53 @@ const createDefaultAccountConfig = () => normalizeAccountConfig();
 const currentAccountConfig = ref(createDefaultAccountConfig());
 const localOnlyTaskKeys = new Set(['startBatch']);
 const taskConfigOperating = computed(() => saving.value || legacyImporting.value);
+const createEmptyTaskScheduleConfig = () => ({
+  enabled: true,
+  config: {},
+  scheduleType: 'daily',
+  intervalHours: 4,
+  runTime: null,
+  weekdays: [],
+});
+
+const normalizeWeekdays = (weekdays = []) => {
+  const allowed = new Set(weekdayOptions.map((item) => item.value));
+  return weekdayOrder.filter((value, index, arr) => {
+    return allowed.has(value) && Array.isArray(weekdays) && weekdays.includes(value) && arr.indexOf(value) === index;
+  });
+};
+
+const parseCronWeekdays = (dayField = '') => {
+  const values = new Set();
+  String(dayField || '')
+    .split(',')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .forEach((part) => {
+      if (part.includes('-')) {
+        const [startRaw, endRaw] = part.split('-');
+        const start = Number(startRaw);
+        const end = Number(endRaw);
+        if (Number.isInteger(start) && Number.isInteger(end)) {
+          for (let value = start; value <= end; value += 1) {
+            const normalized = value === 7 ? 0 : value;
+            if (weekdayOptions.some((item) => item.value === normalized)) {
+              values.add(normalized);
+            }
+          }
+        }
+        return;
+      }
+
+      const value = Number(part);
+      const normalized = value === 7 ? 0 : value;
+      if (Number.isInteger(normalized) && weekdayOptions.some((item) => item.value === normalized)) {
+        values.add(normalized);
+      }
+    });
+
+  return normalizeWeekdays(Array.from(values));
+};
 
 const buildCronExpressionForConfig = (taskKey, taskConfig, fallbackDailyRunTime = null) => {
   const scheduleType = taskConfig?.scheduleType || 'daily';
@@ -300,6 +369,16 @@ const buildCronExpressionForConfig = (taskKey, taskConfig, fallbackDailyRunTime 
   }
 
   const runTime = taskConfig?.runTime || fallbackDailyRunTime || null;
+  if (runTime && scheduleType === 'weekly') {
+    const weekdays = normalizeWeekdays(taskConfig?.weekdays || []);
+    if (weekdays.length > 0) {
+      const date = new Date(runTime);
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+      return `${minute} ${hour} * * ${weekdays.join(',')}`;
+    }
+  }
+
   if (runTime) {
     const date = new Date(runTime);
     const hour = date.getHours();
@@ -364,13 +443,7 @@ const getTaskEnabled = (taskValue) => {
 
 const setTaskEnabled = (taskValue, enabled) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
-    currentAccountConfig.value.taskConfigs[taskValue] = {
-      enabled: true,
-      config: {},
-      scheduleType: 'daily',
-      intervalHours: 4,
-      runTime: null,
-    };
+    currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
   currentAccountConfig.value.taskConfigs[taskValue].enabled = enabled;
 };
@@ -382,13 +455,7 @@ const getTaskRunTime = (taskValue) => {
 
 const setTaskRunTime = (taskValue, runTime) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
-    currentAccountConfig.value.taskConfigs[taskValue] = {
-      enabled: true,
-      config: {},
-      scheduleType: 'daily',
-      intervalHours: 4,
-      runTime: null,
-    };
+    currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
   currentAccountConfig.value.taskConfigs[taskValue].runTime = runTime;
 };
@@ -400,17 +467,35 @@ const getTaskScheduleType = (taskValue) => {
 
 const setTaskScheduleType = (taskValue, scheduleType) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
-    currentAccountConfig.value.taskConfigs[taskValue] = {
-      enabled: true,
-      config: {},
-      scheduleType: 'daily',
-      intervalHours: 4,
-      runTime: null,
-    };
+    currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
   currentAccountConfig.value.taskConfigs[taskValue].scheduleType = scheduleType;
   if (scheduleType === 'interval' && !currentAccountConfig.value.taskConfigs[taskValue].intervalHours) {
     currentAccountConfig.value.taskConfigs[taskValue].intervalHours = 4;
+  }
+  if (scheduleType === 'weekly') {
+    const currentWeekdays = currentAccountConfig.value.taskConfigs[taskValue].weekdays || [];
+    currentAccountConfig.value.taskConfigs[taskValue].weekdays = normalizeWeekdays(
+      currentWeekdays.length > 0 ? currentWeekdays : [1]
+    );
+    if (!currentAccountConfig.value.taskConfigs[taskValue].runTime && dailyRunTime.value) {
+      currentAccountConfig.value.taskConfigs[taskValue].runTime = dailyRunTime.value;
+    }
+  }
+};
+
+const getTaskWeekdays = (taskValue) => {
+  const config = currentAccountConfig.value.taskConfigs[taskValue];
+  return normalizeWeekdays(config?.weekdays || []);
+};
+
+const setTaskWeekdays = (taskValue, weekdays) => {
+  if (!currentAccountConfig.value.taskConfigs[taskValue]) {
+    currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
+  }
+  const normalizedWeekdays = normalizeWeekdays(weekdays);
+  if (normalizedWeekdays.length > 0) {
+    currentAccountConfig.value.taskConfigs[taskValue].weekdays = normalizedWeekdays;
   }
 };
 
@@ -421,13 +506,7 @@ const getTaskIntervalHours = (taskValue) => {
 
 const setTaskIntervalHours = (taskValue, intervalHours) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
-    currentAccountConfig.value.taskConfigs[taskValue] = {
-      enabled: true,
-      config: {},
-      scheduleType: 'daily',
-      intervalHours: 4,
-      runTime: null,
-    };
+    currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
   currentAccountConfig.value.taskConfigs[taskValue].intervalHours = intervalHours || 4;
 };
@@ -455,35 +534,57 @@ const parseCronToSchedule = (cronExpression) => {
       scheduleType: 'daily',
       runTime: null,
       intervalHours: 4,
+      weekdays: [],
     };
   }
 
-  const dailyMatch = cronExpression.match(/^(\d{1,2})\s+(\d{1,2})\s+\*\s+\*\s+\*$/);
-  if (dailyMatch) {
-    const minute = Number(dailyMatch[1]);
-    const hour = Number(dailyMatch[2]);
+  const parts = String(cronExpression).trim().split(/\s+/);
+  if (parts.length === 5) {
+    const [minuteField, hourField, dayOfMonthField, monthField, dayOfWeekField] = parts;
+
+    if (hourField.startsWith('*/') && dayOfMonthField === '*' && monthField === '*' && dayOfWeekField === '*') {
+      return {
+        scheduleType: 'interval',
+        runTime: null,
+        intervalHours: Math.max(1, Math.min(23, Number(hourField.slice(2)) || 4)),
+        weekdays: [],
+      };
+    }
+
+    const minute = Number(minuteField);
+    const hour = Number(hourField);
     const date = new Date();
-    date.setHours(hour, minute, 0, 0);
-    return {
-      scheduleType: 'daily',
-      runTime: date.getTime(),
-      intervalHours: 4,
-    };
-  }
+    if (Number.isInteger(hour) && Number.isInteger(minute)) {
+      date.setHours(hour, minute, 0, 0);
 
-  const intervalMatch = cronExpression.match(/^(\d{1,2})\s+\*\/(\d{1,2})\s+\*\s+\*\s+\*$/);
-  if (intervalMatch) {
-    return {
-      scheduleType: 'interval',
-      runTime: null,
-      intervalHours: Math.max(1, Math.min(23, Number(intervalMatch[2]) || 4)),
-    };
+      if (dayOfMonthField === '*' && monthField === '*' && dayOfWeekField !== '*') {
+        const weekdays = parseCronWeekdays(dayOfWeekField);
+        if (weekdays.length > 0) {
+          return {
+            scheduleType: 'weekly',
+            runTime: date.getTime(),
+            intervalHours: 4,
+            weekdays,
+          };
+        }
+      }
+
+      if (dayOfMonthField === '*' && monthField === '*' && dayOfWeekField === '*') {
+        return {
+          scheduleType: 'daily',
+          runTime: date.getTime(),
+          intervalHours: 4,
+          weekdays: [],
+        };
+      }
+    }
   }
 
   return {
     scheduleType: 'daily',
     runTime: null,
     intervalHours: 4,
+    weekdays: [],
   };
 };
 
@@ -681,6 +782,7 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
       scheduleType: schedule.scheduleType,
       runTime: schedule.runTime,
       intervalHours: schedule.intervalHours,
+      weekdays: schedule.weekdays || [],
     };
   });
 
@@ -1207,6 +1309,10 @@ onMounted(() => {
   }
 }
 
+.task-weekday-select {
+  width: 220px;
+}
+
 :deep(.n-alert) {
   border-radius: 18px;
 }
@@ -1348,7 +1454,8 @@ onMounted(() => {
   }
 
   .task-schedule-mode,
-  .task-interval-input {
+  .task-interval-input,
+  .task-weekday-select {
     width: 100%;
   }
 }
