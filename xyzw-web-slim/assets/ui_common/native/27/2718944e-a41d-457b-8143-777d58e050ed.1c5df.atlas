@@ -1,0 +1,104 @@
+
+effect_fabao_unlock.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_suotou_halo
+  rotate: false
+  xy: 297, 34
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+ui_effect_light_box2
+  rotate: false
+  xy: 124, 30
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+ui_jiangli_kuanglight3
+  rotate: false
+  xy: 2, 4
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+ui_liuguang_00001
+  rotate: true
+  xy: 124, 2
+  size: 26, 21
+  orig: 128, 77
+  offset: 13, 14
+  index: -1
+ui_liuguang_00002
+  rotate: true
+  xy: 270, 127
+  size: 51, 41
+  orig: 128, 77
+  offset: 13, 14
+  index: -1
+ui_liuguang_00003
+  rotate: false
+  xy: 220, 5
+  size: 75, 48
+  orig: 128, 77
+  offset: 13, 14
+  index: -1
+ui_liuguang_00004
+  rotate: true
+  xy: 182, 155
+  size: 99, 48
+  orig: 128, 77
+  offset: 13, 14
+  index: -1
+ui_liuguang_00005
+  rotate: true
+  xy: 132, 152
+  size: 102, 48
+  orig: 128, 77
+  offset: 13, 14
+  index: -1
+ui_liuguang_00006
+  rotate: true
+  xy: 220, 55
+  size: 98, 48
+  orig: 128, 77
+  offset: 17, 14
+  index: -1
+ui_liuguang_00007
+  rotate: true
+  xy: 232, 180
+  size: 74, 48
+  orig: 128, 77
+  offset: 41, 14
+  index: -1
+ui_liuguang_00008
+  rotate: true
+  xy: 270, 76
+  size: 49, 40
+  orig: 128, 77
+  offset: 66, 22
+  index: -1
+ui_liuguang_00009
+  rotate: true
+  xy: 147, 4
+  size: 24, 20
+  orig: 128, 77
+  offset: 91, 42
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 312, 93
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 126
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

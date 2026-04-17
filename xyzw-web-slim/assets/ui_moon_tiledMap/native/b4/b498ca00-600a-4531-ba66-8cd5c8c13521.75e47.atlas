@@ -1,0 +1,41 @@
+
+xghg_smoke.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_shou
+  rotate: false
+  xy: 129, 64
+  size: 50, 56
+  orig: 107, 82
+  offset: 57, 0
+  index: -1
+zbz_fight_smoke
+  rotate: false
+  xy: 129, 22
+  size: 38, 40
+  orig: 38, 40
+  offset: 0, 0
+  index: -1
+zbz_fight_smoke1
+  rotate: false
+  xy: 2, 122
+  size: 138, 126
+  orig: 138, 126
+  offset: 0, 0
+  index: -1
+zbz_fight_smoke2
+  rotate: false
+  xy: 2, 2
+  size: 125, 118
+  orig: 125, 118
+  offset: 0, 0
+  index: -1
+zbz_fight_smoke3
+  rotate: true
+  xy: 142, 122
+  size: 126, 112
+  orig: 126, 112
+  offset: 0, 0
+  index: -1

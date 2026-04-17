@@ -1,0 +1,41 @@
+
+xghg_dtbk.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_dtbk_er1
+  rotate: false
+  xy: 138, 102
+  size: 43, 30
+  orig: 43, 30
+  offset: 0, 0
+  index: -1
+xghg_dtbk_er2
+  rotate: true
+  xy: 97, 103
+  size: 29, 39
+  orig: 30, 39
+  offset: 0, 0
+  index: -1
+xghg_dtbk_g1
+  rotate: false
+  xy: 2, 110
+  size: 93, 22
+  orig: 93, 22
+  offset: 0, 0
+  index: -1
+xghg_dtbk_g3
+  rotate: false
+  xy: 183, 97
+  size: 66, 35
+  orig: 66, 35
+  offset: 0, 0
+  index: -1
+xghg_dtbk_kuang
+  rotate: false
+  xy: 2, 2
+  size: 494, 93
+  orig: 494, 93
+  offset: 0, 0
+  index: -1

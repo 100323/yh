@@ -1,0 +1,41 @@
+
+xxwky_daizi.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwky_daizi_1
+  rotate: false
+  xy: 2, 2
+  size: 789, 586
+  orig: 789, 586
+  offset: 0, 0
+  index: -1
+xxwky_daizi_2
+  rotate: false
+  xy: 2, 590
+  size: 585, 198
+  orig: 585, 198
+  offset: 0, 0
+  index: -1
+xxwky_daizi_guang1
+  rotate: false
+  xy: 251, 822
+  size: 214, 136
+  orig: 214, 136
+  offset: 0, 0
+  index: -1
+xxwky_daizi_guang2
+  rotate: false
+  xy: 2, 843
+  size: 247, 115
+  orig: 247, 115
+  offset: 0, 0
+  index: -1
+xxwky_daizi_guang3
+  rotate: false
+  xy: 467, 790
+  size: 301, 168
+  orig: 301, 168
+  offset: 0, 0
+  index: -1

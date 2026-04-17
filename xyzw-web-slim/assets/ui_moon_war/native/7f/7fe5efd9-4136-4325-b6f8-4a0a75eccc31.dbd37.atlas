@@ -1,0 +1,62 @@
+
+xghg_anniu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_anniu_1
+  rotate: false
+  xy: 245, 173
+  size: 243, 169
+  orig: 243, 169
+  offset: 0, 0
+  index: -1
+xghg_anniu_2
+  rotate: false
+  xy: 2, 175
+  size: 241, 167
+  orig: 243, 169
+  offset: 1, 1
+  index: -1
+xghg_anniu_3
+  rotate: false
+  xy: 119, 344
+  size: 101, 36
+  orig: 103, 38
+  offset: 1, 1
+  index: -1
+xghg_anniu_4
+  rotate: false
+  xy: 2, 2
+  size: 243, 169
+  orig: 243, 169
+  offset: 0, 0
+  index: -1
+xghg_anniu_5
+  rotate: false
+  xy: 222, 344
+  size: 102, 36
+  orig: 105, 38
+  offset: 1, 1
+  index: -1
+xghg_anniu_7
+  rotate: false
+  xy: 247, 2
+  size: 243, 169
+  orig: 243, 169
+  offset: 0, 0
+  index: -1
+xghg_anniu_dian
+  rotate: false
+  xy: 2, 368
+  size: 12, 12
+  orig: 16, 16
+  offset: 2, 2
+  index: -1
+xghg_anniu_tq
+  rotate: false
+  xy: 16, 344
+  size: 101, 36
+  orig: 103, 38
+  offset: 1, 1
+  index: -1

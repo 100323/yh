@@ -1,0 +1,62 @@
+
+xshd_baozoupen150_jinbi.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 324, 66
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+pen150_pen1
+  rotate: true
+  xy: 238, 122
+  size: 116, 85
+  orig: 116, 85
+  offset: 0, 0
+  index: -1
+pen150_pen2
+  rotate: false
+  xy: 238, 39
+  size: 84, 81
+  orig: 84, 81
+  offset: 0, 0
+  index: -1
+pen150_pen3
+  rotate: true
+  xy: 148, 39
+  size: 199, 88
+  orig: 199, 88
+  offset: 0, 0
+  index: -1
+pen150_pen4
+  rotate: true
+  xy: 372, 20
+  size: 44, 37
+  orig: 47, 42
+  offset: 0, 0
+  index: -1
+pen150_pen5
+  rotate: true
+  xy: 148, 2
+  size: 35, 139
+  orig: 40, 154
+  offset: 2, 0
+  index: -1
+pen150_pen6
+  rotate: true
+  xy: 2, 18
+  size: 220, 144
+  orig: 220, 146
+  offset: 0, 0
+  index: -1
+pen150_pen7
+  rotate: false
+  xy: 289, 5
+  size: 81, 32
+  orig: 81, 32
+  offset: 0, 0
+  index: -1

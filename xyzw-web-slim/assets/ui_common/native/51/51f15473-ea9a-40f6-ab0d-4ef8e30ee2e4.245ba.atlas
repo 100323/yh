@@ -1,0 +1,34 @@
+
+effect_skill_juexing1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_skillup_circle
+  rotate: false
+  xy: 60, 26
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ui_skillup_halo
+  rotate: false
+  xy: 2, 60
+  size: 126, 125
+  orig: 141, 141
+  offset: 8, 8
+  index: -1
+ui_skillup_light
+  rotate: false
+  xy: 2, 2
+  size: 56, 56
+  orig: 58, 58
+  offset: 1, 1
+  index: -1
+ui_skillup_slight
+  rotate: true
+  xy: 130, 57
+  size: 128, 109
+  orig: 128, 109
+  offset: 0, 0
+  index: -1

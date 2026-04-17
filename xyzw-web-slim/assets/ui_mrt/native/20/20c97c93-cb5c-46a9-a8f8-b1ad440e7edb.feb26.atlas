@@ -1,0 +1,76 @@
+
+mrt_pfdz_bj.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mre_dzpf_bj_bu
+  rotate: false
+  xy: 2, 44
+  size: 289, 452
+  orig: 289, 452
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_hg
+  rotate: true
+  xy: 591, 57
+  size: 122, 109
+  orig: 122, 109
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_j1
+  rotate: true
+  xy: 357, 25
+  size: 56, 125
+  orig: 56, 125
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_j2
+  rotate: false
+  xy: 484, 56
+  size: 105, 123
+  orig: 105, 123
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_shou1
+  rotate: false
+  xy: 293, 290
+  size: 165, 206
+  orig: 165, 206
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_shou2
+  rotate: true
+  xy: 599, 346
+  size: 150, 129
+  orig: 150, 129
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_shou3
+  rotate: true
+  xy: 293, 83
+  size: 205, 174
+  orig: 205, 174
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_shou4
+  rotate: true
+  xy: 469, 181
+  size: 155, 152
+  orig: 155, 152
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_shou4z
+  rotate: true
+  xy: 293, 2
+  size: 79, 62
+  orig: 79, 62
+  offset: 0, 0
+  index: -1
+mre_dzpf_bj_xian
+  rotate: false
+  xy: 460, 338
+  size: 137, 158
+  orig: 137, 158
+  offset: 0, 0
+  index: -1

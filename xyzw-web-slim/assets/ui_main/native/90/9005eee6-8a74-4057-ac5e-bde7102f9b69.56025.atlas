@@ -1,0 +1,90 @@
+
+wanjuxiang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baoxiang_di1
+  rotate: false
+  xy: 2, 89
+  size: 120, 113
+  orig: 122, 115
+  offset: 1, 1
+  index: -1
+baoxiang_di2
+  rotate: false
+  xy: 203, 118
+  size: 143, 138
+  orig: 145, 140
+  offset: 1, 1
+  index: -1
+baoxiang_qidongz
+  rotate: true
+  xy: 385, 146
+  size: 64, 25
+  orig: 66, 27
+  offset: 1, 1
+  index: -1
+baoxiang_xiang
+  rotate: false
+  xy: 2, 204
+  size: 199, 198
+  orig: 210, 210
+  offset: 5, 0
+  index: -1
+baoxiang_z
+  rotate: true
+  xy: 124, 107
+  size: 39, 40
+  orig: 41, 43
+  offset: 1, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 124, 148
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+pen150_pen1
+  rotate: true
+  xy: 425, 286
+  size: 116, 85
+  orig: 116, 85
+  offset: 0, 0
+  index: -1
+pen150_pen2
+  rotate: false
+  xy: 425, 203
+  size: 84, 81
+  orig: 84, 81
+  offset: 0, 0
+  index: -1
+pen150_pen3
+  rotate: true
+  xy: 412, 2
+  size: 199, 88
+  orig: 199, 88
+  offset: 0, 0
+  index: -1
+pen150_pen4
+  rotate: true
+  xy: 385, 212
+  size: 44, 37
+  orig: 47, 42
+  offset: 0, 0
+  index: -1
+pen150_pen5
+  rotate: false
+  xy: 348, 117
+  size: 35, 139
+  orig: 40, 154
+  offset: 2, 0
+  index: -1
+pen150_pen6
+  rotate: false
+  xy: 203, 258
+  size: 220, 144
+  orig: 220, 146
+  offset: 0, 0
+  index: -1

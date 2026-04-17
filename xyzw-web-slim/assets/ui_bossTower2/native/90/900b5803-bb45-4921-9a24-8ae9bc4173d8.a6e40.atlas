@@ -1,0 +1,48 @@
+
+xxwky_pugong2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 71, 205
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xxwky_dachuizi_chuiba
+  rotate: true
+  xy: 2, 2
+  size: 131, 252
+  orig: 131, 252
+  offset: 0, 0
+  index: -1
+xxwky_dachuizi_chuitou
+  rotate: true
+  xy: 212, 135
+  size: 114, 115
+  orig: 114, 115
+  offset: 0, 0
+  index: -1
+xxwky_dachuizi_g1
+  rotate: true
+  xy: 117, 162
+  size: 87, 93
+  orig: 87, 93
+  offset: 0, 0
+  index: -1
+xxwky_dachuizi_xian
+  rotate: false
+  xy: 2, 213
+  size: 67, 36
+  orig: 67, 36
+  offset: 0, 0
+  index: -1
+xxwky_dachuizi_zha
+  rotate: true
+  xy: 329, 36
+  size: 213, 148
+  orig: 213, 148
+  offset: 0, 0
+  index: -1

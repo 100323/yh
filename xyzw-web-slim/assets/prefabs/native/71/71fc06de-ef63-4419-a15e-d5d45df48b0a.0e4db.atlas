@@ -1,0 +1,20 @@
+
+yxdk_bg_circle.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yxdk_bg_circle
+  rotate: false
+  xy: 2, 202
+  size: 819, 819
+  orig: 819, 819
+  offset: 0, 0
+  index: -1
+yxdk_bg_circle2
+  rotate: false
+  xy: 2, 2
+  size: 198, 198
+  orig: 198, 198
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+xsxjt_moyan.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_moyan_huo1
+  rotate: false
+  xy: 55, 21
+  size: 9, 10
+  orig: 11, 12
+  offset: 1, 1
+  index: -1
+xsxjt_moyan_huo2
+  rotate: true
+  xy: 55, 10
+  size: 9, 10
+  orig: 11, 12
+  offset: 1, 1
+  index: -1
+xsxjt_moyan_huo3
+  rotate: false
+  xy: 55, 33
+  size: 48, 49
+  orig: 50, 51
+  offset: 1, 1
+  index: -1
+xsxjt_moyan_huo4
+  rotate: false
+  xy: 2, 37
+  size: 51, 45
+  orig: 53, 47
+  offset: 1, 1
+  index: -1
+xsxjt_moyan_yb
+  rotate: false
+  xy: 2, 2
+  size: 33, 33
+  orig: 35, 35
+  offset: 1, 1
+  index: -1
+xsxjt_moyan_yz
+  rotate: false
+  xy: 37, 18
+  size: 16, 17
+  orig: 18, 19
+  offset: 1, 1
+  index: -1

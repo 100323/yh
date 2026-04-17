@@ -1,0 +1,41 @@
+
+tgcf_dsjl_cloud_2.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 376, 53
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 330, 39
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 408, 59
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_su
+  rotate: true
+  xy: 2, 2
+  size: 81, 326
+  orig: 81, 326
+  offset: 0, 0
+  index: -1
+ymj_effect_star1
+  rotate: true
+  xy: 408, 34
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1

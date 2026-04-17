@@ -1,0 +1,27 @@
+
+ui_chest_chose_down.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_chest_chosebox
+  rotate: true
+  xy: 225, 36
+  size: 142, 89
+  orig: 142, 89
+  offset: 0, 0
+  index: -1
+ui_chest_light2
+  rotate: true
+  xy: 80, 8
+  size: 170, 143
+  orig: 170, 143
+  offset: 0, 0
+  index: -1
+ui_chest_light3
+  rotate: true
+  xy: 2, 2
+  size: 176, 76
+  orig: 176, 76
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,160 @@
+
+huangyueying9_skill_position.png
+size: 1009,1009
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+heidi
+  rotate: false
+  xy: 359, 682
+  size: 400, 325
+  orig: 400, 325
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 286, 513
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+jn01
+  rotate: false
+  xy: 680, 54
+  size: 98, 135
+  orig: 98, 135
+  offset: 0, 0
+  index: -1
+jn02
+  rotate: true
+  xy: 744, 487
+  size: 110, 206
+  orig: 110, 206
+  offset: 0, 0
+  index: -1
+jn03
+  rotate: true
+  xy: 761, 867
+  size: 140, 246
+  orig: 140, 246
+  offset: 0, 0
+  index: -1
+jn04
+  rotate: false
+  xy: 286, 166
+  size: 186, 318
+  orig: 186, 318
+  offset: 0, 0
+  index: -1
+jn05
+  rotate: true
+  xy: 359, 486
+  size: 194, 383
+  orig: 194, 383
+  offset: 0, 0
+  index: -1
+jn06
+  rotate: false
+  xy: 2, 77
+  size: 282, 482
+  orig: 282, 482
+  offset: 0, 0
+  index: -1
+jn07
+  rotate: true
+  xy: 98, 12
+  size: 63, 94
+  orig: 63, 94
+  offset: 0, 0
+  index: -1
+jn08
+  rotate: false
+  xy: 794, 312
+  size: 103, 173
+  orig: 103, 173
+  offset: 0, 0
+  index: -1
+jn09
+  rotate: true
+  xy: 780, 36
+  size: 153, 80
+  orig: 153, 80
+  offset: 0, 0
+  index: -1
+jn10
+  rotate: false
+  xy: 286, 49
+  size: 190, 115
+  orig: 190, 115
+  offset: 0, 0
+  index: -1
+jn11
+  rotate: false
+  xy: 678, 191
+  size: 165, 102
+  orig: 165, 102
+  offset: 0, 0
+  index: -1
+jn12
+  rotate: true
+  xy: 761, 599
+  size: 266, 222
+  orig: 266, 222
+  offset: 0, 0
+  index: -1
+jn13
+  rotate: false
+  xy: 862, 128
+  size: 115, 81
+  orig: 115, 81
+  offset: 0, 0
+  index: -1
+jn14
+  rotate: false
+  xy: 2, 2
+  size: 94, 73
+  orig: 94, 73
+  offset: 0, 0
+  index: -1
+jn15
+  rotate: false
+  xy: 474, 191
+  size: 202, 293
+  orig: 202, 293
+  offset: 0, 0
+  index: -1
+jn17
+  rotate: false
+  xy: 678, 295
+  size: 114, 189
+  orig: 114, 189
+  offset: 0, 0
+  index: -1
+jn18
+  rotate: false
+  xy: 478, 41
+  size: 200, 148
+  orig: 200, 148
+  offset: 0, 0
+  index: -1
+jn19
+  rotate: false
+  xy: 2, 561
+  size: 355, 446
+  orig: 355, 446
+  offset: 0, 0
+  index: -1
+jn20
+  rotate: false
+  xy: 899, 296
+  size: 86, 189
+  orig: 86, 189
+  offset: 0, 0
+  index: -1
+jn21
+  rotate: true
+  xy: 845, 211
+  size: 83, 134
+  orig: 83, 134
+  offset: 0, 0
+  index: -1

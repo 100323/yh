@@ -1,0 +1,20 @@
+
+xxwky_icon_suotou.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwky_suotou
+  rotate: false
+  xy: 2, 2
+  size: 118, 101
+  orig: 118, 101
+  offset: 0, 0
+  index: -1
+xxwky_suotouguang
+  rotate: false
+  xy: 122, 47
+  size: 130, 56
+  orig: 130, 56
+  offset: 0, 0
+  index: -1

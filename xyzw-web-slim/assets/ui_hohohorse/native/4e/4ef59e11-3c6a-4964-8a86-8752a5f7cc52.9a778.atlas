@@ -1,0 +1,34 @@
+
+xmdss_gkbft_ditu.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gkbft_1
+  rotate: true
+  xy: 2, 2
+  size: 1011, 1036
+  orig: 1011, 1036
+  offset: 0, 0
+  index: -1
+gkbft_2
+  rotate: true
+  xy: 1040, 447
+  size: 566, 130
+  orig: 566, 130
+  offset: 0, 0
+  index: -1
+gkbft_3
+  rotate: false
+  xy: 1040, 326
+  size: 566, 119
+  orig: 566, 119
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 1172, 983
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

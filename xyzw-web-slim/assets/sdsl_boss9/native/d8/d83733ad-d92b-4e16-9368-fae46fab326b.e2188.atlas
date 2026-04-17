@@ -1,0 +1,20 @@
+
+sdsl_boss9_dead_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 130, 51
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+sdsl_boss9_die2
+  rotate: false
+  xy: 2, 2
+  size: 126, 90
+  orig: 126, 90
+  offset: 0, 0
+  index: -1

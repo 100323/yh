@@ -1,0 +1,139 @@
+
+ui_jiangli_cardlightbox.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_chest_light4
+  rotate: false
+  xy: 120, 195
+  size: 168, 61
+  orig: 168, 61
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 244, 281
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1
+ui_effect_light_box
+  rotate: true
+  xy: 278, 2
+  size: 63, 65
+  orig: 63, 65
+  offset: 0, 0
+  index: -1
+ui_effect_light_box3
+  rotate: false
+  xy: 408, 130
+  size: 58, 65
+  orig: 58, 65
+  offset: 0, 0
+  index: -1
+ui_jiangli_kuanglight
+  rotate: false
+  xy: 178, 328
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+ui_jiangli_kuanglight2
+  rotate: false
+  xy: 178, 262
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+ui_jiangli_kuanglight3
+  rotate: false
+  xy: 2, 140
+  size: 116, 116
+  orig: 120, 120
+  offset: 2, 2
+  index: -1
+ui_jiangli_saoguangline
+  rotate: false
+  xy: 345, 3
+  size: 69, 62
+  orig: 69, 62
+  offset: 0, 0
+  index: -1
+ui_liuguang_00001
+  rotate: false
+  xy: 284, 355
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00002
+  rotate: false
+  xy: 284, 276
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00003
+  rotate: true
+  xy: 290, 146
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00004
+  rotate: true
+  xy: 120, 65
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00005
+  rotate: true
+  xy: 2, 10
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00006
+  rotate: true
+  xy: 199, 65
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00007
+  rotate: false
+  xy: 278, 67
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00008
+  rotate: false
+  xy: 369, 197
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+ui_liuguang_00009
+  rotate: true
+  xy: 414, 304
+  size: 128, 77
+  orig: 128, 77
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 408, 74
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 258
+  size: 174, 174
+  orig: 174, 174
+  offset: 0, 0
+  index: -1

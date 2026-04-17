@@ -1,0 +1,76 @@
+
+effect_tgjl_01.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgjl_gq_00000
+  rotate: false
+  xy: 94, 2
+  size: 90, 92
+  orig: 101, 101
+  offset: 4, 5
+  index: -1
+tgjl_gq_00001
+  rotate: false
+  xy: 186, 2
+  size: 90, 92
+  orig: 101, 101
+  offset: 4, 5
+  index: -1
+tgjl_gq_00002
+  rotate: false
+  xy: 554, 3
+  size: 90, 91
+  orig: 101, 101
+  offset: 4, 6
+  index: -1
+tgjl_gq_00003
+  rotate: false
+  xy: 278, 2
+  size: 90, 92
+  orig: 101, 101
+  offset: 4, 5
+  index: -1
+tgjl_gq_00004
+  rotate: false
+  xy: 370, 2
+  size: 90, 92
+  orig: 101, 101
+  offset: 4, 5
+  index: -1
+tgjl_gq_00005
+  rotate: false
+  xy: 646, 2
+  size: 89, 92
+  orig: 101, 101
+  offset: 5, 5
+  index: -1
+tgjl_gq_00006
+  rotate: false
+  xy: 737, 2
+  size: 89, 92
+  orig: 101, 101
+  offset: 5, 5
+  index: -1
+tgjl_gq_00007
+  rotate: false
+  xy: 828, 2
+  size: 89, 92
+  orig: 101, 101
+  offset: 5, 5
+  index: -1
+tgjl_gq_00008
+  rotate: false
+  xy: 462, 2
+  size: 90, 92
+  orig: 101, 101
+  offset: 4, 5
+  index: -1
+tgjl_gq_00009
+  rotate: false
+  xy: 2, 2
+  size: 90, 92
+  orig: 101, 101
+  offset: 4, 5
+  index: -1

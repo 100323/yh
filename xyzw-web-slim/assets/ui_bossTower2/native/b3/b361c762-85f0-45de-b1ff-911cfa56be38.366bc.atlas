@@ -1,0 +1,20 @@
+
+xxwky_xiaosuotou.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjhd_ptgj_ui_bai
+  rotate: false
+  xy: 2, 2
+  size: 142, 122
+  orig: 142, 122
+  offset: 0, 0
+  index: -1
+sjhd_ptgj_ui_suo
+  rotate: true
+  xy: 146, 52
+  size: 72, 62
+  orig: 72, 62
+  offset: 0, 0
+  index: -1

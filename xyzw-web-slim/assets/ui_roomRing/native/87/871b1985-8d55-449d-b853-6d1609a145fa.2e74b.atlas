@@ -1,0 +1,41 @@
+
+cszb_ui_zlboard.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xslt_img_axle
+  rotate: true
+  xy: 2, 2
+  size: 20, 14
+  orig: 21, 14
+  offset: 0, 0
+  index: -1
+xslt_img_board2
+  rotate: false
+  xy: 2, 24
+  size: 203, 21
+  orig: 203, 21
+  offset: 0, 0
+  index: -1
+xslt_img_board_2
+  rotate: true
+  xy: 2, 47
+  size: 203, 166
+  orig: 203, 166
+  offset: 0, 0
+  index: -1
+xslt_img_board_3
+  rotate: true
+  xy: 170, 47
+  size: 203, 137
+  orig: 203, 137
+  offset: 0, 0
+  index: -1
+xslt_img_board_4
+  rotate: true
+  xy: 309, 47
+  size: 203, 137
+  orig: 203, 137
+  offset: 0, 0
+  index: -1

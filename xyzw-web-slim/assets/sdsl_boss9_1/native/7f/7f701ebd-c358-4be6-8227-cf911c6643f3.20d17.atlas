@@ -1,0 +1,97 @@
+
+sdsl_boss9_1_attack_b_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 107, 6
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_sd1
+  rotate: false
+  xy: 241, 93
+  size: 59, 63
+  orig: 59, 63
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_sd2
+  rotate: false
+  xy: 302, 132
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_sd3
+  rotate: false
+  xy: 57, 5
+  size: 48, 53
+  orig: 48, 53
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_sd4
+  rotate: false
+  xy: 279, 4
+  size: 43, 23
+  orig: 43, 23
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_sd5
+  rotate: true
+  xy: 198, 77
+  size: 79, 41
+  orig: 79, 41
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_yan1
+  rotate: true
+  xy: 228, 3
+  size: 72, 49
+  orig: 72, 49
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_yan2
+  rotate: true
+  xy: 2, 2
+  size: 56, 53
+  orig: 56, 53
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_yan3
+  rotate: true
+  xy: 161, 8
+  size: 50, 65
+  orig: 50, 65
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_yan4
+  rotate: false
+  xy: 267, 194
+  size: 59, 60
+  orig: 59, 60
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_yan5
+  rotate: false
+  xy: 279, 29
+  size: 57, 62
+  orig: 57, 62
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_yuan
+  rotate: false
+  xy: 2, 60
+  size: 194, 194
+  orig: 194, 194
+  offset: 0, 0
+  index: -1
+sd9_pdw2_hit_zha
+  rotate: true
+  xy: 198, 158
+  size: 96, 67
+  orig: 96, 67
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,181 @@
+
+caoren8_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jnsj01
+  rotate: true
+  xy: 877, 362
+  size: 83, 84
+  orig: 83, 84
+  offset: 0, 0
+  index: -1
+jnsj02
+  rotate: false
+  xy: 790, 421
+  size: 85, 89
+  orig: 85, 89
+  offset: 0, 0
+  index: -1
+jnsj03
+  rotate: true
+  xy: 2, 83
+  size: 427, 183
+  orig: 427, 183
+  offset: 0, 0
+  index: -1
+jnsj05
+  rotate: true
+  xy: 877, 447
+  size: 63, 89
+  orig: 63, 89
+  offset: 0, 0
+  index: -1
+jnsj06
+  rotate: false
+  xy: 407, 237
+  size: 111, 71
+  orig: 111, 71
+  offset: 0, 0
+  index: -1
+jnsj07
+  rotate: true
+  xy: 407, 310
+  size: 200, 137
+  orig: 200, 137
+  offset: 0, 0
+  index: -1
+jnsj08
+  rotate: false
+  xy: 452, 4
+  size: 127, 59
+  orig: 127, 59
+  offset: 0, 0
+  index: -1
+jnsj09
+  rotate: false
+  xy: 187, 236
+  size: 218, 274
+  orig: 218, 274
+  offset: 0, 0
+  index: -1
+jnsj10
+  rotate: true
+  xy: 581, 2
+  size: 68, 113
+  orig: 68, 113
+  offset: 0, 0
+  index: -1
+jnsj11
+  rotate: false
+  xy: 257, 11
+  size: 193, 223
+  orig: 193, 223
+  offset: 0, 0
+  index: -1
+jnsj12
+  rotate: false
+  xy: 546, 345
+  size: 95, 165
+  orig: 95, 165
+  offset: 0, 0
+  index: -1
+jnsj13
+  rotate: false
+  xy: 187, 84
+  size: 68, 150
+  orig: 68, 150
+  offset: 0, 0
+  index: -1
+jnsj14
+  rotate: true
+  xy: 109, 3
+  size: 78, 146
+  orig: 78, 146
+  offset: 0, 0
+  index: -1
+jnsj15
+  rotate: false
+  xy: 696, 2
+  size: 77, 105
+  orig: 77, 105
+  offset: 0, 0
+  index: -1
+jnsj16
+  rotate: true
+  xy: 520, 239
+  size: 69, 62
+  orig: 69, 62
+  offset: 0, 0
+  index: -1
+jnsj17
+  rotate: false
+  xy: 732, 415
+  size: 56, 95
+  orig: 56, 95
+  offset: 0, 0
+  index: -1
+jnsj18
+  rotate: true
+  xy: 643, 361
+  size: 149, 87
+  orig: 149, 87
+  offset: 0, 0
+  index: -1
+jnsj19
+  rotate: false
+  xy: 584, 240
+  size: 88, 103
+  orig: 88, 103
+  offset: 0, 0
+  index: -1
+jnsj20
+  rotate: false
+  xy: 674, 243
+  size: 101, 116
+  orig: 101, 116
+  offset: 0, 0
+  index: -1
+jnsj21
+  rotate: false
+  xy: 646, 109
+  size: 75, 129
+  orig: 75, 129
+  offset: 0, 0
+  index: -1
+jnsj22
+  rotate: false
+  xy: 452, 65
+  size: 80, 170
+  orig: 80, 170
+  offset: 0, 0
+  index: -1
+jnsj23
+  rotate: true
+  xy: 2, 2
+  size: 79, 105
+  orig: 79, 105
+  offset: 0, 0
+  index: -1
+jnsj24
+  rotate: true
+  xy: 732, 379
+  size: 34, 57
+  orig: 34, 57
+  offset: 0, 0
+  index: -1
+jnsj25
+  rotate: false
+  xy: 723, 142
+  size: 50, 99
+  orig: 50, 99
+  offset: 0, 0
+  index: -1
+jnsj26
+  rotate: true
+  xy: 534, 72
+  size: 165, 110
+  orig: 165, 110
+  offset: 0, 0
+  index: -1

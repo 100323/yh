@@ -1,0 +1,223 @@
+
+xshd_ui_baozoupen150.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+150penbao_baiguangshu
+  rotate: false
+  xy: 978, 90
+  size: 39, 251
+  orig: 39, 251
+  offset: 0, 0
+  index: -1
+150penbao_bao
+  rotate: false
+  xy: 806, 339
+  size: 150, 147
+  orig: 150, 147
+  offset: 0, 0
+  index: -1
+150penbao_bg
+  rotate: true
+  xy: 371, 648
+  size: 162, 78
+  orig: 162, 78
+  offset: 0, 0
+  index: -1
+150penbao_body
+  rotate: false
+  xy: 465, 603
+  size: 317, 400
+  orig: 317, 400
+  offset: 0, 0
+  index: -1
+150penbao_heihei1
+  rotate: true
+  xy: 2, 6
+  size: 96, 109
+  orig: 96, 109
+  offset: 0, 0
+  index: -1
+150penbao_hg
+  rotate: false
+  xy: 427, 481
+  size: 221, 120
+  orig: 221, 120
+  offset: 0, 0
+  index: -1
+150penbao_hgshu
+  rotate: true
+  xy: 650, 488
+  size: 113, 305
+  orig: 113, 305
+  offset: 0, 0
+  index: -1
+150penbao_jinbi1
+  rotate: true
+  xy: 113, 2
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: -1
+150penbao_jinbi2
+  rotate: true
+  xy: 958, 436
+  size: 94, 60
+  orig: 94, 60
+  offset: 0, 0
+  index: -1
+150penbao_jinbi3
+  rotate: true
+  xy: 533, 205
+  size: 70, 68
+  orig: 70, 68
+  offset: 0, 0
+  index: -1
+150penbao_jinbi4
+  rotate: true
+  xy: 957, 532
+  size: 104, 62
+  orig: 104, 62
+  offset: 0, 0
+  index: -1
+150penbao_jinbi5
+  rotate: true
+  xy: 972, 721
+  size: 90, 48
+  orig: 90, 48
+  offset: 0, 0
+  index: -1
+150penbao_jinbi6
+  rotate: true
+  xy: 603, 144
+  size: 83, 58
+  orig: 83, 58
+  offset: 0, 0
+  index: -1
+150penbao_jinbi7
+  rotate: true
+  xy: 459, 125
+  size: 76, 67
+  orig: 79, 76
+  offset: 0, 0
+  index: -1
+150penbao_jinbi8
+  rotate: true
+  xy: 958, 343
+  size: 91, 51
+  orig: 91, 51
+  offset: 0, 0
+  index: -1
+150penbao_jinbidui
+  rotate: true
+  xy: 259, 481
+  size: 329, 110
+  orig: 329, 110
+  offset: 0, 0
+  index: -1
+150penbao_kouqiang
+  rotate: true
+  xy: 848, 178
+  size: 159, 128
+  orig: 159, 128
+  offset: 0, 0
+  index: -1
+150penbao_maohou
+  rotate: true
+  xy: 2, 352
+  size: 458, 255
+  orig: 458, 262
+  offset: 0, 7
+  index: -1
+150penbao_maoqian
+  rotate: false
+  xy: 2, 812
+  size: 461, 191
+  orig: 461, 198
+  offset: 0, 0
+  index: -1
+150penbao_pendi
+  rotate: false
+  xy: 651, 229
+  size: 195, 102
+  orig: 195, 102
+  offset: 0, 0
+  index: -1
+150penbao_penqian
+  rotate: false
+  xy: 259, 277
+  size: 390, 202
+  orig: 390, 202
+  offset: 0, 0
+  index: -1
+150penbao_yan
+  rotate: true
+  xy: 371, 484
+  size: 162, 54
+  orig: 162, 54
+  offset: 0, 0
+  index: -1
+150penbao_ybi
+  rotate: false
+  xy: 385, 129
+  size: 72, 146
+  orig: 72, 146
+  offset: 0, 0
+  index: -1
+150penbao_yshou
+  rotate: false
+  xy: 784, 813
+  size: 189, 190
+  orig: 202, 190
+  offset: 0, 0
+  index: -1
+150penbao_zbi
+  rotate: false
+  xy: 226, 31
+  size: 100, 133
+  orig: 100, 133
+  offset: 0, 0
+  index: -1
+150penbao_zshou
+  rotate: false
+  xy: 784, 638
+  size: 186, 173
+  orig: 198, 174
+  offset: 12, 0
+  index: -1
+150penbao_zui
+  rotate: false
+  xy: 226, 166
+  size: 157, 109
+  orig: 157, 131
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 459, 203
+  size: 72, 72
+  orig: 72, 72
+  offset: 0, 0
+  index: -1
+pen150_bao_bj2
+  rotate: false
+  xy: 651, 333
+  size: 153, 153
+  orig: 163, 163
+  offset: 5, 5
+  index: -1
+pen150_bao_htiao
+  rotate: true
+  xy: 975, 877
+  size: 126, 42
+  orig: 126, 42
+  offset: 0, 0
+  index: -1
+pen150_bao_lizi
+  rotate: true
+  xy: 2, 104
+  size: 246, 222
+  orig: 246, 222
+  offset: 0, 0
+  index: -1

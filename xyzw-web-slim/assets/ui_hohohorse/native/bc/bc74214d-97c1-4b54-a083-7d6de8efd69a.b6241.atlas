@@ -1,0 +1,41 @@
+
+ycxsz_xcm.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_xcm
+  rotate: true
+  xy: 279, 61
+  size: 53, 44
+  orig: 53, 44
+  offset: 0, 0
+  index: -1
+ycxsz_xcm_xian
+  rotate: false
+  xy: 139, 3
+  size: 98, 53
+  orig: 98, 53
+  offset: 0, 0
+  index: -1
+ycxsz_xcm_yun
+  rotate: false
+  xy: 139, 58
+  size: 138, 56
+  orig: 138, 56
+  offset: 0, 0
+  index: -1
+ycxsz_xcm_yun2
+  rotate: false
+  xy: 239, 6
+  size: 94, 50
+  orig: 94, 50
+  offset: 0, 0
+  index: -1
+ycxsz_xcm_yun4
+  rotate: false
+  xy: 2, 2
+  size: 135, 112
+  orig: 135, 112
+  offset: 0, 0
+  index: -1

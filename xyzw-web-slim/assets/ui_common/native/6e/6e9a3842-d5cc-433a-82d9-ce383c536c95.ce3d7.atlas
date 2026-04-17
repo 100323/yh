@@ -1,0 +1,62 @@
+
+effect_fabao_levelup.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ensflare
+  rotate: true
+  xy: 2, 2
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+effect_rainbow_circle
+  rotate: false
+  xy: 122, 27
+  size: 97, 97
+  orig: 97, 97
+  offset: 0, 0
+  index: -1
+effect_spark_scrap1
+  rotate: true
+  xy: 294, 85
+  size: 81, 62
+  orig: 81, 62
+  offset: 0, 0
+  index: -1
+effect_spark_scrap2
+  rotate: false
+  xy: 221, 2
+  size: 83, 65
+  orig: 83, 65
+  offset: 0, 0
+  index: -1
+effect_spark_scrap3
+  rotate: true
+  xy: 228, 168
+  size: 86, 69
+  orig: 86, 69
+  offset: 0, 0
+  index: -1
+effect_spark_scrap4
+  rotate: true
+  xy: 221, 69
+  size: 89, 71
+  orig: 89, 71
+  offset: 0, 0
+  index: -1
+ui_effect_light_box2
+  rotate: false
+  xy: 132, 160
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 126
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

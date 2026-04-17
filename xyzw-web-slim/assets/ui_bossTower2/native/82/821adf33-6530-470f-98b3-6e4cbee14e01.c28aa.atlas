@@ -1,0 +1,41 @@
+
+xxwky_jxboss.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwky_jjboss_bo2
+  rotate: false
+  xy: 2, 75
+  size: 162, 141
+  orig: 162, 141
+  offset: 0, 0
+  index: -1
+xxwky_jjboss_jx1
+  rotate: false
+  xy: 166, 114
+  size: 75, 102
+  orig: 75, 102
+  offset: 0, 0
+  index: -1
+xxwky_jjboss_jx2
+  rotate: false
+  xy: 166, 17
+  size: 72, 95
+  orig: 72, 95
+  offset: 0, 0
+  index: -1
+xxwky_jjboss_sj1
+  rotate: true
+  xy: 2, 2
+  size: 71, 79
+  orig: 71, 79
+  offset: 0, 0
+  index: -1
+xxwky_jjboss_sj2
+  rotate: true
+  xy: 83, 33
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,104 @@
+
+loading_fish51.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaodai1
+  rotate: false
+  xy: 248, 83
+  size: 130, 172
+  orig: 130, 172
+  offset: 0, 0
+  index: -1
+jiaodai2
+  rotate: true
+  xy: 323, 18
+  size: 63, 93
+  orig: 63, 93
+  offset: 0, 0
+  index: -1
+q_dahuo
+  rotate: true
+  xy: 380, 220
+  size: 46, 32
+  orig: 47, 32
+  offset: 1, 0
+  index: -1
+q_huo
+  rotate: true
+  xy: 248, 17
+  size: 64, 73
+  orig: 64, 73
+  offset: 0, 0
+  index: -1
+q_yingzi
+  rotate: true
+  xy: 273, 268
+  size: 79, 129
+  orig: 79, 129
+  offset: 0, 0
+  index: -1
+qiang
+  rotate: false
+  xy: 2, 235
+  size: 171, 257
+  orig: 172, 259
+  offset: 0, 1
+  index: -1
+y_maozi
+  rotate: true
+  xy: 175, 349
+  size: 143, 146
+  orig: 147, 148
+  offset: 3, 1
+  index: -1
+y_shenti
+  rotate: true
+  xy: 2, 2
+  size: 231, 244
+  orig: 231, 244
+  offset: 0, 0
+  index: -1
+y_yanjing
+  rotate: false
+  xy: 323, 355
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
+y_yanzhu
+  rotate: false
+  xy: 175, 246
+  size: 10, 9
+  orig: 10, 9
+  offset: 0, 0
+  index: -1
+y_yingzi
+  rotate: false
+  xy: 175, 257
+  size: 96, 90
+  orig: 96, 90
+  offset: 0, 0
+  index: -1
+y_yuqi1
+  rotate: true
+  xy: 439, 415
+  size: 77, 46
+  orig: 77, 46
+  offset: 0, 0
+  index: -1
+y_yuqi2
+  rotate: true
+  xy: 323, 411
+  size: 81, 114
+  orig: 81, 115
+  offset: 0, 1
+  index: -1
+yanwu
+  rotate: false
+  xy: 389, 361
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1

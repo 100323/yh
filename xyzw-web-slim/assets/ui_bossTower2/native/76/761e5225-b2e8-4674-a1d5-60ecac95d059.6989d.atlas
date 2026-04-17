@@ -1,0 +1,13 @@
+
+xxwky_heidi.png
+size: 32,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 22, 18
+  orig: 26, 26
+  offset: 2, 3
+  index: -1

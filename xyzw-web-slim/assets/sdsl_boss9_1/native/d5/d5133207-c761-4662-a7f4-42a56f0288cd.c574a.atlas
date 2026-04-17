@@ -1,0 +1,69 @@
+
+sdsl_boss9_1_attack_b_position.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 37
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_bo1
+  rotate: false
+  xy: 2, 366
+  size: 619, 639
+  orig: 619, 639
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_bo2
+  rotate: true
+  xy: 549, 17
+  size: 347, 263
+  orig: 347, 263
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_dian
+  rotate: true
+  xy: 623, 780
+  size: 225, 187
+  orig: 225, 187
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_ju2
+  rotate: true
+  xy: 814, 495
+  size: 510, 147
+  orig: 510, 147
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_ju6
+  rotate: true
+  xy: 2, 91
+  size: 273, 545
+  orig: 273, 545
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_qiu1
+  rotate: true
+  xy: 623, 377
+  size: 116, 109
+  orig: 116, 109
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_qiu2
+  rotate: true
+  xy: 623, 602
+  size: 176, 178
+  orig: 176, 178
+  offset: 0, 0
+  index: -1
+sd9_pdw2_jn_zz
+  rotate: true
+  xy: 2, 2
+  size: 13, 732
+  orig: 13, 732
+  offset: 0, 0
+  index: -1

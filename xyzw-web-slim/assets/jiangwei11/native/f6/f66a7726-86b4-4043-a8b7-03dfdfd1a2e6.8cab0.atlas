@@ -1,0 +1,132 @@
+
+jiangwei11_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei11_skill_bailz1
+  rotate: true
+  xy: 420, 20
+  size: 46, 58
+  orig: 46, 58
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_bailz2
+  rotate: true
+  xy: 193, 4
+  size: 38, 53
+  orig: 38, 53
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_bailz3
+  rotate: true
+  xy: 469, 275
+  size: 36, 41
+  orig: 36, 41
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_hei1
+  rotate: true
+  xy: 2, 2
+  size: 32, 189
+  orig: 32, 189
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_hei2
+  rotate: true
+  xy: 2, 148
+  size: 73, 297
+  orig: 73, 297
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_ksquan
+  rotate: false
+  xy: 2, 36
+  size: 166, 110
+  orig: 166, 110
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sj1
+  rotate: false
+  xy: 2, 223
+  size: 321, 284
+  orig: 321, 284
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sj2
+  rotate: true
+  xy: 325, 313
+  size: 194, 160
+  orig: 194, 160
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjhuo1
+  rotate: true
+  xy: 312, 4
+  size: 56, 103
+  orig: 56, 104
+  offset: 0, 1
+  index: -1
+jiangwei11_skill_sjhuo2
+  rotate: false
+  xy: 451, 154
+  size: 59, 75
+  orig: 59, 75
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjhuo3
+  rotate: true
+  xy: 325, 231
+  size: 80, 142
+  orig: 80, 142
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjhuo4
+  rotate: true
+  xy: 312, 62
+  size: 86, 106
+  orig: 86, 107
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjhuo5
+  rotate: true
+  xy: 170, 44
+  size: 102, 140
+  orig: 104, 140
+  offset: 2, 0
+  index: -1
+jiangwei11_skill_sjhuo6
+  rotate: true
+  xy: 420, 68
+  size: 80, 79
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjyan1
+  rotate: true
+  xy: 325, 150
+  size: 79, 124
+  orig: 79, 124
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjyan2
+  rotate: true
+  xy: 248, 13
+  size: 29, 55
+  orig: 29, 55
+  offset: 0, 0
+  index: -1
+jiangwei11_skill_sjyan3
+  rotate: false
+  xy: 301, 170
+  size: 16, 51
+  orig: 16, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 487, 486
+  size: 21, 21
+  orig: 24, 24
+  offset: 2, 1
+  index: -1

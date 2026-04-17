@@ -1,0 +1,55 @@
+
+ycxsz_kjsm.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_djs_1
+  rotate: false
+  xy: 529, 269
+  size: 111, 82
+  orig: 111, 82
+  offset: 0, 0
+  index: -1
+ycxsz_djs_2
+  rotate: false
+  xy: 630, 380
+  size: 70, 32
+  orig: 70, 32
+  offset: 0, 0
+  index: -1
+ycxsz_djs_3
+  rotate: false
+  xy: 630, 354
+  size: 67, 24
+  orig: 67, 24
+  offset: 0, 0
+  index: -1
+ycxsz_djs_4
+  rotate: true
+  xy: 699, 311
+  size: 67, 24
+  orig: 67, 24
+  offset: 0, 0
+  index: -1
+ycxsz_djs_5
+  rotate: false
+  xy: 630, 414
+  size: 87, 66
+  orig: 87, 66
+  offset: 0, 0
+  index: -1
+ycxsz_djs_fj
+  rotate: true
+  xy: 529, 353
+  size: 127, 99
+  orig: 130, 100
+  offset: 1, 0
+  index: -1
+ycxsz_djs_zhi
+  rotate: false
+  xy: 2, 2
+  size: 525, 478
+  orig: 525, 478
+  offset: 0, 0
+  index: -1

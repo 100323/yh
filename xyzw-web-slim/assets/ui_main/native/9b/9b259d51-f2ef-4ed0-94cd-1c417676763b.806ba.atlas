@@ -1,0 +1,146 @@
+
+ui_axian_btn_livingroom_1.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: false
+  xy: 24, 4
+  size: 10, 5
+  orig: 14, 5
+  offset: 2, 0
+  index: -1
+axian_eyer2
+  rotate: false
+  xy: 36, 5
+  size: 9, 4
+  orig: 13, 6
+  offset: 2, 1
+  index: -1
+ktax_zdy_bi
+  rotate: false
+  xy: 62, 40
+  size: 10, 12
+  orig: 10, 12
+  offset: 0, 0
+  index: -1
+ktax_zdy_bozi
+  rotate: false
+  xy: 24, 11
+  size: 19, 24
+  orig: 19, 24
+  offset: 0, 0
+  index: -1
+ktax_zdy_er
+  rotate: false
+  xy: 58, 18
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+ktax_zdy_lian
+  rotate: false
+  xy: 153, 9
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+ktax_zdy_lianying
+  rotate: true
+  xy: 62, 54
+  size: 72, 64
+  orig: 72, 64
+  offset: 0, 0
+  index: -1
+ktax_zdy_mao
+  rotate: false
+  xy: 128, 72
+  size: 85, 54
+  orig: 85, 55
+  offset: 0, 1
+  index: -1
+ktax_zdy_maoying
+  rotate: true
+  xy: 2, 37
+  size: 89, 58
+  orig: 89, 59
+  offset: 0, 1
+  index: -1
+ktax_zdy_mz2
+  rotate: true
+  xy: 2, 2
+  size: 33, 20
+  orig: 33, 20
+  offset: 0, 0
+  index: -1
+ktax_zdy_shen
+  rotate: false
+  xy: 80, 3
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+ktax_zdy_tf1
+  rotate: false
+  xy: 273, 74
+  size: 41, 52
+  orig: 41, 53
+  offset: 0, 0
+  index: -1
+ktax_zdy_tf1ying
+  rotate: false
+  xy: 224, 16
+  size: 45, 56
+  orig: 45, 57
+  offset: 0, 0
+  index: -1
+ktax_zdy_tf2
+  rotate: false
+  xy: 271, 20
+  size: 48, 52
+  orig: 48, 52
+  offset: 0, 0
+  index: -1
+ktax_zdy_tf2ying
+  rotate: true
+  xy: 215, 74
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+ktax_zdy_yanl
+  rotate: false
+  xy: 64, 2
+  size: 12, 14
+  orig: 12, 14
+  offset: 0, 0
+  index: -1
+ktax_zdy_yanr
+  rotate: true
+  xy: 47, 2
+  size: 9, 15
+  orig: 9, 15
+  offset: 0, 0
+  index: -1
+ktax_zdy_yzl
+  rotate: false
+  xy: 74, 41
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+ktax_zdy_yzr
+  rotate: false
+  xy: 74, 47
+  size: 4, 5
+  orig: 4, 5
+  offset: 0, 0
+  index: -1
+ktax_zdy_zui
+  rotate: true
+  xy: 45, 13
+  size: 22, 11
+  orig: 22, 11
+  offset: 0, 0
+  index: -1

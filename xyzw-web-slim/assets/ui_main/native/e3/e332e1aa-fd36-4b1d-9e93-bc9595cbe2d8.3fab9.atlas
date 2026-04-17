@@ -1,0 +1,139 @@
+
+ui_axian_btn_livingroom_5111.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyer2
+  rotate: true
+  xy: 50, 9
+  size: 9, 4
+  orig: 13, 6
+  offset: 2, 1
+  index: -1
+bhzj_redl
+  rotate: true
+  xy: 50, 29
+  size: 10, 7
+  orig: 10, 8
+  offset: 0, 0
+  index: -1
+bhzj_zui
+  rotate: true
+  xy: 50, 20
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
+ktax_bh_bi
+  rotate: false
+  xy: 93, 34
+  size: 10, 13
+  orig: 10, 13
+  offset: 0, 0
+  index: -1
+ktax_bh_yzr
+  rotate: false
+  xy: 50, 2
+  size: 4, 5
+  orig: 4, 5
+  offset: 0, 0
+  index: -1
+zqsc_jhl
+  rotate: false
+  xy: 232, 195
+  size: 143, 51
+  orig: 143, 51
+  offset: 0, 0
+  index: -1
+zqsc_jjl
+  rotate: false
+  xy: 119, 135
+  size: 111, 111
+  orig: 111, 111
+  offset: 0, 0
+  index: -1
+zqsc_jjlmb
+  rotate: false
+  xy: 2, 131
+  size: 115, 115
+  orig: 115, 115
+  offset: 0, 0
+  index: -1
+zqsc_jjr
+  rotate: false
+  xy: 2, 41
+  size: 55, 88
+  orig: 55, 88
+  offset: 0, 0
+  index: -1
+zqsc_jjxl
+  rotate: true
+  xy: 59, 7
+  size: 54, 32
+  orig: 54, 32
+  offset: 0, 0
+  index: -1
+zqsc_jjxr
+  rotate: true
+  xy: 336, 73
+  size: 59, 86
+  orig: 59, 86
+  offset: 0, 0
+  index: -1
+zqsc_lian
+  rotate: true
+  xy: 59, 63
+  size: 66, 58
+  orig: 66, 58
+  offset: 0, 0
+  index: -1
+zqsc_shens
+  rotate: false
+  xy: 219, 24
+  size: 69, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+zqsc_shenx
+  rotate: false
+  xy: 2, 3
+  size: 46, 36
+  orig: 46, 36
+  offset: 0, 0
+  index: -1
+zqsc_tf
+  rotate: true
+  xy: 377, 134
+  size: 112, 109
+  orig: 112, 109
+  offset: 0, 0
+  index: -1
+zqsc_tk
+  rotate: false
+  xy: 119, 23
+  size: 98, 110
+  orig: 98, 110
+  offset: 0, 0
+  index: -1
+zqsc_tk2
+  rotate: false
+  xy: 336, 153
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+zqsc_tkmb
+  rotate: false
+  xy: 232, 79
+  size: 102, 114
+  orig: 102, 114
+  offset: 0, 0
+  index: -1
+zqsc_yan_l
+  rotate: false
+  xy: 93, 49
+  size: 11, 12
+  orig: 11, 13
+  offset: 0, 1
+  index: -1

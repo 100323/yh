@@ -1,0 +1,118 @@
+
+ui_main_award.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+awardlight_00
+  rotate: false
+  xy: 65, 209
+  size: 162, 49
+  orig: 164, 54
+  offset: 1, 2
+  index: -1
+awardlight_01
+  rotate: false
+  xy: 229, 209
+  size: 158, 49
+  orig: 164, 54
+  offset: 3, 2
+  index: -1
+awardlight_02
+  rotate: false
+  xy: 2, 158
+  size: 132, 49
+  orig: 164, 54
+  offset: 16, 2
+  index: -1
+awardlight_03
+  rotate: false
+  xy: 389, 209
+  size: 90, 49
+  orig: 164, 54
+  offset: 37, 2
+  index: -1
+awardlight_04
+  rotate: false
+  xy: 2, 55
+  size: 110, 50
+  orig: 164, 54
+  offset: 27, 2
+  index: -1
+awardlight_05
+  rotate: false
+  xy: 249, 54
+  size: 153, 50
+  orig: 164, 54
+  offset: 6, 2
+  index: -1
+awardlight_06
+  rotate: false
+  xy: 2, 3
+  size: 162, 50
+  orig: 164, 54
+  offset: 1, 2
+  index: -1
+awardlight_07
+  rotate: false
+  xy: 136, 158
+  size: 162, 49
+  orig: 164, 54
+  offset: 1, 2
+  index: -1
+awardlight_08
+  rotate: false
+  xy: 300, 158
+  size: 160, 49
+  orig: 164, 54
+  offset: 2, 2
+  index: -1
+awardlight_09
+  rotate: false
+  xy: 2, 107
+  size: 150, 49
+  orig: 164, 54
+  offset: 7, 2
+  index: -1
+awardlight_10
+  rotate: false
+  xy: 154, 107
+  size: 112, 49
+  orig: 164, 54
+  offset: 26, 2
+  index: -1
+awardlight_11
+  rotate: true
+  xy: 432, 68
+  size: 88, 50
+  orig: 164, 54
+  offset: 38, 2
+  index: -1
+awardlight_12
+  rotate: false
+  xy: 114, 55
+  size: 133, 50
+  orig: 164, 54
+  offset: 16, 2
+  index: -1
+awardlight_13
+  rotate: false
+  xy: 166, 2
+  size: 160, 50
+  orig: 164, 54
+  offset: 2, 2
+  index: -1
+awardlight_14
+  rotate: false
+  xy: 268, 106
+  size: 162, 50
+  orig: 164, 54
+  offset: 1, 2
+  index: -1
+ui_gift_light1
+  rotate: false
+  xy: 2, 227
+  size: 61, 31
+  orig: 61, 31
+  offset: 0, 0
+  index: -1

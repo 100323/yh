@@ -1,0 +1,27 @@
+
+jiangwei11_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 261, 42
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_sj1
+  rotate: false
+  xy: 2, 2
+  size: 257, 235
+  orig: 257, 235
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_sj2
+  rotate: true
+  xy: 261, 88
+  size: 149, 130
+  orig: 149, 130
+  offset: 0, 0
+  index: -1

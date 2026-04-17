@@ -1,0 +1,34 @@
+
+xxwky_pugongyan.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjhd_ptgj_yan1
+  rotate: false
+  xy: 2, 2
+  size: 202, 194
+  orig: 202, 194
+  offset: 0, 0
+  index: -1
+sjhd_ptgj_yan3
+  rotate: true
+  xy: 206, 50
+  size: 146, 153
+  orig: 146, 153
+  offset: 0, 0
+  index: -1
+sjhd_ptgj_yan4
+  rotate: true
+  xy: 361, 16
+  size: 95, 78
+  orig: 95, 78
+  offset: 0, 0
+  index: -1
+sjhd_ptgj_yant
+  rotate: true
+  xy: 361, 113
+  size: 83, 82
+  orig: 83, 82
+  offset: 0, 0
+  index: -1

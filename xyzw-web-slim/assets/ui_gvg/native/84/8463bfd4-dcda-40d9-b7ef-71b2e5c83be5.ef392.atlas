@@ -1,0 +1,69 @@
+
+jlbdw_medal.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 434, 9
+  size: 72, 71
+  orig: 72, 71
+  offset: 0, 0
+  index: -1
+jlbxz_medal1
+  rotate: false
+  xy: 434, 83
+  size: 178, 199
+  orig: 178, 199
+  offset: 0, 0
+  index: -1
+jlbxz_medal2
+  rotate: false
+  xy: 614, 83
+  size: 178, 199
+  orig: 178, 199
+  offset: 0, 0
+  index: -1
+jlbxz_medal3
+  rotate: false
+  xy: 430, 284
+  size: 209, 209
+  orig: 209, 209
+  offset: 0, 0
+  index: -1
+jlbxz_medal4
+  rotate: false
+  xy: 219, 278
+  size: 209, 215
+  orig: 209, 215
+  offset: 0, 0
+  index: -1
+jlbxz_medal5
+  rotate: false
+  xy: 207, 30
+  size: 225, 226
+  orig: 225, 226
+  offset: 0, 0
+  index: -1
+jlbxz_medal6
+  rotate: true
+  xy: 2, 26
+  size: 230, 203
+  orig: 230, 203
+  offset: 0, 0
+  index: -1
+jlbxz_medal7
+  rotate: true
+  xy: 2, 258
+  size: 235, 215
+  orig: 235, 215
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

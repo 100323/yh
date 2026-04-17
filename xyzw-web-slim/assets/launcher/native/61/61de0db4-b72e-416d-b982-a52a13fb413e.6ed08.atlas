@@ -1,0 +1,118 @@
+
+dzxy_bingo_haitun.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guang
+  rotate: false
+  xy: 255, 122
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+ht_ci1
+  rotate: true
+  xy: 119, 9
+  size: 21, 37
+  orig: 22, 37
+  offset: 0, 0
+  index: -1
+ht_ci2
+  rotate: true
+  xy: 98, 6
+  size: 24, 19
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+ht_g1
+  rotate: false
+  xy: 184, 170
+  size: 83, 84
+  orig: 83, 84
+  offset: 0, 0
+  index: -1
+ht_g2
+  rotate: false
+  xy: 176, 41
+  size: 77, 86
+  orig: 77, 86
+  offset: 0, 0
+  index: -1
+ht_g2_1
+  rotate: true
+  xy: 158, 10
+  size: 20, 34
+  orig: 20, 34
+  offset: 0, 0
+  index: -1
+ht_g2_2
+  rotate: true
+  xy: 206, 20
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+ht_shen
+  rotate: false
+  xy: 98, 32
+  size: 76, 87
+  orig: 76, 87
+  offset: 0, 0
+  index: -1
+ht_shetou
+  rotate: true
+  xy: 223, 4
+  size: 14, 13
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+shen
+  rotate: true
+  xy: 42, 12
+  size: 107, 54
+  orig: 109, 56
+  offset: 1, 1
+  index: -1
+shetou
+  rotate: false
+  xy: 226, 27
+  size: 11, 12
+  orig: 13, 14
+  offset: 1, 1
+  index: -1
+tuowe
+  rotate: true
+  xy: 206, 2
+  size: 16, 15
+  orig: 18, 17
+  offset: 1, 1
+  index: -1
+tuowe2
+  rotate: true
+  xy: 42, 121
+  size: 133, 75
+  orig: 137, 75
+  offset: 4, 0
+  index: -1
+tuowe4
+  rotate: true
+  xy: 2, 12
+  size: 242, 38
+  orig: 242, 38
+  offset: 0, 0
+  index: -1
+tuowei1
+  rotate: true
+  xy: 119, 129
+  size: 125, 63
+  orig: 125, 63
+  offset: 0, 0
+  index: -1
+yan
+  rotate: true
+  xy: 194, 5
+  size: 34, 10
+  orig: 34, 10
+  offset: 0, 0
+  index: -1

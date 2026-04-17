@@ -1,0 +1,69 @@
+
+ycxsz_pve_fire.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 109, 91
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_dian
+  rotate: true
+  xy: 101, 151
+  size: 103, 99
+  orig: 103, 99
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_huan
+  rotate: false
+  xy: 109, 2
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_huo1
+  rotate: false
+  xy: 202, 179
+  size: 50, 75
+  orig: 50, 76
+  offset: 0, 1
+  index: -1
+ycxsz_pve_fire_huo2
+  rotate: false
+  xy: 2, 119
+  size: 97, 135
+  orig: 97, 135
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_huo3
+  rotate: true
+  xy: 101, 122
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_yan
+  rotate: false
+  xy: 2, 12
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_zha1
+  rotate: false
+  xy: 143, 65
+  size: 93, 84
+  orig: 93, 84
+  offset: 0, 0
+  index: -1
+ycxsz_pve_fire_zha2
+  rotate: false
+  xy: 172, 8
+  size: 51, 55
+  orig: 51, 55
+  offset: 0, 0
+  index: -1

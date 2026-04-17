@@ -1,0 +1,55 @@
+
+tgcf_dsjl_cloud_3.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xmdss_bfy_1
+  rotate: false
+  xy: 2, 2
+  size: 87, 27
+  orig: 89, 29
+  offset: 1, 1
+  index: -1
+xmdss_bfy_2
+  rotate: true
+  xy: 31, 32
+  size: 87, 27
+  orig: 89, 29
+  offset: 1, 1
+  index: -1
+xmdss_bfy_3
+  rotate: false
+  xy: 228, 65
+  size: 190, 54
+  orig: 192, 56
+  offset: 1, 1
+  index: -1
+xmdss_bfy_33
+  rotate: true
+  xy: 2, 31
+  size: 88, 27
+  orig: 92, 31
+  offset: 2, 2
+  index: -1
+xmdss_bfy_4
+  rotate: false
+  xy: 60, 33
+  size: 82, 86
+  orig: 84, 88
+  offset: 1, 1
+  index: -1
+xmdss_bfy_5
+  rotate: false
+  xy: 144, 33
+  size: 82, 86
+  orig: 84, 88
+  offset: 1, 1
+  index: -1
+xmdss_bfy_6
+  rotate: false
+  xy: 228, 9
+  size: 188, 54
+  orig: 190, 56
+  offset: 1, 1
+  index: -1

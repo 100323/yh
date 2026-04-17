@@ -1,0 +1,62 @@
+
+sdsl_bg9.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 204, 80
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+sdsl_bg9_f1
+  rotate: true
+  xy: 2, 2
+  size: 51, 110
+  orig: 51, 110
+  offset: 0, 0
+  index: -1
+sdsl_bg9_f2
+  rotate: false
+  xy: 150, 130
+  size: 53, 119
+  orig: 53, 119
+  offset: 0, 0
+  index: -1
+sdsl_bg9_f3
+  rotate: true
+  xy: 2, 55
+  size: 47, 134
+  orig: 47, 134
+  offset: 0, 0
+  index: -1
+sdsl_bg9_f4
+  rotate: false
+  xy: 150, 6
+  size: 52, 122
+  orig: 52, 122
+  offset: 0, 0
+  index: -1
+sdsl_bg9_f5
+  rotate: false
+  xy: 205, 124
+  size: 48, 125
+  orig: 48, 125
+  offset: 0, 0
+  index: -1
+sdsl_bg9_long
+  rotate: false
+  xy: 2, 104
+  size: 146, 145
+  orig: 146, 145
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 114, 30
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1

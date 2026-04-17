@@ -1,0 +1,20 @@
+
+sjhd_icon.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdhd_icon
+  rotate: false
+  xy: 2, 2
+  size: 76, 75
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 2, 79
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

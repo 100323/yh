@@ -1,0 +1,90 @@
+
+jlb_dsj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jlb_dsj_sheng1
+  rotate: true
+  xy: 485, 355
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng2
+  rotate: true
+  xy: 485, 385
+  size: 27, 14
+  orig: 27, 14
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng3
+  rotate: false
+  xy: 334, 2
+  size: 53, 43
+  orig: 53, 43
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng4
+  rotate: true
+  xy: 407, 102
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng5
+  rotate: false
+  xy: 405, 18
+  size: 29, 82
+  orig: 29, 82
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng6
+  rotate: false
+  xy: 485, 414
+  size: 24, 85
+  orig: 24, 85
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng7
+  rotate: true
+  xy: 407, 136
+  size: 36, 78
+  orig: 36, 78
+  offset: 0, 0
+  index: -1
+jlb_dsj_sheng8
+  rotate: false
+  xy: 326, 102
+  size: 79, 70
+  orig: 79, 70
+  offset: 0, 0
+  index: -1
+jlb_dsj_xunzhang
+  rotate: true
+  xy: 334, 47
+  size: 53, 69
+  orig: 53, 69
+  offset: 0, 0
+  index: -1
+jlb_dsj_zhi
+  rotate: false
+  xy: 2, 174
+  size: 481, 325
+  orig: 481, 325
+  offset: 0, 0
+  index: -1
+jlb_dsj_zhi1
+  rotate: false
+  xy: 2, 21
+  size: 330, 53
+  orig: 330, 53
+  offset: 0, 0
+  index: -1
+jlb_dsj_zhi2
+  rotate: false
+  xy: 2, 76
+  size: 322, 96
+  orig: 322, 96
+  offset: 0, 0
+  index: -1

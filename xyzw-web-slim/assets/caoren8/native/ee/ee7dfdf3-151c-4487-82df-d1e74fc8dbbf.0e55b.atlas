@@ -1,0 +1,34 @@
+
+caoren8_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 135, 179
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+kul1
+  rotate: true
+  xy: 2, 2
+  size: 88, 93
+  orig: 90, 95
+  offset: 1, 1
+  index: -1
+kul2
+  rotate: true
+  xy: 97, 19
+  size: 71, 74
+  orig: 74, 76
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 92
+  size: 131, 131
+  orig: 131, 131
+  offset: 0, 0
+  index: -1

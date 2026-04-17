@@ -1,0 +1,55 @@
+
+xmdss_zzjs.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xmdss_zzjs_cb
+  rotate: true
+  xy: 388, 24
+  size: 40, 25
+  orig: 42, 31
+  offset: 0, 5
+  index: -1
+xmdss_zzjs_cb1
+  rotate: false
+  xy: 347, 34
+  size: 39, 30
+  orig: 42, 38
+  offset: 2, 1
+  index: -1
+xmdss_zzjs_ma
+  rotate: false
+  xy: 258, 2
+  size: 87, 162
+  orig: 87, 162
+  offset: 0, 0
+  index: -1
+xmdss_zzjs_toufa
+  rotate: false
+  xy: 347, 66
+  size: 97, 98
+  orig: 97, 102
+  offset: 0, 4
+  index: -1
+xmdss_zzjs_xian
+  rotate: false
+  xy: 2, 39
+  size: 254, 125
+  orig: 254, 125
+  offset: 0, 0
+  index: -1
+xmdss_zzjs_xing1
+  rotate: false
+  xy: 347, 8
+  size: 17, 24
+  orig: 18, 26
+  offset: 1, 1
+  index: -1
+xmdss_zzjs_xing2
+  rotate: true
+  xy: 366, 18
+  size: 14, 13
+  orig: 15, 22
+  offset: 0, 4
+  index: -1

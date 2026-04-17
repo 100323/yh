@@ -1,0 +1,139 @@
+
+ui_arena_battle.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jjc_bq_angry1
+  rotate: true
+  xy: 457, 273
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+jjc_bq_angry2
+  rotate: false
+  xy: 502, 470
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
+jjc_bq_angry3
+  rotate: true
+  xy: 485, 486
+  size: 20, 21
+  orig: 23, 21
+  offset: 0, 0
+  index: -1
+jjc_bq_angry4
+  rotate: false
+  xy: 2, 266
+  size: 35, 62
+  orig: 35, 62
+  offset: 0, 0
+  index: -1
+jjc_bq_angry5
+  rotate: true
+  xy: 368, 337
+  size: 71, 93
+  orig: 71, 93
+  offset: 0, 0
+  index: -1
+jjc_bq_angry6
+  rotate: true
+  xy: 368, 261
+  size: 74, 87
+  orig: 74, 88
+  offset: 0, 0
+  index: -1
+jjc_bq_angry7
+  rotate: true
+  xy: 368, 410
+  size: 96, 115
+  orig: 96, 115
+  offset: 0, 0
+  index: -1
+jjc_bq_go1
+  rotate: false
+  xy: 485, 473
+  size: 15, 11
+  orig: 15, 11
+  offset: 0, 0
+  index: -1
+jjc_bq_go2
+  rotate: true
+  xy: 502, 477
+  size: 7, 8
+  orig: 7, 8
+  offset: 0, 0
+  index: -1
+jjc_bq_go3
+  rotate: false
+  xy: 457, 244
+  size: 35, 27
+  orig: 35, 27
+  offset: 0, 0
+  index: -1
+jjc_bq_go4
+  rotate: false
+  xy: 463, 312
+  size: 43, 56
+  orig: 43, 56
+  offset: 0, 0
+  index: -1
+jjc_bq_go5
+  rotate: true
+  xy: 353, 180
+  size: 79, 83
+  orig: 79, 83
+  offset: 0, 0
+  index: -1
+jjc_bq_go6
+  rotate: true
+  xy: 463, 370
+  size: 38, 46
+  orig: 38, 46
+  offset: 0, 0
+  index: -1
+jjc_bq_go7
+  rotate: false
+  xy: 267, 254
+  size: 84, 74
+  orig: 84, 74
+  offset: 0, 0
+  index: -1
+jjc_ui_ban
+  rotate: false
+  xy: 2, 330
+  size: 364, 176
+  orig: 364, 176
+  offset: 0, 0
+  index: -1
+jjc_ui_bubble
+  rotate: true
+  xy: 259, 2
+  size: 176, 165
+  orig: 176, 165
+  offset: 0, 0
+  index: -1
+jjc_ui_light
+  rotate: true
+  xy: 39, 270
+  size: 58, 226
+  orig: 58, 226
+  offset: 0, 0
+  index: -1
+ui_effectlight_bigcircle01
+  rotate: false
+  xy: 2, 4
+  size: 255, 255
+  orig: 255, 255
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 259, 220
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

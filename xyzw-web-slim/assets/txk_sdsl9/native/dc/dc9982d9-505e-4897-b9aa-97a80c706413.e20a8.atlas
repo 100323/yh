@@ -1,0 +1,62 @@
+
+txk_sdsl9.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 375, 68
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sdsl_gk_xhm1
+  rotate: true
+  xy: 237, 43
+  size: 83, 136
+  orig: 83, 136
+  offset: 0, 0
+  index: -1
+sdsl_gk_xhm2
+  rotate: false
+  xy: 143, 2
+  size: 92, 124
+  orig: 92, 124
+  offset: 0, 0
+  index: -1
+txk_pdw_huo1
+  rotate: false
+  xy: 237, 6
+  size: 26, 35
+  orig: 28, 37
+  offset: 1, 1
+  index: -1
+txk_pdw_huo2
+  rotate: false
+  xy: 265, 12
+  size: 25, 29
+  orig: 28, 34
+  offset: 1, 1
+  index: -1
+txk_pdw_kang
+  rotate: false
+  xy: 2, 4
+  size: 139, 122
+  orig: 139, 122
+  offset: 0, 0
+  index: -1
+txk_pdw_kuang2
+  rotate: true
+  xy: 292, 16
+  size: 25, 21
+  orig: 27, 23
+  offset: 1, 1
+  index: -1
+txk_simayi9_xing
+  rotate: true
+  xy: 315, 22
+  size: 19, 17
+  orig: 25, 25
+  offset: 3, 4
+  index: -1

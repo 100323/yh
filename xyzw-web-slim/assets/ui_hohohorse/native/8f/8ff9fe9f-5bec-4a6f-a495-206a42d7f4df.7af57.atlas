@@ -1,0 +1,97 @@
+
+xmdss_gkbft_mty.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gkbft_mty_dun
+  rotate: false
+  xy: 171, 103
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+gkbft_mty_jian
+  rotate: true
+  xy: 159, 154
+  size: 29, 67
+  orig: 29, 67
+  offset: 0, 0
+  index: -1
+gkbft_mty_jin1
+  rotate: true
+  xy: 173, 59
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+gkbft_mty_jin2
+  rotate: false
+  xy: 2, 84
+  size: 67, 80
+  orig: 67, 80
+  offset: 0, 0
+  index: -1
+gkbft_mty_jin3
+  rotate: false
+  xy: 140, 85
+  size: 29, 67
+  orig: 29, 67
+  offset: 0, 0
+  index: -1
+gkbft_mty_jin4
+  rotate: false
+  xy: 71, 11
+  size: 69, 71
+  orig: 69, 71
+  offset: 0, 0
+  index: -1
+gkbft_mty_yin1
+  rotate: false
+  xy: 173, 8
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+gkbft_mty_yin2
+  rotate: false
+  xy: 2, 2
+  size: 67, 80
+  orig: 67, 80
+  offset: 0, 0
+  index: -1
+gkbft_mty_yin3
+  rotate: false
+  xy: 142, 16
+  size: 29, 67
+  orig: 29, 67
+  offset: 0, 0
+  index: -1
+gkbft_mty_yin4
+  rotate: false
+  xy: 88, 183
+  size: 69, 71
+  orig: 69, 71
+  offset: 0, 0
+  index: -1
+gkbft_mty_yu1
+  rotate: true
+  xy: 159, 185
+  size: 69, 71
+  orig: 69, 71
+  offset: 0, 0
+  index: -1
+gkbft_mty_yu2
+  rotate: false
+  xy: 71, 84
+  size: 67, 80
+  orig: 67, 80
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_yan
+  rotate: false
+  xy: 2, 166
+  size: 84, 88
+  orig: 84, 88
+  offset: 0, 0
+  index: -1

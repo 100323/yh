@@ -1,0 +1,104 @@
+
+xshd_ui_hdwwctl.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 401, 484
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+penboss_tanlian_body
+  rotate: true
+  xy: 474, 280
+  size: 282, 372
+  orig: 282, 372
+  offset: 0, 0
+  index: -1
+penboss_tanlian_jin2
+  rotate: true
+  xy: 848, 345
+  size: 130, 155
+  orig: 130, 155
+  offset: 0, 0
+  index: -1
+penboss_tanlian_jin3
+  rotate: true
+  xy: 679, 2
+  size: 210, 225
+  orig: 210, 225
+  offset: 0, 0
+  index: -1
+penboss_tanlian_jin4
+  rotate: true
+  xy: 2, 34
+  size: 257, 373
+  orig: 257, 373
+  offset: 0, 0
+  index: -1
+penboss_tanlian_jinse1
+  rotate: false
+  xy: 474, 564
+  size: 427, 250
+  orig: 427, 250
+  offset: 0, 0
+  index: -1
+penboss_tanlian_kanban
+  rotate: false
+  xy: 2, 540
+  size: 470, 274
+  orig: 470, 274
+  offset: 0, 0
+  index: -1
+penboss_tanlian_qipao
+  rotate: false
+  xy: 2, 293
+  size: 397, 245
+  orig: 397, 245
+  offset: 0, 0
+  index: -1
+penboss_tanlian_shoubi1
+  rotate: true
+  xy: 848, 214
+  size: 129, 141
+  orig: 129, 141
+  offset: 0, 0
+  index: -1
+penboss_tanlian_shoubi2
+  rotate: true
+  xy: 451, 57
+  size: 221, 226
+  orig: 221, 226
+  offset: 0, 0
+  index: -1
+penboss_tanlian_shouzhiy
+  rotate: false
+  xy: 903, 477
+  size: 105, 94
+  orig: 106, 94
+  offset: 1, 0
+  index: -1
+penboss_tanlian_shouzhiz
+  rotate: true
+  xy: 903, 573
+  size: 89, 119
+  orig: 90, 122
+  offset: 0, 3
+  index: -1
+penboss_tanlian_toufa
+  rotate: false
+  xy: 377, 219
+  size: 72, 72
+  orig: 72, 72
+  offset: 0, 0
+  index: -1
+penboss_tanlian_yan
+  rotate: true
+  xy: 903, 664
+  size: 150, 112
+  orig: 150, 112
+  offset: 0, 0
+  index: -1

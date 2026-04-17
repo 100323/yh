@@ -1,0 +1,20 @@
+
+huangyueying9_skill_hit.png
+size: 387,267
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 339, 219
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+jnsj01
+  rotate: false
+  xy: 2, 2
+  size: 335, 263
+  orig: 335, 267
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+xmdss_js_fail2_daoguang.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 72, 90
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xmdss_js_jiangaung
+  rotate: false
+  xy: 2, 2
+  size: 68, 120
+  orig: 69, 123
+  offset: 1, 2
+  index: -1

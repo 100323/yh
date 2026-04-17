@@ -1,0 +1,90 @@
+
+sdsl_ymsl_bj.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jianban1
+  rotate: true
+  xy: 282, 22
+  size: 36, 513
+  orig: 36, 513
+  offset: 0, 0
+  index: -1
+jianban2
+  rotate: false
+  xy: 915, 147
+  size: 22, 248
+  orig: 22, 248
+  offset: 0, 0
+  index: -1
+jianbian3
+  rotate: false
+  xy: 367, 60
+  size: 20, 437
+  orig: 20, 437
+  offset: 0, 0
+  index: -1
+piaodai10
+  rotate: false
+  xy: 202, 499
+  size: 242, 298
+  orig: 242, 298
+  offset: 0, 0
+  index: -1
+piaodai11
+  rotate: false
+  xy: 2, 354
+  size: 198, 443
+  orig: 198, 443
+  offset: 0, 0
+  index: -1
+piaodai4
+  rotate: false
+  xy: 202, 102
+  size: 163, 395
+  orig: 163, 395
+  offset: 0, 0
+  index: -1
+piaodai7
+  rotate: false
+  xy: 797, 154
+  size: 116, 241
+  orig: 116, 241
+  offset: 0, 0
+  index: -1
+yun1
+  rotate: false
+  xy: 2, 2
+  size: 178, 106
+  orig: 178, 106
+  offset: 0, 0
+  index: -1
+yun2
+  rotate: false
+  xy: 182, 14
+  size: 98, 86
+  orig: 98, 86
+  offset: 0, 0
+  index: -1
+yun3
+  rotate: true
+  xy: 2, 110
+  size: 242, 141
+  orig: 242, 141
+  offset: 0, 0
+  index: -1
+yun4
+  rotate: true
+  xy: 630, 397
+  size: 609, 374
+  orig: 609, 374
+  offset: 0, 0
+  index: -1
+yun5
+  rotate: false
+  xy: 2, 799
+  size: 626, 207
+  orig: 626, 207
+  offset: 0, 0
+  index: -1

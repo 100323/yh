@@ -1,0 +1,27 @@
+
+ui_hero_starup.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 2, 2
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: true
+  xy: 107, 74
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1
+ui_effectlight_bigcircle01
+  rotate: false
+  xy: 2, 106
+  size: 255, 255
+  orig: 255, 255
+  offset: 0, 0
+  index: -1

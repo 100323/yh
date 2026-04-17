@@ -1,0 +1,48 @@
+
+sdsl_boss9_buff_huixue.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 891, 128
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx1
+  rotate: true
+  xy: 442, 5
+  size: 164, 222
+  orig: 164, 222
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx2
+  rotate: true
+  xy: 2, 2
+  size: 167, 218
+  orig: 167, 218
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx3
+  rotate: true
+  xy: 222, 4
+  size: 165, 218
+  orig: 165, 218
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx4
+  rotate: true
+  xy: 666, 7
+  size: 162, 223
+  orig: 162, 223
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 891, 104
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

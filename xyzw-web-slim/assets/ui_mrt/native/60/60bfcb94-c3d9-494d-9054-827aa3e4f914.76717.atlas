@@ -1,0 +1,69 @@
+
+mrt_bj_xiaoyu.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mrt_rc_yu2_mm
+  rotate: true
+  xy: 405, 43
+  size: 20, 11
+  orig: 20, 11
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_shen
+  rotate: true
+  xy: 259, 58
+  size: 149, 134
+  orig: 149, 134
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_shou
+  rotate: false
+  xy: 395, 65
+  size: 33, 24
+  orig: 33, 24
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_tf
+  rotate: false
+  xy: 395, 124
+  size: 42, 36
+  orig: 42, 36
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_tz
+  rotate: false
+  xy: 2, 48
+  size: 255, 159
+  orig: 255, 159
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_yan
+  rotate: true
+  xy: 395, 91
+  size: 31, 37
+  orig: 31, 37
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_yz
+  rotate: false
+  xy: 395, 162
+  size: 42, 45
+  orig: 42, 45
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_zhi
+  rotate: false
+  xy: 259, 2
+  size: 80, 54
+  orig: 80, 54
+  offset: 0, 0
+  index: -1
+mrt_rc_yu2_zui
+  rotate: true
+  xy: 341, 8
+  size: 48, 62
+  orig: 48, 62
+  offset: 0, 0
+  index: -1

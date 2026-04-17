@@ -1,0 +1,83 @@
+
+jiangwei11_attack_line.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei11_pg_lizi1
+  rotate: false
+  xy: 392, 91
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi2
+  rotate: false
+  xy: 160, 6
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi3
+  rotate: true
+  xy: 144, 13
+  size: 21, 14
+  orig: 21, 14
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi4
+  rotate: true
+  xy: 160, 19
+  size: 15, 11
+  orig: 15, 11
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi5
+  rotate: false
+  xy: 144, 3
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi6
+  rotate: false
+  xy: 106, 5
+  size: 36, 29
+  orig: 36, 29
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi7
+  rotate: false
+  xy: 2, 3
+  size: 52, 31
+  orig: 52, 31
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_lizi8
+  rotate: false
+  xy: 56, 2
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_zd1
+  rotate: false
+  xy: 238, 65
+  size: 152, 61
+  orig: 152, 61
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_zd2
+  rotate: false
+  xy: 238, 7
+  size: 160, 56
+  orig: 160, 56
+  offset: 0, 0
+  index: -1
+jiangwei11_pg_zd3
+  rotate: false
+  xy: 2, 36
+  size: 234, 90
+  orig: 234, 90
+  offset: 0, 0
+  index: -1

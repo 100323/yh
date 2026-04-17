@@ -1,0 +1,48 @@
+
+xxwky_jinzhuan.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwky_jzbz_jz
+  rotate: false
+  xy: 2, 2
+  size: 566, 496
+  orig: 566, 497
+  offset: 0, 1
+  index: -1
+xxwky_jzbz_yan1
+  rotate: false
+  xy: 815, 253
+  size: 111, 109
+  orig: 111, 109
+  offset: 0, 0
+  index: -1
+xxwky_jzbz_yan2
+  rotate: false
+  xy: 570, 35
+  size: 164, 215
+  orig: 164, 215
+  offset: 0, 0
+  index: -1
+xxwky_jzbz_yan3
+  rotate: false
+  xy: 815, 364
+  size: 122, 134
+  orig: 122, 134
+  offset: 0, 0
+  index: -1
+xxwky_jzbz_yan4
+  rotate: false
+  xy: 570, 252
+  size: 243, 246
+  orig: 243, 246
+  offset: 0, 0
+  index: -1
+xxwky_jzbz_zhuan
+  rotate: false
+  xy: 736, 93
+  size: 98, 157
+  orig: 98, 157
+  offset: 0, 0
+  index: -1

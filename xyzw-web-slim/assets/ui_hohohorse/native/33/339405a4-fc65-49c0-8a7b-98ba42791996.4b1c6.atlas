@@ -1,0 +1,76 @@
+
+tgcf_dsjl_flag.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_dsjl_flag1
+  rotate: true
+  xy: 421, 165
+  size: 232, 40
+  orig: 233, 43
+  offset: 0, 0
+  index: -1
+tgcf_dsjl_flag2
+  rotate: true
+  xy: 2, 2
+  size: 188, 284
+  orig: 188, 284
+  offset: 0, 0
+  index: -1
+tgcf_dsjl_flag3
+  rotate: false
+  xy: 2, 192
+  size: 126, 314
+  orig: 126, 314
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 248, 357
+  size: 19, 20
+  orig: 24, 24
+  offset: 3, 2
+  index: -1
+ycxsz_xmds_feng1
+  rotate: true
+  xy: 288, 227
+  size: 150, 131
+  orig: 150, 131
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_feng2
+  rotate: true
+  xy: 130, 220
+  size: 157, 116
+  orig: 157, 116
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_guang
+  rotate: false
+  xy: 130, 379
+  size: 275, 127
+  orig: 275, 127
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_yan
+  rotate: false
+  xy: 427, 97
+  size: 63, 66
+  orig: 63, 66
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_yan1
+  rotate: false
+  xy: 288, 49
+  size: 137, 114
+  orig: 137, 114
+  offset: 0, 0
+  index: -1
+ycxsz_xmds_yan2
+  rotate: true
+  xy: 407, 399
+  size: 107, 78
+  orig: 107, 78
+  offset: 0, 0
+  index: -1

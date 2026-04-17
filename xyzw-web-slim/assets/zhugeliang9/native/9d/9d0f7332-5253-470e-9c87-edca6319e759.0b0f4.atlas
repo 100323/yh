@@ -1,0 +1,69 @@
+
+zhugeliang9_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zgl9_pg07
+  rotate: false
+  xy: 244, 94
+  size: 224, 77
+  orig: 224, 77
+  offset: 0, 0
+  index: -1
+zgl9_pg09
+  rotate: false
+  xy: 2, 173
+  size: 266, 308
+  orig: 266, 308
+  offset: 0, 0
+  index: -1
+zgl9_pg10
+  rotate: true
+  xy: 2, 34
+  size: 137, 240
+  orig: 137, 240
+  offset: 0, 0
+  index: -1
+zgl9_pg11
+  rotate: false
+  xy: 270, 275
+  size: 127, 206
+  orig: 127, 206
+  offset: 0, 0
+  index: -1
+zgl9_pg12
+  rotate: true
+  xy: 244, 2
+  size: 90, 95
+  orig: 90, 95
+  offset: 0, 0
+  index: -1
+zgl9_pg13
+  rotate: true
+  xy: 399, 396
+  size: 85, 63
+  orig: 85, 63
+  offset: 0, 0
+  index: -1
+zgl9_pg14
+  rotate: false
+  xy: 341, 8
+  size: 112, 84
+  orig: 112, 84
+  offset: 0, 0
+  index: -1
+zgl9_pg15
+  rotate: false
+  xy: 270, 205
+  size: 95, 68
+  orig: 95, 68
+  offset: 0, 0
+  index: -1
+zgl9_pg16
+  rotate: false
+  xy: 367, 208
+  size: 66, 65
+  orig: 66, 65
+  offset: 0, 0
+  index: -1

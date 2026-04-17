@@ -1,0 +1,48 @@
+
+sdsl_boss9_1_buff_gongjili.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 36, 182
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_fh1
+  rotate: true
+  xy: 257, 123
+  size: 117, 159
+  orig: 117, 159
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_fh2
+  rotate: true
+  xy: 159, 2
+  size: 119, 156
+  orig: 119, 156
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_fh3
+  rotate: true
+  xy: 2, 4
+  size: 118, 155
+  orig: 118, 155
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_fh4
+  rotate: true
+  xy: 96, 124
+  size: 116, 159
+  orig: 116, 159
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 208
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

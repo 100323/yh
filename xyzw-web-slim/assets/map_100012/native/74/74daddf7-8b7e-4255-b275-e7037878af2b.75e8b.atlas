@@ -1,0 +1,55 @@
+
+sdsl_ymsl_bj1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jianban1
+  rotate: false
+  xy: 575, 26
+  size: 34, 481
+  orig: 34, 481
+  offset: 0, 0
+  index: -1
+piaodai11
+  rotate: false
+  xy: 611, 91
+  size: 185, 416
+  orig: 185, 416
+  offset: 0, 0
+  index: -1
+piaodai4
+  rotate: true
+  xy: 2, 2
+  size: 153, 371
+  orig: 153, 371
+  offset: 0, 0
+  index: -1
+yun1
+  rotate: false
+  xy: 375, 56
+  size: 167, 99
+  orig: 167, 99
+  offset: 0, 0
+  index: -1
+yun2
+  rotate: false
+  xy: 611, 9
+  size: 92, 80
+  orig: 92, 80
+  offset: 0, 0
+  index: -1
+yun3
+  rotate: true
+  xy: 798, 280
+  size: 227, 132
+  orig: 227, 132
+  offset: 0, 0
+  index: -1
+yun4
+  rotate: false
+  xy: 2, 157
+  size: 571, 350
+  orig: 571, 350
+  offset: 0, 0
+  index: -1

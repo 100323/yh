@@ -1,0 +1,13 @@
+
+cszb_btn_gu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xslt_btn_side
+  rotate: false
+  xy: 2, 2
+  size: 136, 184
+  orig: 136, 184
+  offset: 0, 0
+  index: -1

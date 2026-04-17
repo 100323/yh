@@ -1,0 +1,48 @@
+
+axwq_ui.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_ui_circle1
+  rotate: false
+  xy: 36, 73
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+axwq_ui_circle2
+  rotate: false
+  xy: 107, 73
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+axwq_ui_circle3
+  rotate: false
+  xy: 178, 73
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+axwq_ui_circle4
+  rotate: false
+  xy: 2, 2
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+axwq_ui_circle5
+  rotate: false
+  xy: 73, 2
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 110
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

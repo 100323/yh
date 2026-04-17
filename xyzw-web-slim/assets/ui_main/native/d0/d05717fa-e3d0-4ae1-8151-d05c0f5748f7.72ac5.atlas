@@ -1,0 +1,55 @@
+
+ui_axian_btn_livingroom_5103.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+qlgy_jjl
+  rotate: false
+  xy: 124, 15
+  size: 125, 78
+  orig: 125, 78
+  offset: 0, 0
+  index: -1
+qlgy_jjr
+  rotate: true
+  xy: 251, 40
+  size: 60, 40
+  orig: 60, 40
+  offset: 0, 0
+  index: -1
+qlgy_shen
+  rotate: true
+  xy: 243, 102
+  size: 137, 69
+  orig: 137, 69
+  offset: 0, 0
+  index: -1
+qlgy_tkmb
+  rotate: true
+  xy: 2, 95
+  size: 144, 121
+  orig: 144, 121
+  offset: 0, 0
+  index: -1
+qlgy_tou
+  rotate: true
+  xy: 125, 100
+  size: 139, 116
+  orig: 139, 116
+  offset: 0, 0
+  index: -1
+qlgy_toufa1
+  rotate: false
+  xy: 2, 2
+  size: 120, 91
+  orig: 120, 91
+  offset: 0, 0
+  index: -1
+qlgy_toufa2
+  rotate: true
+  xy: 251, 6
+  size: 32, 28
+  orig: 32, 29
+  offset: 0, 1
+  index: -1
