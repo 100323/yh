@@ -31,6 +31,13 @@ export const bossTimesOptions = [0, 1, 2, 3, 4].map((v) => ({
   value: v,
 }));
 
+export const carMinColorOptions = [
+  { label: '不限制', value: 0 },
+  { label: '橙·传说及以上', value: 4 },
+  { label: '红·神话及以上', value: 5 },
+  { label: '金·传奇', value: 6 },
+];
+
 // 任务分组定义
 export const taskGroupDefinitions = [
   { name: "daily", label: "日常", icon: "📅" },
@@ -123,6 +130,10 @@ export const taskConfigDefinitions = {
     description: "根据车辆奖励自动判断是否发车\n\n场景1：金砖阈值=5000\n 8000金砖→✅发车\n 3000金砖→❌刷新\n\n场景2：金砖=5000,招募令=5\n 不勾选\"需满足所有\":\n 3000金砖+10招募令→✅\n 8000金砖+2招募令→✅\n 3000金砖+2招募令→❌\n\n场景3：金砖=5000,招募令=5\n 勾选\"需满足所有\":\n 8000金砖+10招募令→✅\n 8000金砖+2招募令→❌\n 3000金砖+10招募令→❌",
     defaultEnabled: true,
     configFields: [
+      { key: "smartDepartureMinCarColor", label: "最低车品质", type: "select", options: "carMinColorOptions", default: 4 },
+      { key: "smartDepartureMaxRefreshAttempts", label: "每车最大刷新次数", type: "number", min: 0, max: 50, default: 3, description: "0表示不刷新，直接按当前车辆判断" },
+      { key: "smartDepartureAllowGoldRefresh", label: "允许金砖刷新", type: "switch", default: false },
+      { key: "smartDepartureFallbackSendWhenStuck", label: "刷不到时仍发车", type: "switch", default: true },
       { key: "smartDepartureGoldThreshold", label: "金砖阈值", type: "number", min: 0, default: 0, description: "0表示不限制" },
       { key: "smartDepartureRecruitThreshold", label: "招募令阈值", type: "number", min: 0, default: 0 },
       { key: "smartDepartureJadeThreshold", label: "白玉阈值", type: "number", min: 0, default: 0 },
@@ -368,7 +379,7 @@ const defaultTaskScheduleOverrides = {
 const defaultTaskConfigOverrides = {
   batchLegionBoss: {
     bossFormation: 2,
-    bossTimes: 4,
+    bossTimes: 2,
   },
 };
 

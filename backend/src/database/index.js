@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS game_accounts (
   name TEXT NOT NULL,
   token_encrypted TEXT NOT NULL,
   token_iv TEXT NOT NULL,
+  token_refreshed_at DATETIME,
   bin_encrypted TEXT,
   bin_iv TEXT,
   bin_updated_at DATETIME,
@@ -481,6 +482,10 @@ function ensureGameAccountSchema() {
     }
     if (!columns.has('bin_encrypted')) {
       rawDb.exec('ALTER TABLE game_accounts ADD COLUMN bin_encrypted TEXT');
+      changed = true;
+    }
+    if (!columns.has('token_refreshed_at')) {
+      rawDb.exec('ALTER TABLE game_accounts ADD COLUMN token_refreshed_at DATETIME');
       changed = true;
     }
     if (!columns.has('bin_iv')) {

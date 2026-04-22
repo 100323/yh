@@ -93,6 +93,10 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   CAR_SEND: {
     enabled: true,
     config: {
+      minCarColor: 4,
+      maxRefreshAttempts: 3,
+      allowGoldRefresh: false,
+      fallbackSendWhenStuck: true,
       goldThreshold: 0,
       recruitThreshold: 0,
       jadeThreshold: 0,
@@ -122,7 +126,7 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   WEIRD_TOWER_USE_ITEM: { enabled: true, config: {} },
   WEIRD_TOWER_MERGE_ITEM: { enabled: true, config: {} },
   LEGION_STORE_FRAGMENT: { enabled: true, config: {} },
-  LEGION_BOSS: { enabled: true, config: { bossFormation: 2, bossTimes: 4 } },
+  LEGION_BOSS: { enabled: true, config: { bossFormation: 2, bossTimes: 2 } },
   DAILY_BOSS: { enabled: true, config: {} },
   WELFARE_CLAIM: { enabled: true, config: {} },
   DAILY_TASK_CLAIM: { enabled: true, config: {} },

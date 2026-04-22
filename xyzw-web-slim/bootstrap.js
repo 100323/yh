@@ -29,6 +29,9 @@
     },
     body: "",
   };
+  var MANIFEST_CACHE_PREFIX = "xyzw-slim-manifest-cache:";
+  var MANIFEST_CACHE_TTL_MS = 5 * 60 * 1000;
+  var MANIFEST_FETCH_TIMEOUT_MS = 2500;
 
   function clonePlainObject(source) {
     var target = {};
@@ -578,6 +581,112 @@
     }
   }
 
+  function buildManifestCacheKey(config) {
+    return MANIFEST_CACHE_PREFIX + encodeURIComponent(String(config && config.url ? config.url : ""));
+  }
+
+  function cloneManifestState(state) {
+    if (!state || typeof state !== "object") {
+      return null;
+    }
+
+    return {
+      bundleVers: clonePlainObject(state.bundleVers),
+      codeVersion: typeof state.codeVersion === "string" ? state.codeVersion : "",
+      dataVers: typeof state.dataVers === "string" ? state.dataVers : "",
+      dataBundleVer: typeof state.dataBundleVer === "string" ? state.dataBundleVer : "",
+      serverUrl: typeof state.serverUrl === "string" ? state.serverUrl : "",
+      raw: state.raw || null,
+    };
+  }
+
+  function readManifestCacheEntry(config) {
+    var storage = getSlimSafeStorage();
+    if (!storage || !config || !config.url) {
+      return null;
+    }
+
+    try {
+      var parsed = tryParseJson(storage.getItem(buildManifestCacheKey(config)) || "");
+      var state = cloneManifestState(parsed && parsed.state ? parsed.state : null);
+      if (!parsed || !state) {
+        return null;
+      }
+
+      var cachedAt = Number(parsed.cachedAt || 0);
+      return {
+        state: state,
+        cachedAt: cachedAt,
+        ageMs: cachedAt > 0 ? Math.max(0, Date.now() - cachedAt) : Number.POSITIVE_INFINITY,
+        isFresh: cachedAt > 0 ? Date.now() - cachedAt < MANIFEST_CACHE_TTL_MS : false,
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeManifestCacheEntry(config, state) {
+    var storage = getSlimSafeStorage();
+    if (!storage || !config || !config.url || !state) {
+      return;
+    }
+
+    try {
+      storage.setItem(
+        buildManifestCacheKey(config),
+        JSON.stringify({
+          cachedAt: Date.now(),
+          state: cloneManifestState(state),
+        }),
+      );
+    } catch (error) {
+      appendDebugLog("manifest-cache-write-failed", error && error.message ? error.message : String(error));
+    }
+  }
+
+  function buildManifestStateFromCache(config, requestInit, entry, via) {
+    if (!entry || !entry.state) {
+      return null;
+    }
+
+    var state = cloneManifestState(entry.state);
+    if (!state) {
+      return null;
+    }
+
+    state.url = config && config.url ? config.url : "";
+    state.request = requestInit || null;
+    state.via = via || "cache";
+    state.cacheAgeMs = Number.isFinite(entry.ageMs) ? entry.ageMs : null;
+    return state;
+  }
+
+  async function fetchWithTimeout(url, requestInit, timeoutMs, label) {
+    var timeout = Math.max(0, Number(timeoutMs) || 0);
+    if (!timeout || typeof AbortController !== "function") {
+      return fetch(url, requestInit);
+    }
+
+    var controller = new AbortController();
+    var timerId = setTimeout(function () {
+      controller.abort();
+    }, timeout);
+
+    try {
+      var nextInit = Object.assign({}, requestInit || {}, {
+        signal: controller.signal,
+      });
+      return await fetch(url, nextInit);
+    } catch (error) {
+      if (controller.signal && controller.signal.aborted) {
+        throw new Error((label || "request") + " timeout after " + timeout + "ms");
+      }
+      throw error;
+    } finally {
+      clearTimeout(timerId);
+    }
+  }
+
   function toCleanString(value) {
     return String(value == null ? "" : value).trim();
   }
@@ -1099,7 +1208,202 @@
         ? LoginManagerModule.LoginManager.instance
         : null;
 
+    function extractClipboardText(payload) {
+      if (typeof payload === "string") {
+        return payload;
+      }
+
+      if (Array.isArray(payload) && payload.length > 0) {
+        return extractClipboardText(payload[0]);
+      }
+
+      if (payload && typeof payload === "object") {
+        if (typeof payload.data === "string") {
+          return payload.data;
+        }
+        if (typeof payload.text === "string") {
+          return payload.text;
+        }
+        if (typeof payload.value === "string") {
+          return payload.value;
+        }
+      }
+
+      return String(payload == null ? "" : payload);
+    }
+
+    function invokePlatformCallback(payload, key, value) {
+      try {
+        if (payload && typeof payload[key] === "function") {
+          payload[key](value);
+        }
+      } catch (error) {}
+    }
+
+    function copyTextByExecCommand(text) {
+      if (!document || !document.body || typeof document.createElement !== "function") {
+        return false;
+      }
+
+      try {
+        var textarea = document.createElement("textarea");
+        textarea.value = String(text == null ? "" : text);
+        textarea.setAttribute("readonly", "readonly");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        textarea.style.top = "0";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        var copied = typeof document.execCommand === "function"
+          ? document.execCommand("copy")
+          : false;
+        textarea.remove();
+        return !!copied;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function fallbackSetClipboardData(payload) {
+      var text = extractClipboardText(payload);
+
+      function finalize(success, extra) {
+        if (success) {
+          invokePlatformCallback(payload, "success", extra || { errMsg: "setClipboardData:ok" });
+        } else {
+          invokePlatformCallback(payload, "fail", extra || { errMsg: "setClipboardData:fail" });
+        }
+        invokePlatformCallback(payload, "complete", extra || { errMsg: success ? "setClipboardData:ok" : "setClipboardData:fail" });
+      }
+
+      try {
+        if (navigator && navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+          return navigator.clipboard.writeText(text).then(function () {
+            appendDebugLog("clipboard-fallback-navigator-success", summarizeValue(text, 80));
+            finalize(true);
+            return true;
+          }).catch(function (error) {
+            var copied = copyTextByExecCommand(text);
+            appendDebugLog("clipboard-fallback-navigator-fail", {
+              message: error && error.message ? error.message : String(error),
+              execCommandCopied: copied,
+            });
+            finalize(copied, copied
+              ? { errMsg: "setClipboardData:ok" }
+              : { errMsg: "setClipboardData:fail" });
+            return copied;
+          });
+        }
+      } catch (error) {}
+
+      var copied = copyTextByExecCommand(text);
+      appendDebugLog("clipboard-fallback-exec", {
+        copied: copied,
+        value: summarizeValue(text, 80),
+      });
+      finalize(copied, copied
+        ? { errMsg: "setClipboardData:ok" }
+        : { errMsg: "setClipboardData:fail" });
+      return Promise.resolve(copied);
+    }
+
+    function ensurePlatformBridgeFallbacks(rawPlatform) {
+      if (!rawPlatform || rawPlatform.__xyzwWebFallbackPatched) {
+        return false;
+      }
+
+      var touched = false;
+      function defineIfMissing(key, value) {
+        if (typeof rawPlatform[key] !== "function") {
+          rawPlatform[key] = value;
+          touched = true;
+        }
+      }
+
+      defineIfMissing("setClipboardData", function (payload) {
+        return fallbackSetClipboardData(payload);
+      });
+      defineIfMissing("showToast", function (payload) {
+        appendDebugLog("platform-showToast-fallback", payload);
+      });
+      defineIfMissing("hideToast", function () {});
+      defineIfMissing("showLoading", function (payload) {
+        appendDebugLog("platform-showLoading-fallback", payload);
+      });
+      defineIfMissing("hideLoading", function () {});
+      defineIfMissing("previewImage", function () {
+        return Promise.resolve();
+      });
+      defineIfMissing("openCustomerServiceConversation", function () {
+        return Promise.resolve();
+      });
+      defineIfMissing("setBrightness", function () {
+        return Promise.resolve();
+      });
+      defineIfMissing("getBattery", function (callback) {
+        var result = { battery: 100 };
+        if (typeof callback === "function") {
+          callback(result);
+        }
+        return Promise.resolve(result);
+      });
+      defineIfMissing("getNetworkType", function (callback) {
+        var result = { networkType: "unknown" };
+        if (typeof callback === "function") {
+          callback(result);
+        }
+        return Promise.resolve(result);
+      });
+
+      rawPlatform.__xyzwWebFallbackPatched = true;
+      return touched;
+    }
+
     if (platformManager) {
+      try {
+        var rawPlatform =
+          platformManager._platform ||
+          platformManager.platform ||
+          platformManager.platformApi ||
+          null;
+
+        if (ensurePlatformBridgeFallbacks(rawPlatform)) {
+          patched = true;
+          appendDebugLog("platform-bridge-fallbacks-patched");
+        }
+
+        if (
+          typeof platformManager.setClipboardData === "function" &&
+          !platformManager.setClipboardData.__xyzwClipboardPatched
+        ) {
+          var originalSetClipboardData = platformManager.setClipboardData.bind(platformManager);
+          platformManager.setClipboardData = function (payload) {
+            try {
+              var result = originalSetClipboardData(payload);
+              if (result && typeof result.then === "function") {
+                return result.catch(function (error) {
+                  appendDebugLog("clipboard-original-failed", {
+                    message: error && error.message ? error.message : String(error),
+                  });
+                  return fallbackSetClipboardData(payload);
+                });
+              }
+              return result;
+            } catch (error) {
+              appendDebugLog("clipboard-original-throw", {
+                message: error && error.message ? error.message : String(error),
+              });
+              return fallbackSetClipboardData(payload);
+            }
+          };
+          platformManager.setClipboardData.__xyzwClipboardPatched = true;
+          patched = true;
+        }
+      } catch (error) {}
+
       if (authPayload) {
         platformManager.encryptUserInfo = authPayload.info;
       } else if (platformManager.encryptUserInfo == null) {
@@ -1370,8 +1674,22 @@
       requestInit.body = config.body;
     }
 
+    var cacheEntry = readManifestCacheEntry(config);
+    if (cacheEntry && cacheEntry.isFresh) {
+      appendDebugLog("manifest-cache-hit", {
+        url: config.url,
+        ageMs: cacheEntry.ageMs,
+      });
+      return buildManifestStateFromCache(config, requestInit, cacheEntry, "cache-hit");
+    }
+
     try {
-      var response = await fetch(config.url, requestInit);
+      var response = await fetchWithTimeout(
+        config.url,
+        requestInit,
+        MANIFEST_FETCH_TIMEOUT_MS,
+        "manifest"
+      );
       if (!response.ok) {
         throw new Error("HTTP " + response.status + " while loading manifest " + config.url);
       }
@@ -1390,12 +1708,28 @@
       normalized.url = config.url;
       normalized.request = requestInit;
       normalized.via = "fetch";
+      writeManifestCacheEntry(config, normalized);
       return normalized;
     } catch (error) {
-      var nativeState = tryReadNativeManifestState(config, requestInit, error);
-      if (nativeState) {
-        return nativeState;
+      try {
+        var nativeState = tryReadNativeManifestState(config, requestInit, error);
+        if (nativeState) {
+          writeManifestCacheEntry(config, nativeState);
+          return nativeState;
+        }
+      } catch (nativeError) {
+        error = nativeError;
       }
+
+      if (cacheEntry) {
+        appendDebugLog("manifest-cache-fallback", {
+          url: config.url,
+          ageMs: cacheEntry.ageMs,
+          error: error && error.message ? error.message : String(error),
+        });
+        return buildManifestStateFromCache(config, requestInit, cacheEntry, "cache-fallback");
+      }
+
       throw error;
     }
   }

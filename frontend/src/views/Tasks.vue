@@ -601,7 +601,15 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
   if (taskKey === 'climbWeirdTower' && (backendConfig.weirdTowerMaxFloors !== undefined || backendConfig.maxFloors !== undefined)) {
     mapped.weirdTowerMaxFloors = backendConfig.weirdTowerMaxFloors ?? backendConfig.maxFloors;
   }
+  if (taskKey === 'batchLegionBoss') {
+    mapped.bossFormation = backendConfig.bossFormation ?? 2;
+    mapped.bossTimes = backendConfig.bossTimes ?? 2;
+  }
   if (taskKey === 'batchSmartSendCar') {
+    mapped.smartDepartureMinCarColor = backendConfig.minCarColor ?? 4;
+    mapped.smartDepartureMaxRefreshAttempts = backendConfig.maxRefreshAttempts ?? 3;
+    mapped.smartDepartureAllowGoldRefresh = backendConfig.allowGoldRefresh ?? false;
+    mapped.smartDepartureFallbackSendWhenStuck = backendConfig.fallbackSendWhenStuck ?? true;
     mapped.smartDepartureGoldThreshold = backendConfig.goldThreshold ?? 0;
     mapped.smartDepartureRecruitThreshold = backendConfig.recruitThreshold ?? 0;
     mapped.smartDepartureJadeThreshold = backendConfig.jadeThreshold ?? 0;
@@ -670,8 +678,18 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
       weirdTowerMaxFloors: sourceConfig.weirdTowerMaxFloors ?? 10,
     };
   }
+  if (taskKey === 'batchLegionBoss') {
+    return {
+      bossFormation: Number(sourceConfig.bossFormation ?? 2) || 2,
+      bossTimes: Math.max(0, Number(sourceConfig.bossTimes ?? 2) || 0),
+    };
+  }
   if (taskKey === 'batchSmartSendCar') {
     return {
+      minCarColor: Math.max(0, Number(sourceConfig.smartDepartureMinCarColor ?? 4) || 0),
+      maxRefreshAttempts: Math.max(0, Number(sourceConfig.smartDepartureMaxRefreshAttempts ?? 3) || 0),
+      allowGoldRefresh: sourceConfig.smartDepartureAllowGoldRefresh ?? false,
+      fallbackSendWhenStuck: sourceConfig.smartDepartureFallbackSendWhenStuck ?? true,
       goldThreshold: sourceConfig.smartDepartureGoldThreshold ?? 0,
       recruitThreshold: sourceConfig.smartDepartureRecruitThreshold ?? 0,
       jadeThreshold: sourceConfig.smartDepartureJadeThreshold ?? 0,

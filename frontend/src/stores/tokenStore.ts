@@ -54,6 +54,16 @@ declare interface TokenData {
   updatedAt?: string;
   storageKey?: string;
   legacyStorageKeys?: string[];
+  binRefreshability?: {
+    refreshable: boolean;
+    checkedAt: string;
+    source?: "auto-sync" | "manual";
+    friendlyReason?: string | null;
+    code?: number | null;
+    error?: string | null;
+    reason?: string | null;
+    diagnostics?: any;
+  };
   [key: string]: any;
 }
 
@@ -368,6 +378,23 @@ export const useTokenStore = defineStore("tokens", () => {
     getBackendBinPayload,
     request: api,
     tokenLogger,
+    onBinRefreshabilityChecked: ({ accountId, result, source }) => {
+      const target = gameTokens.value.find((token) => String(token.id) === String(accountId));
+      if (!target) {
+        return;
+      }
+
+      target.binRefreshability = {
+        refreshable: !!result?.data?.refreshable,
+        checkedAt: result?.data?.checkedAt || new Date().toISOString(),
+        source,
+        friendlyReason: result?.data?.friendlyReason ?? null,
+        code: result?.data?.code ?? null,
+        error: result?.data?.error ?? null,
+        reason: result?.data?.reason ?? null,
+        diagnostics: result?.data?.diagnostics || null,
+      };
+    },
   });
 
   syncAccountToBackendRef = syncAccountToBackend;
@@ -656,6 +683,4 @@ export const useTokenStore = defineStore("tokens", () => {
     syncAccountsFromBackend,
   };
 });
-
-
 

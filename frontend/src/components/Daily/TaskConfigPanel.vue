@@ -139,6 +139,7 @@ import {
   defaultTaskConfigs,
   formationOptions,
   bossTimesOptions,
+  carMinColorOptions,
   boxTypeOptions,
   fishTypeOptions,
 } from '@/utils/batch/constants';
@@ -173,6 +174,7 @@ const taskConfigs = ref({});
 const optionRefs = {
   formationOptions,
   bossTimesOptions,
+  carMinColorOptions,
   boxTypeOptions,
   fishTypeOptions,
 };

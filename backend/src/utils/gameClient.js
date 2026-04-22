@@ -174,6 +174,80 @@ function summarizeLegacyErrorContext(error) {
   return summary;
 }
 
+function summarizeCarRewards(rewards = []) {
+  let goldCount = 0;
+  let recruitCount = 0;
+  let jadeCount = 0;
+  let ticketCount = 0;
+
+  if (!Array.isArray(rewards)) {
+    return { goldCount, recruitCount, jadeCount, ticketCount };
+  }
+
+  rewards.forEach((reward) => {
+    const value = Number(reward?.value ?? reward?.num ?? reward?.quantity ?? reward?.count ?? 0);
+    const type = Number(reward?.type ?? 0);
+    const itemId = Number(reward?.itemId ?? 0);
+
+    if (type === 2) {
+      goldCount += value;
+    }
+    if (itemId === 1001) {
+      recruitCount += value;
+    }
+    if (itemId === 1022) {
+      jadeCount += value;
+    }
+    if (itemId === 35002) {
+      ticketCount += value;
+    }
+  });
+
+  return { goldCount, recruitCount, jadeCount, ticketCount };
+}
+
+function hasActiveCarSendThresholds(options = {}) {
+  return ['goldThreshold', 'recruitThreshold', 'jadeThreshold', 'ticketThreshold']
+    .some((key) => Math.max(0, Number(options?.[key]) || 0) > 0);
+}
+
+function carRewardsMeetThresholds(rewards = [], options = {}) {
+  const thresholds = {
+    goldThreshold: Math.max(0, Number(options?.goldThreshold) || 0),
+    recruitThreshold: Math.max(0, Number(options?.recruitThreshold) || 0),
+    jadeThreshold: Math.max(0, Number(options?.jadeThreshold) || 0),
+    ticketThreshold: Math.max(0, Number(options?.ticketThreshold) || 0),
+  };
+  const matchAll = options?.matchAll === true;
+  const activeThresholds = Object.values(thresholds).filter((value) => value > 0);
+
+  if (activeThresholds.length === 0) {
+    return true;
+  }
+
+  const rewardSummary = summarizeCarRewards(rewards);
+  const matched = {
+    goldThreshold: thresholds.goldThreshold > 0 ? rewardSummary.goldCount >= thresholds.goldThreshold : null,
+    recruitThreshold: thresholds.recruitThreshold > 0 ? rewardSummary.recruitCount >= thresholds.recruitThreshold : null,
+    jadeThreshold: thresholds.jadeThreshold > 0 ? rewardSummary.jadeCount >= thresholds.jadeThreshold : null,
+    ticketThreshold: thresholds.ticketThreshold > 0 ? rewardSummary.ticketCount >= thresholds.ticketThreshold : null,
+  };
+  const decisions = Object.values(matched).filter((value) => value !== null);
+
+  return matchAll ? decisions.every(Boolean) : decisions.some(Boolean);
+}
+
+function carMeetsSendRules(car = {}, options = {}) {
+  const minCarColor = Math.max(0, Number(options?.minCarColor) || 0);
+  const carColor = Math.max(0, Number(car?.color) || 0);
+
+  if (minCarColor > 0 && carColor < minCarColor) {
+    return false;
+  }
+
+  return carRewardsMeetThresholds(car?.rewards || [], options);
+}
+
 export class GameClient {
   constructor(token, options = {}) {
     this.token = token;
@@ -765,16 +839,77 @@ export class GameClient {
     return this.sendWithPromise('bottlehelper_claim', {});
   }
 
-  async smartSendCar() {
+  async smartSendCar(options = {}) {
     const roleCarInfo = await this.sendWithPromise('car_getrolecar', {});
     const roleCar = roleCarInfo?.roleCar || roleCarInfo?.rolecar || {};
     const carDataMap = roleCar.carDataMap || roleCar.cardatamap || {};
     const cars = Object.entries(carDataMap).map(([id, info]) => ({ id, ...(info || {}) }));
     const sendResults = [];
+    const skippedCars = [];
+    let refreshedCount = 0;
+    const hasThresholds = hasActiveCarSendThresholds(options) || Math.max(0, Number(options?.minCarColor) || 0) > 0;
+    const maxRefreshAttempts = Math.max(0, Number(options?.maxRefreshAttempts ?? 3) || 0);
+    const allowGoldRefresh = options?.allowGoldRefresh === true;
+    const fallbackSendWhenStuck = options?.fallbackSendWhenStuck !== false;
+
+    const getRefreshTickets = async () => {
+      try {
+        const roleInfo = await this.sendWithPromise('role_getroleinfo', {});
+        return Number(roleInfo?.role?.items?.[35002]?.quantity || 0);
+      } catch {
+        return 0;
+      }
+    };
 
     for (const car of cars) {
       const sendAt = Number(car.sendAt || 0);
       if (sendAt !== 0) continue;
+
+      let canSend = carMeetsSendRules(car, options);
+      let refreshTickets = hasThresholds ? await getRefreshTickets() : 0;
+      let refreshAttempts = 0;
+      let refreshFailed = null;
+
+      while (!canSend && refreshAttempts < maxRefreshAttempts) {
+        const hasFreeRefresh = Number(car.refreshCount ?? 0) === 0;
+        const canRefreshWithTicket = refreshTickets > 0;
+        const canRefreshWithGold = allowGoldRefresh && !hasFreeRefresh && !canRefreshWithTicket;
+        if (!(hasFreeRefresh || canRefreshWithTicket || canRefreshWithGold)) {
+          break;
+        }
+
+        try {
+          const refreshed = await this.sendWithPromise('car_refresh', { carId: String(car.id) });
+          const refreshedCar = refreshed?.car || refreshed?.body?.car || refreshed || {};
+          if (refreshedCar && typeof refreshedCar === 'object') {
+            if (refreshedCar.color != null) car.color = Number(refreshedCar.color);
+            if (refreshedCar.refreshCount != null) car.refreshCount = Number(refreshedCar.refreshCount);
+            if (Array.isArray(refreshedCar.rewards)) car.rewards = refreshedCar.rewards;
+          }
+          refreshAttempts += 1;
+          refreshedCount += 1;
+          refreshTickets = await getRefreshTickets();
+          canSend = carMeetsSendRules(car, options);
+        } catch (error) {
+          refreshAttempts += 1;
+          refreshFailed = error?.message || 'unknown_error';
+          break;
+        }
+      }
+
+      if (!canSend && !fallbackSendWhenStuck) {
+        skippedCars.push({
+          carId: String(car.id),
+          color: Number(car.color || 0),
+          refreshAttempts,
+          reason: refreshFailed
+            ? `refresh_failed:${refreshFailed}`
+            : (refreshAttempts >= maxRefreshAttempts ? 'max_refresh_reached' : (hasThresholds ? 'threshold_not_met' : 'no_send_rule')),
+          rewards: summarizeCarRewards(car.rewards),
+        });
+        continue;
+      }
+
       try {
         const result = await this.sendWithPromise('car_send', {
           carId: String(car.id),
@@ -782,13 +917,36 @@ export class GameClient {
           text: '',
           isUpgrade: false
         });
-        sendResults.push(result);
+        sendResults.push({
+          ...result,
+          carId: String(car.id),
+          color: Number(car.color || 0),
+          refreshAttempts,
+          fallbackSent: !canSend,
+        });
       } catch (error) {
         sendResults.push({ error: error.message });
       }
     }
 
-    return { sendCount: sendResults.length, results: sendResults };
+    return {
+      sendCount: sendResults.length,
+      refreshedCount,
+      skippedCount: skippedCars.length,
+      results: sendResults,
+      skippedCars,
+      appliedRules: {
+        minCarColor: Math.max(0, Number(options?.minCarColor) || 0),
+        maxRefreshAttempts,
+        allowGoldRefresh,
+        fallbackSendWhenStuck,
+        goldThreshold: Math.max(0, Number(options?.goldThreshold) || 0),
+        recruitThreshold: Math.max(0, Number(options?.recruitThreshold) || 0),
+        jadeThreshold: Math.max(0, Number(options?.jadeThreshold) || 0),
+        ticketThreshold: Math.max(0, Number(options?.ticketThreshold) || 0),
+        matchAll: options?.matchAll === true,
+      },
+    };
   }
 
   async claimAllCars() {

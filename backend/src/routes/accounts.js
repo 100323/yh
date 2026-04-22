@@ -9,7 +9,11 @@ import { ensureDefaultTaskConfigsForAccount } from './tasks.js';
 import { buildWsLogContext, normalizeDisconnectInfo, normalizeErrorMessage } from '../utils/wsDiagnostics.js';
 import { warmupGameClient } from '../utils/wsWarmup.js';
 import { base64ToBuffer, isLikelyBase64, normalizeBase64Text } from '../utils/binStorage.js';
-import { refreshAccountTokenFromStoredBin } from '../utils/accountTokenRefresh.js';
+import {
+  probeAccountBinRefreshability,
+  refreshAccountTokenFromStoredBin,
+  shouldRefreshAccountTokenFromStoredBin,
+} from '../utils/accountTokenRefresh.js';
 import { g_utils } from '../../../frontend/src/utils/bonProtocol.js';
 
 const router = Router();
@@ -352,6 +356,77 @@ function resolveWsUrl(wsUrl, token) {
   return `${raw}${sep}p=${encodeURIComponent(payload)}&e=x&lang=chinese`;
 }
 
+function persistConnectionInputsForAccount(account, userId, options = {}) {
+  const requestTokenText = typeof options?.token === 'string' ? options.token.trim() : '';
+  const requestWsUrlText = typeof options?.wsUrl === 'string' ? options.wsUrl.trim() : '';
+  const requestBinBase64 = typeof options?.binBase64 === 'string' ? options.binBase64.trim() : '';
+  const markTokenRefreshedAt = options?.markTokenRefreshedAt === true;
+  if (!(requestTokenText || requestWsUrlText || requestBinBase64)) {
+    return false;
+  }
+
+  const updateFields = [];
+  const updateValues = [];
+  if (requestTokenText) {
+    const { encrypted, iv } = encrypt(requestTokenText);
+    updateFields.push('token_encrypted = ?', 'token_iv = ?');
+    updateValues.push(encrypted, iv);
+    if (markTokenRefreshedAt) {
+      updateFields.push('token_refreshed_at = ?');
+      updateValues.push(new Date().toISOString());
+    }
+  }
+  if (requestBinBase64) {
+    const { encrypted, iv } = encrypt(requestBinBase64);
+    updateFields.push('bin_encrypted = ?', 'bin_iv = ?', 'bin_updated_at = ?');
+    updateValues.push(encrypted, iv, new Date().toISOString());
+  }
+  if (requestWsUrlText) {
+    updateFields.push('ws_url = ?');
+    updateValues.push(requestWsUrlText);
+  }
+  updateFields.push('updated_at = CURRENT_TIMESTAMP');
+  updateValues.push(account.id, userId);
+  run(
+    `UPDATE game_accounts SET ${updateFields.join(', ')} WHERE id = ? AND user_id = ?`,
+    updateValues
+  );
+
+  return {
+    persistedToken: !!requestTokenText,
+    persistedBin: !!requestBinBase64,
+    persistedWsUrl: !!requestWsUrlText,
+  };
+}
+
+function getBinRefreshFriendlyReason(probeResult = {}) {
+  if (probeResult?.refreshable) {
+    return '服务器侧可自动续Token，适合长期定时任务。';
+  }
+
+  if (probeResult?.reason === 'missing-bin') {
+    return '当前账号没有保存可供服务器续期的 BIN 数据。';
+  }
+
+  if (probeResult?.reason === 'timeout') {
+    return '服务器侧续Token请求超时，本次无法确认 BIN 是否稳定可续。建议改用 BIN多角色导入 重新导入后再使用定时任务。';
+  }
+
+  if (probeResult?.reason === 'network-error' || probeResult?.reason === 'http-error') {
+    return '服务器侧续Token请求异常，本次检测失败。建议改用 BIN多角色导入 重新导入后再使用定时任务。';
+  }
+
+  if (Number(probeResult?.code) === 200020) {
+    return '当前账号可临时登录，但服务器侧无法自动续 Token。建议改用 BIN多角色导入 重新导入，这样通常可以避免后续定时任务再次掉线。';
+  }
+
+  if (probeResult?.reason === 'auth-error') {
+    return '游戏服务端拒绝了这份 BIN，服务器侧无法自动续Token。建议改用 BIN多角色导入 重新导入后再使用定时任务。';
+  }
+
+  return '服务器侧当前无法用这份 BIN 自动续 Token。建议改用 BIN多角色导入 重新导入后再使用定时任务。';
+}
+
 function normalizeLineupPayload(lineup = {}) {
   const lineupId = String(lineup?.id ?? lineup?.lineupKey ?? '').trim();
   const lineupName = String(lineup?.name ?? '').trim();
@@ -525,6 +600,7 @@ router.post('/', async (req, res) => {
           name,
           token_encrypted,
           token_iv,
+          token_refreshed_at,
           bin_encrypted,
           bin_iv,
           bin_updated_at,
@@ -538,12 +614,13 @@ router.post('/', async (req, res) => {
           import_method,
           source_url
         )
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           req.user.userId,
           normalizedName,
           encrypted,
           iv,
+          new Date().toISOString(),
           encryptedBin?.encrypted || null,
           encryptedBin?.iv || null,
           encryptedBin ? new Date().toISOString() : null,
@@ -656,8 +733,8 @@ router.put('/:id', (req, res) => {
     if (token) {
       const rawTokenText = String(token).trim();
       const { encrypted, iv } = encrypt(rawTokenText);
-      updateFields.push('token_encrypted = ?', 'token_iv = ?');
-      updateValues.push(encrypted, iv);
+      updateFields.push('token_encrypted = ?', 'token_iv = ?', 'token_refreshed_at = ?');
+      updateValues.push(encrypted, iv, new Date().toISOString());
     }
     if (binBase64) {
       const { encrypted, iv } = encrypt(binBase64);
@@ -883,7 +960,7 @@ router.get('/:id/launch-payload', async (req, res) => {
   try {
     const account = get(
       `SELECT id, name, token_encrypted, token_iv, bin_encrypted, bin_iv,
-              launch_context_encrypted, launch_context_iv, ws_url, server
+              token_refreshed_at, launch_context_encrypted, launch_context_iv, ws_url, server
        FROM game_accounts
        WHERE id = ? AND user_id = ?`,
       [req.params.id, req.user.userId]
@@ -899,10 +976,17 @@ router.get('/:id/launch-payload', async (req, res) => {
     let token = decrypt(account.token_encrypted, account.token_iv);
     let tokenSource = 'stored-token';
 
-    if (account.bin_encrypted && account.bin_iv) {
+    const shouldRefreshFromBin = shouldRefreshAccountTokenFromStoredBin(account, {
+      ttlMs: config.game.launchTokenRefreshTtlMs,
+    });
+
+    if (shouldRefreshFromBin) {
       try {
         const refreshed = await refreshAccountTokenFromStoredBin(account.id, {
           trigger: 'slim-launch',
+          account,
+          ttlMs: config.game.launchTokenRefreshTtlMs,
+          timeoutMs: config.game.launchTokenRefreshTimeoutMs,
         });
         if (refreshed?.refreshed && refreshed?.token) {
           token = refreshed.token;
@@ -915,6 +999,8 @@ router.get('/:id/launch-payload', async (req, res) => {
           error: error?.message || String(error),
         });
       }
+    } else if (account.bin_encrypted && account.bin_iv) {
+      tokenSource = 'cached-token';
     }
 
     const binData = account.bin_encrypted && account.bin_iv
@@ -965,6 +1051,107 @@ router.get('/:id/launch-payload', async (req, res) => {
   }
 });
 
+router.post('/:id/test-bin-refresh', async (req, res) => {
+  try {
+    let account = get(
+      `SELECT id, name, token_encrypted, token_iv, token_refreshed_at, bin_encrypted, bin_iv, ws_url, server, import_method, updated_at, bin_updated_at
+       FROM game_accounts
+       WHERE id = ? AND user_id = ?`,
+      [req.params.id, req.user.userId]
+    );
+
+    if (!account) {
+      return res.status(404).json({
+        success: false,
+        error: '账号不存在'
+      });
+    }
+
+    const requestTokenText = typeof req.body?.token === 'string' ? req.body.token.trim() : '';
+    const requestWsUrlText = typeof req.body?.wsUrl === 'string'
+      ? req.body.wsUrl.trim()
+      : (typeof req.body?.ws_url === 'string' ? req.body.ws_url.trim() : '');
+    const requestBinBase64 = extractBinBase64(req.body);
+
+    if (req.body?.persist === true) {
+      const persisted = persistConnectionInputsForAccount(account, req.user.userId, {
+        token: requestTokenText,
+        wsUrl: requestWsUrlText,
+        binBase64: requestBinBase64,
+        markTokenRefreshedAt: false,
+      });
+      if (persisted) {
+        console.log('💾 后端BIN续期检测已持久化最新账号连接参数', {
+          accountId: Number(account.id),
+          accountName: account.name,
+          importMethod: account.import_method || 'manual',
+          ...persisted,
+        });
+        account = get(
+          `SELECT id, name, token_encrypted, token_iv, token_refreshed_at, bin_encrypted, bin_iv, ws_url, server, import_method, updated_at, bin_updated_at
+           FROM game_accounts
+           WHERE id = ? AND user_id = ?`,
+          [req.params.id, req.user.userId]
+        );
+      }
+    }
+
+    const probeResult = await probeAccountBinRefreshability(account.id, {
+      account,
+      timeoutMs: Math.max(3000, Math.min(30000, Number(req.body?.timeout) || 8000)),
+    });
+
+    const diagnostics = {
+      code: probeResult?.code || null,
+      reason: probeResult?.reason || null,
+      error: probeResult?.error || null,
+      responseBytes: probeResult?.diagnostics?.responseBytes || null,
+      authUser: probeResult?.diagnostics?.authUser || null,
+      bin: probeResult?.diagnostics?.bin || null,
+    };
+    const friendlyReason = getBinRefreshFriendlyReason(probeResult);
+
+    if (probeResult?.refreshable) {
+      console.log('🧪 BIN自动续期检测成功', {
+        accountId: Number(account.id),
+        accountName: account.name,
+        importMethod: account.import_method || 'manual',
+        diagnostics,
+      });
+    } else {
+      console.warn('⚠️ BIN自动续期检测失败', {
+        accountId: Number(account.id),
+        accountName: account.name,
+        importMethod: account.import_method || 'manual',
+        diagnostics,
+      });
+    }
+
+    return res.json({
+      success: true,
+      message: probeResult?.refreshable ? '服务器侧可自动续Token' : '服务器侧无法自动续Token',
+      data: {
+        accountId: Number(account.id),
+        accountName: account.name,
+        importMethod: account.import_method || 'manual',
+        refreshable: !!probeResult?.refreshable,
+        friendlyReason,
+        code: probeResult?.code || null,
+        error: probeResult?.error || null,
+        reason: probeResult?.reason || null,
+        checkedAt: new Date().toISOString(),
+        diagnostics,
+      }
+    });
+  } catch (error) {
+    console.error('检测BIN自动续期能力错误:', error);
+    return res.status(500).json({
+      success: false,
+      error: error?.message || '检测BIN自动续期能力失败'
+    });
+  }
+});
+
 router.post('/:id/test-connection', async (req, res) => {
   try {
     const account = get(
@@ -994,37 +1181,21 @@ router.post('/:id/test-connection', async (req, res) => {
       });
     }
 
-    if (req.body?.persist === true && (requestTokenText || requestWsUrlText || requestBinBase64)) {
-      const updateFields = [];
-      const updateValues = [];
-      if (requestTokenText) {
-        const { encrypted, iv } = encrypt(requestTokenText);
-        updateFields.push('token_encrypted = ?', 'token_iv = ?');
-        updateValues.push(encrypted, iv);
-      }
-      if (requestBinBase64) {
-        const { encrypted, iv } = encrypt(requestBinBase64);
-        updateFields.push('bin_encrypted = ?', 'bin_iv = ?', 'bin_updated_at = ?');
-        updateValues.push(encrypted, iv, new Date().toISOString());
-      }
-      if (requestWsUrlText) {
-        updateFields.push('ws_url = ?');
-        updateValues.push(requestWsUrlText);
-      }
-      updateFields.push('updated_at = CURRENT_TIMESTAMP');
-      updateValues.push(req.params.id, req.user.userId);
-      run(
-        `UPDATE game_accounts SET ${updateFields.join(', ')} WHERE id = ? AND user_id = ?`,
-        updateValues
-      );
-      console.log('💾 后端连接测试已持久化最新账号连接参数', {
-        accountId: Number(account.id),
-        accountName: account.name,
-        importMethod: account.import_method || 'manual',
-        persistedToken: !!requestTokenText,
-        persistedBin: !!requestBinBase64,
-        persistedWsUrl: !!requestWsUrlText,
+    if (req.body?.persist === true) {
+      const persisted = persistConnectionInputsForAccount(account, req.user.userId, {
+        token: requestTokenText,
+        wsUrl: requestWsUrlText,
+        binBase64: requestBinBase64,
+        markTokenRefreshedAt: false,
       });
+      if (persisted) {
+        console.log('💾 后端连接测试已持久化最新账号连接参数', {
+          accountId: Number(account.id),
+          accountName: account.name,
+          importMethod: account.import_method || 'manual',
+          ...persisted,
+        });
+      }
     }
 
     const hasStoredBin = !!requestBinBase64 || !!(account.bin_encrypted && account.bin_iv);

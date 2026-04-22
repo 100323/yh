@@ -1151,15 +1151,61 @@ async function executeWeirdTower(client, config) {
 }
 
 async function executeLegionBoss(client, config) {
-  try {
-    const result = await client.startLegionBossFight();
-    return { message: '军团BOSS挑战成功', data: result };
-  } catch (error) {
-    if (error.message.includes('次数') || error.message.includes('未加入')) {
-      return { message: error.message, data: {} };
-    }
-    throw error;
+  await client.ensureBattleVersion();
+  const bossTimes = Math.max(0, Number(config?.bossTimes ?? 2) || 0);
+  const bossFormation = Number(config?.bossFormation ?? 1) || 1;
+  const results = [];
+  let successCount = 0;
+  let switchedFormation = false;
+  let originalFormation = null;
+
+  if (bossTimes <= 0) {
+    return {
+      message: '军团BOSS已关闭（挑战次数为0）',
+      data: { results, successCount, bossTimes, bossFormation },
+    };
   }
+
+  try {
+    const teamInfo = await client.getPresetTeamInfo();
+    originalFormation = teamInfo?.presetTeamInfo?.useTeamId;
+    if (originalFormation !== bossFormation) {
+      await client.savePresetTeam(bossFormation);
+      switchedFormation = true;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+  } catch (error) {
+    console.warn(`[批量军团BOSS] 阵容切换失败，使用当前阵容: ${error.message}`);
+  }
+
+  for (let i = 0; i < bossTimes; i++) {
+    try {
+      const result = await client.startLegionBossFight();
+      results.push({ round: i + 1, ok: true, result });
+      successCount += 1;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } catch (error) {
+      const message = String(error?.message || '军团BOSS挑战失败');
+      if (message.includes('次数') || message.includes('未加入')) {
+        results.push({ round: i + 1, ok: false, error: message, stop: true });
+        break;
+      }
+      results.push({ round: i + 1, ok: false, error: message });
+    }
+  }
+
+  if (switchedFormation && originalFormation) {
+    try {
+      await client.savePresetTeam(originalFormation);
+    } catch (error) {
+      console.warn(`[批量军团BOSS] 恢复原阵容失败: ${error.message}`);
+    }
+  }
+
+  return {
+    message: `军团BOSS挑战完成 (${successCount}/${bossTimes}次)`,
+    data: { results, successCount, bossTimes, bossFormation },
+  };
 }
 
 async function executeRecruit(client, config) {

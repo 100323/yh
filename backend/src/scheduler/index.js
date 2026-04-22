@@ -2493,12 +2493,19 @@ async function executeWeirdTowerMergeItem(client, config) {
 
 async function executeLegionBoss(client, config) {
   await client.ensureBattleVersion();
-  const bossTimes = Math.max(1, Number(config?.bossTimes ?? 2) || 2);
+  const bossTimes = Math.max(0, Number(config?.bossTimes ?? 2) || 0);
   const bossFormation = Number(config?.bossFormation ?? 1) || 1;
   const results = [];
   let successCount = 0;
   let switchedFormation = false;
   let originalFormation = null;
+
+  if (bossTimes <= 0) {
+    return {
+      message: '军团BOSS已关闭（挑战次数为0）',
+      data: { results, successCount, bossTimes, bossFormation },
+    };
+  }
 
   try {
     const teamInfo = await client.getPresetTeamInfo();

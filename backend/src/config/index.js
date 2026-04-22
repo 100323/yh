@@ -50,7 +50,9 @@ export const config = {
     heartbeatInterval: 30000,
     reconnectDelay: 5000,
     clientVersion: process.env.GAME_CLIENT_VERSION || '2.3.9-wx',
-    battleVersion: Number(process.env.GAME_BATTLE_VERSION) || 241201
+    battleVersion: Number(process.env.GAME_BATTLE_VERSION) || 241201,
+    launchTokenRefreshTtlMs: Number(process.env.GAME_LAUNCH_TOKEN_REFRESH_TTL_MS) || 15 * 60 * 1000,
+    launchTokenRefreshTimeoutMs: Number(process.env.GAME_LAUNCH_TOKEN_REFRESH_TIMEOUT_MS) || 4000,
   },
   cron: {
     timezone: 'Asia/Shanghai'
@@ -81,4 +83,3 @@ export const config = {
 };
 
 export default config;
-

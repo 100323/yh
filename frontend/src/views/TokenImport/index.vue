@@ -101,6 +101,13 @@
                     <el-tag size="small" :type="getTokenStatusType(token.id)">
                       {{ getConnectionStatusText(token.id) }}
                     </el-tag>
+                    <el-tag
+                      v-if="token.binRefreshability?.checkedAt"
+                      size="small"
+                      :type="getBinRefreshabilityTagType(token)"
+                    >
+                      {{ getBinRefreshabilityText(token) }}
+                    </el-tag>
                   </div>
                 </div>
               </div>
@@ -121,6 +128,9 @@
                     </el-dropdown-item>
                     <el-dropdown-item command="backend-test">
                       <el-icon><RefreshIcon /></el-icon>后端连接测试
+                    </el-dropdown-item>
+                    <el-dropdown-item command="bin-refresh-test">
+                      <el-icon><RefreshIcon /></el-icon>检测自动续期
                     </el-dropdown-item>
                     <el-dropdown-item divided command="delete">
                       <el-icon><Delete /></el-icon>删除
@@ -146,6 +156,15 @@
               <div class="info-item">
                 <span class="label">最后使用:</span>
                 <span class="value">{{ formatTime(token.lastUsed) }}</span>
+              </div>
+              <div class="info-item" v-if="token.binRefreshability?.checkedAt">
+                <span class="label">自动续期:</span>
+                <span
+                  class="value refreshability-text"
+                  :class="{ 'is-danger': !token.binRefreshability?.refreshable, 'is-success': !!token.binRefreshability?.refreshable }"
+                >
+                  {{ getBinRefreshabilityReasonText(token) }}
+                </span>
               </div>
             </div>
 
@@ -223,7 +242,7 @@ import { useTokenStore, selectedTokenId } from "@/stores/tokenStore";
 import { Add } from "@vicons/ionicons5";
 import { Plus, MoreFilled, Edit, CopyDocument, Delete, Refresh as RefreshIcon } from '@element-plus/icons-vue';
 import { NIcon, useDialog, useMessage } from "naive-ui";
-import { computed, defineAsyncComponent, onMounted, reactive, ref } from "vue";
+import { computed, defineAsyncComponent, onMounted, reactive, ref, watch } from "vue";
 import { transformToken } from "@/utils/token";
 import useIndexedDB from "@/hooks/useIndexedDB";
 import api from "@/api";
@@ -350,6 +369,57 @@ const getServerTagType = (tokenId) => {
   return status === "connected" ? "success" : "info";
 };
 
+const getBinRefreshabilityTagType = (token) => {
+  if (!token?.binRefreshability?.checkedAt) {
+    return "info";
+  }
+  return token.binRefreshability.refreshable ? "success" : "danger";
+};
+
+const getBinRefreshabilityText = (token) => {
+  if (!token?.binRefreshability?.checkedAt) {
+    return "未检测";
+  }
+  return token.binRefreshability.refreshable ? "可自动续期" : "无法自动续期";
+};
+
+const getBinRefreshabilityReasonText = (token) => {
+  if (!token?.binRefreshability?.checkedAt) {
+    return "尚未检测服务器侧自动续 token 能力";
+  }
+
+  if (token?.binRefreshability?.friendlyReason) {
+    return token.binRefreshability.friendlyReason;
+  }
+
+  if (token.binRefreshability.refreshable) {
+    return "服务器侧可自动续Token，适合长期定时任务。";
+  }
+
+  if (token.binRefreshability.code === 200020) {
+    return "当前账号可临时登录，但服务器侧无法自动续 Token。建议改用 BIN多角色导入 重新导入，这样通常可以避免后续定时任务再次掉线。";
+  }
+
+  return "服务器侧当前无法用这份 BIN 自动续 Token。建议改用 BIN多角色导入 重新导入后再使用定时任务。";
+};
+
+const buildBinRefreshabilityToastText = (token, data) => {
+  const friendlyReason =
+    data?.friendlyReason
+    || getBinRefreshabilityReasonText({
+      ...token,
+      binRefreshability: {
+        ...(token?.binRefreshability || {}),
+        ...data,
+      },
+    });
+  const technicalTail = data?.code
+    ? `（${data.code}${data.error ? ` ${data.error}` : ""}）`
+    : "";
+
+  return `${token.name}：${friendlyReason}${technicalTail}`;
+};
+
 const handleTokenAction = async (action, token) => {
   switch (action) {
     case "edit":
@@ -364,10 +434,31 @@ const handleTokenAction = async (action, token) => {
     case "backend-test":
       testBackendConnection(token);
       break;
+    case "bin-refresh-test":
+      testBinRefreshability(token);
+      break;
     case "delete":
       deleteToken(token);
       break;
   }
+};
+
+const applyBinRefreshabilityResult = (token, data, source = "manual") => {
+  const nextToken = {
+    ...token,
+    binRefreshability: {
+      refreshable: !!data?.refreshable,
+      checkedAt: data?.checkedAt || new Date().toISOString(),
+      source,
+      friendlyReason: data?.friendlyReason ?? null,
+      code: data?.code ?? null,
+      error: data?.error ?? null,
+      reason: data?.reason ?? null,
+      diagnostics: data?.diagnostics || null,
+    },
+  };
+  tokenStore.updateToken(token.id, nextToken);
+  return nextToken;
 };
 
 const testBackendConnection = async (token) => {
@@ -399,6 +490,53 @@ const testBackendConnection = async (token) => {
     }
   } catch (error) {
     message.error(error?.response?.data?.error || error?.message || "后端连接测试失败");
+  }
+};
+
+const testBinRefreshability = async (token, options = {}) => {
+  try {
+    const accountId = String(token.id || "");
+    if (!/^\d+$/.test(accountId)) {
+      message.warning("该账号尚未同步到后端，无法检测自动续期能力");
+      return null;
+    }
+
+    if (!options.silent) {
+      message.info(`正在检测自动续期能力: ${token.name}`);
+    }
+
+    const backendBin = await tokenStore.getBackendBinPayload(token);
+    const res = await api.post(
+      `/accounts/${accountId}/test-bin-refresh`,
+      {
+        timeout: 10000,
+        token: token.token || "",
+        wsUrl: token.wsUrl || "",
+        binData: backendBin?.binData || "",
+        persist: true,
+      },
+      { timeout: 10000 }
+    );
+
+    if (!res?.success) {
+      message.error(res?.error || "检测自动续期能力失败");
+      return null;
+    }
+
+    const updatedToken = applyBinRefreshabilityResult(token, res.data, options.source || "manual");
+    if (!options.silent) {
+      if (res.data?.refreshable) {
+        message.success(buildBinRefreshabilityToastText(updatedToken, res.data));
+      } else {
+        message.warning(buildBinRefreshabilityToastText(updatedToken, res.data));
+      }
+    }
+    return updatedToken;
+  } catch (error) {
+    if (!options.silent) {
+      message.error(error?.response?.data?.error || error?.message || "检测自动续期能力失败");
+    }
+    return null;
   }
 };
 
@@ -727,11 +865,51 @@ const enterGame = async (token) => {
   }
 };
 
+const seenBinRefreshabilityChecks = new Set();
+
+const snapshotSeenBinRefreshabilityChecks = () => {
+  tokenStore.gameTokens.forEach((token) => {
+    const checkedAt = token?.binRefreshability?.checkedAt;
+    if (checkedAt) {
+      seenBinRefreshabilityChecks.add(`${token.id}:${checkedAt}`);
+    }
+  });
+};
+
+watch(
+  () => tokenStore.gameTokens.map((token) => `${token.id}:${token?.binRefreshability?.checkedAt || ""}`).join("|"),
+  () => {
+    tokenStore.gameTokens.forEach((token) => {
+      const checkedAt = token?.binRefreshability?.checkedAt;
+      if (!checkedAt) {
+        return;
+      }
+
+      const cacheKey = `${token.id}:${checkedAt}`;
+      if (seenBinRefreshabilityChecks.has(cacheKey)) {
+        return;
+      }
+      seenBinRefreshabilityChecks.add(cacheKey);
+
+      if (token?.binRefreshability?.source !== "auto-sync") {
+        return;
+      }
+
+      if (token.binRefreshability.refreshable) {
+        message.success(buildBinRefreshabilityToastText(token, token.binRefreshability));
+      } else {
+        message.warning(buildBinRefreshabilityToastText(token, token.binRefreshability));
+      }
+    });
+  }
+);
+
 onMounted(async () => {
   if (authStore.isAuthenticated && authStore.user && authStore.user.max_game_accounts === undefined) {
     await authStore.fetchUser();
   }
   await tokenStore.initTokenStore();
+  snapshotSeenBinRefreshabilityChecks();
 
   if (!tokenStore.hasTokens && !props.token && !props.api) {
     showImportForm.value = true;
@@ -857,6 +1035,19 @@ onMounted(async () => {
           flex: 1;
           word-break: break-all;
           color: var(--text-primary);
+
+          &.refreshability-text {
+            word-break: break-word;
+            line-height: 1.5;
+
+            &.is-danger {
+              color: #d03050;
+            }
+
+            &.is-success {
+              color: #18a058;
+            }
+          }
         }
       }
     }

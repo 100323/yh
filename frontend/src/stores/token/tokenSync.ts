@@ -48,6 +48,12 @@ interface TokenSyncManagerOptions {
     put: (url: string, data?: any) => Promise<any>;
   };
   tokenLogger: { warn: (...args: any[]) => void };
+  onBinRefreshabilityChecked?: (payload: {
+    accountId: string;
+    originalTokenId?: string;
+    source: 'auto-sync';
+    result: any;
+  }) => void;
 }
 
 export function createTokenSyncManager({
@@ -64,6 +70,7 @@ export function createTokenSyncManager({
   getBackendBinPayload,
   request,
   tokenLogger,
+  onBinRefreshabilityChecked,
 }: TokenSyncManagerOptions) {
   let backendHydrationPromise: Promise<void> | null = null;
   const accountSyncPromises = new Map<string, Promise<void>>();
@@ -132,6 +139,27 @@ export function createTokenSyncManager({
     }
 
     const syncPromise = (async () => {
+      const runRefreshabilityCheck = async (backendId: string) => {
+        if (!/^\d+$/.test(String(backendId || ''))) {
+          return;
+        }
+
+        try {
+          const result = await request.post(`/accounts/${backendId}/test-bin-refresh`, {
+            persist: false,
+            timeout: 8000,
+          });
+          onBinRefreshabilityChecked?.({
+            accountId: String(backendId),
+            originalTokenId: String(tokenData?.id || ''),
+            source: 'auto-sync',
+            result,
+          });
+        } catch (error) {
+          tokenLogger.warn(`自动检测BIN续期能力失败 [${tokenData?.name || backendId}]`, error);
+        }
+      };
+
       try {
         const backendBin = await getBackendBinPayload(tokenData);
         const createRes = await request.post('/accounts', {
@@ -148,7 +176,9 @@ export function createTokenSyncManager({
         });
 
         if (createRes?.success && createRes?.data?.id !== undefined) {
-          await migrateTokenIdToBackendId(tokenData.id, String(createRes.data.id));
+          const backendId = String(createRes.data.id);
+          await migrateTokenIdToBackendId(tokenData.id, backendId);
+          await runRefreshabilityCheck(backendId);
           return;
         }
       } catch (error: any) {
@@ -175,7 +205,9 @@ export function createTokenSyncManager({
           binData: backendBin?.binData || '',
           launchContext: tokenData.launchContext || null,
         });
-        await migrateTokenIdToBackendId(tokenData.id, String(exists.id));
+        const backendId = String(exists.id);
+        await migrateTokenIdToBackendId(tokenData.id, backendId);
+        await runRefreshabilityCheck(backendId);
       } catch (error) {
         tokenLogger.warn(`处理重名账号同步失败 [${tokenData?.name || ''}]`, error);
       }
