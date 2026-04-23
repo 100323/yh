@@ -42,7 +42,7 @@ export function shouldRefreshAccountTokenFromStoredBin(account, options = {}) {
     return true;
   }
 
-  const refreshedAtMs = parseTimestampMs(account?.token_refreshed_at || account?.updated_at);
+  const refreshedAtMs = parseTimestampMs(account?.token_refreshed_at);
   if (!refreshedAtMs) {
     return true;
   }

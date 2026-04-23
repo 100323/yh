@@ -12,7 +12,6 @@ import { base64ToBuffer, isLikelyBase64, normalizeBase64Text } from '../utils/bi
 import {
   probeAccountBinRefreshability,
   refreshAccountTokenFromStoredBin,
-  shouldRefreshAccountTokenFromStoredBin,
 } from '../utils/accountTokenRefresh.js';
 import { g_utils } from '../../../frontend/src/utils/bonProtocol.js';
 
@@ -976,17 +975,13 @@ router.get('/:id/launch-payload', async (req, res) => {
     let token = decrypt(account.token_encrypted, account.token_iv);
     let tokenSource = 'stored-token';
 
-    const shouldRefreshFromBin = shouldRefreshAccountTokenFromStoredBin(account, {
-      ttlMs: config.game.launchTokenRefreshTtlMs,
-    });
+    const shouldRefreshFromBin = !!(account.bin_encrypted && account.bin_iv);
 
     if (shouldRefreshFromBin) {
       try {
         const refreshed = await refreshAccountTokenFromStoredBin(account.id, {
           trigger: 'slim-launch',
           account,
-          ttlMs: config.game.launchTokenRefreshTtlMs,
-          timeoutMs: config.game.launchTokenRefreshTimeoutMs,
         });
         if (refreshed?.refreshed && refreshed?.token) {
           token = refreshed.token;
@@ -999,8 +994,6 @@ router.get('/:id/launch-payload', async (req, res) => {
           error: error?.message || String(error),
         });
       }
-    } else if (account.bin_encrypted && account.bin_iv) {
-      tokenSource = 'cached-token';
     }
 
     const binData = account.bin_encrypted && account.bin_iv
