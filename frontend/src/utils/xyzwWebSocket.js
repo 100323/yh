@@ -274,6 +274,12 @@ export function registerDefaultCommands(reg) {
     // 队伍相关
     .register("presetteam_getinfo")
     .register("presetteam_getinfo")
+    .register("presetteam_typegetinfo", { types: [] })
+    .register("presetteam_typecalcpowerbyteam", {
+      typ: 0,
+      battleTeam: {},
+      lordWeaponId: 0,
+    })
     .register("presetteam_setteam")
     .register("presetteam_saveteam", { teamId: 1 })
     .register("role_gettargetteam")
@@ -1084,6 +1090,8 @@ export class XyzwWebSocketClient {
       arena_getarearankresp: "arena_getarearank",
       presetteam_saveteamresp: "presetteam_saveteam",
       presetteam_getinforesp: "presetteam_getinfo",
+      presetteam_typegetinforesp: "presetteam_typegetinfo",
+      presetteam_typecalcpowerbyteamresp: "presetteam_typecalcpowerbyteam",
       hero_gointobattleresp: "hero_gointobattle",
       hero_gobackbattleresp: "hero_gobackbattle",
       hero_exchangeresp: "hero_exchange",

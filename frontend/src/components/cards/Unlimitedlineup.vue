@@ -209,7 +209,7 @@
           <div class="star-temple-header">
             <div>
               <h4>星级十殿</h4>
-              <p>直接使用当前激活中的阵容与玩具挑战 1-8 关</p>
+              <p>仅使用星级十殿预设阵容与玩具挑战 1-8 关</p>
             </div>
             <div class="star-temple-header-actions">
               <span v-if="starTempleResetTimeText" class="star-temple-reset">
@@ -228,7 +228,11 @@
 
           <div class="star-temple-toolbar">
             <div class="star-temple-current-team">
-              当前阵容：槽位{{ currentTeamId }} · {{ currentTeamHeroes.length }}名武将
+              十殿预设阵容：{{
+                starTempleHasPreset
+                  ? `${starTemplePresetHeroes.length}名武将`
+                  : "未配置"
+              }}
             </div>
             <div class="star-temple-selected-boss">
               当前关卡：第 {{ starTemple.selectedBossId }} 关
@@ -272,11 +276,60 @@
 
           <div class="star-temple-summary">
             <span>
-              当前激活阵容：槽位{{ currentTeamId }}
+              预设类型：{{ starTempleSelectedPresetType }}
             </span>
             <span>
-              玩具：使用当前激活玩具
+              玩具：{{ starTemplePresetWeaponName }}
             </span>
+            <span v-if="starTemple.presetPower">
+              战力：{{ formatPower(starTemple.presetPower) }}
+            </span>
+          </div>
+
+          <div v-if="starTempleHasPreset" class="star-temple-preset-grid">
+            <div
+              v-for="slot in starTemplePresetSlots"
+              :key="slot.position"
+              class="star-temple-preset-card"
+              :class="{ empty: !slot.heroId }"
+            >
+              <div class="star-temple-preset-position">
+                {{ slot.position + 1 }}号位
+              </div>
+              <template v-if="slot.heroId">
+                <div class="star-temple-preset-main">
+                  <div class="star-temple-preset-avatar">
+                    <img
+                      v-if="getHeroAvatar(slot.heroId)"
+                      :src="getHeroAvatar(slot.heroId)"
+                      :alt="getHeroName(slot.heroId)"
+                    />
+                    <div v-else class="hero-placeholder">
+                      {{ getHeroName(slot.heroId)?.substring(0, 2) || "?" }}
+                    </div>
+                  </div>
+                  <div class="star-temple-preset-text">
+                    <div class="star-temple-preset-name">
+                      {{ getHeroName(slot.heroId) || `武将${slot.heroId}` }}
+                    </div>
+                    <div class="star-temple-preset-meta">
+                      Lv.{{ slot.level || "-" }} · {{ slot.star || 0 }}星
+                    </div>
+                    <div
+                      v-if="slot.artifactId && getFishNameByArtifactId(slot.artifactId)"
+                      class="star-temple-preset-sub"
+                    >
+                      鱼灵：{{ getFishNameByArtifactId(slot.artifactId) }}
+                    </div>
+                  </div>
+                </div>
+              </template>
+              <div v-else class="star-temple-preset-empty">未上阵</div>
+            </div>
+          </div>
+
+          <div v-else class="star-temple-empty">
+            该账号暂无十殿预设阵容，不能挑战
           </div>
 
           <div v-if="starTemple.lastResult" class="star-temple-result">
@@ -982,6 +1035,8 @@ const starTemple = ref({
   running: false,
   selectedBossId: 1,
   info: null,
+  presetTeam: null,
+  presetPower: null,
   lastResult: null,
   logs: [],
 });
@@ -996,15 +1051,6 @@ const addStarTempleLog = (level, message, extra = null) => {
   starTemple.value.logs.unshift(entry);
   if (starTemple.value.logs.length > 120) {
     starTemple.value.logs.length = 120;
-  }
-
-  const prefix = "[StarTemple]";
-  if (level === "error") {
-    console.error(prefix, message, extra || "");
-  } else if (level === "warn") {
-    console.warn(prefix, message, extra || "");
-  } else {
-    console.log(prefix, message, extra || "");
   }
 };
 
@@ -1226,6 +1272,20 @@ const normalizePearlSkillId = (value) => {
   return normalized === 0 ? null : normalized;
 };
 
+const resolveTeamPosition = (key, hero = {}) => {
+  const keyPosition = Number(key);
+  if (Number.isInteger(keyPosition) && keyPosition >= 0) {
+    return keyPosition;
+  }
+
+  const battleTeamSlot = Number(hero?.battleTeamSlot);
+  if (Number.isInteger(battleTeamSlot) && battleTeamSlot >= 0) {
+    return battleTeamSlot;
+  }
+
+  return 0;
+};
+
 const resolveSnapshotWeaponId = (role = {}, currentTeam = {}) => {
   return normalizeId(
     role?.lordWeaponId
@@ -1239,7 +1299,7 @@ const getTeamHeroes = (teamInfo) => {
   if (!teamInfo) return [];
   return Object.entries(teamInfo)
     .map(([key, hero]) => ({
-      position: hero?.battleTeamSlot ?? Number(key),
+      position: resolveTeamPosition(key, hero),
       heroId: normalizeId(hero?.heroId || hero?.id),
       artifactId: normalizeId(hero?.artifactId),
       attachmentUid: normalizeId(hero?.attachmentUid),
@@ -2089,7 +2149,7 @@ const currentTeamHeroes = computed(() => {
     .map(([key, hero]) => {
       const heroData = roleHeroesData.value[String(hero?.heroId || hero?.id)];
       return {
-        position: hero?.battleTeamSlot ?? Number(key),
+        position: resolveTeamPosition(key, hero),
         heroId: hero?.heroId || hero?.id,
         level: hero?.level || null,
         artifactId: hero?.artifactId || null,
@@ -2314,6 +2374,57 @@ const starTempleBossSummaries = computed(() => {
   });
 });
 
+const getStarTemplePresetType = (bossId) =>
+  100 + Number(bossId || 1);
+
+const starTempleSelectedPresetType = computed(() =>
+  getStarTemplePresetType(starTemple.value.selectedBossId),
+);
+
+const starTempleSelectedPresetTeam = computed(() =>
+  starTemple.value.presetTeam || null,
+);
+
+const starTemplePresetHeroes = computed(() => {
+  const teamInfo = starTempleSelectedPresetTeam.value?.teamInfo || {};
+  return Object.entries(teamInfo)
+    .map(([key, hero]) => ({
+      position: resolveTeamPosition(key, hero),
+      heroId: normalizeId(hero?.heroId || hero?.id),
+      level: hero?.level || null,
+      star: Number(hero?.star || 0),
+      artifactId: normalizeId(hero?.artifactId),
+      power: normalizeId(hero?.power),
+    }))
+    .filter((hero) => hero.heroId)
+    .sort((a, b) => a.position - b.position);
+});
+
+const starTemplePresetSlots = computed(() => {
+  return Array.from({ length: TEAM_SLOT_COUNT }, (_, position) => {
+    return (
+      starTemplePresetHeroes.value.find((hero) => hero.position === position) || {
+        position,
+        heroId: null,
+      }
+    );
+  });
+});
+
+const starTempleHasPreset = computed(
+  () => starTemplePresetHeroes.value.length > 0,
+);
+
+const starTemplePresetWeaponId = computed(
+  () => normalizeId(starTempleSelectedPresetTeam.value?.weapon?.weaponId) ?? 0,
+);
+
+const starTemplePresetWeaponName = computed(() => {
+  const weaponId = starTemplePresetWeaponId.value;
+  if (!weaponId) return "未配置";
+  return weapon[weaponId] || `玩具${weaponId}`;
+});
+
 const selectedStarTempleStageSummary = computed(() => {
   return (
     starTempleBossSummaries.value.find(
@@ -2322,7 +2433,9 @@ const selectedStarTempleStageSummary = computed(() => {
   );
 });
 
-const starTempleActionLabel = computed(() => "开始挑战");
+const starTempleActionLabel = computed(() =>
+  starTempleHasPreset.value ? "使用十殿预设挑战" : "开始挑战",
+);
 
 const starTempleResetTimeText = computed(() => {
   const resetTime = Number(starTemple.value.info?.roleNMExt?.starResetTime || 0);
@@ -4408,8 +4521,68 @@ const pickPreferredStarTempleBossId = (info, fallbackBossId = 1) => {
   );
 };
 
+const extractStarTemplePresetTeamMap = (result) => {
+  const presetTeamMap =
+    result?.presetTeamMap ||
+    result?.presetTeamInfo?.presetTeamMap ||
+    result?.presetTeamInfo ||
+    {};
+  return presetTeamMap;
+};
+
+const getStarTemplePresetTeam = (result, presetType) => {
+  const presetTeamMap = extractStarTemplePresetTeamMap(result);
+  return presetTeamMap[presetType] || presetTeamMap[String(presetType)] || null;
+};
+
+const getStarTemplePresetBattleEntries = (presetTeam) => {
+  const teamHeroes = getTeamHeroes(presetTeam?.teamInfo || {});
+  const entries = [];
+
+  for (let i = 0; i < TEAM_SLOT_COUNT; i += 1) {
+    const hero = teamHeroes.find((item) => Number(item.position) === i);
+    const heroId = normalizeId(hero?.heroId) ?? 0;
+    entries.push([i, heroId]);
+  }
+
+  if (!entries.some(([, heroId]) => Number(heroId) > 0)) {
+    throw new Error("该账号暂无十殿预设阵容，不能挑战");
+  }
+
+  return entries;
+};
+
+const buildStarTempleBattleTeamMap = (presetTeam) =>
+  new Map(getStarTemplePresetBattleEntries(presetTeam));
+
+const resolveStarTempleRoleId = async (tokenId) => {
+  const cachedRole =
+    tokenStore.selectedTokenRoleInfo?.role ||
+    tokenStore.selectedTokenRoleInfo ||
+    tokenStore.gameData?.roleInfo?.role ||
+    tokenStore.gameData?.roleInfo ||
+    null;
+  const cachedRoleId = normalizeId(cachedRole?.roleId || cachedRole?.id);
+  if (cachedRoleId) {
+    return cachedRoleId;
+  }
+
+  const roleInfo = await tokenStore.sendMessageWithPromise(
+    tokenId,
+    "role_getroleinfo",
+    {},
+    10000,
+  );
+  const role = roleInfo?.role || roleInfo || {};
+  return normalizeId(role?.roleId || role?.id) ?? null;
+};
+
 const refreshStarTempleInfo = async (options = {}) => {
-  const { silent = false } = options;
+  const {
+    silent = false,
+    preserveSelectedBoss = true,
+    targetBossId = null,
+  } = options;
   const token = tokenStore.selectedToken;
   if (!token) {
     if (!silent) message.warning("请先选择Token");
@@ -4425,18 +4598,73 @@ const refreshStarTempleInfo = async (options = {}) => {
 
   starTemple.value.loading = true;
   try {
+    const requestedBossId = Number(
+      targetBossId ?? starTemple.value.selectedBossId ?? 1,
+    );
+    const normalizedRequestedBossId = STAR_TEMPLE_BOSS_IDS.includes(requestedBossId)
+      ? requestedBossId
+      : 1;
+    const requestedPresetType = getStarTemplePresetType(normalizedRequestedBossId);
+
     addStarTempleLog("info", "刷新星级十殿信息");
+    const roleId = await resolveStarTempleRoleId(tokenId);
+    if (roleId) {
+      await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "nightmare_getroleinfo",
+        { roleId },
+        10000,
+      );
+      await delay(COMMAND_DELAY);
+    }
     const result = await tokenStore.sendMessageWithPromise(
       tokenId,
       "nmext_getinfo",
       {},
       10000,
     );
-    starTemple.value.info = result || null;
-    starTemple.value.selectedBossId = pickPreferredStarTempleBossId(
-      result || null,
-      starTemple.value.selectedBossId,
+    await delay(COMMAND_DELAY);
+    const presetResult = await tokenStore.sendMessageWithPromise(
+      tokenId,
+      "presetteam_typegetinfo",
+      {
+        types: [requestedPresetType],
+      },
+      10000,
     );
+    const presetTeamCandidate = getStarTemplePresetTeam(
+      presetResult,
+      requestedPresetType,
+    );
+    const presetTeam =
+      presetTeamCandidate && getTeamHeroes(presetTeamCandidate?.teamInfo || {}).length > 0
+        ? presetTeamCandidate
+        : null;
+    starTemple.value.info = result || null;
+    starTemple.value.presetTeam = presetTeam;
+    starTemple.value.presetPower = null;
+    const nextBossId = preserveSelectedBoss
+      ? normalizedRequestedBossId
+      : pickPreferredStarTempleBossId(
+          result || null,
+          normalizedRequestedBossId,
+        );
+    starTemple.value.selectedBossId = nextBossId;
+
+    if (presetTeam) {
+      const presetBattleTeam = Object.fromEntries(
+        getStarTemplePresetBattleEntries(presetTeam).map(([slot, heroId]) => [
+          String(slot),
+          heroId,
+        ]),
+      );
+      addStarTempleLog(
+        "info",
+        `已读取十殿预设阵容：第 ${nextBossId} 关`,
+        presetTeam,
+      );
+    }
+
     if (!silent) {
       message.success("星级十殿信息已更新");
     }
@@ -4452,45 +4680,20 @@ const refreshStarTempleInfo = async (options = {}) => {
   }
 };
 
-const prepareLineupForStarTemple = async () => {
-  addStarTempleLog(
-    "info",
-    `读取当前激活阵容快照：槽位 ${currentTeamId.value}`,
-  );
-  const snapshot = await loadLineupSnapshot(
-    tokenStore.selectedToken.id,
-    currentTeamId.value,
-    {
-      ensureTeamFresh: true,
-    },
-  );
-  return snapshot;
-};
-
-const buildStarTempleBattleTeam = (snapshot) => {
-  const battleTeam = {};
-  let hasHero = false;
-
-  for (let i = 0; i < 5; i += 1) {
-    const hero = snapshot?.teamHeroes?.find((item) => Number(item.position) === i);
-    const heroId = normalizeId(hero?.heroId) ?? 0;
-    battleTeam[i.toString()] = heroId;
-    if (heroId) {
-      hasHero = true;
-    }
-  }
-
-  if (!hasHero) {
-    throw new Error("当前阵容为空，无法挑战星级十殿");
-  }
-
-  return battleTeam;
-};
-
 const formatStarTempleBattleTeam = (battleTeam = {}) => {
-  return Object.entries(battleTeam)
-    .map(([slot, heroId]) => {
-      const normalizedHeroId = normalizeId(heroId) ?? 0;
+  const entries =
+    battleTeam instanceof Map
+      ? Array.from(battleTeam.entries()).map(([slot, heroValue]) => [
+          String(slot),
+          heroValue,
+        ])
+      : Object.entries(battleTeam);
+
+  return entries
+    .map(([slot, heroValue]) => {
+      const normalizedHeroId = normalizeId(
+        heroValue?.heroId ?? heroValue?.id ?? heroValue,
+      ) ?? 0;
       if (!normalizedHeroId) {
         return `${Number(slot) + 1}号位: 空`;
       }
@@ -4526,10 +4729,6 @@ const startStarTempleBattle = async () => {
     );
     if (Number(previousStage?.starCount || 0) <= 0) {
       const tip = `第 ${bossId} 关可能需要先通关第 ${bossId - 1} 关`;
-      addStarTempleLog("warn", tip, {
-        previousStage,
-        currentStage: selectedStage,
-      });
       message.warning(tip);
       return;
     }
@@ -4540,18 +4739,34 @@ const startStarTempleBattle = async () => {
   clearStarTempleLogs();
   addStarTempleLog(
     "info",
-    `开始挑战星级十殿：第 ${bossId} 关，当前槽位 ${currentTeamId.value}`,
+    `开始战斗：第 ${bossId} 关`,
   );
 
   try {
-    const snapshot = await prepareLineupForStarTemple();
-    const battleTeam = buildStarTempleBattleTeam(snapshot);
-    const battleWeaponId = normalizeId(snapshot?.weaponId) ?? 0;
+    if (!starTempleHasPreset.value) {
+      throw new Error("该账号暂无十殿预设阵容，不能挑战");
+    }
 
-    addStarTempleLog(
-      "info",
-      `发送十殿战斗：bossId=${bossId}, lordWeaponId=${battleWeaponId}, 阵容=${formatStarTempleBattleTeam(battleTeam)}`,
+    const battleTeam = buildStarTempleBattleTeamMap(
+      starTempleSelectedPresetTeam.value,
     );
+    const battleWeaponId = starTemplePresetWeaponId.value;
+    const presetTeamType = starTempleSelectedPresetType.value;
+    starTemple.value.presetPower = null;
+
+    try {
+      const calcResult = await tokenStore.sendMessageWithPromise(
+        token.id,
+        "presetteam_typecalcpowerbyteam",
+        {
+          typ: presetTeamType,
+          battleTeam,
+          lordWeaponId: battleWeaponId,
+        },
+        10000,
+      );
+      starTemple.value.presetPower = normalizeId(calcResult?.power) ?? null;
+    } catch (calcError) {}
 
     const result = await tokenStore.sendMessageWithPromise(
       token.id,
@@ -4560,6 +4775,7 @@ const startStarTempleBattle = async () => {
         bossId,
         battleTeam,
         lordWeaponId: battleWeaponId,
+        presetTeamType,
       },
       15000,
     );
@@ -4581,12 +4797,16 @@ const startStarTempleBattle = async () => {
     };
 
     addStarTempleLog(
-      isWin ? "info" : "warn",
+      isWin ? "info" : "error",
       `十殿挑战${isWin ? "成功" : "失败"}：第 ${bossId} 关，${isWin ? `${starCount} 星` : "0 星"}`,
       result,
     );
 
-    await refreshStarTempleInfo({ silent: true });
+    await refreshStarTempleInfo({
+      silent: true,
+      preserveSelectedBoss: true,
+      targetBossId: bossId,
+    });
 
     if (isWin) {
       message.success(`星级十殿第 ${bossId} 关挑战成功，获得 ${starCount} 星`);
@@ -4594,17 +4814,6 @@ const startStarTempleBattle = async () => {
       message.warning(`星级十殿第 ${bossId} 关挑战失败`);
     }
   } catch (error) {
-    if (String(error?.message || "").includes("2600020")) {
-      addStarTempleLog(
-        "warn",
-        "命中十殿通用校验错误：可能是前置关卡未通关、必选咸将未上阵，或服务端未接受当前阵容快照",
-        {
-          bossId,
-          selectedStage,
-          currentTeamId: currentTeamId.value,
-        },
-      );
-    }
     addStarTempleLog("error", `十殿挑战失败：${error.message}`, error);
     message.error(`星级十殿挑战失败: ${error.message}`);
   } finally {
@@ -4613,16 +4822,54 @@ const startStarTempleBattle = async () => {
 };
 
 watch(
+  () => starTemple.value.selectedBossId,
+  (newBossId, oldBossId) => {
+    if (
+      !tokenStore.selectedToken ||
+      !newBossId ||
+      newBossId === oldBossId ||
+      starTemple.value.loading ||
+      starTemple.value.running
+    ) {
+      return;
+    }
+
+    const status = tokenStore.getWebSocketStatus(tokenStore.selectedToken.id);
+    if (status === "connected") {
+      setTimeout(() => {
+        if (
+          tokenStore.selectedToken &&
+          !starTemple.value.loading &&
+          !starTemple.value.running
+        ) {
+          refreshStarTempleInfo({
+            silent: true,
+            preserveSelectedBoss: true,
+            targetBossId: newBossId,
+          });
+        }
+      }, 80);
+    }
+  },
+);
+
+watch(
   () => tokenStore.selectedToken,
   (newToken, oldToken) => {
     if (!newToken) {
       savedLineups.value = [];
+      starTemple.value.info = null;
+      starTemple.value.presetTeam = null;
+      starTemple.value.presetPower = null;
+      starTemple.value.lastResult = null;
       return;
     }
 
     if (newToken.id !== oldToken?.id) {
       void loadSavedLineups();
       starTemple.value.info = null;
+      starTemple.value.presetTeam = null;
+      starTemple.value.presetPower = null;
       starTemple.value.lastResult = null;
       clearStarTempleLogs();
       currentTeamInfo.value = null;
@@ -4633,7 +4880,7 @@ watch(
       const status = tokenStore.getWebSocketStatus(newToken.id);
       if (status === "connected") {
         refreshTeamInfo({ silent: true });
-        refreshStarTempleInfo({ silent: true });
+        refreshStarTempleInfo({ silent: true, preserveSelectedBoss: false });
       }
     }
   },
@@ -4652,7 +4899,7 @@ watch(
   ) {
     setTimeout(() => {
         refreshTeamInfo({ silent: true });
-        refreshStarTempleInfo({ silent: true });
+        refreshStarTempleInfo({ silent: true, preserveSelectedBoss: false });
       }, 500);
     }
   },
@@ -4826,6 +5073,84 @@ onMounted(() => {
   flex-wrap: wrap;
   align-items: center;
   font-size: var(--font-size-sm);
+}
+
+.star-temple-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.star-temple-preset-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &.empty {
+    opacity: 0.75;
+  }
+}
+
+.star-temple-preset-position {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.star-temple-preset-main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.star-temple-preset-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--primary-color) 18%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.star-temple-preset-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.star-temple-preset-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.star-temple-preset-meta,
+.star-temple-preset-sub,
+.star-temple-preset-empty,
+.star-temple-empty {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.star-temple-empty {
+  padding: 12px;
+  border-radius: var(--border-radius-medium);
+  border: 1px dashed var(--border-color);
+  background: var(--bg-secondary);
 }
 
 .result-badge {
@@ -6112,6 +6437,10 @@ onMounted(() => {
   }
 
   .star-temple-stage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .star-temple-preset-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
