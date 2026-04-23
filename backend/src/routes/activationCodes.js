@@ -21,6 +21,87 @@ function normalizeFingerprint(deviceFingerprint) {
   return String(deviceFingerprint || '').trim();
 }
 
+function pickFirstNonEmpty(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && String(value).trim() !== '') {
+      return value;
+    }
+  }
+  return '';
+}
+
+function resolveActivationRequestValue(req, ...keys) {
+  const body = req?.body && typeof req.body === 'object' ? req.body : {};
+  const query = req?.query && typeof req.query === 'object' ? req.query : {};
+  const params = req?.params && typeof req.params === 'object' ? req.params : {};
+
+  const candidates = [];
+  for (const key of keys) {
+    candidates.push(body?.[key], query?.[key], params?.[key]);
+  }
+
+  return pickFirstNonEmpty(...candidates);
+}
+
+function resolveActivationCodeFromRequest(req) {
+  return normalizeCode(
+    resolveActivationRequestValue(
+      req,
+      'code',
+      'activationCode',
+      'activation_code',
+      'inviteCode',
+      'invite_code',
+    ),
+  );
+}
+
+function resolveDeviceFingerprintFromRequest(req) {
+  return normalizeFingerprint(
+    resolveActivationRequestValue(
+      req,
+      'deviceFingerprint',
+      'device_fingerprint',
+      'fingerprint',
+      'deviceId',
+      'device_id',
+      'deviceUniqueId',
+      'device_unique_id',
+      'distinctId',
+      'distinct_id',
+      'did',
+      'androidId',
+      'android_id',
+    ),
+  );
+}
+
+function resolveDeviceNameFromRequest(req) {
+  return String(
+    resolveActivationRequestValue(
+      req,
+      'deviceName',
+      'device_name',
+      'model',
+      'brandModel',
+      'brand_model',
+    ),
+  ).trim();
+}
+
+function resolveAppVersionFromRequest(req) {
+  return String(
+    resolveActivationRequestValue(
+      req,
+      'appVersion',
+      'app_version',
+      'version',
+      'clientVersion',
+      'client_version',
+    ),
+  ).trim();
+}
+
 function clampPositiveInteger(value, { min = 1, max = 1000, fallback = min, label = '数值' } = {}) {
   if (value === undefined || value === null || value === '') {
     return fallback;
@@ -599,12 +680,12 @@ router.delete('/:id', (req, res) => {
   }
 });
 
-publicActivationRoutes.post('/activate', (req, res) => {
+function handlePublicActivate(req, res) {
   try {
-    const code = normalizeCode(req.body?.code);
-    const deviceFingerprint = normalizeFingerprint(req.body?.deviceFingerprint);
-    const deviceName = String(req.body?.deviceName || '').trim();
-    const appVersion = String(req.body?.appVersion || '').trim();
+    const code = resolveActivationCodeFromRequest(req);
+    const deviceFingerprint = resolveDeviceFingerprintFromRequest(req);
+    const deviceName = resolveDeviceNameFromRequest(req);
+    const appVersion = resolveAppVersionFromRequest(req);
 
     if (!code) {
       return res.status(400).json({
@@ -614,6 +695,10 @@ publicActivationRoutes.post('/activate', (req, res) => {
     }
 
     if (!deviceFingerprint) {
+      console.warn('激活接口缺少设备标识', {
+        bodyKeys: Object.keys(req.body || {}),
+        queryKeys: Object.keys(req.query || {}),
+      });
       return res.status(400).json({
         success: false,
         error: '缺少设备标识',
@@ -629,12 +714,12 @@ publicActivationRoutes.post('/activate', (req, res) => {
       error: '激活失败，请稍后重试',
     });
   }
-});
+}
 
-publicActivationRoutes.post('/verify', (req, res) => {
+function handlePublicVerify(req, res) {
   try {
-    const code = normalizeCode(req.body?.code);
-    const deviceFingerprint = normalizeFingerprint(req.body?.deviceFingerprint);
+    const code = resolveActivationCodeFromRequest(req);
+    const deviceFingerprint = resolveDeviceFingerprintFromRequest(req);
 
     if (!code) {
       return res.status(400).json({
@@ -644,6 +729,10 @@ publicActivationRoutes.post('/verify', (req, res) => {
     }
 
     if (!deviceFingerprint) {
+      console.warn('校验接口缺少设备标识', {
+        bodyKeys: Object.keys(req.body || {}),
+        queryKeys: Object.keys(req.query || {}),
+      });
       return res.status(400).json({
         success: false,
         error: '缺少设备标识',
@@ -659,7 +748,12 @@ publicActivationRoutes.post('/verify', (req, res) => {
       error: '校验失败，请稍后重试',
     });
   }
-});
+}
+
+publicActivationRoutes.post('/activate', handlePublicActivate);
+publicActivationRoutes.get('/activate', handlePublicActivate);
+publicActivationRoutes.post('/verify', handlePublicVerify);
+publicActivationRoutes.get('/verify', handlePublicVerify);
 
 export { publicActivationRoutes };
 export default router;
