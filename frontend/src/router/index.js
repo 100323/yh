@@ -81,6 +81,12 @@ const routes = [
         meta: { title: '邀请码管理', requiresAdmin: true }
       },
       {
+        path: 'activation-codes',
+        name: 'ActivationCodes',
+        component: () => import('@views/ActivationCodes.vue'),
+        meta: { title: '激活码管理', requiresAdmin: true }
+      },
+      {
         path: 'user-management',
         name: 'UserManagement',
         component: () => import('@views/UserManagement.vue'),

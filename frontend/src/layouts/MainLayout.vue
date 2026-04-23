@@ -125,6 +125,7 @@ import {
   Document,
   HomeFilled,
   Key,
+  Lock,
   Monitor,
   Operation,
   Setting,
@@ -154,6 +155,7 @@ const menuItems = [
   { index: '/tasks', label: '任务配置', icon: Setting },
   { index: '/logs', label: '执行日志', icon: Document },
   { index: '/user-management', label: '用户管理', icon: User, adminOnly: true },
+  { index: '/activation-codes', label: '激活码管理', icon: Lock, adminOnly: true },
   { index: '/invite-codes', label: '邀请码管理', icon: Ticket, adminOnly: true }
 ];
 const visibleMenuItems = computed(() =>

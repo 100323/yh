@@ -21,6 +21,7 @@ These pages are currently reachable from the app router:
 - `frontend/src/views/Logs.vue` -> `/logs`
 - `frontend/src/views/Profile.vue` -> `/profile`
 - `frontend/src/views/Changelog.vue` -> `/changelog`
+- `frontend/src/views/ActivationCodes.vue` -> `/activation-codes`
 - `frontend/src/views/InviteCodes.vue` -> `/invite-codes`
 - `frontend/src/views/UserManagement.vue` -> `/user-management`
 - `frontend/src/views/NotFound.vue` -> catch-all 404

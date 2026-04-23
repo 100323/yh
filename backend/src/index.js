@@ -14,6 +14,7 @@ import statsRoutes from './routes/stats.js';
 import batchSchedulerRoutes from './routes/batchScheduler.js';
 import batchSettingsRoutes from './routes/batchSettings.js';
 import inviteCodeRoutes from './routes/inviteCodes.js';
+import activationCodeRoutes from './routes/activationCodes.js';
 import adminUsersRoutes from './routes/adminUsers.js';
 import { initScheduler, executeTask, stopScheduler } from './scheduler/index.js';
 import { initBatchScheduler, stopBatchScheduler } from './batchScheduler/index.js';
@@ -113,6 +114,7 @@ app.use('/api/stats', statsRoutes);
 app.use('/api/batch-scheduler', batchSchedulerRoutes);
 app.use('/api/batch-settings', batchSettingsRoutes);
 app.use('/api/invite-codes', inviteCodeRoutes);
+app.use('/api/activation-codes', activationCodeRoutes);
 app.use('/api/admin/users', adminUsersRoutes);
 
 app.get('/slim-game/entry', (req, res) => {
