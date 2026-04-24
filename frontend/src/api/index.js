@@ -7,6 +7,7 @@ const api = Object.assign(request, {
     logout: () => request.post('/auth/logout'),
     getUserInfo: () => request.get('/auth/me'),
     refreshToken: () => request.post('/auth/refresh-token'),
+    getCurrentBroadcast: () => request.get('/auth/broadcast/current'),
   },
 
   gameRoles: {
@@ -70,9 +71,11 @@ const api = Object.assign(request, {
     create: (data) => request.post('/admin/users', data),
     update: (id, data) => request.put(`/admin/users/${id}`, data),
     delete: (id) => request.delete(`/admin/users/${id}`),
+    getBroadcast: () => request.get('/admin/users/broadcast'),
+    saveBroadcast: (data) => request.put('/admin/users/broadcast', data),
+    clearBroadcast: () => request.delete('/admin/users/broadcast'),
   },
 });
 
 export { request };
 export default api;
-

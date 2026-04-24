@@ -88,6 +88,8 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
 const DAILY_CATCHUP_CRON = '15 19 * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
+const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
+const STAR_TEMPLE_COMMAND_DELAY_MS = 300;
 
 function pad2(value) {
   return String(value).padStart(2, '0');
@@ -2140,6 +2142,9 @@ async function runTaskByType(client, taskType, config) {
     
     case 'SKIN_CHALLENGE':
       return await executeSkinChallenge(client, config);
+
+    case 'STAR_TEMPLE':
+      return await executeStarTemple(client, config);
     
     case 'PEACH_TASK':
       return await executePeachTask(client, config);
@@ -2985,6 +2990,188 @@ async function executeSkinChallenge(client, config) {
   }
   const clearedCount = result.clearedCount || 0;
   return { message: `换皮闯关完成 (通关${clearedCount}个BOSS)`, data: result };
+}
+
+function getStarTemplePresetType(bossId) {
+  return 100 + Number(bossId || 1);
+}
+
+function getStarTempleCurrentStars(info, bossId) {
+  const roleNMExt = info?.roleNMExt || {};
+  const completeMap = roleNMExt.starBossCompleteMap || {};
+  const completedStarMap = completeMap[bossId] || completeMap[String(bossId)] || {};
+  return Object.keys(completedStarMap).filter((key) => completedStarMap[key]).length;
+}
+
+function getStarTempleStageConfig(config = {}, bossId) {
+  const stages = config?.stages && typeof config.stages === 'object' ? config.stages : {};
+  return stages[bossId] || stages[String(bossId)] || null;
+}
+
+function hasStarTemplePresetTeam(presetTeam) {
+  const teamInfo = presetTeam?.teamInfo || {};
+  return Object.values(teamInfo).some((hero) => Number(hero?.heroId || hero?.id || 0) > 0);
+}
+
+function buildStarTempleBattleTeamMap(presetTeam) {
+  const teamInfo = presetTeam?.teamInfo || {};
+  const battleTeam = new Map();
+
+  for (let slot = 0; slot < 5; slot += 1) {
+    const hero = teamInfo[slot] || teamInfo[String(slot)] || null;
+    battleTeam.set(slot, Number(hero?.heroId || hero?.id || 0) || 0);
+  }
+
+  if (![...battleTeam.values()].some((heroId) => heroId > 0)) {
+    throw new Error('该账号暂无十殿预设阵容，不能挑战');
+  }
+
+  return battleTeam;
+}
+
+async function loadStarTempleContext(client, bossId) {
+  let roleId = Number(client?.roleId || 0);
+  if (!roleId) {
+    const roleInfo = await client.getRoleInfo(10000);
+    roleId = Number(roleInfo?.role?.roleId || roleInfo?.roleId || roleInfo?.id || 0);
+  }
+
+  if (roleId) {
+    await client.getNightmareRoleInfo(roleId, 10000).catch(() => null);
+    await sleep(STAR_TEMPLE_COMMAND_DELAY_MS);
+  }
+
+  const info = await client.getStarTempleInfo(10000);
+  await sleep(STAR_TEMPLE_COMMAND_DELAY_MS);
+
+  const presetType = getStarTemplePresetType(bossId);
+  const presetResult = await client.getPresetTeamByTypes([presetType], 10000);
+  const presetTeamMap =
+    presetResult?.presetTeamMap ||
+    presetResult?.presetTeamInfo?.presetTeamMap ||
+    presetResult?.presetTeamInfo ||
+    {};
+  const presetTeam = presetTeamMap[presetType] || presetTeamMap[String(presetType)] || null;
+
+  return {
+    roleId,
+    info,
+    presetType,
+    presetTeam,
+  };
+}
+
+function addStarTempleTaskStageLog(client, message, details = null, status = 'info') {
+  if (!client?.accountId) return;
+  addTaskLog(client.accountId, 'STAR_TEMPLE', status, message, details ? JSON.stringify(details) : null);
+}
+
+async function executeStarTemple(client, config = {}) {
+  const stageResults = [];
+  const roleInfo = await client.getRoleInfo(10000).catch(() => null);
+  if (roleInfo?.role?.roleId || roleInfo?.roleId || roleInfo?.id) {
+    client.roleId = Number(roleInfo?.role?.roleId || roleInfo?.roleId || roleInfo?.id || 0);
+  }
+
+  for (const bossId of STAR_TEMPLE_BOSS_IDS) {
+    const stageConfig = getStarTempleStageConfig(config, bossId);
+    const targetStars = Number(stageConfig?.targetStars);
+    const maxAttempts = Number(stageConfig?.maxAttempts);
+
+    if (!Number.isInteger(targetStars) || !Number.isInteger(maxAttempts) || targetStars <= 0 || maxAttempts <= 0) {
+      const message = `第 ${bossId} 关：未配置目标星级或挑战次数，结束任务`;
+      addStarTempleTaskStageLog(client, message, { bossId, stageConfig }, 'info');
+      stageResults.push({ bossId, status: 'stopped', reason: 'missing_config' });
+      break;
+    }
+
+    const context = await loadStarTempleContext(client, bossId);
+    const currentStars = getStarTempleCurrentStars(context.info, bossId);
+    if (currentStars >= targetStars) {
+      const message = `第 ${bossId} 关：已达目标${targetStars}星，跳过`;
+      addStarTempleTaskStageLog(client, message, { bossId, targetStars, currentStars }, 'ignored');
+      stageResults.push({ bossId, status: 'skipped', targetStars, currentStars });
+      continue;
+    }
+
+    if (!hasStarTemplePresetTeam(context.presetTeam)) {
+      const message = `第 ${bossId} 关：无预设阵容，结束任务`;
+      addStarTempleTaskStageLog(client, message, { bossId, presetType: context.presetType }, 'info');
+      stageResults.push({ bossId, status: 'stopped', reason: 'missing_preset' });
+      break;
+    }
+
+    if (bossId > 1) {
+      const previousStars = getStarTempleCurrentStars(context.info, bossId - 1);
+      if (previousStars <= 0) {
+        const message = `第 ${bossId} 关：当前不可挑战，结束任务`;
+        addStarTempleTaskStageLog(client, message, { bossId, previousStars }, 'info');
+        stageResults.push({ bossId, status: 'stopped', reason: 'not_unlocked' });
+        break;
+      }
+    }
+
+    const battleTeam = buildStarTempleBattleTeamMap(context.presetTeam);
+    const lordWeaponId = Number(context.presetTeam?.weapon?.weaponId || 0) || 0;
+    let bestStars = currentStars;
+    let success = false;
+    let attemptsUsed = 0;
+
+    await client.calcPresetTeamPower(context.presetType, battleTeam, lordWeaponId, 10000).catch(() => null);
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      attemptsUsed = attempt;
+      const result = await client.startStarTempleBoss(
+        bossId,
+        battleTeam,
+        lordWeaponId,
+        context.presetType,
+        15000
+      );
+
+      const attemptStars = Array.isArray(result?.nowStarIdxList)
+        ? result.nowStarIdxList.map((item) => Number(item)).filter((item) => !Number.isNaN(item)).length
+        : (result?.isWin ? targetStars : 0);
+      bestStars = Math.max(bestStars, attemptStars);
+      if (bestStars >= targetStars) {
+        success = true;
+        break;
+      }
+      await sleep(STAR_TEMPLE_COMMAND_DELAY_MS);
+    }
+
+    if (success) {
+      const message = `第 ${bossId} 关：挑战${attemptsUsed}次，达到${bestStars}星`;
+      addStarTempleTaskStageLog(client, message, {
+        bossId,
+        attemptsUsed,
+        bestStars,
+        targetStars,
+      }, 'success');
+      stageResults.push({ bossId, status: 'success', attemptsUsed, bestStars, targetStars });
+      continue;
+    }
+
+    const message = `第 ${bossId} 关：挑战${attemptsUsed}次，最高${bestStars}星，未达目标${targetStars}星，继续下一关`;
+    addStarTempleTaskStageLog(client, message, {
+      bossId,
+      attemptsUsed,
+      bestStars,
+      targetStars,
+    }, 'info');
+    stageResults.push({ bossId, status: 'continue', attemptsUsed, bestStars, targetStars });
+  }
+
+  const successCount = stageResults.filter((item) => item.status === 'success').length;
+  const skippedCount = stageResults.filter((item) => item.status === 'skipped').length;
+  return {
+    message: `星级十殿任务完成 (达标${successCount}关, 跳过${skippedCount}关)`,
+    data: {
+      stageResults,
+      successCount,
+      skippedCount,
+    },
+  };
 }
 
 async function executeDreamPurchase(client, config) {

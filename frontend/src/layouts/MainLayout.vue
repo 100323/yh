@@ -112,11 +112,37 @@
         </el-menu>
       </div>
     </el-drawer>
+
+    <el-dialog
+      v-model="broadcastDialogVisible"
+      width="min(520px, 92vw)"
+      :show-close="true"
+      class="public-broadcast-dialog"
+      append-to-body
+    >
+      <template #header>
+        <div class="broadcast-dialog-header">
+          <span class="broadcast-icon">📢</span>
+          <span class="broadcast-title">{{ currentBroadcast?.title || '公共通知' }}</span>
+        </div>
+      </template>
+
+      <div class="broadcast-dialog-body">
+        <div class="broadcast-content">{{ currentBroadcast?.content || '' }}</div>
+      </div>
+
+      <template #footer>
+        <div class="broadcast-dialog-footer">
+          <el-button @click="closeBroadcastDialog">我知道了</el-button>
+          <el-button type="primary" @click="dismissBroadcastDialog">不再提示</el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import {
@@ -137,12 +163,16 @@ import {
 import { useAuthStore } from '@stores/auth';
 import { useGameWorkbenchStore } from '@stores/gameWorkbench';
 import GameWorkbenchDock from '@components/GameWorkbench/GameWorkbenchDock.vue';
+import api from '@/api';
 
 const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
 const gameWorkbenchStore = useGameWorkbenchStore();
 const mobileMenuOpen = ref(false);
+const broadcastDialogVisible = ref(false);
+const currentBroadcast = ref(null);
+const BROADCAST_IGNORE_PREFIX = 'public_broadcast_ignored_';
 
 const activeMenu = computed(() => route.path);
 const pageTitle = computed(() => route.meta?.title || '汤姆之王');
@@ -189,12 +219,60 @@ const toggleWorkbench = () => {
   gameWorkbenchStore.toggleCollapsed();
 };
 
+const getBroadcastIgnoreKey = () => {
+  const userId = Number(authStore.user?.id || 0);
+  return `${BROADCAST_IGNORE_PREFIX}${userId || 'guest'}`;
+};
+
+const shouldIgnoreBroadcast = (broadcastId) => {
+  if (!broadcastId) return false;
+  return localStorage.getItem(getBroadcastIgnoreKey()) === String(broadcastId);
+};
+
+const closeBroadcastDialog = () => {
+  broadcastDialogVisible.value = false;
+};
+
+const dismissBroadcastDialog = () => {
+  if (currentBroadcast.value?.id) {
+    localStorage.setItem(getBroadcastIgnoreKey(), String(currentBroadcast.value.id));
+  }
+  broadcastDialogVisible.value = false;
+};
+
+const loadCurrentBroadcast = async () => {
+  if (!authStore.isAuthenticated) return;
+  try {
+    const res = await api.auth.getCurrentBroadcast();
+    if (!res?.success) return;
+    currentBroadcast.value = res.data || null;
+    broadcastDialogVisible.value = !!(
+      currentBroadcast.value &&
+      currentBroadcast.value.id &&
+      !shouldIgnoreBroadcast(currentBroadcast.value.id)
+    );
+  } catch (error) {
+    console.error('获取公共通知失败:', error);
+  }
+};
+
 watch(
   () => route.fullPath,
   () => {
     mobileMenuOpen.value = false;
   }
 );
+
+watch(
+  () => authStore.user?.id,
+  () => {
+    void loadCurrentBroadcast();
+  }
+);
+
+onMounted(() => {
+  void loadCurrentBroadcast();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -234,6 +312,38 @@ watch(
   min-height: 100vh;
   position: relative;
   z-index: 1;
+}
+
+.broadcast-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.broadcast-icon {
+  font-size: 18px;
+}
+
+.broadcast-title {
+  color: var(--text-primary);
+}
+
+.broadcast-dialog-body {
+  padding: 4px 0;
+}
+
+.broadcast-content {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.broadcast-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .sidebar {

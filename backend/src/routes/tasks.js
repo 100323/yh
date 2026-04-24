@@ -41,6 +41,7 @@ export const TASK_TYPES = {
   DAILY_TASK_CLAIM: { name: '每日任务奖励领取', cron: '4 12 * * *', group: 'daily' },
   DREAM: { name: '梦境', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', cron: '10 12 * * *', group: 'dungeon' },
+  STAR_TEMPLE: { name: '星级十殿', cron: '10 12 * * *', group: 'dungeon' },
   DREAM_PURCHASE: { name: '购买梦境商品', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   PEACH_TASK: { name: '蟠桃园任务', cron: '0 10 * * *', group: 'dungeon' },
   BOX_OPEN: { name: '批量开箱', cron: '7 12 * * *', group: 'resource' },
@@ -132,6 +133,17 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   DAILY_TASK_CLAIM: { enabled: true, config: {} },
   DREAM: { enabled: true, config: {} },
   SKIN_CHALLENGE: { enabled: true, config: {} },
+  STAR_TEMPLE: {
+    enabled: false,
+    config: {
+      stages: Object.fromEntries(
+        Array.from({ length: 8 }, (_, index) => [
+          index + 1,
+          { targetStars: null, maxAttempts: null },
+        ])
+      ),
+    },
+  },
   DREAM_PURCHASE: { enabled: true, config: { purchaseList: ['1-3', '1-5', '2-6', '2-7', '3-1', '3-2', '3-7'] } },
   GENIE_SWEEP: { enabled: true, config: {} },
 };
@@ -159,6 +171,34 @@ function normalizeRecruitTaskConfig(config = {}) {
   return next;
 }
 
+function normalizeStarTempleTaskConfig(config = {}) {
+  const rawStages = config?.stages && typeof config.stages === 'object'
+    ? config.stages
+    : {};
+
+  return {
+    stages: Object.fromEntries(
+      Array.from({ length: 8 }, (_, index) => {
+        const stageId = index + 1;
+        const stageConfig = rawStages[stageId] || rawStages[String(stageId)] || {};
+        const targetStars = Number(stageConfig?.targetStars);
+        const maxAttempts = Number(stageConfig?.maxAttempts);
+        return [
+          stageId,
+          {
+            targetStars: Number.isInteger(targetStars) && targetStars >= 1 && targetStars <= 3
+              ? targetStars
+              : null,
+            maxAttempts: Number.isInteger(maxAttempts) && maxAttempts >= 1
+              ? maxAttempts
+              : null,
+          },
+        ];
+      })
+    ),
+  };
+}
+
 function normalizeTaskConfigPayload(taskType, config = {}) {
   if (!config || typeof config !== 'object') {
     return config || {};
@@ -166,6 +206,10 @@ function normalizeTaskConfigPayload(taskType, config = {}) {
 
   if (taskType === 'RECRUIT') {
     return normalizeRecruitTaskConfig(config);
+  }
+
+  if (taskType === 'STAR_TEMPLE') {
+    return normalizeStarTempleTaskConfig(config);
   }
 
   return config;

@@ -8,6 +8,29 @@ import { buildUserAccessSummary, getUserAvailabilityStatus } from '../utils/user
 import { createSlimEntryTicket } from '../utils/slimEntryTicketStore.js';
 
 const router = Router();
+const PUBLIC_BROADCAST_SETTING_KEY = 'public_broadcast_current';
+
+function parseBroadcastValue(value) {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(value);
+    if (!parsed || typeof parsed !== 'object') return null;
+    const title = String(parsed.title || '').trim();
+    const content = String(parsed.content || '').trim();
+    if (!title || !content) return null;
+    return {
+      id: String(parsed.id || '').trim() || null,
+      title,
+      content,
+      createdAt: parsed.createdAt || null,
+      updatedAt: parsed.updatedAt || null,
+      createdBy: parsed.createdBy || null,
+      createdByName: parsed.createdByName || null,
+    };
+  } catch {
+    return null;
+  }
+}
 
 router.post('/register', async (req, res) => {
   try {
@@ -186,6 +209,25 @@ router.get('/me', authMiddleware, (req, res) => {
     res.status(500).json({
       success: false,
       error: '获取用户信息失败'
+    });
+  }
+});
+
+router.get('/broadcast/current', authMiddleware, (req, res) => {
+  try {
+    const row = get(
+      'SELECT value FROM system_settings WHERE key = ? LIMIT 1',
+      [PUBLIC_BROADCAST_SETTING_KEY]
+    );
+    res.json({
+      success: true,
+      data: parseBroadcastValue(row?.value || null),
+    });
+  } catch (error) {
+    console.error('获取当前公共通知错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '获取当前公共通知失败',
     });
   }
 });

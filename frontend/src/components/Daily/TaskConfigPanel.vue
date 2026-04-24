@@ -107,6 +107,34 @@
                         size="small"
                         :disabled="disabled"
                       />
+                      <div
+                        v-else-if="field.type === 'starTempleStages'"
+                        class="star-temple-stage-config"
+                      >
+                        <div
+                          v-for="stageId in starTempleStageIds"
+                          :key="stageId"
+                          class="star-temple-stage-row"
+                        >
+                          <span class="stage-name">第{{ stageId }}关</span>
+                          <n-select
+                            v-model:value="getStarTempleStageValue(task.value, field.key, stageId).targetStars"
+                            :options="starTempleStarOptions"
+                            size="small"
+                            clearable
+                            :disabled="disabled"
+                            placeholder="目标星级"
+                          />
+                          <n-select
+                            v-model:value="getStarTempleStageValue(task.value, field.key, stageId).maxAttempts"
+                            :options="starTempleAttemptOptions"
+                            size="small"
+                            clearable
+                            :disabled="disabled"
+                            placeholder="挑战次数"
+                          />
+                        </div>
+                      </div>
                       <n-input
                         v-else
                         v-model:value="getTaskConfig(task.value).config[field.key]"
@@ -142,6 +170,8 @@ import {
   carMinColorOptions,
   boxTypeOptions,
   fishTypeOptions,
+  starTempleStageIds,
+  createDefaultStarTempleStages,
 } from '@/utils/batch/constants';
 import { InformationCircle, ChevronUp, ChevronDown } from '@vicons/ionicons5';
 
@@ -179,13 +209,36 @@ const optionRefs = {
   fishTypeOptions,
 };
 
+const starTempleStarOptions = [1, 2, 3].map((value) => ({
+  label: `${value}星`,
+  value,
+}));
+
+const starTempleAttemptOptions = [1, 2, 3, 4, 5].map((value) => ({
+  label: `${value}次`,
+  value,
+}));
+
 const getOptionByRef = (refName) => {
   return optionRefs[refName] || [];
 };
 
+const normalizeStarTempleTaskConfig = (taskConfig = {}) => {
+  return {
+    ...taskConfig,
+    config: {
+      ...(taskConfig?.config || {}),
+      stages: {
+        ...createDefaultStarTempleStages(),
+        ...(taskConfig?.config?.stages || {}),
+      },
+    },
+  };
+};
+
 const getTaskConfig = (taskValue) => {
   if (!taskConfigs.value[taskValue]) {
-    taskConfigs.value[taskValue] = JSON.parse(
+    const createdConfig = JSON.parse(
       JSON.stringify(defaultTaskConfigs[taskValue] || {
         enabled: true,
         config: {},
@@ -194,8 +247,19 @@ const getTaskConfig = (taskValue) => {
         intervalHours: 4,
       }),
     );
+    taskConfigs.value[taskValue] = taskValue === 'starTemple'
+      ? normalizeStarTempleTaskConfig(createdConfig)
+      : createdConfig;
   }
   return taskConfigs.value[taskValue];
+};
+
+const getStarTempleStageValue = (taskValue, fieldKey, stageId) => {
+  const taskConfig = getTaskConfig(taskValue);
+  return taskConfig.config?.[fieldKey]?.[stageId] || {
+    targetStars: null,
+    maxAttempts: null,
+  };
 };
 
 const getGroupTasks = (groupName) => {
@@ -243,7 +307,11 @@ const collapseAll = () => {
 };
 
 const resetToDefault = () => {
-  taskConfigs.value = JSON.parse(JSON.stringify(defaultTaskConfigs));
+  const defaults = JSON.parse(JSON.stringify(defaultTaskConfigs));
+  taskConfigs.value = {
+    ...defaults,
+    starTemple: normalizeStarTempleTaskConfig(defaults.starTemple),
+  };
 };
 
 const handleSave = () => {
@@ -260,7 +328,7 @@ const initializeConfigs = () => {
 
   Object.keys(taskConfigDefinitions).forEach((key) => {
     if (props.modelValue && props.modelValue[key]) {
-      newConfigs[key] = {
+      const mergedConfig = {
         enabled: props.modelValue[key].enabled ?? defaultTaskConfigs[key]?.enabled ?? true,
         config: {
           ...(defaultTaskConfigs[key]?.config || {}),
@@ -270,8 +338,11 @@ const initializeConfigs = () => {
         runTime: props.modelValue[key].runTime || defaultTaskConfigs[key]?.runTime || null,
         intervalHours: props.modelValue[key].intervalHours ?? defaultTaskConfigs[key]?.intervalHours ?? 4,
       };
+      newConfigs[key] = key === 'starTemple'
+        ? normalizeStarTempleTaskConfig(mergedConfig)
+        : mergedConfig;
     } else {
-      newConfigs[key] = {
+      const defaultConfig = {
         ...(JSON.parse(JSON.stringify(defaultTaskConfigs[key] || {
           enabled: true,
           config: {},
@@ -280,6 +351,9 @@ const initializeConfigs = () => {
           intervalHours: 4,
         }))),
       };
+      newConfigs[key] = key === 'starTemple'
+        ? normalizeStarTempleTaskConfig(defaultConfig)
+        : defaultConfig;
     }
   });
 
@@ -455,6 +529,26 @@ watch(
   }
 }
 
+.star-temple-stage-config {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.star-temple-stage-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.stage-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
 .panel-footer {
   display: flex;
   justify-content: flex-end;
@@ -541,6 +635,10 @@ watch(
 
   .config-field .field-input {
     max-width: none;
+  }
+
+  .star-temple-stage-row {
+    grid-template-columns: 1fr;
   }
 }
 </style>

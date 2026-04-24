@@ -77,6 +77,11 @@ const COMMAND_RESPONSE_ALIASES = {
   towers_getinfo: ['towers_getinforesp'],
   towers_start: ['towers_startresp'],
   towers_fight: ['towers_fightresp'],
+  nightmare_getroleinfo: ['nightmare_getroleinforesp'],
+  nmext_getinfo: ['nmext_getinforesp'],
+  nmext_startboss: ['nmext_startbossresp'],
+  presetteam_typegetinfo: ['presetteam_typegetinforesp'],
+  presetteam_typecalcpowerbyteam: ['presetteam_typecalcpowerbyteamresp'],
   fight_starttower: ['fight_starttowerresp'],
   tower_getinfo: ['tower_getinforesp'],
   tower_claimreward: ['tower_claimrewardresp'],
@@ -754,6 +759,34 @@ export class GameClient {
 
   async savePresetTeam(teamId) {
     return this.sendWithPromise('presetteam_saveteam', { teamId });
+  }
+
+  async getNightmareRoleInfo(roleId, timeout = 10000) {
+    return this.sendWithPromise('nightmare_getroleinfo', { roleId }, timeout);
+  }
+
+  async getStarTempleInfo(timeout = 10000) {
+    return this.sendWithPromise('nmext_getinfo', {}, timeout);
+  }
+
+  async getPresetTeamByTypes(types = [], timeout = 10000) {
+    return this.sendWithPromise('presetteam_typegetinfo', { types }, timeout);
+  }
+
+  async calcPresetTeamPower(typ, battleTeam, lordWeaponId = 0, timeout = 10000) {
+    return this.sendWithPromise(
+      'presetteam_typecalcpowerbyteam',
+      { typ, battleTeam, lordWeaponId },
+      timeout
+    );
+  }
+
+  async startStarTempleBoss(bossId, battleTeam, lordWeaponId = 0, presetTeamType, timeout = 15000) {
+    return this.sendWithPromise(
+      'nmext_startboss',
+      { bossId, battleTeam, lordWeaponId, presetTeamType },
+      timeout
+    );
   }
 
   async recruitHero(recruitType = 3, recruitNumber = 1) {

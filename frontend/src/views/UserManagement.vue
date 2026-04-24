@@ -36,6 +36,51 @@
       </div>
     </el-card>
 
+    <el-card class="management-card broadcast-card">
+      <template #header>
+        <div class="card-header">
+          <div>
+            <span>公共通知</span>
+            <p class="header-subtitle">仅保留 1 条当前广播，登录用户进入页面时会自动弹出。</p>
+          </div>
+        </div>
+      </template>
+
+      <div class="broadcast-panel" v-loading="broadcastLoading">
+        <el-form label-width="80px">
+          <el-form-item label="标题">
+            <el-input
+              v-model="broadcastForm.title"
+              maxlength="60"
+              show-word-limit
+              placeholder="请输入通知标题"
+            />
+          </el-form-item>
+          <el-form-item label="正文">
+            <el-input
+              v-model="broadcastForm.content"
+              type="textarea"
+              :rows="5"
+              maxlength="1000"
+              show-word-limit
+              placeholder="请输入通知正文"
+            />
+          </el-form-item>
+        </el-form>
+
+        <div v-if="currentBroadcast" class="broadcast-meta">
+          <span>当前广播ID：{{ currentBroadcast.id }}</span>
+          <span>更新时间：{{ formatTime(currentBroadcast.updatedAt) || '-' }}</span>
+        </div>
+
+        <div class="broadcast-actions">
+          <el-button @click="loadBroadcast" :disabled="broadcastSaving">刷新</el-button>
+          <el-button type="danger" plain @click="clearBroadcast" :loading="broadcastClearing">清空</el-button>
+          <el-button type="primary" @click="saveBroadcast" :loading="broadcastSaving">发布通知</el-button>
+        </div>
+      </div>
+    </el-card>
+
     <el-card class="management-card">
       <template #header>
         <div class="card-header">
@@ -288,6 +333,10 @@ const schedulerLimits = reactive({
   min: 1,
   max: 20,
 });
+const broadcastLoading = ref(false);
+const broadcastSaving = ref(false);
+const broadcastClearing = ref(false);
+const currentBroadcast = ref(null);
 const BENIGN_LOG_KEYWORDS = [
   '活动未开放',
   '不在开启时间内',
@@ -310,6 +359,10 @@ const createEmptyForm = () => ({
 });
 
 const form = reactive(createEmptyForm());
+const broadcastForm = reactive({
+  title: '',
+  content: '',
+});
 
 const passwordValidator = (rule, value, callback) => {
   if (!isEditing.value && !value) {
@@ -503,6 +556,75 @@ const fetchTaskTypes = async () => {
   }
 };
 
+const syncBroadcastForm = (broadcast = null) => {
+  broadcastForm.title = broadcast?.title || '';
+  broadcastForm.content = broadcast?.content || '';
+};
+
+const loadBroadcast = async () => {
+  broadcastLoading.value = true;
+  try {
+    const res = await api.adminUsers.getBroadcast();
+    if (res.success) {
+      currentBroadcast.value = res.data || null;
+      syncBroadcastForm(currentBroadcast.value);
+    }
+  } catch (error) {
+    ElMessage.error(error.response?.data?.error || '获取公共通知失败');
+  } finally {
+    broadcastLoading.value = false;
+  }
+};
+
+const saveBroadcast = async () => {
+  const title = String(broadcastForm.title || '').trim();
+  const content = String(broadcastForm.content || '').trim();
+  if (!title || !content) {
+    ElMessage.warning('请先填写标题和正文');
+    return;
+  }
+
+  broadcastSaving.value = true;
+  try {
+    const res = await api.adminUsers.saveBroadcast({ title, content });
+    if (res.success) {
+      currentBroadcast.value = res.data || null;
+      syncBroadcastForm(currentBroadcast.value);
+      ElMessage.success('公共通知已发布');
+    }
+  } catch (error) {
+    ElMessage.error(error.response?.data?.error || '保存公共通知失败');
+  } finally {
+    broadcastSaving.value = false;
+  }
+};
+
+const clearBroadcast = async () => {
+  if (!currentBroadcast.value && !broadcastForm.title && !broadcastForm.content) {
+    return;
+  }
+
+  try {
+    await ElMessageBox.confirm('确定要清空当前公共通知吗？', '提示', { type: 'warning' });
+  } catch {
+    return;
+  }
+
+  broadcastClearing.value = true;
+  try {
+    const res = await api.adminUsers.clearBroadcast();
+    if (res.success) {
+      currentBroadcast.value = null;
+      syncBroadcastForm(null);
+      ElMessage.success('公共通知已清空');
+    }
+  } catch (error) {
+    ElMessage.error(error.response?.data?.error || '清空公共通知失败');
+  } finally {
+    broadcastClearing.value = false;
+  }
+};
+
 const fetchUserAccounts = async (userId) => {
   logAccountsLoading.value = true;
   try {
@@ -689,6 +811,7 @@ onMounted(() => {
   fetchSchedulerSettings();
   fetchTaskTypes();
   fetchUsers();
+  loadBroadcast();
 });
 </script>
 
@@ -723,6 +846,26 @@ onMounted(() => {
 .scheduler-settings-panel {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+}
+
+.broadcast-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.broadcast-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.broadcast-actions {
+  display: flex;
+  justify-content: flex-end;
   gap: 12px;
 }
 

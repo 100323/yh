@@ -267,6 +267,7 @@ const taskTypeNames = {
   DREAM: '梦境',
   DREAM_PURCHASE: '购买梦境商品',
   SKIN_CHALLENGE: '换皮闯关',
+  STAR_TEMPLE: '星级十殿',
   PEACH_TASK: '蟠桃园任务',
   BOX_OPEN: '批量开箱',
   LEGION_STORE_FRAGMENT: '购买四圣碎片',

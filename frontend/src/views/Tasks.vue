@@ -253,6 +253,7 @@ const frontendToBackendTaskMap = {
   legion_storebuygoods: 'LEGION_STORE_FRAGMENT',
   batchmengjing: 'DREAM',
   skinChallenge: 'SKIN_CHALLENGE',
+  starTemple: 'STAR_TEMPLE',
   batchGenieSweep: 'GENIE_SWEEP',
   batchLegionBoss: 'LEGION_BOSS',
   batchBuyDreamItems: 'DREAM_PURCHASE',
@@ -658,6 +659,26 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
     const list = backendConfig.purchaseList || [];
     mapped.dreamPurchaseList = Array.isArray(list) ? list.join(',') : (list || '');
   }
+  if (taskKey === 'starTemple') {
+    const defaultStages = Object.fromEntries(
+      Array.from({ length: 8 }, (_, index) => [
+        index + 1,
+        { targetStars: null, maxAttempts: null },
+      ]),
+    );
+    const backendStages = backendConfig.stages && typeof backendConfig.stages === 'object'
+      ? backendConfig.stages
+      : {};
+    mapped.stages = Object.fromEntries(
+      Object.entries(defaultStages).map(([stageId, defaults]) => [
+        stageId,
+        {
+          ...defaults,
+          ...(backendStages[stageId] || backendStages[String(stageId)] || {}),
+        },
+      ]),
+    );
+  }
   return mapped;
 };
 
@@ -752,6 +773,31 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
     return {
       purchaseList: purchaseList.length > 0 ? purchaseList : [],
     };
+  }
+  if (taskKey === 'starTemple') {
+    const sourceStages = sourceConfig.stages && typeof sourceConfig.stages === 'object'
+      ? sourceConfig.stages
+      : {};
+    const stages = Object.fromEntries(
+      Array.from({ length: 8 }, (_, index) => {
+        const stageId = index + 1;
+        const stageConfig = sourceStages[stageId] || sourceStages[String(stageId)] || {};
+        const targetStars = Number(stageConfig.targetStars);
+        const maxAttempts = Number(stageConfig.maxAttempts);
+        return [
+          stageId,
+          {
+            targetStars: Number.isInteger(targetStars) && targetStars >= 1 && targetStars <= 3
+              ? targetStars
+              : null,
+            maxAttempts: Number.isInteger(maxAttempts) && maxAttempts >= 1
+              ? maxAttempts
+              : null,
+          },
+        ];
+      }),
+    );
+    return { stages };
   }
   return sourceConfig;
 };

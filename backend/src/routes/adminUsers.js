@@ -12,6 +12,38 @@ const router = Router();
 
 router.use(authMiddleware, adminOnly);
 
+const PUBLIC_BROADCAST_SETTING_KEY = 'public_broadcast_current';
+
+function parseBroadcastValue(value) {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(value);
+    if (!parsed || typeof parsed !== 'object') return null;
+    const title = String(parsed.title || '').trim();
+    const content = String(parsed.content || '').trim();
+    if (!title || !content) return null;
+    return {
+      id: String(parsed.id || '').trim() || null,
+      title,
+      content,
+      createdAt: parsed.createdAt || null,
+      updatedAt: parsed.updatedAt || null,
+      createdBy: parsed.createdBy || null,
+      createdByName: parsed.createdByName || null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function getCurrentBroadcast() {
+  const row = get(
+    'SELECT value FROM system_settings WHERE key = ? LIMIT 1',
+    [PUBLIC_BROADCAST_SETTING_KEY]
+  );
+  return parseBroadcastValue(row?.value || null);
+}
+
 async function refreshSchedulers() {
   try {
     const [{ checkAndRunDueTasks }, { checkAndRunDueBatchTasks }] = await Promise.all([
@@ -123,6 +155,81 @@ router.put('/settings/scheduler', (req, res) => {
     res.status(resolveValidationStatus(error)).json({
       success: false,
       error: error.message || '更新调度设置失败',
+    });
+  }
+});
+
+router.get('/broadcast', (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: getCurrentBroadcast(),
+    });
+  } catch (error) {
+    console.error('获取公共通知错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '获取公共通知失败',
+    });
+  }
+});
+
+router.put('/broadcast', (req, res) => {
+  try {
+    const title = String(req.body?.title || '').trim();
+    const content = String(req.body?.content || '').trim();
+
+    if (!title || !content) {
+      return res.status(400).json({
+        success: false,
+        error: '标题和正文不能为空',
+      });
+    }
+
+    const now = new Date().toISOString();
+    const payload = {
+      id: `broadcast_${Date.now()}`,
+      title,
+      content,
+      createdAt: now,
+      updatedAt: now,
+      createdBy: req.user.userId,
+      createdByName: req.user.username,
+    };
+
+    run(
+      `INSERT INTO system_settings (key, value, updated_at)
+       VALUES (?, ?, CURRENT_TIMESTAMP)
+       ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP`,
+      [PUBLIC_BROADCAST_SETTING_KEY, JSON.stringify(payload)]
+    );
+
+    res.json({
+      success: true,
+      message: '公共通知已发布',
+      data: payload,
+    });
+  } catch (error) {
+    console.error('保存公共通知错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '保存公共通知失败',
+    });
+  }
+});
+
+router.delete('/broadcast', (req, res) => {
+  try {
+    run('DELETE FROM system_settings WHERE key = ?', [PUBLIC_BROADCAST_SETTING_KEY]);
+    res.json({
+      success: true,
+      message: '公共通知已清空',
+    });
+  } catch (error) {
+    console.error('清空公共通知错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '清空公共通知失败',
     });
   }
 });

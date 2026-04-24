@@ -31,6 +31,19 @@ export const bossTimesOptions = [0, 1, 2, 3, 4].map((v) => ({
   value: v,
 }));
 
+export const starTempleStageIds = [1, 2, 3, 4, 5, 6, 7, 8];
+
+export const createDefaultStarTempleStages = () =>
+  Object.fromEntries(
+    starTempleStageIds.map((stageId) => [
+      stageId,
+      {
+        targetStars: null,
+        maxAttempts: null,
+      },
+    ]),
+  );
+
 export const carMinColorOptions = [
   { label: '不限制', value: 0 },
   { label: '橙·传说及以上', value: 4 },
@@ -240,6 +253,20 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [],
   },
+  starTemple: {
+    label: "星级十殿",
+    group: "dungeon",
+    description: "按关卡配置目标星级与最大挑战次数，默认从第一关开始执行",
+    defaultEnabled: false,
+    configFields: [
+      {
+        key: "stages",
+        label: "关卡配置",
+        type: "starTempleStages",
+        default: createDefaultStarTempleStages(),
+      },
+    ],
+  },
 
   batchBuyDreamItems: {
     label: "购买梦境商品",
@@ -368,6 +395,7 @@ const defaultTaskScheduleOverrides = {
   batchDailyTaskClaim: { runTime: createDefaultRunTime(12, 1) },
   batchmengjing: { scheduleType: "weekly", weekdays: [0, 3, 6], runTime: createDefaultRunTime(12, 10) },
   skinChallenge: { runTime: createDefaultRunTime(12, 1) },
+  starTemple: { runTime: createDefaultRunTime(12, 1) },
   batchBuyDreamItems: { scheduleType: "weekly", weekdays: [0, 3, 6], runTime: createDefaultRunTime(12, 10) },
   batchBuyGold: { runTime: createDefaultRunTime(12, 1) },
   batchRecruit: { runTime: createDefaultRunTime(12, 1) },
