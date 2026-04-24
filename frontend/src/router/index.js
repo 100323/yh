@@ -66,7 +66,7 @@ const routes = [
         path: 'profile',
         name: 'Profile',
         component: () => import('@views/Profile.vue'),
-        meta: { title: '个人资料', requiresArco: true }
+        meta: { title: '修改密码' }
       },
       {
         path: 'changelog',

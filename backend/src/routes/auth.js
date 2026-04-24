@@ -253,7 +253,7 @@ router.post('/change-password', authMiddleware, (req, res) => {
     const user = get('SELECT * FROM users WHERE id = ?', [req.user.userId]);
     
     if (!verifyPassword(oldPassword, user.password_hash, user.salt)) {
-      return res.status(401).json({
+      return res.status(400).json({
         success: false,
         error: '旧密码错误'
       });
