@@ -41,8 +41,7 @@ const routes = [
       {
         path: 'batch-daily-tasks',
         name: 'BatchDailyTasks',
-        component: () => import('@views/BatchDailyTasks.vue'),
-        meta: { title: 'Batch Daily Tasks', requiresNaive: true }
+        redirect: '/tasks'
       },
       {
         path: 'legion-war',
@@ -93,6 +92,10 @@ const routes = [
         meta: { title: '用户管理', requiresAdmin: true }
       }
     ]
+  },
+  {
+    path: '/admin/batch-daily-tasks',
+    redirect: '/tasks'
   },
   {
     path: '/:pathMatch(.*)*',

@@ -63,8 +63,10 @@ const COMMAND_RESPONSE_ALIASES = {
   bottlehelper_start: ['bottlehelper_startresp'],
   bottlehelper_claim: ['bottlehelper_claimresp'],
   car_getrolecar: ['car_getrolecarresp'],
+  car_getmemberhelpingcnt: ['car_getmemberhelpingcntresp'],
   car_send: ['car_sendresp'],
   car_claim: ['car_claimresp'],
+  legion_getinfo: ['legion_getinforesp'],
   store_purchase: ['store_buyresp'],
   collection_claimfreereward: ['collection_claimfreerewardresp'],
   legacy_beginhangup: ['legacy_beginhangupresp'],
@@ -251,6 +253,21 @@ function carMeetsSendRules(car = {}, options = {}) {
   }
 
   return carRewardsMeetThresholds(car?.rewards || [], options);
+}
+
+function normalizeRoleId(value) {
+  if (value === undefined || value === null || value === '') {
+    return null;
+  }
+  return String(value);
+}
+
+function normalizeHelperId(value) {
+  if (value === undefined || value === null || value === '' || Number(value) === 0) {
+    return 0;
+  }
+  const numeric = Number(value);
+  return Number.isFinite(numeric) && numeric > 0 ? numeric : value;
 }
 
 export class GameClient {
@@ -880,19 +897,98 @@ export class GameClient {
     const sendResults = [];
     const skippedCars = [];
     let refreshedCount = 0;
+    let sendSuccessCount = 0;
+    let sendFailureCount = 0;
     const hasThresholds = hasActiveCarSendThresholds(options) || Math.max(0, Number(options?.minCarColor) || 0) > 0;
     const maxRefreshAttempts = Math.max(0, Number(options?.maxRefreshAttempts ?? 3) || 0);
     const allowGoldRefresh = options?.allowGoldRefresh === true;
     const fallbackSendWhenStuck = options?.fallbackSendWhenStuck !== false;
 
+    let currentRoleId = null;
+    let sortedHelpers = [];
+    let helperUsageMap = {};
+
     const getRefreshTickets = async () => {
       try {
-        const roleInfo = await this.sendWithPromise('role_getroleinfo', {});
+        const roleInfo = await this.getRoleInfo(15000);
+        currentRoleId = normalizeRoleId(roleInfo?.role?.roleId) || currentRoleId;
         return Number(roleInfo?.role?.items?.[35002]?.quantity || 0);
       } catch {
         return 0;
       }
     };
+
+    const updateHelperUsage = async () => {
+      try {
+        const usageResp = await this.sendWithPromise('car_getmemberhelpingcnt', {}, 5000);
+        helperUsageMap =
+          usageResp?.body?.memberHelpingCntMap ||
+          usageResp?.memberHelpingCntMap ||
+          {};
+      } catch {
+        helperUsageMap = helperUsageMap && typeof helperUsageMap === 'object' ? helperUsageMap : {};
+      }
+    };
+
+    const loadHelperCandidates = async () => {
+      try {
+        if (!currentRoleId) {
+          await getRefreshTickets();
+        }
+        await updateHelperUsage();
+        const legionResp = await this.sendWithPromise('legion_getinfo', {}, 5000);
+        const membersMap =
+          legionResp?.body?.info?.members ||
+          legionResp?.info?.members ||
+          {};
+        sortedHelpers = Object.values(membersMap || {})
+          .filter((member) => !currentRoleId || normalizeRoleId(member?.roleId) !== currentRoleId)
+          .map((member) => ({
+            id: normalizeRoleId(member?.roleId),
+            name: member?.name || member?.nickname || normalizeRoleId(member?.roleId) || '',
+            redQuench: Number(member?.custom?.red_quench_cnt || 0),
+          }))
+          .filter((member) => member.id)
+          .sort((a, b) => b.redQuench - a.redQuench);
+      } catch {
+        sortedHelpers = [];
+      }
+    };
+
+    const assignHelperIfNeeded = async (car) => {
+      const color = Number(car?.color || 0);
+      if (color < 5) {
+        return { required: false, helperId: 0, assigned: false, reason: 'not_required' };
+      }
+
+      const existingHelperId = normalizeHelperId(car?.helperId || car?.guardId || 0);
+      if (existingHelperId) {
+        return { required: true, helperId: existingHelperId, assigned: true, reason: 'already_assigned' };
+      }
+
+      await updateHelperUsage();
+
+      if (!Array.isArray(sortedHelpers) || sortedHelpers.length === 0) {
+        return { required: true, helperId: 0, assigned: false, reason: 'helper_list_unavailable' };
+      }
+
+      const bestHelper = sortedHelpers.find((helper) => Number(helperUsageMap?.[helper.id] || 0) < 4);
+      if (!bestHelper?.id) {
+        return { required: true, helperId: 0, assigned: false, reason: 'helper_slots_exhausted' };
+      }
+
+      car.helperId = bestHelper.id;
+      helperUsageMap[bestHelper.id] = Number(helperUsageMap?.[bestHelper.id] || 0) + 1;
+      return {
+        required: true,
+        helperId: normalizeHelperId(bestHelper.id),
+        assigned: true,
+        reason: 'assigned_auto',
+        helperName: bestHelper.name || bestHelper.id,
+      };
+    };
+
+    await loadHelperCandidates();
 
     for (const car of cars) {
       const sendAt = Number(car.sendAt || 0);
@@ -944,41 +1040,85 @@ export class GameClient {
       }
 
       try {
+        const helperAssignment = await assignHelperIfNeeded(car);
+        if (helperAssignment.required && !helperAssignment.assigned) {
+          skippedCars.push({
+            carId: String(car.id),
+            color: Number(car.color || 0),
+            refreshAttempts,
+            reason: helperAssignment.reason || 'helper_unavailable',
+            rewards: summarizeCarRewards(car.rewards),
+            helperRequired: true,
+          });
+          continue;
+        }
         const result = await this.sendWithPromise('car_send', {
           carId: String(car.id),
-          helperId: 0,
+          helperId: normalizeHelperId(helperAssignment.helperId || car.helperId || car.guardId || 0),
           text: '',
           isUpgrade: false
         });
+        sendSuccessCount += 1;
         sendResults.push({
+          ok: true,
           ...result,
           carId: String(car.id),
           color: Number(car.color || 0),
           refreshAttempts,
           fallbackSent: !canSend,
+          helperId: normalizeHelperId(helperAssignment.helperId || car.helperId || car.guardId || 0),
+          helperRequired: helperAssignment.required === true,
+          helperAssigned: helperAssignment.assigned === true,
+          helperReason: helperAssignment.reason || null,
+          helperName: helperAssignment.helperName || null,
         });
       } catch (error) {
-        sendResults.push({ error: error.message });
+        sendFailureCount += 1;
+        sendResults.push({
+          ok: false,
+          carId: String(car.id),
+          color: Number(car.color || 0),
+          refreshAttempts,
+          fallbackSent: !canSend,
+          error: normalizeErrorMessage(error),
+        });
       }
     }
 
+    const appliedRules = {
+      minCarColor: Math.max(0, Number(options?.minCarColor) || 0),
+      maxRefreshAttempts,
+      allowGoldRefresh,
+      fallbackSendWhenStuck,
+      goldThreshold: Math.max(0, Number(options?.goldThreshold) || 0),
+      recruitThreshold: Math.max(0, Number(options?.recruitThreshold) || 0),
+      jadeThreshold: Math.max(0, Number(options?.jadeThreshold) || 0),
+      ticketThreshold: Math.max(0, Number(options?.ticketThreshold) || 0),
+      matchAll: options?.matchAll === true,
+    };
+
+    if (sendSuccessCount === 0 && sendFailureCount > 0) {
+      const error = new Error(`智能发车执行失败：${sendFailureCount} 辆发送失败`);
+      error.details = {
+        sendCount: sendSuccessCount,
+        sendFailureCount,
+        refreshedCount,
+        skippedCount: skippedCars.length,
+        results: sendResults,
+        skippedCars,
+        appliedRules,
+      };
+      throw error;
+    }
+
     return {
-      sendCount: sendResults.length,
+      sendCount: sendSuccessCount,
+      sendFailureCount,
       refreshedCount,
       skippedCount: skippedCars.length,
       results: sendResults,
       skippedCars,
-      appliedRules: {
-        minCarColor: Math.max(0, Number(options?.minCarColor) || 0),
-        maxRefreshAttempts,
-        allowGoldRefresh,
-        fallbackSendWhenStuck,
-        goldThreshold: Math.max(0, Number(options?.goldThreshold) || 0),
-        recruitThreshold: Math.max(0, Number(options?.recruitThreshold) || 0),
-        jadeThreshold: Math.max(0, Number(options?.jadeThreshold) || 0),
-        ticketThreshold: Math.max(0, Number(options?.ticketThreshold) || 0),
-        matchAll: options?.matchAll === true,
-      },
+      appliedRules,
     };
   }
 
@@ -990,20 +1130,49 @@ export class GameClient {
     const now = Date.now();
     const cars = Object.entries(carDataMap).map(([id, info]) => ({ id, ...(info || {}) }));
     const claimResults = [];
+    let claimSuccessCount = 0;
+    let claimFailureCount = 0;
 
     for (const car of cars) {
       const sendAt = Number(car.sendAt || 0);
       if (!sendAt) continue;
-      if (sendAt + FOUR_HOURS_MS > now) continue;
+      const sendAtMs = sendAt < 1e12 ? sendAt * 1000 : sendAt;
+      if (sendAtMs + FOUR_HOURS_MS > now) continue;
       try {
         const result = await this.sendWithPromise('car_claim', { carId: String(car.id) });
-        claimResults.push(result);
+        claimSuccessCount += 1;
+        claimResults.push({
+          ok: true,
+          ...result,
+          carId: String(car.id),
+          color: Number(car.color || 0),
+        });
       } catch (error) {
-        claimResults.push({ error: error.message });
+        claimFailureCount += 1;
+        claimResults.push({
+          ok: false,
+          carId: String(car.id),
+          color: Number(car.color || 0),
+          error: normalizeErrorMessage(error),
+        });
       }
     }
 
-    return { claimCount: claimResults.length, results: claimResults };
+    if (claimSuccessCount === 0 && claimFailureCount > 0) {
+      const error = new Error(`一键收车执行失败：${claimFailureCount} 辆收车失败`);
+      error.details = {
+        claimCount: claimSuccessCount,
+        claimFailureCount,
+        results: claimResults,
+      };
+      throw error;
+    }
+
+    return {
+      claimCount: claimSuccessCount,
+      claimFailureCount,
+      results: claimResults,
+    };
   }
 
   async blackMarketPurchase(goodsId = 1) {

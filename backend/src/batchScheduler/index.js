@@ -8,9 +8,12 @@ import { resolveStudyAnswer } from '../utils/studyQuestions.js';
 import { parseTokenPayload } from '../utils/token.js';
 import { calculateNextRunAt, resolveBatchCronExpression } from '../utils/cronSchedule.js';
 import {
+  buildCarClaimTaskMessage,
+  buildCarSendTaskMessage,
   executeArenaScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
+  normalizeSmartSendCarOptions,
 } from '../utils/scheduledTaskHelpers.js';
 import {
   runAccountTaskExclusive,
@@ -69,6 +72,31 @@ const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
 function isRetryableWsError(error) {
   const message = String(error?.message || error || '');
   return message.includes('WebSocket未连接') || message.includes('WebSocket连接已断开');
+}
+
+function parseTaskConfigJson(configJson) {
+  if (!configJson) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(configJson);
+  } catch {
+    return {};
+  }
+}
+
+function getAccountTaskConfig(accountId, taskType) {
+  const row = get(
+    `SELECT config_json
+       FROM task_configs
+      WHERE account_id = ? AND task_type = ?
+      ORDER BY id DESC
+      LIMIT 1`,
+    [accountId, taskType]
+  );
+
+  return parseTaskConfigJson(row?.config_json);
 }
 
 function discardInactiveClient(accountId, accountName, client, reason) {
@@ -566,6 +594,7 @@ export async function executeBatchTask(task) {
 }
 
 async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandidates, roleId = null, wsUrl = '') {
+  const taskConfig = getAccountTaskConfig(account.id, taskType);
   let client = await ensureBatchClient(account, tokenCandidates, roleId, wsUrl, {
     importMethod: account.import_method || null,
     updatedAt: account.updated_at || null,
@@ -574,7 +603,7 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
     accountId: account.id,
     accountName: account.name,
     taskType,
-    taskConfig: {},
+    taskConfig,
     client,
     source: 'batch',
     reconnect: async () => {
@@ -589,7 +618,7 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
   });
   client = execution.client;
   const result = execution.result;
-  await claimDailyPointRewardsByTask(client, taskType, {});
+  await claimDailyPointRewardsByTask(client, taskType, taskConfig);
   
   addBatchTaskLogEntry(batchTaskId, account.id, taskType, 'success', result.message || '执行成功', JSON.stringify(result.data || {}));
   
@@ -1411,16 +1440,9 @@ async function executeBottleClaim(client, config) {
 }
 
 async function executeCarSend(client, config) {
-  const { goldThreshold = 0, recruitThreshold = 0, jadeThreshold = 0, ticketThreshold = 0, matchAll = false } = config;
   try {
-    const result = await client.smartSendCar({
-      goldThreshold,
-      recruitThreshold,
-      jadeThreshold,
-      ticketThreshold,
-      matchAll
-    });
-    return { message: '智能发车完成', data: result };
+    const result = await client.smartSendCar(normalizeSmartSendCarOptions(config));
+    return { message: buildCarSendTaskMessage(result), data: result };
   } catch (error) {
     throw error;
   }
@@ -1429,7 +1451,7 @@ async function executeCarSend(client, config) {
 async function executeCarClaim(client, config) {
   try {
     const result = await client.claimAllCars();
-    return { message: '收车完成', data: result };
+    return { message: buildCarClaimTaskMessage(result), data: result };
   } catch (error) {
     throw error;
   }

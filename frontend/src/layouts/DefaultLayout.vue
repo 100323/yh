@@ -41,16 +41,6 @@
             <span>账号管理</span>
           </router-link>
           <router-link
-            to="/admin/batch-daily-tasks"
-            class="nav-item"
-            active-class="active"
-          >
-            <n-icon>
-              <Layers />
-            </n-icon>
-            <span>批量日常</span>
-          </router-link>
-          <router-link
             to="/admin/message-test"
             class="nav-item"
             active-class="active"
@@ -137,16 +127,6 @@
           <span>任务管理</span>
         </router-link>
         <router-link
-          to="/admin/batch-daily-tasks"
-          class="drawer-item"
-          @click="isMobileMenuOpen = false"
-        >
-          <n-icon>
-            <Layers />
-          </n-icon>
-          <span>批量日常</span>
-        </router-link>
-        <router-link
           to="/admin/message-test"
           class="drawer-item"
           @click="isMobileMenuOpen = false"
@@ -194,9 +174,8 @@ import {
   Settings,
   ChevronDown,
   ChatbubbleEllipsesSharp,
-  LockClosedSharp,LockOpen,
+  LockOpen,
   Menu,
-  Layers,
 } from "@vicons/ionicons5";
 
 import { useRouter } from 'vue-router'

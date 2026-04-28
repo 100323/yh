@@ -58,12 +58,7 @@ import { useRouter } from "vue-router";
 import { useMessage } from "naive-ui";
 import { useTokenStore } from "@/stores/tokenStore";
 import {
-  PersonCircle,
   Cube,
-  Settings,
-  CheckmarkCircle,
-  Time,
-  TrendingUp,
   Add,
   Cloud,
 } from "@vicons/ionicons5";
@@ -99,13 +94,6 @@ const quickActions = ref([
     title: "添加Token",
     description: "快速添加新的游戏Token",
     action: "add-token",
-  },
-  {
-    id: 3,
-    icon: CheckmarkCircle,
-    title: "批量任务",
-    description: "批量执行任务",
-    action: "batch-daily-tasks",
   },
   {
     id: 4,
@@ -149,9 +137,6 @@ const handleQuickAction = (action) => {
       break;
     case "open-settings":
       router.push("/admin/profile");
-      break;
-    case "batch-daily-tasks":
-      router.push("/admin/batch-daily-tasks");
       break;
   }
 };

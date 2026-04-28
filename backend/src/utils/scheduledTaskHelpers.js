@@ -19,6 +19,14 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function normalizeNonNegativeNumber(value, fallback = 0) {
+  const normalized = Number(value);
+  if (!Number.isFinite(normalized)) {
+    return Math.max(0, Number(fallback) || 0);
+  }
+  return Math.max(0, normalized);
+}
+
 function normalizeErrorMessage(error) {
   return String(error?.message || error || '未知错误');
 }
@@ -175,6 +183,49 @@ function describePayloadKeys(payload) {
     return '';
   }
   return Object.keys(payload).slice(0, 10).join(', ');
+}
+
+export function normalizeSmartSendCarOptions(config = {}) {
+  const source = config && typeof config === 'object' ? config : {};
+
+  return {
+    minCarColor: normalizeNonNegativeNumber(source.minCarColor ?? 4, 4),
+    maxRefreshAttempts: normalizeNonNegativeNumber(source.maxRefreshAttempts ?? 3, 3),
+    allowGoldRefresh: source.allowGoldRefresh === true,
+    fallbackSendWhenStuck: source.fallbackSendWhenStuck !== false,
+    goldThreshold: normalizeNonNegativeNumber(source.goldThreshold ?? 0, 0),
+    recruitThreshold: normalizeNonNegativeNumber(source.recruitThreshold ?? 0, 0),
+    jadeThreshold: normalizeNonNegativeNumber(source.jadeThreshold ?? 0, 0),
+    ticketThreshold: normalizeNonNegativeNumber(source.ticketThreshold ?? 0, 0),
+    matchAll: source.matchAll === true,
+  };
+}
+
+export function buildCarSendTaskMessage(result = {}) {
+  const sendCount = Math.max(0, Number(result?.sendCount) || 0);
+  const sendFailureCount = Math.max(0, Number(result?.sendFailureCount) || 0);
+  const skippedCount = Math.max(0, Number(result?.skippedCount) || 0);
+  const refreshedCount = Math.max(0, Number(result?.refreshedCount) || 0);
+  const helperSkippedCount = Array.isArray(result?.skippedCars)
+    ? result.skippedCars.filter((item) => item?.helperRequired === true).length
+    : 0;
+
+  const parts = [
+    `成功${sendCount}`,
+    `失败${sendFailureCount}`,
+    `跳过${skippedCount}`,
+    `刷新${refreshedCount}`,
+  ];
+  if (helperSkippedCount > 0) {
+    parts.push(`护卫不足跳过${helperSkippedCount}`);
+  }
+  return `智能发车完成（${parts.join('，')}）`;
+}
+
+export function buildCarClaimTaskMessage(result = {}) {
+  const claimCount = Math.max(0, Number(result?.claimCount) || 0);
+  const claimFailureCount = Math.max(0, Number(result?.claimFailureCount) || 0);
+  return `收车完成（成功${claimCount}，失败${claimFailureCount}）`;
 }
 
 async function getDailyTaskState(client) {

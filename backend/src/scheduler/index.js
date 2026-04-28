@@ -16,9 +16,12 @@ import { resolveStudyAnswer } from '../utils/studyQuestions.js';
 import { parseTokenPayload } from '../utils/token.js';
 import { calculateNextRunAt, parseCronField } from '../utils/cronSchedule.js';
 import {
+  buildCarClaimTaskMessage,
+  buildCarSendTaskMessage,
   executeArenaScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
+  normalizeSmartSendCarOptions,
 } from '../utils/scheduledTaskHelpers.js';
 import {
   runAccountTaskExclusive,
@@ -2756,16 +2759,9 @@ async function executeBottleClaim(client, config) {
 }
 
 async function executeCarSend(client, config) {
-  const { goldThreshold = 0, recruitThreshold = 0, jadeThreshold = 0, ticketThreshold = 0, matchAll = false } = config;
   try {
-    const result = await client.smartSendCar({
-      goldThreshold,
-      recruitThreshold,
-      jadeThreshold,
-      ticketThreshold,
-      matchAll
-    });
-    return { message: '智能发车完成', data: result };
+    const result = await client.smartSendCar(normalizeSmartSendCarOptions(config));
+    return { message: buildCarSendTaskMessage(result), data: result };
   } catch (error) {
     throw error;
   }
@@ -2774,7 +2770,7 @@ async function executeCarSend(client, config) {
 async function executeCarClaim(client, config) {
   try {
     const result = await client.claimAllCars();
-    return { message: '收车完成', data: result };
+    return { message: buildCarClaimTaskMessage(result), data: result };
   } catch (error) {
     throw error;
   }
