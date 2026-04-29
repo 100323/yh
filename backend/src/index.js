@@ -10,6 +10,7 @@ import accountRoutes from './routes/accounts.js';
 import taskRoutes from './routes/tasks.js';
 import logRoutes from './routes/logs.js';
 import weixinRoutes from './routes/weixin.js';
+import slimRoutes from './routes/slim.js';
 import statsRoutes from './routes/stats.js';
 import batchSchedulerRoutes from './routes/batchScheduler.js';
 import batchSettingsRoutes from './routes/batchSettings.js';
@@ -110,6 +111,7 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/weixin', weixinRoutes);
 app.use('/api/hortor', weixinRoutes);
+app.use('/api/slim', slimRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/batch-scheduler', batchSchedulerRoutes);
 app.use('/api/batch-settings', batchSettingsRoutes);
@@ -133,6 +135,9 @@ app.get('/slim-game/entry', (req, res) => {
 });
 
 app.use('/slim-game', express.static(slimGamePath));
+app.use('/slim-game', (req, res) => {
+  res.status(404).type('text/plain').send('slim-game asset not found');
+});
 
 app.get('/api/health', (req, res) => {
   res.status(getHealthStatusCode()).json({

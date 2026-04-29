@@ -36,6 +36,7 @@
   };
   var DEFAULT_MANIFEST_CONFIG = {
     enabled: true,
+    proxyUrl: "/api/slim/manifest",
     url: "https://xxz-xyzw.hortorgames.com/login/manifest?platform=hortor&version=0.32.0-ios",
     method: "POST",
     mode: "cors",
@@ -43,6 +44,7 @@
     cache: "no-store",
     headers: {
       Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
     },
     body: "",
   };
@@ -414,15 +416,32 @@
     appendDebugLog("global-error-debug-patched");
   }
 
-  function applyEmbedModeStyles() {
-    var search = "";
-    try {
-      search = window.location.search || "";
-    } catch (error) {
-      search = "";
+  function hasQueryFlag(name) {
+    var key = String(name || "").trim();
+    if (!key) {
+      return false;
     }
 
-    if (!/(?:\?|&)embed=1(?:&|$)/.test(search)) {
+    try {
+      var search = new URLSearchParams(window.location.search || "");
+      return search.get(key) === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function isEmbedMode() {
+    return hasQueryFlag("embed");
+  }
+
+  function isRuntimeShellMode() {
+    return hasQueryFlag("runtimeShell");
+  }
+
+  function applyEmbedModeStyles() {
+    var embedMode = isEmbedMode();
+    var runtimeShellMode = isRuntimeShellMode();
+    if (!embedMode && !runtimeShellMode) {
       return;
     }
 
@@ -433,24 +452,231 @@
     var style = document.createElement("style");
     style.id = "xyzw-embed-cover-style";
     style.textContent = [
-      "html, body { background: #050912 !important; }",
-      "body.xyzw-embed-mode { overflow: hidden !important; }",
-      "body.xyzw-embed-mode #Cocos2dGameContainer { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; margin: 0 !important; display: block !important; overflow: hidden !important; }",
-      "body.xyzw-embed-mode #GameCanvas, body.xyzw-embed-mode canvas { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; background: transparent !important; }",
-      "body.xyzw-embed-mode #splash { background-color: #050912 !important; background-size: 36% !important; }",
+      "html, body { width: 100% !important; height: 100% !important; margin: 0 !important; background: #050912 !important; overflow: hidden !important; overscroll-behavior: none !important; }",
+      "body.xyzw-embed-mode, body.xyzw-runtime-shell-mode { overflow: hidden !important; }",
+      "body.xyzw-embed-mode #Cocos2dGameContainer, body.xyzw-runtime-shell-mode #Cocos2dGameContainer { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; margin: 0 !important; display: block !important; overflow: hidden !important; }",
+      "body.xyzw-embed-mode #GameCanvas, body.xyzw-runtime-shell-mode #GameCanvas, body.xyzw-embed-mode canvas, body.xyzw-runtime-shell-mode canvas { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; background: transparent !important; }",
+      "body.xyzw-embed-mode #splash, body.xyzw-runtime-shell-mode #splash { background-color: #050912 !important; background-size: 36% !important; }",
     ].join("");
     document.head.appendChild(style);
-    document.documentElement.classList.add("xyzw-embed-mode");
+    if (embedMode) {
+      document.documentElement.classList.add("xyzw-embed-mode");
+    }
+    if (runtimeShellMode) {
+      document.documentElement.classList.add("xyzw-runtime-shell-mode");
+    }
     if (document.body) {
-      document.body.classList.add("xyzw-embed-mode");
+      if (embedMode) {
+        document.body.classList.add("xyzw-embed-mode");
+      }
+      if (runtimeShellMode) {
+        document.body.classList.add("xyzw-runtime-shell-mode");
+      }
     } else {
       document.addEventListener("DOMContentLoaded", function () {
         if (document.body) {
-          document.body.classList.add("xyzw-embed-mode");
+          if (embedMode) {
+            document.body.classList.add("xyzw-embed-mode");
+          }
+          if (runtimeShellMode) {
+            document.body.classList.add("xyzw-runtime-shell-mode");
+          }
         }
       }, { once: true });
     }
     appendDebugLog("embed-mode-style-applied");
+  }
+
+  var RUNTIME_USER_SCRIPT_KEY = "xyzw-runtime-user-script";
+
+  function getRuntimeUserScriptRecord() {
+    if (!isRuntimeShellMode()) {
+      return null;
+    }
+
+    try {
+      var raw = window.localStorage ? window.localStorage.getItem(RUNTIME_USER_SCRIPT_KEY) : "";
+      if (!raw) {
+        return null;
+      }
+
+      var payload = JSON.parse(raw);
+      if (!payload || payload.enabled === false || !payload.code) {
+        return null;
+      }
+
+      return {
+        fileName: String(payload.fileName || "imported-script.js"),
+        code: String(payload.code || ""),
+        updatedAt: String(payload.updatedAt || ""),
+      };
+    } catch (error) {
+      console.warn("[runtime-user-script] failed to read imported script", error);
+      appendDebugLog("runtime-user-script-read-failed", {
+        message: error && error.message ? error.message : String(error),
+      });
+      return null;
+    }
+  }
+
+  function injectRuntimeUserScript() {
+    var payload = getRuntimeUserScriptRecord();
+    if (!payload) {
+      return false;
+    }
+
+    if (window.__XYZWRuntimeUserScriptInjected) {
+      return true;
+    }
+
+    try {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.id = "xyzw-runtime-user-script";
+      script.dataset.fileName = payload.fileName;
+      script.dataset.updatedAt = payload.updatedAt;
+      script.textContent = payload.code + "\n//# sourceURL=xyzw-imported-user-script-" + encodeURIComponent(payload.fileName).replace(/%/g, "_") + "\n";
+      (document.head || document.documentElement || document.body).appendChild(script);
+      window.__XYZWRuntimeUserScriptInjected = {
+        fileName: payload.fileName,
+        updatedAt: payload.updatedAt,
+      };
+      console.info("[runtime-user-script] injected", payload.fileName);
+      appendDebugLog("runtime-user-script-injected", {
+        fileName: payload.fileName,
+        updatedAt: payload.updatedAt,
+      });
+      return true;
+    } catch (error) {
+      console.warn("[runtime-user-script] inject failed", error);
+      appendDebugLog("runtime-user-script-inject-failed", {
+        fileName: payload.fileName,
+        message: error && error.message ? error.message : String(error),
+      });
+      return false;
+    }
+  }
+
+  function patchRuntimeShellFullscreen() {
+    if (!isRuntimeShellMode()) {
+      return false;
+    }
+
+    if (window.__XYZWRuntimeShellFullscreenPatched) {
+      return true;
+    }
+
+    window.__XYZWRuntimeShellFullscreenPatched = true;
+
+    function patchPrototypeMethod(target, key, replacement, label) {
+      if (!target || typeof target[key] !== "function" || target[key].__xyzwRuntimeShellPatched) {
+        return false;
+      }
+
+      var original = target[key];
+      var wrapped = function () {
+        appendDebugLog(label || "runtime-shell-fullscreen-blocked");
+        return replacement.apply(this, arguments);
+      };
+      wrapped.__xyzwRuntimeShellPatched = true;
+      wrapped.__xyzwOriginal = original;
+      target[key] = wrapped;
+      return true;
+    }
+
+    function patchDocumentMethod(key) {
+      return patchPrototypeMethod(
+        Document.prototype,
+        key,
+        function () {
+          return Promise.resolve(false);
+        },
+        "runtime-shell-document-" + key,
+      );
+    }
+
+    function patchElementMethod(key) {
+      return patchPrototypeMethod(
+        Element.prototype,
+        key,
+        function () {
+          return Promise.resolve(false);
+        },
+        "runtime-shell-element-" + key,
+      );
+    }
+
+    patchElementMethod("requestFullscreen");
+    patchElementMethod("webkitRequestFullScreen");
+    patchElementMethod("webkitRequestFullscreen");
+    patchElementMethod("mozRequestFullScreen");
+    patchElementMethod("msRequestFullscreen");
+    patchDocumentMethod("exitFullscreen");
+    patchDocumentMethod("webkitCancelFullScreen");
+    patchDocumentMethod("mozCancelFullScreen");
+    patchDocumentMethod("msExitFullscreen");
+
+    try {
+      if (typeof document !== "undefined") {
+        Object.defineProperty(document, "fullscreenEnabled", {
+          configurable: true,
+          enumerable: false,
+          get: function () {
+            return false;
+          },
+        });
+      }
+    } catch (error) {}
+
+    try {
+      if (window.cc && window.cc.screen) {
+        if (typeof window.cc.screen.autoFullScreen === "function") {
+          window.cc.screen.autoFullScreen = function () {
+            appendDebugLog("runtime-shell-cc-screen-autoFullScreen-blocked");
+            return false;
+          };
+        }
+        if (typeof window.cc.screen.requestFullScreen === "function") {
+          window.cc.screen.requestFullScreen = function () {
+            appendDebugLog("runtime-shell-cc-screen-requestFullScreen-blocked");
+            return false;
+          };
+        }
+        if (typeof window.cc.screen.exitFullScreen === "function") {
+          window.cc.screen.exitFullScreen = function () {
+            appendDebugLog("runtime-shell-cc-screen-exitFullScreen-blocked");
+            return false;
+          };
+        }
+        if (typeof window.cc.screen.fullScreen === "function") {
+          window.cc.screen.fullScreen = function () {
+            return false;
+          };
+        }
+      }
+
+      if (window.cc && window.cc.view) {
+        if (typeof window.cc.view.enableAutoFullScreen === "function") {
+          window.cc.view.enableAutoFullScreen = function () {
+            this._autoFullScreen = false;
+            appendDebugLog("runtime-shell-cc-view-enableAutoFullScreen-blocked");
+            return false;
+          };
+        }
+        if (typeof window.cc.view.isAutoFullScreenEnabled === "function") {
+          window.cc.view.isAutoFullScreenEnabled = function () {
+            return false;
+          };
+        }
+      }
+    } catch (error) {
+      appendDebugLog("runtime-shell-fullscreen-patch-error", {
+        message: error && error.message ? error.message : String(error),
+      });
+    }
+
+    appendDebugLog("runtime-shell-fullscreen-patched");
+    return true;
   }
 
   function patchFetchDebug() {
@@ -645,6 +871,11 @@
       var manifestUrl = search.get("manifestUrl");
       if (manifestUrl) {
         config.url = manifestUrl;
+      }
+
+      var manifestProxyUrl = search.get("manifestProxyUrl");
+      if (manifestProxyUrl !== null) {
+        config.proxyUrl = manifestProxyUrl;
       }
     }
 
@@ -1752,12 +1983,43 @@
     return normalized;
   }
 
-  async function fetchManifestState(payload) {
-    var config = resolveManifestConfig(payload);
+  function isFileProtocolRuntime() {
+    try {
+      return window.location && window.location.protocol === "file:";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function cloneManifestFetchConfig(config, url, via) {
+    var next = clonePlainObject(config);
+    next.headers = clonePlainObject(config && config.headers);
+    next.url = url;
+    next.via = via || "fetch";
+    return next;
+  }
+
+  function buildManifestFetchCandidates(config) {
+    var candidates = [];
     if (!config || config.enabled === false) {
-      return null;
+      return candidates;
     }
 
+    var proxyUrl = typeof config.proxyUrl === "string" ? config.proxyUrl.trim() : "";
+    var isFile = isFileProtocolRuntime();
+
+    if (proxyUrl && !isFile) {
+      candidates.push(cloneManifestFetchConfig(config, proxyUrl, "proxy"));
+    }
+
+    if (typeof config.url === "string" && config.url) {
+      candidates.push(cloneManifestFetchConfig(config, config.url, "direct"));
+    }
+
+    return candidates;
+  }
+
+  function buildManifestRequestInit(config) {
     var requestInit = {
       method: typeof config.method === "string" && config.method ? config.method : DEFAULT_MANIFEST_CONFIG.method,
       mode: typeof config.mode === "string" && config.mode ? config.mode : DEFAULT_MANIFEST_CONFIG.mode,
@@ -1773,6 +2035,11 @@
       requestInit.body = config.body;
     }
 
+    return requestInit;
+  }
+
+  async function fetchManifestStateFromConfig(config) {
+    var requestInit = buildManifestRequestInit(config);
     var cacheEntry = readManifestCacheEntry(config);
     if (cacheEntry && cacheEntry.isFresh) {
       appendDebugLog("manifest-cache-hit", {
@@ -1793,8 +2060,20 @@
         throw new Error("HTTP " + response.status + " while loading manifest " + config.url);
       }
 
-      var text = await response.text();
-      var parsed = tryParseJson(text);
+      var parsed = null;
+      if (typeof response.clone === "function") {
+        try {
+          parsed = await response.clone().json();
+        } catch (jsonError) {
+          parsed = null;
+        }
+      }
+
+      if (!parsed) {
+        var text = await response.text();
+        parsed = tryParseJson(text);
+      }
+
       if (!parsed) {
         throw new Error("Invalid manifest JSON from " + config.url);
       }
@@ -1806,7 +2085,7 @@
 
       normalized.url = config.url;
       normalized.request = requestInit;
-      normalized.via = "fetch";
+      normalized.via = config.via === "proxy" ? "proxy-post" : "fetch";
       writeManifestCacheEntry(config, normalized);
       return normalized;
     } catch (error) {
@@ -1833,6 +2112,34 @@
     }
   }
 
+  async function fetchManifestState(payload) {
+    var config = resolveManifestConfig(payload);
+    if (!config || config.enabled === false) {
+      return null;
+    }
+
+    var candidates = buildManifestFetchCandidates(config);
+    var lastError = null;
+    for (var i = 0; i < candidates.length; i += 1) {
+      try {
+        return await fetchManifestStateFromConfig(candidates[i]);
+      } catch (error) {
+        lastError = error;
+        appendDebugLog("manifest-source-failed", {
+          url: candidates[i].url,
+          via: candidates[i].via || "fetch",
+          message: error && error.message ? error.message : String(error),
+        });
+      }
+    }
+
+    if (lastError) {
+      throw lastError;
+    }
+
+    return null;
+  }
+
   function getManifestEligibleBundleNames(payload) {
     var names = [];
 
@@ -1851,9 +2158,11 @@
     if (payload && typeof payload === "object") {
       append(payload.remoteBundles);
       append(payload.subpackages);
+      append(payload.jscBundles);
       if (payload.settings && typeof payload.settings === "object") {
         append(payload.settings.remoteBundles);
         append(payload.settings.subpackages);
+        append(payload.settings.jscBundles);
       }
     }
 
@@ -1862,6 +2171,7 @@
       if (settings && typeof settings === "object") {
         append(settings.remoteBundles);
         append(settings.subpackages);
+        append(settings.jscBundles);
       }
     }
 
@@ -1902,6 +2212,7 @@
 
     Object.assign(payload.bundleVers, filteredBundleVers);
     if (manifestState.codeVersion) {
+      payload.version = manifestState.codeVersion;
       payload.bundleVers.codeVersion = manifestState.codeVersion;
       payload.runtimeCodeVersion = manifestState.codeVersion;
     }
@@ -1913,6 +2224,7 @@
 
       Object.assign(payload.settings.bundleVers, filteredBundleVers);
       if (manifestState.codeVersion) {
+        payload.settings.version = manifestState.codeVersion;
         payload.settings.bundleVers.codeVersion = manifestState.codeVersion;
         payload.settings.runtimeCodeVersion = manifestState.codeVersion;
       }
@@ -1925,6 +2237,7 @@
       serverUrl: manifestState.serverUrl || "",
       eligibleBundles: eligibleBundleNames.length,
       appliedBundles: Object.keys(filteredBundleVers).length,
+      appliedBundleNames: Object.keys(filteredBundleVers),
     };
 
     return payload;
@@ -1954,6 +2267,45 @@
     }
 
     return payload && payload.bundleVers ? payload.bundleVers.codeVersion : "";
+  }
+
+  function resolveEffectiveCodeVersion(payload, manifestState) {
+    if (manifestState && typeof manifestState.codeVersion === "string" && manifestState.codeVersion) {
+      return manifestState.codeVersion;
+    }
+
+    if (payload && typeof payload.runtimeCodeVersion === "string" && payload.runtimeCodeVersion) {
+      return payload.runtimeCodeVersion;
+    }
+
+    if (
+      payload &&
+      payload.settings &&
+      typeof payload.settings.runtimeCodeVersion === "string" &&
+      payload.settings.runtimeCodeVersion
+    ) {
+      return payload.settings.runtimeCodeVersion;
+    }
+
+    if (payload && payload.bundleVers && typeof payload.bundleVers.codeVersion === "string" && payload.bundleVers.codeVersion) {
+      return payload.bundleVers.codeVersion;
+    }
+
+    if (
+      payload &&
+      payload.settings &&
+      payload.settings.bundleVers &&
+      typeof payload.settings.bundleVers.codeVersion === "string" &&
+      payload.settings.bundleVers.codeVersion
+    ) {
+      return payload.settings.bundleVers.codeVersion;
+    }
+
+    if (payload && typeof payload.version === "string" && payload.version) {
+      return payload.version;
+    }
+
+    return "";
   }
 
   function resolveVersionUrl() {
@@ -2398,7 +2750,7 @@
       return;
     }
 
-    ensureAppTitle().textContent = titleText || "汤姆之王";
+    ensureAppTitle().textContent = titleText || "汤姆猫";
   }
 
   function updateVersionBadge(versionText, metaText) {
@@ -2585,6 +2937,11 @@
       applied.orientation = source.orientation;
     }
 
+    if (typeof source.version === "string" && source.version) {
+      settings.version = source.version;
+      applied.version = source.version;
+    }
+
     if (Array.isArray(source.remoteBundles) && source.remoteBundles.length > 0) {
       settings.remoteBundles = source.remoteBundles.slice();
       applied.remoteBundles = source.remoteBundles.length;
@@ -2697,6 +3054,7 @@
     window.__REMOTE_VERSION_CONFIG__ = payload;
     window.__REMOTE_MANIFEST_STATE__ = manifestState;
     window.__AUTO_CODE_VERSION__ = autoCodeVersion;
+    window.__XYZW_EFFECTIVE_CODE_VERSION__ = resolveEffectiveCodeVersion(payload, manifestState);
     DEBUG_MANIFEST_STATE.loaded = true;
     DEBUG_MANIFEST_STATE.version = payload && payload.version ? String(payload.version) : "";
     DEBUG_MANIFEST_STATE.codeVersion = resolveLogCodeVersion(payload, manifestState) || "";
@@ -2730,8 +3088,10 @@
     snapshotEmbeddedBundleVersions();
     applyDefaultJscSettings();
     applyEmbedModeStyles();
+    patchRuntimeShellFullscreen();
+    injectRuntimeUserScript();
     initSlimLaunchIntegration();
-    updateAppTitle("汤姆之王");
+    updateAppTitle("汤姆猫");
     updateVersionBadge("读取中", "正在加载版本");
 
     try {
@@ -2764,6 +3124,7 @@
 
     if (typeof window.boot === "function") {
       window.boot();
+      patchRuntimeShellFullscreen();
     } else {
       console.error("window.boot is not defined!");
     }

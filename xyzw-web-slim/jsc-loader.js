@@ -467,6 +467,32 @@
     return URL.createObjectURL(blob);
   }
 
+  function ensureTrailingSlash(value) {
+    var text = String(value == null ? "" : value);
+    return /\/$/.test(text) ? text : text + "/";
+  }
+
+  function joinRemotePath(root, nextPath) {
+    var left = trimSlash(root);
+    var right = trimBothSlash(nextPath);
+    return right ? left + "/" + right : left;
+  }
+
+  function normalizeBundleConfig(config, baseRoot) {
+    if (!config || typeof config !== "object") {
+      return config;
+    }
+
+    var normalized = Object.assign({}, config);
+    var rootWithSlash = ensureTrailingSlash(trimSlash(baseRoot));
+    normalized.base = rootWithSlash;
+    normalized.importBase = trimBothSlash(config.importBase || "import");
+    normalized.nativeBase = trimBothSlash(config.nativeBase || "native");
+    normalized.__xyzwRemoteBundle = /^(?:https?:)?\/\//i.test(String(baseRoot || ""));
+    normalized.__xyzwResolvedBase = rootWithSlash;
+    return normalized;
+  }
+
   async function fetchTextViaBridge(methodName, args) {
     var bridge = window.XYZWNativeJsc;
     if (!bridge || typeof bridge[methodName] !== "function") {
@@ -612,7 +638,7 @@
       source: "local",
       mode: "url",
       scriptUrl: scriptUrl,
-      config: config,
+      config: normalizeBundleConfig(config, localRoot),
       baseRoot: trimSlash(localRoot),
       configUrl: configUrl,
     };
@@ -649,7 +675,7 @@
         mode: "blob",
         jsText: cachedRecord.jsText,
         blobUrl: cachedRecord.blobUrl || createBlobUrl(cachedRecord.jsText),
-        config: cachedRecord.configJson,
+        config: normalizeBundleConfig(cachedRecord.configJson, remoteRoot),
         baseRoot: trimSlash(remoteRoot),
         configUrl: cachedRecord.configUrl || "",
       };
@@ -691,7 +717,7 @@
       mode: "blob",
       jsText: scriptResult.jsText,
       blobUrl: createBlobUrl(scriptResult.jsText),
-      config: configResult.config,
+      config: normalizeBundleConfig(configResult.config, remoteRoot),
       baseRoot: trimSlash(remoteRoot),
       configUrl: configResult.configUrl,
     };
@@ -774,9 +800,6 @@
     try {
       var remotePackage = await getRemotePackage(bundleName, version, remoteRoot, settings);
       await ensureScriptLoaded(remotePackage, scriptHandler, options);
-      if (remotePackage.config && typeof remotePackage.config === "object") {
-        remotePackage.config.base = trimSlash(remotePackage.baseRoot) + "/";
-      }
       log("bundle-remote-ok", {
         bundle: bundleName,
         version: version,
@@ -794,9 +817,6 @@
 
     var localPackage = await getBestLocalPackage(bundleName, version, localRoot);
     await ensureScriptLoaded(localPackage, scriptHandler, options);
-    if (localPackage.config && typeof localPackage.config === "object") {
-      localPackage.config.base = trimSlash(localPackage.baseRoot) + "/";
-    }
     log("bundle-local-fallback", {
       bundle: bundleName,
       requestedVersion: version,
