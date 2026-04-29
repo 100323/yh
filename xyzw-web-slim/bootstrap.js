@@ -10,7 +10,24 @@
   var DEBUG_PANEL_ID = "xyzw-slim-debug-panel";
   var DEBUG_LOGS = [];
   var DEBUG_COLLAPSED = false;
-  var DEBUG_PANEL_ENABLED = /(?:\?|&)slimDebug=1(?:&|$)/.test(window.location.search || "");
+  var DEBUG_PANEL_ENABLED = false;
+  var DEBUG_BUNDLE_STATE = {};
+  var DEBUG_MANIFEST_STATE = {
+    loaded: false,
+    version: "",
+    codeVersion: "",
+    manifestUrl: "",
+    manifestApplied: 0,
+    source: "",
+    updatedAt: "",
+  };
+  var DEBUG_STATUS_COLORS = {
+    idle: "#8ea1b5",
+    loading: "#5ac8fa",
+    success: "#30d158",
+    fallback: "#ff9f0a",
+    error: "#ff453a",
+  };
   var AUTO_CODE_VERSION = {
     enabled: true,
     baseVersion: "2.22.3",
@@ -32,6 +49,13 @@
   var MANIFEST_CACHE_PREFIX = "xyzw-slim-manifest-cache:";
   var MANIFEST_CACHE_TTL_MS = 5 * 60 * 1000;
   var MANIFEST_FETCH_TIMEOUT_MS = 2500;
+  var DEFAULT_JSC_CONFIG = {
+    enabled: true,
+    bundles: ["launcher", "game", "TEST_REMOTE_MODULE"],
+    remoteRoot: "remote",
+    configPrefetch: true,
+    cacheVersionsPerBundle: 3,
+  };
 
   function clonePlainObject(source) {
     var target = {};
@@ -45,164 +69,239 @@
     return target;
   }
 
-  function ensureDebugPanel() {
-    if (!DEBUG_PANEL_ENABLED) {
+  function toIsoTime(value) {
+    try {
+      var date = value ? new Date(value) : new Date();
+      if (Number.isNaN(date.getTime())) {
+        return "";
+      }
+      return date.toISOString().replace("T", " ").replace("Z", "");
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function escapeDebugHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function ensureDebugBundleState(bundleName) {
+    var key = String(bundleName || "").trim();
+    if (!key) {
       return null;
     }
-    if (!document || !document.body) {
-      return null;
+    if (!DEBUG_BUNDLE_STATE[key]) {
+      DEBUG_BUNDLE_STATE[key] = {
+        bundle: key,
+        targetVersion: "",
+        actualVersion: "",
+        source: "",
+        stage: "等待启动",
+        status: "idle",
+        message: "",
+        lastEvent: "",
+        updatedAt: "",
+      };
     }
+    return DEBUG_BUNDLE_STATE[key];
+  }
 
-    var panel = document.getElementById(DEBUG_PANEL_ID);
-    if (panel) {
-      return panel;
-    }
-
-    panel = document.createElement("div");
-    panel.id = DEBUG_PANEL_ID;
-    panel.style.cssText = [
-      "position:fixed",
-      "top:max(10px, env(safe-area-inset-top))",
-      "left:max(10px, env(safe-area-inset-left))",
-      "z-index:1000000",
-      "width:min(88vw,420px)",
-      "max-height:58vh",
-      "overflow:auto",
-      "padding:40px 12px 10px 12px",
-      "border-radius:10px",
-      "background:rgba(0,0,0,0.82)",
-      "border:1px solid rgba(255,255,255,0.15)",
-      "box-shadow:0 8px 24px rgba(0,0,0,0.35)",
-      "color:#d8f3ff",
-      "font:12px/1.45 Menlo, Monaco, Consolas, monospace",
-      "white-space:pre-wrap",
-      "word-break:break-word",
-      "pointer-events:auto"
-    ].join(";");
-
-    function createButton(text, left, onClick) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.textContent = text;
-      button.style.cssText = [
-        "position:absolute",
-        "top:8px",
-        "left:" + left + "px",
-        "z-index:2",
-        "padding:4px 8px",
-        "border-radius:6px",
-        "border:1px solid rgba(255,255,255,0.18)",
-        "background:rgba(255,255,255,0.08)",
-        "color:#ffffff",
-        "font:12px/1.2 Arial, sans-serif",
-        "cursor:pointer",
-        "pointer-events:auto"
-      ].join(";");
-      button.addEventListener("click", onClick);
-      return button;
-    }
-
-    var toggleButton = createButton("缩小", 8, function () {
-      DEBUG_COLLAPSED = !DEBUG_COLLAPSED;
-      renderDebugPanel();
+  function getTrackedDebugBundles() {
+    var settings = getSettingsObject();
+    var bundles = [];
+    var source = Array.isArray(settings && settings.jscBundles) && settings.jscBundles.length > 0
+      ? settings.jscBundles
+      : DEFAULT_JSC_CONFIG.bundles;
+    source.forEach(function (name) {
+      if (typeof name === "string" && name && bundles.indexOf(name) === -1) {
+        bundles.push(name);
+      }
     });
-    toggleButton.id = DEBUG_PANEL_ID + "-toggle";
-    panel.appendChild(toggleButton);
+    return bundles;
+  }
 
-    var copyButton = createButton("复制", 72, function () {
-      var text = DEBUG_LOGS.join("\n");
-      if (navigator && navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
-        navigator.clipboard.writeText(text).then(function () {
-          appendDebugLog("debug-log-copied");
-        }).catch(function (error) {
-          appendDebugLog("debug-copy-failed", error && error.message ? error.message : String(error));
-        });
+  function refreshDebugBundleTargets() {
+    getTrackedDebugBundles().forEach(function (bundleName) {
+      var state = ensureDebugBundleState(bundleName);
+      if (!state) {
         return;
       }
-    });
-    panel.appendChild(copyButton);
-
-    var exportButton = createButton("导出", 128, function () {
-      try {
-        var text = DEBUG_LOGS.join("\n");
-        var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-        var url = URL.createObjectURL(blob);
-        var anchor = document.createElement("a");
-        anchor.href = url;
-        anchor.download = "xyzw-slim-debug-log.txt";
-        document.body.appendChild(anchor);
-        anchor.click();
-        anchor.remove();
-        setTimeout(function () {
-          URL.revokeObjectURL(url);
-        }, 1000);
-        appendDebugLog("debug-log-exported");
-      } catch (error) {
-        appendDebugLog("debug-export-failed", error && error.message ? error.message : String(error));
+      var version = resolveRuntimeBundleVersion(bundleName);
+      if (version) {
+        state.targetVersion = version;
+      }
+      if (!state.updatedAt) {
+        state.updatedAt = toIsoTime();
       }
     });
-    panel.appendChild(exportButton);
+  }
 
-    var content = document.createElement("div");
-    content.setAttribute("data-role", "debug-content");
-    panel.appendChild(content);
+  function updateDebugBundleState(bundleName, patch) {
+    var state = ensureDebugBundleState(bundleName);
+    if (!state || !patch || typeof patch !== "object") {
+      return;
+    }
+    Object.keys(patch).forEach(function (key) {
+      if (patch[key] !== undefined) {
+        state[key] = patch[key];
+      }
+    });
+    state.updatedAt = toIsoTime();
+  }
 
-    document.body.appendChild(panel);
-    return panel;
+  function handleJscRuntimeDebug(label, payload) {
+    if (!payload || typeof payload !== "object" || !payload.bundle) {
+      return;
+    }
+
+    var bundleName = String(payload.bundle || "");
+    var message = payload.message || payload.url || payload.cache || payload.source || "";
+    var version = payload.version ? String(payload.version) : "";
+    var currentState = ensureDebugBundleState(bundleName) || {};
+    refreshDebugBundleTargets();
+
+    switch (label) {
+      case "bundle-load-start":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "开始加载 Bundle",
+          status: "loading",
+          source: "待定",
+          message: message,
+          lastEvent: label,
+        });
+        break;
+      case "bundle-cache-hit":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "命中缓存",
+          status: "loading",
+          source: payload.cache === "memory" ? "内存缓存" : "IndexedDB 缓存",
+          message: payload.cache || "",
+          lastEvent: label,
+        });
+        break;
+      case "remote-script-request":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "请求远程 JSC",
+          status: "loading",
+          source: "远程 JSC",
+          message: payload.url || "",
+          lastEvent: label,
+        });
+        break;
+      case "remote-config-request":
+        updateDebugBundleState(bundleName, {
+          stage: "请求远程配置",
+          status: "loading",
+          message: payload.url || "",
+          lastEvent: label,
+        });
+        break;
+      case "remote-config-ok":
+        updateDebugBundleState(bundleName, {
+          stage: "配置已到位",
+          status: "loading",
+          message: payload.via || "",
+          lastEvent: label,
+        });
+        break;
+      case "decrypt-ok":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "JSC 解密成功",
+          status: "loading",
+          source: payload.mode === "bridge" ? "Native Bridge" : "远程 JSC",
+          message: (payload.mode || "") + (payload.offset !== undefined ? " / offset " + payload.offset : ""),
+          lastEvent: label,
+        });
+        break;
+      case "bundle-script-loaded":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "脚本已注入执行",
+          status: payload.source === "local" ? "fallback" : "success",
+          source: payload.source === "local"
+            ? "本地 JS"
+            : (currentState.source && /缓存/.test(currentState.source))
+              ? currentState.source
+              : payload.source === "bridge"
+                ? "Native Bridge"
+                : "远程 JSC",
+          message: payload.mode || "",
+          lastEvent: label,
+        });
+        break;
+      case "bundle-remote-ok":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "自动更新生效",
+          status: "success",
+          source: (currentState.source && /缓存/.test(currentState.source))
+            ? currentState.source
+            : payload.source === "bridge"
+              ? "Native Bridge"
+              : "远程 JSC",
+          message: (currentState.source && /缓存/.test(currentState.source)) ? "已使用缓存中的远程 JSC" : "已使用远程 JSC",
+          lastEvent: label,
+        });
+        break;
+      case "bundle-remote-failed":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "远程 JSC 失败",
+          status: "error",
+          source: "远程 JSC",
+          message: payload.message || "",
+          lastEvent: label,
+        });
+        break;
+      case "local-package-ok":
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          stage: "本地 JS 可回退",
+          status: "fallback",
+          source: "本地 JS",
+          message: payload.scriptUrl || "",
+          lastEvent: label,
+        });
+        break;
+      case "bundle-local-fallback":
+        updateDebugBundleState(bundleName, {
+          actualVersion: payload.actualVersion ? String(payload.actualVersion) : (version || resolveRuntimeBundleVersion(bundleName)),
+          stage: "已回退本地 JS",
+          status: "fallback",
+          source: "本地 JS",
+          message: payload.remoteError || "",
+          lastEvent: label,
+        });
+        break;
+      default:
+        updateDebugBundleState(bundleName, {
+          actualVersion: version || resolveRuntimeBundleVersion(bundleName),
+          message: message,
+          lastEvent: label,
+        });
+        break;
+    }
+  }
+
+  function ensureDebugPanel() {
+    return null;
   }
 
   function renderDebugPanel() {
-    if (!DEBUG_PANEL_ENABLED) {
-      return;
-    }
-    var panel = ensureDebugPanel();
-    if (!panel) {
-      return;
-    }
-
-    var toggleButton = panel.querySelector("#" + DEBUG_PANEL_ID + "-toggle");
-    var content = panel.querySelector('[data-role="debug-content"]');
-    if (toggleButton) {
-      toggleButton.textContent = DEBUG_COLLAPSED ? "展开" : "缩小";
-    }
-
-    if (DEBUG_COLLAPSED) {
-      panel.style.maxHeight = "44px";
-      panel.style.width = "220px";
-      panel.style.overflow = "hidden";
-      if (content) {
-        content.style.display = "none";
-      }
-      return;
-    }
-
-    panel.style.maxHeight = "58vh";
-    panel.style.width = "min(88vw,420px)";
-    panel.style.overflow = "auto";
-    if (content) {
-      content.style.display = "block";
-      content.textContent = DEBUG_LOGS.join("\n");
-    }
+    return;
   }
 
   function appendDebugLog(label, payload) {
-    var line = "[slim] " + label;
-    if (payload !== undefined) {
-      try {
-        line += " " + (typeof payload === "string" ? payload : JSON.stringify(payload));
-      } catch (error) {
-        line += " " + String(payload);
-      }
-    }
-
-    DEBUG_LOGS.push(line);
-    if (DEBUG_LOGS.length > 120) {
-      DEBUG_LOGS.shift();
-    }
-    if (DEBUG_PANEL_ENABLED) {
-      console.info(line);
-      renderDebugPanel();
-    }
+    return;
   }
 
   function shouldTraceNetwork(url) {
@@ -1920,6 +2019,65 @@
     return names;
   }
 
+  function getJscRuntime() {
+    return window.__XYZW_JSC_RUNTIME__ || null;
+  }
+
+  function snapshotEmbeddedBundleVersions() {
+    if (window.__XYZW_EMBEDDED_BUNDLE_VERS__) {
+      return window.__XYZW_EMBEDDED_BUNDLE_VERS__;
+    }
+
+    var settings = window._CCSettings || {};
+    var embedded = {};
+    if (settings.bundleVers && typeof settings.bundleVers === "object") {
+      embedded = Object.assign({}, settings.bundleVers);
+    }
+    window.__XYZW_EMBEDDED_BUNDLE_VERS__ = embedded;
+    return embedded;
+  }
+
+  function applyDefaultJscSettings() {
+    var settings = getSettingsObject();
+    if (settings.jscEnabled === undefined) {
+      settings.jscEnabled = DEFAULT_JSC_CONFIG.enabled;
+    }
+    if (!Array.isArray(settings.jscBundles) || settings.jscBundles.length === 0) {
+      settings.jscBundles = DEFAULT_JSC_CONFIG.bundles.slice();
+    }
+    if (typeof settings.jscRemoteRoot !== "string" || !settings.jscRemoteRoot) {
+      settings.jscRemoteRoot = DEFAULT_JSC_CONFIG.remoteRoot;
+    }
+    if (settings.jscConfigPrefetch === undefined) {
+      settings.jscConfigPrefetch = DEFAULT_JSC_CONFIG.configPrefetch;
+    }
+    if (!Number.isFinite(Number(settings.jscCacheVersionsPerBundle))) {
+      settings.jscCacheVersionsPerBundle = DEFAULT_JSC_CONFIG.cacheVersionsPerBundle;
+    }
+    mergeRuntimeSettings(settings);
+    return settings;
+  }
+
+  function shouldUseJscBundle(bundleName) {
+    if (!bundleName) {
+      return false;
+    }
+
+    var runtime = getJscRuntime();
+    if (runtime && typeof runtime.shouldHandleBundle === "function") {
+      try {
+        return !!runtime.shouldHandleBundle(bundleName, getSettingsObject());
+      } catch (error) {}
+    }
+
+    var settings = getSettingsObject();
+    return (
+      settings.jscEnabled !== false &&
+      Array.isArray(settings.jscBundles) &&
+      settings.jscBundles.indexOf(bundleName) !== -1
+    );
+  }
+
   function getRemoteBundleRoot() {
     var settings = getSettingsObject();
     if (!settings.server || typeof settings.server !== "string") {
@@ -1957,6 +2115,13 @@
     var bundleName = normalizeBundleName(raw);
     var remoteBundles = getRemoteBundleNames();
     var remoteRoot = getRemoteBundleRoot();
+    var jscRuntime = getJscRuntime();
+
+    if (bundleName && shouldUseJscBundle(bundleName) && jscRuntime && typeof jscRuntime.resolveRemoteBundleRoot === "function") {
+      try {
+        return jscRuntime.resolveRemoteBundleRoot(bundleName, getSettingsObject());
+      } catch (error) {}
+    }
 
     if (bundleName && remoteRoot && remoteBundles.indexOf(bundleName) !== -1) {
       return remoteRoot + "/" + bundleName;
@@ -1991,7 +2156,10 @@
   }
 
   function shouldForceRemoteBundleVersion(bundleName) {
-    return !!bundleName && getRemoteBundleNames().indexOf(bundleName) !== -1;
+    return !!bundleName && (
+      getRemoteBundleNames().indexOf(bundleName) !== -1 ||
+      shouldUseJscBundle(bundleName)
+    );
   }
 
   function patchRemoteBundleDownloader() {
@@ -2028,6 +2196,24 @@
       var finished = 0;
       var config = null;
       var error = null;
+      var jscRuntime = getJscRuntime();
+
+      if (bundleName && shouldUseJscBundle(bundleName) && jscRuntime && typeof jscRuntime.loadBundlePackage === "function") {
+        jscRuntime.loadBundlePackage({
+          bundleName: bundleName,
+          version: version,
+          remoteRoot: resolvedTarget,
+          localRoot: "assets/" + bundleName,
+          options: options,
+          settings: getSettingsObject(),
+          scriptHandler: scriptHandler,
+        }).then(function (jscConfig) {
+          done(null, jscConfig || null);
+        }).catch(function (jscError) {
+          done(jscError);
+        });
+        return;
+      }
 
       jsonHandler(
         resolvedTarget + "/config." + (version ? version + "." : "") + "json",
@@ -2438,6 +2624,31 @@
       applied.hasStartSceneBundle = source.hasStartSceneBundle;
     }
 
+    if (typeof source.jscEnabled === "boolean") {
+      settings.jscEnabled = source.jscEnabled;
+      applied.jscEnabled = source.jscEnabled;
+    }
+
+    if (Array.isArray(source.jscBundles) && source.jscBundles.length > 0) {
+      settings.jscBundles = source.jscBundles.slice();
+      applied.jscBundles = source.jscBundles.length;
+    }
+
+    if (typeof source.jscRemoteRoot === "string" && source.jscRemoteRoot) {
+      settings.jscRemoteRoot = source.jscRemoteRoot;
+      applied.jscRemoteRoot = source.jscRemoteRoot;
+    }
+
+    if (typeof source.jscConfigPrefetch === "boolean") {
+      settings.jscConfigPrefetch = source.jscConfigPrefetch;
+      applied.jscConfigPrefetch = source.jscConfigPrefetch;
+    }
+
+    if (Number.isFinite(Number(source.jscCacheVersionsPerBundle))) {
+      settings.jscCacheVersionsPerBundle = Number(source.jscCacheVersionsPerBundle);
+      applied.jscCacheVersionsPerBundle = settings.jscCacheVersionsPerBundle;
+    }
+
     if (source.bundleVers && typeof source.bundleVers === "object") {
       settings.bundleVers = Object.assign({}, settings.bundleVers || {}, source.bundleVers);
       applied.bundleVers = Object.keys(source.bundleVers).length;
@@ -2486,6 +2697,22 @@
     window.__REMOTE_VERSION_CONFIG__ = payload;
     window.__REMOTE_MANIFEST_STATE__ = manifestState;
     window.__AUTO_CODE_VERSION__ = autoCodeVersion;
+    DEBUG_MANIFEST_STATE.loaded = true;
+    DEBUG_MANIFEST_STATE.version = payload && payload.version ? String(payload.version) : "";
+    DEBUG_MANIFEST_STATE.codeVersion = resolveLogCodeVersion(payload, manifestState) || "";
+    DEBUG_MANIFEST_STATE.manifestUrl = manifestState && manifestState.url ? String(manifestState.url) : "";
+    DEBUG_MANIFEST_STATE.manifestApplied = manifestState ? Object.keys(manifestState.bundleVers || {}).length : 0;
+    DEBUG_MANIFEST_STATE.source = url;
+    DEBUG_MANIFEST_STATE.updatedAt = toIsoTime();
+    refreshDebugBundleTargets();
+    if (DEBUG_PANEL_ENABLED) {
+      renderDebugPanel();
+    }
+    appendDebugLog("version-config-loaded", {
+      version: DEBUG_MANIFEST_STATE.version,
+      codeVersion: DEBUG_MANIFEST_STATE.codeVersion,
+      manifestApplied: DEBUG_MANIFEST_STATE.manifestApplied,
+    });
     renderVersionBadge(payload);
     console.info("[boot] remote version config loaded:", {
       url: url,
@@ -2500,6 +2727,8 @@
   async function startGame() {
     console.log("All scripts loaded, preparing game...");
     window.HtmlIsLoaded = true;
+    snapshotEmbeddedBundleVersions();
+    applyDefaultJscSettings();
     applyEmbedModeStyles();
     initSlimLaunchIntegration();
     updateAppTitle("汤姆之王");
@@ -2509,11 +2738,23 @@
       await loadRemoteVersionConfig();
     } catch (error) {
       console.warn("[boot] failed to load remote version config, fallback to embedded settings.", error);
+      DEBUG_MANIFEST_STATE.loaded = false;
+      DEBUG_MANIFEST_STATE.source = "embedded-fallback";
+      DEBUG_MANIFEST_STATE.updatedAt = toIsoTime();
       mergeRuntimeSettings(window._CCSettings || {});
+      refreshDebugBundleTargets();
+      if (DEBUG_PANEL_ENABLED) {
+        renderDebugPanel();
+      }
+      appendDebugLog("version-config-fallback", {
+        source: "embedded",
+        message: error && error.message ? error.message : String(error),
+      });
       renderVersionBadge(null);
     }
 
     mergeRuntimeSettings(window._CCSettings || {});
+    applyDefaultJscSettings();
 
     patchRemoteBundleDownloader();
     patchAssetManagerLoadBundle();
