@@ -21,6 +21,7 @@ import {
   executeArenaScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
+  executeLegacyClaimWithAutoReopen,
   normalizeSmartSendCarOptions,
   runWithTemporaryPresetTeam,
 } from '../utils/scheduledTaskHelpers.js';
@@ -1444,7 +1445,15 @@ async function executeTaskWithFlowControl({
         accountId,
         accountName,
         source,
-      }, async () => await runTaskByType(currentClient, taskType, taskConfig));
+      }, async () => await runTaskByType(currentClient, taskType, taskConfig, {
+        accountId,
+        accountName,
+        source,
+        reconnect: async () => {
+          currentClient = await reconnect();
+          return currentClient;
+        },
+      }));
       return { client: currentClient, result };
     } catch (error) {
       if (isRetryableWsError(error) && wsRetryCount < wsRetryConfig.maxRetries) {
@@ -2052,7 +2061,7 @@ async function ensureConnectedClient(accountId, accountName, tokenCandidates, ro
   }
 }
 
-async function runTaskByType(client, taskType, config) {
+async function runTaskByType(client, taskType, config, context = {}) {
   switch (taskType) {
     case 'SIGN_IN':
       return await executeSignIn(client);
@@ -2127,7 +2136,7 @@ async function runTaskByType(client, taskType, config) {
       return await executeTreasureClaim(client, config);
     
     case 'LEGACY_CLAIM':
-      return await executeLegacyClaim(client, config);
+      return await executeLegacyClaim(client, config, context);
 
     case 'LEGACY_REOPEN':
       return await executeLegacyReopen(client, config);
@@ -2849,59 +2858,8 @@ async function executeTreasureClaim(client, config) {
   }
 }
 
-async function executeLegacyClaim(client, config) {
-  const claimLegacyScrollsWithSoftRetry = async () => {
-    try {
-      return await client.claimLegacyScrolls();
-    } catch (error) {
-      const message = String(error?.message || '');
-      if (!message.includes('出了点小问题')) {
-        throw error;
-      }
-
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      await client.getRoleInfo(8000).catch(() => {});
-      return client.claimLegacyScrolls();
-    }
-  };
-
-  const reopenLegacyHangupWithVerify = async (retryCount = 0) => {
-    const MAX_REOPEN_RETRIES = 2;
-    const verifyDelayMs = 2000 + retryCount * 1000;
-    const retryDelayMs = 1000 + retryCount * 1000;
-    try {
-      const reopenResult = await client.reopenLegacyHangup();
-      console.log(`⏳ 残卷开启后等待状态稳定 ${verifyDelayMs}ms (第${retryCount + 1}次尝试)`);
-      await new Promise((resolve) => setTimeout(resolve, verifyDelayMs));
-      await client.getLegacyInfo().catch(() => {});
-      await client.getRoleInfo(8000).catch(() => {});
-      return reopenResult;
-    } catch (error) {
-      console.warn(`⚠️ 残卷开启失败 (第${retryCount + 1}次尝试):`, error?.message);
-      if (retryCount < MAX_REOPEN_RETRIES) {
-        console.log(`🔁 ${retryDelayMs}ms 后重试残卷开启...`);
-        await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
-        return reopenLegacyHangupWithVerify(retryCount + 1);
-      }
-      throw error;
-    }
-  };
-
-  await client.getRoleInfo(8000).catch(() => {});
-  await client.getLegacyInfo().catch(() => {});
-  try {
-    const result = await claimLegacyScrollsWithSoftRetry();
-    return { message: '残卷收取完成', data: result };
-  } catch (error) {
-    const message = String(error?.message || '');
-
-    if (message.includes('新赛季已开启，请重新进入本功能')) {
-      await reopenLegacyHangupWithVerify();
-      const retryResult = await claimLegacyScrollsWithSoftRetry();
-      return { message: '残卷收取完成(赛季重置后重试成功)', data: retryResult };
-    }
-    throw error;
-  }
+async function executeLegacyClaim(client, config, context = {}) {
+  return executeLegacyClaimWithAutoReopen(client, config, context);
 }
 
 async function executeLegacyReopen(client, config) {

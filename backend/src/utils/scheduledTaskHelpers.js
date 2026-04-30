@@ -31,6 +31,14 @@ function normalizeErrorMessage(error) {
   return String(error?.message || error || '未知错误');
 }
 
+function isLegacyReentryRequiredError(error) {
+  const message = normalizeErrorMessage(error);
+  return (
+    message.includes('新赛季已开启，请重新进入本功能') ||
+    message.includes('WebSocket未连接')
+  );
+}
+
 function isNoopError(error) {
   const message = normalizeErrorMessage(error);
   return NOOP_ERROR_PATTERNS.some((pattern) => message.includes(pattern));
@@ -580,4 +588,111 @@ export async function executeDailyTaskClaimScheduledTask(client) {
       checkedTaskIds: taskIds,
     },
   };
+}
+
+export async function executeLegacyClaimWithAutoReopen(client, config = {}, context = {}) {
+  let currentClient = client;
+
+  const claimLegacyScrollsWithSoftRetry = async () => {
+    try {
+      return await currentClient.claimLegacyScrolls();
+    } catch (error) {
+      const message = normalizeErrorMessage(error);
+      if (!message.includes('出了点小问题')) {
+        throw error;
+      }
+
+      await sleep(700);
+      await currentClient.getRoleInfo(8000).catch(() => {});
+      return currentClient.claimLegacyScrolls();
+    }
+  };
+
+  const reconnectForLegacyReentry = async (reason) => {
+    if (typeof context.reconnect !== 'function') {
+      return false;
+    }
+
+    console.warn('🔁 残卷功能要求重新进入，断开并重连后再开启', {
+      accountId: context.accountId ?? null,
+      accountName: context.accountName || '',
+      reason,
+    });
+    currentClient = await context.reconnect();
+    await sleep(1500);
+    await currentClient.getLegacyInfo().catch(() => {});
+    await currentClient.getRoleInfo(8000).catch(() => {});
+    return true;
+  };
+
+  const reopenLegacyHangupWithVerify = async (retryCount = 0, hasReconnected = false) => {
+    const MAX_REOPEN_RETRIES = 2;
+    const verifyDelayMs = 2000 + retryCount * 1000;
+    const retryDelayMs = 1000 + retryCount * 1000;
+    try {
+      await currentClient.getLegacyInfo().catch(() => {});
+      await sleep(800);
+      const reopenResult = await currentClient.reopenLegacyHangup({
+        verifyAttempts: 6,
+        verifyDelayMs: 1500,
+      });
+      console.log(`⏳ 残卷开启后等待状态稳定 ${verifyDelayMs}ms (第${retryCount + 1}次尝试)`);
+      await sleep(verifyDelayMs);
+      const latestLegacyInfo = await currentClient.getLegacyInfo().catch(() => null);
+      await currentClient.getRoleInfo(8000).catch(() => {});
+      return {
+        ...reopenResult,
+        latestLegacyInfo,
+      };
+    } catch (error) {
+      const message = normalizeErrorMessage(error);
+      console.warn(`⚠️ 残卷开启失败 (第${retryCount + 1}次尝试):`, message);
+
+      if (!hasReconnected && isLegacyReentryRequiredError(error)) {
+        const reconnected = await reconnectForLegacyReentry(message);
+        if (reconnected) {
+          return reopenLegacyHangupWithVerify(retryCount, true);
+        }
+      }
+
+      if (retryCount < MAX_REOPEN_RETRIES) {
+        console.log(`🔁 ${retryDelayMs}ms 后重试残卷开启...`);
+        await sleep(retryDelayMs);
+        return reopenLegacyHangupWithVerify(retryCount + 1, hasReconnected);
+      }
+
+      error.details = {
+        ...(error.details || {}),
+        legacyContext: error.legacyContext || null,
+        phase: 'legacy_auto_reopen',
+        reconnected: hasReconnected,
+      };
+      throw error;
+    }
+  };
+
+  await currentClient.getRoleInfo(8000).catch(() => {});
+  await currentClient.getLegacyInfo().catch(() => {});
+  try {
+    const result = await claimLegacyScrollsWithSoftRetry();
+    return { message: '残卷收取完成', data: result };
+  } catch (error) {
+    const message = normalizeErrorMessage(error);
+    console.log('📜 残卷收取失败，错误信息:', message);
+
+    if (message.includes('新赛季已开启，请重新进入本功能')) {
+      console.log('🔄 检测到新赛季已开启，执行残卷重新进入并开启流程...');
+      const reopenResult = await reopenLegacyHangupWithVerify();
+      console.log('✅ 残卷重新开启成功，重试收取...');
+      const retryResult = await claimLegacyScrollsWithSoftRetry();
+      return {
+        message: '残卷收取完成(赛季重置后重试成功)',
+        data: {
+          retryResult,
+          reopenResult,
+        },
+      };
+    }
+    throw error;
+  }
 }
