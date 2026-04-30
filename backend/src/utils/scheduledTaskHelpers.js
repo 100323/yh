@@ -71,6 +71,61 @@ function createDetailedError(message, details = null) {
   return error;
 }
 
+function normalizeFormationId(value) {
+  const normalized = Number(value);
+  if (!Number.isInteger(normalized) || normalized < 1 || normalized > 6) {
+    return null;
+  }
+  return normalized;
+}
+
+function resolveCurrentPresetTeamId(teamInfo) {
+  return Number(
+    teamInfo?.presetTeamInfo?.useTeamId ??
+      teamInfo?.useTeamId ??
+      teamInfo?.presetTeam?.useTeamId ??
+      0
+  ) || null;
+}
+
+export async function runWithTemporaryPresetTeam(client, formation, label, action) {
+  const targetFormation = normalizeFormationId(formation);
+  if (!targetFormation) {
+    return action();
+  }
+
+  let originalFormation = null;
+  let switchedFormation = false;
+  const taskLabel = label || '任务';
+
+  try {
+    const teamInfo = await client.getPresetTeamInfo();
+    originalFormation = resolveCurrentPresetTeamId(teamInfo);
+
+    if (originalFormation !== targetFormation) {
+      console.log(`[${taskLabel}] 切换阵容 ${originalFormation || '未知'} -> ${targetFormation}`);
+      await client.savePresetTeam(targetFormation);
+      switchedFormation = true;
+      await sleep(500);
+    }
+  } catch (error) {
+    console.warn(`[${taskLabel}] 阵容切换失败，使用当前阵容: ${normalizeErrorMessage(error)}`);
+  }
+
+  try {
+    return await action();
+  } finally {
+    if (switchedFormation && originalFormation) {
+      try {
+        console.log(`[${taskLabel}] 恢复原阵容 ${targetFormation} -> ${originalFormation}`);
+        await client.savePresetTeam(originalFormation);
+      } catch (error) {
+        console.warn(`[${taskLabel}] 恢复原阵容失败: ${normalizeErrorMessage(error)}`);
+      }
+    }
+  }
+}
+
 function pickArenaTargetId(target) {
   if (!target || typeof target !== 'object') {
     return null;
@@ -277,6 +332,12 @@ async function tryClaimWithExtraNoopPatterns(results, label, action, extraNoopPa
 }
 
 export async function executeArenaScheduledTask(client, config = {}) {
+  return runWithTemporaryPresetTeam(client, config?.arenaFormation, '竞技场', () =>
+    executeArenaScheduledTaskCore(client, config)
+  );
+}
+
+async function executeArenaScheduledTaskCore(client, config = {}) {
   const { battleCount = 3 } = config;
   const results = [];
 

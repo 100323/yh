@@ -596,11 +596,20 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
   if (taskKey === 'batcharenafight' && backendConfig.battleCount !== undefined) {
     mapped.arenaBattleCount = backendConfig.battleCount;
   }
+  if (taskKey === 'batcharenafight' && backendConfig.arenaFormation !== undefined) {
+    mapped.arenaFormation = backendConfig.arenaFormation;
+  }
   if (taskKey === 'climbTower' && backendConfig.maxFloors !== undefined) {
     mapped.towerMaxFloors = backendConfig.maxFloors;
   }
+  if (taskKey === 'climbTower' && backendConfig.towerFormation !== undefined) {
+    mapped.towerFormation = backendConfig.towerFormation;
+  }
   if (taskKey === 'climbWeirdTower' && (backendConfig.weirdTowerMaxFloors !== undefined || backendConfig.maxFloors !== undefined)) {
     mapped.weirdTowerMaxFloors = backendConfig.weirdTowerMaxFloors ?? backendConfig.maxFloors;
+  }
+  if (taskKey === 'climbWeirdTower' && backendConfig.weirdTowerFormation !== undefined) {
+    mapped.weirdTowerFormation = backendConfig.weirdTowerFormation;
   }
   if (taskKey === 'batchLegionBoss') {
     mapped.bossFormation = backendConfig.bossFormation ?? 2;
@@ -686,16 +695,19 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
   const sourceConfig = taskConfig.config || {};
   if (taskKey === 'batcharenafight') {
     return {
+      arenaFormation: Number(sourceConfig.arenaFormation ?? 1) || 1,
       battleCount: sourceConfig.arenaBattleCount ?? 3,
     };
   }
   if (taskKey === 'climbTower') {
     return {
+      towerFormation: Number(sourceConfig.towerFormation ?? 1) || 1,
       maxFloors: sourceConfig.towerMaxFloors ?? 10,
     };
   }
   if (taskKey === 'climbWeirdTower') {
     return {
+      weirdTowerFormation: Number(sourceConfig.weirdTowerFormation ?? 1) || 1,
       weirdTowerMaxFloors: sourceConfig.weirdTowerMaxFloors ?? 10,
     };
   }

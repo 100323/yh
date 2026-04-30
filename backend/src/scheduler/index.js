@@ -22,6 +22,7 @@ import {
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
   normalizeSmartSendCarOptions,
+  runWithTemporaryPresetTeam,
 } from '../utils/scheduledTaskHelpers.js';
 import {
   runAccountTaskExclusive,
@@ -2198,6 +2199,12 @@ async function executeArena(client, config) {
 }
 
 async function executeTower(client, config) {
+  return runWithTemporaryPresetTeam(client, config?.towerFormation, '爬塔', () =>
+    executeTowerCore(client, config)
+  );
+}
+
+async function executeTowerCore(client, config = {}) {
   const { maxFloors = 10 } = config;
   const results = [];
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -2270,6 +2277,12 @@ async function executeBossTower(client, config) {
 }
 
 async function executeWeirdTower(client, config) {
+  return runWithTemporaryPresetTeam(client, config?.weirdTowerFormation, '怪异塔', () =>
+    executeWeirdTowerCore(client, config)
+  );
+}
+
+async function executeWeirdTowerCore(client, config = {}) {
   const results = [];
   let successCount = 0;
   const maxFloors = Math.min(100, Math.max(1, Number(config?.weirdTowerMaxFloors ?? 100) || 100));

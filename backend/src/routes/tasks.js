@@ -90,7 +90,7 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   FRIEND_GOLD: { enabled: true, config: { count: 3 } },
   MAIL_CLAIM: { enabled: true, config: {} },
   STUDY: { enabled: true, config: {} },
-  ARENA: { enabled: true, config: { battleCount: 3 } },
+  ARENA: { enabled: true, config: { arenaFormation: 1, battleCount: 3 } },
   CAR_SEND: {
     enabled: true,
     config: {
@@ -121,8 +121,8 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   BLACK_MARKET: { enabled: true, config: {} },
   TREASURE_CLAIM: { enabled: true, config: {} },
   LEGACY_CLAIM: { enabled: true, config: { interval: 360 } },
-  TOWER: { enabled: true, config: { maxFloors: 10 } },
-  WEIRD_TOWER: { enabled: true, config: { weirdTowerMaxFloors: 10 } },
+  TOWER: { enabled: true, config: { towerFormation: 1, maxFloors: 10 } },
+  WEIRD_TOWER: { enabled: true, config: { weirdTowerFormation: 1, weirdTowerMaxFloors: 10 } },
   WEIRD_TOWER_FREE_ITEM: { enabled: true, config: {} },
   WEIRD_TOWER_USE_ITEM: { enabled: true, config: {} },
   WEIRD_TOWER_MERGE_ITEM: { enabled: true, config: {} },
@@ -199,6 +199,14 @@ function normalizeStarTempleTaskConfig(config = {}) {
   };
 }
 
+function normalizeFormationValue(value, fallback = 1) {
+  const normalized = Number(value);
+  if (!Number.isInteger(normalized) || normalized < 1 || normalized > 6) {
+    return fallback;
+  }
+  return normalized;
+}
+
 function normalizeTaskConfigPayload(taskType, config = {}) {
   if (!config || typeof config !== 'object') {
     return config || {};
@@ -210,6 +218,30 @@ function normalizeTaskConfigPayload(taskType, config = {}) {
 
   if (taskType === 'STAR_TEMPLE') {
     return normalizeStarTempleTaskConfig(config);
+  }
+
+  if (taskType === 'ARENA') {
+    return {
+      ...(config || {}),
+      arenaFormation: normalizeFormationValue(config.arenaFormation, 1),
+      battleCount: Math.max(1, Math.min(10, Number(config.battleCount ?? 3) || 3)),
+    };
+  }
+
+  if (taskType === 'TOWER') {
+    return {
+      ...(config || {}),
+      towerFormation: normalizeFormationValue(config.towerFormation, 1),
+      maxFloors: Math.max(1, Math.min(100, Number(config.maxFloors ?? 10) || 10)),
+    };
+  }
+
+  if (taskType === 'WEIRD_TOWER') {
+    return {
+      ...(config || {}),
+      weirdTowerFormation: normalizeFormationValue(config.weirdTowerFormation, 1),
+      weirdTowerMaxFloors: Math.max(1, Math.min(100, Number(config.weirdTowerMaxFloors ?? config.maxFloors ?? 10) || 10)),
+    };
   }
 
   return config;
