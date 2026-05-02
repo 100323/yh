@@ -197,6 +197,9 @@ app.post('/api/tasks/execute', authMiddleware, async (req, res) => {
 });
 
 app.use(express.static(frontendPath));
+app.use('/assets', (req, res) => {
+  res.status(404).type('text/plain').send('frontend asset not found');
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));

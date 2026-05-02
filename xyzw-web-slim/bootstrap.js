@@ -2140,19 +2140,31 @@
     return null;
   }
 
-  function getManifestEligibleBundleNames(payload) {
+  function getManifestEligibleBundleNames(payload, manifestBundleVers) {
     var names = [];
+
+    function appendName(name) {
+      if (
+        typeof name === "string" &&
+        name &&
+        name !== "codeVersion" &&
+        name !== "COMMIT_ID" &&
+        names.indexOf(name) === -1
+      ) {
+        names.push(name);
+      }
+    }
 
     function append(list) {
       if (!Array.isArray(list)) {
         return;
       }
 
-      list.forEach(function (name) {
-        if (typeof name === "string" && name && names.indexOf(name) === -1) {
-          names.push(name);
-        }
-      });
+      list.forEach(appendName);
+    }
+
+    if (manifestBundleVers && typeof manifestBundleVers === "object") {
+      Object.keys(manifestBundleVers).forEach(appendName);
     }
 
     if (payload && typeof payload === "object") {
@@ -2176,6 +2188,25 @@
     }
 
     return names;
+  }
+
+  function mergeBundleNameList(current, names) {
+    var merged = [];
+
+    function append(list) {
+      if (!Array.isArray(list)) {
+        return;
+      }
+      list.forEach(function (name) {
+        if (typeof name === "string" && name && merged.indexOf(name) === -1) {
+          merged.push(name);
+        }
+      });
+    }
+
+    append(current);
+    append(names);
+    return merged;
   }
 
   function filterManifestBundleVers(bundleVers, eligibleBundleNames) {
@@ -2202,7 +2233,7 @@
       return payload;
     }
 
-    var eligibleBundleNames = getManifestEligibleBundleNames(payload);
+    var eligibleBundleNames = getManifestEligibleBundleNames(payload, manifestState.bundleVers);
     var filteredBundleVers = filterManifestBundleVers(manifestState.bundleVers, eligibleBundleNames);
     manifestState.filteredBundleVers = filteredBundleVers;
 
@@ -2211,6 +2242,7 @@
     }
 
     Object.assign(payload.bundleVers, filteredBundleVers);
+    payload.remoteBundles = mergeBundleNameList(payload.remoteBundles, Object.keys(filteredBundleVers));
     if (manifestState.codeVersion) {
       payload.version = manifestState.codeVersion;
       payload.bundleVers.codeVersion = manifestState.codeVersion;
@@ -2223,6 +2255,7 @@
       }
 
       Object.assign(payload.settings.bundleVers, filteredBundleVers);
+      payload.settings.remoteBundles = mergeBundleNameList(payload.settings.remoteBundles, Object.keys(filteredBundleVers));
       if (manifestState.codeVersion) {
         payload.settings.version = manifestState.codeVersion;
         payload.settings.bundleVers.codeVersion = manifestState.codeVersion;
@@ -2251,6 +2284,7 @@
 
     var source = {
       bundleVers: Object.assign({}, bundleVers),
+      remoteBundles: mergeBundleNameList(null, Object.keys(bundleVers)),
     };
 
     if (manifestState.codeVersion) {
