@@ -6,8 +6,9 @@
   var SLIM_LAUNCH_STORAGE_PREFIX = "xyzw-slim-launch:";
   var SLIM_LAST_ACCOUNT_KEY = "xyzw-slim-launch-account";
   var SLIM_RUNTIME_PATCH_TIMER = null;
-  var BOOT_PATCH_LABEL = "remotefix-12";
+  var BOOT_PATCH_LABEL = "remotefix-13";
   var DEBUG_PANEL_ID = "xyzw-slim-debug-panel";
+  var DIAG_PANEL_ID = "xyzw-slim-diag-panel";
   var DEBUG_LOGS = [];
   var DEBUG_COLLAPSED = false;
   var DEBUG_PANEL_ENABLED = false;
@@ -90,6 +91,129 @@
       .replace(/>/g, "&gt;")
       .replace(/\"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+
+  function getQueryFlag(name) {
+    try {
+      var params = new URLSearchParams(window.location.search || "");
+      var value = params.get(name);
+      if (value === null) {
+        return false;
+      }
+      return value === "" || value === "1" || value === "true" || value === "yes";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function isSlimDiagnosticsEnabled() {
+    if (getQueryFlag("slimDiag") || getQueryFlag("xyzw_diag")) {
+      return true;
+    }
+
+    try {
+      var storage = getSlimSafeStorage();
+      return !!storage && storage.getItem("XYZW_SLIM_DIAG") === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function compactBundleVers(bundleVers) {
+    if (!bundleVers || typeof bundleVers !== "object") {
+      return {};
+    }
+
+    return {
+      count: Object.keys(bundleVers).length,
+      codeVersion: bundleVers.codeVersion || "",
+      launcher: bundleVers.launcher || "",
+      game: bundleVers.game || "",
+      TEST_REMOTE_MODULE: bundleVers.TEST_REMOTE_MODULE || "",
+      config: bundleVers.config || "",
+      ui_common: bundleVers.ui_common || "",
+      ui_main: bundleVers.ui_main || "",
+      ui_home: bundleVers.ui_home || "",
+      ui_spring26: bundleVers.ui_spring26 || "",
+    };
+  }
+
+  function compactManifestLike(value) {
+    if (!value || typeof value !== "object") {
+      return value;
+    }
+
+    var rawData = value.rawData && typeof value.rawData === "object" ? value.rawData : value;
+    var bundleVers = rawData.bundleVers;
+    if (typeof bundleVers === "string") {
+      bundleVers = tryParseJson(bundleVers);
+    }
+
+    if (!bundleVers || typeof bundleVers !== "object") {
+      return value;
+    }
+
+    return {
+      __xyzw_compact: "manifest",
+      code: value.code,
+      error: value.error || "",
+      codeVersion: rawData.codeVersion || bundleVers.codeVersion || "",
+      dataVers: rawData.dataVers || "",
+      dataBundleVer: rawData.dataBundleVer || "",
+      battleVersion: rawData.battleVersion || 0,
+      serverUrl: rawData.serverUrl || "",
+      isLast: rawData.isLast,
+      bundleVers: compactBundleVers(bundleVers),
+    };
+  }
+
+  function sanitizeConsoleArg(arg) {
+    if (!arg || typeof arg !== "object") {
+      return arg;
+    }
+
+    try {
+      var compacted = compactManifestLike(arg);
+      if (compacted !== arg) {
+        return compacted;
+      }
+
+      if (arg.bundleVers && typeof arg.bundleVers === "object" && Object.keys(arg.bundleVers).length > 50) {
+        var next = clonePlainObject(arg);
+        next.bundleVers = compactBundleVers(arg.bundleVers);
+        return next;
+      }
+    } catch (error) {}
+
+    return arg;
+  }
+
+  function installSlimConsoleGuard() {
+    if (window.__XYZW_SLIM_CONSOLE_GUARD__) {
+      return;
+    }
+    window.__XYZW_SLIM_CONSOLE_GUARD__ = true;
+
+    var methods = ["log", "info", "warn", "error", "debug"];
+    methods.forEach(function (method) {
+      var original = console && console[method];
+      if (typeof original !== "function") {
+        return;
+      }
+
+      console[method] = function () {
+        var args = Array.prototype.slice.call(arguments);
+        try {
+          if (args[0] === "Manifest." && args[1]) {
+            args[1] = compactManifestLike(args[1]);
+          } else {
+            args = args.map(sanitizeConsoleArg);
+          }
+        } catch (error) {}
+        return original.apply(console, args);
+      };
+      console[method].__xyzwOriginal = original;
+    });
   }
 
   function ensureDebugBundleState(bundleName) {
@@ -1981,6 +2105,11 @@
       });
     }
 
+    if (patched || isSlimDiagnosticsEnabled()) {
+      persistSlimRuntimeDiagnosticSnapshot();
+      renderSlimDiagnosticPanel();
+    }
+
     return patched;
   }
 
@@ -2205,6 +2334,147 @@
     } catch (error) {}
 
     return true;
+  }
+
+  function buildSlimRuntimeDiagnosticSnapshot() {
+    var manifestState = getRuntimeManifestState();
+    var platformManagerModule = tryRequireModule("PlatformManager");
+    var configsModule = tryRequireModule("Configs");
+    var resourceManagerModule = tryRequireModule("ResourceManager");
+    var remoteConfigsModule = tryRequireModule("RemoteConfigs");
+    var dataIndex = getDataIndexModule();
+    var platformManager =
+      platformManagerModule && platformManagerModule.PlatformManager
+        ? platformManagerModule.PlatformManager.instance
+        : null;
+    var resourceManager =
+      resourceManagerModule && resourceManagerModule.ResourceManager
+        ? resourceManagerModule.ResourceManager.instance
+        : null;
+    var remoteConfigs =
+      remoteConfigsModule && remoteConfigsModule.default
+        ? remoteConfigsModule.default.instance
+        : null;
+
+    var battleFromPlatform = null;
+    try {
+      battleFromPlatform = platformManager && typeof platformManager.getBattleVersion === "function"
+        ? platformManager.getBattleVersion()
+        : null;
+    } catch (error) {
+      battleFromPlatform = null;
+    }
+
+    var versionConf = configsModule && configsModule.VersionConf ? configsModule.VersionConf.config : null;
+    var settings = getSettingsObject();
+    var bundleVers = manifestState && manifestState.bundleVers ? manifestState.bundleVers : null;
+
+    return {
+      patch: BOOT_PATCH_LABEL,
+      time: toIsoTime(),
+      href: String(window.location && window.location.href ? window.location.href : ""),
+      effectiveCodeVersion: window.__XYZW_EFFECTIVE_CODE_VERSION__ || "",
+      manifest: manifestState
+        ? {
+            codeVersion: manifestState.codeVersion || "",
+            dataVers: manifestState.dataVers || "",
+            dataBundleVer: manifestState.dataBundleVer || "",
+            battleVersion: Number(manifestState.battleVersion || 0),
+            via: manifestState.via || "",
+            url: manifestState.url || "",
+            bundleVers: compactBundleVers(bundleVers),
+          }
+        : null,
+      runtime: {
+        battleFromPlatform: battleFromPlatform,
+        battlePrivate: platformManager ? platformManager._battleVersion : null,
+        battleFromConfig: versionConf ? versionConf.battleVersion : null,
+        configVersion: versionConf ? versionConf.version : null,
+        resourceDataVersion: resourceManager ? resourceManager.remoteDataVersion : "",
+        remoteConfigDataVersion: remoteConfigs ? remoteConfigs.remoteDataVer : "",
+        globalDataVersion: window.__XYZW_REMOTE_DATA_VERSION__ || "",
+        globalBattleVersion: window.__XYZW_MANIFEST_BATTLE_VERSION__ || 0,
+      },
+      patches: {
+        consoleGuard: !!window.__XYZW_SLIM_CONSOLE_GUARD__,
+        platformManifest: !!(platformManager && platformManager.__xyzwManifestPatched),
+        loginManifest: !!(tryRequireModule("LoginService") && tryRequireModule("LoginService").LoginService && tryRequireModule("LoginService").LoginService.__xyzwManifestPatched),
+        remoteConfigs: !!(remoteConfigs && remoteConfigs.__xyzwDataVersionPatched),
+        dataBundleVer: !!(dataIndex && dataIndex.SystemService && dataIndex.SystemService.__xyzwDataBundleVerPatched),
+      },
+      settings: {
+        jscEnabled: !!settings.jscEnabled,
+        jscBundles: Array.isArray(settings.jscBundles) ? settings.jscBundles.slice(0, 12) : [],
+      },
+    };
+  }
+
+  function persistSlimRuntimeDiagnosticSnapshot() {
+    var snapshot = buildSlimRuntimeDiagnosticSnapshot();
+    window.__XYZW_RUNTIME_DIAG__ = snapshot;
+
+    try {
+      var storage = getSlimSafeStorage();
+      if (storage) {
+        storage.setItem("XYZW_SLIM_LAST_DIAG", JSON.stringify(snapshot));
+      }
+    } catch (error) {}
+
+    return snapshot;
+  }
+
+  function renderSlimDiagnosticPanel() {
+    if (!isSlimDiagnosticsEnabled()) {
+      return;
+    }
+
+    var snapshot = persistSlimRuntimeDiagnosticSnapshot();
+    var panel = document.getElementById(DIAG_PANEL_ID);
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.id = DIAG_PANEL_ID;
+      panel.style.cssText = [
+        "position:fixed",
+        "left:8px",
+        "right:8px",
+        "bottom:8px",
+        "z-index:2147483647",
+        "max-height:42vh",
+        "overflow:auto",
+        "padding:10px 12px",
+        "border-radius:10px",
+        "background:rgba(0,0,0,.78)",
+        "color:#d7fff1",
+        "font:12px/1.45 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif",
+        "box-shadow:0 4px 20px rgba(0,0,0,.35)",
+        "white-space:normal",
+      ].join(";");
+      document.documentElement.appendChild(panel);
+    }
+
+    var manifest = snapshot.manifest || {};
+    var runtime = snapshot.runtime || {};
+    var patches = snapshot.patches || {};
+    panel.innerHTML = [
+      "<div style=\"font-weight:700;margin-bottom:6px;color:#6fffd0\">XYZW Slim 自检 / " + escapeDebugHtml(snapshot.patch) + "</div>",
+      "<div>code: <b>" + escapeDebugHtml(snapshot.effectiveCodeVersion || manifest.codeVersion || "") + "</b> ｜ data: <b>" + escapeDebugHtml(runtime.globalDataVersion || manifest.dataBundleVer || "") + "</b> ｜ battle: <b>" + escapeDebugHtml(runtime.battleFromPlatform || runtime.globalBattleVersion || manifest.battleVersion || "") + "</b></div>",
+      "<div>manifest: " + escapeDebugHtml(manifest.via || "") + " ｜ bundles: " + escapeDebugHtml(manifest.bundleVers ? manifest.bundleVers.count : "") + "</div>",
+      "<div>runtime: pm=" + escapeDebugHtml(runtime.battleFromPlatform) + " cfg=" + escapeDebugHtml(runtime.battleFromConfig) + " resData=" + escapeDebugHtml(runtime.resourceDataVersion) + " rcData=" + escapeDebugHtml(runtime.remoteConfigDataVersion) + "</div>",
+      "<div>patch: console=" + escapeDebugHtml(patches.consoleGuard) + " platform=" + escapeDebugHtml(patches.platformManifest) + " login=" + escapeDebugHtml(patches.loginManifest) + " remoteCfg=" + escapeDebugHtml(patches.remoteConfigs) + " dataBundle=" + escapeDebugHtml(patches.dataBundleVer) + "</div>",
+      "<div style=\"opacity:.75;margin-top:4px\">不用开控制台；截图这块就能看版本链路。关闭方式：去掉 URL 里的 slimDiag=1。</div>",
+    ].join("");
+  }
+
+  function startSlimDiagnosticTicker() {
+    if (!isSlimDiagnosticsEnabled()) {
+      return;
+    }
+
+    renderSlimDiagnosticPanel();
+    if (window.__XYZW_SLIM_DIAG_TIMER__) {
+      clearInterval(window.__XYZW_SLIM_DIAG_TIMER__);
+    }
+    window.__XYZW_SLIM_DIAG_TIMER__ = setInterval(renderSlimDiagnosticPanel, 1000);
   }
 
   function tryReadNativeManifestState(config, requestInit, originalError) {
@@ -3378,6 +3648,7 @@
   }
 
   async function startGame() {
+    installSlimConsoleGuard();
     console.log("All scripts loaded, preparing game...");
     window.HtmlIsLoaded = true;
     snapshotEmbeddedBundleVersions();
@@ -3388,6 +3659,7 @@
     initSlimLaunchIntegration();
     updateAppTitle("汤姆猫");
     updateVersionBadge("读取中", "正在加载版本");
+    startSlimDiagnosticTicker();
 
     try {
       await loadRemoteVersionConfig();
