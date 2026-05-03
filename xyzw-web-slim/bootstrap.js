@@ -925,6 +925,7 @@
       codeVersion: typeof state.codeVersion === "string" ? state.codeVersion : "",
       dataVers: typeof state.dataVers === "string" ? state.dataVers : "",
       dataBundleVer: typeof state.dataBundleVer === "string" ? state.dataBundleVer : "",
+      battleVersion: Number.isFinite(Number(state.battleVersion)) ? Number(state.battleVersion) : 0,
       serverUrl: typeof state.serverUrl === "string" ? state.serverUrl : "",
       raw: state.raw || null,
     };
@@ -1825,10 +1826,169 @@
     return patched;
   }
 
+  function patchSlimManifestRuntimeModules() {
+    var manifestState = getRuntimeManifestState();
+    if (!manifestState) {
+      return false;
+    }
+
+    var patched = false;
+    var manifestResult = buildRuntimeManifestResult(manifestState);
+    var manifestBody = manifestResult ? manifestResult.rawData : null;
+    var dataVersion = getRuntimeDataVersion(manifestState);
+    var battleVersion = Number(manifestState.battleVersion || 0);
+    var hasBattleVersion = Number.isFinite(battleVersion) && battleVersion > 0;
+
+    syncRuntimeManifestGlobals(manifestState);
+
+    var PlatformManagerModule = tryRequireModule("PlatformManager");
+    var LoginServiceModule = tryRequireModule("LoginService");
+    var ConfigsModule = tryRequireModule("Configs");
+    var ResourceManagerModule = tryRequireModule("ResourceManager");
+    var RemoteConfigsModule = tryRequireModule("RemoteConfigs");
+    var dataIndex = getDataIndexModule();
+
+    var platformManager =
+      PlatformManagerModule && PlatformManagerModule.PlatformManager
+        ? PlatformManagerModule.PlatformManager.instance
+        : null;
+    if (platformManager && manifestResult) {
+      try {
+        if (!platformManager.__xyzwManifestPatched) {
+          var originalGetManifest = platformManager.getManifest;
+          platformManager.getManifest = function () {
+            return Promise.resolve(buildRuntimeManifestResult(getRuntimeManifestState()) || manifestResult);
+          };
+          platformManager.getManifest.__xyzwOriginal = originalGetManifest;
+          platformManager.__xyzwManifestPatched = true;
+          patched = true;
+        }
+        if (hasBattleVersion && platformManager._battleVersion !== battleVersion) {
+          platformManager._battleVersion = battleVersion;
+          patched = true;
+        }
+      } catch (error) {}
+    }
+
+    if (LoginServiceModule && LoginServiceModule.LoginService && manifestResult) {
+      try {
+        if (!LoginServiceModule.LoginService.__xyzwManifestPatched) {
+          var originalManifest = LoginServiceModule.LoginService.manifest;
+          LoginServiceModule.LoginService.manifest = function () {
+            return Promise.resolve(buildRuntimeManifestResult(getRuntimeManifestState()) || manifestResult);
+          };
+          LoginServiceModule.LoginService.manifest.__xyzwOriginal = originalManifest;
+          LoginServiceModule.LoginService.__xyzwManifestPatched = true;
+          patched = true;
+        }
+      } catch (error) {}
+    }
+
+    if (ConfigsModule && ConfigsModule.VersionConf && ConfigsModule.VersionConf.config) {
+      try {
+        if (hasBattleVersion && ConfigsModule.VersionConf.config.battleVersion !== battleVersion) {
+          ConfigsModule.VersionConf.config.battleVersion = battleVersion;
+          patched = true;
+        }
+        if (manifestState.codeVersion && ConfigsModule.VersionConf.config.version !== manifestState.codeVersion) {
+          ConfigsModule.VersionConf.config.version = manifestState.codeVersion;
+          patched = true;
+        }
+      } catch (error) {}
+    }
+
+    if (ResourceManagerModule && ResourceManagerModule.ResourceManager) {
+      try {
+        var resourceManager = ResourceManagerModule.ResourceManager.instance;
+        if (resourceManager) {
+          if (dataVersion && resourceManager.remoteDataVersion !== dataVersion) {
+            resourceManager.remoteDataVersion = dataVersion;
+            patched = true;
+          }
+          if (!resourceManager.bundleVersions || typeof resourceManager.bundleVersions !== "object") {
+            resourceManager.bundleVersions = {};
+          }
+          if (manifestBody && manifestBody.bundleVers && typeof manifestBody.bundleVers === "object") {
+            Object.assign(resourceManager.bundleVersions, manifestBody.bundleVers);
+          }
+        }
+      } catch (error) {}
+    }
+
+    if (RemoteConfigsModule && RemoteConfigsModule.default) {
+      try {
+        var remoteConfigs = RemoteConfigsModule.default.instance;
+        if (remoteConfigs && dataVersion) {
+          if (remoteConfigs._remoteDataVer !== dataVersion) {
+            remoteConfigs._remoteDataVer = dataVersion;
+            patched = true;
+          }
+          if (!remoteConfigs.__xyzwDataVersionPatched) {
+            var dataVersionJson = {
+              json: {
+                version: dataVersion,
+              },
+            };
+            remoteConfigs.loadDataVersion = function () {
+              return Promise.resolve(dataVersionJson);
+            };
+            remoteConfigs.resolveDataVersion = function () {
+              this._remoteDataVer = getRuntimeDataVersion() || dataVersion;
+              return Promise.resolve(this._remoteDataVer);
+            };
+            remoteConfigs._resolveDataVersionCdn = remoteConfigs.resolveDataVersion;
+            remoteConfigs._resolveDataVersionBundle = remoteConfigs.resolveDataVersion;
+            remoteConfigs._resolveConfigVer = remoteConfigs.resolveDataVersion;
+            remoteConfigs.__xyzwDataVersionPatched = true;
+            patched = true;
+          }
+        }
+      } catch (error) {}
+    }
+
+    if (dataIndex && dataIndex.SystemService && dataVersion) {
+      try {
+        if (!dataIndex.SystemService.__xyzwDataBundleVerPatched) {
+          var originalGetDataBundleVer = dataIndex.SystemService.getDataBundleVer;
+          dataIndex.SystemService.getDataBundleVer = function () {
+            return Promise.resolve({
+              code: 0,
+              error: "",
+              rawData: {
+                dataBundleVer: getRuntimeDataVersion() || dataVersion,
+              },
+              getData: function () {
+                return {
+                  dataBundleVer: getRuntimeDataVersion() || dataVersion,
+                };
+              },
+            });
+          };
+          dataIndex.SystemService.getDataBundleVer.__xyzwOriginal = originalGetDataBundleVer;
+          dataIndex.SystemService.__xyzwDataBundleVerPatched = true;
+          patched = true;
+        }
+      } catch (error) {}
+    }
+
+    if (patched && !window.__XYZW_MANIFEST_RUNTIME_PATCH_LOGGED__) {
+      window.__XYZW_MANIFEST_RUNTIME_PATCH_LOGGED__ = true;
+      appendDebugLog("manifest-runtime-patch-active", {
+        codeVersion: manifestState.codeVersion || "",
+        dataVersion: dataVersion || "",
+        battleVersion: hasBattleVersion ? battleVersion : 0,
+        bundles: manifestState.bundleVers ? Object.keys(manifestState.bundleVers).length : 0,
+      });
+    }
+
+    return patched;
+  }
+
   function applySlimLaunchPatches(announce) {
+    var manifestPatched = patchSlimManifestRuntimeModules();
     var state = getSlimLaunchState();
     if (!state || (!state.authPayload && !state.tokenPayload)) {
-      return false;
+      return manifestPatched;
     }
 
     var dataIndex = getDataIndexModule();
@@ -1836,7 +1996,7 @@
     var isolatePatched = patchSlimIsolateModule(dataIndex);
     var compatPatched = patchSlimCompatModules();
 
-    if (announce && (servicePatched || isolatePatched || compatPatched)) {
+    if (announce && (servicePatched || isolatePatched || compatPatched || manifestPatched)) {
       appendDebugLog("slim-auth-patch-active", {
         mode: state.authPayload ? "authPayload" : "roleTokenFallback",
         platformExt: state.authPayload ? state.authPayload.platformExt : getSlimResolvedPlatformExt(),
@@ -1846,10 +2006,11 @@
         servicePatched: servicePatched,
         isolatePatched: isolatePatched,
         compatPatched: compatPatched,
+        manifestPatched: manifestPatched,
       });
     }
 
-    return !!(servicePatched || isolatePatched || compatPatched);
+    return !!(servicePatched || isolatePatched || compatPatched || manifestPatched);
   }
 
   function startSlimLaunchPatchMonitor() {
@@ -1905,9 +2066,8 @@
       } catch (error) {}
     }
 
-    if (authPayload || tokenPayload) {
-      startSlimLaunchPatchMonitor();
-    } else {
+    startSlimLaunchPatchMonitor();
+    if (!authPayload && !tokenPayload) {
       appendDebugLog("launch-auth-payload-missing");
     }
 
@@ -1943,9 +2103,108 @@
       codeVersion: codeVersion,
       dataVers: typeof body.dataVers === "string" ? body.dataVers : "",
       dataBundleVer: typeof body.dataBundleVer === "string" ? body.dataBundleVer : "",
+      battleVersion: Number.isFinite(Number(body.battleVersion)) ? Number(body.battleVersion) : 0,
       serverUrl: typeof body.serverUrl === "string" ? body.serverUrl : "",
       raw: payload,
     };
+  }
+
+  function getRuntimeManifestState() {
+    return window.__REMOTE_MANIFEST_STATE__ && typeof window.__REMOTE_MANIFEST_STATE__ === "object"
+      ? window.__REMOTE_MANIFEST_STATE__
+      : null;
+  }
+
+  function getRuntimeDataVersion(manifestState) {
+    var state = manifestState || getRuntimeManifestState();
+    if (!state) {
+      return "";
+    }
+
+    return state.dataBundleVer || state.dataVers || "";
+  }
+
+  function buildRuntimeManifestBody(manifestState) {
+    var state = manifestState || getRuntimeManifestState();
+    if (!state) {
+      return null;
+    }
+
+    var raw = state.raw && typeof state.raw === "object" ? state.raw : null;
+    var sourceBody = raw && raw.body && typeof raw.body === "object" ? raw.body : raw;
+    var body = sourceBody && typeof sourceBody === "object" ? clonePlainObject(sourceBody) : {};
+    var bundleVers = clonePlainObject(state.bundleVers);
+
+    body.bundleVers = body.bundleVers || bundleVers;
+    if (typeof body.bundleVers === "string") {
+      var parsedBundleVers = tryParseJson(body.bundleVers);
+      body.bundleVers = parsedBundleVers && typeof parsedBundleVers === "object" ? parsedBundleVers : bundleVers;
+    }
+    if (!body.bundleVers || typeof body.bundleVers !== "object") {
+      body.bundleVers = bundleVers;
+    }
+
+    if (state.codeVersion) {
+      body.codeVersion = state.codeVersion;
+      body.bundleVers.codeVersion = state.codeVersion;
+    }
+
+    if (state.dataVers) {
+      body.dataVers = state.dataVers;
+    }
+    if (state.dataBundleVer) {
+      body.dataBundleVer = state.dataBundleVer;
+    }
+    if (Number.isFinite(Number(state.battleVersion)) && Number(state.battleVersion) > 0) {
+      body.battleVersion = Number(state.battleVersion);
+    }
+    if (state.serverUrl) {
+      body.serverUrl = state.serverUrl;
+    }
+    if (body.isLast === undefined) {
+      body.isLast = true;
+    }
+
+    return body;
+  }
+
+  function buildRuntimeManifestResult(manifestState) {
+    var body = buildRuntimeManifestBody(manifestState);
+    if (!body) {
+      return null;
+    }
+
+    return {
+      code: 0,
+      error: "",
+      rawData: body,
+      getData: function () {
+        return body;
+      },
+    };
+  }
+
+  function syncRuntimeManifestGlobals(manifestState) {
+    var state = manifestState || getRuntimeManifestState();
+    if (!state) {
+      return false;
+    }
+
+    var dataVersion = getRuntimeDataVersion(state);
+    var battleVersion = Number(state.battleVersion || 0);
+
+    window.__XYZW_REMOTE_MANIFEST_BODY__ = buildRuntimeManifestBody(state);
+    window.__XYZW_REMOTE_DATA_VERSION__ = dataVersion || "";
+    window.__XYZW_MANIFEST_BATTLE_VERSION__ = Number.isFinite(battleVersion) ? battleVersion : 0;
+    window.__XYZW_MANIFEST_CODE_VERSION__ = state.codeVersion || "";
+
+    try {
+      if (window.cc && window.cc.sys) {
+        window.cc.sys.manifestResult = buildRuntimeManifestResult(state);
+      }
+    } catch (error) {}
+
+    return true;
   }
 
   function tryReadNativeManifestState(config, requestInit, originalError) {
@@ -2267,6 +2526,7 @@
       url: manifestState.url || "",
       dataVers: manifestState.dataVers || "",
       dataBundleVer: manifestState.dataBundleVer || "",
+      battleVersion: Number.isFinite(Number(manifestState.battleVersion)) ? Number(manifestState.battleVersion) : 0,
       serverUrl: manifestState.serverUrl || "",
       eligibleBundles: eligibleBundleNames.length,
       appliedBundles: Object.keys(filteredBundleVers).length,
@@ -3087,6 +3347,7 @@
 
     window.__REMOTE_VERSION_CONFIG__ = payload;
     window.__REMOTE_MANIFEST_STATE__ = manifestState;
+    syncRuntimeManifestGlobals(manifestState);
     window.__AUTO_CODE_VERSION__ = autoCodeVersion;
     window.__XYZW_EFFECTIVE_CODE_VERSION__ = resolveEffectiveCodeVersion(payload, manifestState);
     DEBUG_MANIFEST_STATE.loaded = true;
