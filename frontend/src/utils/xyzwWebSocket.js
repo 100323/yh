@@ -1186,6 +1186,8 @@ export class XyzwWebSocketClient {
         "system_signinreward",
         "dungeon_selecthero",
         "artifact_exchange",
+        "task_claimdailyreward",
+        "task_claimweekreward",
       ],
     };
 

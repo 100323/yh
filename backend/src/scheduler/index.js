@@ -18,6 +18,7 @@ import { calculateNextRunAt, parseCronField } from '../utils/cronSchedule.js';
 import {
   buildCarClaimTaskMessage,
   buildCarSendTaskMessage,
+  didDailyTaskClaimConfirmReward,
   executeArenaScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
@@ -676,6 +677,7 @@ async function executeScheduledTaskWithClient(task, context = {}) {
     await claimDailyPointRewardsByTask(currentClient, taskType, taskConfig);
     updateDailyRewardFlushAfterTask(accountId, {
       taskType,
+      result,
       accountName,
       tokenCandidates: context.connectionContext?.tokenCandidates || [],
       roleId: context.connectionContext?.tokenMeta?.roleId ?? null,
@@ -1559,6 +1561,7 @@ function ensureDailyRewardFlushEntry(accountId) {
 
 function updateDailyRewardFlushAfterTask(accountId, context = {}) {
   const entry = ensureDailyRewardFlushEntry(accountId);
+  const wasDirty = entry.dirty === true;
   entry.accountName = context.accountName || entry.accountName;
   entry.tokenCandidates = Array.isArray(context.tokenCandidates) ? [...context.tokenCandidates] : entry.tokenCandidates;
   entry.roleId = context.roleId ?? entry.roleId;
@@ -1568,7 +1571,18 @@ function updateDailyRewardFlushAfterTask(accountId, context = {}) {
   entry.retryCount = 0;
 
   if (context.taskType === 'DAILY_TASK_CLAIM') {
-    clearDailyRewardFlush(accountId);
+    if (!wasDirty || didDailyTaskClaimConfirmReward(context.result)) {
+      clearDailyRewardFlush(accountId);
+      return;
+    }
+
+    entry.dirty = true;
+    if (entry.timer) {
+      clearTimeout(entry.timer);
+    }
+    entry.timer = setTimeout(() => {
+      void flushDailyRewardClaim(accountId, 'daily-claim-no-reward-confirmed');
+    }, DAILY_REWARD_RETRY_DELAY_MS);
     return;
   }
 
@@ -1641,11 +1655,16 @@ async function flushDailyRewardClaimOnClient(
     const currentClient = execution.client;
     const result = execution.result;
 
-    entry.dirty = false;
-    entry.retryCount = 0;
     const claimedCount = Number(result?.data?.claimedCount || 0);
-    const flushMessage = claimedCount > 0
+    const rewardConfirmed = didDailyTaskClaimConfirmReward(result);
+    entry.dirty = !rewardConfirmed;
+    if (rewardConfirmed) {
+      entry.retryCount = 0;
+    }
+    const flushMessage = rewardConfirmed
       ? `自动收尾补领完成: ${result.message || '每日任务奖励领取完成'}`
+      : claimedCount > 0
+        ? `自动收尾检查完成: ${result.message || '已领取任务点数，未确认日活宝箱领取，稍后复查'}`
       : `自动收尾检查完成: ${result.message || '没有可领取的每日任务奖励'}`;
     addTaskLog(
       accountId,
@@ -1659,6 +1678,9 @@ async function flushDailyRewardClaimOnClient(
       })
     );
     console.log(`✅ ${flushMessage}: ${flushContext.accountName || entry.accountName}`);
+    if (!rewardConfirmed) {
+      scheduleDailyRewardFlushRetry(entry, accountId, 'retry');
+    }
     return currentClient;
   } catch (error) {
     entry.dirty = true;
@@ -1755,11 +1777,16 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
         }
       }
 
-      entry.dirty = false;
-      entry.retryCount = 0;
       const claimedCount = Number(result?.data?.claimedCount || 0);
-      const flushMessage = claimedCount > 0
+      const rewardConfirmed = didDailyTaskClaimConfirmReward(result);
+      entry.dirty = !rewardConfirmed;
+      if (rewardConfirmed) {
+        entry.retryCount = 0;
+      }
+      const flushMessage = rewardConfirmed
         ? `自动收尾补领完成: ${result.message || '每日任务奖励领取完成'}`
+        : claimedCount > 0
+          ? `自动收尾检查完成: ${result.message || '已领取任务点数，未确认日活宝箱领取，稍后复查'}`
         : `自动收尾检查完成: ${result.message || '没有可领取的每日任务奖励'}`;
       addTaskLog(
         accountId,
@@ -1773,6 +1800,9 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
         })
       );
       console.log(`✅ ${flushMessage}: ${flushContext.accountName}`);
+      if (!rewardConfirmed) {
+        scheduleDailyRewardFlushRetry(entry, accountId, 'retry');
+      }
       return true;
     } catch (error) {
       entry.dirty = true;

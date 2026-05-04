@@ -10,6 +10,7 @@ import { calculateNextRunAt, resolveBatchCronExpression } from '../utils/cronSch
 import {
   buildCarClaimTaskMessage,
   buildCarSendTaskMessage,
+  didDailyTaskClaimConfirmReward,
   executeArenaScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
@@ -45,6 +46,8 @@ const scheduledBatchJobs = new Map();
 const activeConnections = new Map();
 const runningTasks = new Set();
 let batchSchedulerRefreshJob = null;
+const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;
+const DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS = 3;
 const DAILY_POINT_TASK_ID_MAP = {
   SIGN_IN: [1],
   HANGUP_ADD_TIME: [2],
@@ -520,9 +523,9 @@ export async function executeBatchTask(task) {
 
         for (const taskType of taskTypes) {
           try {
-            await executeTaskForAccount(task.id, account, taskType, tokenCandidates, tokenMeta.roleId, accountWsUrl);
+            const result = await executeTaskForAccount(task.id, account, taskType, tokenCandidates, tokenMeta.roleId, accountWsUrl);
             if (taskType === 'DAILY_TASK_CLAIM') {
-              dailyRewardDirty = false;
+              dailyRewardDirty = dailyRewardDirty && !didDailyTaskClaimConfirmReward(result);
             } else if (DAILY_REWARD_DIRTY_TASKS.has(taskType)) {
               dailyRewardDirty = true;
             }
@@ -890,19 +893,30 @@ async function claimDailyPointRewardsByTask(client, taskType, taskConfig = {}) {
 
 async function executePostTaskRewardsForAccount(account, tokenCandidates, roleId = null, wsUrl = '', extraContext = {}) {
   let client = await ensureBatchClient(account, tokenCandidates, roleId, wsUrl, extraContext);
+  let lastResult = null;
 
-  try {
-    return await executeDailyTaskClaim(client, {});
-  } catch (error) {
-    if (!isRetryableWsError(error)) {
-      throw error;
+  for (let attempt = 1; attempt <= DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS; attempt += 1) {
+    try {
+      lastResult = await executeDailyTaskClaim(client, {});
+      if (didDailyTaskClaimConfirmReward(lastResult) || attempt >= DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS) {
+        return lastResult;
+      }
+      await sleep(DAILY_REWARD_POST_RETRY_DELAY_MS);
+    } catch (error) {
+      if (!isRetryableWsError(error)) {
+        throw error;
+      }
+      if (attempt >= DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS) {
+        throw error;
+      }
+      console.warn(`🔁 批量任务收尾补领检测到连接已断开，重连后重试: ${account.name}`);
+      activeConnections.delete(account.id);
+      client.disconnect();
+      client = await ensureBatchClient(account, tokenCandidates, roleId, wsUrl, extraContext);
     }
-    console.warn(`🔁 批量任务收尾补领检测到连接已断开，重连后重试: ${account.name}`);
-    activeConnections.delete(account.id);
-    client.disconnect();
-    client = await ensureBatchClient(account, tokenCandidates, roleId, wsUrl, extraContext);
-    return await executeDailyTaskClaim(client, {});
   }
+
+  return lastResult || { message: '收尾补领奖励检查完成', data: { claimedCount: 0 } };
 }
 
 async function runTaskByType(client, taskType, config, context = {}) {

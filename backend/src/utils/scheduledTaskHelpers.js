@@ -79,6 +79,20 @@ function createDetailedError(message, details = null) {
   return error;
 }
 
+export function didDailyTaskClaimConfirmReward(result = {}) {
+  const data = result?.data && typeof result.data === 'object' ? result.data : {};
+  if (data.dailyRewardClaimed === true) {
+    return true;
+  }
+
+  const results = Array.isArray(data.results) ? data.results : [];
+  return results.some((item) => {
+    if (!item?.ok) return false;
+    const name = String(item?.name || '');
+    return name.includes('日常任务宝箱');
+  });
+}
+
 function normalizeFormationId(value) {
   const normalized = Number(value);
   if (!Number.isInteger(normalized) || normalized < 1 || normalized > 6) {
@@ -560,6 +574,8 @@ export async function executeDailyTaskClaimScheduledTask(client) {
           afterDailyPoint: afterState?.dailyPoint ?? null,
           checkedTaskIds: taskIds,
           hardErrors,
+          dailyRewardClaimed: dailyRewardResult.ok,
+          weeklyRewardClaimed: weeklyRewardResult.ok,
         }
       );
     }
@@ -573,6 +589,8 @@ export async function executeDailyTaskClaimScheduledTask(client) {
         beforeDailyPoint: beforeState?.dailyPoint ?? null,
         afterDailyPoint: afterState?.dailyPoint ?? null,
         checkedTaskIds: taskIds,
+        dailyRewardClaimed: dailyRewardResult.ok,
+        weeklyRewardClaimed: weeklyRewardResult.ok,
       },
     };
   }
@@ -586,6 +604,8 @@ export async function executeDailyTaskClaimScheduledTask(client) {
       beforeDailyPoint: beforeState?.dailyPoint ?? null,
       afterDailyPoint: afterState?.dailyPoint ?? null,
       checkedTaskIds: taskIds,
+      dailyRewardClaimed: dailyRewardResult.ok,
+      weeklyRewardClaimed: weeklyRewardResult.ok,
     },
   };
 }
