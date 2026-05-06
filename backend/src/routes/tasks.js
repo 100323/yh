@@ -8,7 +8,7 @@ const router = Router();
 
 router.use(authMiddleware);
 
-export const CURRENT_DEFAULT_CRON_VERSION = 3;
+export const CURRENT_DEFAULT_CRON_VERSION = 4;
 
 export const TASK_TYPES = {
   SIGN_IN: { name: '每日签到', cron: '0 8 * * *', group: 'daily' },
@@ -38,7 +38,7 @@ export const TASK_TYPES = {
   TREASURE_CLAIM: { name: '珍宝阁领取', cron: '1 0 * * *', group: 'daily' },
   LEGACY_CLAIM: { name: '残卷收取', cron: '23 */6 * * *', group: 'daily' },
   WELFARE_CLAIM: { name: '福利奖励领取', cron: '4 12 * * *', group: 'daily' },
-  DAILY_TASK_CLAIM: { name: '每日任务奖励领取', cron: '4 12 * * *', group: 'daily' },
+  DAILY_TASK_CLAIM: { name: '日周活跃奖励领取', cron: '25 12 * * *', group: 'daily' },
   DREAM: { name: '梦境', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', cron: '10 12 * * *', group: 'dungeon' },
   STAR_TEMPLE: { name: '星级十殿', cron: '10 12 * * *', group: 'dungeon' },
@@ -68,7 +68,7 @@ export const LEGACY_DEFAULT_TASK_CRONS = {
   CAR_SEND: ['1 12 * * *', '7 12 * * *'],
   BLACK_MARKET: ['1 12 * * *'],
   WELFARE_CLAIM: ['1 12 * * *'],
-  DAILY_TASK_CLAIM: ['1 12 * * *'],
+  DAILY_TASK_CLAIM: ['1 12 * * *', '4 12 * * *'],
   DREAM: ['1 12 * * *', '10 12 * * *'],
   SKIN_CHALLENGE: ['1 12 * * *'],
   DREAM_PURCHASE: ['1 12 * * *', '10 12 * * *'],

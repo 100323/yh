@@ -90,6 +90,7 @@ const DAILY_REWARD_DIRTY_TASKS = new Set([
 ]);
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
 const TASK_EXTRA_CRON_EXPRESSIONS = {
+  DAILY_TASK_CLAIM: ['30 23 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
 const DAILY_CATCHUP_CRON = '15 19 * * *';
@@ -676,17 +677,6 @@ async function executeScheduledTaskWithClient(task, context = {}) {
     const result = execution.result;
 
     await claimDailyPointRewardsByTask(currentClient, taskType, taskConfig);
-    updateDailyRewardFlushAfterTask(accountId, {
-      taskType,
-      result,
-      accountName,
-      tokenCandidates: context.connectionContext?.tokenCandidates || [],
-      roleId: context.connectionContext?.tokenMeta?.roleId ?? null,
-      wsUrl: context.connectionContext?.wsUrl || '',
-      importMethod: context.connectionContext?.importMethod || null,
-      updatedAt: context.connectionContext?.updatedAt || null,
-    });
-
     markScheduledTaskSuccess(task, result);
     return {
       ok: true,
@@ -733,7 +723,6 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
     let connectionContext = null;
     let batchClient = null;
     let processedItemCount = 0;
-    let shouldRunBatchFinalizer = true;
 
     try {
       const batchSeedTask = mergeTaskWithLatestAccountSnapshot(
@@ -803,7 +792,6 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         processedItemCount += 1;
 
         if (!outcome.ok && shouldAbortAccountBatchOnError(outcome.error)) {
-          shouldRunBatchFinalizer = false;
           for (const pendingItem of batchItems.slice(index + 1)) {
             markScheduledTaskFailure(pendingItem.task, new Error(outcome.error));
             resolveScheduledTaskBatchWaiters(pendingItem, {
@@ -818,22 +806,6 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         }
       }
 
-      if (shouldRunBatchFinalizer && batchClient?.isSocketOpen?.()) {
-        await flushDailyRewardClaimOnClient(
-          accountId,
-          batchClient,
-          {
-            accountName,
-            tokenCandidates: connectionContext.tokenCandidates,
-            roleId: connectionContext.tokenMeta?.roleId ?? null,
-            wsUrl: connectionContext.wsUrl,
-            importMethod: connectionContext.importMethod,
-            updatedAt: connectionContext.updatedAt,
-          },
-          async () => await reconnectBatchClient('DAILY_TASK_CLAIM'),
-          'batch-finalize'
-        );
-      }
     } catch (error) {
       console.error('❌ 账号批次执行初始化失败', {
         accountId,

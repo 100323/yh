@@ -63,16 +63,6 @@ const DAILY_POINT_TASK_ID_MAP = {
   BLACK_MARKET: [12],
 };
 
-const DAILY_REWARD_DIRTY_TASKS = new Set([
-  'SIGN_IN',
-  'FRIEND_GOLD',
-  'RECRUIT',
-  'BUY_GOLD',
-  'BOX_OPEN',
-  'ARENA',
-  'BOTTLE_CLAIM',
-  'BLACK_MARKET'
-]);
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
 
 function isRetryableWsError(error) {
@@ -520,16 +510,10 @@ export async function executeBatchTask(task) {
           return;
         }
         const accountWsUrl = account?.ws_url || tokenMeta.wsUrl || '';
-        let dailyRewardDirty = false;
 
         for (const taskType of taskTypes) {
           try {
-            const result = await executeTaskForAccount(task.id, account, taskType, tokenCandidates, tokenMeta.roleId, accountWsUrl);
-            if (taskType === 'DAILY_TASK_CLAIM') {
-              dailyRewardDirty = dailyRewardDirty && !didDailyTaskClaimConfirmReward(result);
-            } else if (DAILY_REWARD_DIRTY_TASKS.has(taskType)) {
-              dailyRewardDirty = true;
-            }
+            await executeTaskForAccount(task.id, account, taskType, tokenCandidates, tokenMeta.roleId, accountWsUrl);
           } catch (error) {
             console.error(`❌ 账号 ${account.name} 执行任务 ${taskType} 失败:`, error.message);
             addBatchTaskLogEntry(
@@ -538,37 +522,6 @@ export async function executeBatchTask(task) {
               taskType,
               shouldIgnoreFailure(error) ? 'ignored' : 'error',
               error.message,
-              error?.details ? JSON.stringify(error.details) : null
-            );
-          }
-        }
-
-        if (dailyRewardDirty) {
-          try {
-            const rewardResult = await executePostTaskRewardsForAccount(
-              account,
-              tokenCandidates,
-              tokenMeta.roleId,
-              accountWsUrl,
-              {
-                importMethod: account.import_method || null,
-                updatedAt: account.updated_at || null,
-              }
-            );
-            addBatchTaskLogEntry(
-              task.id,
-              account.id,
-              'TASK_REWARD',
-              'success',
-              rewardResult?.message || '收尾补领奖励检查完成'
-            );
-          } catch (error) {
-            addBatchTaskLogEntry(
-              task.id,
-              account.id,
-              'TASK_REWARD',
-              shouldIgnoreFailure(error) ? 'ignored' : 'error',
-              error.message || '收尾补领失败',
               error?.details ? JSON.stringify(error.details) : null
             );
           }

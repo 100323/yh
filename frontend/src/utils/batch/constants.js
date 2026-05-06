@@ -232,9 +232,9 @@ export const taskConfigDefinitions = {
     configFields: [],
   },
   batchDailyTaskClaim: {
-    label: "每日任务奖励",
+    label: "日周活跃奖励",
     group: "daily",
-    description: "领取每日任务奖励、日常任务宝箱、周常任务宝箱",
+    description: "统一领取每日任务点数、日活跃宝箱、周活跃宝箱",
     defaultEnabled: true,
     configFields: [],
   },

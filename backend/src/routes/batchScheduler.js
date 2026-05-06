@@ -30,6 +30,7 @@ export const BATCH_TASK_TYPES = {
   BLACK_MARKET: { name: '黑市采购', group: 'daily' },
   TREASURE_CLAIM: { name: '珍宝阁领取', group: 'daily' },
   LEGACY_CLAIM: { name: '残卷收取', group: 'daily' },
+  DAILY_TASK_CLAIM: { name: '日周活跃奖励领取', group: 'daily' },
   DREAM: { name: '梦境', group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', group: 'dungeon' },
   PEACH_TASK: { name: '蟠桃园任务', group: 'dungeon' },

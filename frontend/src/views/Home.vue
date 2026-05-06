@@ -263,7 +263,7 @@ const taskTypeNames = {
   TREASURE_CLAIM: '珍宝阁领取',
   LEGACY_CLAIM: '残卷收取',
   WELFARE_CLAIM: '福利奖励领取',
-  DAILY_TASK_CLAIM: '每日任务奖励领取',
+  DAILY_TASK_CLAIM: '日周活跃奖励领取',
   DREAM: '梦境',
   DREAM_PURCHASE: '购买梦境商品',
   SKIN_CHALLENGE: '换皮闯关',
