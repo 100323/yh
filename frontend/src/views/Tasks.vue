@@ -255,6 +255,7 @@ const frontendToBackendTaskMap = {
   skinChallenge: 'SKIN_CHALLENGE',
   starTemple: 'STAR_TEMPLE',
   batchGenieSweep: 'GENIE_SWEEP',
+  batchGacha: 'GACHA',
   batchLegionBoss: 'LEGION_BOSS',
   batchBuyDreamItems: 'DREAM_PURCHASE',
   batchDailyBoss: 'DAILY_BOSS',

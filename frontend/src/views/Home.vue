@@ -271,7 +271,8 @@ const taskTypeNames = {
   PEACH_TASK: '蟠桃园任务',
   BOX_OPEN: '批量开箱',
   LEGION_STORE_FRAGMENT: '购买四圣碎片',
-  GENIE_SWEEP: '灯神扫荡'
+  GENIE_SWEEP: '灯神扫荡',
+  GACHA: '免费扭蛋抽奖'
 };
 
 const getTaskTypeName = (taskType) => {

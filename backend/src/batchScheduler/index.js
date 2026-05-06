@@ -1004,6 +1004,9 @@ async function runTaskByType(client, taskType, config, context = {}) {
     
     case 'GENIE_SWEEP':
       return await executeGenieSweep(client, config);
+
+    case 'GACHA':
+      return await executeGacha(client, config);
     
     default:
       throw new Error(`未知任务类型: ${taskType}`);
@@ -1398,6 +1401,32 @@ async function executeFishing(client, config) {
     throw new Error(results[0].error || '钓鱼失败');
   }
   return { message: `钓鱼完成 (${successCount}/${results.length}次)`, data: { results, successCount, count, type } };
+}
+
+async function executeGacha(client, config = {}) {
+  const num = Math.max(1, Number(config?.num ?? config?.count ?? 1) || 1);
+  const isGroup = config?.isGroup === true;
+  const results = [];
+
+  await client.getGachaInfo();
+  await new Promise((resolve) => setTimeout(resolve, 200));
+
+  try {
+    const result = await client.drawGachaReward(isGroup, num);
+    results.push({ ok: true, result });
+  } catch (error) {
+    results.push({ ok: false, error: error.message });
+  }
+
+  const successCount = results.filter((x) => x.ok).length;
+  if (successCount === 0 && results.length > 0) {
+    throw new Error(results[0].error || '扭蛋抽奖失败');
+  }
+
+  return {
+    message: `扭蛋抽奖完成 (${successCount}/${results.length}次)`,
+    data: { results, successCount, num, isGroup },
+  };
 }
 
 async function executeMailClaim(client) {

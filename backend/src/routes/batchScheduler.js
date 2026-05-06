@@ -35,6 +35,7 @@ export const BATCH_TASK_TYPES = {
   PEACH_TASK: { name: '蟠桃园任务', group: 'dungeon' },
   BOX_OPEN: { name: '批量开箱', group: 'resource' },
   GENIE_SWEEP: { name: '灯神扫荡', group: 'resource' },
+  GACHA: { name: '免费扭蛋抽奖', group: 'resource' },
 };
 
 router.get('/types', (req, res) => {

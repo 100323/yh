@@ -636,6 +636,32 @@ export class DailyTaskRunner {
       });
     }
 
+    // 扭蛋抽奖（每周二、四、六）
+    if (
+      (mengyandayOfWeek === 2 || mengyandayOfWeek === 4 || mengyandayOfWeek === 6) &&
+      isTodayAvailable(statisticsTime["gacha:free"])
+    ) {
+      taskList.push({
+        name: "免费扭蛋抽奖",
+        execute: async () => {
+          // 先获取扭蛋信息
+          await this.executeGameCommand(
+            tokenId,
+            "gacha_getinfo",
+            {},
+            "获取扭蛋信息",
+          );
+          // 执行抽奖
+          await this.executeGameCommand(
+            tokenId,
+            "gacha_drawreward",
+            { isGroup: false, num: 1 },
+            "免费扭蛋抽奖",
+          );
+        },
+      });
+    }
+
     // 阵容还原
     if (originalFormation) {
       taskList.push({

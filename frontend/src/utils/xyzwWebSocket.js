@@ -391,6 +391,10 @@ export function registerDefaultCommands(reg) {
     .register("towers_start")
     .register("towers_fight")
 
+    // 扭蛋相关
+    .register("gacha_getinfo")
+    .register("gacha_drawreward", { isGroup: false, num: 1 })
+
     //发送游戏内消息
     .register("system_sendchatmessage");
   registry.commands.set(
@@ -1166,6 +1170,9 @@ export class XyzwWebSocketClient {
       towers_getinforesp: "towers_getinfo",
       towers_startresp: "towers_start",
       towers_fightresp: "towers_fight",
+      // 扭蛋相关响应映射
+      gacha_getinforesp: "gacha_getinfo",
+      gacha_drawrewardresp: "gacha_drawreward",
       // 特殊响应映射 - 有些命令有独立响应，有些用同步响应
       task_claimdailyrewardresp: "task_claimdailyreward",
       task_claimweekrewardresp: "task_claimweekreward",
@@ -1183,6 +1190,7 @@ export class XyzwWebSocketClient {
         "artifact_lottery",
         "genie_sweep",
         "genie_buysweep",
+        "gacha_drawreward",
         "system_signinreward",
         "dungeon_selecthero",
         "artifact_exchange",

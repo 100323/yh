@@ -79,6 +79,8 @@ const COMMAND_RESPONSE_ALIASES = {
   towers_getinfo: ['towers_getinforesp'],
   towers_start: ['towers_startresp'],
   towers_fight: ['towers_fightresp'],
+  gacha_getinfo: ['gacha_getinforesp'],
+  gacha_drawreward: ['gacha_drawrewardresp', 'syncrewardresp'],
   nightmare_getroleinfo: ['nightmare_getroleinforesp'],
   nmext_getinfo: ['nmext_getinforesp'],
   nmext_startboss: ['nmext_startbossresp'],
@@ -496,11 +498,24 @@ export class GameClient {
 
   _handleMessage(data) {
     try {
-      const raw = parse(data, getEnc('x'));
+      const isPreParsedMessage =
+        data &&
+        typeof data === 'object' &&
+        !Buffer.isBuffer(data) &&
+        !(data instanceof ArrayBuffer) &&
+        !ArrayBuffer.isView(data);
+      const raw = isPreParsedMessage ? data : parse(data, getEnc('x'));
       if (!raw || typeof raw !== 'object') {
         return;
       }
-      const body = raw.body ? bon.decode(raw.body) : raw;
+      const hasPreDecodedBody =
+        isPreParsedMessage &&
+        raw.body &&
+        typeof raw.body === 'object' &&
+        !Buffer.isBuffer(raw.body) &&
+        !(raw.body instanceof ArrayBuffer) &&
+        !ArrayBuffer.isView(raw.body);
+      const body = raw.body ? (hasPreDecodedBody ? raw.body : bon.decode(raw.body)) : raw;
 
       this._updateBattleVersion(body, raw);
       
@@ -828,6 +843,14 @@ export class GameClient {
       newFree: true,
       type
     });
+  }
+
+  async getGachaInfo() {
+    return this.sendWithPromise('gacha_getinfo', {});
+  }
+
+  async drawGachaReward(isGroup = false, num = 1) {
+    return this.sendWithPromise('gacha_drawreward', { isGroup, num });
   }
 
   async claimAllMail(category = 0) {

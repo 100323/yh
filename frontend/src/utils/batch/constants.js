@@ -354,6 +354,13 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [],
   },
+  batchGacha: {
+    label: "免费扭蛋抽奖",
+    group: "resource",
+    description: "每周二、四、六 00:01 自动领取免费扭蛋",
+    defaultEnabled: true,
+    configFields: [],
+  },
 };
 
 // 可用的定时任务列表（向后兼容）
@@ -402,6 +409,7 @@ const defaultTaskScheduleOverrides = {
   batchFish: { runTime: createDefaultRunTime(12, 1) },
   batchOpenBox: { runTime: createDefaultRunTime(12, 1) },
   batchGenieSweep: { runTime: createDefaultRunTime(0, 1) },
+  batchGacha: { scheduleType: "weekly", weekdays: [2, 4, 6], runTime: createDefaultRunTime(0, 1) },
 };
 
 const defaultTaskConfigOverrides = {

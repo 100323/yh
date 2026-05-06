@@ -47,6 +47,7 @@ export const TASK_TYPES = {
   BOX_OPEN: { name: '批量开箱', cron: '7 12 * * *', group: 'resource' },
   LEGION_STORE_FRAGMENT: { name: '购买四圣碎片', cron: '0 8 * * 1', group: 'resource' },
   GENIE_SWEEP: { name: '灯神扫荡', cron: '1 0 * * *', group: 'resource' },
+  GACHA: { name: '免费扭蛋抽奖', cron: '1 0 * * 2,4,6', group: 'resource' },
 };
 
 export const LEGACY_DEFAULT_TASK_CRONS = {
@@ -146,6 +147,7 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   },
   DREAM_PURCHASE: { enabled: true, config: { purchaseList: ['1-3', '1-5', '2-6', '2-7', '3-1', '3-2', '3-7'] } },
   GENIE_SWEEP: { enabled: true, config: {} },
+  GACHA: { enabled: true, config: {} },
 };
 
 function getTaskDefaultCronVersion(taskType) {
