@@ -18,6 +18,7 @@ import { calculateNextRunAt, parseCronField } from '../utils/cronSchedule.js';
 import {
   buildCarClaimTaskMessage,
   buildCarSendTaskMessage,
+  claimDailyPointWithRetry,
   didDailyTaskClaimConfirmReward,
   executeArenaScheduledTask,
   executeMailClaimScheduledTask,
@@ -1519,8 +1520,8 @@ async function claimDailyPointRewardsByTask(client, taskType, taskConfig = {}) {
 
   for (const taskId of taskIds) {
     try {
-      await client.claimDailyPoint(taskId);
-      await new Promise((resolve) => setTimeout(resolve, 120));
+      await claimDailyPointWithRetry(client, taskId);
+      await sleep(900);
     } catch {
       // 忽略“已领取/未达成”等错误，不影响主任务结果
     }

@@ -1,5 +1,7 @@
 const MAIL_CATEGORIES = [0, 4, 5];
 const DEFAULT_DAILY_TASK_IDS = Array.from({ length: 10 }, (_, index) => index + 1);
+const DAILY_POINT_CLAIM_DELAY_MS = 900;
+const DAILY_POINT_TOO_FAST_RETRY_DELAYS_MS = [1200, 2500, 5000];
 const NOOP_ERROR_PATTERNS = [
   '没有可领取',
   '已经领取',
@@ -42,6 +44,10 @@ function isLegacyReentryRequiredError(error) {
 function isNoopError(error) {
   const message = normalizeErrorMessage(error);
   return NOOP_ERROR_PATTERNS.some((pattern) => message.includes(pattern));
+}
+
+function isTooFastError(error) {
+  return normalizeErrorMessage(error).includes('操作过快');
 }
 
 function stableClone(value, seen = new WeakSet()) {
@@ -91,6 +97,26 @@ export function didDailyTaskClaimConfirmReward(result = {}) {
     const name = String(item?.name || '');
     return name.includes('日常任务宝箱');
   });
+}
+
+export async function claimDailyPointWithRetry(client, taskId, options = {}) {
+  const retryDelays = Array.isArray(options.retryDelays)
+    ? options.retryDelays
+    : DAILY_POINT_TOO_FAST_RETRY_DELAYS_MS;
+  let attempt = 0;
+
+  while (true) {
+    try {
+      return await client.claimDailyPoint(taskId);
+    } catch (error) {
+      if (!isTooFastError(error) || attempt >= retryDelays.length) {
+        throw error;
+      }
+
+      await sleep(Math.max(0, Number(retryDelays[attempt]) || 0));
+      attempt += 1;
+    }
+  }
 }
 
 function normalizeFormationId(value) {
@@ -519,12 +545,12 @@ export async function executeDailyTaskClaimScheduledTask(client) {
     const claimResult = await tryClaim(
       results,
       `任务奖励${taskId}`,
-      () => client.claimDailyPoint(taskId)
+      () => claimDailyPointWithRetry(client, taskId)
     );
     if (claimResult.ok) {
       successCount += 1;
     }
-    await sleep(150);
+    await sleep(DAILY_POINT_CLAIM_DELAY_MS);
   }
 
   const dailyRewardResult = await tryClaimWithExtraNoopPatterns(
