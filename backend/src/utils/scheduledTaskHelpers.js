@@ -1,5 +1,7 @@
 const MAIL_CATEGORIES = [0, 4, 5];
 const DEFAULT_DAILY_TASK_IDS = Array.from({ length: 10 }, (_, index) => index + 1);
+const DAILY_REWARD_THRESHOLDS = [20, 40, 60, 80, 100];
+const WEEKLY_REWARD_THRESHOLDS = [100, 200, 300, 400, 500, 600, 700];
 const DAILY_POINT_CLAIM_DELAY_MS = 900;
 const DAILY_POINT_TOO_FAST_RETRY_DELAYS_MS = [1200, 2500, 5000];
 const NOOP_ERROR_PATTERNS = [
@@ -85,8 +87,27 @@ function createDetailedError(message, details = null) {
   return error;
 }
 
+function normalizeRewardMap(value) {
+  return value && typeof value === 'object' ? value : {};
+}
+
+function getPendingRewardIds(point, rewardMap, thresholds) {
+  const currentPoint = Math.max(0, Number(point) || 0);
+  const claimedMap = normalizeRewardMap(rewardMap);
+  return thresholds
+    .map((threshold, index) => ({ rewardId: index + 1, threshold }))
+    .filter(({ rewardId, threshold }) => currentPoint >= threshold && claimedMap[rewardId] !== true)
+    .map(({ rewardId }) => rewardId);
+}
+
 export function didDailyTaskClaimConfirmReward(result = {}) {
   const data = result?.data && typeof result.data === 'object' ? result.data : {};
+  if (data.dailyRewardPending === true || data.weeklyRewardPending === true) {
+    return false;
+  }
+  if (data.dailyRewardPending === false && data.weeklyRewardPending === false) {
+    return true;
+  }
   if (data.dailyRewardClaimed === true) {
     return true;
   }
@@ -347,7 +368,10 @@ async function getDailyTaskState(client) {
   return {
     fingerprint: stableStringify(dailyTask),
     dailyPoint: Number(dailyTask?.dailyPoint || 0),
+    weekPoint: Number(dailyTask?.weekPoint || 0),
     completeMap,
+    dailyReward: normalizeRewardMap(dailyTask?.dailyReward),
+    weekReward: normalizeRewardMap(dailyTask?.weekReward),
     readyTaskIds,
     raw: dailyTask,
   };
@@ -587,6 +611,14 @@ export async function executeDailyTaskClaimScheduledTask(client) {
     beforeState && afterState
       ? beforeState.fingerprint !== afterState.fingerprint
       : null;
+  const dailyRewardPendingIds = afterState
+    ? getPendingRewardIds(afterState.dailyPoint, afterState.dailyReward, DAILY_REWARD_THRESHOLDS)
+    : [];
+  const weeklyRewardPendingIds = afterState
+    ? getPendingRewardIds(afterState.weekPoint, afterState.weekReward, WEEKLY_REWARD_THRESHOLDS)
+    : [];
+  const dailyRewardPending = dailyRewardPendingIds.length > 0;
+  const weeklyRewardPending = weeklyRewardPendingIds.length > 0;
 
   if (successCount === 0) {
     if (hardErrors.length > 0) {
@@ -598,10 +630,16 @@ export async function executeDailyTaskClaimScheduledTask(client) {
           changed,
           beforeDailyPoint: beforeState?.dailyPoint ?? null,
           afterDailyPoint: afterState?.dailyPoint ?? null,
+          beforeWeekPoint: beforeState?.weekPoint ?? null,
+          afterWeekPoint: afterState?.weekPoint ?? null,
           checkedTaskIds: taskIds,
           hardErrors,
           dailyRewardClaimed: dailyRewardResult.ok,
           weeklyRewardClaimed: weeklyRewardResult.ok,
+          dailyRewardPending,
+          weeklyRewardPending,
+          dailyRewardPendingIds,
+          weeklyRewardPendingIds,
         }
       );
     }
@@ -614,9 +652,15 @@ export async function executeDailyTaskClaimScheduledTask(client) {
         changed,
         beforeDailyPoint: beforeState?.dailyPoint ?? null,
         afterDailyPoint: afterState?.dailyPoint ?? null,
+        beforeWeekPoint: beforeState?.weekPoint ?? null,
+        afterWeekPoint: afterState?.weekPoint ?? null,
         checkedTaskIds: taskIds,
         dailyRewardClaimed: dailyRewardResult.ok,
         weeklyRewardClaimed: weeklyRewardResult.ok,
+        dailyRewardPending,
+        weeklyRewardPending,
+        dailyRewardPendingIds,
+        weeklyRewardPendingIds,
       },
     };
   }
@@ -629,9 +673,15 @@ export async function executeDailyTaskClaimScheduledTask(client) {
       changed,
       beforeDailyPoint: beforeState?.dailyPoint ?? null,
       afterDailyPoint: afterState?.dailyPoint ?? null,
+      beforeWeekPoint: beforeState?.weekPoint ?? null,
+      afterWeekPoint: afterState?.weekPoint ?? null,
       checkedTaskIds: taskIds,
       dailyRewardClaimed: dailyRewardResult.ok,
       weeklyRewardClaimed: weeklyRewardResult.ok,
+      dailyRewardPending,
+      weeklyRewardPending,
+      dailyRewardPendingIds,
+      weeklyRewardPendingIds,
     },
   };
 }
