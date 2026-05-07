@@ -611,6 +611,22 @@ function ensureSystemSettingsSchema() {
       );
       changed = true;
     }
+
+    const existingAccountDispatchInterval = getStatement(
+      rawDb,
+      "SELECT value FROM system_settings WHERE key = 'scheduler_account_dispatch_interval_ms' LIMIT 1"
+    );
+
+    if (!existingAccountDispatchInterval) {
+      const defaultValue = String(Number(config?.scheduler?.accountDispatchIntervalMs) || 8000);
+      runStatement(
+        rawDb,
+        `INSERT INTO system_settings (key, value, updated_at)
+         VALUES ('scheduler_account_dispatch_interval_ms', ?, CURRENT_TIMESTAMP)`,
+        [defaultValue],
+      );
+      changed = true;
+    }
   } catch (error) {
     console.warn('⚠️ 检查 system_settings 表结构失败:', error?.message || error);
   }

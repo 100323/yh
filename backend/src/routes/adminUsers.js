@@ -5,8 +5,11 @@ import { hashPassword } from '../utils/crypto.js';
 import { buildUserAccessSummary, normalizeDateTimeInput } from '../utils/userAccess.js';
 import {
   getSchedulerSettings,
+  updateSchedulerAccountDispatchIntervalMsSetting,
   updateSchedulerMaxConcurrentAccountsSetting,
 } from '../utils/systemSettings.js';
+import { proxyConfigManager } from '../utils/proxyConfigManager.js';
+import { proxyPoolManager } from '../utils/proxyPool/index.js';
 
 const router = Router();
 
@@ -107,7 +110,57 @@ function serializeUser(user) {
 
 function resolveValidationStatus(error) {
   const message = String(error?.message || '');
-  return /(时间|数量上限|并发账号数)/.test(message) ? 400 : 500;
+  return /(时间|数量上限|并发账号数|账号启动间隔|代理|百分比|发布策略)/.test(message) ? 400 : 500;
+}
+
+function getAllGameAccountNames() {
+  return all(`
+    SELECT DISTINCT name
+    FROM game_accounts
+    WHERE name IS NOT NULL AND TRIM(name) != ''
+    ORDER BY name COLLATE NOCASE ASC
+  `).map((row) => row.name);
+}
+
+function normalizeProxyNameList(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return Array.from(new Set(
+    value
+      .map((item) => String(item || '').trim())
+      .filter(Boolean)
+  ));
+}
+
+function normalizeProxySettingsPayload(body = {}) {
+  const strategy = String(body?.rollout?.strategy || 'whitelist').trim();
+  if (!['whitelist', 'percentage', 'all', 'none'].includes(strategy)) {
+    throw new Error('代理发布策略不支持');
+  }
+
+  const percentage = Number(body?.rollout?.percentage || 0);
+  if (!Number.isFinite(percentage) || percentage < 0 || percentage > 100) {
+    throw new Error('代理百分比需为 0-100');
+  }
+
+  const maxRetries = Number(body?.maxRetries ?? 3);
+  if (!Number.isInteger(maxRetries) || maxRetries < 1 || maxRetries > 10) {
+    throw new Error('代理失败重试次数需为 1-10 的整数');
+  }
+
+  return {
+    enabled: !!body.enabled,
+    fallbackToDirect: body.fallbackToDirect !== false,
+    maxRetries,
+    rollout: {
+      strategy,
+      whitelist: normalizeProxyNameList(body?.rollout?.whitelist),
+      percentage,
+      excludeList: normalizeProxyNameList(body?.rollout?.excludeList),
+    },
+  };
 }
 
 router.get('/settings/scheduler', (req, res) => {
@@ -127,27 +180,43 @@ router.get('/settings/scheduler', (req, res) => {
 
 router.put('/settings/scheduler', (req, res) => {
   try {
-    const hasCamel = Object.prototype.hasOwnProperty.call(req.body || {}, 'maxConcurrentAccounts');
-    const hasSnake = Object.prototype.hasOwnProperty.call(req.body || {}, 'max_concurrent_accounts');
-    const rawValue = hasCamel
+    const body = req.body || {};
+    const hasCamel = Object.prototype.hasOwnProperty.call(body, 'maxConcurrentAccounts');
+    const hasSnake = Object.prototype.hasOwnProperty.call(body, 'max_concurrent_accounts');
+    const rawMaxConcurrentAccounts = hasCamel
       ? req.body.maxConcurrentAccounts
       : (hasSnake ? req.body.max_concurrent_accounts : undefined);
+    const hasIntervalMs = Object.prototype.hasOwnProperty.call(body, 'accountDispatchIntervalMs');
+    const hasIntervalSeconds = Object.prototype.hasOwnProperty.call(body, 'accountDispatchIntervalSeconds');
+    const hasIntervalSnake = Object.prototype.hasOwnProperty.call(body, 'account_dispatch_interval_ms');
+    const rawAccountDispatchIntervalMs = hasIntervalMs
+      ? body.accountDispatchIntervalMs
+      : (hasIntervalSeconds
+        ? Number(body.accountDispatchIntervalSeconds) * 1000
+        : (hasIntervalSnake ? body.account_dispatch_interval_ms : undefined));
 
-    if (rawValue === undefined) {
+    if (rawMaxConcurrentAccounts === undefined && rawAccountDispatchIntervalMs === undefined) {
       return res.status(400).json({
         success: false,
-        error: '缺少并发账号数配置',
+        error: '缺少调度配置',
       });
     }
 
-    const maxConcurrentAccounts = updateSchedulerMaxConcurrentAccountsSetting(rawValue);
+    const updated = {};
+    if (rawMaxConcurrentAccounts !== undefined) {
+      updated.maxConcurrentAccounts = updateSchedulerMaxConcurrentAccountsSetting(rawMaxConcurrentAccounts);
+    }
+    if (rawAccountDispatchIntervalMs !== undefined) {
+      updated.accountDispatchIntervalMs = updateSchedulerAccountDispatchIntervalMsSetting(rawAccountDispatchIntervalMs);
+      updated.accountDispatchIntervalSeconds = Math.round(updated.accountDispatchIntervalMs / 1000);
+    }
 
     res.json({
       success: true,
-      message: '调度并发设置已更新',
+      message: '调度设置已更新',
       data: {
         ...getSchedulerSettings(),
-        maxConcurrentAccounts,
+        ...updated,
       },
     });
   } catch (error) {
@@ -155,6 +224,71 @@ router.put('/settings/scheduler', (req, res) => {
     res.status(resolveValidationStatus(error)).json({
       success: false,
       error: error.message || '更新调度设置失败',
+    });
+  }
+});
+
+router.get('/settings/proxy', async (req, res) => {
+  try {
+    await proxyConfigManager.ensureLoaded();
+    if (await proxyConfigManager.isEnabled()) {
+      await proxyPoolManager.ensureInitialized();
+    }
+    res.json({
+      success: true,
+      data: {
+        ...proxyConfigManager.getStats(),
+        accountNames: getAllGameAccountNames(),
+      },
+    });
+  } catch (error) {
+    console.error('获取代理发布策略错误:', error);
+    res.status(500).json({
+      success: false,
+      error: '获取代理发布策略失败',
+    });
+  }
+});
+
+router.put('/settings/proxy', async (req, res) => {
+  try {
+    const config = normalizeProxySettingsPayload(req.body || {});
+    await proxyConfigManager.updateConfig(config);
+    res.json({
+      success: true,
+      message: '代理发布策略已更新',
+      data: {
+        ...proxyConfigManager.getStats(),
+        accountNames: getAllGameAccountNames(),
+      },
+    });
+  } catch (error) {
+    console.error('更新代理发布策略错误:', error);
+    res.status(resolveValidationStatus(error)).json({
+      success: false,
+      error: error.message || '更新代理发布策略失败',
+    });
+  }
+});
+
+router.post('/settings/proxy/warmup', async (req, res) => {
+  try {
+    const warmup = proxyPoolManager.startWarmup();
+
+    res.json({
+      success: true,
+      message: warmup.running ? '代理池预热已启动' : '代理池预热已完成',
+      data: {
+        ...proxyConfigManager.getStats(),
+        warmup,
+        accountNames: getAllGameAccountNames(),
+      },
+    });
+  } catch (error) {
+    console.error('预热代理池错误:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || '预热代理池失败',
     });
   }
 });

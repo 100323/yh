@@ -1,5 +1,8 @@
 import config from '../config/index.js';
-import { getSchedulerMaxConcurrentAccountsSetting } from './systemSettings.js';
+import {
+  getSchedulerAccountDispatchIntervalMsSetting,
+  getSchedulerMaxConcurrentAccountsSetting,
+} from './systemSettings.js';
 
 const accountTaskChains = new Map();
 const accountClients = new Map();
@@ -7,6 +10,8 @@ const queuedAccounts = [];
 const taskTypeChains = new Map();
 const taskTypeNextAllowedAt = new Map();
 let activeAccountExecutions = 0;
+let queuedDispatchTimer = null;
+let queuedDispatchScheduledAt = null;
 
 function normalizeAccountId(accountId) {
   return String(accountId);
@@ -26,8 +31,34 @@ function getTaskTypeThrottleMs(taskType) {
   return Number.isFinite(value) && value > 0 ? value : 0;
 }
 
+function getAccountDispatchIntervalMs() {
+  try {
+    return getSchedulerAccountDispatchIntervalMsSetting();
+  } catch {
+    const value = Number(config?.scheduler?.accountDispatchIntervalMs || 0);
+    return Number.isFinite(value) && value >= 0 ? Math.floor(value) : 8000;
+  }
+}
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, Math.max(0, Number(ms) || 0)));
+}
+
+function scheduleQueuedAccountDispatch(delayMs = getAccountDispatchIntervalMs()) {
+  if (queuedDispatchTimer || queuedAccounts.length === 0) {
+    return;
+  }
+  if (activeAccountExecutions >= getMaxConcurrentAccounts()) {
+    return;
+  }
+
+  const normalizedDelay = Math.max(0, Number(delayMs) || 0);
+  queuedDispatchScheduledAt = Date.now() + normalizedDelay;
+  queuedDispatchTimer = setTimeout(() => {
+    queuedDispatchTimer = null;
+    queuedDispatchScheduledAt = null;
+    dispatchQueuedAccounts();
+  }, normalizedDelay);
 }
 
 function dispatchQueuedAccounts() {
@@ -37,13 +68,17 @@ function dispatchQueuedAccounts() {
     activeAccountExecutions += 1;
     queued.resolve();
   }
+
+  if (queuedAccounts.length > 0 && activeAccountExecutions < limit) {
+    scheduleQueuedAccountDispatch();
+  }
 }
 
 async function acquireGlobalAccountSlot(accountId) {
   const key = normalizeAccountId(accountId);
   const limit = getMaxConcurrentAccounts();
 
-  if (activeAccountExecutions < limit) {
+  if (activeAccountExecutions < limit && queuedAccounts.length === 0) {
     activeAccountExecutions += 1;
     return;
   }
@@ -54,12 +89,13 @@ async function acquireGlobalAccountSlot(accountId) {
       queuedAt: Date.now(),
       resolve,
     });
+    scheduleQueuedAccountDispatch();
   });
 }
 
 function releaseGlobalAccountSlot() {
   activeAccountExecutions = Math.max(0, activeAccountExecutions - 1);
-  dispatchQueuedAccounts();
+  scheduleQueuedAccountDispatch();
 }
 
 export async function runAccountTaskExclusive(accountId, taskExecutor) {
@@ -168,8 +204,10 @@ export function unregisterAccountClient(accountId, client = null) {
 export function getAccountTaskCoordinatorStatus() {
   return {
     maxConcurrentAccounts: getMaxConcurrentAccounts(),
+    accountDispatchIntervalMs: getAccountDispatchIntervalMs(),
     activeAccountExecutions,
     queuedAccountExecutions: queuedAccounts.length,
+    queuedDispatchScheduledAt,
     runningAccountChains: accountTaskChains.size,
     queuedAccounts: queuedAccounts.map((item) => item.accountId),
     throttledTaskTypes: Array.from(taskTypeNextAllowedAt.entries()).map(([taskType, nextAllowedAt]) => ({
@@ -186,4 +224,9 @@ export function clearAccountTaskCoordinator() {
   taskTypeNextAllowedAt.clear();
   queuedAccounts.length = 0;
   activeAccountExecutions = 0;
+  if (queuedDispatchTimer) {
+    clearTimeout(queuedDispatchTimer);
+    queuedDispatchTimer = null;
+  }
+  queuedDispatchScheduledAt = null;
 }

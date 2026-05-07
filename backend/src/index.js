@@ -25,6 +25,8 @@ import { decrypt } from './utils/crypto.js';
 import config from './config/index.js';
 import { preloadStudyQuestionBank } from './utils/studyQuestions.js';
 import { consumeSlimEntryTicket } from './utils/slimEntryTicketStore.js';
+import { proxyConfigManager } from './utils/proxyConfigManager.js';
+import { proxyPoolManager } from './utils/proxyPool/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -256,6 +258,8 @@ async function initializeBackgroundService(serviceName, stateKey, initFn, stopFn
 }
 
 async function initializeBackgroundServices() {
+  void initializeProxyPoolIfEnabled();
+
   await initializeBackgroundService('定时任务调度器', 'scheduler', initScheduler, stopScheduler, {
     maxRetries: 3,
     retryDelayMs: 5000,
@@ -265,6 +269,21 @@ async function initializeBackgroundServices() {
     maxRetries: 3,
     retryDelayMs: 5000,
   });
+}
+
+async function initializeProxyPoolIfEnabled() {
+  try {
+    await proxyConfigManager.ensureLoaded();
+    if (!(await proxyConfigManager.isEnabled())) {
+      console.log('ℹ️ 代理策略默认关闭，跳过代理池自动预热');
+      return;
+    }
+
+    const status = proxyPoolManager.startWarmup();
+    console.log(`🧩 代理策略已启用，后台自动预热代理池（startedAt=${status.startedAt || '-'}）`);
+  } catch (error) {
+    console.warn('⚠️ 代理池自动预热启动失败:', error?.message || error);
+  }
 }
 
 async function runDatabaseMaintenanceTask(trigger = 'scheduled') {

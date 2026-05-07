@@ -74,6 +74,9 @@ const api = Object.assign(request, {
     getBroadcast: () => request.get('/admin/users/broadcast'),
     saveBroadcast: (data) => request.put('/admin/users/broadcast', data),
     clearBroadcast: () => request.delete('/admin/users/broadcast'),
+    getProxySettings: () => request.get('/admin/users/settings/proxy'),
+    saveProxySettings: (data) => request.put('/admin/users/settings/proxy', data),
+    warmupProxyPool: () => request.post('/admin/users/settings/proxy/warmup'),
   },
 });
 

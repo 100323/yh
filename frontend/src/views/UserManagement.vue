@@ -5,33 +5,172 @@
         <div class="card-header">
           <div>
             <span>调度并发设置</span>
-            <p class="header-subtitle">定时任务会按游戏账号批次执行，当前账号批次跑完后自动断开连接。</p>
           </div>
         </div>
       </template>
 
       <div class="scheduler-settings-panel" v-loading="schedulerSettingsLoading">
         <div class="scheduler-setting-main">
-          <div class="scheduler-setting-copy">
+          <div class="scheduler-setting-field">
             <div class="scheduler-setting-title">并发账号数</div>
-            <div class="scheduler-setting-desc">
-              同时最多跑多少个游戏账号。建议从较小数值开始逐步压测。
-            </div>
-          </div>
-          <div class="scheduler-setting-control">
             <el-input-number
               v-model="schedulerMaxConcurrentAccounts"
               :min="schedulerLimits.min"
               :max="schedulerLimits.max"
               controls-position="right"
             />
+          </div>
+          <div class="scheduler-setting-field">
+            <div class="scheduler-setting-title">账号启动间隔（秒）</div>
+            <el-input-number
+              v-model="schedulerAccountDispatchIntervalSeconds"
+              :min="schedulerLimits.accountDispatchIntervalSecondsMin"
+              :max="schedulerLimits.accountDispatchIntervalSecondsMax"
+              controls-position="right"
+            />
+          </div>
+          <div class="scheduler-setting-control">
             <el-button type="primary" :loading="schedulerSettingsSaving" @click="saveSchedulerSettings">
               保存
             </el-button>
           </div>
         </div>
-        <div class="scheduler-setting-tip">
-          当前可配置范围：{{ schedulerLimits.min }} - {{ schedulerLimits.max }}，默认值：3。
+      </div>
+    </el-card>
+
+    <el-card class="management-card proxy-settings-card">
+      <template #header>
+        <div class="card-header">
+          <div>
+            <span>代理发布策略</span>
+            <p class="header-subtitle">按游戏账号名称控制后端定时任务是否通过代理连接，默认关闭且失败可自动直连降级。</p>
+          </div>
+          <div class="proxy-status-tags">
+            <el-tag :type="proxyForm.enabled ? 'success' : 'info'">
+              {{ proxyForm.enabled ? '已启用' : '已关闭' }}
+            </el-tag>
+            <el-tag type="warning" plain>{{ getProxyStrategyLabel(proxyForm.rollout.strategy) }}</el-tag>
+          </div>
+        </div>
+      </template>
+
+      <div class="proxy-settings-panel" v-loading="proxySettingsLoading">
+        <el-form label-width="110px" class="proxy-settings-form">
+          <div class="proxy-switch-row">
+            <el-form-item label="启用代理">
+              <el-switch
+                v-model="proxyForm.enabled"
+                active-text="启用"
+                inactive-text="关闭"
+              />
+            </el-form-item>
+            <el-form-item label="失败降级">
+              <el-switch
+                v-model="proxyForm.fallbackToDirect"
+                active-text="直连兜底"
+                inactive-text="不降级"
+              />
+            </el-form-item>
+            <el-form-item label="失败重试">
+              <el-input-number
+                v-model="proxyForm.maxRetries"
+                :min="1"
+                :max="10"
+                controls-position="right"
+              />
+            </el-form-item>
+          </div>
+
+          <el-form-item label="发布策略">
+            <el-radio-group v-model="proxyForm.rollout.strategy">
+              <el-radio-button label="whitelist">白名单</el-radio-button>
+              <el-radio-button label="percentage">百分比</el-radio-button>
+              <el-radio-button label="all">全量</el-radio-button>
+              <el-radio-button label="none">暂停</el-radio-button>
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item
+            v-if="proxyForm.rollout.strategy === 'percentage'"
+            label="灰度比例"
+          >
+            <div class="proxy-percentage-control">
+              <el-slider
+                v-model="proxyForm.rollout.percentage"
+                :min="0"
+                :max="100"
+                :step="1"
+                show-input
+              />
+            </div>
+          </el-form-item>
+
+          <el-form-item
+            v-if="proxyForm.rollout.strategy === 'whitelist'"
+            label="白名单账号"
+          >
+            <el-select
+              v-model="proxyForm.rollout.whitelist"
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              placeholder="选择或输入游戏账号名称"
+              class="proxy-account-select"
+            >
+              <el-option
+                v-for="name in proxyAccountNameOptions"
+                :key="`proxy-whitelist-${name}`"
+                :label="name"
+                :value="name"
+              />
+            </el-select>
+          </el-form-item>
+
+          <el-form-item label="排除账号">
+            <el-select
+              v-model="proxyForm.rollout.excludeList"
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              placeholder="始终不走代理的游戏账号名称"
+              class="proxy-account-select"
+            >
+              <el-option
+                v-for="name in proxyAccountNameOptions"
+                :key="`proxy-exclude-${name}`"
+                :label="name"
+                :value="name"
+              />
+            </el-select>
+            <div class="form-tip">排除列表优先级最高；白名单/百分比/全量命中后也会被排除。</div>
+          </el-form-item>
+        </el-form>
+
+        <div class="proxy-stats-row">
+          <span>代理池：{{ proxyPoolStats.valid || 0 }} / {{ proxyPoolStats.total || 0 }} 可用</span>
+          <span>代理源：{{ proxyPoolStats.sources?.enabled || 0 }} / {{ proxyPoolStats.sources?.total || 0 }} 启用</span>
+          <span>已分配：{{ proxyPoolStats.assigned || 0 }}</span>
+          <span>平均延迟：{{ proxyPoolStats.avgResponseTime || 0 }}ms</span>
+          <span>命中过代理的账号：{{ proxyStats?.accountsUsingProxy || 0 }}</span>
+          <span v-if="proxyPoolStats.warmup?.running">预热中，请稍后刷新</span>
+        </div>
+
+        <div class="proxy-actions">
+          <el-button @click="fetchProxySettings" :disabled="proxySettingsSaving">刷新</el-button>
+          <el-button
+            type="success"
+            plain
+            :loading="proxyWarmupLoading"
+            :disabled="proxySettingsSaving"
+            @click="warmupProxyPool"
+          >
+            预热代理池
+          </el-button>
+          <el-button type="primary" :loading="proxySettingsSaving" @click="saveProxySettings">
+            保存代理策略
+          </el-button>
         </div>
       </div>
     </el-card>
@@ -329,9 +468,25 @@ const userLogs = ref([]);
 const schedulerSettingsLoading = ref(false);
 const schedulerSettingsSaving = ref(false);
 const schedulerMaxConcurrentAccounts = ref(3);
+const schedulerAccountDispatchIntervalSeconds = ref(8);
 const schedulerLimits = reactive({
   min: 1,
   max: 20,
+  accountDispatchIntervalSecondsMin: 0,
+  accountDispatchIntervalSecondsMax: 120,
+});
+const proxySettingsLoading = ref(false);
+const proxySettingsSaving = ref(false);
+const proxyWarmupLoading = ref(false);
+const proxyAccountNameOptions = ref([]);
+const proxyStats = ref(null);
+const proxyPoolStats = reactive({
+  total: 0,
+  valid: 0,
+  assigned: 0,
+  avgResponseTime: 0,
+  warmup: null,
+  sources: null,
 });
 const broadcastLoading = ref(false);
 const broadcastSaving = ref(false);
@@ -358,7 +513,20 @@ const createEmptyForm = () => ({
   access_end_at: null
 });
 
+const createDefaultProxyForm = () => ({
+  enabled: false,
+  fallbackToDirect: true,
+  maxRetries: 3,
+  rollout: {
+    strategy: 'whitelist',
+    whitelist: [],
+    percentage: 0,
+    excludeList: [],
+  },
+});
+
 const form = reactive(createEmptyForm());
+const proxyForm = reactive(createDefaultProxyForm());
 const broadcastForm = reactive({
   title: '',
   content: '',
@@ -494,6 +662,25 @@ const getUserStatusType = (row) => {
 
 const isCurrentUser = (row) => Number(row.id) === currentUserId.value;
 
+const normalizeNameList = (value) => {
+  if (!Array.isArray(value)) return [];
+  return Array.from(new Set(
+    value
+      .map((item) => String(item || '').trim())
+      .filter(Boolean)
+  ));
+};
+
+const getProxyStrategyLabel = (strategy) => {
+  const labels = {
+    whitelist: '白名单',
+    percentage: '百分比',
+    all: '全量',
+    none: '暂停',
+  };
+  return labels[strategy] || '白名单';
+};
+
 const fetchUsers = async () => {
   loading.value = true;
   try {
@@ -512,8 +699,11 @@ const fetchSchedulerSettings = async () => {
     const res = await api.get('/admin/users/settings/scheduler');
     if (res.success) {
       schedulerMaxConcurrentAccounts.value = Number(res.data?.maxConcurrentAccounts || 3);
+      schedulerAccountDispatchIntervalSeconds.value = Number(res.data?.accountDispatchIntervalSeconds ?? 8);
       schedulerLimits.min = Number(res.data?.limits?.min || 1);
       schedulerLimits.max = Number(res.data?.limits?.max || 20);
+      schedulerLimits.accountDispatchIntervalSecondsMin = Number(res.data?.limits?.accountDispatchIntervalSecondsMin ?? 0);
+      schedulerLimits.accountDispatchIntervalSecondsMax = Number(res.data?.limits?.accountDispatchIntervalSecondsMax ?? 120);
     }
   } catch (error) {
     ElMessage.error(error.response?.data?.error || '获取调度并发设置失败');
@@ -527,17 +717,121 @@ const saveSchedulerSettings = async () => {
   try {
     const res = await api.put('/admin/users/settings/scheduler', {
       maxConcurrentAccounts: schedulerMaxConcurrentAccounts.value,
+      accountDispatchIntervalSeconds: schedulerAccountDispatchIntervalSeconds.value,
     });
     if (res.success) {
       schedulerMaxConcurrentAccounts.value = Number(res.data?.maxConcurrentAccounts || schedulerMaxConcurrentAccounts.value);
+      schedulerAccountDispatchIntervalSeconds.value = Number(
+        res.data?.accountDispatchIntervalSeconds ?? schedulerAccountDispatchIntervalSeconds.value,
+      );
       schedulerLimits.min = Number(res.data?.limits?.min || schedulerLimits.min);
       schedulerLimits.max = Number(res.data?.limits?.max || schedulerLimits.max);
+      schedulerLimits.accountDispatchIntervalSecondsMin = Number(
+        res.data?.limits?.accountDispatchIntervalSecondsMin ?? schedulerLimits.accountDispatchIntervalSecondsMin,
+      );
+      schedulerLimits.accountDispatchIntervalSecondsMax = Number(
+        res.data?.limits?.accountDispatchIntervalSecondsMax ?? schedulerLimits.accountDispatchIntervalSecondsMax,
+      );
       ElMessage.success('调度并发设置已保存');
     }
   } catch (error) {
     ElMessage.error(error.response?.data?.error || '保存调度并发设置失败');
   } finally {
     schedulerSettingsSaving.value = false;
+  }
+};
+
+const syncProxySettings = (data = {}) => {
+  const config = data?.config || {};
+  const rollout = config.rollout || {};
+  proxyForm.enabled = !!config.enabled;
+  proxyForm.fallbackToDirect = config.fallbackToDirect !== false;
+  proxyForm.maxRetries = Number(config.maxRetries || 3);
+  proxyForm.rollout.strategy = ['whitelist', 'percentage', 'all', 'none'].includes(rollout.strategy)
+    ? rollout.strategy
+    : 'whitelist';
+  proxyForm.rollout.whitelist = normalizeNameList(rollout.whitelist);
+  proxyForm.rollout.percentage = Math.max(0, Math.min(100, Number(rollout.percentage || 0)));
+  proxyForm.rollout.excludeList = normalizeNameList(rollout.excludeList);
+
+  proxyAccountNameOptions.value = normalizeNameList(data.accountNames);
+  proxyStats.value = data || null;
+  Object.assign(proxyPoolStats, {
+    total: Number(data?.poolStats?.total || 0),
+    valid: Number(data?.poolStats?.valid || 0),
+    assigned: Number(data?.poolStats?.assigned || 0),
+    avgResponseTime: Number(data?.poolStats?.avgResponseTime || 0),
+    warmup: data?.poolStats?.warmup || data?.warmup || null,
+    sources: data?.poolStats?.sources || null,
+  });
+};
+
+const fetchProxySettings = async () => {
+  proxySettingsLoading.value = true;
+  try {
+    const res = await api.adminUsers.getProxySettings();
+    if (res.success) {
+      syncProxySettings(res.data || {});
+    }
+  } catch (error) {
+    ElMessage.error(error.response?.data?.error || '获取代理发布策略失败');
+  } finally {
+    proxySettingsLoading.value = false;
+  }
+};
+
+const buildProxySettingsPayload = () => ({
+  enabled: proxyForm.enabled,
+  fallbackToDirect: proxyForm.fallbackToDirect,
+  maxRetries: Number(proxyForm.maxRetries || 3),
+  rollout: {
+    strategy: proxyForm.rollout.strategy,
+    whitelist: normalizeNameList(proxyForm.rollout.whitelist),
+    percentage: Number(proxyForm.rollout.percentage || 0),
+    excludeList: normalizeNameList(proxyForm.rollout.excludeList),
+  },
+});
+
+const saveProxySettings = async () => {
+  const payload = buildProxySettingsPayload();
+  if (payload.rollout.strategy === 'percentage' && (payload.rollout.percentage < 0 || payload.rollout.percentage > 100)) {
+    ElMessage.warning('灰度比例需在 0-100 之间');
+    return;
+  }
+  if (payload.rollout.strategy === 'whitelist' && payload.enabled && payload.rollout.whitelist.length === 0) {
+    ElMessage.warning('白名单模式启用代理前，请先选择至少一个游戏账号名称');
+    return;
+  }
+
+  proxySettingsSaving.value = true;
+  try {
+    const res = await api.adminUsers.saveProxySettings(payload);
+    if (res.success) {
+      syncProxySettings(res.data || {});
+      ElMessage.success('代理发布策略已保存');
+    }
+  } catch (error) {
+    ElMessage.error(error.response?.data?.error || '保存代理发布策略失败');
+  } finally {
+    proxySettingsSaving.value = false;
+  }
+};
+
+const warmupProxyPool = async () => {
+  proxyWarmupLoading.value = true;
+  try {
+    const res = await api.adminUsers.warmupProxyPool();
+    if (res.success) {
+      syncProxySettings(res.data || {});
+      ElMessage.success(res.message || '代理池预热已启动，请稍后刷新查看可用数量');
+      window.setTimeout(() => {
+        void fetchProxySettings();
+      }, 3000);
+    }
+  } catch (error) {
+    ElMessage.error(error.response?.data?.error || '预热代理池失败');
+  } finally {
+    proxyWarmupLoading.value = false;
   }
 };
 
@@ -809,6 +1103,7 @@ const deleteUser = async (row) => {
 
 onMounted(() => {
   fetchSchedulerSettings();
+  fetchProxySettings();
   fetchTaskTypes();
   fetchUsers();
   loadBroadcast();
@@ -855,6 +1150,54 @@ onMounted(() => {
   gap: 12px;
 }
 
+.proxy-settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.proxy-status-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.proxy-settings-form {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(138, 151, 185, 0.14);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(59, 130, 246, 0.05));
+}
+
+.proxy-switch-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.proxy-account-select {
+  width: 100%;
+}
+
+.proxy-percentage-control {
+  width: min(640px, 100%);
+}
+
+.proxy-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.proxy-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
 .broadcast-meta {
   display: flex;
   flex-wrap: wrap;
@@ -870,9 +1213,9 @@ onMounted(() => {
 }
 
 .scheduler-setting-main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
   gap: 16px;
   padding: 18px;
   border-radius: 18px;
@@ -880,10 +1223,15 @@ onMounted(() => {
   background: linear-gradient(135deg, rgba(91, 124, 255, 0.09), rgba(120, 210, 255, 0.06));
 }
 
+.scheduler-setting-field,
 .scheduler-setting-copy {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.scheduler-setting-field :deep(.el-input-number) {
+  width: 100%;
 }
 
 .scheduler-setting-title {
@@ -1035,13 +1383,17 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .scheduler-setting-main,
+  .proxy-switch-row,
   .card-header,
   .account-summary,
   .log-item-header,
   .log-filter-bar {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .scheduler-setting-main {
+    grid-template-columns: 1fr;
   }
 
   .scheduler-setting-control {
@@ -1052,6 +1404,14 @@ onMounted(() => {
 
   .scheduler-setting-control :deep(.el-input-number) {
     width: 100%;
+  }
+
+  .proxy-switch-row {
+    display: flex;
+  }
+
+  .proxy-actions {
+    flex-direction: column;
   }
 
   .log-left,

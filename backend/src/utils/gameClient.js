@@ -2,6 +2,8 @@ import WebSocket from 'ws';
 import { bon, encode, parse, getEnc } from '../../../frontend/src/utils/bonProtocol.js';
 import config from '../config/index.js';
 import { normalizeErrorMessage, summarizeHeaders, truncate } from './wsDiagnostics.js';
+import { HttpsProxyAgent } from 'https-proxy-agent';
+import { SocksProxyAgent } from 'socks-proxy-agent';
 
 const ERROR_CODE_MAP = {
   700010: '任务未达成完成条件',
@@ -283,7 +285,10 @@ export class GameClient {
     this.defaultBattleVersion = Number(options.battleVersion ?? config.game.battleVersion) || 241201;
     this.battleVersion = this.defaultBattleVersion;
     this.battleVersionSynced = false;
-    
+
+    // 代理配置
+    this.proxy = options.proxy || null; // { host, port, protocol }
+
     this.ws = null;
     this.seq = 0;
     this.ack = 0;
@@ -291,7 +296,7 @@ export class GameClient {
     this.messageQueue = [];
     this.promises = new Map();
     this.heartbeatTimer = null;
-    
+
     this.onMessage = null;
     this.onConnect = null;
     this.onDisconnect = null;
@@ -299,6 +304,21 @@ export class GameClient {
     this.onUnexpectedResponse = null;
     this.lastConnectMeta = null;
     this.lastMessageAt = null;
+  }
+
+  /**
+   * 创建代理Agent
+   */
+  createProxyAgent() {
+    if (!this.proxy) return undefined;
+
+    const proxyUrl = `${this.proxy.protocol || 'http'}://${this.proxy.host}:${this.proxy.port}`;
+
+    if (this.proxy.protocol === 'socks' || this.proxy.protocol === 'socks5' || this.proxy.protocol === 'socks4') {
+      return new SocksProxyAgent(proxyUrl);
+    } else {
+      return new HttpsProxyAgent(proxyUrl);
+    }
   }
 
   connect() {
@@ -315,6 +335,7 @@ export class GameClient {
         closeBeforeOpen: false,
         readyState: 'CONNECTING',
         unexpectedResponse: null,
+        proxy: this.proxy ? `${this.proxy.host}:${this.proxy.port}` : null,
         lastError: null,
       };
 
@@ -343,7 +364,15 @@ export class GameClient {
       };
 
       try {
-        this.ws = new WebSocket(this.wsUrl);
+        const wsOptions = {};
+
+        // 如果配置了代理，创建代理Agent
+        if (this.proxy) {
+          wsOptions.agent = this.createProxyAgent();
+          console.log(`[GameClient] 使用代理连接: ${this.proxy.host}:${this.proxy.port}`);
+        }
+
+        this.ws = new WebSocket(this.wsUrl, wsOptions);
 
         this.ws.on('open', () => {
           opened = true;

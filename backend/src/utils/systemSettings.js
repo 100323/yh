@@ -4,6 +4,9 @@ import { get, run } from '../database/index.js';
 export const SCHEDULER_MAX_CONCURRENT_ACCOUNTS_KEY = 'scheduler_max_concurrent_accounts';
 export const SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN = 1;
 export const SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX = 20;
+export const SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_KEY = 'scheduler_account_dispatch_interval_ms';
+export const SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN = 0;
+export const SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX = 120000;
 
 function toInteger(value) {
   const normalized = Number(value);
@@ -18,6 +21,18 @@ function getSchedulerMaxConcurrentAccountsFallback() {
   return 3;
 }
 
+function getSchedulerAccountDispatchIntervalMsFallback() {
+  const fallback = Number(config?.scheduler?.accountDispatchIntervalMs || 0);
+  if (
+    Number.isInteger(fallback) &&
+    fallback >= SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN &&
+    fallback <= SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX
+  ) {
+    return fallback;
+  }
+  return 8000;
+}
+
 export function normalizeSchedulerMaxConcurrentAccounts(value) {
   const normalized = toInteger(value);
   if (
@@ -27,6 +42,20 @@ export function normalizeSchedulerMaxConcurrentAccounts(value) {
   ) {
     throw new Error(
       `并发账号数需为 ${SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN}-${SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX} 的整数`
+    );
+  }
+  return normalized;
+}
+
+export function normalizeSchedulerAccountDispatchIntervalMs(value) {
+  const normalized = toInteger(value);
+  if (
+    normalized === null ||
+    normalized < SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN ||
+    normalized > SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX
+  ) {
+    throw new Error(
+      `账号启动间隔需为 ${SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN / 1000}-${SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX / 1000} 秒`
     );
   }
   return normalized;
@@ -75,18 +104,48 @@ export function getSchedulerMaxConcurrentAccountsSetting() {
   return Math.min(normalized, SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX);
 }
 
+export function getSchedulerAccountDispatchIntervalMsSetting() {
+  const fallback = getSchedulerAccountDispatchIntervalMsFallback();
+  const stored = getSystemSettingValue(SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_KEY, null);
+  if (stored === null) {
+    return fallback;
+  }
+
+  const normalized = Number(stored);
+  if (
+    !Number.isInteger(normalized) ||
+    normalized < SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN ||
+    normalized > SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX
+  ) {
+    return fallback;
+  }
+
+  return normalized;
+}
+
 export function updateSchedulerMaxConcurrentAccountsSetting(value) {
   const normalized = normalizeSchedulerMaxConcurrentAccounts(value);
   setSystemSettingValue(SCHEDULER_MAX_CONCURRENT_ACCOUNTS_KEY, normalized);
   return normalized;
 }
 
+export function updateSchedulerAccountDispatchIntervalMsSetting(value) {
+  const normalized = normalizeSchedulerAccountDispatchIntervalMs(value);
+  setSystemSettingValue(SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_KEY, normalized);
+  return normalized;
+}
+
 export function getSchedulerSettings() {
+  const accountDispatchIntervalMs = getSchedulerAccountDispatchIntervalMsSetting();
   return {
     maxConcurrentAccounts: getSchedulerMaxConcurrentAccountsSetting(),
+    accountDispatchIntervalMs,
+    accountDispatchIntervalSeconds: Math.round(accountDispatchIntervalMs / 1000),
     limits: {
       min: SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN,
       max: SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX,
+      accountDispatchIntervalSecondsMin: SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN / 1000,
+      accountDispatchIntervalSecondsMax: SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX / 1000,
     },
   };
 }

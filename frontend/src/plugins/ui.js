@@ -22,6 +22,9 @@ import {
   ElMenu,
   ElMenuItem,
   ElOption,
+  ElRadio,
+  ElRadioButton,
+  ElRadioGroup,
   ElRow,
   ElSelect,
   ElSpace,
@@ -52,6 +55,9 @@ import 'element-plus/es/components/loading/style/css';
 import 'element-plus/es/components/menu/style/css';
 import 'element-plus/es/components/message/style/css';
 import 'element-plus/es/components/message-box/style/css';
+import 'element-plus/es/components/radio/style/css';
+import 'element-plus/es/components/radio-button/style/css';
+import 'element-plus/es/components/radio-group/style/css';
 import 'element-plus/es/components/row/style/css';
 import 'element-plus/es/components/select/style/css';
 import 'element-plus/es/components/space/style/css';
@@ -84,6 +90,9 @@ const elementComponents = {
   ElMenu,
   ElMenuItem,
   ElOption,
+  ElRadio,
+  ElRadioButton,
+  ElRadioGroup,
   ElRow,
   ElSelect,
   ElSpace,

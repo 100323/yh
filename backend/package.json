@@ -13,9 +13,11 @@
     "better-sqlite3": "^11.8.1",
     "cors": "^2.8.5",
     "express": "^4.21.0",
+    "https-proxy-agent": "^7.0.6",
     "lz4js": "^0.2.0",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
+    "socks-proxy-agent": "^8.0.5",
     "ws": "^8.18.0"
   },
   "devDependencies": {

@@ -49,6 +49,7 @@ import {
   isTooFastError,
   sleep,
 } from '../utils/taskExecutionControl.js';
+import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
@@ -1903,103 +1904,155 @@ async function ensureConnectedClient(accountId, accountName, tokenCandidates, ro
     let currentRoleId = roleId;
     let currentWsUrl = wsUrl;
     let refreshedByBin = false;
+    let proxyAttemptCount = 0;
 
     for (let refreshRound = 0; refreshRound <= 1; refreshRound += 1) {
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         for (const [candidateIndex, token] of currentCandidates.entries()) {
           const resolvedWsUrl = resolveWsUrl(currentWsUrl, token);
-          const client = new GameClient(token, { roleId: currentRoleId, wsUrl: resolvedWsUrl });
-          client.accountId = accountId;
-          client.accountName = accountName;
-          let disconnectInfo = null;
-          let wsErrorMessage = null;
-          let unexpectedResponse = null;
-          const logContext = buildWsLogContext({
-            accountId,
-            accountName,
-            roleId: currentRoleId,
-            importMethod: extraContext.importMethod || null,
-            updatedAt: extraContext.updatedAt || null,
-            attempt,
-            maxRetries,
-            candidateIndex: candidateIndex + 1,
-            candidateCount: currentCandidates.length,
-            token,
-            wsUrl: resolvedWsUrl,
-            extra: {
-              refreshedByBin,
+
+          // 获取代理配置
+          const proxyMaxRetries = await proxyConfigManager.getMaxRetries();
+          const primaryProxy = proxyAttemptCount < proxyMaxRetries
+            ? await proxyConfigManager.getProxyForAccount(accountName, accountId)
+            : null;
+          const shouldTryDirectFallback = primaryProxy
+            ? await proxyConfigManager.shouldFallbackToDirect()
+            : false;
+          const connectionPlans = [
+            {
+              proxy: primaryProxy,
+              proxyMode: primaryProxy ? 'proxy' : 'direct',
+              proxyFallbackFrom: null,
             },
-          });
+            ...(shouldTryDirectFallback
+              ? [{
+                proxy: null,
+                proxyMode: 'direct-fallback',
+                proxyFallbackFrom: primaryProxy.id,
+              }]
+              : []),
+          ];
 
-          client.onDisconnect = (code, reason, meta) => {
-            disconnectInfo = { code, reason };
-            console.warn('🔌 定时任务连接断开', {
-              ...logContext,
-              disconnect: normalizeDisconnectInfo(disconnectInfo),
-              handshake: meta || client.lastConnectMeta || null,
-            });
-            activeConnections.delete(accountId);
-            unregisterAccountClient(accountId, client);
-          };
-
-          client.onError = (error, meta) => {
-            wsErrorMessage = normalizeErrorMessage(error);
-            console.error('❌ 定时任务连接错误', {
-              ...logContext,
-              error: wsErrorMessage,
-              handshake: meta || client.lastConnectMeta || null,
-            });
-            activeConnections.delete(accountId);
-            unregisterAccountClient(accountId, client);
-          };
-
-          client.onUnexpectedResponse = (details, meta) => {
-            unexpectedResponse = details;
-            console.error('🚫 定时任务握手异常响应', {
-              ...logContext,
-              unexpectedResponse: details,
-              handshake: meta || client.lastConnectMeta || null,
-            });
-          };
-
-          try {
-            console.log('🔄 尝试建立定时任务WebSocket连接', logContext);
-            await client.connect();
-            if (!client.isSocketOpen()) {
-              throw new Error('WebSocket未连接');
+          for (const connectionPlan of connectionPlans) {
+            const { proxy, proxyMode, proxyFallbackFrom } = connectionPlan;
+            if (proxy) {
+              proxyAttemptCount += 1;
             }
-            activeConnections.set(accountId, client);
-            registerAccountClient(accountId, client);
-            console.log('✅ 定时任务WebSocket连接成功', {
-              ...logContext,
-              handshake: client.lastConnectMeta || null,
+            const client = new GameClient(token, {
+              roleId: currentRoleId,
+              wsUrl: resolvedWsUrl,
+              proxy,
             });
-            const warmup = await warmupGameClient(client, {
-              roleInfoTimeout: 8000,
-              includeRoleId: false,
+
+            client.accountId = accountId;
+            client.accountName = accountName;
+            let disconnectInfo = null;
+            let wsErrorMessage = null;
+            let unexpectedResponse = null;
+            const logContext = buildWsLogContext({
+              accountId,
+              accountName,
+              roleId: currentRoleId,
+              importMethod: extraContext.importMethod || null,
+              updatedAt: extraContext.updatedAt || null,
+              attempt,
+              maxRetries,
+              candidateIndex: candidateIndex + 1,
+              candidateCount: currentCandidates.length,
+              token,
+              proxy: proxy ? `${proxy.host}:${proxy.port}` : null,
+              proxyMode,
+              proxyFallbackFrom,
+              wsUrl: resolvedWsUrl,
+              extra: {
+                refreshedByBin,
+              },
             });
-            console.log('🔥 定时任务连接预热完成', {
-              ...logContext,
-              handshake: client.lastConnectMeta || null,
-              warmup,
-            });
-            if (!client.isSocketOpen()) {
-              throw new Error('WebSocket未连接');
+
+            client.onDisconnect = (code, reason, meta) => {
+              disconnectInfo = { code, reason };
+              console.warn('🔌 定时任务连接断开', {
+                ...logContext,
+                disconnect: normalizeDisconnectInfo(disconnectInfo),
+                handshake: meta || client.lastConnectMeta || null,
+              });
+              activeConnections.delete(accountId);
+              unregisterAccountClient(accountId, client);
+            };
+
+            client.onError = (error, meta) => {
+              wsErrorMessage = normalizeErrorMessage(error);
+              console.error('❌ 定时任务连接错误', {
+                ...logContext,
+                error: wsErrorMessage,
+                handshake: meta || client.lastConnectMeta || null,
+              });
+              activeConnections.delete(accountId);
+              unregisterAccountClient(accountId, client);
+            };
+
+            client.onUnexpectedResponse = (details, meta) => {
+              unexpectedResponse = details;
+              console.error('🚫 定时任务握手异常响应', {
+                ...logContext,
+                unexpectedResponse: details,
+                handshake: meta || client.lastConnectMeta || null,
+              });
+            };
+
+            try {
+              console.log('🔄 尝试建立定时任务WebSocket连接', logContext);
+              await client.connect();
+              if (!client.isSocketOpen()) {
+                throw new Error('WebSocket未连接');
+              }
+
+              activeConnections.set(accountId, client);
+              registerAccountClient(accountId, client);
+              console.log('✅ 定时任务WebSocket连接成功', {
+                ...logContext,
+                handshake: client.lastConnectMeta || null,
+              });
+              const warmup = await warmupGameClient(client, {
+                roleInfoTimeout: 8000,
+                includeRoleId: false,
+              });
+              console.log('🔥 定时任务连接预热完成', {
+                ...logContext,
+                handshake: client.lastConnectMeta || null,
+                warmup,
+              });
+              if (!client.isSocketOpen()) {
+                throw new Error('WebSocket未连接');
+              }
+
+              // 标记代理连接成功（预热完成后才算可用）
+              if (proxy) {
+                proxyConfigManager.markProxyResult(accountName, proxy.id, true);
+              }
+
+              return client;
+            } catch (error) {
+              lastError = error;
+
+              // 标记代理连接失败
+              if (proxy) {
+                proxyConfigManager.markProxyResult(accountName, proxy.id, false);
+              }
+
+              console.warn('⚠️ 定时任务候选Token连接失败', {
+                ...logContext,
+                error: normalizeErrorMessage(error),
+                disconnect: normalizeDisconnectInfo(disconnectInfo),
+                wsError: wsErrorMessage || null,
+                unexpectedResponse,
+                handshake: client.lastConnectMeta || null,
+              });
+              client.disconnect();
+              activeConnections.delete(accountId);
+              unregisterAccountClient(accountId, client);
             }
-            return client;
-          } catch (error) {
-            lastError = error;
-            console.warn('⚠️ 定时任务候选Token连接失败', {
-              ...logContext,
-              error: normalizeErrorMessage(error),
-              disconnect: normalizeDisconnectInfo(disconnectInfo),
-              wsError: wsErrorMessage || null,
-              unexpectedResponse,
-              handshake: client.lastConnectMeta || null,
-            });
-            client.disconnect();
-            activeConnections.delete(accountId);
-            unregisterAccountClient(accountId, client);
           }
         }
 
