@@ -1905,40 +1905,73 @@ async function ensureConnectedClient(accountId, accountName, tokenCandidates, ro
     let currentWsUrl = wsUrl;
     let refreshedByBin = false;
     let proxyAttemptCount = 0;
+    await proxyConfigManager.ensureLoaded();
+    const shouldUseProxyForAccount = proxyConfigManager.shouldUseProxy(accountName);
+    const proxyMaxRetries = shouldUseProxyForAccount
+      ? await proxyConfigManager.getMaxRetries()
+      : 0;
+    const allowDirectFallbackAfterProxyExhausted = shouldUseProxyForAccount
+      ? await proxyConfigManager.shouldFallbackToDirect()
+      : false;
 
     for (let refreshRound = 0; refreshRound <= 1; refreshRound += 1) {
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         for (const [candidateIndex, token] of currentCandidates.entries()) {
           const resolvedWsUrl = resolveWsUrl(currentWsUrl, token);
 
-          // 获取代理配置
-          const proxyMaxRetries = await proxyConfigManager.getMaxRetries();
-          const primaryProxy = proxyAttemptCount < proxyMaxRetries
-            ? await proxyConfigManager.getProxyForAccount(accountName, accountId)
-            : null;
-          const shouldTryDirectFallback = primaryProxy
-            ? await proxyConfigManager.shouldFallbackToDirect()
-            : false;
-          const connectionPlans = [
-            {
-              proxy: primaryProxy,
-              proxyMode: primaryProxy ? 'proxy' : 'direct',
+          const connectionPlans = [];
+
+          if (!shouldUseProxyForAccount) {
+            connectionPlans.push({
+              proxy: null,
+              proxyMode: 'direct',
               proxyFallbackFrom: null,
-            },
-            ...(shouldTryDirectFallback
-              ? [{
-                proxy: null,
-                proxyMode: 'direct-fallback',
-                proxyFallbackFrom: primaryProxy.id,
-              }]
-              : []),
-          ];
+            });
+          } else if (proxyAttemptCount < proxyMaxRetries) {
+            const primaryProxy = await proxyConfigManager.getProxyForAccount(accountName, accountId);
+            proxyAttemptCount += 1;
+
+            if (primaryProxy) {
+              connectionPlans.push({
+                proxy: primaryProxy,
+                proxyMode: 'proxy',
+                proxyFallbackFrom: null,
+              });
+            } else {
+              lastError = new Error('代理池暂无可用代理');
+              console.warn('⚠️ 代理账号未获取到可用代理，暂不立即直连', {
+                accountId,
+                accountName,
+                attempt,
+                maxRetries,
+                candidateIndex: candidateIndex + 1,
+                candidateCount: currentCandidates.length,
+                proxyAttemptCount,
+                proxyMaxRetries,
+                allowDirectFallbackAfterProxyExhausted,
+              });
+            }
+          }
+
+          if (
+            shouldUseProxyForAccount &&
+            connectionPlans.length === 0 &&
+            proxyAttemptCount >= proxyMaxRetries &&
+            allowDirectFallbackAfterProxyExhausted
+          ) {
+            connectionPlans.push({
+              proxy: null,
+              proxyMode: 'direct-fallback',
+              proxyFallbackFrom: 'proxy-exhausted',
+            });
+          }
+
+          if (connectionPlans.length === 0) {
+            continue;
+          }
 
           for (const connectionPlan of connectionPlans) {
             const { proxy, proxyMode, proxyFallbackFrom } = connectionPlan;
-            if (proxy) {
-              proxyAttemptCount += 1;
-            }
             const client = new GameClient(token, {
               roleId: currentRoleId,
               wsUrl: resolvedWsUrl,

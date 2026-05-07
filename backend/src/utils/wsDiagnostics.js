@@ -145,6 +145,9 @@ export function buildWsLogContext(context = {}) {
     candidateIndex,
     candidateCount,
     token,
+    proxy,
+    proxyMode,
+    proxyFallbackFrom,
     wsUrl,
     extra = {},
   } = context;
@@ -160,6 +163,9 @@ export function buildWsLogContext(context = {}) {
     candidateIndex: candidateIndex ?? null,
     candidateCount: candidateCount ?? null,
     token: getTokenFingerprint(token),
+    proxy: proxy || null,
+    proxyMode: proxyMode || null,
+    proxyFallbackFrom: proxyFallbackFrom || null,
     ws: summarizeWsUrl(wsUrl),
     ...extra,
   };
