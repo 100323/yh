@@ -1,8 +1,22 @@
 const MAIL_CATEGORIES = [0, 4, 5];
 const DEFAULT_DAILY_TASK_IDS = Array.from({ length: 10 }, (_, index) => index + 1);
+const DAILY_POINT_FULL_THRESHOLD = 100;
+const DAILY_POINT_CLAIMABLE_TASKS = [
+  { claimTaskId: 1, completeKey: 1, requiredProgress: 1 },
+  { claimTaskId: 2, completeKey: 2, requiredProgress: 1 },
+  { claimTaskId: 3, completeKey: 3, requiredProgress: 3 },
+  { claimTaskId: 4, completeKey: 4, requiredProgress: 2 },
+  { claimTaskId: 5, completeKey: 5, requiredProgress: 5 },
+  { claimTaskId: 6, completeKey: 6, requiredProgress: 3 },
+  { claimTaskId: 7, completeKey: 7, requiredProgress: 3 },
+  { claimTaskId: 8, completeKey: 13, requiredProgress: 1 },
+  { claimTaskId: 9, completeKey: 14, requiredProgress: 1 },
+  { claimTaskId: 10, completeKey: 12, requiredProgress: 1 },
+];
 const DAILY_REWARD_THRESHOLDS = [20, 40, 60, 80, 100];
 const WEEKLY_REWARD_THRESHOLDS = [100, 200, 300, 400, 500, 600, 700];
-const DAILY_POINT_CLAIM_DELAY_MS = 900;
+const DAILY_POINT_CLAIM_DELAY_MS = 1500;
+const DAILY_POINT_RATE_LIMIT_COOLDOWN_MS = 3000;
 const DAILY_POINT_TOO_FAST_RETRY_DELAYS_MS = [1200, 2500, 5000];
 const NOOP_ERROR_PATTERNS = [
   '没有可领取',
@@ -50,6 +64,11 @@ function isNoopError(error) {
 
 function isTooFastError(error) {
   return normalizeErrorMessage(error).includes('操作过快');
+}
+
+function isConnectionStateError(error) {
+  const message = normalizeErrorMessage(error);
+  return message.includes('WebSocket未连接') || message.includes('WebSocket连接已断开');
 }
 
 function stableClone(value, seen = new WeakSet()) {
@@ -377,6 +396,36 @@ async function getDailyTaskState(client) {
   };
 }
 
+function isDailyPointTaskClaimable(completeValue, requiredProgress = 1) {
+  if (completeValue === -1) {
+    return false;
+  }
+  if (completeValue === true) {
+    return true;
+  }
+  const progress = Number(completeValue);
+  return Number.isFinite(progress) && progress >= Math.max(1, Number(requiredProgress) || 1);
+}
+
+function resolveClaimableDailyPointTaskIds(state) {
+  if (!state) {
+    return [];
+  }
+  if (Number(state.dailyPoint || 0) >= DAILY_POINT_FULL_THRESHOLD) {
+    return [];
+  }
+
+  const completeMap = state.completeMap && typeof state.completeMap === 'object'
+    ? state.completeMap
+    : {};
+
+  return DAILY_POINT_CLAIMABLE_TASKS
+    .filter(({ completeKey, requiredProgress }) =>
+      isDailyPointTaskClaimable(completeMap[completeKey], requiredProgress)
+    )
+    .map(({ claimTaskId }) => claimTaskId);
+}
+
 async function tryClaim(results, label, action) {
   try {
     const result = await action();
@@ -560,40 +609,83 @@ export async function executeDailyTaskClaimScheduledTask(client) {
 
   const results = [];
   let successCount = 0;
+  let pointClaimInterrupted = false;
+  let pointClaimInterruptedReason = null;
 
-  const taskIds = DEFAULT_DAILY_TASK_IDS
+  const taskIds = resolveClaimableDailyPointTaskIds(beforeState)
     .filter((value, index, list) => list.indexOf(value) === index)
     .sort((a, b) => a - b);
 
   for (const taskId of taskIds) {
-    const claimResult = await tryClaim(
-      results,
-      `任务奖励${taskId}`,
-      () => claimDailyPointWithRetry(client, taskId)
-    );
-    if (claimResult.ok) {
+    try {
+      await claimDailyPointWithRetry(client, taskId, { retryDelays: [] });
+      results.push({ name: `任务奖励${taskId}`, ok: true });
       successCount += 1;
+    } catch (error) {
+      const message = normalizeErrorMessage(error);
+      const shouldDefer = isTooFastError(error) || isConnectionStateError(error);
+      results.push({
+        name: `任务奖励${taskId}`,
+        ok: false,
+        error: message,
+        noop: shouldDefer || isNoopError(message),
+        deferred: shouldDefer,
+      });
+
+      if (shouldDefer) {
+        pointClaimInterrupted = true;
+        pointClaimInterruptedReason = message;
+        break;
+      }
     }
     await sleep(DAILY_POINT_CLAIM_DELAY_MS);
   }
 
-  const dailyRewardResult = await tryClaimWithExtraNoopPatterns(
-    results,
-    '日常任务宝箱(自动)',
-    () => client.claimDailyReward(0),
-    ['出了点小问题，请尝试重启游戏解决～']
-  );
+  if (pointClaimInterrupted && client?.isSocketOpen?.()) {
+    await sleep(DAILY_POINT_RATE_LIMIT_COOLDOWN_MS);
+  }
+
+  let dailyRewardResult = { ok: false, noop: true, skipped: true };
+  if (client?.isSocketOpen?.() !== false) {
+    dailyRewardResult = await tryClaimWithExtraNoopPatterns(
+      results,
+      '日常任务宝箱(自动)',
+      () => client.claimDailyReward(0),
+      ['出了点小问题，请尝试重启游戏解决～', '操作过快']
+    );
+  } else {
+    results.push({
+      name: '日常任务宝箱(自动)',
+      ok: false,
+      noop: true,
+      skipped: true,
+      deferred: true,
+      error: '点数领取触发限速后连接已断开，跳过本次日活宝箱领取',
+    });
+  }
   if (dailyRewardResult.ok) {
     successCount += 1;
   }
   await sleep(120);
 
-  const weeklyRewardResult = await tryClaimWithExtraNoopPatterns(
-    results,
-    '周常任务宝箱(自动)',
-    () => client.claimWeeklyReward(0),
-    ['出了点小问题，请尝试重启游戏解决～']
-  );
+  let weeklyRewardResult = { ok: false, noop: true, skipped: true };
+  if (client?.isSocketOpen?.() !== false) {
+    weeklyRewardResult = await tryClaimWithExtraNoopPatterns(
+      results,
+      '周常任务宝箱(自动)',
+      () => client.claimWeeklyReward(0),
+      ['出了点小问题，请尝试重启游戏解决～', '操作过快']
+    );
+  } else {
+    results.push({
+      name: '周常任务宝箱(自动)',
+      ok: false,
+      noop: true,
+      skipped: true,
+      deferred: true,
+      error: '点数领取触发限速后连接已断开，跳过本次周活宝箱领取',
+    });
+  }
   if (weeklyRewardResult.ok) {
     successCount += 1;
   }
@@ -640,12 +732,16 @@ export async function executeDailyTaskClaimScheduledTask(client) {
           weeklyRewardPending,
           dailyRewardPendingIds,
           weeklyRewardPendingIds,
+          pointClaimInterrupted,
+          pointClaimInterruptedReason,
         }
       );
     }
 
     return {
-      message: '没有可领取的每日任务奖励',
+      message: pointClaimInterrupted
+        ? '日周活跃奖励触发限速，已延后到下次兜底'
+        : '没有可领取的每日任务奖励',
       data: {
         results,
         claimedCount: 0,
@@ -661,6 +757,8 @@ export async function executeDailyTaskClaimScheduledTask(client) {
         weeklyRewardPending,
         dailyRewardPendingIds,
         weeklyRewardPendingIds,
+        pointClaimInterrupted,
+        pointClaimInterruptedReason,
       },
     };
   }
@@ -682,6 +780,8 @@ export async function executeDailyTaskClaimScheduledTask(client) {
       weeklyRewardPending,
       dailyRewardPendingIds,
       weeklyRewardPendingIds,
+      pointClaimInterrupted,
+      pointClaimInterruptedReason,
     },
   };
 }
