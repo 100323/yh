@@ -1272,6 +1272,47 @@ const normalizePearlSkillId = (value) => {
   return normalized === 0 ? null : normalized;
 };
 
+const TRUMP_ATTACHMENT_PREFIX = "trump:";
+
+const resolveHeroAttachmentFields = (hero = {}) => {
+  const legacyAttachmentUid = normalizeId(hero?.attachmentUid);
+  const trumpId = normalizeId(hero?.trumpId);
+  const transTrumpId = normalizeId(hero?.transTrumpId);
+  const trumpId2 = normalizeId(hero?.trumpId2);
+  const hasTrumpAttachment = [trumpId, transTrumpId, trumpId2].some(
+    (value) => value !== null && value !== 0,
+  );
+
+  return {
+    // 旧协议返回 attachmentUid；新抓包里同一段武将结构新增/改为 trumpId/transTrumpId/trumpId2。
+    // 这里保留字段名 attachmentUid，作为“挂件归属”的统一比较 key，避免旧调用面大面积改名。
+    attachmentUid: legacyAttachmentUid || (
+      hasTrumpAttachment
+        ? `${TRUMP_ATTACHMENT_PREFIX}${trumpId || 0}:${transTrumpId || 0}:${trumpId2 || 0}`
+        : null
+    ),
+    legacyAttachmentUid,
+    trumpId,
+    transTrumpId,
+    trumpId2,
+  };
+};
+
+const isTrumpAttachmentKey = (value) =>
+  typeof value === "string" && value.startsWith(TRUMP_ATTACHMENT_PREFIX);
+
+const isAttachmentKeyComparable = (targetKey, snapshot = {}) => {
+  if (!targetKey) return false;
+  const snapshotKeys = Object.values(snapshot.heroesMap || {})
+    .map((hero) => normalizeId(hero?.attachmentUid))
+    .filter(Boolean);
+
+  if (snapshotKeys.length === 0) return false;
+
+  const targetUsesTrumpKey = isTrumpAttachmentKey(targetKey);
+  return snapshotKeys.some((key) => isTrumpAttachmentKey(key) === targetUsesTrumpKey);
+};
+
 const resolveTeamPosition = (key, hero = {}) => {
   const keyPosition = Number(key);
   if (Number.isInteger(keyPosition) && keyPosition >= 0) {
@@ -1298,14 +1339,17 @@ const resolveSnapshotWeaponId = (role = {}, currentTeam = {}) => {
 const getTeamHeroes = (teamInfo) => {
   if (!teamInfo) return [];
   return Object.entries(teamInfo)
-    .map(([key, hero]) => ({
-      position: resolveTeamPosition(key, hero),
-      heroId: normalizeId(hero?.heroId || hero?.id),
-      artifactId: normalizeId(hero?.artifactId),
-      attachmentUid: normalizeId(hero?.attachmentUid),
-      pearlId: normalizeId(hero?.pearlId),
-      level: hero?.level || null,
-    }))
+    .map(([key, hero]) => {
+      const attachmentFields = resolveHeroAttachmentFields(hero);
+      return {
+        position: resolveTeamPosition(key, hero),
+        heroId: normalizeId(hero?.heroId || hero?.id),
+        artifactId: normalizeId(hero?.artifactId),
+        ...attachmentFields,
+        pearlId: normalizeId(hero?.pearlId),
+        level: hero?.level || null,
+      };
+    })
     .filter((h) => h.heroId)
     .sort((a, b) => a.position - b.position);
 };
@@ -1314,15 +1358,18 @@ const buildTargetState = (lineup) => {
   return {
     teamId: Number(lineup.teamId),
     heroes: [...(lineup.heroes || [])]
-      .map((hero) => ({
-        heroId: normalizeId(hero.heroId),
-        position: Number(hero.position),
-        level: hero.level || null,
-        attachmentUid: normalizeId(hero.attachmentUid),
-        fishId: normalizeId(hero.fishId),
-        pearlId: normalizeId(hero.pearlId),
-        skillId: normalizePearlSkillId(hero.skillId),
-      }))
+      .map((hero) => {
+        const attachmentFields = resolveHeroAttachmentFields(hero);
+        return {
+          heroId: normalizeId(hero.heroId),
+          position: Number(hero.position),
+          level: hero.level || null,
+          ...attachmentFields,
+          fishId: normalizeId(hero.fishId),
+          pearlId: normalizeId(hero.pearlId),
+          skillId: normalizePearlSkillId(hero.skillId),
+        };
+      })
       .filter((hero) => hero.heroId)
       .sort((a, b) => a.position - b.position),
     legionResearch: lineup.legionResearch || {},
@@ -1416,13 +1463,14 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
   for (const [heroId, hero] of Object.entries(heroesRaw)) {
     const normalizedHeroId = normalizeId(heroId);
     const artifactId = normalizeId(hero?.artifactId);
-    const attachmentUid = normalizeId(hero?.attachmentUid);
+    const attachmentFields = resolveHeroAttachmentFields(hero);
+    const attachmentUid = attachmentFields.attachmentUid;
     heroesMap[normalizedHeroId] = {
       heroId: normalizedHeroId,
       level: hero?.level || null,
       order: hero?.order || 0,
       artifactId,
-      attachmentUid,
+      ...attachmentFields,
     };
     if (attachmentUid) {
       attachmentOwnerMap[attachmentUid] = normalizedHeroId;
@@ -1499,8 +1547,17 @@ const verifyTargetState = (targetState) => {
 };
 
 const verifyAttachmentStep = (snapshot, targetState) => {
+  const comparableTargets = targetState.heroes.filter((hero) =>
+    isAttachmentKeyComparable(hero.attachmentUid, snapshot),
+  );
+
+  if (targetState.heroes.some((hero) => hero.attachmentUid) && comparableTargets.length === 0) {
+    return verifySuccess("当前协议未返回可对比的旧挂件字段，已跳过挂件归属校验");
+  }
+
   const mismatches = targetState.heroes
     .filter((hero) => hero.attachmentUid)
+    .filter((hero) => isAttachmentKeyComparable(hero.attachmentUid, snapshot))
     .filter(
       (hero) =>
         normalizeId(snapshot.heroesMap[hero.heroId]?.attachmentUid) !==
@@ -2095,6 +2152,7 @@ const getSlotColorsByArtifactId = (artifactId) => {
 const allHeroList = computed(() => {
   const heroes = Object.entries(roleHeroesData.value).map(([id, hero]) => {
     const heroInfo = HERO_DICT[hero.heroId] || {};
+    const attachmentFields = resolveHeroAttachmentFields(hero);
     return {
       id: Number(hero.heroId),
       name: heroInfo.name || `武将${hero.heroId}`,
@@ -2102,7 +2160,7 @@ const allHeroList = computed(() => {
       avatar: heroInfo.avatar || null,
       quality: getHeroQuality(Number(hero.heroId)),
       artifactId: hero.artifactId || null,
-      attachmentUid: hero.attachmentUid || null,
+      ...attachmentFields,
       heroData: hero,
     };
   });
@@ -2148,12 +2206,13 @@ const currentTeamHeroes = computed(() => {
   return Object.entries(teamInfo)
     .map(([key, hero]) => {
       const heroData = roleHeroesData.value[String(hero?.heroId || hero?.id)];
+      const attachmentFields = resolveHeroAttachmentFields(heroData || hero);
       return {
         position: resolveTeamPosition(key, hero),
         heroId: hero?.heroId || hero?.id,
         level: hero?.level || null,
-        artifactId: hero?.artifactId || null,
-        attachmentUid: hero?.attachmentUid || null,
+        artifactId: heroData?.artifactId || hero?.artifactId || null,
+        ...attachmentFields,
         power: heroData?.power || null,
         attack: heroData?.attack || null,
         hp: heroData?.hp || null,
@@ -2170,12 +2229,13 @@ const editingHeroes = computed(() => {
       .sort((a, b) => Number(a[0]) - Number(b[0]))
       .map(([pos, hero]) => {
         const heroData = roleHeroesData.value[String(hero?.heroId)];
+        const attachmentFields = resolveHeroAttachmentFields(hero);
         return {
           position: Number(pos),
           heroId: hero?.heroId,
           level: hero?.level || null,
           artifactId: hero?.artifactId || null,
-          attachmentUid: hero?.attachmentUid || null,
+          ...attachmentFields,
           power: heroData?.power || null,
           attack: heroData?.attack || null,
           hp: heroData?.hp || null,
@@ -2624,7 +2684,7 @@ const confirmHeroAction = () => {
         heroId: h.heroId,
         level: h.level || null,
         artifactId: h.artifactId || null,
-        attachmentUid: h.attachmentUid || null,
+        ...resolveHeroAttachmentFields(h),
       };
     });
   }
@@ -2638,7 +2698,7 @@ const confirmHeroAction = () => {
       heroId: exchangeTargetHeroId.value,
       level: currentTeamHeroInfo?.level || targetHeroData?.level || null,
       artifactId: targetHeroData?.artifactId || null,
-      attachmentUid: targetHeroData?.attachmentUid || null,
+      ...resolveHeroAttachmentFields(targetHeroData),
     };
     message.success(
       `${getHeroName(exchangeTargetHeroId.value)} 已上阵到位置 ${slot + 1}`,
@@ -2649,14 +2709,14 @@ const confirmHeroAction = () => {
       return;
     }
     const originalArtifactId = exchangeHero.value.artifactId;
-    const originalAttachmentUid = exchangeHero.value.attachmentUid;
+    const originalAttachmentFields = resolveHeroAttachmentFields(exchangeHero.value);
     const targetHeroData =
       roleHeroesData.value[String(exchangeTargetHeroId.value)];
     editingTeamHeroes.value[exchangeHero.value.position] = {
       heroId: exchangeTargetHeroId.value,
       level: targetHeroData?.level || null,
       artifactId: originalArtifactId,
-      attachmentUid: originalAttachmentUid,
+      ...originalAttachmentFields,
     };
     message.success(
       `已将 ${getHeroName(exchangeHero.value.heroId)} 更换为 ${getHeroName(exchangeTargetHeroId.value)}`,
@@ -2673,7 +2733,7 @@ const removeHero = (hero) => {
         heroId: h.heroId,
         level: h.level || null,
         artifactId: h.artifactId || null,
-        attachmentUid: h.attachmentUid || null,
+        ...resolveHeroAttachmentFields(h),
       };
     });
   }
@@ -2722,7 +2782,7 @@ const onDrop = (event, targetHero) => {
         heroId: h.heroId,
         level: h.level || null,
         artifactId: h.artifactId || null,
-        attachmentUid: h.attachmentUid || null,
+        ...resolveHeroAttachmentFields(h),
       };
     });
   }
@@ -2990,11 +3050,12 @@ const saveCurrentLineup = async () => {
       const pearlId = teamHeroInfo?.pearlId || null;
       const pearlData = pearlMap[pearlId];
       const slotMap = pearlData?.slotMap || null;
+      const attachmentFields = resolveHeroAttachmentFields(heroData || hero);
       return {
         position: hero.position,
         heroId: hero.heroId,
         level: teamHeroInfo?.level || null,
-        attachmentUid: hero.attachmentUid || null,
+        ...attachmentFields,
         fishId: fishId || null,
         pearlId: pearlId,
         skillId: pearlData?.skillId || null,
@@ -3317,9 +3378,25 @@ const applyLineup = async (lineup, options = {}) => {
           const { heroesMap, teamHeroes } = stepCtx.currentSnapshot;
           const attachmentToHero = { ...stepCtx.currentSnapshot.attachmentOwnerMap };
           const workingTeamHeroes = teamHeroes.map((hero) => ({ ...hero }));
+          let skippedIncomparableAttachment = false;
 
           for (const targetHero of stepCtx.targetState.heroes) {
             if (!targetHero.attachmentUid) continue;
+            if (
+              !isAttachmentKeyComparable(
+                targetHero.attachmentUid,
+                stepCtx.currentSnapshot,
+              )
+            ) {
+              if (!skippedIncomparableAttachment) {
+                addApplyLog(
+                  "warn",
+                  "当前角色快照未返回旧 attachmentUid，已跳过旧阵容的挂件归属交换；新保存阵容会使用 trumpId/transTrumpId/trumpId2 作为挂件标识",
+                );
+                skippedIncomparableAttachment = true;
+              }
+              continue;
+            }
 
             const currentHolderId = attachmentToHero[targetHero.attachmentUid];
             if (!currentHolderId || currentHolderId === targetHero.heroId) {
