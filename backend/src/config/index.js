@@ -59,7 +59,9 @@ export const config = {
   },
   scheduler: {
     maxConcurrentAccounts: Number(process.env.MAX_CONCURRENT_ACCOUNTS) || 3,
+    proxyMaxConcurrentAccounts: Number(process.env.PROXY_MAX_CONCURRENT_ACCOUNTS) || 2,
     accountDispatchIntervalMs: Number(process.env.ACCOUNT_DISPATCH_INTERVAL_MS) || 8000,
+    proxyAccountDispatchIntervalMs: Number(process.env.PROXY_ACCOUNT_DISPATCH_INTERVAL_MS) || 12000,
     dailyCatchupMaxConcurrency: Number(process.env.DAILY_CATCHUP_MAX_CONCURRENCY) || 2,
     staggerWindowMs: Number(process.env.SCHEDULER_STAGGER_WINDOW_MS) || 600000,
     reusableConnection: {

@@ -627,6 +627,38 @@ function ensureSystemSettingsSchema() {
       );
       changed = true;
     }
+
+    const existingProxyMaxConcurrentAccounts = getStatement(
+      rawDb,
+      "SELECT value FROM system_settings WHERE key = 'scheduler_proxy_max_concurrent_accounts' LIMIT 1"
+    );
+
+    if (!existingProxyMaxConcurrentAccounts) {
+      const defaultValue = String(Number(config?.scheduler?.proxyMaxConcurrentAccounts) || 2);
+      runStatement(
+        rawDb,
+        `INSERT INTO system_settings (key, value, updated_at)
+         VALUES ('scheduler_proxy_max_concurrent_accounts', ?, CURRENT_TIMESTAMP)`,
+        [defaultValue],
+      );
+      changed = true;
+    }
+
+    const existingProxyAccountDispatchInterval = getStatement(
+      rawDb,
+      "SELECT value FROM system_settings WHERE key = 'scheduler_proxy_account_dispatch_interval_ms' LIMIT 1"
+    );
+
+    if (!existingProxyAccountDispatchInterval) {
+      const defaultValue = String(Number(config?.scheduler?.proxyAccountDispatchIntervalMs) || 12000);
+      runStatement(
+        rawDb,
+        `INSERT INTO system_settings (key, value, updated_at)
+         VALUES ('scheduler_proxy_account_dispatch_interval_ms', ?, CURRENT_TIMESTAMP)`,
+        [defaultValue],
+      );
+      changed = true;
+    }
   } catch (error) {
     console.warn('⚠️ 检查 system_settings 表结构失败:', error?.message || error);
   }

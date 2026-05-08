@@ -20,6 +20,7 @@ import {
   runWithTemporaryPresetTeam,
 } from '../utils/scheduledTaskHelpers.js';
 import {
+  EXECUTION_LANES,
   runAccountTaskExclusive,
   registerAccountClient,
   unregisterAccountClient,
@@ -42,6 +43,7 @@ import {
 import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
+import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 
 const scheduledBatchJobs = new Map();
 const activeConnections = new Map();
@@ -64,6 +66,18 @@ const DAILY_POINT_TASK_ID_MAP = {
 };
 
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
+
+async function resolveAccountExecutionLane(accountName) {
+  try {
+    await proxyConfigManager.ensureLoaded();
+    return proxyConfigManager.shouldUseProxySync(accountName)
+      ? EXECUTION_LANES.PROXY
+      : EXECUTION_LANES.DIRECT;
+  } catch (error) {
+    console.warn('⚠️ 解析批量任务账号执行通道失败，默认走直连通道:', error?.message || error);
+    return EXECUTION_LANES.DIRECT;
+  }
+}
 
 function isRetryableWsError(error) {
   const message = String(error?.message || error || '');
@@ -498,8 +512,16 @@ export async function executeBatchTask(task) {
       return;
     }
 
-    const accountExecutions = accounts.map((account) =>
-      runAccountTaskExclusive(account.id, async () => {
+    const accountExecutions = accounts.map(async (account) => {
+      const lane = await resolveAccountExecutionLane(account.name);
+      return runAccountTaskExclusive(account.id, async () => {
+        console.log('🚀 开始批量任务账号执行', {
+          batchTaskId: task.id,
+          accountId: account.id,
+          accountName: account.name,
+          lane,
+          taskTypes,
+        });
         const rawToken = decrypt(account.token_encrypted, account.token_iv);
         const tokenMeta = parseTokenPayload(rawToken);
         const tokenCandidates = tokenMeta.candidates?.length
@@ -526,11 +548,11 @@ export async function executeBatchTask(task) {
             );
           }
         }
-      }).catch((error) => {
+      }, { lane }).catch((error) => {
         console.error(`❌ 批量任务账号执行失败: ${account.name}:`, error.message);
         addBatchTaskLogEntry(task.id, account.id, 'ACCOUNT_ERROR', shouldIgnoreFailure(error) ? 'ignored' : 'error', error.message || '账号执行失败');
-      })
-    );
+      });
+    });
 
     await Promise.allSettled(accountExecutions);
 

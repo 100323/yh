@@ -7,6 +7,8 @@ import {
   getSchedulerSettings,
   updateSchedulerAccountDispatchIntervalMsSetting,
   updateSchedulerMaxConcurrentAccountsSetting,
+  updateSchedulerProxyAccountDispatchIntervalMsSetting,
+  updateSchedulerProxyMaxConcurrentAccountsSetting,
 } from '../utils/systemSettings.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import { proxyPoolManager } from '../utils/proxyPool/index.js';
@@ -194,8 +196,26 @@ router.put('/settings/scheduler', (req, res) => {
       : (hasIntervalSeconds
         ? Number(body.accountDispatchIntervalSeconds) * 1000
         : (hasIntervalSnake ? body.account_dispatch_interval_ms : undefined));
+    const hasProxyCamel = Object.prototype.hasOwnProperty.call(body, 'proxyMaxConcurrentAccounts');
+    const hasProxySnake = Object.prototype.hasOwnProperty.call(body, 'proxy_max_concurrent_accounts');
+    const rawProxyMaxConcurrentAccounts = hasProxyCamel
+      ? body.proxyMaxConcurrentAccounts
+      : (hasProxySnake ? body.proxy_max_concurrent_accounts : undefined);
+    const hasProxyIntervalMs = Object.prototype.hasOwnProperty.call(body, 'proxyAccountDispatchIntervalMs');
+    const hasProxyIntervalSeconds = Object.prototype.hasOwnProperty.call(body, 'proxyAccountDispatchIntervalSeconds');
+    const hasProxyIntervalSnake = Object.prototype.hasOwnProperty.call(body, 'proxy_account_dispatch_interval_ms');
+    const rawProxyAccountDispatchIntervalMs = hasProxyIntervalMs
+      ? body.proxyAccountDispatchIntervalMs
+      : (hasProxyIntervalSeconds
+        ? Number(body.proxyAccountDispatchIntervalSeconds) * 1000
+        : (hasProxyIntervalSnake ? body.proxy_account_dispatch_interval_ms : undefined));
 
-    if (rawMaxConcurrentAccounts === undefined && rawAccountDispatchIntervalMs === undefined) {
+    if (
+      rawMaxConcurrentAccounts === undefined &&
+      rawAccountDispatchIntervalMs === undefined &&
+      rawProxyMaxConcurrentAccounts === undefined &&
+      rawProxyAccountDispatchIntervalMs === undefined
+    ) {
       return res.status(400).json({
         success: false,
         error: '缺少调度配置',
@@ -209,6 +229,13 @@ router.put('/settings/scheduler', (req, res) => {
     if (rawAccountDispatchIntervalMs !== undefined) {
       updated.accountDispatchIntervalMs = updateSchedulerAccountDispatchIntervalMsSetting(rawAccountDispatchIntervalMs);
       updated.accountDispatchIntervalSeconds = Math.round(updated.accountDispatchIntervalMs / 1000);
+    }
+    if (rawProxyMaxConcurrentAccounts !== undefined) {
+      updated.proxyMaxConcurrentAccounts = updateSchedulerProxyMaxConcurrentAccountsSetting(rawProxyMaxConcurrentAccounts);
+    }
+    if (rawProxyAccountDispatchIntervalMs !== undefined) {
+      updated.proxyAccountDispatchIntervalMs = updateSchedulerProxyAccountDispatchIntervalMsSetting(rawProxyAccountDispatchIntervalMs);
+      updated.proxyAccountDispatchIntervalSeconds = Math.round(updated.proxyAccountDispatchIntervalMs / 1000);
     }
 
     res.json({
@@ -232,7 +259,7 @@ router.get('/settings/proxy', async (req, res) => {
   try {
     await proxyConfigManager.ensureLoaded();
     if (await proxyConfigManager.isEnabled()) {
-      await proxyPoolManager.ensureInitialized();
+      proxyPoolManager.ensureInitializedInBackground('admin-proxy-settings');
     }
     res.json({
       success: true,

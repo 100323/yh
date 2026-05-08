@@ -12,7 +12,7 @@
       <div class="scheduler-settings-panel" v-loading="schedulerSettingsLoading">
         <div class="scheduler-setting-main">
           <div class="scheduler-setting-field">
-            <div class="scheduler-setting-title">并发账号数</div>
+            <div class="scheduler-setting-title">直连并发账号数</div>
             <el-input-number
               v-model="schedulerMaxConcurrentAccounts"
               :min="schedulerLimits.min"
@@ -21,9 +21,27 @@
             />
           </div>
           <div class="scheduler-setting-field">
-            <div class="scheduler-setting-title">账号启动间隔（秒）</div>
+            <div class="scheduler-setting-title">代理并发账号数</div>
+            <el-input-number
+              v-model="schedulerProxyMaxConcurrentAccounts"
+              :min="schedulerLimits.min"
+              :max="schedulerLimits.max"
+              controls-position="right"
+            />
+          </div>
+          <div class="scheduler-setting-field">
+            <div class="scheduler-setting-title">直连启动间隔（秒）</div>
             <el-input-number
               v-model="schedulerAccountDispatchIntervalSeconds"
+              :min="schedulerLimits.accountDispatchIntervalSecondsMin"
+              :max="schedulerLimits.accountDispatchIntervalSecondsMax"
+              controls-position="right"
+            />
+          </div>
+          <div class="scheduler-setting-field">
+            <div class="scheduler-setting-title">代理启动间隔（秒）</div>
+            <el-input-number
+              v-model="schedulerProxyAccountDispatchIntervalSeconds"
               :min="schedulerLimits.accountDispatchIntervalSecondsMin"
               :max="schedulerLimits.accountDispatchIntervalSecondsMax"
               controls-position="right"
@@ -468,7 +486,9 @@ const userLogs = ref([]);
 const schedulerSettingsLoading = ref(false);
 const schedulerSettingsSaving = ref(false);
 const schedulerMaxConcurrentAccounts = ref(3);
+const schedulerProxyMaxConcurrentAccounts = ref(2);
 const schedulerAccountDispatchIntervalSeconds = ref(8);
+const schedulerProxyAccountDispatchIntervalSeconds = ref(12);
 const schedulerLimits = reactive({
   min: 1,
   max: 20,
@@ -699,7 +719,9 @@ const fetchSchedulerSettings = async () => {
     const res = await api.get('/admin/users/settings/scheduler');
     if (res.success) {
       schedulerMaxConcurrentAccounts.value = Number(res.data?.maxConcurrentAccounts || 3);
+      schedulerProxyMaxConcurrentAccounts.value = Number(res.data?.proxyMaxConcurrentAccounts || 2);
       schedulerAccountDispatchIntervalSeconds.value = Number(res.data?.accountDispatchIntervalSeconds ?? 8);
+      schedulerProxyAccountDispatchIntervalSeconds.value = Number(res.data?.proxyAccountDispatchIntervalSeconds ?? 12);
       schedulerLimits.min = Number(res.data?.limits?.min || 1);
       schedulerLimits.max = Number(res.data?.limits?.max || 20);
       schedulerLimits.accountDispatchIntervalSecondsMin = Number(res.data?.limits?.accountDispatchIntervalSecondsMin ?? 0);
@@ -717,12 +739,20 @@ const saveSchedulerSettings = async () => {
   try {
     const res = await api.put('/admin/users/settings/scheduler', {
       maxConcurrentAccounts: schedulerMaxConcurrentAccounts.value,
+      proxyMaxConcurrentAccounts: schedulerProxyMaxConcurrentAccounts.value,
       accountDispatchIntervalSeconds: schedulerAccountDispatchIntervalSeconds.value,
+      proxyAccountDispatchIntervalSeconds: schedulerProxyAccountDispatchIntervalSeconds.value,
     });
     if (res.success) {
       schedulerMaxConcurrentAccounts.value = Number(res.data?.maxConcurrentAccounts || schedulerMaxConcurrentAccounts.value);
+      schedulerProxyMaxConcurrentAccounts.value = Number(
+        res.data?.proxyMaxConcurrentAccounts || schedulerProxyMaxConcurrentAccounts.value,
+      );
       schedulerAccountDispatchIntervalSeconds.value = Number(
         res.data?.accountDispatchIntervalSeconds ?? schedulerAccountDispatchIntervalSeconds.value,
+      );
+      schedulerProxyAccountDispatchIntervalSeconds.value = Number(
+        res.data?.proxyAccountDispatchIntervalSeconds ?? schedulerProxyAccountDispatchIntervalSeconds.value,
       );
       schedulerLimits.min = Number(res.data?.limits?.min || schedulerLimits.min);
       schedulerLimits.max = Number(res.data?.limits?.max || schedulerLimits.max);
@@ -1214,7 +1244,7 @@ onMounted(() => {
 
 .scheduler-setting-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
   align-items: end;
   gap: 16px;
   padding: 18px;

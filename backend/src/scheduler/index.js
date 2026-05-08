@@ -28,6 +28,7 @@ import {
   runWithTemporaryPresetTeam,
 } from '../utils/scheduledTaskHelpers.js';
 import {
+  EXECUTION_LANES,
   runAccountTaskExclusive,
   isAccountTaskRunning,
   registerAccountClient,
@@ -59,6 +60,19 @@ const scheduledJobs = new Map();
 const connectionPromises = new Map();
 const dailyRewardFlushState = new Map();
 const pendingAccountTaskBatches = new Map();
+
+async function resolveAccountExecutionLane(accountName) {
+  try {
+    await proxyConfigManager.ensureLoaded();
+    return proxyConfigManager.shouldUseProxySync(accountName)
+      ? EXECUTION_LANES.PROXY
+      : EXECUTION_LANES.DIRECT;
+  } catch (error) {
+    console.warn('⚠️ 解析账号执行通道失败，默认走直连通道:', error?.message || error);
+    return EXECUTION_LANES.DIRECT;
+  }
+}
+
 let schedulerRefreshJob = null;
 let dailyCatchupJob = null;
 const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
@@ -711,11 +725,13 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
   const firstTask = batchItems[0]?.task;
   const accountId = getTaskAccountId(firstTask);
   const accountName = getTaskAccountName(firstTask);
+  const lane = await resolveAccountExecutionLane(accountName);
 
   return runAccountTaskExclusive(accountId, async () => {
     console.log('🚀 开始账号批次执行', {
       accountId,
       accountName,
+      lane,
       source: context.source || 'scheduler',
       taskCount: batchItems.length,
       taskTypes: batchItems.map((item) => item.task.task_type),
@@ -832,7 +848,7 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         source: context.source || 'scheduler',
       });
     }
-  });
+  }, { lane });
 }
 
 async function flushPendingAccountTaskBatch(accountId) {
@@ -1341,6 +1357,8 @@ export async function executeTask(task) {
     throw new Error('缺少账号ID，无法执行任务');
   }
 
+  const lane = await resolveAccountExecutionLane(accountName);
+
   return runAccountTaskExclusive(accountId, async () => {
     console.log(`🚀 开始执行任务: ${accountName} - ${task.task_type}`);
     try {
@@ -1396,7 +1414,7 @@ export async function executeTask(task) {
       }
       throw error;
     }
-  });
+  }, { lane });
 }
 
 async function executeTaskWithFlowControl({
@@ -1706,6 +1724,8 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
     updatedAt: entry.updatedAt || null,
   };
 
+  const lane = await resolveAccountExecutionLane(flushContext.accountName);
+
   entry.flushingPromise = runAccountTaskExclusive(accountId, async () => {
     try {
       if (!entry.dirty) {
@@ -1797,7 +1817,7 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
     } finally {
       entry.flushingPromise = null;
     }
-  });
+  }, { lane });
 
   return await entry.flushingPromise;
 }

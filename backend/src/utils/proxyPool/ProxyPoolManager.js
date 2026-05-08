@@ -127,6 +127,35 @@ export class ProxyPoolManager {
   }
 
   /**
+   * 非阻塞初始化：任务热路径只触发后台预热，不等待代理源抓取/验证。
+   */
+  ensureInitializedInBackground(reason = 'background') {
+    if (this.initialized || this.initPromise) {
+      return this.getWarmupStatus();
+    }
+
+    console.log(`[ProxyPoolManager] 后台初始化代理池 (${reason})`);
+    this.warmupStatus = {
+      running: true,
+      startedAt: new Date().toISOString(),
+      finishedAt: null,
+      lastError: null
+    };
+    this.initPromise = this.init()
+      .catch((error) => {
+        this.warmupStatus.lastError = error?.message || String(error);
+        console.error('[ProxyPoolManager] 后台初始化失败:', error);
+      })
+      .finally(() => {
+        this.warmupStatus.running = false;
+        this.warmupStatus.finishedAt = new Date().toISOString();
+        this.initPromise = null;
+      });
+
+    return this.getWarmupStatus();
+  }
+
+  /**
    * 后台预热代理池。立即返回状态，避免管理接口被代理验证阻塞。
    */
   startWarmup() {
@@ -304,7 +333,27 @@ export class ProxyPoolManager {
   /**
    * 获取一个可用代理
    */
-  getProxy(accountId = null) {
+  getProxy(accountId = null, options = {}) {
+    const {
+      allowInitialize = false,
+      triggerWarmup = true
+    } = options;
+
+    if (!this.initialized) {
+      if (allowInitialize) {
+        throw new Error('getProxy() does not support blocking initialization; call ensureInitialized() first');
+      }
+      if (triggerWarmup) {
+        this.ensureInitializedInBackground('get-proxy-fast-path');
+      }
+      console.warn('[ProxyPoolManager] 代理池尚未初始化，快路径返回空代理');
+      return null;
+    }
+
+    if ((this.isRefreshing || this.isValidating) && triggerWarmup) {
+      console.log('[ProxyPoolManager] 代理池正在后台刷新/验证，任务快路径使用当前可用快照');
+    }
+
     // 如果该账号已分配代理且仍在冷却期内，返回同一个代理
     if (accountId && this.assignedProxies.has(accountId)) {
       const assigned = this.assignedProxies.get(accountId);

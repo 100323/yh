@@ -2,16 +2,33 @@ import config from '../config/index.js';
 import {
   getSchedulerAccountDispatchIntervalMsSetting,
   getSchedulerMaxConcurrentAccountsSetting,
+  getSchedulerProxyAccountDispatchIntervalMsSetting,
+  getSchedulerProxyMaxConcurrentAccountsSetting,
 } from './systemSettings.js';
 
 const accountTaskChains = new Map();
 const accountClients = new Map();
-const queuedAccounts = [];
+const EXECUTION_LANES = {
+  DIRECT: 'direct',
+  PROXY: 'proxy',
+};
+
+const laneStates = {
+  [EXECUTION_LANES.DIRECT]: {
+    queuedAccounts: [],
+    activeAccountExecutions: 0,
+    queuedDispatchTimer: null,
+    queuedDispatchScheduledAt: null,
+  },
+  [EXECUTION_LANES.PROXY]: {
+    queuedAccounts: [],
+    activeAccountExecutions: 0,
+    queuedDispatchTimer: null,
+    queuedDispatchScheduledAt: null,
+  },
+};
 const taskTypeChains = new Map();
 const taskTypeNextAllowedAt = new Map();
-let activeAccountExecutions = 0;
-let queuedDispatchTimer = null;
-let queuedDispatchScheduledAt = null;
 
 function normalizeAccountId(accountId) {
   return String(accountId);
@@ -24,6 +41,27 @@ function getMaxConcurrentAccounts() {
     const value = Number(config?.scheduler?.maxConcurrentAccounts || 0);
     return Number.isFinite(value) && value > 0 ? Math.floor(value) : 3;
   }
+}
+
+function normalizeExecutionLane(lane) {
+  return lane === EXECUTION_LANES.PROXY ? EXECUTION_LANES.PROXY : EXECUTION_LANES.DIRECT;
+}
+
+function getLaneState(lane) {
+  return laneStates[normalizeExecutionLane(lane)];
+}
+
+function getMaxConcurrentAccountsForLane(lane) {
+  if (normalizeExecutionLane(lane) === EXECUTION_LANES.PROXY) {
+    try {
+      return getSchedulerProxyMaxConcurrentAccountsSetting();
+    } catch {
+      const value = Number(config?.scheduler?.proxyMaxConcurrentAccounts || 0);
+      return Number.isFinite(value) && value > 0 ? Math.floor(value) : 2;
+    }
+  }
+
+  return getMaxConcurrentAccounts();
 }
 
 function getTaskTypeThrottleMs(taskType) {
@@ -40,75 +78,98 @@ function getAccountDispatchIntervalMs() {
   }
 }
 
+function getAccountDispatchIntervalMsForLane(lane) {
+  if (normalizeExecutionLane(lane) === EXECUTION_LANES.PROXY) {
+    try {
+      return getSchedulerProxyAccountDispatchIntervalMsSetting();
+    } catch {
+      const value = Number(config?.scheduler?.proxyAccountDispatchIntervalMs || 0);
+      return Number.isFinite(value) && value >= 0 ? Math.floor(value) : 12000;
+    }
+  }
+
+  return getAccountDispatchIntervalMs();
+}
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, Math.max(0, Number(ms) || 0)));
 }
 
-function scheduleQueuedAccountDispatch(delayMs = getAccountDispatchIntervalMs()) {
-  if (queuedDispatchTimer || queuedAccounts.length === 0) {
+function scheduleQueuedAccountDispatch(lane = EXECUTION_LANES.DIRECT, delayMs = getAccountDispatchIntervalMsForLane(lane)) {
+  const normalizedLane = normalizeExecutionLane(lane);
+  const state = getLaneState(normalizedLane);
+  if (state.queuedDispatchTimer || state.queuedAccounts.length === 0) {
     return;
   }
-  if (activeAccountExecutions >= getMaxConcurrentAccounts()) {
+  if (state.activeAccountExecutions >= getMaxConcurrentAccountsForLane(normalizedLane)) {
     return;
   }
 
   const normalizedDelay = Math.max(0, Number(delayMs) || 0);
-  queuedDispatchScheduledAt = Date.now() + normalizedDelay;
-  queuedDispatchTimer = setTimeout(() => {
-    queuedDispatchTimer = null;
-    queuedDispatchScheduledAt = null;
-    dispatchQueuedAccounts();
+  state.queuedDispatchScheduledAt = Date.now() + normalizedDelay;
+  state.queuedDispatchTimer = setTimeout(() => {
+    state.queuedDispatchTimer = null;
+    state.queuedDispatchScheduledAt = null;
+    dispatchQueuedAccounts(normalizedLane);
   }, normalizedDelay);
 }
 
-function dispatchQueuedAccounts() {
-  const limit = getMaxConcurrentAccounts();
-  while (activeAccountExecutions < limit && queuedAccounts.length > 0) {
-    const queued = queuedAccounts.shift();
-    activeAccountExecutions += 1;
+function dispatchQueuedAccounts(lane = EXECUTION_LANES.DIRECT) {
+  const normalizedLane = normalizeExecutionLane(lane);
+  const state = getLaneState(normalizedLane);
+  const limit = getMaxConcurrentAccountsForLane(normalizedLane);
+  while (state.activeAccountExecutions < limit && state.queuedAccounts.length > 0) {
+    const queued = state.queuedAccounts.shift();
+    state.activeAccountExecutions += 1;
     queued.resolve();
   }
 
-  if (queuedAccounts.length > 0 && activeAccountExecutions < limit) {
-    scheduleQueuedAccountDispatch();
+  if (state.queuedAccounts.length > 0 && state.activeAccountExecutions < limit) {
+    scheduleQueuedAccountDispatch(normalizedLane);
   }
 }
 
-async function acquireGlobalAccountSlot(accountId) {
+async function acquireGlobalAccountSlot(accountId, lane = EXECUTION_LANES.DIRECT) {
   const key = normalizeAccountId(accountId);
-  const limit = getMaxConcurrentAccounts();
+  const normalizedLane = normalizeExecutionLane(lane);
+  const state = getLaneState(normalizedLane);
+  const limit = getMaxConcurrentAccountsForLane(normalizedLane);
 
-  if (activeAccountExecutions < limit && queuedAccounts.length === 0) {
-    activeAccountExecutions += 1;
+  if (state.activeAccountExecutions < limit && state.queuedAccounts.length === 0) {
+    state.activeAccountExecutions += 1;
     return;
   }
 
   await new Promise((resolve) => {
-    queuedAccounts.push({
+    state.queuedAccounts.push({
       accountId: key,
+      lane: normalizedLane,
       queuedAt: Date.now(),
       resolve,
     });
-    scheduleQueuedAccountDispatch();
+    scheduleQueuedAccountDispatch(normalizedLane);
   });
 }
 
-function releaseGlobalAccountSlot() {
-  activeAccountExecutions = Math.max(0, activeAccountExecutions - 1);
-  scheduleQueuedAccountDispatch();
+function releaseGlobalAccountSlot(lane = EXECUTION_LANES.DIRECT) {
+  const normalizedLane = normalizeExecutionLane(lane);
+  const state = getLaneState(normalizedLane);
+  state.activeAccountExecutions = Math.max(0, state.activeAccountExecutions - 1);
+  scheduleQueuedAccountDispatch(normalizedLane);
 }
 
-export async function runAccountTaskExclusive(accountId, taskExecutor) {
+export async function runAccountTaskExclusive(accountId, taskExecutor, options = {}) {
   const key = normalizeAccountId(accountId);
+  const lane = normalizeExecutionLane(options?.lane);
   const previous = accountTaskChains.get(key) || Promise.resolve();
   const current = previous
     .catch(() => {})
     .then(async () => {
-      await acquireGlobalAccountSlot(key);
+      await acquireGlobalAccountSlot(key, lane);
       try {
         return await taskExecutor();
       } finally {
-        releaseGlobalAccountSlot();
+        releaseGlobalAccountSlot(lane);
       }
     });
 
@@ -202,14 +263,39 @@ export function unregisterAccountClient(accountId, client = null) {
 }
 
 export function getAccountTaskCoordinatorStatus() {
+  const directState = laneStates[EXECUTION_LANES.DIRECT];
+  const proxyState = laneStates[EXECUTION_LANES.PROXY];
   return {
     maxConcurrentAccounts: getMaxConcurrentAccounts(),
     accountDispatchIntervalMs: getAccountDispatchIntervalMs(),
-    activeAccountExecutions,
-    queuedAccountExecutions: queuedAccounts.length,
-    queuedDispatchScheduledAt,
+    proxyMaxConcurrentAccounts: getMaxConcurrentAccountsForLane(EXECUTION_LANES.PROXY),
+    proxyAccountDispatchIntervalMs: getAccountDispatchIntervalMsForLane(EXECUTION_LANES.PROXY),
+    activeAccountExecutions: directState.activeAccountExecutions + proxyState.activeAccountExecutions,
+    queuedAccountExecutions: directState.queuedAccounts.length + proxyState.queuedAccounts.length,
+    queuedDispatchScheduledAt: directState.queuedDispatchScheduledAt,
     runningAccountChains: accountTaskChains.size,
-    queuedAccounts: queuedAccounts.map((item) => item.accountId),
+    lanes: {
+      [EXECUTION_LANES.DIRECT]: {
+        maxConcurrentAccounts: getMaxConcurrentAccountsForLane(EXECUTION_LANES.DIRECT),
+        accountDispatchIntervalMs: getAccountDispatchIntervalMsForLane(EXECUTION_LANES.DIRECT),
+        activeAccountExecutions: directState.activeAccountExecutions,
+        queuedAccountExecutions: directState.queuedAccounts.length,
+        queuedDispatchScheduledAt: directState.queuedDispatchScheduledAt,
+        queuedAccounts: directState.queuedAccounts.map((item) => item.accountId),
+      },
+      [EXECUTION_LANES.PROXY]: {
+        maxConcurrentAccounts: getMaxConcurrentAccountsForLane(EXECUTION_LANES.PROXY),
+        accountDispatchIntervalMs: getAccountDispatchIntervalMsForLane(EXECUTION_LANES.PROXY),
+        activeAccountExecutions: proxyState.activeAccountExecutions,
+        queuedAccountExecutions: proxyState.queuedAccounts.length,
+        queuedDispatchScheduledAt: proxyState.queuedDispatchScheduledAt,
+        queuedAccounts: proxyState.queuedAccounts.map((item) => item.accountId),
+      },
+    },
+    queuedAccounts: [
+      ...directState.queuedAccounts.map((item) => item.accountId),
+      ...proxyState.queuedAccounts.map((item) => item.accountId),
+    ],
     throttledTaskTypes: Array.from(taskTypeNextAllowedAt.entries()).map(([taskType, nextAllowedAt]) => ({
       taskType,
       nextAllowedAt,
@@ -222,11 +308,15 @@ export function clearAccountTaskCoordinator() {
   accountClients.clear();
   taskTypeChains.clear();
   taskTypeNextAllowedAt.clear();
-  queuedAccounts.length = 0;
-  activeAccountExecutions = 0;
-  if (queuedDispatchTimer) {
-    clearTimeout(queuedDispatchTimer);
-    queuedDispatchTimer = null;
+  for (const state of Object.values(laneStates)) {
+    state.queuedAccounts.length = 0;
+    state.activeAccountExecutions = 0;
+    if (state.queuedDispatchTimer) {
+      clearTimeout(state.queuedDispatchTimer);
+      state.queuedDispatchTimer = null;
+    }
+    state.queuedDispatchScheduledAt = null;
   }
-  queuedDispatchScheduledAt = null;
 }
+
+export { EXECUTION_LANES };

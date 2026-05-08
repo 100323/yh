@@ -2,9 +2,11 @@ import config from '../config/index.js';
 import { get, run } from '../database/index.js';
 
 export const SCHEDULER_MAX_CONCURRENT_ACCOUNTS_KEY = 'scheduler_max_concurrent_accounts';
+export const SCHEDULER_PROXY_MAX_CONCURRENT_ACCOUNTS_KEY = 'scheduler_proxy_max_concurrent_accounts';
 export const SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN = 1;
 export const SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX = 20;
 export const SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_KEY = 'scheduler_account_dispatch_interval_ms';
+export const SCHEDULER_PROXY_ACCOUNT_DISPATCH_INTERVAL_MS_KEY = 'scheduler_proxy_account_dispatch_interval_ms';
 export const SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN = 0;
 export const SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX = 120000;
 
@@ -21,6 +23,14 @@ function getSchedulerMaxConcurrentAccountsFallback() {
   return 3;
 }
 
+function getSchedulerProxyMaxConcurrentAccountsFallback() {
+  const fallback = Number(config?.scheduler?.proxyMaxConcurrentAccounts || 0);
+  if (Number.isInteger(fallback) && fallback >= SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN) {
+    return Math.min(fallback, SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX);
+  }
+  return 2;
+}
+
 function getSchedulerAccountDispatchIntervalMsFallback() {
   const fallback = Number(config?.scheduler?.accountDispatchIntervalMs || 0);
   if (
@@ -31,6 +41,18 @@ function getSchedulerAccountDispatchIntervalMsFallback() {
     return fallback;
   }
   return 8000;
+}
+
+function getSchedulerProxyAccountDispatchIntervalMsFallback() {
+  const fallback = Number(config?.scheduler?.proxyAccountDispatchIntervalMs || 0);
+  if (
+    Number.isInteger(fallback) &&
+    fallback >= SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN &&
+    fallback <= SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX
+  ) {
+    return fallback;
+  }
+  return 12000;
 }
 
 export function normalizeSchedulerMaxConcurrentAccounts(value) {
@@ -47,6 +69,10 @@ export function normalizeSchedulerMaxConcurrentAccounts(value) {
   return normalized;
 }
 
+export function normalizeSchedulerProxyMaxConcurrentAccounts(value) {
+  return normalizeSchedulerMaxConcurrentAccounts(value);
+}
+
 export function normalizeSchedulerAccountDispatchIntervalMs(value) {
   const normalized = toInteger(value);
   if (
@@ -59,6 +85,10 @@ export function normalizeSchedulerAccountDispatchIntervalMs(value) {
     );
   }
   return normalized;
+}
+
+export function normalizeSchedulerProxyAccountDispatchIntervalMs(value) {
+  return normalizeSchedulerAccountDispatchIntervalMs(value);
 }
 
 export function getSystemSettingValue(key, fallback = null) {
@@ -104,9 +134,43 @@ export function getSchedulerMaxConcurrentAccountsSetting() {
   return Math.min(normalized, SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX);
 }
 
+export function getSchedulerProxyMaxConcurrentAccountsSetting() {
+  const fallback = getSchedulerProxyMaxConcurrentAccountsFallback();
+  const stored = getSystemSettingValue(SCHEDULER_PROXY_MAX_CONCURRENT_ACCOUNTS_KEY, null);
+  if (stored === null) {
+    return fallback;
+  }
+
+  const normalized = Number(stored);
+  if (!Number.isInteger(normalized) || normalized < SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN) {
+    return fallback;
+  }
+
+  return Math.min(normalized, SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX);
+}
+
 export function getSchedulerAccountDispatchIntervalMsSetting() {
   const fallback = getSchedulerAccountDispatchIntervalMsFallback();
   const stored = getSystemSettingValue(SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_KEY, null);
+  if (stored === null) {
+    return fallback;
+  }
+
+  const normalized = Number(stored);
+  if (
+    !Number.isInteger(normalized) ||
+    normalized < SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MIN ||
+    normalized > SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_MAX
+  ) {
+    return fallback;
+  }
+
+  return normalized;
+}
+
+export function getSchedulerProxyAccountDispatchIntervalMsSetting() {
+  const fallback = getSchedulerProxyAccountDispatchIntervalMsFallback();
+  const stored = getSystemSettingValue(SCHEDULER_PROXY_ACCOUNT_DISPATCH_INTERVAL_MS_KEY, null);
   if (stored === null) {
     return fallback;
   }
@@ -129,18 +193,34 @@ export function updateSchedulerMaxConcurrentAccountsSetting(value) {
   return normalized;
 }
 
+export function updateSchedulerProxyMaxConcurrentAccountsSetting(value) {
+  const normalized = normalizeSchedulerProxyMaxConcurrentAccounts(value);
+  setSystemSettingValue(SCHEDULER_PROXY_MAX_CONCURRENT_ACCOUNTS_KEY, normalized);
+  return normalized;
+}
+
 export function updateSchedulerAccountDispatchIntervalMsSetting(value) {
   const normalized = normalizeSchedulerAccountDispatchIntervalMs(value);
   setSystemSettingValue(SCHEDULER_ACCOUNT_DISPATCH_INTERVAL_MS_KEY, normalized);
   return normalized;
 }
 
+export function updateSchedulerProxyAccountDispatchIntervalMsSetting(value) {
+  const normalized = normalizeSchedulerProxyAccountDispatchIntervalMs(value);
+  setSystemSettingValue(SCHEDULER_PROXY_ACCOUNT_DISPATCH_INTERVAL_MS_KEY, normalized);
+  return normalized;
+}
+
 export function getSchedulerSettings() {
   const accountDispatchIntervalMs = getSchedulerAccountDispatchIntervalMsSetting();
+  const proxyAccountDispatchIntervalMs = getSchedulerProxyAccountDispatchIntervalMsSetting();
   return {
     maxConcurrentAccounts: getSchedulerMaxConcurrentAccountsSetting(),
+    proxyMaxConcurrentAccounts: getSchedulerProxyMaxConcurrentAccountsSetting(),
     accountDispatchIntervalMs,
     accountDispatchIntervalSeconds: Math.round(accountDispatchIntervalMs / 1000),
+    proxyAccountDispatchIntervalMs,
+    proxyAccountDispatchIntervalSeconds: Math.round(proxyAccountDispatchIntervalMs / 1000),
     limits: {
       min: SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MIN,
       max: SCHEDULER_MAX_CONCURRENT_ACCOUNTS_MAX,

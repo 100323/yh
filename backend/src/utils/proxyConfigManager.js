@@ -12,6 +12,12 @@ const DEFAULT_PROXY_CONFIG = {
   enabled: false,
   fallbackToDirect: true,
   maxRetries: 3,
+  circuitBreaker: {
+    enabled: true,
+    failureThreshold: 5,
+    windowMs: 60 * 1000,
+    cooldownMs: 2 * 60 * 1000
+  },
   rollout: {
     strategy: 'whitelist', // whitelist | percentage | all | none
     whitelist: [], // 账号名称列表
@@ -47,12 +53,23 @@ function normalizeRollout(rollout = {}) {
 }
 
 function normalizeConfig(config = {}) {
+  const circuitBreaker = {
+    ...DEFAULT_PROXY_CONFIG.circuitBreaker,
+    ...(config?.circuitBreaker || {})
+  };
+
   return {
     ...DEFAULT_PROXY_CONFIG,
     ...(config || {}),
     enabled: !!config?.enabled,
     fallbackToDirect: config?.fallbackToDirect !== false,
     maxRetries: Math.max(1, Math.min(10, Number(config?.maxRetries || DEFAULT_PROXY_CONFIG.maxRetries))),
+    circuitBreaker: {
+      enabled: circuitBreaker.enabled !== false,
+      failureThreshold: Math.max(1, Math.min(100, Number(circuitBreaker.failureThreshold || DEFAULT_PROXY_CONFIG.circuitBreaker.failureThreshold))),
+      windowMs: Math.max(1000, Math.min(10 * 60 * 1000, Number(circuitBreaker.windowMs || DEFAULT_PROXY_CONFIG.circuitBreaker.windowMs))),
+      cooldownMs: Math.max(1000, Math.min(30 * 60 * 1000, Number(circuitBreaker.cooldownMs || DEFAULT_PROXY_CONFIG.circuitBreaker.cooldownMs)))
+    },
     rollout: normalizeRollout(config?.rollout)
   };
 }
@@ -62,6 +79,9 @@ class ProxyConfigManager {
     this.config = normalizeConfig();
 
     this.accountProxyStats = new Map(); // accountName -> { successCount, failCount, lastUsed }
+    this.proxyFailureEvents = [];
+    this.proxyCircuitOpenUntil = 0;
+    this.lastPoolWarmupKickAt = 0;
     this.initPromise = this.init();
   }
 
@@ -112,6 +132,10 @@ class ProxyConfigManager {
       rollout: {
         ...(this.config.rollout || {}),
         ...(updates?.rollout || {})
+      },
+      circuitBreaker: {
+        ...(this.config.circuitBreaker || {}),
+        ...(updates?.circuitBreaker || {})
       }
     });
     await this.saveConfig();
@@ -148,6 +172,72 @@ class ProxyConfigManager {
     }
   }
 
+  shouldUseProxySync(accountName) {
+    return this.shouldUseProxy(accountName);
+  }
+
+  getCircuitBreakerStatus() {
+    const now = Date.now();
+    const openUntil = Number(this.proxyCircuitOpenUntil || 0);
+    return {
+      enabled: this.config.circuitBreaker?.enabled !== false,
+      open: openUntil > now,
+      openUntil: openUntil > now ? new Date(openUntil).toISOString() : null,
+      remainingMs: openUntil > now ? openUntil - now : 0,
+      recentFailures: this.proxyFailureEvents.length
+    };
+  }
+
+  recordProxyFailureEvent() {
+    const breaker = this.config.circuitBreaker || DEFAULT_PROXY_CONFIG.circuitBreaker;
+    if (breaker.enabled === false) {
+      return;
+    }
+
+    const now = Date.now();
+    const windowMs = Number(breaker.windowMs || DEFAULT_PROXY_CONFIG.circuitBreaker.windowMs);
+    this.proxyFailureEvents = this.proxyFailureEvents
+      .filter((timestamp) => now - timestamp <= windowMs);
+    this.proxyFailureEvents.push(now);
+
+    const failureThreshold = Number(breaker.failureThreshold || DEFAULT_PROXY_CONFIG.circuitBreaker.failureThreshold);
+    if (this.proxyFailureEvents.length >= failureThreshold) {
+      const cooldownMs = Number(breaker.cooldownMs || DEFAULT_PROXY_CONFIG.circuitBreaker.cooldownMs);
+      this.proxyCircuitOpenUntil = Math.max(this.proxyCircuitOpenUntil || 0, now + cooldownMs);
+      this.proxyFailureEvents = [];
+      console.warn('[ProxyConfigManager] 代理熔断已打开', {
+        failureThreshold,
+        windowMs,
+        cooldownMs,
+        openUntil: new Date(this.proxyCircuitOpenUntil).toISOString()
+      });
+      this.kickProxyWarmup('circuit-open');
+    }
+  }
+
+  recordProxySuccessEvent() {
+    this.proxyFailureEvents = [];
+    this.proxyCircuitOpenUntil = 0;
+  }
+
+  kickProxyWarmup(reason = 'background') {
+    const now = Date.now();
+    if (now - this.lastPoolWarmupKickAt < 30 * 1000) {
+      return;
+    }
+    this.lastPoolWarmupKickAt = now;
+    try {
+      const status = proxyPoolManager.startWarmup();
+      console.log('[ProxyConfigManager] 已触发代理池后台预热', {
+        reason,
+        running: status.running,
+        startedAt: status.startedAt
+      });
+    } catch (error) {
+      console.warn('[ProxyConfigManager] 触发代理池后台预热失败:', error?.message || error);
+    }
+  }
+
   async shouldFallbackToDirect() {
     await this.ensureLoaded();
     return !!this.config.fallbackToDirect;
@@ -174,11 +264,26 @@ class ProxyConfigManager {
       return null;
     }
 
+    const circuit = this.getCircuitBreakerStatus();
+    if (circuit.open) {
+      console.warn(`[ProxyConfigManager] 代理熔断打开，跳过代理获取: ${accountName}`, circuit);
+      this.kickProxyWarmup('circuit-open-request');
+      if (this.config.fallbackToDirect) {
+        return null;
+      }
+      throw new Error('Proxy circuit breaker is open');
+    }
+
     try {
-      await proxyPoolManager.ensureInitialized();
-      const proxy = proxyPoolManager.getProxy(accountId);
+      proxyPoolManager.ensureInitializedInBackground('proxy-request');
+      const proxy = proxyPoolManager.getProxy(accountId, {
+        allowInitialize: false,
+        triggerWarmup: true
+      });
       if (!proxy) {
         console.warn(`[ProxyConfigManager] 无可用代理: ${accountName}`);
+        this.recordProxyFailureEvent();
+        this.kickProxyWarmup('no-available-proxy');
         if (this.config.fallbackToDirect) {
           return null;
         }
@@ -217,9 +322,11 @@ class ProxyConfigManager {
       const stats = this.accountProxyStats.get(accountName);
       if (success) {
         stats.successCount++;
+        this.recordProxySuccessEvent();
         proxyPoolManager.markProxySuccess(proxyId);
       } else {
         stats.failCount++;
+        this.recordProxyFailureEvent();
         proxyPoolManager.markProxyFailed(proxyId);
       }
     }
@@ -239,7 +346,8 @@ class ProxyConfigManager {
       config: this.config,
       poolStats,
       accountStats,
-      accountsUsingProxy: accountStats.length
+      accountsUsingProxy: accountStats.length,
+      circuitBreaker: this.getCircuitBreakerStatus()
     };
   }
 
