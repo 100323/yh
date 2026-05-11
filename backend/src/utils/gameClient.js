@@ -103,6 +103,10 @@ const COMMAND_RESPONSE_ALIASES = {
   system_getdatabundlever: ['system_getdatabundleverresp'],
   item_openbox: ['item_openboxresp'],
   item_batchclaimboxpointreward: ['item_batchclaimboxpointrewardresp'],
+  pkroom_getfightroominfo: ['pkroom_getfightroominforesp'],
+  pkroom_getfightroomdetail: ['pkroom_getfightroomdetailresp'],
+  pkroom_appoint: ['syncresp'],
+  activity_claimrolluppack: ['activity_claimrolluppackresp', 'syncrewardresp', 'syncresp'],
 };
 
 function normalizeCmd(cmd) {
@@ -1237,6 +1241,22 @@ export class GameClient {
 
   async claimTreasureFreeReward() {
     return this.sendWithPromise('collection_claimfreereward', {});
+  }
+
+  async getPkFightRoomInfo(timeout = 10000) {
+    return this.sendWithPromise('pkroom_getfightroominfo', {}, timeout);
+  }
+
+  async getPkFightRoomDetail(roomId, timeout = 10000) {
+    return this.sendWithPromise('pkroom_getfightroomdetail', { roomId: String(roomId) }, timeout);
+  }
+
+  async appointPkFightRoom(timeout = 10000) {
+    return this.sendWithPromise('pkroom_appoint', {}, timeout);
+  }
+
+  async claimRollupPack(id, timeout = 10000) {
+    return this.sendWithPromise('activity_claimrolluppack', { id }, timeout);
   }
 
   async getLegacyInfo() {

@@ -2255,6 +2255,12 @@ async function runTaskByType(client, taskType, config, context = {}) {
     
     case 'DAILY_TASK_CLAIM':
       return await executeDailyTaskClaim(client, config);
+
+    case 'PKROOM_APPOINT':
+      return await executePkroomAppoint(client, config);
+
+    case 'FREE_JADE_PACK':
+      return await executeFreeJadePack(client, config);
     
     case 'DAILY_BOSS':
       return await executeDailyBoss(client, config);
@@ -3021,29 +3027,102 @@ async function executeWelfareClaim(client, config) {
     { name: '俱乐部签到', cmd: 'legion_signin' },
     { name: '领取每日礼包', cmd: 'discount_claimreward', params: { discountId: 1 } },
     { name: '领取每日免费奖励', cmd: 'collection_claimfreereward' },
-    { name: '领取免费礼包', cmd: 'card_claimreward', params: { cardId: 1 } },
-    { name: '领取永久卡礼包', cmd: 'card_claimreward', params: { cardId: 4003 } },
+    { name: '领取免费礼包', cmd: 'card_claimreward', params: { cardId: 1 }, displayLabel: '免费礼包' },
+    { name: '领取周卡礼包', cmd: 'card_claimreward', params: { cardId: 4001 }, displayLabel: '周卡' },
+    { name: '领取月卡礼包', cmd: 'card_claimreward', params: { cardId: 4002 }, displayLabel: '月卡' },
+    { name: '领取永久卡礼包', cmd: 'card_claimreward', params: { cardId: 4003 }, displayLabel: '永久卡礼包' },
   ];
   
   for (const reward of rewards) {
     try {
       const result = await client.sendWithPromise(reward.cmd, reward.params || {});
-      results.push({ name: reward.name, ok: true, result });
+      results.push({ name: reward.name, label: reward.displayLabel || '', ok: true, result });
     } catch (error) {
-      results.push({ name: reward.name, ok: false, error: error.message });
+      results.push({ name: reward.name, label: reward.displayLabel || '', ok: false, error: error.message });
     }
     await new Promise((resolve) => setTimeout(resolve, 300));
   }
   
   const successCount = results.filter((x) => x.ok).length;
+  const claimedCardLabels = results
+    .filter((x) => x.ok && x.label)
+    .map((x) => x.label);
+  const claimedCardSuffix = claimedCardLabels.length > 0
+    ? `：${claimedCardLabels.join('、')}`
+    : '';
+
   return { 
-    message: `福利奖励领取完成 (${successCount}/${results.length})`, 
-    data: { results, successCount } 
+    message: `福利奖励领取完成 (${successCount}/${results.length})${claimedCardSuffix}`, 
+    data: { results, successCount, claimedCardLabels } 
   };
 }
 
 async function executeDailyTaskClaim(client, config) {
   return executeDailyTaskClaimScheduledTask(client, config);
+}
+
+function formatPkroomStartTime(startTime) {
+  const timestamp = Number(startTime || 0);
+  if (!Number.isFinite(timestamp) || timestamp <= 0) {
+    return '';
+  }
+
+  return new Date(timestamp * 1000).toLocaleString('zh-CN', {
+    timeZone: 'Asia/Shanghai',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+}
+
+async function executePkroomAppoint(client, config) {
+  const info = await client.getPkFightRoomInfo(10000);
+  const roomId = String(info?.roomId || '').trim();
+
+  if (!roomId) {
+    return {
+      message: '暂无可预约比赛',
+      data: { info },
+    };
+  }
+
+  const result = await client.appointPkFightRoom(10000);
+  const statistics = result?.role?.statistics || {};
+  const appointedRoomId = statistics['pk:appoint:room:id'];
+  const hasAppointedRoomId = appointedRoomId !== undefined && appointedRoomId !== null;
+
+  if (hasAppointedRoomId && String(appointedRoomId) !== roomId) {
+    throw new Error(`预约比赛校验失败: 当前预约 ${appointedRoomId}，目标 ${roomId}`);
+  }
+
+  const roomName = info?.roomName || `房间 ${roomId}`;
+  const startTimeText = formatPkroomStartTime(info?.startTime);
+
+  return {
+    message: `预约比赛完成：${roomName}${startTimeText ? `（${startTimeText}）` : ''}`,
+    data: {
+      roomId,
+      roomName,
+      startTime: info?.startTime || null,
+      appointedRoomId: hasAppointedRoomId ? String(appointedRoomId) : null,
+      result,
+    },
+  };
+}
+
+async function executeFreeJadePack(client, config) {
+  const packId = Number(config?.packId ?? 17);
+  const result = await client.claimRollupPack(packId, 10000);
+
+  return {
+    message: '免费白玉礼包领取完成',
+    data: {
+      packId,
+      result,
+    },
+  };
 }
 
 function getTodayBossId() {

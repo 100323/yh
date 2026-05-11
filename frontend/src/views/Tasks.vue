@@ -261,6 +261,8 @@ const frontendToBackendTaskMap = {
   batchDailyBoss: 'DAILY_BOSS',
   batchWelfareClaim: 'WELFARE_CLAIM',
   batchDailyTaskClaim: 'DAILY_TASK_CLAIM',
+  pkroomAppoint: 'PKROOM_APPOINT',
+  freeJadePack: 'FREE_JADE_PACK',
 };
 
 const backendTypeDefaultCronMap = ref({});

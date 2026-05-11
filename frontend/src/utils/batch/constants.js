@@ -227,7 +227,7 @@ export const taskConfigDefinitions = {
   batchWelfareClaim: {
     label: "福利奖励领取",
     group: "daily",
-    description: "领取福利签到、每日礼包、免费礼包、永久卡礼包等福利奖励",
+    description: "领取福利签到、每日礼包、免费礼包、周卡、月卡、永久卡礼包等福利奖励",
     defaultEnabled: true,
     configFields: [],
   },
@@ -235,6 +235,13 @@ export const taskConfigDefinitions = {
     label: "日周活跃奖励",
     group: "daily",
     description: "统一领取每日任务点数、日活跃宝箱、周活跃宝箱",
+    defaultEnabled: true,
+    configFields: [],
+  },
+  pkroomAppoint: {
+    label: "预约比赛",
+    group: "daily",
+    description: "预约当前官方比赛房间",
     defaultEnabled: true,
     configFields: [],
   },
@@ -361,6 +368,13 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [],
   },
+  freeJadePack: {
+    label: "免费白玉礼包",
+    group: "resource",
+    description: "每周一 12:05 领取免费白玉礼包",
+    defaultEnabled: true,
+    configFields: [],
+  },
 };
 
 // 可用的定时任务列表（向后兼容）
@@ -400,6 +414,7 @@ const defaultTaskScheduleOverrides = {
   batchDailyBoss: { runTime: createDefaultRunTime(12, 1) },
   batchWelfareClaim: { runTime: createDefaultRunTime(12, 1) },
   batchDailyTaskClaim: { runTime: createDefaultRunTime(12, 1) },
+  pkroomAppoint: { runTime: createDefaultRunTime(8, 6) },
   batchmengjing: { scheduleType: "weekly", weekdays: [0, 3, 6], runTime: createDefaultRunTime(12, 10) },
   skinChallenge: { runTime: createDefaultRunTime(12, 1) },
   starTemple: { runTime: createDefaultRunTime(12, 1) },
@@ -410,6 +425,7 @@ const defaultTaskScheduleOverrides = {
   batchOpenBox: { runTime: createDefaultRunTime(12, 1) },
   batchGenieSweep: { runTime: createDefaultRunTime(0, 1) },
   batchGacha: { scheduleType: "weekly", weekdays: [2, 4, 6], runTime: createDefaultRunTime(0, 1) },
+  freeJadePack: { scheduleType: "weekly", weekdays: [1], runTime: createDefaultRunTime(12, 5) },
 };
 
 const defaultTaskConfigOverrides = {

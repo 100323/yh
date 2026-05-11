@@ -39,6 +39,8 @@ export const TASK_TYPES = {
   LEGACY_CLAIM: { name: '残卷收取', cron: '23 */6 * * *', group: 'daily' },
   WELFARE_CLAIM: { name: '福利奖励领取', cron: '4 12 * * *', group: 'daily' },
   DAILY_TASK_CLAIM: { name: '日周活跃奖励领取', cron: '25 12 * * *', group: 'daily' },
+  PKROOM_APPOINT: { name: '预约比赛', cron: '6 8 * * *', group: 'daily' },
+  FREE_JADE_PACK: { name: '免费白玉礼包', cron: '5 12 * * 1', group: 'resource' },
   DREAM: { name: '梦境', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', cron: '10 12 * * *', group: 'dungeon' },
   STAR_TEMPLE: { name: '星级十殿', cron: '10 12 * * *', group: 'dungeon' },
@@ -132,6 +134,8 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   DAILY_BOSS: { enabled: true, config: {} },
   WELFARE_CLAIM: { enabled: true, config: {} },
   DAILY_TASK_CLAIM: { enabled: true, config: {} },
+  PKROOM_APPOINT: { enabled: true, config: {} },
+  FREE_JADE_PACK: { enabled: true, config: {} },
   DREAM: { enabled: true, config: {} },
   SKIN_CHALLENGE: { enabled: true, config: {} },
   STAR_TEMPLE: {

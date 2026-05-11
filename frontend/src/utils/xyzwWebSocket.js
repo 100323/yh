@@ -266,10 +266,16 @@ export function registerDefaultCommands(reg) {
     .register("discount_claimreward", { discountId: 1 })
     .register("collection_claimfreereward")
     .register("card_claimreward", { cardId: 1 })
+    .register("activity_claimrolluppack", { id: 17 })
 
     // 爬塔相关
     .register("tower_getinfo")
     .register("tower_claimreward")
+
+    // 比赛房间相关
+    .register("pkroom_getfightroominfo")
+    .register("pkroom_getfightroomdetail", { roomId: "" })
+    .register("pkroom_appoint")
 
     // 队伍相关
     .register("presetteam_getinfo")
@@ -1116,6 +1122,8 @@ export class XyzwWebSocketClient {
       store_buyresp: "store_purchase",
       system_getdatabundleverresp: "system_getdatabundlever",
       tower_claimrewardresp: "tower_claimreward",
+      pkroom_getfightroominforesp: "pkroom_getfightroominfo",
+      pkroom_getfightroomdetailresp: "pkroom_getfightroomdetail",
       fight_starttowerresp: "fight_starttower",
       fight_startlevelresp: "fight_startlevel",
       evotowerinforesp: "evotower_getinfo",
@@ -1163,6 +1171,7 @@ export class XyzwWebSocketClient {
       car_claimpartconsumerewardresp: "car_claimpartconsumereward",
       role_gettargetteamresp: "role_gettargetteam",
       activity_warorderclaimresp: "activity_recyclewarorderrewardclaim",
+      activity_claimrolluppackresp: "activity_claimrolluppack",
       arena_getarearankresp: "arena_getarearank",
       bosstower_gethelprankresp: "bosstower_gethelprank",
       // 功法相关响应映射
@@ -1189,6 +1198,8 @@ export class XyzwWebSocketClient {
         "role_commitpassword",
         "artifact_load",
         "artifact_unload",
+        "pkroom_appoint",
+        "activity_claimrolluppack",
       ],
       syncrewardresp: [
         "system_buygold",
@@ -1204,6 +1215,7 @@ export class XyzwWebSocketClient {
         "hero_exchange",
         "task_claimdailyreward",
         "task_claimweekreward",
+        "activity_claimrolluppack",
       ],
     };
 

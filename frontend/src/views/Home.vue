@@ -264,6 +264,8 @@ const taskTypeNames = {
   LEGACY_CLAIM: '残卷收取',
   WELFARE_CLAIM: '福利奖励领取',
   DAILY_TASK_CLAIM: '日周活跃奖励领取',
+  PKROOM_APPOINT: '预约比赛',
+  FREE_JADE_PACK: '免费白玉礼包',
   DREAM: '梦境',
   DREAM_PURCHASE: '购买梦境商品',
   SKIN_CHALLENGE: '换皮闯关',
