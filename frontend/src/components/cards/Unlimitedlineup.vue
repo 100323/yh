@@ -1025,6 +1025,8 @@ const summarizeDebugHeroes = (heroes = []) =>
       transTrumpId: hero?.transTrumpId ?? null,
       trumpId2: hero?.trumpId2 ?? null,
       artifactId: hero?.artifactId ?? null,
+      equipmentRefineSignature: hero?.equipmentRefineSignature ?? null,
+      developmentPackageSignature: hero?.developmentPackageSignature ?? null,
       fishId: hero?.fishId ?? null,
       pearlId: hero?.pearlId ?? null,
       skillId: hero?.skillId ?? null,
@@ -1044,6 +1046,8 @@ const summarizeDebugSnapshot = (snapshot = {}) => {
     transTrumpId: hero?.transTrumpId ?? null,
     trumpId2: hero?.trumpId2 ?? null,
     artifactId: hero?.artifactId ?? null,
+    equipmentRefineSignature: hero?.equipmentRefineSignature ?? null,
+    developmentPackageSignature: hero?.developmentPackageSignature ?? null,
   }));
 
   return {
@@ -1053,6 +1057,7 @@ const summarizeDebugSnapshot = (snapshot = {}) => {
     teamWeaponId: snapshot?.teamWeaponId ?? null,
     teamHeroes: summarizeDebugHeroes(snapshot?.teamHeroes || []),
     attachmentOwnerMap: snapshot?.attachmentOwnerMap || {},
+    developmentPackageOwnerMap: snapshot?.developmentPackageOwnerMap || {},
     artifactOwnerMap: snapshot?.artifactOwnerMap || {},
     fishToArtifactMap: snapshot?.fishToArtifactMap || {},
     pearlSkillMap: snapshot?.pearlSkillMap || {},
@@ -1401,6 +1406,82 @@ const normalizePearlSkillId = (value) => {
   return normalized === 0 ? null : normalized;
 };
 
+const normalizeSignatureNumber = (value) => {
+  if (value === undefined || value === null || value === "") return 0;
+  const num = Number(value);
+  return Number.isNaN(num) ? value : num;
+};
+
+const stableSignatureJson = (value) => JSON.stringify(value);
+
+const normalizeSignatureValue = (value) => {
+  if (!value) return null;
+  if (typeof value === "string") return value;
+  try {
+    return stableSignatureJson(value);
+  } catch (error) {
+    return null;
+  }
+};
+
+const normalizeQuenchSlot = (slot = {}, slotId = null) => {
+  if (!slot || typeof slot !== "object") return null;
+  return {
+    slotId: normalizeSignatureNumber(slotId),
+    colorId: normalizeSignatureNumber(slot.colorId),
+    attrId: normalizeId(slot.attrId) || 0,
+    attrNum: normalizeSignatureNumber(slot.attrNum),
+    isLocked: !!(slot.isLocked || slot.locked),
+  };
+};
+
+const normalizeQuenches = (quenches = null) => {
+  if (!quenches || typeof quenches !== "object") return null;
+  const slots = Object.entries(quenches)
+    .map(([slotId, slot]) => normalizeQuenchSlot(slot, slotId))
+    .filter(Boolean)
+    .sort((a, b) => Number(a.slotId) - Number(b.slotId));
+  return slots.length ? slots : null;
+};
+
+const buildEquipmentRefineSignature = (equipment = {}) => {
+  if (!equipment || typeof equipment !== "object") return null;
+
+  const parts = Object.entries(equipment)
+    .filter(([, equip]) => equip && typeof equip === "object")
+    .map(([partId, equip]) => ({
+      partId: normalizeSignatureNumber(partId),
+      level: normalizeSignatureNumber(equip.level),
+      curQuenchId: normalizeSignatureNumber(equip.curQuenchId),
+      enchantUId: normalizeSignatureNumber(equip.enchantUId),
+      enchantUId2: normalizeSignatureNumber(equip.enchantUId2),
+      quenchTimes: normalizeSignatureNumber(equip.quenchTimes),
+      quenchTimes2: normalizeSignatureNumber(equip.quenchTimes2),
+      quenchAttackExt: normalizeSignatureNumber(equip.quenchAttackExt),
+      quenchDefenseExt: normalizeSignatureNumber(equip.quenchDefenseExt),
+      quenchHpExt: normalizeSignatureNumber(equip.quenchHpExt),
+      quenches: normalizeQuenches(equip.quenches),
+      quenches2: normalizeQuenches(equip.quenches2),
+    }))
+    .filter(
+      (part) =>
+        part.level ||
+        part.curQuenchId ||
+        part.enchantUId ||
+        part.enchantUId2 ||
+        part.quenchTimes ||
+        part.quenchTimes2 ||
+        part.quenchAttackExt ||
+        part.quenchDefenseExt ||
+        part.quenchHpExt ||
+        part.quenches ||
+        part.quenches2,
+    )
+    .sort((a, b) => Number(a.partId) - Number(b.partId));
+
+  return parts.length ? stableSignatureJson(parts) : null;
+};
+
 const TRUMP_ATTACHMENT_PREFIX = "trump:";
 
 const resolveHeroAttachmentFields = (hero = {}) => {
@@ -1440,6 +1521,101 @@ const isAttachmentKeyComparable = (targetKey, snapshot = {}) => {
 
   const targetUsesTrumpKey = isTrumpAttachmentKey(targetKey);
   return snapshotKeys.some((key) => isTrumpAttachmentKey(key) === targetUsesTrumpKey);
+};
+
+const buildDevelopmentPackageSignature = (hero = {}) => {
+  const equipmentRefineSignature = normalizeSignatureValue(
+    hero.equipmentRefineSignature || buildEquipmentRefineSignature(hero.equipment),
+  );
+  const attachmentFields = resolveHeroAttachmentFields(hero);
+  if (!equipmentRefineSignature) {
+    return null;
+  }
+
+  return stableSignatureJson({
+    level: normalizeSignatureNumber(hero.level),
+    order: normalizeSignatureNumber(hero.order),
+    attachmentUid: normalizeSignatureValue(attachmentFields.attachmentUid),
+    trumpId: normalizeId(hero.trumpId) || 0,
+    transTrumpId: normalizeId(hero.transTrumpId) || 0,
+    trumpId2: normalizeId(hero.trumpId2) || 0,
+    equipmentRefineSignature,
+  });
+};
+
+const rebuildLineupOwnerMaps = (snapshot = {}) => {
+  const attachmentOwnerMap = {};
+  const developmentPackageOwnerMap = {};
+  const artifactOwnerMap = {};
+
+  for (const [heroId, hero] of Object.entries(snapshot.heroesMap || {})) {
+    const normalizedHeroId = normalizeId(heroId);
+    if (hero?.attachmentUid) {
+      attachmentOwnerMap[hero.attachmentUid] = normalizedHeroId;
+    }
+    if (hero?.developmentPackageSignature) {
+      developmentPackageOwnerMap[hero.developmentPackageSignature] = normalizedHeroId;
+    }
+    const artifactId = normalizeId(hero?.artifactId);
+    if (artifactId) {
+      artifactOwnerMap[artifactId] = normalizedHeroId;
+    }
+  }
+
+  snapshot.attachmentOwnerMap = attachmentOwnerMap;
+  snapshot.developmentPackageOwnerMap = developmentPackageOwnerMap;
+  snapshot.artifactOwnerMap = artifactOwnerMap;
+  return snapshot;
+};
+
+const mergeRoleHeroesIntoSnapshot = (snapshot = {}, roleHeroes = {}) => {
+  for (const [heroId, hero] of Object.entries(roleHeroes || {})) {
+    const normalizedHeroId = normalizeId(heroId);
+    const previous = snapshot.heroesMap?.[normalizedHeroId] || {};
+    const attachmentFields = resolveHeroAttachmentFields(hero);
+    const equipmentRefineSignature = buildEquipmentRefineSignature(hero?.equipment);
+    const hasArtifactId = Object.prototype.hasOwnProperty.call(hero || {}, "artifactId");
+    const hasPearlId = Object.prototype.hasOwnProperty.call(hero || {}, "pearlId");
+    const nextHero = {
+      ...previous,
+      heroId: normalizedHeroId,
+      level: hero?.level ?? previous.level ?? null,
+      order: hero?.order ?? previous.order ?? 0,
+      battleTeamSlot: hero?.battleTeamSlot ?? previous.battleTeamSlot ?? -1,
+      artifactId: hasArtifactId ? normalizeId(hero?.artifactId) : (previous.artifactId ?? null),
+      pearlId: hasPearlId ? normalizeId(hero?.pearlId) : (previous.pearlId ?? null),
+      equipmentRefineSignature: equipmentRefineSignature ?? previous.equipmentRefineSignature ?? null,
+      ...attachmentFields,
+    };
+    nextHero.developmentPackageSignature = buildDevelopmentPackageSignature(nextHero);
+    snapshot.heroesMap[normalizedHeroId] = nextHero;
+  }
+  rebuildLineupOwnerMaps(snapshot);
+  return snapshot;
+};
+
+const syncWorkingTeamHeroesFromSnapshot = (
+  workingTeamHeroes = [],
+  snapshot = {},
+  heroIds = [],
+) => {
+  const affectedHeroIds = new Set(heroIds.map((heroId) => normalizeId(heroId)));
+  for (let index = workingTeamHeroes.length - 1; index >= 0; index--) {
+    if (affectedHeroIds.has(workingTeamHeroes[index].heroId)) {
+      workingTeamHeroes.splice(index, 1);
+    }
+  }
+
+  for (const heroId of affectedHeroIds) {
+    const hero = snapshot.heroesMap?.[heroId];
+    const position = Number(hero?.battleTeamSlot);
+    if (Number.isInteger(position) && position >= 0) {
+      workingTeamHeroes.push({
+        heroId,
+        position,
+      });
+    }
+  }
 };
 
 const resolveTeamPosition = (key, hero = {}) => {
@@ -1489,11 +1665,24 @@ const buildTargetState = (lineup) => {
     heroes: [...(lineup.heroes || [])]
       .map((hero) => {
         const attachmentFields = resolveHeroAttachmentFields(hero);
+        const equipmentRefineSignature = normalizeSignatureValue(
+          hero.equipmentRefineSignature,
+        );
+        const developmentPackageSignature = normalizeSignatureValue(
+          hero.developmentPackageSignature,
+        ) || buildDevelopmentPackageSignature({
+          ...hero,
+          ...attachmentFields,
+          equipmentRefineSignature,
+        });
         return {
           heroId: normalizeId(hero.heroId),
           position: Number(hero.position),
           level: hero.level || null,
           ...attachmentFields,
+          order: hero.order || null,
+          equipmentRefineSignature,
+          developmentPackageSignature,
           fishId: normalizeId(hero.fishId),
           pearlId: normalizeId(hero.pearlId),
           skillId: normalizePearlSkillId(hero.skillId),
@@ -1588,21 +1777,35 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
 
   const heroesMap = {};
   const attachmentOwnerMap = {};
+  const developmentPackageOwnerMap = {};
   const artifactOwnerMap = {};
   for (const [heroId, hero] of Object.entries(heroesRaw)) {
     const normalizedHeroId = normalizeId(heroId);
     const artifactId = normalizeId(hero?.artifactId);
     const attachmentFields = resolveHeroAttachmentFields(hero);
     const attachmentUid = attachmentFields.attachmentUid;
+    const equipmentRefineSignature = buildEquipmentRefineSignature(hero?.equipment);
+    const developmentPackageSignature = buildDevelopmentPackageSignature({
+      ...hero,
+      ...attachmentFields,
+      equipmentRefineSignature,
+    });
     heroesMap[normalizedHeroId] = {
       heroId: normalizedHeroId,
       level: hero?.level || null,
       order: hero?.order || 0,
+      battleTeamSlot: hero?.battleTeamSlot ?? -1,
       artifactId,
+      pearlId: normalizeId(hero?.pearlId),
+      equipmentRefineSignature,
+      developmentPackageSignature,
       ...attachmentFields,
     };
     if (attachmentUid) {
       attachmentOwnerMap[attachmentUid] = normalizedHeroId;
+    }
+    if (developmentPackageSignature) {
+      developmentPackageOwnerMap[developmentPackageSignature] = normalizedHeroId;
     }
     if (artifactId) {
       artifactOwnerMap[artifactId] = normalizedHeroId;
@@ -1636,6 +1839,7 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
     weaponId: resolveSnapshotWeaponId(role, currentTeam),
     teamWeaponId: normalizeId(currentTeam?.weapon?.weaponId),
     attachmentOwnerMap,
+    developmentPackageOwnerMap,
     artifactOwnerMap,
     fishToArtifactMap,
     pearlSkillMap,
@@ -1683,6 +1887,30 @@ const verifyTargetState = (targetState) => {
 };
 
 const verifyAttachmentStep = (snapshot, targetState) => {
+  const packageTargets = targetState.heroes.filter(
+    (hero) => hero.developmentPackageSignature,
+  );
+  if (packageTargets.length > 0) {
+    const mismatches = packageTargets.filter(
+      (hero) =>
+        normalizeSignatureValue(snapshot.heroesMap[hero.heroId]?.developmentPackageSignature) !==
+        normalizeSignatureValue(hero.developmentPackageSignature),
+    );
+
+    if (mismatches.length > 0) {
+      return verifyFailure(
+        `养成包归属未完成: ${mismatches.map((hero) => getHeroName(hero.heroId) || hero.heroId).join("、")}`,
+        {
+          mismatches,
+          currentTeam: formatHeroListForLog(snapshot.teamHeroes),
+          targetTeam: formatHeroListForLog(targetState.heroes),
+        },
+      );
+    }
+
+    return verifySuccess("养成包归属检查通过");
+  }
+
   const comparableTargets = targetState.heroes.filter((hero) =>
     isAttachmentKeyComparable(hero.attachmentUid, snapshot),
   );
@@ -3269,11 +3497,24 @@ const saveCurrentLineup = async () => {
       const pearlData = pearlMap[pearlId];
       const slotMap = pearlData?.slotMap || null;
       const attachmentFields = resolveHeroAttachmentFields(heroData || hero);
+      const equipmentRefineSignature = buildEquipmentRefineSignature(
+        heroData?.equipment,
+      );
+      const savedHeroState = {
+        ...(heroData || {}),
+        ...attachmentFields,
+        level: teamHeroInfo?.level || heroData?.level || null,
+        order: heroData?.order || 0,
+        equipmentRefineSignature,
+      };
       return {
         position: hero.position,
         heroId: hero.heroId,
         level: teamHeroInfo?.level || null,
+        order: heroData?.order || null,
         ...attachmentFields,
+        equipmentRefineSignature,
+        developmentPackageSignature: buildDevelopmentPackageSignature(savedHeroState),
         fishId: fishId || null,
         pearlId: pearlId,
         skillId: pearlData?.skillId || null,
@@ -3614,19 +3855,72 @@ const applyLineup = async (lineup, options = {}) => {
         title: "处理挂件归属",
         retry: 1,
         run: async (stepCtx) => {
-          const { heroesMap, teamHeroes } = stepCtx.currentSnapshot;
-          const attachmentToHero = { ...stepCtx.currentSnapshot.attachmentOwnerMap };
+          const { teamHeroes } = stepCtx.currentSnapshot;
           const workingTeamHeroes = teamHeroes.map((hero) => ({ ...hero }));
           let skippedIncomparableAttachment = false;
 
           for (const targetHero of stepCtx.targetState.heroes) {
-            if (!targetHero.attachmentUid) continue;
-            if (
+            const targetPackageSignature = normalizeSignatureValue(
+              targetHero.developmentPackageSignature,
+            );
+            const targetAttachmentUid = normalizeId(targetHero.attachmentUid);
+            if (!targetPackageSignature && !targetAttachmentUid) continue;
+
+            let currentHolderId = null;
+            let exchangeReason = "";
+
+            if (targetPackageSignature) {
+              currentHolderId = stepCtx.currentSnapshot.developmentPackageOwnerMap?.[
+                targetPackageSignature
+              ];
+              exchangeReason = "养成包";
+            }
+
+            if (!currentHolderId && targetAttachmentUid) {
+              if (
+                !isAttachmentKeyComparable(
+                  targetAttachmentUid,
+                  stepCtx.currentSnapshot,
+                )
+              ) {
+                if (!skippedIncomparableAttachment) {
+                  addApplyLog(
+                    "warn",
+                    "当前角色快照未返回可对比的养成包/旧 attachmentUid，已跳过旧阵容的挂件归属交换；建议重新保存阵容以记录完整养成包签名",
+                  );
+                  skippedIncomparableAttachment = true;
+                }
+                continue;
+              }
+              currentHolderId = stepCtx.currentSnapshot.attachmentOwnerMap?.[
+                targetAttachmentUid
+              ];
+              exchangeReason = "挂件";
+            }
+
+            if (!currentHolderId) {
+              addApplyLog(
+                "warn",
+                `未找到 ${getHeroName(targetHero.heroId) || targetHero.heroId} 的${exchangeReason || "养成包"}当前持有人，跳过交换`,
+              );
+              lineupDebugLog("养成包归属未找到持有人", {
+                targetHero,
+                developmentPackageOwnerMap: stepCtx.currentSnapshot.developmentPackageOwnerMap,
+                attachmentOwnerMap: stepCtx.currentSnapshot.attachmentOwnerMap,
+              }, "warn");
+              continue;
+            }
+
+            if (currentHolderId === targetHero.heroId) {
+              continue;
+            }
+
+            if (!targetPackageSignature && targetAttachmentUid && (
               !isAttachmentKeyComparable(
-                targetHero.attachmentUid,
+                targetAttachmentUid,
                 stepCtx.currentSnapshot,
               )
-            ) {
+            )) {
               if (!skippedIncomparableAttachment) {
                 addApplyLog(
                   "warn",
@@ -3634,11 +3928,6 @@ const applyLineup = async (lineup, options = {}) => {
                 );
                 skippedIncomparableAttachment = true;
               }
-              continue;
-            }
-
-            const currentHolderId = attachmentToHero[targetHero.attachmentUid];
-            if (!currentHolderId || currentHolderId === targetHero.heroId) {
               continue;
             }
 
@@ -3747,43 +4036,35 @@ const applyLineup = async (lineup, options = {}) => {
             try {
               addApplyLog(
                 "info",
-                `执行挂件交换：${getHeroName(currentHolderId) || currentHolderId} -> ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+                `执行${exchangeReason || "养成包"}交换：${getHeroName(currentHolderId) || currentHolderId} -> ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
               );
-              await tokenStore.sendMessageWithPromise(tokenId, "hero_exchange", {
+              const exchangeResult = await tokenStore.sendMessageWithPromise(tokenId, "hero_exchange", {
                 heroId: currentHolderId,
                 targetHeroId: targetHero.heroId,
               });
+              mergeRoleHeroesIntoSnapshot(
+                stepCtx.currentSnapshot,
+                exchangeResult?.role?.heroes || exchangeResult?.heroes || {},
+              );
+              syncWorkingTeamHeroesFromSnapshot(
+                workingTeamHeroes,
+                stepCtx.currentSnapshot,
+                [currentHolderId, targetHero.heroId],
+              );
             } catch (err) {
               addApplyLog(
-                "warn",
-                `挂件交换失败：${err.message}`,
+                "error",
+                `${exchangeReason || "养成包"}交换失败：${err.message}`,
                 err,
               );
+              throw err;
             }
             await delay(COMMAND_DELAY);
 
-            const holderAttachmentUid = normalizeId(
-              heroesMap[currentHolderId]?.attachmentUid,
-            );
-            const targetAttachmentUid = normalizeId(
-              heroesMap[targetHero.heroId]?.attachmentUid,
-            );
-
-            if (holderAttachmentUid) {
-              attachmentToHero[holderAttachmentUid] = targetHero.heroId;
+            if (!stepCtx.currentSnapshot.developmentPackageOwnerMap?.[targetPackageSignature]
+              && !stepCtx.currentSnapshot.attachmentOwnerMap?.[targetAttachmentUid]) {
+              rebuildLineupOwnerMaps(stepCtx.currentSnapshot);
             }
-            if (targetAttachmentUid) {
-              attachmentToHero[targetAttachmentUid] = currentHolderId;
-            }
-
-            heroesMap[currentHolderId] = {
-              ...(heroesMap[currentHolderId] || {}),
-              attachmentUid: targetAttachmentUid,
-            };
-            heroesMap[targetHero.heroId] = {
-              ...(heroesMap[targetHero.heroId] || {}),
-              attachmentUid: holderAttachmentUid,
-            };
           }
         },
         verify: async (stepCtx) =>
