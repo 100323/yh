@@ -287,7 +287,12 @@ export function registerDefaultCommands(reg) {
     .register("hero_gobackbattle", { heroId: 0 })
     .register("hero_exchange", { heroId: 0, targetHeroId: 0 })
     .register("hero_rebirth", { heroId: 0 })
-    .register("artifact_load", { itemId: 0, heroId: 0, pearlId: 0 })
+    .register("artifact_load", {
+      itemId: 0,
+      heroId: 0,
+      targetHeroId: -1,
+      pearlId: 0,
+    })
     .register("artifact_unload", { heroId: 0 })
     .register("pearl_unloadskill", { pearlId: 0 })
     .register("pearl_replaceskill", { pearlId: 0, skillId: 0 })
@@ -1182,6 +1187,8 @@ export class XyzwWebSocketClient {
         "system_mysharecallback",
         "task_claimdailypoint",
         "role_commitpassword",
+        "artifact_load",
+        "artifact_unload",
       ],
       syncrewardresp: [
         "system_buygold",

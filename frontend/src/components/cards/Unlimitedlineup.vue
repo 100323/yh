@@ -4481,40 +4481,27 @@ const applyLineup = async (lineup, options = {}) => {
               continue;
             }
 
-            if (currentHolderId) {
-              try {
-                addApplyLog(
-                  "info",
-                  `卸下鱼灵：${getHeroName(currentHolderId) || currentHolderId}`,
-                );
-                await sendArtifactCommandWithRetry(
-                  tokenId,
-                  "artifact_unload",
-                  {
-                    heroId: currentHolderId,
-                  },
-                  `卸下鱼灵 ${getHeroName(currentHolderId) || currentHolderId}`,
-                );
-                workingHeroArtifactMap[currentHolderId] = null;
-                delete workingArtifactOwnerMap[artifactId];
-              } catch (err) {
-                addApplyLog(
-                  "warn",
-                  `卸下鱼灵失败：${err.message}`,
-                  err,
-                );
-              }
-              addApplyLog(
-                "info",
-                `鱼灵卸下后冷却 ${ARTIFACT_UNLOAD_DELAY}ms，避免触发操作过快限制`,
-              );
-              await delay(ARTIFACT_UNLOAD_DELAY);
-            }
-
             try {
+              const isTransferFromHero = !!currentHolderId;
+              const loadParams = isTransferFromHero
+                ? {
+                    heroId: targetHero.heroId,
+                    itemId: -1,
+                    targetHeroId: currentHolderId,
+                    pearlId: 0,
+                  }
+                : {
+                    heroId: targetHero.heroId,
+                    itemId: artifactId,
+                    targetHeroId: -1,
+                    pearlId: pearlId,
+                  };
+
               addApplyLog(
                 "info",
-                `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}`,
+                isTransferFromHero
+                  ? `转移鱼灵：${getHeroName(currentHolderId) || currentHolderId} -> ${getHeroName(targetHero.heroId) || targetHero.heroId}，artifact ${artifactId}（鱼珠随鱼灵转移）`
+                  : `装备鱼灵：${getHeroName(targetHero.heroId) || targetHero.heroId} -> artifact ${artifactId}, pearl ${pearlId || 0}`,
               );
               if (currentArtifactId && currentArtifactId !== artifactId) {
                 delete workingArtifactOwnerMap[currentArtifactId];
@@ -4522,13 +4509,12 @@ const applyLineup = async (lineup, options = {}) => {
               await sendArtifactCommandWithRetry(
                 tokenId,
                 "artifact_load",
-                {
-                  heroId: targetHero.heroId,
-                  itemId: artifactId,
-                  pearlId: pearlId,
-                },
-                `装备鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
+                loadParams,
+                `${isTransferFromHero ? "转移" : "装备"}鱼灵 ${getHeroName(targetHero.heroId) || targetHero.heroId}`,
               );
+              if (isTransferFromHero) {
+                workingHeroArtifactMap[currentHolderId] = null;
+              }
               workingHeroArtifactMap[targetHero.heroId] = artifactId;
               workingArtifactOwnerMap[artifactId] = targetHero.heroId;
               fishApplied++;
