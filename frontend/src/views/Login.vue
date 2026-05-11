@@ -99,7 +99,16 @@
           </el-form>
         </el-tab-pane>
       </el-tabs>
+
+      <div class="wechat-help">
+        <span>需要账号或遇到问题？</span>
+        <el-button link type="primary" @click="wechatDialogVisible = true">
+          联系微信
+        </el-button>
+      </div>
     </div>
+
+    <WechatContactDialog v-model="wechatDialogVisible" />
   </div>
 </template>
 
@@ -109,6 +118,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { Lock, Ticket, User } from '@element-plus/icons-vue';
 import { useAuthStore } from '@stores/auth';
+import WechatContactDialog from '@/components/WechatContactDialog.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -117,6 +127,7 @@ const authStore = useAuthStore();
 const activeTab = ref('login');
 const loginLoading = ref(false);
 const registerLoading = ref(false);
+const wechatDialogVisible = ref(false);
 
 const loginFormRef = ref();
 const registerFormRef = ref();
@@ -364,5 +375,15 @@ const handleRegister = async () => {
       padding: 0 14px;
     }
   }
+}
+
+.wechat-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 </style>

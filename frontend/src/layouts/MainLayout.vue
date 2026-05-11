@@ -47,6 +47,10 @@
               </el-button>
             </el-badge>
 
+            <el-button class="wechat-contact-trigger" text @click="wechatDialogVisible = true">
+              <span>微信联系</span>
+            </el-button>
+
             <el-dropdown @command="handleCommand">
               <span class="user-info">
                 <el-avatar :size="32" icon="UserFilled" />
@@ -138,6 +142,8 @@
         </div>
       </template>
     </el-dialog>
+
+    <WechatContactDialog v-model="wechatDialogVisible" />
   </div>
 </template>
 
@@ -163,6 +169,7 @@ import {
 import { useAuthStore } from '@stores/auth';
 import { useGameWorkbenchStore } from '@stores/gameWorkbench';
 import GameWorkbenchDock from '@components/GameWorkbench/GameWorkbenchDock.vue';
+import WechatContactDialog from '@components/WechatContactDialog.vue';
 import api from '@/api';
 
 const route = useRoute();
@@ -171,6 +178,7 @@ const authStore = useAuthStore();
 const gameWorkbenchStore = useGameWorkbenchStore();
 const mobileMenuOpen = ref(false);
 const broadcastDialogVisible = ref(false);
+const wechatDialogVisible = ref(false);
 const currentBroadcast = ref(null);
 const BROADCAST_IGNORE_PREFIX = 'public_broadcast_ignored_';
 
@@ -444,6 +452,13 @@ onMounted(() => {
       text-overflow: ellipsis;
     }
   }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    min-width: 0;
+  }
   
   .user-info {
     display: flex;
@@ -492,6 +507,23 @@ onMounted(() => {
   span {
     font-size: 13px;
     font-weight: 600;
+  }
+}
+
+.wechat-contact-trigger {
+  min-height: 40px;
+  margin-right: 10px;
+  padding: 0 12px;
+  border-radius: 14px;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(120, 138, 177, 0.18);
+  box-shadow: 0 10px 24px rgba(17, 27, 48, 0.08);
+  font-weight: 600;
+
+  &:hover {
+    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.72);
   }
 }
 
