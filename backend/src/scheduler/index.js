@@ -112,7 +112,7 @@ const DAILY_CATCHUP_CRON = '15 19 * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
-const STAR_TEMPLE_COMMAND_DELAY_MS = 300;
+const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
 
 function pad2(value) {
   return String(value).padStart(2, '0');
@@ -3223,6 +3223,7 @@ async function executeStarTemple(client, config = {}) {
     let attemptsUsed = 0;
 
     await client.calcPresetTeamPower(context.presetType, battleTeam, lordWeaponId, 10000).catch(() => null);
+    await sleep(STAR_TEMPLE_COMMAND_DELAY_MS);
 
     for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
       attemptsUsed = attempt;
