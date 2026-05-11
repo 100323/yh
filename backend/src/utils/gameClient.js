@@ -1255,6 +1255,7 @@ export class GameClient {
     const {
       verifyAttempts = 5,
       verifyDelayMs = 1200,
+      beginSettleDelayMs = 0,
     } = options;
 
     const legacyInfoBefore = await this.getLegacyInfo().catch(() => null);
@@ -1265,6 +1266,11 @@ export class GameClient {
       beginResult = await this.beginLegacyHangup();
     } catch (error) {
       beginError = error;
+    }
+
+    const normalizedBeginSettleDelayMs = Math.max(0, Number(beginSettleDelayMs) || 0);
+    if (normalizedBeginSettleDelayMs > 0) {
+      await sleep(normalizedBeginSettleDelayMs);
     }
 
     const beginTimeFromResult = extractLegacyHangUpBeginTime(beginResult);

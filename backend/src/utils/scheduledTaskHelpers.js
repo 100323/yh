@@ -788,6 +788,10 @@ export async function executeDailyTaskClaimScheduledTask(client) {
 
 export async function executeLegacyClaimWithAutoReopen(client, config = {}, context = {}) {
   let currentClient = client;
+  const LEGACY_REENTRY_AFTER_ENTER_DELAY_MS = 1500;
+  const LEGACY_REENTRY_AFTER_INFO_DELAY_MS = 1500;
+  const LEGACY_REENTRY_AFTER_BEGIN_DELAY_MS = 2500;
+  const LEGACY_REENTRY_VERIFY_DELAY_MS = 2000;
 
   const claimLegacyScrollsWithSoftRetry = async () => {
     try {
@@ -815,21 +819,21 @@ export async function executeLegacyClaimWithAutoReopen(client, config = {}, cont
       reason,
     });
     currentClient = await context.reconnect();
-    await sleep(1500);
-    await currentClient.getLegacyInfo().catch(() => {});
+    await sleep(LEGACY_REENTRY_AFTER_ENTER_DELAY_MS);
     return true;
   };
 
   const reopenLegacyHangupWithVerify = async (retryCount = 0, hasReconnected = false) => {
     const MAX_REOPEN_RETRIES = 2;
-    const verifyDelayMs = 2000 + retryCount * 1000;
+    const verifyDelayMs = LEGACY_REENTRY_VERIFY_DELAY_MS;
     const retryDelayMs = 1000 + retryCount * 1000;
     try {
       await currentClient.getLegacyInfo().catch(() => {});
-      await sleep(800);
+      await sleep(LEGACY_REENTRY_AFTER_INFO_DELAY_MS);
       const reopenResult = await currentClient.reopenLegacyHangup({
         verifyAttempts: 6,
-        verifyDelayMs: 1500,
+        verifyDelayMs: LEGACY_REENTRY_VERIFY_DELAY_MS,
+        beginSettleDelayMs: LEGACY_REENTRY_AFTER_BEGIN_DELAY_MS,
       });
       console.log(`⏳ 残卷开启后等待状态稳定 ${verifyDelayMs}ms (第${retryCount + 1}次尝试)`);
       await sleep(verifyDelayMs);
