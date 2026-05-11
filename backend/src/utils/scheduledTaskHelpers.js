@@ -817,7 +817,6 @@ export async function executeLegacyClaimWithAutoReopen(client, config = {}, cont
     currentClient = await context.reconnect();
     await sleep(1500);
     await currentClient.getLegacyInfo().catch(() => {});
-    await currentClient.getRoleInfo(8000).catch(() => {});
     return true;
   };
 
@@ -835,10 +834,10 @@ export async function executeLegacyClaimWithAutoReopen(client, config = {}, cont
       console.log(`⏳ 残卷开启后等待状态稳定 ${verifyDelayMs}ms (第${retryCount + 1}次尝试)`);
       await sleep(verifyDelayMs);
       const latestLegacyInfo = await currentClient.getLegacyInfo().catch(() => null);
-      await currentClient.getRoleInfo(8000).catch(() => {});
       return {
         ...reopenResult,
         latestLegacyInfo,
+        reconnected: hasReconnected,
       };
     } catch (error) {
       const message = normalizeErrorMessage(error);
@@ -878,14 +877,15 @@ export async function executeLegacyClaimWithAutoReopen(client, config = {}, cont
 
     if (message.includes('新赛季已开启，请重新进入本功能')) {
       console.log('🔄 检测到新赛季已开启，执行残卷重新进入并开启流程...');
-      const reopenResult = await reopenLegacyHangupWithVerify();
-      console.log('✅ 残卷重新开启成功，重试收取...');
-      const retryResult = await claimLegacyScrollsWithSoftRetry();
+      const reconnected = await reconnectForLegacyReentry(message);
+      const reopenResult = await reopenLegacyHangupWithVerify(0, reconnected);
+      console.log('✅ 残卷新赛季开启成功，跳过本次收取');
       return {
-        message: '残卷收取完成(赛季重置后重试成功)',
+        message: '残卷新赛季开启成功',
         data: {
-          retryResult,
           reopenResult,
+          skippedClaimAfterReopen: true,
+          skippedReason: 'new_season_reopen_has_no_claimable_scrolls',
         },
       };
     }
