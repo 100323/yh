@@ -962,6 +962,132 @@ const RECOVERABLE_WS_ERROR_PATTERNS = [
   "1006",
 ];
 
+const LINEUP_DEBUG_PREFIX = "[无限阵容调试]";
+const LINEUP_DEBUG_GLOBAL_KEY = "__LINEUP_DEBUG_LOGS__";
+
+const sanitizeLineupDebugValue = (value, depth = 0) => {
+  if (depth > 5) return "[MaxDepth]";
+  if (value instanceof Error) {
+    return {
+      name: value.name,
+      message: value.message,
+      stack: value.stack,
+    };
+  }
+  if (value === null || value === undefined) return value;
+  if (["string", "number", "boolean"].includes(typeof value)) return value;
+  if (Array.isArray(value)) {
+    return value.slice(0, 80).map((item) => sanitizeLineupDebugValue(item, depth + 1));
+  }
+  if (value instanceof Map) {
+    return Object.fromEntries(
+      [...value.entries()].map(([key, item]) => [key, sanitizeLineupDebugValue(item, depth + 1)]),
+    );
+  }
+  if (typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([key]) => !/token|password|authorization|cookie/i.test(key))
+        .map(([key, item]) => [key, sanitizeLineupDebugValue(item, depth + 1)]),
+    );
+  }
+  return String(value);
+};
+
+const getLineupDebugStore = () => {
+  if (typeof window === "undefined") return [];
+  if (!Array.isArray(window[LINEUP_DEBUG_GLOBAL_KEY])) {
+    window[LINEUP_DEBUG_GLOBAL_KEY] = [];
+  }
+  return window[LINEUP_DEBUG_GLOBAL_KEY];
+};
+
+const pushLineupDebugEntry = (entry) => {
+  const store = getLineupDebugStore();
+  store.push(entry);
+  if (store.length > 500) {
+    store.splice(0, store.length - 500);
+  }
+};
+
+const debugHeroName = (heroId) => getHeroName(heroId) || `武将${heroId}`;
+
+const summarizeDebugHeroes = (heroes = []) =>
+  (Array.isArray(heroes) ? heroes : [])
+    .map((hero) => ({
+      pos: Number.isInteger(Number(hero?.position)) ? Number(hero.position) + 1 : null,
+      heroId: hero?.heroId,
+      name: debugHeroName(hero?.heroId),
+      level: hero?.level ?? null,
+      attachmentUid: hero?.attachmentUid ?? null,
+      legacyAttachmentUid: hero?.legacyAttachmentUid ?? null,
+      trumpId: hero?.trumpId ?? null,
+      transTrumpId: hero?.transTrumpId ?? null,
+      trumpId2: hero?.trumpId2 ?? null,
+      artifactId: hero?.artifactId ?? null,
+      fishId: hero?.fishId ?? null,
+      pearlId: hero?.pearlId ?? null,
+      skillId: hero?.skillId ?? null,
+    }))
+    .sort((a, b) => (a.pos ?? 99) - (b.pos ?? 99));
+
+const summarizeDebugSnapshot = (snapshot = {}) => {
+  const heroesMap = snapshot?.heroesMap || {};
+  const heroStates = Object.values(heroesMap).map((hero) => ({
+    heroId: hero?.heroId,
+    name: debugHeroName(hero?.heroId),
+    level: hero?.level ?? null,
+    order: hero?.order ?? null,
+    attachmentUid: hero?.attachmentUid ?? null,
+    legacyAttachmentUid: hero?.legacyAttachmentUid ?? null,
+    trumpId: hero?.trumpId ?? null,
+    transTrumpId: hero?.transTrumpId ?? null,
+    trumpId2: hero?.trumpId2 ?? null,
+    artifactId: hero?.artifactId ?? null,
+  }));
+
+  return {
+    roleId: snapshot?.roleId ?? null,
+    teamId: snapshot?.teamId ?? null,
+    weaponId: snapshot?.weaponId ?? null,
+    teamWeaponId: snapshot?.teamWeaponId ?? null,
+    teamHeroes: summarizeDebugHeroes(snapshot?.teamHeroes || []),
+    attachmentOwnerMap: snapshot?.attachmentOwnerMap || {},
+    artifactOwnerMap: snapshot?.artifactOwnerMap || {},
+    fishToArtifactMap: snapshot?.fishToArtifactMap || {},
+    pearlSkillMap: snapshot?.pearlSkillMap || {},
+    heroStates,
+  };
+};
+
+const summarizeDebugTargetState = (targetState = {}) => ({
+  teamId: targetState?.teamId ?? null,
+  weaponId: targetState?.weaponId ?? null,
+  heroes: summarizeDebugHeroes(targetState?.heroes || []),
+  legionResearchCount: Object.keys(targetState?.legionResearch || {}).length,
+});
+
+const lineupDebugLog = (label, details = {}, level = "log") => {
+  const safeDetails = sanitizeLineupDebugValue(details);
+  const entry = {
+    time: new Date().toISOString(),
+    label,
+    level,
+    details: safeDetails,
+  };
+  pushLineupDebugEntry(entry);
+
+  const consoleMethod = level === "error" ? "error" : level === "warn" ? "warn" : "log";
+  const title = `${LINEUP_DEBUG_PREFIX} ${label}`;
+  if (typeof console.groupCollapsed === "function") {
+    console.groupCollapsed(title);
+    console[consoleMethod](safeDetails);
+    console.groupEnd();
+  } else {
+    console[consoleMethod](title, safeDetails);
+  }
+};
+
 const addApplyLog = (level, message, extra = null) => {
   const entry = {
     id: `${Date.now()}-${applyLogId++}`,
@@ -986,6 +1112,9 @@ const addApplyLog = (level, message, extra = null) => {
 
 const clearApplyLogs = () => {
   state.value.stepLogs = [];
+  if (typeof window !== "undefined") {
+    window[LINEUP_DEBUG_GLOBAL_KEY] = [];
+  }
 };
 
 const createDownloadUrl = (content, type = "text/plain;charset=utf-8") =>
@@ -1495,7 +1624,7 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
     );
   }
 
-  return {
+  const snapshot = {
     roleId: normalizeId(role?.roleId || role?.id),
     teamId: resolvedTeamId,
     teamHeroes,
@@ -1511,6 +1640,13 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
     fishToArtifactMap,
     pearlSkillMap,
   };
+
+  lineupDebugLog("快照加载完成", {
+    ensureTeamFresh,
+    snapshot: summarizeDebugSnapshot(snapshot),
+  });
+
+  return snapshot;
 };
 
 const verifySuccess = (message, details = {}) => ({
@@ -1552,6 +1688,11 @@ const verifyAttachmentStep = (snapshot, targetState) => {
   );
 
   if (targetState.heroes.some((hero) => hero.attachmentUid) && comparableTargets.length === 0) {
+    lineupDebugLog("挂件归属校验跳过", {
+      reason: "当前快照没有可对比的旧 attachmentUid 字段",
+      snapshot: summarizeDebugSnapshot(snapshot),
+      targetState: summarizeDebugTargetState(targetState),
+    }, "warn");
     return verifySuccess("当前协议未返回可对比的旧挂件字段，已跳过挂件归属校验");
   }
 
@@ -1828,6 +1969,16 @@ const executeLineupSteps = async (ctx, steps) => {
     };
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      lineupDebugLog("步骤开始", {
+        key: step.key,
+        title: step.title,
+        index: index + 1,
+        total: steps.length,
+        attempt,
+        maxAttempts,
+        currentSnapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+        targetState: summarizeDebugTargetState(ctx.targetState),
+      });
       addApplyLog(
         "info",
         `开始步骤 ${index + 1}/${steps.length}：${step.title}${
@@ -1837,6 +1988,14 @@ const executeLineupSteps = async (ctx, steps) => {
 
       try {
         await step.run(ctx);
+        lineupDebugLog("步骤命令执行完成", {
+          key: step.key,
+          title: step.title,
+          index: index + 1,
+          attempt,
+          currentSnapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+          targetState: summarizeDebugTargetState(ctx.targetState),
+        });
 
         if (step.refreshSnapshot !== false) {
           addApplyLog("info", `步骤 ${step.title} 执行完毕，刷新快照校验`);
@@ -1845,10 +2004,30 @@ const executeLineupSteps = async (ctx, steps) => {
             step,
             consumeRecovery,
           );
+          lineupDebugLog("步骤快照刷新完成", {
+            key: step.key,
+            title: step.title,
+            index: index + 1,
+            attempt,
+            snapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+          });
         }
 
         const verifyResult = await step.verify(ctx);
         lastVerifyResult = verifyResult;
+        lineupDebugLog(
+          verifyResult.success ? "步骤校验通过" : "步骤校验失败",
+          {
+            key: step.key,
+            title: step.title,
+            index: index + 1,
+            attempt,
+            result: verifyResult,
+            snapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+            targetState: summarizeDebugTargetState(ctx.targetState),
+          },
+          verifyResult.success ? "log" : attempt < maxAttempts ? "warn" : "error",
+        );
 
         if (verifyResult.success) {
           state.value.stepResults.push({
@@ -1873,6 +2052,19 @@ const executeLineupSteps = async (ctx, steps) => {
         );
       } catch (error) {
         lastError = error;
+        lineupDebugLog(
+          "步骤执行异常",
+          {
+            key: step.key,
+            title: step.title,
+            index: index + 1,
+            attempt,
+            error,
+            snapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+            targetState: summarizeDebugTargetState(ctx.targetState),
+          },
+          attempt < maxAttempts ? "warn" : "error",
+        );
         addApplyLog(
           attempt < maxAttempts ? "warn" : "error",
           `步骤 ${index + 1}/${steps.length}【${step.title}】执行异常：${error.message}`,
@@ -1891,6 +2083,15 @@ const executeLineupSteps = async (ctx, steps) => {
         if (shouldRecover) {
           await recoverLineupWebSocket(ctx.tokenId, step.title);
         }
+        lineupDebugLog("步骤准备重试", {
+          key: step.key,
+          title: step.title,
+          index: index + 1,
+          nextAttempt: attempt + 1,
+          delayMs: STEP_RETRY_DELAY,
+          shouldRecover,
+          lastError,
+        }, "warn");
 
         addApplyLog(
           "warn",
@@ -1902,10 +2103,27 @@ const executeLineupSteps = async (ctx, steps) => {
           step,
           consumeRecovery,
         );
+        lineupDebugLog("重试前快照刷新完成", {
+          key: step.key,
+          title: step.title,
+          index: index + 1,
+          nextAttempt: attempt + 1,
+          snapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+        });
       }
     }
 
     if (lastError) {
+      lineupDebugLog("步骤最终失败", {
+        key: step.key,
+        title: step.title,
+        index: index + 1,
+        total: steps.length,
+        lastError,
+        lastVerifyResult,
+        snapshot: summarizeDebugSnapshot(ctx.currentSnapshot),
+        targetState: summarizeDebugTargetState(ctx.targetState),
+      }, "error");
       state.value.stepResults.push({
         key: step.key,
         title: step.title,
@@ -3317,6 +3535,19 @@ const applyLineup = async (lineup, options = {}) => {
   activeApplyLineupId.value = lineup.id || null;
   state.value.isRunning = true;
   clearApplyLogs();
+  lineupDebugLog("开始应用阵容", {
+    lineup: {
+      id: lineup?.id ?? null,
+      name: lineup?.name ?? "",
+      teamId: lineup?.teamId ?? null,
+      heroCount: lineup?.heroes?.length || 0,
+      heroes: summarizeDebugHeroes(lineup?.heroes || []),
+      weaponId: lineup?.weaponId ?? null,
+      legionResearchCount: Object.keys(lineup?.legionResearch || {}).length,
+    },
+    currentTeamId: currentTeamId.value,
+    tokenId,
+  });
   addApplyLog(
     "info",
     `开始应用阵容：${lineup.name}（槽位${currentTeamId.value}）`,
@@ -3363,6 +3594,14 @@ const applyLineup = async (lineup, options = {}) => {
         refreshSnapshot: false,
         run: async (stepCtx) => {
           stepCtx.targetState = buildTargetState(stepCtx.lineup);
+          lineupDebugLog("目标阵容已构建", {
+            sourceLineup: {
+              id: stepCtx.lineup?.id ?? null,
+              name: stepCtx.lineup?.name ?? "",
+              teamId: stepCtx.lineup?.teamId ?? null,
+            },
+            targetState: summarizeDebugTargetState(stepCtx.targetState),
+          });
           addApplyLog(
             "info",
             `目标阵容已构建，共 ${stepCtx.targetState.heroes.length} 名武将`,
