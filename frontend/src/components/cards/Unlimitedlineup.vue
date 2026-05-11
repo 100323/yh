@@ -1025,7 +1025,6 @@ const summarizeDebugHeroes = (heroes = []) =>
       transTrumpId: hero?.transTrumpId ?? null,
       trumpId2: hero?.trumpId2 ?? null,
       artifactId: hero?.artifactId ?? null,
-      equipmentRefineSignature: hero?.equipmentRefineSignature ?? null,
       fishId: hero?.fishId ?? null,
       pearlId: hero?.pearlId ?? null,
       skillId: hero?.skillId ?? null,
@@ -1045,7 +1044,6 @@ const summarizeDebugSnapshot = (snapshot = {}) => {
     transTrumpId: hero?.transTrumpId ?? null,
     trumpId2: hero?.trumpId2 ?? null,
     artifactId: hero?.artifactId ?? null,
-    equipmentRefineSignature: hero?.equipmentRefineSignature ?? null,
   }));
 
   return {
@@ -1403,66 +1401,6 @@ const normalizePearlSkillId = (value) => {
   return normalized === 0 ? null : normalized;
 };
 
-const normalizeQuenchNumber = (value) => {
-  if (value === undefined || value === null || value === "") return 0;
-  const num = Number(value);
-  return Number.isNaN(num) ? value : num;
-};
-
-const normalizeEquipmentRefineSignature = (signature) => {
-  if (!signature) return null;
-  if (typeof signature === "string") return signature;
-  try {
-    return JSON.stringify(signature);
-  } catch (error) {
-    return null;
-  }
-};
-
-const buildEquipmentRefineSignature = (equipment = {}) => {
-  if (!equipment || typeof equipment !== "object") return null;
-  if (Object.keys(equipment).length === 0) return null;
-
-  const parts = Object.entries(equipment)
-    .filter(([, equip]) => equip && typeof equip === "object")
-    .map(([partId, equip]) => {
-      const quenches = equip?.quenches || {};
-      const slots = Object.entries(quenches)
-        .map(([slotId, slot]) => ({
-          slotId: normalizeQuenchNumber(slotId),
-          attrId: normalizeId(slot?.attrId) || 0,
-          attrNum: normalizeQuenchNumber(slot?.attrNum),
-          colorId: normalizeQuenchNumber(slot?.colorId),
-          isLocked: !!(slot?.isLocked || slot?.locked),
-        }))
-        .sort((a, b) => Number(a.slotId) - Number(b.slotId));
-
-      return {
-        partId: normalizeQuenchNumber(partId),
-        quenchAttackExt: normalizeQuenchNumber(equip?.quenchAttackExt),
-        quenchDefenseExt: normalizeQuenchNumber(equip?.quenchDefenseExt),
-        quenchHpExt: normalizeQuenchNumber(equip?.quenchHpExt),
-        slots,
-      };
-    })
-    .filter(
-      (part) =>
-        part.quenchAttackExt ||
-        part.quenchDefenseExt ||
-        part.quenchHpExt ||
-        part.slots.some(
-          (slot) =>
-            slot.attrId ||
-            slot.attrNum ||
-            slot.colorId ||
-            slot.isLocked,
-        ),
-    )
-    .sort((a, b) => Number(a.partId) - Number(b.partId));
-
-  return JSON.stringify(parts);
-};
-
 const TRUMP_ATTACHMENT_PREFIX = "trump:";
 
 const resolveHeroAttachmentFields = (hero = {}) => {
@@ -1559,9 +1497,6 @@ const buildTargetState = (lineup) => {
           fishId: normalizeId(hero.fishId),
           pearlId: normalizeId(hero.pearlId),
           skillId: normalizePearlSkillId(hero.skillId),
-          equipmentRefineSignature: normalizeEquipmentRefineSignature(
-            hero.equipmentRefineSignature,
-          ),
         };
       })
       .filter((hero) => hero.heroId)
@@ -1664,7 +1599,6 @@ const loadLineupSnapshot = async (tokenId, teamId = null, options = {}) => {
       level: hero?.level || null,
       order: hero?.order || 0,
       artifactId,
-      equipmentRefineSignature: buildEquipmentRefineSignature(hero?.equipment),
       ...attachmentFields,
     };
     if (attachmentUid) {
@@ -1844,37 +1778,19 @@ const verifyHeroPositions = (snapshot, targetState) => {
 };
 
 const verifyHeroLevels = (snapshot, targetState) => {
-  const mismatches = targetState.heroes.map((hero) => {
+  const mismatches = targetState.heroes.filter((hero) => {
     if (!hero.level || hero.level <= 0) return false;
-    const currentHero = snapshot.heroesMap[hero.heroId] || {};
-    const targetSignature = normalizeEquipmentRefineSignature(
-      hero.equipmentRefineSignature,
-    );
-    const currentSignature = normalizeEquipmentRefineSignature(
-      currentHero.equipmentRefineSignature,
-    );
-    const levelMatched = (currentHero?.level || 1) === hero.level;
-    const refineMatched = !targetSignature || currentSignature === targetSignature;
-    if (levelMatched && refineMatched) return false;
-    return {
-      heroId: hero.heroId,
-      targetLevel: hero.level,
-      currentLevel: currentHero?.level || 1,
-      targetSignature,
-      currentSignature,
-      levelMatched,
-      refineMatched,
-    };
-  }).filter(Boolean);
+    return (snapshot.heroesMap[hero.heroId]?.level || 1) !== hero.level;
+  });
 
   if (mismatches.length > 0) {
     return verifyFailure(
-      `等级/洗练未完全同步: ${mismatches.map((hero) => `${getHeroName(hero.heroId) || hero.heroId}(当前${hero.currentLevel}, 目标${hero.targetLevel}${hero.refineMatched ? "" : ", 洗练不匹配"})`).join("、")}`,
+      `等级未完全同步: ${mismatches.map((hero) => `${getHeroName(hero.heroId) || hero.heroId}(目标${hero.level})`).join("、")}`,
       { mismatches },
     );
   }
 
-  return verifySuccess("武将等级/洗练同步完成");
+  return verifySuccess("武将等级同步完成");
 };
 
 const resolveTargetArtifactId = (snapshot, targetHero) => {
@@ -3353,15 +3269,11 @@ const saveCurrentLineup = async () => {
       const pearlData = pearlMap[pearlId];
       const slotMap = pearlData?.slotMap || null;
       const attachmentFields = resolveHeroAttachmentFields(heroData || hero);
-      const equipmentRefineSignature = buildEquipmentRefineSignature(
-        heroData?.equipment,
-      );
       return {
         position: hero.position,
         heroId: hero.heroId,
         level: teamHeroInfo?.level || null,
         ...attachmentFields,
-        equipmentRefineSignature,
         fishId: fishId || null,
         pearlId: pearlId,
         skillId: pearlData?.skillId || null,
@@ -3395,75 +3307,179 @@ const saveCurrentLineup = async () => {
   }
 };
 
-const findLevelRefineExchangeCandidate = (
-  snapshot,
-  targetHero,
-  targetState,
-  usedCandidateIds = new Set(),
-) => {
-  const targetSignature = normalizeEquipmentRefineSignature(
-    targetHero?.equipmentRefineSignature,
-  );
+const LEVEL_ORDER_THRESHOLDS = [
+  { level: 100, order: 1 },
+  { level: 200, order: 2 },
+  { level: 300, order: 3 },
+  { level: 500, order: 4 },
+  { level: 700, order: 5 },
+  { level: 900, order: 6 },
+  { level: 1100, order: 7 },
+  { level: 1300, order: 8 },
+  { level: 1500, order: 9 },
+  { level: 1800, order: 10 },
+  { level: 2100, order: 11 },
+  { level: 2400, order: 12 },
+  { level: 2800, order: 13 },
+  { level: 3200, order: 14 },
+  { level: 3600, order: 15 },
+  { level: 4000, order: 16 },
+  { level: 4500, order: 17 },
+  { level: 5000, order: 18 },
+  { level: 5500, order: 19 },
+];
 
-  if (!targetSignature) {
-    return {
-      candidate: null,
-      reason: "保存阵容缺少装备洗练签名，请重新保存阵容后再应用",
-    };
+const UPGRADE_OPTIONS = [50, 10, 5, 1];
+
+const getNextOrderLevel = (currentLevel) => {
+  for (const threshold of LEVEL_ORDER_THRESHOLDS) {
+    if (currentLevel < threshold.level) {
+      return threshold.level;
+    }
   }
-
-  const targetHeroIds = new Set(
-    (targetState?.heroes || []).map((hero) => normalizeId(hero.heroId)),
-  );
-  const candidates = Object.values(snapshot?.heroesMap || [])
-    .filter((hero) => {
-      const heroId = normalizeId(hero?.heroId);
-      if (!heroId || heroId === targetHero.heroId) return false;
-      if (usedCandidateIds.has(heroId)) return false;
-      if (targetHeroIds.has(heroId)) return false;
-      if ((hero?.level || 1) !== targetHero.level) return false;
-      return normalizeEquipmentRefineSignature(hero?.equipmentRefineSignature)
-        === targetSignature;
-    })
-    .sort((a, b) => Number(a.heroId) - Number(b.heroId));
-
-  if (!candidates.length) {
-    return {
-      candidate: null,
-      reason: "没有找到等级与装备洗练都匹配的候选武将",
-    };
-  }
-
-  return {
-    candidate: candidates[0],
-    reason: "已找到等级与装备洗练匹配的候选武将",
-  };
+  return null;
 };
 
-const swapLocalHeroDevelopmentState = (heroesMap, sourceHeroId, targetHeroId) => {
-  const source = heroesMap?.[sourceHeroId];
-  const target = heroesMap?.[targetHeroId];
-  if (!source || !target) return;
+const getOrder = (level) => {
+  let order = 0;
+  for (const threshold of LEVEL_ORDER_THRESHOLDS) {
+    if (level >= threshold.level) {
+      order = threshold.order;
+    } else {
+      break;
+    }
+  }
+  return order;
+};
 
-  const sourceState = {
-    level: source.level,
-    order: source.order,
-    equipmentRefineSignature: source.equipmentRefineSignature,
-  };
-  const targetState = {
-    level: target.level,
-    order: target.order,
-    equipmentRefineSignature: target.equipmentRefineSignature,
-  };
+const applyHeroLevel = async (
+  tokenId,
+  heroId,
+  targetLevel,
+  currentLevel,
+  currentOrder = 0,
+  slot = -1,
+) => {
+  if (!targetLevel || targetLevel <= 0)
+    return { success: true, message: "无目标等级" };
 
-  heroesMap[sourceHeroId] = {
-    ...source,
-    ...targetState,
-  };
-  heroesMap[targetHeroId] = {
-    ...target,
-    ...sourceState,
-  };
+  let actualCurrentLevel = currentLevel;
+  let actualCurrentOrder = currentOrder;
+
+  if (actualCurrentLevel > targetLevel) {
+    if (slot >= 0) {
+      try {
+        await tokenStore.sendMessageWithPromise(tokenId, "hero_gobackbattle", {
+          slot,
+        });
+      } catch (err) {}
+      await delay(COMMAND_DELAY);
+    }
+
+    try {
+      const result = await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "hero_rebirth",
+        {
+          heroId,
+        },
+      );
+      if (result?.role?.heroes?.[heroId]?.level !== undefined) {
+        actualCurrentLevel = result.role.heroes[heroId].level;
+      } else {
+        actualCurrentLevel = 1;
+      }
+      if (result?.role?.heroes?.[heroId]?.order !== undefined) {
+        actualCurrentOrder = result.role.heroes[heroId].order;
+      } else {
+        actualCurrentOrder = 0;
+      }
+    } catch (err) {}
+    await delay(COMMAND_DELAY);
+
+    if (slot >= 0) {
+      try {
+        await tokenStore.sendMessageWithPromise(tokenId, "hero_gointobattle", {
+          heroId,
+          slot,
+        });
+      } catch (err) {}
+      await delay(COMMAND_DELAY);
+    }
+  }
+
+  const expectedOrder = getOrder(actualCurrentLevel);
+  if (actualCurrentOrder < expectedOrder) {
+    try {
+      const result = await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "hero_heroupgradeorder",
+        {
+          heroId,
+        },
+      );
+      if (result?.role?.heroes?.[heroId]?.order !== undefined) {
+        actualCurrentOrder = result.role.heroes[heroId].order;
+      } else {
+        actualCurrentOrder = expectedOrder;
+      }
+    } catch (err) {}
+    await delay(COMMAND_DELAY);
+  }
+
+  if (actualCurrentLevel >= targetLevel) {
+    return { success: true, message: "等级已达标" };
+  }
+
+  while (actualCurrentLevel < targetLevel) {
+    const nextOrderLevel = getNextOrderLevel(actualCurrentLevel);
+    const maxAllowed = nextOrderLevel
+      ? nextOrderLevel - actualCurrentLevel
+      : targetLevel - actualCurrentLevel;
+    const remaining = targetLevel - actualCurrentLevel;
+    const stepLimit = Math.min(maxAllowed, remaining);
+
+    let upgradeNum = 1;
+    for (const num of UPGRADE_OPTIONS) {
+      if (num <= stepLimit) {
+        upgradeNum = num;
+        break;
+      }
+    }
+
+    try {
+      await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "hero_heroupgradelevel",
+        {
+          heroId,
+          upgradeNum,
+        },
+      );
+      actualCurrentLevel += upgradeNum;
+    } catch (err) {}
+    await delay(COMMAND_DELAY);
+
+    if (nextOrderLevel && actualCurrentLevel >= nextOrderLevel) {
+      try {
+        const result = await tokenStore.sendMessageWithPromise(
+          tokenId,
+          "hero_heroupgradeorder",
+          {
+            heroId,
+          },
+        );
+        if (result?.role?.heroes?.[heroId]?.order !== undefined) {
+          actualCurrentOrder = result.role.heroes[heroId].order;
+        } else {
+          actualCurrentOrder++;
+        }
+      } catch (err) {}
+      await delay(COMMAND_DELAY);
+    }
+  }
+
+  return { success: true, message: `等级已升至 ${actualCurrentLevel}` };
 };
 
 const applyLineup = async (lineup, options = {}) => {
@@ -3592,93 +3608,6 @@ const applyLineup = async (lineup, options = {}) => {
           );
         },
         verify: async (stepCtx) => verifyTargetState(stepCtx.targetState),
-      },
-      {
-        key: "sync-levels",
-        title: "同步武将等级/洗练",
-        retry: 1,
-        run: async (stepCtx) => {
-          let exchanged = 0;
-          let skipped = 0;
-          const usedCandidateIds = new Set();
-
-          for (const targetHero of stepCtx.targetState.heroes) {
-            if (!targetHero.level || targetHero.level <= 0) continue;
-
-            const heroData = stepCtx.currentSnapshot.heroesMap[targetHero.heroId];
-            const currentLevel = heroData?.level || 1;
-            const currentSignature = normalizeEquipmentRefineSignature(
-              heroData?.equipmentRefineSignature,
-            );
-            const targetSignature = normalizeEquipmentRefineSignature(
-              targetHero.equipmentRefineSignature,
-            );
-            const levelMatched = currentLevel === targetHero.level;
-            const refineMatched = !targetSignature || currentSignature === targetSignature;
-
-            if (levelMatched && refineMatched) continue;
-
-            const heroName = getHeroName(targetHero.heroId) || targetHero.heroId;
-            const { candidate, reason } = findLevelRefineExchangeCandidate(
-              stepCtx.currentSnapshot,
-              targetHero,
-              stepCtx.targetState,
-              usedCandidateIds,
-            );
-
-            if (!candidate) {
-              skipped++;
-              addApplyLog(
-                "warn",
-                `跳过等级/洗练换将：${heroName} 当前${currentLevel} / 目标${targetHero.level}，${reason}`,
-              );
-              lineupDebugLog("等级/洗练换将无候选", {
-                targetHero,
-                currentHero: heroData,
-                reason,
-              }, "warn");
-              continue;
-            }
-
-            const candidateName = getHeroName(candidate.heroId) || candidate.heroId;
-            addApplyLog(
-              "info",
-              `等级/洗练换将：${candidateName} -> ${heroName}（目标Lv.${targetHero.level}）`,
-            );
-            lineupDebugLog("等级/洗练换将开始", {
-              targetHero,
-              currentHero: heroData,
-              candidate,
-              reason,
-            });
-
-            await tokenStore.sendMessageWithPromise(tokenId, "hero_exchange", {
-              heroId: candidate.heroId,
-              targetHeroId: targetHero.heroId,
-            });
-            await delay(COMMAND_DELAY);
-
-            swapLocalHeroDevelopmentState(
-              stepCtx.currentSnapshot.heroesMap,
-              candidate.heroId,
-              targetHero.heroId,
-            );
-            usedCandidateIds.add(candidate.heroId);
-            exchanged++;
-          }
-
-          if (exchanged > 0) {
-            message.success(`已通过换将同步 ${exchanged} 个武将等级/洗练`);
-          }
-          if (skipped > 0) {
-            addApplyLog(
-              "warn",
-              `有 ${skipped} 个武将未找到等级+洗练匹配候选，已避免直接升级`,
-            );
-          }
-        },
-        verify: async (stepCtx) =>
-          verifyHeroLevels(stepCtx.currentSnapshot, stepCtx.targetState),
       },
       {
         key: "sync-attachments",
@@ -4164,6 +4093,46 @@ const applyLineup = async (lineup, options = {}) => {
         },
         verify: async (stepCtx) =>
           verifyHeroPositions(stepCtx.currentSnapshot, stepCtx.targetState),
+      },
+      {
+        key: "sync-levels",
+        title: "同步武将等级",
+        retry: 1,
+        run: async (stepCtx) => {
+          let levelApplied = 0;
+          for (const targetHero of stepCtx.targetState.heroes) {
+            if (!targetHero.level || targetHero.level <= 0) continue;
+
+            const heroData = stepCtx.currentSnapshot.heroesMap[targetHero.heroId];
+            const currentLevel = heroData?.level || 1;
+            const currentOrder = heroData?.order || 0;
+
+            if (currentLevel === targetHero.level) continue;
+
+            addApplyLog(
+              "info",
+              `同步等级：${getHeroName(targetHero.heroId) || targetHero.heroId} ${currentLevel} -> ${targetHero.level}`,
+            );
+            const result = await applyHeroLevel(
+              tokenId,
+              targetHero.heroId,
+              targetHero.level,
+              currentLevel,
+              currentOrder,
+              targetHero.position,
+            );
+
+            if (result.success) {
+              levelApplied++;
+            }
+          }
+
+          if (levelApplied > 0) {
+            message.success(`已应用 ${levelApplied} 个武将等级配置`);
+          }
+        },
+        verify: async (stepCtx) =>
+          verifyHeroLevels(stepCtx.currentSnapshot, stepCtx.targetState),
       },
       {
         key: "sync-artifacts",
