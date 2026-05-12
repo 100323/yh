@@ -1,10 +1,41 @@
 <template>
-  <div class="change-password-page">
+  <div class="account-settings-page">
     <div class="page-container">
       <div class="page-header">
-        <h1>修改密码</h1>
-        <p>为了保障账户安全，请定期更新登录密码。</p>
+        <h1>账号设置</h1>
+        <p>查看当前账号有效期，并维护登录密码。</p>
       </div>
+
+      <section class="access-panel" aria-label="账号状态">
+        <div class="access-panel-main">
+          <div>
+            <div class="access-eyebrow">账号状态</div>
+            <div class="access-account">{{ accountAccessDisplay.username }}</div>
+          </div>
+          <el-tag
+            class="access-status-tag"
+            :type="accountAccessDisplay.tagType"
+            effect="light"
+          >
+            {{ accountAccessDisplay.statusText }}
+          </el-tag>
+        </div>
+
+        <div class="access-details">
+          <div class="access-detail-item">
+            <span>到期时间</span>
+            <strong>{{ accountAccessDisplay.endText }}</strong>
+          </div>
+          <div class="access-detail-item">
+            <span>开始时间</span>
+            <strong>{{ accountAccessDisplay.startText }}</strong>
+          </div>
+          <div class="access-detail-item">
+            <span>游戏账号上限</span>
+            <strong>{{ accountAccessDisplay.maxGameAccountsText }}</strong>
+          </div>
+        </div>
+      </section>
 
       <el-card class="password-card" shadow="never">
         <template #header>
@@ -83,15 +114,17 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import { buildAccountAccessDisplay } from "@/utils/accountAccessDisplay";
 
 const router = useRouter();
 const authStore = useAuthStore();
 const passwordFormRef = ref(null);
 const submitting = ref(false);
+const accountAccessDisplay = computed(() => buildAccountAccessDisplay(authStore.user));
 
 const passwordForm = reactive({
   currentPassword: "",
@@ -181,10 +214,16 @@ const submitChangePassword = async () => {
     submitting.value = false;
   }
 };
+
+onMounted(() => {
+  if (authStore.isAuthenticated) {
+    void authStore.fetchUser();
+  }
+});
 </script>
 
 <style scoped lang="scss">
-.change-password-page {
+.account-settings-page {
   min-height: 100%;
   padding: 0;
 }
@@ -208,6 +247,77 @@ const submitChangePassword = async () => {
     margin: 0;
     color: var(--text-secondary);
     font-size: 14px;
+  }
+}
+
+.access-panel {
+  margin-bottom: 18px;
+  padding: 18px;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(91, 124, 255, 0.08), rgba(255, 255, 255, 0.74));
+  box-shadow: 0 16px 34px rgba(17, 27, 48, 0.08);
+}
+
+.access-panel-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.access-eyebrow {
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.access-account {
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.access-status-tag {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.access-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.access-detail-item {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(138, 151, 185, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.58);
+
+  span,
+  strong {
+    display: block;
+  }
+
+  span {
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -265,6 +375,24 @@ const submitChangePassword = async () => {
 @media (max-width: 768px) {
   .page-header h1 {
     font-size: 24px;
+  }
+
+  .access-panel {
+    padding: 16px;
+  }
+
+  .access-panel-main {
+    flex-direction: column;
+    margin-bottom: 14px;
+  }
+
+  .access-account {
+    font-size: 20px;
+  }
+
+  .access-details {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .card-header {

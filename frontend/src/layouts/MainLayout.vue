@@ -55,11 +55,34 @@
               <span class="user-info">
                 <el-avatar :size="32" icon="UserFilled" />
                 <span class="username">{{ authStore.user?.username }}</span>
+                <el-tag
+                  class="access-chip"
+                  :type="accountAccessDisplay.tagType"
+                  size="small"
+                  effect="light"
+                >
+                  {{ accountAccessDisplay.headerLabel }}
+                </el-tag>
                 <el-icon><ArrowDown /></el-icon>
               </span>
               <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item command="profile">修改密码</el-dropdown-item>
+                <el-dropdown-menu class="user-dropdown-menu">
+                  <div class="user-dropdown-summary">
+                    <div class="dropdown-account-row">
+                      <span class="dropdown-account-name">{{ accountAccessDisplay.username }}</span>
+                      <el-tag
+                        :type="accountAccessDisplay.tagType"
+                        size="small"
+                        effect="light"
+                      >
+                        {{ accountAccessDisplay.statusText }}
+                      </el-tag>
+                    </div>
+                    <div class="dropdown-access-line">
+                      有效期：{{ accountAccessDisplay.endText }}
+                    </div>
+                  </div>
+                  <el-dropdown-item command="profile">账号设置</el-dropdown-item>
                   <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
@@ -171,6 +194,7 @@ import { useGameWorkbenchStore } from '@stores/gameWorkbench';
 import GameWorkbenchDock from '@components/GameWorkbench/GameWorkbenchDock.vue';
 import WechatContactDialog from '@components/WechatContactDialog.vue';
 import api from '@/api';
+import { buildAccountAccessDisplay } from '@/utils/accountAccessDisplay';
 
 const route = useRoute();
 const router = useRouter();
@@ -185,6 +209,7 @@ const BROADCAST_IGNORE_PREFIX = 'public_broadcast_ignored_';
 const activeMenu = computed(() => route.path);
 const pageTitle = computed(() => route.meta?.title || '汤姆之王');
 const isAdmin = computed(() => authStore.user?.role === 'admin');
+const accountAccessDisplay = computed(() => buildAccountAccessDisplay(authStore.user));
 const menuItems = [
   { index: '/', label: '首页', icon: HomeFilled },
   { index: '/tokens', label: '账号管理', icon: Key },
@@ -279,6 +304,9 @@ watch(
 );
 
 onMounted(() => {
+  if (authStore.isAuthenticated) {
+    void authStore.fetchUser();
+  }
   void loadCurrentBroadcast();
 });
 </script>
@@ -487,6 +515,46 @@ onMounted(() => {
   }
 }
 
+.access-chip {
+  max-width: 104px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.user-dropdown-menu {
+  min-width: 220px;
+}
+
+.user-dropdown-summary {
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.dropdown-account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.dropdown-account-name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-access-line {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .workbench-toggle {
   display: inline-flex;
   align-items: center;
@@ -642,6 +710,10 @@ onMounted(() => {
       .username {
         max-width: 96px;
         font-size: 13px;
+      }
+
+      .access-chip {
+        display: none;
       }
     }
   }

@@ -65,7 +65,7 @@ const routes = [
         path: 'profile',
         name: 'Profile',
         component: () => import('@views/Profile.vue'),
-        meta: { title: '修改密码' }
+        meta: { title: '账号设置' }
       },
       {
         path: 'changelog',
