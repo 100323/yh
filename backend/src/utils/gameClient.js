@@ -134,6 +134,14 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function normalizeDelayMs(value, fallback = 0) {
+  const delayMs = Number(value);
+  if (!Number.isFinite(delayMs) || delayMs < 0) {
+    return Math.max(0, Number(fallback) || 0);
+  }
+  return delayMs;
+}
+
 function describeReadyState(readyState) {
   switch (readyState) {
     case WebSocket.CONNECTING:
@@ -1598,6 +1606,9 @@ export class GameClient {
     const genieNames = { 1: '魏国', 2: '蜀国', 3: '吴国', 4: '群雄' };
     const sweepResults = [];
     const ticketResults = [];
+    const commandDelayMs = normalizeDelayMs(options.commandDelayMs, 0);
+    const sweepDelayMs = normalizeDelayMs(options.sweepDelayMs, commandDelayMs || 250);
+    const ticketDelayMs = normalizeDelayMs(options.ticketDelayMs, commandDelayMs || 180);
 
     const sendSweepWithRetry = async (genieId) => {
       try {
@@ -1606,7 +1617,7 @@ export class GameClient {
         if (!String(error?.message || '').includes('出了点小问题')) {
           throw error;
         }
-        await sleep(700);
+        await sleep(Math.max(700, commandDelayMs));
         return this.sendWithPromise('genie_sweep', { genieId, sweepCnt: 1 }, 5000);
       }
     };
@@ -1618,10 +1629,14 @@ export class GameClient {
         if (!String(error?.message || '').includes('出了点小问题')) {
           throw error;
         }
-        await sleep(700);
+        await sleep(Math.max(700, commandDelayMs));
         return this.sendWithPromise('genie_buysweep', {}, 5000);
       }
     };
+
+    if (commandDelayMs > 0) {
+      await sleep(commandDelayMs);
+    }
 
     for (let genieId = 1; genieId <= 4; genieId += 1) {
       const statKey = `genie:daily:free:${genieId}`;
@@ -1632,7 +1647,7 @@ export class GameClient {
 
       const result = await sendSweepWithRetry(genieId);
       sweepResults.push({ genieId, name: genieNames[genieId], success: true, result });
-      await sleep(options.sweepDelayMs ?? 250);
+      await sleep(sweepDelayMs);
     }
 
     for (let index = 0; index < 3; index += 1) {
@@ -1647,7 +1662,7 @@ export class GameClient {
         }
         throw error;
       }
-      await sleep(options.ticketDelayMs ?? 180);
+      await sleep(ticketDelayMs);
     }
 
     const sweptCount = sweepResults.filter((item) => item.success).length;
