@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS invite_codes (
   created_by INTEGER NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   expires_at DATETIME,
+  registered_user_access_days INTEGER DEFAULT 30,
   is_active INTEGER DEFAULT 1,
   FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -421,6 +422,7 @@ export async function initDatabase() {
   console.log('🗃️ initDatabase[4/5] 检查并补齐表结构...');
   dirty = ensureUsersSchema() || dirty;
   dirty = ensureGameAccountSchema() || dirty;
+  dirty = ensureInviteCodeSchema() || dirty;
   dirty = ensureTaskConfigSchema() || dirty;
   dirty = ensureTaskExecutionMarkerSchema() || dirty;
   dirty = ensureSystemSettingsSchema() || dirty;
@@ -510,6 +512,22 @@ function ensureGameAccountSchema() {
     }
   } catch (error) {
     console.warn('⚠️ 检查 game_accounts 表结构失败:', error?.message || error);
+  }
+  return changed;
+}
+
+function ensureInviteCodeSchema() {
+  let changed = false;
+  try {
+    const columns = getTableColumns('invite_codes');
+
+    if (!columns.has('registered_user_access_days')) {
+      rawDb.exec('ALTER TABLE invite_codes ADD COLUMN registered_user_access_days INTEGER DEFAULT 30');
+      rawDb.exec('UPDATE invite_codes SET registered_user_access_days = 30 WHERE registered_user_access_days IS NULL');
+      changed = true;
+    }
+  } catch (error) {
+    console.warn('⚠️ 检查 invite_codes 表结构失败:', error?.message || error);
   }
   return changed;
 }

@@ -48,6 +48,11 @@
             {{ row.expires_at ? formatTime(row.expires_at) : '永久有效' }}
           </template>
         </el-table-column>
+        <el-table-column label="注册账号有效期" width="150">
+          <template #default="{ row }">
+            {{ formatRegisteredUserAccessDays(row.registered_user_access_days) }}
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="150" fixed="right">
           <template #default="{ row }">
             <el-button 
@@ -79,8 +84,8 @@
       </el-table>
     </el-card>
 
-    <el-dialog v-model="showGenerateDialog" title="生成邀请码" width="400px">
-      <el-form :model="generateForm" label-width="100px">
+    <el-dialog v-model="showGenerateDialog" title="生成邀请码" width="420px">
+      <el-form :model="generateForm" label-width="122px">
         <el-form-item label="使用次数">
           <el-input-number v-model="generateForm.maxUses" :min="1" :max="1000" />
         </el-form-item>
@@ -93,6 +98,19 @@
             <el-option :value="90" label="90天" />
           </el-select>
         </el-form-item>
+        <el-form-item label="注册账号有效期">
+          <el-select
+            v-model="generateForm.registeredUserAccessDays"
+            placeholder="选择注册账号有效期"
+            style="width: 100%"
+          >
+            <el-option :value="null" label="永久" />
+            <el-option :value="1" label="1天" />
+            <el-option :value="30" label="30天" />
+            <el-option :value="180" label="180天" />
+            <el-option :value="365" label="365天" />
+          </el-select>
+        </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="showGenerateDialog = false">取消</el-button>
@@ -100,8 +118,8 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="showBatchDialog" title="批量生成邀请码" width="400px">
-      <el-form :model="batchForm" label-width="100px">
+    <el-dialog v-model="showBatchDialog" title="批量生成邀请码" width="420px">
+      <el-form :model="batchForm" label-width="122px">
         <el-form-item label="生成数量">
           <el-input-number v-model="batchForm.count" :min="1" :max="100" />
         </el-form-item>
@@ -115,6 +133,19 @@
             <el-option :value="7" label="7天" />
             <el-option :value="30" label="30天" />
             <el-option :value="90" label="90天" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="注册账号有效期">
+          <el-select
+            v-model="batchForm.registeredUserAccessDays"
+            placeholder="选择注册账号有效期"
+            style="width: 100%"
+          >
+            <el-option :value="null" label="永久" />
+            <el-option :value="1" label="1天" />
+            <el-option :value="30" label="30天" />
+            <el-option :value="180" label="180天" />
+            <el-option :value="365" label="365天" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -139,13 +170,15 @@ const showBatchDialog = ref(false);
 
 const generateForm = reactive({
   maxUses: 1,
-  expiresInDays: null
+  expiresInDays: null,
+  registeredUserAccessDays: 30
 });
 
 const batchForm = reactive({
   count: 10,
   maxUses: 1,
-  expiresInDays: null
+  expiresInDays: null,
+  registeredUserAccessDays: 30
 });
 
 const formatTime = (timestamp) => {
@@ -160,6 +193,13 @@ const formatTime = (timestamp) => {
   }
   if (Number.isNaN(date.getTime())) return '-';
   return date.toLocaleString('zh-CN');
+};
+
+const formatRegisteredUserAccessDays = (days) => {
+  if (days === null || days === undefined || days === '') return '永久';
+  const normalized = Number(days);
+  if (!Number.isFinite(normalized)) return '-';
+  return `${normalized}天`;
 };
 
 const fetchInviteCodes = async () => {

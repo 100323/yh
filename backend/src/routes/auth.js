@@ -6,6 +6,7 @@ import { authMiddleware } from '../middleware/auth.js';
 import { validateInviteCode, useInviteCode } from './inviteCodes.js';
 import { buildUserAccessSummary, getUserAvailabilityStatus } from '../utils/userAccess.js';
 import { createSlimEntryTicket } from '../utils/slimEntryTicketStore.js';
+import { resolveRegisteredUserAccessEndAt } from '../utils/inviteCodeAccess.js';
 
 const router = Router();
 const PUBLIC_BROADCAST_SETTING_KEY = 'public_broadcast_current';
@@ -81,10 +82,13 @@ router.post('/register', async (req, res) => {
     }
 
     const { hash, salt } = hashPassword(password);
+    const accessEndAt = resolveRegisteredUserAccessEndAt(
+      codeValidation.inviteCode?.registered_user_access_days
+    );
 
     const result = run(
-      'INSERT INTO users (username, password_hash, salt, role, max_game_accounts) VALUES (?, ?, ?, ?, ?)',
-      [username, hash, salt, 'user', 5]
+      'INSERT INTO users (username, password_hash, salt, role, max_game_accounts, access_end_at) VALUES (?, ?, ?, ?, ?, ?)',
+      [username, hash, salt, 'user', 5, accessEndAt]
     );
 
     useInviteCode(inviteCode);
@@ -103,7 +107,8 @@ router.post('/register', async (req, res) => {
         user: {
           id: result.lastInsertRowid,
           username,
-          role: 'user'
+          role: 'user',
+          access_end_at: accessEndAt
         }
       }
     });

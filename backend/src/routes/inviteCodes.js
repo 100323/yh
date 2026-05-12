@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { run, get, all } from '../database/index.js';
 import { authMiddleware, adminOnly } from '../middleware/auth.js';
 import crypto from 'crypto';
+import { normalizeRegisteredUserAccessDays } from '../utils/inviteCodeAccess.js';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ function generateInviteCode(length = 8) {
 router.post('/generate', authMiddleware, adminOnly, (req, res) => {
   try {
     const { maxUses = 1, expiresInDays } = req.body;
+    const registeredUserAccessDays = normalizeRegisteredUserAccessDays(req.body?.registeredUserAccessDays);
 
     if (maxUses < 1 || maxUses > 1000) {
       return res.status(400).json({
@@ -33,8 +35,8 @@ router.post('/generate', authMiddleware, adminOnly, (req, res) => {
     }
 
     const result = run(
-      'INSERT INTO invite_codes (code, max_uses, created_by, expires_at) VALUES (?, ?, ?, ?)',
-      [code, maxUses, req.user.userId, expiresAt]
+      'INSERT INTO invite_codes (code, max_uses, created_by, expires_at, registered_user_access_days) VALUES (?, ?, ?, ?, ?)',
+      [code, maxUses, req.user.userId, expiresAt, registeredUserAccessDays]
     );
 
     res.status(201).json({
@@ -45,11 +47,18 @@ router.post('/generate', authMiddleware, adminOnly, (req, res) => {
         maxUses,
         usedCount: 0,
         expiresAt,
+        registeredUserAccessDays,
         createdAt: new Date().toISOString()
       }
     });
   } catch (error) {
     console.error('生成邀请码错误:', error);
+    if (String(error?.message || '').includes('注册账号有效期')) {
+      return res.status(400).json({
+        success: false,
+        error: error.message
+      });
+    }
     res.status(500).json({
       success: false,
       error: '生成邀请码失败'
@@ -60,6 +69,7 @@ router.post('/generate', authMiddleware, adminOnly, (req, res) => {
 router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
   try {
     const { count = 1, maxUses = 1, expiresInDays } = req.body;
+    const registeredUserAccessDays = normalizeRegisteredUserAccessDays(req.body?.registeredUserAccessDays);
 
     if (count < 1 || count > 100) {
       return res.status(400).json({
@@ -84,15 +94,16 @@ router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
     for (let i = 0; i < count; i++) {
       const code = generateInviteCode();
       const result = run(
-        'INSERT INTO invite_codes (code, max_uses, created_by, expires_at) VALUES (?, ?, ?, ?)',
-        [code, maxUses, req.user.userId, expiresAt]
+        'INSERT INTO invite_codes (code, max_uses, created_by, expires_at, registered_user_access_days) VALUES (?, ?, ?, ?, ?)',
+        [code, maxUses, req.user.userId, expiresAt, registeredUserAccessDays]
       );
       codes.push({
         id: result.lastInsertRowid,
         code,
         maxUses,
         usedCount: 0,
-        expiresAt
+        expiresAt,
+        registeredUserAccessDays
       });
     }
 
@@ -102,6 +113,12 @@ router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
     });
   } catch (error) {
     console.error('批量生成邀请码错误:', error);
+    if (String(error?.message || '').includes('注册账号有效期')) {
+      return res.status(400).json({
+        success: false,
+        error: error.message
+      });
+    }
     res.status(500).json({
       success: false,
       error: '批量生成邀请码失败'
