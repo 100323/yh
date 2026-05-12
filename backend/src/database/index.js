@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import config from '../config/index.js';
+import { DEFAULT_MAX_GAME_ACCOUNTS } from '../utils/userLimits.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const backendRoot = path.resolve(__dirname, '../..');
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT NOT NULL,
   salt TEXT NOT NULL,
   role TEXT DEFAULT 'user',
-  max_game_accounts INTEGER DEFAULT 5,
+  max_game_accounts INTEGER DEFAULT 2,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   last_login DATETIME
 );
@@ -464,8 +465,8 @@ function ensureUsersSchema() {
     }
 
     if (!columns.has('max_game_accounts')) {
-      rawDb.exec('ALTER TABLE users ADD COLUMN max_game_accounts INTEGER DEFAULT 5');
-      rawDb.exec('UPDATE users SET max_game_accounts = 5 WHERE max_game_accounts IS NULL');
+      rawDb.exec(`ALTER TABLE users ADD COLUMN max_game_accounts INTEGER DEFAULT ${DEFAULT_MAX_GAME_ACCOUNTS}`);
+      rawDb.exec(`UPDATE users SET max_game_accounts = ${DEFAULT_MAX_GAME_ACCOUNTS} WHERE max_game_accounts IS NULL`);
       changed = true;
     }
   } catch (error) {

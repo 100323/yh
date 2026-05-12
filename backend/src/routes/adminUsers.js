@@ -10,6 +10,10 @@ import {
   updateSchedulerProxyAccountDispatchIntervalMsSetting,
   updateSchedulerProxyMaxConcurrentAccountsSetting,
 } from '../utils/systemSettings.js';
+import {
+  normalizeMaxGameAccountsForCreate,
+  normalizeMaxGameAccountsForUpdate,
+} from '../utils/userLimits.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import { proxyPoolManager } from '../utils/proxyPool/index.js';
 
@@ -68,28 +72,6 @@ function normalizeRole(role) {
 
 function normalizeEnabled(value) {
   return value === false || value === 0 || value === '0' ? 0 : 1;
-}
-
-function normalizeMaxGameAccountsForCreate(value) {
-  if (value === undefined || value === '') return 5;
-  if (value === null) return null;
-  const normalized = Number(value);
-  if (!Number.isInteger(normalized) || normalized < 1 || normalized > 9999) {
-    throw new Error('游戏账号数量上限需为 1-9999 的整数');
-  }
-  return normalized;
-}
-
-function normalizeMaxGameAccountsForUpdate(value) {
-  if (value === null) return null;
-  if (value === undefined || value === '') {
-    throw new Error('游戏账号数量上限不能为空');
-  }
-  const normalized = Number(value);
-  if (!Number.isInteger(normalized) || normalized < 1 || normalized > 9999) {
-    throw new Error('游戏账号数量上限需为 1-9999 的整数');
-  }
-  return normalized;
 }
 
 function parseAccessWindow(body) {

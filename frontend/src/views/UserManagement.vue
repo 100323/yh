@@ -351,7 +351,7 @@
             style="width: 100%; margin-top: 8px"
             controls-position="right"
           />
-          <div class="form-tip">默认上限为 5。你也可以关闭限制，允许该用户不限数量。</div>
+          <div class="form-tip">默认上限为 2。你也可以关闭限制，允许该用户不限数量。</div>
         </el-form-item>
         <el-form-item label="开始可用">
           <el-date-picker
@@ -528,7 +528,7 @@ const createEmptyForm = () => ({
   role: 'user',
   is_enabled: true,
   limit_enabled: true,
-  max_game_accounts: 5,
+  max_game_accounts: 2,
   access_start_at: null,
   access_end_at: null
 });
@@ -1050,7 +1050,7 @@ const buildPayload = () => ({
   password: form.password,
   role: form.role,
   isEnabled: form.is_enabled,
-  maxGameAccounts: form.limit_enabled ? (form.max_game_accounts || 5) : null,
+  maxGameAccounts: form.limit_enabled ? (form.max_game_accounts || 2) : null,
   accessStartAt: form.access_start_at || null,
   accessEndAt: form.access_end_at || null
 });
@@ -1059,7 +1059,7 @@ watch(
   () => form.limit_enabled,
   (enabled) => {
     if (enabled && !form.max_game_accounts) {
-      form.max_game_accounts = 5;
+      form.max_game_accounts = 2;
     }
   }
 );
