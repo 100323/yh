@@ -870,7 +870,6 @@ export async function executeLegacyClaimWithAutoReopen(client, config = {}, cont
     }
   };
 
-  await currentClient.getRoleInfo(8000).catch(() => {});
   await currentClient.getLegacyInfo().catch(() => {});
   try {
     const result = await claimLegacyScrollsWithSoftRetry();
