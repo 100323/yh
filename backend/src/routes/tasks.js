@@ -89,6 +89,8 @@ const FORCE_MIGRATE_LEGACY_DEFAULT_CRON_TASK_TYPES = new Set([
   'PKROOM_APPOINT',
 ]);
 
+const PKROOM_APPOINT_HISTORICAL_MIGRATION_KEY = 'migration_pkroom_appoint_1606_all_v1';
+
 export const DEFAULT_TASK_CONFIG_SEEDS = {
   HANGUP_CLAIM: { enabled: true, config: { count: 5 } },
   HANGUP_ADD_TIME: { enabled: true, config: {} },
@@ -426,6 +428,12 @@ export async function rebalanceDefaultTaskCronExpressions() {
   let skippedUnknown = 0;
   const skippedDetails = [];
 
+  const pkroomHistoricalMigration = await migrateHistoricalPkroomAppointmentCronExpressions();
+  if (pkroomHistoricalMigration.updated > 0) {
+    updated += pkroomHistoricalMigration.updated;
+    details.push(pkroomHistoricalMigration.detail);
+  }
+
   for (const [taskType, legacyCronSource] of Object.entries(LEGACY_DEFAULT_TASK_CRONS)) {
     const targetCron = REBALANCED_DEFAULT_TASK_CRONS[taskType];
     const sourceCrons = Array.isArray(legacyCronSource) ? legacyCronSource : [legacyCronSource];
@@ -596,6 +604,61 @@ export async function rebalanceDefaultTaskCronExpressions() {
     details,
     skippedUnknown,
     skippedDetails,
+  };
+}
+
+async function migrateHistoricalPkroomAppointmentCronExpressions() {
+  const taskType = 'PKROOM_APPOINT';
+  const targetCron = REBALANCED_DEFAULT_TASK_CRONS[taskType];
+  if (!targetCron) {
+    return { updated: 0, detail: null };
+  }
+
+  const migrated = get(
+    'SELECT value FROM system_settings WHERE key = ? LIMIT 1',
+    [PKROOM_APPOINT_HISTORICAL_MIGRATION_KEY],
+  );
+  if (migrated?.value === 'done') {
+    return { updated: 0, detail: null };
+  }
+
+  const rows = all(
+    `SELECT id, cron_expression
+       FROM task_configs
+      WHERE task_type = ?
+        AND COALESCE(cron_expression, '') != ?`,
+    [taskType, targetCron],
+  );
+
+  const nextRunAt = calculateNextRunAt(targetCron);
+  if (rows.length > 0) {
+    run(
+      `UPDATE task_configs
+          SET cron_expression = ?, next_run_at = ?, cron_is_customized = 0, default_cron_version = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE task_type = ?
+          AND COALESCE(cron_expression, '') != ?`,
+      [targetCron, nextRunAt, CURRENT_DEFAULT_CRON_VERSION, taskType, targetCron],
+    );
+  }
+
+  run(
+    `INSERT INTO system_settings (key, value, updated_at)
+       VALUES (?, 'done', CURRENT_TIMESTAMP)
+       ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP`,
+    [PKROOM_APPOINT_HISTORICAL_MIGRATION_KEY],
+  );
+
+  await saveDatabase();
+
+  return {
+    updated: rows.length,
+    detail: {
+      taskType,
+      from: Array.from(new Set(rows.map((row) => String(row.cron_expression || '')).filter(Boolean))),
+      to: targetCron,
+      affectedCount: rows.length,
+      mode: 'one-time-force-migrate-all-historical-crons',
+    },
   };
 }
 
