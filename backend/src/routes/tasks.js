@@ -8,7 +8,7 @@ const router = Router();
 
 router.use(authMiddleware);
 
-export const CURRENT_DEFAULT_CRON_VERSION = 4;
+export const CURRENT_DEFAULT_CRON_VERSION = 5;
 
 export const TASK_TYPES = {
   SIGN_IN: { name: '每日签到', cron: '0 8 * * *', group: 'daily' },
@@ -39,7 +39,7 @@ export const TASK_TYPES = {
   LEGACY_CLAIM: { name: '残卷收取', cron: '23 */6 * * *', group: 'daily' },
   WELFARE_CLAIM: { name: '福利奖励领取', cron: '4 12 * * *', group: 'daily' },
   DAILY_TASK_CLAIM: { name: '日周活跃奖励领取', cron: '25 12 * * *', group: 'daily' },
-  PKROOM_APPOINT: { name: '预约比赛', cron: '6 8 * * *', group: 'daily' },
+  PKROOM_APPOINT: { name: '预约比赛', cron: '6 16 * * *', group: 'daily' },
   FREE_JADE_PACK: { name: '免费白玉礼包', cron: '5 12 * * 1', group: 'resource' },
   DREAM: { name: '梦境', cron: '10 12 * * 0,3,6', group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', cron: '10 12 * * *', group: 'dungeon' },
@@ -71,6 +71,7 @@ export const LEGACY_DEFAULT_TASK_CRONS = {
   BLACK_MARKET: ['1 12 * * *'],
   WELFARE_CLAIM: ['1 12 * * *'],
   DAILY_TASK_CLAIM: ['1 12 * * *', '4 12 * * *'],
+  PKROOM_APPOINT: ['6 8 * * *'],
   DREAM: ['1 12 * * *', '10 12 * * *'],
   SKIN_CHALLENGE: ['1 12 * * *'],
   DREAM_PURCHASE: ['1 12 * * *', '10 12 * * *'],
@@ -83,6 +84,10 @@ export const LEGACY_DEFAULT_TASK_CRONS = {
 export const REBALANCED_DEFAULT_TASK_CRONS = Object.fromEntries(
   Object.entries(TASK_TYPES).map(([taskType, meta]) => [taskType, meta.cron])
 );
+
+const FORCE_MIGRATE_LEGACY_DEFAULT_CRON_TASK_TYPES = new Set([
+  'PKROOM_APPOINT',
+]);
 
 export const DEFAULT_TASK_CONFIG_SEEDS = {
   HANGUP_CLAIM: { enabled: true, config: { count: 5 } },
@@ -433,11 +438,49 @@ export async function rebalanceDefaultTaskCronExpressions() {
       continue;
     }
 
+    const cronPlaceholders = normalizedSourceCrons.map(() => '?').join(', ');
+
+    if (FORCE_MIGRATE_LEGACY_DEFAULT_CRON_TASK_TYPES.has(taskType)) {
+      const matchingRows = all(
+        `SELECT id FROM task_configs
+          WHERE task_type = ?
+            AND cron_expression IN (${cronPlaceholders})`,
+        [taskType, ...normalizedSourceCrons],
+      );
+
+      if (matchingRows.length === 0) {
+        continue;
+      }
+
+      const nextRunAt = calculateNextRunAt(targetCron);
+      run(
+        `UPDATE task_configs
+            SET cron_expression = ?, next_run_at = ?, cron_is_customized = 0, default_cron_version = ?, updated_at = CURRENT_TIMESTAMP
+          WHERE task_type = ?
+            AND cron_expression IN (${cronPlaceholders})`,
+        [
+          targetCron,
+          nextRunAt,
+          CURRENT_DEFAULT_CRON_VERSION,
+          taskType,
+          ...normalizedSourceCrons,
+        ],
+      );
+
+      updated += matchingRows.length;
+      details.push({
+        taskType,
+        from: normalizedSourceCrons,
+        to: targetCron,
+        affectedCount: matchingRows.length,
+        mode: 'force-migrate-legacy-default-cron',
+      });
+      continue;
+    }
+
     const seed = DEFAULT_TASK_CONFIG_SEEDS[taskType];
     const defaultEnabled = seed?.enabled ? 1 : 0;
     const defaultConfigJson = getTaskDefaultConfigJson(taskType);
-
-    const cronPlaceholders = normalizedSourceCrons.map(() => '?').join(', ');
 
     const eligibleRows = all(
       `SELECT id FROM task_configs

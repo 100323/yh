@@ -414,7 +414,7 @@ const defaultTaskScheduleOverrides = {
   batchDailyBoss: { runTime: createDefaultRunTime(12, 1) },
   batchWelfareClaim: { runTime: createDefaultRunTime(12, 1) },
   batchDailyTaskClaim: { runTime: createDefaultRunTime(12, 1) },
-  pkroomAppoint: { runTime: createDefaultRunTime(8, 6) },
+  pkroomAppoint: { runTime: createDefaultRunTime(16, 6) },
   batchmengjing: { scheduleType: "weekly", weekdays: [0, 3, 6], runTime: createDefaultRunTime(12, 10) },
   skinChallenge: { runTime: createDefaultRunTime(12, 1) },
   starTemple: { runTime: createDefaultRunTime(12, 1) },
