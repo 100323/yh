@@ -82,6 +82,25 @@ export const config = {
       baseDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_BASE_DELAY_MS) || 3000,
       maxDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_MAX_DELAY_MS) || 8000,
     }
+  },
+  proxy: {
+    zenProxyApiKeyConfigured: Boolean(String(process.env.ZENPROXY_API_KEY || process.env.PROXY_API_KEY || '').trim()),
+    zenProxyCountries: String(process.env.ZENPROXY_COUNTRIES || '')
+      .split(',')
+      .map(item => item.trim().toUpperCase())
+      .filter(Boolean),
+    localClient: {
+      enabled: String(process.env.ZENPROXY_LOCAL_CLIENT_ENABLED || '1').trim() !== '0',
+      controllerUrl: process.env.ZENPROXY_LOCAL_CONTROLLER_URL || 'http://127.0.0.1:9090',
+      secret: process.env.ZENPROXY_LOCAL_SECRET || 'xyzw-zenproxy-local',
+      serverUrl: process.env.ZENPROXY_SERVER_URL || 'https://zenproxy.top',
+      fetchCount: Number(process.env.ZENPROXY_FETCH_COUNT) || 100,
+      fetchCountry: process.env.ZENPROXY_FETCH_COUNTRY || '',
+      fetchType: process.env.ZENPROXY_FETCH_TYPE || '',
+      fetchChatGPT: String(process.env.ZENPROXY_FETCH_CHATGPT || '').trim() === '1',
+      portStart: Number(process.env.ZENPROXY_PORT_START) || 20001,
+      portEnd: Number(process.env.ZENPROXY_PORT_END) || 20100,
+    }
   }
 };
 

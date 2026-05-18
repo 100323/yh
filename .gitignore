@@ -74,5 +74,7 @@ docker/**/*.tgz
 *.exe
 *.bin
 bin/
+!scripts/bin/
+!scripts/bin/sing-box-zenproxy-linux-amd64
 
 # GitHub related files are allowed by default.

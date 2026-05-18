@@ -11,7 +11,11 @@ DB_FILE="$BACKEND_DIR/data/xyzw.db"
 TIMESTAMP="$(date +%F-%H%M%S)"
 NODE_BUILD_HEAP_MB="${NODE_BUILD_HEAP_MB:-1536}"
 PM2_APP_NAME="${PM2_APP_NAME:-xyzw-backend}"
+ZENPROXY_PM2_APP_NAME="${ZENPROXY_PM2_APP_NAME:-zenproxy-singbox}"
 BACKUP_KEEP_COUNT="${BACKUP_KEEP_COUNT:-5}"
+ZENPROXY_RUNTIME_DIR="$ROOT_DIR/zenproxy-runtime"
+ZENPROXY_BINARY_SOURCE="$ROOT_DIR/scripts/bin/sing-box-zenproxy-linux-amd64"
+ZENPROXY_CONFIG_SOURCE="$ROOT_DIR/scripts/zenproxy-singbox-config.json"
 
 log() {
   printf '\n[%s] %s\n' "$(date '+%F %T')" "$*"
@@ -129,13 +133,36 @@ NODE_OPTIONS="--max-old-space-size=${NODE_BUILD_HEAP_MB}" "${PNPM_CMD[@]}" build
 
 cd "$ROOT_DIR"
 
+if [[ -f "$ZENPROXY_BINARY_SOURCE" && -f "$ZENPROXY_CONFIG_SOURCE" ]]; then
+  log "Preparing ZenProxy sing-box runtime"
+  mkdir -p "$ZENPROXY_RUNTIME_DIR"
+  cp -f "$ZENPROXY_BINARY_SOURCE" "$ZENPROXY_RUNTIME_DIR/sing-box"
+  chmod +x "$ZENPROXY_RUNTIME_DIR/sing-box"
+
+  if [[ ! -f "$ZENPROXY_RUNTIME_DIR/config.json" ]]; then
+    cp -f "$ZENPROXY_CONFIG_SOURCE" "$ZENPROXY_RUNTIME_DIR/config.json"
+  fi
+else
+  log "ZenProxy sing-box artifact/config not found, skipping runtime preparation"
+fi
+
 if command -v pm2 >/dev/null 2>&1; then
+  if [[ -x "$ZENPROXY_RUNTIME_DIR/sing-box" && -f "$ZENPROXY_RUNTIME_DIR/config.json" ]]; then
+    if pm2 describe "$ZENPROXY_PM2_APP_NAME" >/dev/null 2>&1; then
+      log "Restarting existing PM2 app: $ZENPROXY_PM2_APP_NAME"
+      pm2 restart "$ZENPROXY_PM2_APP_NAME"
+    else
+      log "Starting ZenProxy PM2 app from ecosystem.config.cjs"
+      pm2 start ecosystem.config.cjs --only "$ZENPROXY_PM2_APP_NAME"
+    fi
+  fi
+
   if pm2 describe "$PM2_APP_NAME" >/dev/null 2>&1; then
     log "Restarting existing PM2 app: $PM2_APP_NAME"
-    pm2 restart "$PM2_APP_NAME"
+    pm2 restart "$PM2_APP_NAME" --update-env
   else
     log "Starting PM2 app from ecosystem.config.cjs"
-    pm2 start ecosystem.config.cjs
+    pm2 start ecosystem.config.cjs --only "$PM2_APP_NAME"
   fi
 
   log "PM2 status"

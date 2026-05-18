@@ -36,17 +36,29 @@ export class ProxyFetcher {
    * 从单个代理源获取代理
    */
   async fetchFromSource(source) {
+    if (typeof source.fetcher === 'function') {
+      try {
+        const proxies = await source.fetcher(source);
+        return proxies.map(proxy => this.normalizeProxy(proxy));
+      } catch (error) {
+        console.error(`[ProxyFetcher] 获取代理失败 (${source.name}):`, error?.message || error);
+        return [];
+      }
+    }
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
-      const url = this.buildUrl(source.url, source.params);
+      const url = this.buildUrl(source.url, this.resolveDynamicConfig(source.params, source));
+      const headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        ...this.resolveDynamicConfig(source.headers, source)
+      };
 
       const response = await fetch(url, {
         method: 'GET',
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        },
+        headers,
         signal: controller.signal
       });
 
@@ -72,6 +84,26 @@ export class ProxyFetcher {
     } finally {
       clearTimeout(timeoutId);
     }
+  }
+
+  /**
+   * 解析动态配置。代理源里的 params/headers 支持函数，方便从环境变量读取密钥，
+   * 避免把 API key 写死到代码或前端。
+   */
+  resolveDynamicConfig(value, source) {
+    if (!value) {
+      return {};
+    }
+
+    const resolved = typeof value === 'function' ? value(source) : value;
+    if (!resolved || typeof resolved !== 'object') {
+      return {};
+    }
+
+    return Object.fromEntries(
+      Object.entries(resolved)
+        .filter(([, item]) => item !== undefined && item !== null && String(item) !== '')
+    );
   }
 
   /**
@@ -101,6 +133,8 @@ export class ProxyFetcher {
       anonymity: proxy.anonymity || 'unknown',
       speed: proxy.speed || null,
       source: proxy.source || 'unknown',
+      upstreamProxyId: proxy.upstreamProxyId || null,
+      upstreamTag: proxy.upstreamTag || null,
       // 代理池管理字段
       id: `${proxy.host}:${proxy.port}`,
       createdAt: Date.now(),

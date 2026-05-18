@@ -1,0 +1,19 @@
+{
+  "log": {
+    "level": "info"
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "secret": "xyzw-zenproxy-local",
+      "zenproxy_port_start": 20001,
+      "zenproxy_port_end": 20100
+    }
+  },
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ]
+}

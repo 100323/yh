@@ -2,6 +2,8 @@
  * 后端代理池配置
  */
 
+import config from '../../config/index.js';
+
 export const PROXY_CONFIG = {
   // 全局代理开关
   enabled: false,
@@ -24,8 +26,8 @@ export const PROXY_CONFIG = {
   // 代理池最大数量
   maxPoolSize: 100,
 
-  // 单次刷新最多验证的候选代理数量，避免免费源返回数千条导致预热长时间阻塞
-  maxValidationCandidates: 600,
+  // sing-box 本地端口已由 ZenProxy 验证/绑定，这里限制单次同步数量即可
+  maxValidationCandidates: 100,
 
   // 代理验证间隔（毫秒）
   validationInterval: 5 * 60 * 1000, // 5分钟
@@ -42,326 +44,146 @@ export const PROXY_CONFIG = {
   }
 };
 
+function normalizeControllerUrl(value) {
+  return String(value || 'http://127.0.0.1:9090').replace(/\/+$/, '');
+}
+
+function getZenProxyApiKey() {
+  return String(process.env.ZENPROXY_API_KEY || process.env.PROXY_API_KEY || '').trim();
+}
+
+function getLocalClientConfig() {
+  return config.proxy?.localClient || {};
+}
+
+async function fetchJson(url, options = {}) {
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {})
+    }
+  });
+  const text = await response.text();
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = text;
+  }
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${typeof data === 'string' ? data : JSON.stringify(data)}`);
+  }
+  return data;
+}
+
+async function ensureZenProxyLocalBindings() {
+  const localConfig = getLocalClientConfig();
+  const controllerUrl = normalizeControllerUrl(localConfig.controllerUrl);
+  const secret = String(localConfig.secret || '').trim();
+  const headers = secret ? { Authorization: `Bearer ${secret}` } : {};
+
+  let bindings = [];
+  try {
+    bindings = await fetchJson(`${controllerUrl}/bindings`, { headers });
+  } catch (error) {
+    throw new Error(`ZenProxy local client unavailable: ${error.message}`);
+  }
+
+  if (Array.isArray(bindings) && bindings.length > 0) {
+    return bindings;
+  }
+
+  const apiKey = getZenProxyApiKey();
+  if (!apiKey) {
+    throw new Error('ZENPROXY_API_KEY is required when local bindings are empty');
+  }
+
+  const fetchBody = {
+    server: localConfig.serverUrl || 'https://zenproxy.top',
+    api_key: apiKey,
+    count: Number(localConfig.fetchCount) || 100,
+    auto_bind: true
+  };
+  if (localConfig.fetchCountry) {
+    fetchBody.country = localConfig.fetchCountry;
+  }
+  if (localConfig.fetchType) {
+    fetchBody.type = localConfig.fetchType;
+  }
+  if (localConfig.fetchChatGPT) {
+    fetchBody.chatgpt = true;
+  }
+
+  const fetchResult = await fetchJson(`${controllerUrl}/fetch`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(fetchBody)
+  });
+  console.log('[ZenProxyLocal] fetch 完成', {
+    added: fetchResult?.added,
+    bound: fetchResult?.bound,
+    message: fetchResult?.message
+  });
+
+  bindings = await fetchJson(`${controllerUrl}/bindings`, { headers });
+  if (!Array.isArray(bindings) || bindings.length === 0) {
+    throw new Error('ZenProxy local client returned no bindings after fetch');
+  }
+  return bindings;
+}
+
+function parseZenProxyLocalBindings(bindings) {
+  const localConfig = getLocalClientConfig();
+  const portStart = Number(localConfig.portStart) || 20001;
+  const portEnd = Number(localConfig.portEnd) || 20100;
+
+  return (Array.isArray(bindings) ? bindings : [])
+    .map((binding) => {
+      const port = Number(binding?.listen_port || binding?.local_port || binding?.port);
+      if (!Number.isInteger(port) || port <= 0) {
+        return null;
+      }
+      if (portStart > 0 && portEnd >= portStart && (port < portStart || port > portEnd)) {
+        return null;
+      }
+
+      return {
+        host: '127.0.0.1',
+        port,
+        protocol: 'http',
+        country: 'local',
+        anonymity: 'zenproxy-local',
+        source: 'zenproxy-local',
+        upstreamProxyId: binding.proxy_id || null,
+        upstreamTag: binding.tag || null
+      };
+    })
+    .filter(Boolean);
+}
+
 /**
- * 免费代理源配置
+ * 代理源配置
+ *
+ * 当前使用 ZenProxy 本地客户端模式：
+ * 1. sing-box-zenproxy 从 https://zenproxy.top 拉取 vmess/vless/trojan 等节点；
+ * 2. sing-box-zenproxy 批量绑定为 127.0.0.1:20001+ 本地 HTTP/SOCKS5 端口；
+ * 3. 项目只读取这些本地端口，避免直接处理多种代理协议。
  */
 export const PROXY_SOURCES = [
   {
-    name: 'Proxifly HTTP',
-    sourceId: 'proxifly-http',
-    url: 'https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/http/data.txt',
+    name: 'ZenProxy Local Client',
+    sourceId: 'zenproxy-local',
+    url: 'local://zenproxy/bindings',
     params: {},
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: 'proxifly-http'
-    }),
-    enabled: true
-  },
-  {
-    name: 'Proxifly HTTPS',
-    sourceId: 'proxifly-https',
-    url: 'https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/https/data.txt',
-    params: {},
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'https',
-      source: 'proxifly-https'
-    }),
-    enabled: true
-  },
-  {
-    name: 'TheSpeedX HTTP',
-    sourceId: 'thespeedx-http',
-    url: 'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt',
-    params: {},
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: 'thespeedx-http'
-    }),
-    enabled: true
-  },
-  {
-    name: 'theriturajps proxy-list',
-    sourceId: 'theriturajps',
-    url: 'https://raw.githubusercontent.com/theriturajps/proxy-list/main/proxies.txt',
-    params: {},
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: 'theriturajps'
-    }),
-    enabled: true
-  },
-  {
-    name: '89ip',
-    sourceId: '89ip',
-    url: 'http://api.89ip.cn/tqdl.html',
-    params: {
-      api: 1,
-      num: 100,
-      port: '',
-      address: '',
-      isp: ''
+    fetcher: async () => {
+      const bindings = await ensureZenProxyLocalBindings();
+      return parseZenProxyLocalBindings(bindings);
     },
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: '89ip',
-      extractIpPort: true
-    }),
-    enabled: true
-  },
-  {
-    name: '66ip',
-    sourceId: '66ip',
-    url: 'http://www.66ip.cn/nmtq.php',
-    params: {
-      getnum: 100,
-      isp: 0,
-      anonymoustype: 0,
-      start: '',
-      ports: '',
-      export: '',
-      ipaddress: '',
-      area: 1,
-      proxytype: 2,
-      api: '66ip'
-    },
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: '66ip',
-      extractIpPort: true
-    }),
-    enabled: true
-  },
-  {
-    name: '站大爷 ip3366',
-    sourceId: 'ip3366',
-    url: 'http://www.ip3366.net/free/',
-    params: {
-      stype: 1,
-      page: 1
-    },
-    parser: (data) => parseProxyTableLikeData(data, {
-      defaultProtocol: 'http',
-      source: 'ip3366'
-    }),
-    enabled: true
-  },
-  {
-    name: '快代理免费国内高匿',
-    sourceId: 'kuaidaili-inha',
-    url: 'https://www.kuaidaili.com/free/inha/1/',
-    params: {},
-    parser: (data) => parseProxyTableLikeData(data, {
-      defaultProtocol: 'http',
-      source: 'kuaidaili-inha'
-    }),
-    enabled: true
-  },
-  {
-    name: 'ProxyList GeoNode',
-    sourceId: 'geonode',
-    url: 'https://proxylist.geonode.com/api/proxy-list',
-    params: {
-      limit: 50,
-      page: 1,
-      sort_by: 'lastChecked',
-      sort_type: 'desc',
-      protocols: 'http,https',
-      anonymityLevel: 'elite,anonymous'
-    },
-    parser: (data) => {
-      if (!data || !data.data) return [];
-      return data.data.map(proxy => ({
-        host: proxy.ip,
-        port: proxy.port,
-        protocol: proxy.protocols?.[0] || 'http',
-        country: proxy.country,
-        anonymity: proxy.anonymityLevel,
-        speed: proxy.responseTime,
-        source: 'geonode'
-      }));
-    },
-    enabled: true
-  },
-  {
-    name: 'r00tee HTTPS',
-    sourceId: 'r00tee-https',
-    url: 'https://raw.githubusercontent.com/r00tee/Proxy-List/main/Https.txt',
-    params: {},
-    parser: (data) => parseProxyTextList(data, {
-      // 该列表名为 HTTPS，但实际多数是可 CONNECT HTTPS/WSS 的 HTTP 代理。
-      defaultProtocol: 'http',
-      source: 'r00tee-https',
-      extractIpPort: true
-    }),
-    enabled: true
-  },
-  {
-    name: 'roosterkid HTTPS',
-    sourceId: 'roosterkid-https',
-    url: 'https://raw.githubusercontent.com/roosterkid/openproxylist/main/HTTPS_RAW.txt',
-    params: {},
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: 'roosterkid-https',
-      extractIpPort: true
-    }),
-    enabled: true
-  },
-  {
-    name: 'Zaeem HTTPS',
-    sourceId: 'zaeem-https',
-    url: 'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/https.txt',
-    params: {},
-    parser: (data) => parseProxyTextList(data, {
-      defaultProtocol: 'http',
-      source: 'zaeem-https',
-      extractIpPort: true
-    }),
-    enabled: true
-  },
-  {
-    name: 'ProxyScrape',
-    sourceId: 'proxyscrape',
-    url: 'https://api.proxyscrape.com/v2/',
-    params: {
-      request: 'displayproxies',
-      protocol: 'http',
-      timeout: 5000,
-      country: 'all',
-      ssl: 'all',
-      anonymity: 'elite,anonymous'
-    },
-    parser: (data) => {
-      if (!data) return [];
-      // 返回的是纯文本，每行一个代理 IP:PORT
-      const lines = data.trim().split('\n');
-      return lines.map(line => {
-        const [host, port] = line.trim().split(':');
-        if (!host || !port) return null;
-        return {
-          host,
-          port: parseInt(port),
-          protocol: 'http',
-          source: 'proxyscrape'
-        };
-      }).filter(Boolean);
-    },
-    enabled: true
-  },
-  {
-    name: 'Free Proxy List',
-    sourceId: 'proxy-list-download',
-    url: 'https://www.proxy-list.download/api/v1/get',
-    params: {
-      type: 'http',
-      anon: 'elite'
-    },
-    parser: (data) => {
-      if (!data) return [];
-      const lines = data.trim().split('\n');
-      return lines.map(line => {
-        const [host, port] = line.trim().split(':');
-        if (!host || !port) return null;
-        return {
-          host,
-          port: parseInt(port),
-          protocol: 'http',
-          source: 'proxy-list-download'
-        };
-      }).filter(Boolean);
-    },
+    parser: (data) => parseZenProxyLocalBindings(data),
     enabled: true
   }
 ];
-
-function parseProxyTextList(data, options = {}) {
-  if (!data) return [];
-
-  const defaultProtocol = options.defaultProtocol || 'http';
-  const source = options.source || 'text-list';
-  const raw = String(data);
-  const lines = options.extractIpPort
-    ? Array.from(raw.matchAll(/(\d{1,3}(?:\.\d{1,3}){3}):(\d{2,5})/g)).map(match => match[0])
-    : raw.split(/\r?\n/);
-
-  return lines.map((line) => {
-    const trimmed = String(line || '').trim();
-    if (!trimmed || trimmed.startsWith('#')) return null;
-
-    let protocol = defaultProtocol;
-    let hostPort = trimmed;
-    const protocolMatch = trimmed.match(/^([a-z0-9]+):\/\/(.+)$/i);
-    if (protocolMatch) {
-      protocol = protocolMatch[1].toLowerCase();
-      hostPort = protocolMatch[2];
-    }
-
-    hostPort = hostPort.split(/[/?#]/)[0].trim();
-
-    const ipv6Match = hostPort.match(/^\[([^\]]+)\]:(\d{2,5})$/);
-    const genericMatch = hostPort.match(/^(.+):(\d{2,5})$/);
-    const host = ipv6Match ? ipv6Match[1] : genericMatch?.[1];
-    const port = ipv6Match ? ipv6Match[2] : genericMatch?.[2];
-    if (!host || !port) return null;
-
-    return {
-      host,
-      port: parseInt(port, 10),
-      protocol,
-      source
-    };
-  }).filter(Boolean);
-}
-
-function parseProxyTableLikeData(data, options = {}) {
-  if (!data) return [];
-
-  const raw = String(data);
-  const source = options.source || 'table-list';
-  const defaultProtocol = options.defaultProtocol || 'http';
-  const proxies = new Map();
-
-  const pushProxy = (host, port, protocol = defaultProtocol) => {
-    const normalizedHost = String(host || '').trim();
-    const normalizedPort = Number(port);
-    if (!normalizedHost || !Number.isInteger(normalizedPort) || normalizedPort <= 0 || normalizedPort > 65535) {
-      return;
-    }
-    proxies.set(`${normalizedHost}:${normalizedPort}`, {
-      host: normalizedHost,
-      port: normalizedPort,
-      protocol: String(protocol || defaultProtocol).toLowerCase(),
-      source
-    });
-  };
-
-  // 兼容 IP:PORT 纯文本。
-  parseProxyTextList(raw, {
-    defaultProtocol,
-    source,
-    extractIpPort: true
-  }).forEach(proxy => pushProxy(proxy.host, proxy.port, proxy.protocol));
-
-  // 兼容常见 HTML 表格：同一行里 IP 后面的第一个 2-5 位数字通常就是端口。
-  raw.split(/<tr[\s>]/i).forEach((row) => {
-    const ipMatch = row.match(/(\d{1,3}(?:\.\d{1,3}){3})/);
-    if (!ipMatch) return;
-
-    const afterIp = row.slice((ipMatch.index || 0) + ipMatch[0].length);
-    const portMatch = afterIp.match(/(?:>|^|[^\d])(\d{2,5})(?=<|[^\d]|$)/);
-    if (!portMatch) return;
-
-    let protocol = defaultProtocol;
-    const protocolText = row.match(/\b(HTTP|HTTPS|SOCKS4|SOCKS5)\b/i)?.[1];
-    if (protocolText) {
-      protocol = protocolText.toLowerCase();
-    }
-
-    pushProxy(ipMatch[1], portMatch[1], protocol);
-  });
-
-  return Array.from(proxies.values());
-}
 
 /**
  * 代理验证配置
@@ -374,7 +196,7 @@ export const VALIDATION_CONFIG = {
   timeout: 4000,
 
   // 并发验证数量
-  concurrency: 30,
+  concurrency: 20,
 
   // 验证成功的最大响应时间（毫秒）
   maxResponseTime: 5000
