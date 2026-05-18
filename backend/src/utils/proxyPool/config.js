@@ -190,14 +190,14 @@ export const PROXY_SOURCES = [
  */
 export const VALIDATION_CONFIG = {
   // 验证目标URL
-  testUrl: 'https://www.baidu.com',
+  testUrl: process.env.PROXY_VALIDATION_URL || 'https://httpbin.org/ip',
 
   // 验证超时
-  timeout: 4000,
+  timeout: Number(process.env.PROXY_VALIDATION_TIMEOUT_MS) || 10000,
 
   // 并发验证数量
-  concurrency: 20,
+  concurrency: Number(process.env.PROXY_VALIDATION_CONCURRENCY) || 10,
 
   // 验证成功的最大响应时间（毫秒）
-  maxResponseTime: 5000
+  maxResponseTime: Number(process.env.PROXY_VALIDATION_MAX_RESPONSE_MS) || 15000
 };
