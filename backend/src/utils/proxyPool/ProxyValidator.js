@@ -6,6 +6,8 @@ import { VALIDATION_CONFIG } from './config.js';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import fetch from 'node-fetch';
+import http from 'http';
+import tls from 'tls';
 
 export class ProxyValidator {
   constructor(config = {}) {
@@ -132,6 +134,10 @@ export class ProxyValidator {
    * 测试代理连接
    */
   async testProxyConnection(proxy) {
+    if (this.config.tlsHost) {
+      return await this.testProxyTlsHandshake(proxy);
+    }
+
     const proxyUrl = this.buildProxyUrl(proxy);
     const agent = this.createProxyAgent(proxyUrl, proxy.protocol);
 
@@ -156,6 +162,110 @@ export class ProxyValidator {
         throw new Error('Proxy connection timeout');
       }
       throw error;
+    }
+  }
+
+  /**
+   * 针对游戏 WSS 场景验证代理：只要能通过 HTTP CONNECT 建隧道并完成目标域名 TLS 握手，
+   * 就认为该代理可用于 WebSocket。避免 httpbin/baidu 能通但游戏 TLS 被重置的节点进入池子。
+   */
+  async testProxyTlsHandshake(proxy) {
+    const protocol = String(proxy.protocol || 'http').toLowerCase();
+    if (protocol === 'socks' || protocol === 'socks5' || protocol === 'socks4') {
+      return await this.testProxyConnectionWithoutTlsHost(proxy);
+    }
+
+    const host = String(this.config.tlsHost || '').trim();
+    const port = Number(this.config.tlsPort || 443);
+    if (!host || !Number.isInteger(port) || port <= 0) {
+      throw new Error('Invalid TLS validation target');
+    }
+
+    const startedAt = Date.now();
+    const timeoutMs = Number(this.config.timeout) || 10000;
+
+    return await new Promise((resolve, reject) => {
+      let settled = false;
+      let tunnelSocket = null;
+      let tlsSocket = null;
+      const finish = (error, result = null) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        try {
+          tlsSocket?.destroy?.();
+        } catch {}
+        try {
+          tunnelSocket?.destroy?.();
+        } catch {}
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result || { ok: true });
+        }
+      };
+
+      const timer = setTimeout(() => {
+        finish(new Error('Proxy TLS handshake timeout'));
+      }, timeoutMs);
+
+      const req = http.request({
+        host: proxy.host,
+        port: Number(proxy.port),
+        method: 'CONNECT',
+        path: `${host}:${port}`,
+        timeout: timeoutMs,
+        headers: {
+          Host: `${host}:${port}`,
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+      });
+
+      req.once('connect', (res, socket) => {
+        tunnelSocket = socket;
+        if (res.statusCode !== 200) {
+          finish(new Error(`Proxy CONNECT failed: HTTP ${res.statusCode}`));
+          return;
+        }
+
+        tlsSocket = tls.connect({
+          socket,
+          servername: host,
+          ALPNProtocols: ['http/1.1'],
+          rejectUnauthorized: false
+        });
+
+        tlsSocket.once('secureConnect', () => {
+          finish(null, {
+            ok: true,
+            status: 200,
+            statusText: 'TLS handshake OK',
+            responseTime: Date.now() - startedAt
+          });
+        });
+
+        tlsSocket.once('error', (error) => {
+          finish(error);
+        });
+      });
+
+      req.once('timeout', () => {
+        req.destroy(new Error('Proxy CONNECT timeout'));
+      });
+      req.once('error', (error) => {
+        finish(error);
+      });
+      req.end();
+    });
+  }
+
+  async testProxyConnectionWithoutTlsHost(proxy) {
+    const previousTlsHost = this.config.tlsHost;
+    this.config.tlsHost = '';
+    try {
+      return await this.testProxyConnection(proxy);
+    } finally {
+      this.config.tlsHost = previousTlsHost;
     }
   }
 

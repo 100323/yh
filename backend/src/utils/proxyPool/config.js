@@ -199,5 +199,9 @@ export const VALIDATION_CONFIG = {
   concurrency: Number(process.env.PROXY_VALIDATION_CONCURRENCY) || 10,
 
   // 验证成功的最大响应时间（毫秒）
-  maxResponseTime: Number(process.env.PROXY_VALIDATION_MAX_RESPONSE_MS) || 15000
+  maxResponseTime: Number(process.env.PROXY_VALIDATION_MAX_RESPONSE_MS) || 15000,
+
+  // 游戏 WebSocket 实际目标；配置后会以 CONNECT + TLS 握手作为可用性标准。
+  tlsHost: process.env.PROXY_VALIDATION_TLS_HOST || 'xxz-xyzw-new.hortorgames.com',
+  tlsPort: Number(process.env.PROXY_VALIDATION_TLS_PORT) || 443
 };
