@@ -1,5 +1,6 @@
 // Constants
 export * from './constants.js';
+export * from './towerConfig.js';
 
 // Cron utilities
 export * from './cronUtils.js';

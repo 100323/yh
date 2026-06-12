@@ -1,13 +1,87 @@
 import { Router } from "express";
-import { all, get, run } from "../database/index.js";
+import { all, get, run, saveDatabase } from "../database/index.js";
 import { authMiddleware } from "../middleware/auth.js";
+import { normalizeTowerMaxFloors } from "../utils/towerTaskConfig.js";
 
 const router = Router();
 
 router.use(authMiddleware);
 
 function normalizeSettingsPayload(settings = {}) {
-  return { ...(settings || {}) };
+  const next = { ...(settings || {}) };
+  next.towerMaxFloors = normalizeTowerMaxFloors(next.towerMaxFloors, 10);
+  next.weirdTowerMaxFloors = normalizeTowerMaxFloors(
+    next.weirdTowerMaxFloors ?? next.towerMaxFloors,
+    10,
+  );
+  return next;
+}
+
+export function normalizeHistoricalBatchTowerSettings(settings = {}) {
+  const next = { ...(settings || {}) };
+
+  if (Object.prototype.hasOwnProperty.call(next, "towerMaxFloors")) {
+    next.towerMaxFloors = normalizeTowerMaxFloors(next.towerMaxFloors, 10);
+  }
+
+  if (Object.prototype.hasOwnProperty.call(next, "weirdTowerMaxFloors")) {
+    next.weirdTowerMaxFloors = normalizeTowerMaxFloors(next.weirdTowerMaxFloors, 10);
+  }
+
+  return next;
+}
+
+function parseSettingsJson(settingsJson) {
+  if (!settingsJson) {
+    return {};
+  }
+  try {
+    return normalizeSettingsPayload(JSON.parse(settingsJson));
+  } catch {
+    return {};
+  }
+}
+
+export async function clampHistoricalBatchTowerSettings() {
+  const targets = [
+    { table: "account_batch_settings", idColumn: "account_id" },
+    { table: "batch_task_templates", idColumn: "id" },
+  ];
+  const details = [];
+  let updated = 0;
+
+  for (const target of targets) {
+    const rows = all(`SELECT ${target.idColumn} AS id, settings_json FROM ${target.table}`);
+    rows.forEach((row) => {
+      if (!row.settings_json) {
+        return;
+      }
+      let parsed;
+      try {
+        parsed = JSON.parse(row.settings_json);
+      } catch {
+        return;
+      }
+      const normalized = normalizeHistoricalBatchTowerSettings(parsed);
+      if (JSON.stringify(parsed) === JSON.stringify(normalized)) {
+        return;
+      }
+      run(
+        `UPDATE ${target.table}
+            SET settings_json = ?, updated_at = CURRENT_TIMESTAMP
+          WHERE ${target.idColumn} = ?`,
+        [JSON.stringify(normalized), row.id],
+      );
+      updated += 1;
+      details.push({ table: target.table, id: row.id });
+    });
+  }
+
+  if (updated > 0) {
+    await saveDatabase();
+  }
+
+  return { updated, details };
 }
 
 router.get("/account-settings", (req, res) => {
@@ -27,7 +101,7 @@ router.get("/account-settings", (req, res) => {
         accountId: row.account_id,
         accountName: row.account_name,
         templateId: row.template_id || null,
-        settings: row.settings_json ? JSON.parse(row.settings_json) : {},
+        settings: parseSettingsJson(row.settings_json),
         createdAt: row.created_at,
         updatedAt: row.updated_at,
       })),
@@ -96,7 +170,7 @@ router.put("/account-settings/:accountId", (req, res) => {
         accountId: saved.account_id,
         accountName: saved.account_name,
         templateId: saved.template_id || null,
-        settings: saved.settings_json ? JSON.parse(saved.settings_json) : {},
+        settings: parseSettingsJson(saved.settings_json),
         createdAt: saved.created_at,
         updatedAt: saved.updated_at,
       },
@@ -122,7 +196,7 @@ router.get("/templates", (req, res) => {
       data: rows.map((row) => ({
         id: String(row.id),
         name: row.name,
-        settings: row.settings_json ? JSON.parse(row.settings_json) : {},
+        settings: parseSettingsJson(row.settings_json),
         createdAt: row.created_at,
         updatedAt: row.updated_at,
       })),
@@ -159,7 +233,7 @@ router.post("/templates", (req, res) => {
       data: {
         id: String(template.id),
         name: template.name,
-        settings: template.settings_json ? JSON.parse(template.settings_json) : {},
+        settings: parseSettingsJson(template.settings_json),
         createdAt: template.created_at,
         updatedAt: template.updated_at,
       },
@@ -221,7 +295,7 @@ router.put("/templates/:id", (req, res) => {
       data: {
         id: String(template.id),
         name: template.name,
-        settings: template.settings_json ? JSON.parse(template.settings_json) : {},
+        settings: parseSettingsJson(template.settings_json),
         createdAt: template.created_at,
         updatedAt: template.updated_at,
       },

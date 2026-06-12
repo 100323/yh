@@ -191,6 +191,7 @@ import {
   defaultTaskConfigs,
   defaultSettings,
 } from '@/utils/batch/constants';
+import { normalizeTowerMaxFloors } from '@/utils/batch/towerConfig.js';
 
 const message = useMessage();
 const taskStore = useTaskStore();
@@ -603,13 +604,16 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
     mapped.arenaFormation = backendConfig.arenaFormation;
   }
   if (taskKey === 'climbTower' && backendConfig.maxFloors !== undefined) {
-    mapped.towerMaxFloors = backendConfig.maxFloors;
+    mapped.towerMaxFloors = normalizeTowerMaxFloors(backendConfig.maxFloors, 10);
   }
   if (taskKey === 'climbTower' && backendConfig.towerFormation !== undefined) {
     mapped.towerFormation = backendConfig.towerFormation;
   }
   if (taskKey === 'climbWeirdTower' && (backendConfig.weirdTowerMaxFloors !== undefined || backendConfig.maxFloors !== undefined)) {
-    mapped.weirdTowerMaxFloors = backendConfig.weirdTowerMaxFloors ?? backendConfig.maxFloors;
+    mapped.weirdTowerMaxFloors = normalizeTowerMaxFloors(
+      backendConfig.weirdTowerMaxFloors ?? backendConfig.maxFloors,
+      10,
+    );
   }
   if (taskKey === 'climbWeirdTower' && backendConfig.weirdTowerFormation !== undefined) {
     mapped.weirdTowerFormation = backendConfig.weirdTowerFormation;
@@ -705,13 +709,13 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
   if (taskKey === 'climbTower') {
     return {
       towerFormation: Number(sourceConfig.towerFormation ?? 1) || 1,
-      maxFloors: sourceConfig.towerMaxFloors ?? 10,
+      maxFloors: normalizeTowerMaxFloors(sourceConfig.towerMaxFloors, 10),
     };
   }
   if (taskKey === 'climbWeirdTower') {
     return {
       weirdTowerFormation: Number(sourceConfig.weirdTowerFormation ?? 1) || 1,
-      weirdTowerMaxFloors: sourceConfig.weirdTowerMaxFloors ?? 10,
+      weirdTowerMaxFloors: normalizeTowerMaxFloors(sourceConfig.weirdTowerMaxFloors, 10),
     };
   }
   if (taskKey === 'batchLegionBoss') {

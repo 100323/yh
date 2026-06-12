@@ -13,7 +13,7 @@ import weixinRoutes from './routes/weixin.js';
 import slimRoutes from './routes/slim.js';
 import statsRoutes from './routes/stats.js';
 import batchSchedulerRoutes from './routes/batchScheduler.js';
-import batchSettingsRoutes from './routes/batchSettings.js';
+import batchSettingsRoutes, { clampHistoricalBatchTowerSettings } from './routes/batchSettings.js';
 import inviteCodeRoutes from './routes/inviteCodes.js';
 import activationCodeRoutes, { publicActivationRoutes } from './routes/activationCodes.js';
 import adminUsersRoutes from './routes/adminUsers.js';
@@ -382,6 +382,13 @@ async function startServer() {
     startupState.database.status = 'ready';
     startupState.database.lastError = null;
     startupState.database.pathDiagnostics = getDatabasePathDiagnostics();
+    const batchTowerSettingsClampResult = await clampHistoricalBatchTowerSettings();
+    if (batchTowerSettingsClampResult.updated > 0) {
+      console.log('已将历史批量爬塔设置限制到 0-10', {
+        updated: batchTowerSettingsClampResult.updated,
+        details: batchTowerSettingsClampResult.details,
+      });
+    }
     preloadStudyQuestionBank();
   } catch (error) {
     startupState.database.status = 'failed';

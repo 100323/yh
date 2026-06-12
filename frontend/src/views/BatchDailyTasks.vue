@@ -1919,6 +1919,7 @@ import {
 import TaskConfigPanel from "@/components/Daily/TaskConfigPanel.vue";
 
 import { merchantConfig, goldItemsConfig } from "@/utils/dreamConstants";
+import { normalizeTowerSettings } from "@/utils/batch/towerConfig.js";
 
 // Initialize token store, message service, and task runner
 const tokenStore = useTokenStore();
@@ -2283,6 +2284,8 @@ const handleWarGuessCheer = async () => {
 const batchSettingsDefaults = {
   arenaFormation: 1,
   towerFormation: 1,
+  towerMaxFloors: 10,
+  weirdTowerMaxFloors: 10,
   bossFormation: 1,
   bossTimes: 2,
   claimBottle: true,
@@ -2299,8 +2302,10 @@ const createDefaultBatchSettings = () => ({
 });
 
 const normalizeBatchSettings = (settings = {}) => ({
-  ...createDefaultBatchSettings(),
-  ...(settings || {}),
+  ...normalizeTowerSettings({
+    ...createDefaultBatchSettings(),
+    ...(settings || {}),
+  }),
 });
 
 // Settings Modal State
@@ -2929,14 +2934,15 @@ const importConfig = async ({ file }) => {
             });
             const matchedAccountId = matchedToken?.id;
             if (matchedAccountId && /^\d+$/.test(String(matchedAccountId)) && item.settings) {
+              const settings = normalizeBatchSettings(item.settings);
               const saveRes = await api.batchSettings.saveAccountSettings(matchedAccountId, {
-                settings: item.settings,
+                settings,
                 templateId: item.templateId || null,
               });
               if (saveRes?.success) {
                 accountSettingsMap.value[String(matchedAccountId)] = {
                   templateId: saveRes.data?.templateId != null ? String(saveRes.data.templateId) : null,
-                  settings: normalizeBatchSettings(saveRes.data?.settings || item.settings),
+                  settings: normalizeBatchSettings(saveRes.data?.settings || settings),
                   updatedAt: saveRes.data?.updatedAt || new Date().toISOString(),
                 };
               }
@@ -3402,14 +3408,15 @@ const saveSettings = async () => {
   if (currentSettingsTokenId.value) {
     const accountId = String(currentSettingsTokenId.value);
     const existing = accountSettingsMap.value[accountId] || {};
+    const settings = normalizeBatchSettings(currentSettings);
     const res = await api.batchSettings.saveAccountSettings(accountId, {
-      settings: { ...currentSettings },
+      settings,
       templateId: existing.templateId || null,
     });
     if (res?.success) {
       accountSettingsMap.value[accountId] = {
         templateId: res.data?.templateId != null ? String(res.data.templateId) : null,
-        settings: normalizeBatchSettings(res.data?.settings || currentSettings),
+        settings: normalizeBatchSettings(res.data?.settings || settings),
         updatedAt: res.data?.updatedAt || new Date().toISOString(),
       };
       message.success(`已保存 ${currentSettingsTokenName.value} 的设置`);
@@ -3468,14 +3475,15 @@ const applyTemplate = async () => {
 
   let successCount = 0;
   for (const tokenId of selectedTokensForApply.value) {
+    const settings = normalizeBatchSettings(template.settings);
     const res = await api.batchSettings.saveAccountSettings(tokenId, {
-      settings: { ...template.settings },
+      settings,
       templateId: template.id,
     });
     if (res?.success) {
       accountSettingsMap.value[String(tokenId)] = {
         templateId: String(template.id),
-        settings: normalizeBatchSettings(template.settings),
+        settings,
         updatedAt: res.data?.updatedAt || new Date().toISOString(),
       };
       successCount += 1;
@@ -3497,7 +3505,7 @@ const openEditTemplateModal = (template) => {
   // 加载模板数据到当前编辑模板
   currentTemplateId.value = template.id;
   currentTemplateName.value = template.name;
-  Object.assign(currentTemplate, template.settings);
+  Object.assign(currentTemplate, normalizeBatchSettings(template.settings));
   showTaskTemplateModal.value = true;
 };
 
@@ -3509,7 +3517,7 @@ const updateTaskTemplate = async () => {
 
   const res = await api.batchSettings.updateTemplate(currentTemplateId.value, {
     name: currentTemplateName.value.trim(),
-    settings: { ...currentTemplate },
+    settings: normalizeBatchSettings(currentTemplate),
   });
   if (res?.success) {
     await loadTaskTemplates();
@@ -3593,7 +3601,7 @@ const saveTaskTemplate = async () => {
   } else {
     const res = await api.batchSettings.createTemplate({
       name: currentTemplateName.value.trim(),
-      settings: { ...currentTemplate },
+      settings: normalizeBatchSettings(currentTemplate),
     });
     if (res?.success) {
       await loadTaskTemplates();

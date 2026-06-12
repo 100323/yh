@@ -3,6 +3,9 @@ import { Router } from 'express';
 import { run, get, all, addTaskConfigAuditLog, cleanupTaskLogs, getDatabase, saveDatabase, upsertTaskExecutionMarker } from '../database/index.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { calculateNextRunAt } from '../utils/cronSchedule.js';
+import {
+  normalizeTowerTaskConfig,
+} from '../utils/towerTaskConfig.js';
 
 const router = Router();
 
@@ -220,7 +223,7 @@ function normalizeFormationValue(value, fallback = 1) {
   return normalized;
 }
 
-function normalizeTaskConfigPayload(taskType, config = {}) {
+export function normalizeTaskConfigPayload(taskType, config = {}) {
   if (!config || typeof config !== 'object') {
     return config || {};
   }
@@ -243,21 +246,65 @@ function normalizeTaskConfigPayload(taskType, config = {}) {
 
   if (taskType === 'TOWER') {
     return {
-      ...(config || {}),
+      ...normalizeTowerTaskConfig(taskType, config),
       towerFormation: normalizeFormationValue(config.towerFormation, 1),
-      maxFloors: Math.max(1, Math.min(100, Number(config.maxFloors ?? 10) || 10)),
     };
   }
 
   if (taskType === 'WEIRD_TOWER') {
     return {
-      ...(config || {}),
+      ...normalizeTowerTaskConfig(taskType, config),
       weirdTowerFormation: normalizeFormationValue(config.weirdTowerFormation, 1),
-      weirdTowerMaxFloors: Math.max(1, Math.min(100, Number(config.weirdTowerMaxFloors ?? config.maxFloors ?? 10) || 10)),
     };
   }
 
   return config;
+}
+
+export async function clampHistoricalTowerTaskConfigs(targetDb = getDatabase()) {
+  const rows = targetDb.all(
+    `SELECT id, task_type, config_json
+       FROM task_configs
+      WHERE task_type IN ('TOWER', 'WEIRD_TOWER')`,
+  );
+
+  let updated = 0;
+  const details = [];
+
+  rows.forEach((row) => {
+    const config = parseTaskConfigJson(row.config_json);
+    const normalized = normalizeTaskConfigPayload(row.task_type, config);
+    const before = row.task_type === 'TOWER'
+      ? config.maxFloors
+      : (config.weirdTowerMaxFloors ?? config.maxFloors);
+    const after = row.task_type === 'TOWER'
+      ? normalized.maxFloors
+      : normalized.weirdTowerMaxFloors;
+
+    if (JSON.stringify(config) === JSON.stringify(normalized)) {
+      return;
+    }
+
+    targetDb.run(
+      `UPDATE task_configs
+          SET config_json = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?`,
+      [JSON.stringify(normalized), row.id],
+    );
+    updated += 1;
+    details.push({
+      id: row.id,
+      taskType: row.task_type,
+      from: before,
+      to: after,
+    });
+  });
+
+  if (updated > 0) {
+    await saveDatabase();
+  }
+
+  return { updated, details };
 }
 
 function stableSortValue(value) {

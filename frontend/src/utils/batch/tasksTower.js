@@ -1,3 +1,5 @@
+import { isTowerTaskDisabled, normalizeTowerMaxFloors } from "./towerConfig.js";
+
 /**
  * 爬塔类任务
  * 包含: climbTower, climbWeirdTower, batchClaimFreeEnergy
@@ -48,6 +50,16 @@ export function createTasksTower(deps) {
       const token = tokens.value.find((t) => t.id === tokenId);
       // 加载该Token的独立配置，如果未找到则回退到currentSettings
       const tokenSettings = loadSettings ? (loadSettings(tokenId) || currentSettings) : currentSettings;
+
+      if (isTowerTaskDisabled("TOWER", tokenSettings)) {
+        tokenStatus.value[tokenId] = "completed";
+        addLog({
+          time: new Date().toLocaleTimeString(),
+          message: `${token.name} 爬塔层数为0，跳过任务`,
+          type: "success",
+        });
+        return;
+      }
 
       try {
         addLog({
@@ -109,10 +121,10 @@ export function createTasksTower(deps) {
         });
 
         let count = 0;
-        const MAX_CLIMB = 100;
+        const maxClimb = normalizeTowerMaxFloors(tokenSettings.towerMaxFloors, 10);
         let consecutiveFailures = 0;
 
-        while (energy > 0 && count < MAX_CLIMB && !shouldStop.value) {
+        while (energy > 0 && count < maxClimb && !shouldStop.value) {
           try {
             await tokenStore.sendMessageWithPromise(
               tokenId,
@@ -297,6 +309,16 @@ export function createTasksTower(deps) {
       // 加载该Token的独立配置，如果未找到则回退到currentSettings
       const tokenSettings = loadSettings ? (loadSettings(tokenId) || currentSettings) : currentSettings;
 
+      if (isTowerTaskDisabled("WEIRD_TOWER", tokenSettings)) {
+        tokenStatus.value[tokenId] = "completed";
+        addLog({
+          time: new Date().toLocaleTimeString(),
+          message: `${token.name} 怪异塔层数为0，跳过任务`,
+          type: "success",
+        });
+        return;
+      }
+
       try {
         addLog({
           time: new Date().toLocaleTimeString(),
@@ -361,10 +383,7 @@ export function createTasksTower(deps) {
         });
 
         let count = 0;
-        const maxClimb = Math.min(
-          100,
-          Math.max(1, Number(tokenSettings.weirdTowerMaxFloors ?? 100) || 100),
-        );
+        const maxClimb = normalizeTowerMaxFloors(tokenSettings.weirdTowerMaxFloors, 10);
         let consecutiveFailures = 0;
 
         while (currentEnergy > 0 && count < maxClimb && !shouldStop.value) {

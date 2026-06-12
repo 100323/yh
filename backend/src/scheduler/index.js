@@ -7,6 +7,7 @@ import {
   addTaskLog,
   ensureDefaultTaskConfigsForAllAccounts,
   rebalanceDefaultTaskCronExpressions,
+  clampHistoricalTowerTaskConfigs,
 } from '../routes/tasks.js';
 import { get, all } from '../database/index.js';
 import { decrypt } from '../utils/crypto.js';
@@ -15,6 +16,7 @@ import config from '../config/index.js';
 import { resolveStudyAnswer } from '../utils/studyQuestions.js';
 import { parseTokenPayload } from '../utils/token.js';
 import { calculateNextRunAt, parseCronField } from '../utils/cronSchedule.js';
+import { isTowerTaskDisabled, normalizeTowerMaxFloors } from '../utils/towerTaskConfig.js';
 import {
   buildCarClaimTaskMessage,
   buildCarSendTaskMessage,
@@ -657,6 +659,21 @@ function markScheduledTaskFailure(task, error) {
   }
 }
 
+function getDisabledTowerTaskResult(taskType, taskConfig = {}) {
+  if (!isTowerTaskDisabled(taskType, taskConfig)) {
+    return null;
+  }
+
+  const label = taskType === 'WEIRD_TOWER' ? '怪异塔' : '爬塔';
+  return {
+    message: `${label}层数为0，已跳过任务`,
+    data: {
+      skipped: true,
+      reason: 'maxFloors=0',
+    },
+  };
+}
+
 async function ensureTaskUserAvailable(task) {
   const user = get(
     'SELECT id, username, role, is_enabled, access_start_at, access_end_at FROM users WHERE id = ?',
@@ -679,6 +696,17 @@ async function executeScheduledTaskWithClient(task, context = {}) {
   try {
     await ensureTaskUserAvailable(task);
     const taskConfig = parseTaskConfig(task);
+    const disabledTowerResult = getDisabledTowerTaskResult(taskType, taskConfig);
+    if (disabledTowerResult) {
+      markScheduledTaskSuccess(task, disabledTowerResult);
+      return {
+        ok: true,
+        task,
+        result: disabledTowerResult,
+        client: currentClient,
+      };
+    }
+
     currentClient = await context.ensureClient();
     const execution = await executeTaskWithFlowControl({
       accountId,
@@ -748,6 +776,32 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         getLatestScheduledAccountSnapshot(accountId)
       );
       await ensureTaskUserAvailable(batchSeedTask);
+
+      if (batchItems.every((item) => {
+        const latestTask = mergeTaskWithLatestAccountSnapshot(
+          item.task,
+          getLatestScheduledAccountSnapshot(accountId)
+        );
+        return !!getDisabledTowerTaskResult(latestTask.task_type, parseTaskConfig(latestTask));
+      })) {
+        for (const item of batchItems) {
+          const latestTask = mergeTaskWithLatestAccountSnapshot(
+            item.task,
+            getLatestScheduledAccountSnapshot(accountId)
+          );
+          const result = getDisabledTowerTaskResult(latestTask.task_type, parseTaskConfig(latestTask));
+          markScheduledTaskSuccess(latestTask, result);
+          resolveScheduledTaskBatchWaiters(item, {
+            ok: true,
+            task: latestTask,
+            result,
+            client: null,
+          });
+          processedItemCount += 1;
+        }
+        return;
+      }
+
       connectionContext = buildTaskConnectionContext(batchSeedTask);
 
       const ensureBatchClient = async () => {
@@ -1207,6 +1261,14 @@ export async function initScheduler() {
       details: cronRebalanceResult.skippedDetails,
     });
   }
+
+  const towerConfigClampResult = await clampHistoricalTowerTaskConfigs();
+  if (towerConfigClampResult.updated > 0) {
+    console.log('已将历史爬塔任务层数配置限制到 0-10', {
+      updated: towerConfigClampResult.updated,
+      details: towerConfigClampResult.details,
+    });
+  }
   
   const tasks = getEnabledTasks();
   console.log(`📋 找到 ${tasks.length} 个启用的任务`);
@@ -1364,6 +1426,13 @@ export async function executeTask(task) {
     console.log(`🚀 开始执行任务: ${accountName} - ${task.task_type}`);
     try {
       await ensureTaskUserAvailable(task);
+      const taskConfig = parseTaskConfig(task);
+      const disabledTowerResult = getDisabledTowerTaskResult(task.task_type, taskConfig);
+      if (disabledTowerResult) {
+        markScheduledTaskSuccess(task, disabledTowerResult);
+        return disabledTowerResult;
+      }
+
       const connectionContext = buildTaskConnectionContext(task);
       let client = null;
 
@@ -1500,6 +1569,10 @@ async function executeTaskWithFlowControl({
 }
 
 async function claimDailyPointRewardsByTask(client, taskType, taskConfig = {}) {
+  if (isTowerTaskDisabled(taskType, taskConfig)) {
+    return;
+  }
+
   const configTaskIds = Array.isArray(taskConfig?.dailyPointTaskIds)
     ? taskConfig.dailyPointTaskIds
     : (typeof taskConfig?.dailyPointTaskIds === 'string'
@@ -2327,13 +2400,18 @@ async function executeArena(client, config) {
 }
 
 async function executeTower(client, config) {
+  const disabledResult = getDisabledTowerTaskResult('TOWER', config);
+  if (disabledResult) {
+    return disabledResult;
+  }
+
   return runWithTemporaryPresetTeam(client, config?.towerFormation, '爬塔', () =>
     executeTowerCore(client, config)
   );
 }
 
 async function executeTowerCore(client, config = {}) {
-  const { maxFloors = 10 } = config;
+  const maxFloors = normalizeTowerMaxFloors(config?.maxFloors, 10);
   const results = [];
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -2405,6 +2483,11 @@ async function executeBossTower(client, config) {
 }
 
 async function executeWeirdTower(client, config) {
+  const disabledResult = getDisabledTowerTaskResult('WEIRD_TOWER', config);
+  if (disabledResult) {
+    return disabledResult;
+  }
+
   return runWithTemporaryPresetTeam(client, config?.weirdTowerFormation, '怪异塔', () =>
     executeWeirdTowerCore(client, config)
   );
@@ -2413,7 +2496,7 @@ async function executeWeirdTower(client, config) {
 async function executeWeirdTowerCore(client, config = {}) {
   const results = [];
   let successCount = 0;
-  const maxFloors = Math.min(100, Math.max(1, Number(config?.weirdTowerMaxFloors ?? 100) || 100));
+  const maxFloors = normalizeTowerMaxFloors(config?.weirdTowerMaxFloors ?? config?.maxFloors, 10);
   
   // 获取怪异塔信息
   let towerInfo;

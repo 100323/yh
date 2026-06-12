@@ -2,6 +2,8 @@
  * 批量日常任务常量配置
  */
 
+import { TOWER_MAX_FLOORS, TOWER_MIN_FLOORS } from "./towerConfig.js";
+
 export const FISH_TARGET = 320;
 export const ARENA_TARGET = 240;
 
@@ -194,7 +196,7 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [
       { key: "towerFormation", label: "爬塔阵容", type: "select", options: "formationOptions", default: 1 },
-      { key: "towerMaxFloors", label: "最大层数", type: "number", min: 1, max: 100, default: 10 },
+      { key: "towerMaxFloors", label: "最大层数", type: "number", min: TOWER_MIN_FLOORS, max: TOWER_MAX_FLOORS, default: 10, description: "0表示不启动该任务" },
     ],
   },
   climbWeirdTower: {
@@ -204,7 +206,7 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [
       { key: "weirdTowerFormation", label: "怪异塔阵容", type: "select", options: "formationOptions", default: 1 },
-      { key: "weirdTowerMaxFloors", label: "最大层数", type: "number", min: 1, max: 100, default: 10 },
+      { key: "weirdTowerMaxFloors", label: "最大层数", type: "number", min: TOWER_MIN_FLOORS, max: TOWER_MAX_FLOORS, default: 10, description: "0表示不启动该任务" },
     ],
   },
   batchLegionBoss: {
@@ -508,6 +510,8 @@ export const taskColumns = [
 export const defaultSettings = {
   arenaFormation: 1,
   towerFormation: 1,
+  towerMaxFloors: 10,
+  weirdTowerMaxFloors: 10,
   bossFormation: 1,
   bossTimes: 2,
   claimBottle: true,
@@ -549,6 +553,8 @@ export const defaultBatchSettings = {
 export const defaultTemplate = {
   arenaFormation: 1,
   towerFormation: 1,
+  towerMaxFloors: 10,
+  weirdTowerMaxFloors: 10,
   bossFormation: 1,
   bossTimes: 2,
   claimBottle: true,
