@@ -52,7 +52,7 @@ const runningTasks = new Set();
 let batchSchedulerRefreshJob = null;
 const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;
 const DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS = 3;
-const GENIE_SWEEP_COMMAND_DELAY_MS = 800;
+const GENIE_SWEEP_COMMAND_DELAY_MS = 1200;
 const DAILY_POINT_TASK_ID_MAP = {
   SIGN_IN: [1],
   HANGUP_ADD_TIME: [2],

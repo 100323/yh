@@ -84,3 +84,93 @@ test('reopenLegacyHangup polls legacy info until hangUpBeginTime appears', async
   assert.equal(getInfoCalls.length, 3);
   assert.equal(result.verificationSnapshots.at(-1)?.hangUpBeginTime, 1775830554033);
 });
+
+test('genieDailySweep skips a single unavailable kingdom and continues remaining work', async () => {
+  const client = new GameClient('dummy-token');
+  const sweepCalls = [];
+  let ticketCalls = 0;
+
+  client.getRoleInfo = async () => ({ role: { statisticsTime: {} } });
+  client.sendWithPromise = async (cmd, params) => {
+    if (cmd === 'genie_sweep') {
+      sweepCalls.push(params.genieId);
+      if (params.genieId === 2) {
+        const error = new Error('condition not met');
+        error.code = 3300060;
+        throw error;
+      }
+      return { ok: true, genieId: params.genieId };
+    }
+
+    if (cmd === 'genie_buysweep') {
+      ticketCalls += 1;
+      if (ticketCalls > 1) {
+        const error = new Error('ticket limit');
+        error.code = 3300050;
+        throw error;
+      }
+      return { ok: true };
+    }
+
+    throw new Error(`unexpected command: ${cmd}`);
+  };
+
+  const result = await client.genieDailySweep({
+    commandDelayMs: 0,
+    sweepDelayMs: 0,
+    ticketDelayMs: 0,
+  });
+
+  assert.deepEqual(sweepCalls, [1, 2, 3, 4]);
+  assert.equal(result.sweptCount, 3);
+  assert.equal(result.claimedTickets, 1);
+  assert.equal(result.sweepResults[1].skipped, true);
+  assert.equal(result.sweepResults[1].reason, 'condition not met');
+  assert.equal(ticketCalls, 2);
+});
+
+test('genieDailySweep retries transient too-fast sweep failures', async () => {
+  const client = new GameClient('dummy-token');
+  let firstGenieAttempts = 0;
+
+  client.getRoleInfo = async () => ({
+    role: {
+      statisticsTime: {
+        'genie:daily:free:2': Math.floor(Date.now() / 1000),
+        'genie:daily:free:3': Math.floor(Date.now() / 1000),
+        'genie:daily:free:4': Math.floor(Date.now() / 1000),
+      },
+    },
+  });
+
+  client.sendWithPromise = async (cmd, params) => {
+    if (cmd === 'genie_sweep') {
+      firstGenieAttempts += 1;
+      if (firstGenieAttempts < 3) {
+        const error = new Error('too fast');
+        error.code = 200400;
+        throw error;
+      }
+      return { ok: true, genieId: params.genieId };
+    }
+
+    if (cmd === 'genie_buysweep') {
+      const error = new Error('ticket limit');
+      error.code = 3300050;
+      throw error;
+    }
+
+    throw new Error(`unexpected command: ${cmd}`);
+  };
+
+  const result = await client.genieDailySweep({
+    commandDelayMs: 0,
+    sweepDelayMs: 0,
+    ticketDelayMs: 0,
+    retryDelayMs: 0,
+  });
+
+  assert.equal(firstGenieAttempts, 3);
+  assert.equal(result.sweptCount, 1);
+  assert.equal(result.sweepResults[0].success, true);
+});

@@ -115,7 +115,7 @@ const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
-const GENIE_SWEEP_COMMAND_DELAY_MS = 800;
+const GENIE_SWEEP_COMMAND_DELAY_MS = 1200;
 
 function pad2(value) {
   return String(value).padStart(2, '0');

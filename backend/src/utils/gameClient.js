@@ -142,6 +142,72 @@ function normalizeDelayMs(value, fallback = 0) {
   return delayMs;
 }
 
+function getErrorCode(error) {
+  const candidates = [
+    error?.code,
+    error?.raw?.code,
+    error?.body?.code,
+  ];
+  for (const candidate of candidates) {
+    const code = Number(candidate);
+    if (Number.isFinite(code) && code !== 0) {
+      return code;
+    }
+  }
+  return 0;
+}
+
+function getErrorText(error) {
+  return [
+    error?.message,
+    error?.hint,
+    error?.rawError,
+    error?.raw?.hint,
+    error?.raw?.error,
+  ]
+    .filter(Boolean)
+    .map((value) => String(value))
+    .join(' ');
+}
+
+function errorMatches(error, codes = new Set(), keywords = []) {
+  const code = getErrorCode(error);
+  if (codes.has(code)) {
+    return true;
+  }
+  const text = getErrorText(error);
+  return keywords.some((keyword) => text.includes(keyword));
+}
+
+function isGenieTransientError(error) {
+  return errorMatches(error, new Set([200020, 200400]), [
+    '出了点小问题',
+    '操作太快',
+    '操作过快',
+    '请稍后再试',
+  ]);
+}
+
+function isGenieSweepSkippableError(error) {
+  return errorMatches(error, new Set([3300060, 200160]), [
+    '扫荡条件不满足',
+    '今日已扫荡',
+    '模块未开启',
+  ]);
+}
+
+function isGenieTicketLimitError(error) {
+  return errorMatches(error, new Set([3300050, 1000020, 12000116]), [
+    '购买数量超出限制',
+    '今天已经领取过奖励了',
+    '今日已领取免费奖励',
+  ]);
+}
+
+function describeGenieError(error, fallback = '操作未完成') {
+  return String(error?.message || error?.hint || fallback);
+}
+
 function describeReadyState(readyState) {
   switch (readyState) {
     case WebSocket.CONNECTING:
@@ -1609,29 +1675,38 @@ export class GameClient {
     const commandDelayMs = normalizeDelayMs(options.commandDelayMs, 0);
     const sweepDelayMs = normalizeDelayMs(options.sweepDelayMs, commandDelayMs || 250);
     const ticketDelayMs = normalizeDelayMs(options.ticketDelayMs, commandDelayMs || 180);
+    const retryDelayMs = normalizeDelayMs(options.retryDelayMs, Math.max(1200, commandDelayMs));
+    const maxRetryDelayMs = normalizeDelayMs(options.maxRetryDelayMs, 5000);
+    const commandTimeoutMs = normalizeDelayMs(options.commandTimeoutMs, 8000);
+    const maxCommandRetries = Math.max(0, Math.floor(Number(options.maxCommandRetries ?? 2) || 0));
 
-    const sendSweepWithRetry = async (genieId) => {
-      try {
-        return await this.sendWithPromise('genie_sweep', { genieId, sweepCnt: 1 }, 5000);
-      } catch (error) {
-        if (!String(error?.message || '').includes('出了点小问题')) {
-          throw error;
+    const sendGenieCommandWithRetry = async (cmd, params = {}) => {
+      let attempt = 0;
+      while (true) {
+        try {
+          return await this.sendWithPromise(cmd, params, commandTimeoutMs);
+        } catch (error) {
+          if (!isGenieTransientError(error) || attempt >= maxCommandRetries) {
+            throw error;
+          }
+          const delayMs = Math.min(
+            maxRetryDelayMs,
+            retryDelayMs * (2 ** attempt)
+          );
+          if (delayMs > 0) {
+            await sleep(delayMs);
+          }
+          attempt += 1;
         }
-        await sleep(Math.max(700, commandDelayMs));
-        return this.sendWithPromise('genie_sweep', { genieId, sweepCnt: 1 }, 5000);
       }
     };
 
+    const sendSweepWithRetry = async (genieId) => {
+      return sendGenieCommandWithRetry('genie_sweep', { genieId, sweepCnt: 1 });
+    };
+
     const claimSweepTicket = async () => {
-      try {
-        return await this.sendWithPromise('genie_buysweep', {}, 5000);
-      } catch (error) {
-        if (!String(error?.message || '').includes('出了点小问题')) {
-          throw error;
-        }
-        await sleep(Math.max(700, commandDelayMs));
-        return this.sendWithPromise('genie_buysweep', {}, 5000);
-      }
+      return sendGenieCommandWithRetry('genie_buysweep', {});
     };
 
     if (commandDelayMs > 0) {
@@ -1645,8 +1720,21 @@ export class GameClient {
         continue;
       }
 
-      const result = await sendSweepWithRetry(genieId);
-      sweepResults.push({ genieId, name: genieNames[genieId], success: true, result });
+      try {
+        const result = await sendSweepWithRetry(genieId);
+        sweepResults.push({ genieId, name: genieNames[genieId], success: true, result });
+      } catch (error) {
+        if (!isGenieSweepSkippableError(error)) {
+          throw error;
+        }
+        sweepResults.push({
+          genieId,
+          name: genieNames[genieId],
+          skipped: true,
+          reason: describeGenieError(error, '扫荡条件不满足'),
+          code: getErrorCode(error) || undefined,
+        });
+      }
       await sleep(sweepDelayMs);
     }
 
@@ -1655,9 +1743,13 @@ export class GameClient {
         const result = await claimSweepTicket();
         ticketResults.push({ index: index + 1, success: true, result });
       } catch (error) {
-        const message = String(error?.message || '');
-        if (message.includes('购买数量超出限制') || message.includes('今天已经领取过奖励了')) {
-          ticketResults.push({ index: index + 1, skipped: true, reason: '今日扫荡券已领取完' });
+        if (isGenieTicketLimitError(error)) {
+          ticketResults.push({
+            index: index + 1,
+            skipped: true,
+            reason: describeGenieError(error, '今日扫荡券已领取完'),
+            code: getErrorCode(error) || undefined,
+          });
           break;
         }
         throw error;
