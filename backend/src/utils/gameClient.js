@@ -134,6 +134,51 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function extractSkinChallengeTowerData(payload) {
+  if (payload?.actId) {
+    return payload;
+  }
+  if (payload?.towerData?.actId) {
+    return payload.towerData;
+  }
+  return payload || {};
+}
+
+function getSkinChallengeTowerMap(towerData) {
+  return towerData?.towerData && typeof towerData.towerData === 'object'
+    ? towerData.towerData
+    : {};
+}
+
+function getSkinChallengeTowerEntry(towerData, towerType) {
+  const towerMap = getSkinChallengeTowerMap(towerData);
+  return towerMap?.[towerType] || towerMap?.[String(towerType)] || null;
+}
+
+function isSkinChallengeTowerCleared(towerData, towerType) {
+  const towerEntry = getSkinChallengeTowerEntry(towerData, towerType);
+  if (towerEntry && typeof towerEntry.pass === 'boolean') {
+    return towerEntry.pass;
+  }
+
+  const levelRewardMap = towerData?.levelRewardMap || {};
+  const key1 = `${towerType}008`;
+  const key2 = Number(key1);
+  return !!(levelRewardMap[key1] || levelRewardMap[key2]);
+}
+
+function getSkinChallengeCustomValue(actId) {
+  const now = new Date();
+  const shanghaiDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(now);
+  const time = Date.parse(`${shanghaiDate}T00:00:00+08:00`);
+  return Number.isFinite(time) ? time : Date.now();
+}
+
 function normalizeDelayMs(value, fallback = 0) {
   const delayMs = Number(value);
   if (!Number.isFinite(delayMs) || delayMs < 0) {
@@ -1448,17 +1493,18 @@ export class GameClient {
 
   async startSkinChallenge() {
     const res = await this.sendWithPromise('towers_getinfo', {}, 8000);
-    const towerData = res.actId ? res : (res.towerData && res.towerData.actId ? res.towerData : res);
+    const towerData = extractSkinChallengeTowerData(res);
 
     if (!towerData.actId) {
       return { skipped: true, reason: '换皮闯关活动信息获取失败' };
     }
 
-    const actId = String(towerData.actId);
-    if (actId.length >= 6) {
-      const year = "20" + actId.substring(0, 2);
-      const month = actId.substring(2, 4);
-      const day = actId.substring(4, 6);
+    const actId = Number(towerData.actId) || towerData.actId;
+    const actIdStr = String(actId);
+    if (actIdStr.length >= 6) {
+      const year = "20" + actIdStr.substring(0, 2);
+      const month = actIdStr.substring(2, 4);
+      const day = actIdStr.substring(4, 6);
       const startDate = new Date(`${year}-${month}-${day}T00:00:00`);
       const endDate = new Date(startDate);
       endDate.setDate(startDate.getDate() + 7);
@@ -1468,7 +1514,6 @@ export class GameClient {
       }
     }
 
-    const levelRewardMap = towerData.levelRewardMap || {};
     const todayWeekDay = new Date().getDay();
     const openTowerMap = {
       5: [1],
@@ -1481,22 +1526,22 @@ export class GameClient {
     };
     const todayOpenTowers = openTowerMap[todayWeekDay] || [];
 
-    const isTowerCleared = (type, map) => {
-      const key1 = `${type}008`;
-      const key2 = Number(key1);
-      return !!(map[key1] || map[key2]);
-    };
-
-    const targetTowers = todayOpenTowers.filter(type => !isTowerCleared(type, levelRewardMap));
+    const targetTowers = todayOpenTowers.filter((type) => !isSkinChallengeTowerCleared(towerData, type));
 
     if (targetTowers.length === 0) {
       return { skipped: true, reason: '今日换皮闯关已全部通关' };
     }
 
+    const systemCustomPayload = {
+      key: `act:multiTower:1:${actId}`,
+      value: getSkinChallengeCustomValue(actId),
+    };
+
     const results = [];
     for (const type of targetTowers) {
       try {
-        await this.sendWithPromise('towers_start', { towerType: type }, 5000);
+        await this.sendWithPromise('towers_start', { towerType: type, actId }, 5000);
+        await this.sendWithPromise('system_custom', systemCustomPayload, 5000);
         await new Promise(r => setTimeout(r, 300));
 
         let needStart = false;
@@ -1506,11 +1551,12 @@ export class GameClient {
 
         while (loop && failCount < 3) {
           if (needStart) {
-            await this.sendWithPromise('towers_start', { towerType: type }, 5000);
+            await this.sendWithPromise('towers_start', { towerType: type, actId }, 5000);
+            await this.sendWithPromise('system_custom', systemCustomPayload, 5000);
             await new Promise(r => setTimeout(r, 300));
           }
 
-          const fightRes = await this.sendWithPromise('towers_fight', { towerType: type }, 5000);
+          const fightRes = await this.sendWithPromise('towers_fight', { towerType: type, actId }, 5000);
           const battleData = fightRes?.battleData;
           const curHP = battleData?.result?.accept?.ext?.curHP;
 
@@ -1518,11 +1564,10 @@ export class GameClient {
             needStart = false;
             failCount = 0;
 
-            const infoRes = await this.sendWithPromise('towers_getinfo', {}, 5000);
-            const updatedData = infoRes.actId ? infoRes : (infoRes.towerData || infoRes);
-            const updatedMap = updatedData.levelRewardMap || {};
+            const infoRes = await this.sendWithPromise('towers_getinfo', { actId }, 5000);
+            const updatedData = extractSkinChallengeTowerData(infoRes);
 
-            if (isTowerCleared(type, updatedMap)) {
+            if (isSkinChallengeTowerCleared(updatedData, type)) {
               loop = false;
               cleared = true;
             }

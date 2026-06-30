@@ -1610,7 +1610,7 @@ async function executeDream(client, config) {
   throw new Error('梦境后端自动执行暂未接入');
 }
 
-async function executeSkinChallenge(client, config) {
+async function _unusedExecuteSkinChallengeLegacyPlaceholder(client, config) {
   throw new Error('换皮闯关后端自动执行暂未接入');
 }
 
@@ -1712,3 +1712,12 @@ export default {
   getScheduledBatchJobs,
   getActiveBatchConnections
 };
+
+async function executeSkinChallenge(client, config) {
+  const result = await client.startSkinChallenge();
+  if (result.skipped) {
+    return { message: result.reason, data: result };
+  }
+  const clearedCount = result.clearedCount || 0;
+  return { message: `鎹㈢毊闂叧瀹屾垚 (閫氬叧${clearedCount}涓狟OSS)`, data: result };
+}

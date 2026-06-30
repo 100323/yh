@@ -74,6 +74,7 @@ const message = useMessage();
 
 const isFighting = ref(false);
 const actId = ref(null);
+const towerStateMap = ref({});
 const isActivityValid = computed(() => {
   if (!actId.value) return false;
   
@@ -132,12 +133,20 @@ const isTowerOpen = (type) => {
 };
 
 const isTowerCleared = (type) => {
+  const towerState = towerStateMap.value?.[type] || towerStateMap.value?.[String(type)];
+  if (towerState && typeof towerState.pass === "boolean") {
+    return towerState.pass;
+  }
   const key1 = `${type}008`;
   const key2 = Number(key1);
   return !!(levelRewardMap.value[key1] || levelRewardMap.value[key2]);
 };
 
 const getTowerLevel = (type) => {
+  const towerState = towerStateMap.value?.[type] || towerStateMap.value?.[String(type)];
+  if (towerState?.actTowerLv) {
+    return Number(towerState.actTowerLv) || 1;
+  }
   // Find highest cleared level
   for (let i = 8; i >= 1; i--) {
     const key1 = `${type}00${i}`;
@@ -169,6 +178,7 @@ const getInfo = async () => {
       
       actId.value = data.actId;
       levelRewardMap.value = data.levelRewardMap || {};
+      towerStateMap.value = data.towerData || {};
       
       console.log('SkinChallenge Info:', {
          actId: data.actId,
@@ -207,13 +217,19 @@ const challengeSingle = async (type) => {
      let needStart = true;
      let loop = true;
      let failCount = 0;
+     const customValue = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
+     customValue.setHours(0, 0, 0, 0);
      
      while (loop) {
         if (needStart) {
-            await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type }, 5000);
+            await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type, actId: actId.value }, 5000);
+            await tokenStore.sendMessageWithPromise(tokenId, "system_custom", {
+              key: `act:multiTower:1:${actId.value}`,
+              value: customValue.getTime(),
+            }, 5000);
         }
         
-        const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type }, 5000);
+        const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type, actId: actId.value }, 5000);
         const battleData = fightRes?.battleData;
         const curHP = battleData?.result?.accept?.ext?.curHP;
         
