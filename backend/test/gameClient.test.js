@@ -268,3 +268,34 @@ test('startSkinChallenge uses actId-aware tower commands and new pass state', as
     Date.prototype.getDay = originalGetDay;
   }
 });
+
+test('proxied websocket connections relax TLS validation to match proxy validation', async () => {
+  const client = new GameClient('dummy-token', {
+    wsUrl: 'wss://xxz-xyzw-new.hortorgames.com/agent?e=x&lang=chinese',
+    proxy: { protocol: 'http', host: '127.0.0.1', port: 20067 },
+    heartbeatInterval: 60_000,
+  });
+
+  let capturedOptions = null;
+  const fakeSocket = {
+    readyState: 1,
+    on(event, handler) {
+      if (event === 'open') {
+        setTimeout(handler, 0);
+      }
+    },
+    send() {},
+    close() {},
+  };
+
+  client.createWebSocket = (url, options) => {
+    capturedOptions = options;
+    return fakeSocket;
+  };
+
+  await client.connect();
+  client.disconnect();
+
+  assert.equal(capturedOptions?.rejectUnauthorized, false);
+  assert.ok(capturedOptions?.agent);
+});

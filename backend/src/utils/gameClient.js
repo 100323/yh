@@ -444,6 +444,10 @@ export class GameClient {
     }
   }
 
+  createWebSocket(url, options) {
+    return new WebSocket(url, options);
+  }
+
   connect() {
     return new Promise((resolve, reject) => {
       let settled = false;
@@ -492,10 +496,11 @@ export class GameClient {
         // 如果配置了代理，创建代理Agent
         if (this.proxy) {
           wsOptions.agent = this.createProxyAgent();
+          wsOptions.rejectUnauthorized = false;
           console.log(`[GameClient] 使用代理连接: ${this.proxy.host}:${this.proxy.port}`);
         }
 
-        this.ws = new WebSocket(this.wsUrl, wsOptions);
+        this.ws = this.createWebSocket(this.wsUrl, wsOptions);
 
         this.ws.on('open', () => {
           opened = true;
