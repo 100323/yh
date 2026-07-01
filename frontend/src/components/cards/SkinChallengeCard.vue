@@ -66,6 +66,7 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 import { useTokenStore } from "@/stores/tokenStore";
+import { getTowerActId } from "@/utils/towerActId.js";
 import { useMessage } from "naive-ui";
 import MyCard from "../Common/MyCard.vue";
 
@@ -171,7 +172,7 @@ const getInfo = async () => {
   if (tokenStore.getWebSocketStatus(tokenId) !== "connected") return;
 
   try {
-    const res = await tokenStore.sendMessageWithPromise(tokenId, "towers_getinfo", {}, 5000);
+    const res = await tokenStore.sendMessageWithPromise(tokenId, "towers_getinfo", { actId: getTowerActId() }, 5000);
     if (res) {
       // Handle nested data structure if necessary
       const data = res.actId ? res : (res.towerData && res.towerData.actId ? res.towerData : res);

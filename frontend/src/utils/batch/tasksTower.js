@@ -1,3 +1,4 @@
+import { getTowerActId } from "../towerActId.js";
 import { isTowerTaskDisabled, normalizeTowerMaxFloors } from "./towerConfig.js";
 
 /**
@@ -674,7 +675,7 @@ export function createTasksTower(deps) {
         let res = await tokenStore.sendMessageWithPromise(
           tokenId,
           "towers_getinfo",
-          {},
+          { actId: getTowerActId() },
           5000
         );
         
