@@ -45,6 +45,7 @@ import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
+import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
 
 const scheduledBatchJobs = new Map();
 const activeConnections = new Map();
@@ -52,7 +53,6 @@ const runningTasks = new Set();
 let batchSchedulerRefreshJob = null;
 const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;
 const DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS = 3;
-const GENIE_SWEEP_COMMAND_DELAY_MS = 1200;
 const DAILY_POINT_TASK_ID_MAP = {
   SIGN_IN: [1],
   HANGUP_ADD_TIME: [2],
@@ -1654,12 +1654,7 @@ async function executeBoxOpen(client, config) {
 }
 
 async function executeGenieSweep(client, config) {
-  const result = await client.genieDailySweep({
-    ...config,
-    commandDelayMs: GENIE_SWEEP_COMMAND_DELAY_MS,
-    sweepDelayMs: GENIE_SWEEP_COMMAND_DELAY_MS,
-    ticketDelayMs: GENIE_SWEEP_COMMAND_DELAY_MS,
-  });
+  const result = await client.genieDailySweep(buildGenieSweepTaskOptions(config));
   if (result?.skipped) {
     return { message: `灯神扫荡跳过: ${result.reason}`, data: result };
   }

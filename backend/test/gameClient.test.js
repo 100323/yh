@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import GameClient from '../src/utils/gameClient.js';
+import {
+  GENIE_SWEEP_COMMAND_DELAY_MS,
+  GENIE_SWEEP_SWEEP_DELAY_MS,
+  GENIE_SWEEP_TICKET_DELAY_MS,
+  buildGenieSweepTaskOptions,
+} from '../src/utils/genieSweepConfig.js';
 
 test('rejects pending promises when websocket closes/disconnects', async () => {
   const client = new GameClient('dummy-token');
@@ -173,6 +179,17 @@ test('genieDailySweep retries transient too-fast sweep failures', async () => {
   assert.equal(firstGenieAttempts, 3);
   assert.equal(result.sweptCount, 1);
   assert.equal(result.sweepResults[0].success, true);
+});
+
+test('buildGenieSweepTaskOptions slows sweep commands more than ticket claims', () => {
+  const options = buildGenieSweepTaskOptions({ dryRun: true });
+
+  assert.equal(options.dryRun, true);
+  assert.equal(options.commandDelayMs, GENIE_SWEEP_COMMAND_DELAY_MS);
+  assert.equal(options.sweepDelayMs, GENIE_SWEEP_SWEEP_DELAY_MS);
+  assert.equal(options.ticketDelayMs, GENIE_SWEEP_TICKET_DELAY_MS);
+  assert.equal(options.sweepDelayMs, 1800);
+  assert.equal(options.ticketDelayMs, 1200);
 });
 
 test('startSkinChallenge uses actId-aware tower commands and new pass state', async () => {

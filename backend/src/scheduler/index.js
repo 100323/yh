@@ -56,6 +56,7 @@ import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
+import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
 
 const activeConnections = new Map();
 const scheduledJobs = new Map();
@@ -115,7 +116,6 @@ const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
-const GENIE_SWEEP_COMMAND_DELAY_MS = 1200;
 
 function pad2(value) {
   return String(value).padStart(2, '0');
@@ -3511,12 +3511,7 @@ async function executeLegionStoreFragment(client, config) {
 }
 
 async function executeGenieSweep(client, config) {
-  const result = await client.genieDailySweep({
-    ...config,
-    commandDelayMs: GENIE_SWEEP_COMMAND_DELAY_MS,
-    sweepDelayMs: GENIE_SWEEP_COMMAND_DELAY_MS,
-    ticketDelayMs: GENIE_SWEEP_COMMAND_DELAY_MS,
-  });
+  const result = await client.genieDailySweep(buildGenieSweepTaskOptions(config));
   if (result?.skipped) {
     return { message: `灯神扫荡跳过: ${result.reason}`, data: result };
   }
