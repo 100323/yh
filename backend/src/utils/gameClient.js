@@ -179,6 +179,18 @@ function getSkinChallengeCustomValue(actId) {
   return Number.isFinite(time) ? time : Date.now();
 }
 
+function getCurrentSkinChallengeActId(date = new Date()) {
+  const cycleDate = new Date(date);
+  const fridayDay = 5;
+  const diff = (cycleDate.getDay() - fridayDay + 7) % 7;
+  cycleDate.setHours(0, 0, 0, 0);
+  cycleDate.setDate(cycleDate.getDate() - diff);
+  const year = String(cycleDate.getFullYear()).slice(-2);
+  const month = String(cycleDate.getMonth() + 1).padStart(2, '0');
+  const day = String(cycleDate.getDate()).padStart(2, '0');
+  return Number(`${year}${month}${day}1`);
+}
+
 function normalizeDelayMs(value, fallback = 0) {
   const delayMs = Number(value);
   if (!Number.isFinite(delayMs) || delayMs < 0) {
@@ -446,6 +458,10 @@ export class GameClient {
 
   createWebSocket(url, options) {
     return new WebSocket(url, options);
+  }
+
+  getCurrentSkinChallengeActId(date = new Date()) {
+    return getCurrentSkinChallengeActId(date);
   }
 
   connect() {
@@ -1497,7 +1513,7 @@ export class GameClient {
   }
 
   async startSkinChallenge() {
-    const res = await this.sendWithPromise('towers_getinfo', {}, 8000);
+    const res = await this.sendWithPromise('towers_getinfo', { actId: this.getCurrentSkinChallengeActId() }, 8000);
     const towerData = extractSkinChallengeTowerData(res);
 
     if (!towerData.actId) {

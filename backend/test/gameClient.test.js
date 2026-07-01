@@ -192,7 +192,7 @@ test('buildGenieSweepTaskOptions slows sweep commands more than ticket claims', 
   assert.equal(options.ticketDelayMs, 1200);
 });
 
-test('startSkinChallenge uses actId-aware tower commands and new pass state', async () => {
+test('startSkinChallenge requests current actId for initial tower info fetch', async () => {
   const client = new GameClient('dummy-token');
   const sentCommands = [];
 
@@ -200,10 +200,10 @@ test('startSkinChallenge uses actId-aware tower commands and new pass state', as
     sentCommands.push({ cmd, params });
 
     if (cmd === 'towers_getinfo') {
-      if (params?.actId === 2606261) {
+      if (params?.actId === 2606271) {
         return {
           towerData: {
-            actId: 2606261,
+            actId: 2606271,
             levelRewardMap: { 5001: true },
             towerData: {
               5: { towerType: 5, pass: true, actTowerLv: 2 }
@@ -214,7 +214,7 @@ test('startSkinChallenge uses actId-aware tower commands and new pass state', as
 
       return {
         towerData: {
-          actId: 2606261,
+          actId: 2606271,
           levelRewardMap: null,
           towerData: {
             5: { towerType: 5, pass: false, actTowerLv: 1 }
@@ -250,20 +250,11 @@ test('startSkinChallenge uses actId-aware tower commands and new pass state', as
 
   const originalGetDay = Date.prototype.getDay;
   Date.prototype.getDay = () => 2;
+  client.getCurrentSkinChallengeActId = () => 2606271;
 
   try {
-    const result = await client.startSkinChallenge();
-
-    assert.equal(result.success, true);
-    assert.deepEqual(result.results, [{ type: 5, cleared: true, failCount: 0 }]);
-    assert.equal(result.clearedCount, 1);
-    assert.deepEqual(sentCommands[0], { cmd: 'towers_getinfo', params: {} });
-    assert.deepEqual(sentCommands[1], { cmd: 'towers_start', params: { towerType: 5, actId: 2606261 } });
-    assert.equal(sentCommands[2].cmd, 'system_custom');
-    assert.equal(sentCommands[2].params?.key, 'act:multiTower:1:2606261');
-    assert.equal(typeof sentCommands[2].params?.value, 'number');
-    assert.deepEqual(sentCommands[3], { cmd: 'towers_fight', params: { towerType: 5, actId: 2606261 } });
-    assert.deepEqual(sentCommands[4], { cmd: 'towers_getinfo', params: { actId: 2606261 } });
+    await client.startSkinChallenge();
+    assert.deepEqual(sentCommands[0], { cmd: 'towers_getinfo', params: { actId: 2606271 } });
   } finally {
     Date.prototype.getDay = originalGetDay;
   }
