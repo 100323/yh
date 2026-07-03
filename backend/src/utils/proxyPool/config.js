@@ -162,6 +162,134 @@ function parseZenProxyLocalBindings(bindings) {
     .filter(Boolean);
 }
 
+const SUPPORTED_PROXY_PROTOCOLS = new Set(['http', 'https', 'socks', 'socks4', 'socks5']);
+
+function normalizeProxyProtocol(value, fallback = 'http') {
+  const protocol = String(value || fallback || 'http')
+    .trim()
+    .toLowerCase()
+    .replace(/:$/, '');
+  return SUPPORTED_PROXY_PROTOCOLS.has(protocol) ? protocol : fallback;
+}
+
+function createParsedProxy(host, port, options = {}) {
+  const normalizedHost = String(host || '').trim();
+  const normalizedPort = Number(port);
+  if (!normalizedHost || !Number.isInteger(normalizedPort) || normalizedPort <= 0 || normalizedPort > 65535) {
+    return null;
+  }
+
+  return {
+    host: normalizedHost,
+    port: normalizedPort,
+    protocol: normalizeProxyProtocol(options.protocol, 'http'),
+    country: options.country || 'unknown',
+    anonymity: options.anonymity || 'unknown',
+    source: options.source || 'unknown',
+    speed: options.speed || null
+  };
+}
+
+function parseProxyLine(line, options = {}) {
+  const trimmed = String(line || '').trim();
+  if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('//')) {
+    return null;
+  }
+
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(trimmed)) {
+    try {
+      const url = new URL(trimmed);
+      return createParsedProxy(url.hostname, url.port, {
+        ...options,
+        protocol: normalizeProxyProtocol(url.protocol, options.protocol || 'http')
+      });
+    } catch {
+      return null;
+    }
+  }
+
+  const csvParts = trimmed.split(',').map((part) => part.trim()).filter(Boolean);
+  if (csvParts.length >= 2 && !csvParts[0].includes(':')) {
+    return createParsedProxy(csvParts[0], csvParts[1], {
+      ...options,
+      country: csvParts[2] || options.country,
+      anonymity: csvParts[3] || options.anonymity
+    });
+  }
+
+  const lastColonIndex = trimmed.lastIndexOf(':');
+  if (lastColonIndex <= 0) {
+    return null;
+  }
+
+  return createParsedProxy(trimmed.slice(0, lastColonIndex), trimmed.slice(lastColonIndex + 1), options);
+}
+
+export function parseProxyTextList(data, options = {}) {
+  return String(data || '')
+    .split(/\r?\n/)
+    .map((line) => parseProxyLine(line, options))
+    .filter(Boolean);
+}
+
+export function parseProxyJsonList(data, options = {}) {
+  const payload = typeof data === 'string' ? JSON.parse(data) : data;
+  const items = Array.isArray(payload)
+    ? payload
+    : (
+        payload?.proxies
+        || payload?.data
+        || payload?.items
+        || payload?.result
+        || []
+      );
+
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items
+    .map((item) => {
+      if (typeof item === 'string') {
+        return parseProxyLine(item, options);
+      }
+
+      if (!item || typeof item !== 'object') {
+        return null;
+      }
+
+      return createParsedProxy(item.host || item.ip || item.proxyHost, item.port || item.proxyPort, {
+        ...options,
+        protocol: item.protocol || item.type || item.scheme || options.protocol,
+        country: item.country || item.countryCode || options.country,
+        anonymity: item.anonymity || item.anonymous || options.anonymity,
+        speed: item.speed || item.responseTime || item.timeout || null
+      });
+    })
+    .filter(Boolean);
+}
+
+export function parseGeoNodeProxyList(data, options = {}) {
+  const payload = typeof data === 'string' ? JSON.parse(data) : data;
+  const items = Array.isArray(payload) ? payload : (payload?.data || []);
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items
+    .map((item) => {
+      const protocols = Array.isArray(item?.protocols) ? item.protocols : [item?.protocol];
+      return createParsedProxy(item?.ip || item?.host, item?.port, {
+        ...options,
+        protocol: protocols.find(Boolean) || options.protocol || 'http',
+        country: item?.country || item?.countryCode || options.country,
+        anonymity: item?.anonymityLevel || item?.anonymity || options.anonymity,
+        speed: item?.speed || item?.responseTime || null
+      });
+    })
+    .filter(Boolean);
+}
+
 /**
  * 代理源配置
  *
@@ -181,6 +309,93 @@ export const PROXY_SOURCES = [
       return parseZenProxyLocalBindings(bindings);
     },
     parser: (data) => parseZenProxyLocalBindings(data),
+    enabled: true
+  },
+  {
+    name: 'ProxyScrape Live Mirror',
+    sourceId: 'proxyscrape-all',
+    url: 'https://cdn.jsdelivr.net/gh/proxyscrape/free-proxy-list@main/proxies/all/data.json',
+    parser: (data) => parseProxyJsonList(data, {
+      source: 'proxyscrape-all',
+      protocol: 'http'
+    }),
+    enabled: true
+  },
+  {
+    name: 'ProxyScrape HTTP',
+    sourceId: 'proxyscrape-http',
+    url: 'https://cdn.jsdelivr.net/gh/proxyscrape/free-proxy-list@main/proxies/protocols/http/data.txt',
+    parser: (data) => parseProxyTextList(data, {
+      source: 'proxyscrape-http',
+      protocol: 'http'
+    }),
+    enabled: true
+  },
+  {
+    name: 'ProxyScrape SOCKS5',
+    sourceId: 'proxyscrape-socks5',
+    url: 'https://cdn.jsdelivr.net/gh/proxyscrape/free-proxy-list@main/proxies/protocols/socks5/data.txt',
+    parser: (data) => parseProxyTextList(data, {
+      source: 'proxyscrape-socks5',
+      protocol: 'socks5'
+    }),
+    enabled: true
+  },
+  {
+    name: 'GeoNode Last Checked',
+    sourceId: 'geonode-last-checked',
+    url: 'https://proxylist.geonode.com/api/proxy-list',
+    params: {
+      limit: 500,
+      page: 1,
+      sort_by: 'lastChecked',
+      sort_type: 'desc',
+      protocols: 'http,https,socks4,socks5'
+    },
+    parser: (data) => parseGeoNodeProxyList(data, {
+      source: 'geonode-last-checked',
+      protocol: 'http'
+    }),
+    enabled: true
+  },
+  {
+    name: 'VPSLab Elite Proxies',
+    sourceId: 'vpslab-elite',
+    url: 'https://cdn.jsdelivr.net/gh/VPSLabCloud/VPSLab-Free-Proxy-List@main/all_elite.txt',
+    parser: (data) => parseProxyTextList(data, {
+      source: 'vpslab-elite',
+      protocol: 'http'
+    }),
+    enabled: true
+  },
+  {
+    name: 'VPSLab SOCKS5 Proxies',
+    sourceId: 'vpslab-socks5',
+    url: 'https://cdn.jsdelivr.net/gh/VPSLabCloud/VPSLab-Free-Proxy-List@main/socks5_all.txt',
+    parser: (data) => parseProxyTextList(data, {
+      source: 'vpslab-socks5',
+      protocol: 'socks5'
+    }),
+    enabled: true
+  },
+  {
+    name: 'IPLocate Free Proxies',
+    sourceId: 'iplocate-all',
+    url: 'https://cdn.jsdelivr.net/gh/iplocate/free-proxy-list@main/all-proxies.txt',
+    parser: (data) => parseProxyTextList(data, {
+      source: 'iplocate-all',
+      protocol: 'http'
+    }),
+    enabled: true
+  },
+  {
+    name: 'Proxifly Free Proxies',
+    sourceId: 'proxifly-all',
+    url: 'https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/all/data.txt',
+    parser: (data) => parseProxyTextList(data, {
+      source: 'proxifly-all',
+      protocol: 'http'
+    }),
     enabled: true
   }
 ];

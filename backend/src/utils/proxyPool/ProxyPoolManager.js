@@ -77,12 +77,19 @@ export class ProxyPoolManager {
   }
 
   getEnabledSourceIds() {
-    return new Set(
+    const enabledSourceIds = new Set(
       PROXY_SOURCES
         .filter(source => source.enabled)
         .map(source => source.sourceId)
         .filter(Boolean)
     );
+    [
+      'monosans-http',
+      'monosans-socks5',
+      'thespeedx-http',
+      'thespeedx-socks5'
+    ].forEach(sourceId => enabledSourceIds.add(sourceId));
+    return enabledSourceIds;
   }
 
   pruneDisabledSourceProxies() {
