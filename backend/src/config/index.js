@@ -77,6 +77,9 @@ export const config = {
       HANGUP_ADD_TIME: Number(process.env.HANGUP_ADD_TIME_THROTTLE_MS) || 3000,
       LEGACY_CLAIM: Number(process.env.LEGACY_CLAIM_THROTTLE_MS) || 8000,
     },
+    taskTypeMaxConcurrency: {
+      GENIE_SWEEP: Number(process.env.GENIE_SWEEP_MAX_CONCURRENT_TASKS) || 2,
+    },
     sensitiveTaskRetry: {
       maxRetries: Number(process.env.SENSITIVE_TASK_MAX_RETRIES) || 2,
       baseDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_BASE_DELAY_MS) || 3000,

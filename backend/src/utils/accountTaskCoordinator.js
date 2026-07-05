@@ -29,6 +29,7 @@ const laneStates = {
 };
 const taskTypeChains = new Map();
 const taskTypeNextAllowedAt = new Map();
+const taskTypeConcurrencyStates = new Map();
 
 function normalizeAccountId(accountId) {
   return String(accountId);
@@ -67,6 +68,80 @@ function getMaxConcurrentAccountsForLane(lane) {
 function getTaskTypeThrottleMs(taskType) {
   const value = Number(config?.scheduler?.sensitiveTaskThrottleMs?.[String(taskType || '')] || 0);
   return Number.isFinite(value) && value > 0 ? value : 0;
+}
+
+function getTaskTypeMaxConcurrency(taskType) {
+  const value = Number(config?.scheduler?.taskTypeMaxConcurrency?.[String(taskType || '')] || 0);
+  return Number.isFinite(value) && value > 0 ? Math.floor(value) : 0;
+}
+
+function getTaskTypeConcurrencyState(taskType) {
+  const normalizedTaskType = String(taskType || '').trim();
+  if (!taskTypeConcurrencyStates.has(normalizedTaskType)) {
+    taskTypeConcurrencyStates.set(normalizedTaskType, {
+      activeExecutions: 0,
+      queuedExecutions: [],
+    });
+  }
+  return taskTypeConcurrencyStates.get(normalizedTaskType);
+}
+
+function dispatchTaskTypeQueue(taskType) {
+  const normalizedTaskType = String(taskType || '').trim();
+  const state = taskTypeConcurrencyStates.get(normalizedTaskType);
+  if (!state) return;
+
+  const limit = getTaskTypeMaxConcurrency(normalizedTaskType);
+  if (limit <= 0) {
+    while (state.queuedExecutions.length > 0) {
+      state.queuedExecutions.shift().resolve();
+    }
+    taskTypeConcurrencyStates.delete(normalizedTaskType);
+    return;
+  }
+
+  while (state.activeExecutions < limit && state.queuedExecutions.length > 0) {
+    const queued = state.queuedExecutions.shift();
+    state.activeExecutions += 1;
+    queued.resolve();
+  }
+
+  if (state.activeExecutions === 0 && state.queuedExecutions.length === 0) {
+    taskTypeConcurrencyStates.delete(normalizedTaskType);
+  }
+}
+
+async function acquireTaskTypeSlot(taskType, context = {}) {
+  const normalizedTaskType = String(taskType || '').trim();
+  const limit = getTaskTypeMaxConcurrency(normalizedTaskType);
+  if (!normalizedTaskType || limit <= 0) {
+    return () => {};
+  }
+
+  const state = getTaskTypeConcurrencyState(normalizedTaskType);
+  if (state.activeExecutions < limit && state.queuedExecutions.length === 0) {
+    state.activeExecutions += 1;
+  } else {
+    await new Promise((resolve) => {
+      state.queuedExecutions.push({
+        accountId: context.accountId ?? null,
+        accountName: context.accountName || null,
+        source: context.source || null,
+        queuedAt: Date.now(),
+        resolve,
+      });
+    });
+  }
+
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    const latestState = taskTypeConcurrencyStates.get(normalizedTaskType);
+    if (!latestState) return;
+    latestState.activeExecutions = Math.max(0, latestState.activeExecutions - 1);
+    dispatchTaskTypeQueue(normalizedTaskType);
+  };
 }
 
 function getAccountDispatchIntervalMs() {
@@ -186,8 +261,18 @@ export async function runAccountTaskExclusive(accountId, taskExecutor, options =
 export async function runTaskTypeThrottled(taskType, context = {}, taskExecutor) {
   const normalizedTaskType = String(taskType || '').trim();
   const throttleMs = getTaskTypeThrottleMs(normalizedTaskType);
-  if (!normalizedTaskType || throttleMs <= 0) {
+  const maxConcurrency = getTaskTypeMaxConcurrency(normalizedTaskType);
+  if (!normalizedTaskType || (throttleMs <= 0 && maxConcurrency <= 0)) {
     return await taskExecutor();
+  }
+
+  if (throttleMs <= 0) {
+    const releaseTaskTypeSlot = await acquireTaskTypeSlot(normalizedTaskType, context);
+    try {
+      return await taskExecutor();
+    } finally {
+      releaseTaskTypeSlot();
+    }
   }
 
   const previous = taskTypeChains.get(normalizedTaskType) || Promise.resolve();
@@ -300,6 +385,13 @@ export function getAccountTaskCoordinatorStatus() {
       taskType,
       nextAllowedAt,
     })),
+    limitedTaskTypes: Array.from(taskTypeConcurrencyStates.entries()).map(([taskType, state]) => ({
+      taskType,
+      maxConcurrency: getTaskTypeMaxConcurrency(taskType),
+      activeExecutions: state.activeExecutions,
+      queuedExecutions: state.queuedExecutions.length,
+      queuedAccounts: state.queuedExecutions.map((item) => item.accountId),
+    })),
   };
 }
 
@@ -308,6 +400,7 @@ export function clearAccountTaskCoordinator() {
   accountClients.clear();
   taskTypeChains.clear();
   taskTypeNextAllowedAt.clear();
+  taskTypeConcurrencyStates.clear();
   for (const state of Object.values(laneStates)) {
     state.queuedAccounts.length = 0;
     state.activeAccountExecutions = 0;
