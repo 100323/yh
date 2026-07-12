@@ -125,6 +125,7 @@ test('genieDailySweep skips a single unavailable kingdom and continues remaining
     commandDelayMs: 0,
     sweepDelayMs: 0,
     ticketDelayMs: 0,
+    commandThrottleEnabled: false,
   });
 
   assert.deepEqual(sweepCalls, [1, 2, 3, 4]);
@@ -174,6 +175,8 @@ test('genieDailySweep retries transient too-fast sweep failures', async () => {
     sweepDelayMs: 0,
     ticketDelayMs: 0,
     retryDelayMs: 0,
+    retryJitterMs: 0,
+    commandThrottleEnabled: false,
   });
 
   assert.equal(firstGenieAttempts, 3);
@@ -188,8 +191,11 @@ test('buildGenieSweepTaskOptions slows sweep commands more than ticket claims', 
   assert.equal(options.commandDelayMs, GENIE_SWEEP_COMMAND_DELAY_MS);
   assert.equal(options.sweepDelayMs, GENIE_SWEEP_SWEEP_DELAY_MS);
   assert.equal(options.ticketDelayMs, GENIE_SWEEP_TICKET_DELAY_MS);
-  assert.equal(options.sweepDelayMs, 1800);
-  assert.equal(options.ticketDelayMs, 1200);
+  assert.equal(options.sweepDelayMs, 4000);
+  assert.equal(options.ticketDelayMs, 3000);
+  assert.equal(options.retryDelayMs, 6000);
+  assert.equal(options.maxRetryDelayMs, 24000);
+  assert.equal(options.maxCommandRetries, 3);
 });
 
 test('startSkinChallenge requests current actId for initial tower info fetch', async () => {

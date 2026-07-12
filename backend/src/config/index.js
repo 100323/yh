@@ -80,6 +80,9 @@ export const config = {
     taskTypeMaxConcurrency: {
       GENIE_SWEEP: Number(process.env.GENIE_SWEEP_MAX_CONCURRENT_TASKS) || 2,
     },
+    taskTypeCommandThrottleMs: {
+      GENIE_SWEEP: Number(process.env.GENIE_SWEEP_COMMAND_THROTTLE_MS) || 5000,
+    },
     sensitiveTaskRetry: {
       maxRetries: Number(process.env.SENSITIVE_TASK_MAX_RETRIES) || 2,
       baseDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_BASE_DELAY_MS) || 3000,

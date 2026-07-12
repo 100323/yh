@@ -4,6 +4,7 @@ import config from '../config/index.js';
 import { normalizeErrorMessage, summarizeHeaders, truncate } from './wsDiagnostics.js';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
+import { runTaskTypeCommandThrottled } from './accountTaskCoordinator.js';
 
 const ERROR_CODE_MAP = {
   700010: '任务未达成完成条件',
@@ -1743,22 +1744,43 @@ export class GameClient {
     const ticketDelayMs = normalizeDelayMs(options.ticketDelayMs, commandDelayMs || 180);
     const retryDelayMs = normalizeDelayMs(options.retryDelayMs, Math.max(1200, commandDelayMs));
     const maxRetryDelayMs = normalizeDelayMs(options.maxRetryDelayMs, 5000);
+    const retryJitterMs = normalizeDelayMs(options.retryJitterMs, 0);
     const commandTimeoutMs = normalizeDelayMs(options.commandTimeoutMs, 8000);
     const maxCommandRetries = Math.max(0, Math.floor(Number(options.maxCommandRetries ?? 2) || 0));
+    const commandThrottleEnabled = options.commandThrottleEnabled !== false;
 
     const sendGenieCommandWithRetry = async (cmd, params = {}) => {
       let attempt = 0;
       while (true) {
         try {
-          return await this.sendWithPromise(cmd, params, commandTimeoutMs);
+          const executeCommand = () => this.sendWithPromise(cmd, params, commandTimeoutMs);
+          if (!commandThrottleEnabled) {
+            return await executeCommand();
+          }
+          return await runTaskTypeCommandThrottled('GENIE_SWEEP', {
+            command: cmd,
+            genieId: params.genieId ?? null,
+          }, executeCommand);
         } catch (error) {
           if (!isGenieTransientError(error) || attempt >= maxCommandRetries) {
             throw error;
           }
-          const delayMs = Math.min(
+          const baseDelayMs = Math.min(
             maxRetryDelayMs,
             retryDelayMs * (2 ** attempt)
           );
+          const jitterMs = retryJitterMs > 0
+            ? Math.floor(Math.random() * (retryJitterMs + 1))
+            : 0;
+          const delayMs = baseDelayMs + jitterMs;
+          console.warn('灯神命令触发限流，退避后重试', {
+            command: cmd,
+            genieId: params.genieId ?? null,
+            retry: attempt + 1,
+            maxRetries: maxCommandRetries,
+            delayMs,
+            error: describeGenieError(error),
+          });
           if (delayMs > 0) {
             await sleep(delayMs);
           }

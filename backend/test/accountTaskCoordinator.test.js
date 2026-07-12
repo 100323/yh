@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import config from '../src/config/index.js';
 import {
   clearAccountTaskCoordinator,
+  runTaskTypeCommandThrottled,
   runTaskTypeThrottled,
 } from '../src/utils/accountTaskCoordinator.js';
 
@@ -34,4 +35,33 @@ test('limits concurrent GENIE_SWEEP task executions when configured', async (t) 
   await Promise.all(executions);
 
   assert.equal(maxActive, 2);
+});
+
+test('spaces GENIE_SWEEP commands globally while task executions remain concurrent', async (t) => {
+  const originalThrottle = config.scheduler.taskTypeCommandThrottleMs;
+  config.scheduler.taskTypeCommandThrottleMs = {
+    ...originalThrottle,
+    GENIE_SWEEP: 30,
+  };
+  clearAccountTaskCoordinator();
+
+  t.after(() => {
+    config.scheduler.taskTypeCommandThrottleMs = originalThrottle;
+    clearAccountTaskCoordinator();
+  });
+
+  const startedAt = [];
+  await Promise.all(Array.from({ length: 3 }, (_, index) =>
+    runTaskTypeCommandThrottled('GENIE_SWEEP', {
+      command: 'genie_sweep',
+      genieId: index + 1,
+    }, async () => {
+      startedAt.push(Date.now());
+      return index;
+    })
+  ));
+
+  assert.equal(startedAt.length, 3);
+  assert.ok(startedAt[1] - startedAt[0] >= 25);
+  assert.ok(startedAt[2] - startedAt[1] >= 25);
 });

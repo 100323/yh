@@ -30,6 +30,8 @@ const laneStates = {
 const taskTypeChains = new Map();
 const taskTypeNextAllowedAt = new Map();
 const taskTypeConcurrencyStates = new Map();
+const taskTypeCommandChains = new Map();
+const taskTypeCommandNextAllowedAt = new Map();
 
 function normalizeAccountId(accountId) {
   return String(accountId);
@@ -72,6 +74,11 @@ function getTaskTypeThrottleMs(taskType) {
 
 function getTaskTypeMaxConcurrency(taskType) {
   const value = Number(config?.scheduler?.taskTypeMaxConcurrency?.[String(taskType || '')] || 0);
+  return Number.isFinite(value) && value > 0 ? Math.floor(value) : 0;
+}
+
+function getTaskTypeCommandThrottleMs(taskType) {
+  const value = Number(config?.scheduler?.taskTypeCommandThrottleMs?.[String(taskType || '')] || 0);
   return Number.isFinite(value) && value > 0 ? Math.floor(value) : 0;
 }
 
@@ -306,6 +313,46 @@ export async function runTaskTypeThrottled(taskType, context = {}, taskExecutor)
   }
 }
 
+export async function runTaskTypeCommandThrottled(taskType, context = {}, commandExecutor) {
+  const normalizedTaskType = String(taskType || '').trim();
+  const throttleMs = getTaskTypeCommandThrottleMs(normalizedTaskType);
+  if (!normalizedTaskType || throttleMs <= 0) {
+    return await commandExecutor();
+  }
+
+  const previous = taskTypeCommandChains.get(normalizedTaskType) || Promise.resolve();
+  const current = previous
+    .catch(() => {})
+    .then(async () => {
+      const waitMs = Math.max(
+        0,
+        (taskTypeCommandNextAllowedAt.get(normalizedTaskType) || 0) - Date.now(),
+      );
+      if (waitMs > 0) {
+        console.log('灯神命令全局节流等待', {
+          taskType: normalizedTaskType,
+          command: context.command || null,
+          genieId: context.genieId ?? null,
+          waitMs,
+          throttleMs,
+        });
+        await sleep(waitMs);
+      }
+
+      taskTypeCommandNextAllowedAt.set(normalizedTaskType, Date.now() + throttleMs);
+      return await commandExecutor();
+    });
+
+  taskTypeCommandChains.set(normalizedTaskType, current);
+  try {
+    return await current;
+  } finally {
+    if (taskTypeCommandChains.get(normalizedTaskType) === current) {
+      taskTypeCommandChains.delete(normalizedTaskType);
+    }
+  }
+}
+
 export function isAccountTaskRunning(accountId) {
   return accountTaskChains.has(normalizeAccountId(accountId));
 }
@@ -401,6 +448,8 @@ export function clearAccountTaskCoordinator() {
   taskTypeChains.clear();
   taskTypeNextAllowedAt.clear();
   taskTypeConcurrencyStates.clear();
+  taskTypeCommandChains.clear();
+  taskTypeCommandNextAllowedAt.clear();
   for (const state of Object.values(laneStates)) {
     state.queuedAccounts.length = 0;
     state.activeAccountExecutions = 0;
