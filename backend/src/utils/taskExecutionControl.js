@@ -78,3 +78,12 @@ export function getWsReconnectRetryConfig() {
     maxDelayMs: toPositiveNumber(config?.scheduler?.wsReconnectRetry?.maxDelayMs, 5000),
   };
 }
+
+export async function ensureConnectedTaskClient(client, reconnect) {
+  const isMissing = !client;
+  const isKnownClosed = typeof client?.isSocketOpen === 'function' && !client.isSocketOpen();
+  if (!isMissing && !isKnownClosed) {
+    return client;
+  }
+  return await reconnect();
+}

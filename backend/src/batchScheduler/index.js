@@ -37,6 +37,7 @@ import { warmupGameClient } from '../utils/wsWarmup.js';
 import { getRefreshedTokenSessionFromStoredBin } from '../utils/accountTokenRefresh.js';
 import {
   getSensitiveTaskRetryConfig,
+  ensureConnectedTaskClient,
   isTooFastError,
   sleep,
   waitForScheduledTaskStagger,
@@ -636,52 +637,83 @@ async function executeTaskWithFlowControl({
   let wsRetried = false;
   let tooFastRetryCount = 0;
 
-  while (true) {
-    try {
-      const result = await runTaskTypeThrottled(taskType, {
+  const throttleContext = {
+    accountId,
+    accountName,
+    source,
+  };
+
+  const executeAttempt = async () => {
+    currentClient = await ensureConnectedTaskClient(currentClient, async () => {
+      console.warn('批量任务获得执行名额后连接已失效，先重连再执行', {
         accountId,
         accountName,
+        taskType,
         source,
-      }, async () => await runTaskByType(currentClient, taskType, taskConfig, {
-        accountId,
-        accountName,
-        source,
-        reconnect: async () => {
-          currentClient = await reconnect();
-          return currentClient;
-        },
-      }));
-      return { client: currentClient, result };
-    } catch (error) {
-      if (isRetryableWsError(error) && !wsRetried) {
-        wsRetried = true;
+      });
+      currentClient = await reconnect();
+      return currentClient;
+    });
+
+    const result = await runTaskByType(currentClient, taskType, taskConfig, {
+      accountId,
+      accountName,
+      source,
+      reconnect: async () => {
         currentClient = await reconnect();
-        continue;
-      }
+        return currentClient;
+      },
+    });
+    return { client: currentClient, result };
+  };
 
-      if (allowTooFastRetry && isTooFastError(error) && tooFastRetryCount < retryConfig.maxRetries) {
-        tooFastRetryCount += 1;
-        const retryDelayMs = Math.min(
-          retryConfig.maxDelayMs,
-          retryConfig.baseDelayMs * (2 ** (tooFastRetryCount - 1))
-        );
-        console.warn('⏳ 批量敏感任务触发操作过快，退避后重试', {
-          accountId,
-          accountName,
-          taskType,
-          source,
-          retry: tooFastRetryCount,
-          maxRetries: retryConfig.maxRetries,
-          retryDelayMs,
-          error: normalizeErrorMessage(error),
-        });
-        await sleep(retryDelayMs);
-        continue;
-      }
+  const executeWithRetries = async (attemptExecutor) => {
+    while (true) {
+      try {
+        return await attemptExecutor();
+      } catch (error) {
+        if (isRetryableWsError(error) && !wsRetried) {
+          wsRetried = true;
+          currentClient = await reconnect();
+          continue;
+        }
 
-      throw error;
+        if (allowTooFastRetry && isTooFastError(error) && tooFastRetryCount < retryConfig.maxRetries) {
+          tooFastRetryCount += 1;
+          const retryDelayMs = Math.min(
+            retryConfig.maxDelayMs,
+            retryConfig.baseDelayMs * (2 ** (tooFastRetryCount - 1))
+          );
+          console.warn('⏳ 批量敏感任务触发操作过快，退避后重试', {
+            accountId,
+            accountName,
+            taskType,
+            source,
+            retry: tooFastRetryCount,
+            maxRetries: retryConfig.maxRetries,
+            retryDelayMs,
+            error: normalizeErrorMessage(error),
+          });
+          await sleep(retryDelayMs);
+          continue;
+        }
+
+        throw error;
+      }
     }
+  };
+
+  if (taskType === 'GENIE_SWEEP') {
+    return await runTaskTypeThrottled(
+      taskType,
+      throttleContext,
+      async () => await executeWithRetries(executeAttempt),
+    );
   }
+
+  return await executeWithRetries(async () =>
+    await runTaskTypeThrottled(taskType, throttleContext, executeAttempt)
+  );
 }
 
 async function ensureBatchClient(account, tokenCandidates, roleId = null, wsUrl = '', extraContext = {}) {
