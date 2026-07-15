@@ -73,16 +73,6 @@ function findEscapedQuoteEnd(value, start, quote, boundary) {
   return -1;
 }
 
-function findUnquotedValueEnd(value, start) {
-  const opening = value[start];
-  const closing = opening === '{' ? '}' : opening === '[' ? ']' : null;
-  if (closing) {
-    const closingIndex = value.indexOf(closing, start + 1);
-    return closingIndex < 0 ? value.length : closingIndex + 1;
-  }
-  return value.length;
-}
-
 function findChainedSensitiveAssignment(value, start, candidateClosingIndex) {
   const prefixBeforeCandidate = new RegExp(
     `(?:\\\\?["'])?\\b(?:${SENSITIVE_FIELD_PATTERN_SOURCE})\\b(?:\\\\?["'])?\\s*[:=]\\s*$`,
@@ -143,7 +133,7 @@ function redactSensitiveAssignments(value) {
       result += `${quote}[REDACTED]${isClosed ? quote : ''}`;
       cursor = valueEnd;
     } else {
-      cursor = findUnquotedValueEnd(value, valueStart);
+      cursor = value.length;
       result += '[REDACTED]';
     }
 

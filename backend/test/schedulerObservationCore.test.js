@@ -211,6 +211,27 @@ test('sanitizeObservationMessage redacts every prohibited observation field', ()
   }
 });
 
+test('sanitizeObservationMessage fails closed for nested sensitive payload containers', () => {
+  const messages = [
+    'responseBody={"meta":{},"private":"nested-secret"}',
+    'params={meta:{ok:true}, password: nested-secret}',
+    'arguments=[[], "nested-secret"]',
+    'body={"text":"}","private":"nested-secret"}',
+  ];
+
+  for (const message of messages) {
+    const result = sanitizeObservationMessage(message);
+    assert.match(result, /\[REDACTED\]/);
+    assert.equal(result.includes('nested-secret'), false);
+  }
+
+  const aggregator = new SchedulerObservationAggregator({ maxAnomalies: messages.length });
+  for (const message of messages) aggregator.recordAnomaly({ type: 'nested', message });
+  const serialized = JSON.stringify(aggregator.takeSnapshot());
+
+  assert.equal(serialized.includes('nested-secret'), false);
+});
+
 test('classifyCommandFailure recognizes structured and textual rate limits', () => {
   assert.equal(classifyCommandFailure({ code: 200400 }), 'rate_limited');
   assert.equal(
