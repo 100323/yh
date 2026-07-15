@@ -107,3 +107,15 @@
 - 规格复核：`APPROVED`。
 - 代码质量复核：`APPROVED`。
 - 最终提交：`42d51852fd50a258046d1eba867b41867bea1cc3`。
+
+### Task 8：前端视图模型与 API 客户端
+
+- RED：视图模型模块缺失；后续覆盖真实 category 契约和趋势 key 碰撞。
+- GREEN：Node 22 目标测试 10/10。
+- 前端验证：direct TypeScript CLI 通过；Vite production build 通过，仅既有大 chunk 警告。
+- 契约：范围、耗时、放大倍数、趋势、匿名出口、真实五类异常标签；API 使用 `{ params }`。
+- 稳定性：趋势 key 全局唯一、确定且不修改输入；无 NaN/Infinity/raw egress 回显。
+- 环境：pnpm 11 ignored-build policy 阻断 wrapper 命令，使用本地 CLI 验证；未修改依赖，临时 YAML 已删除。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`fc7448c6ee399884f3f2491db5f9440a57dac396`。
