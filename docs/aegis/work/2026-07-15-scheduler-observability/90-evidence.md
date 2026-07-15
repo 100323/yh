@@ -16,4 +16,15 @@
 
 ## 切片证据
 
-尚未开始实现；后续按任务追加 RED、GREEN、回归与复核结论。
+### Task 1：纯观测核心、分类与脱敏
+
+- 初始 RED：`ERR_MODULE_NOT_FOUND`，证明测试先于生产模块。
+- 复核驱动的安全/边界 RED：最终扩展为 36 项，覆盖脱敏绕过、全局容量、异常 FIFO、无损/原子 merge、数值饱和和 snapshot-and-swap。
+- GREEN：`pnpm --dir backend exec node --test test/schedulerObservationCore.test.js`，36/36 通过。
+- 回归：`pnpm --dir backend test`，最终 69/69 通过。
+- 静态检查：`git diff --check` 通过；计划内文件无 `console`。
+- 范围：仅新增 `schedulerObservationCore.js` 与对应测试；没有数据库、定时器、AsyncLocalStorage、依赖或运行时接入。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`aff45d09d4d5f86f4e45aed85e3e6015e910da85`。
+- 环境注记：Node 24 测试运行器数次出现 IPC 反序列化瞬态；既有文件单测均通过，随后全量重跑通过，未修改无关代码。
