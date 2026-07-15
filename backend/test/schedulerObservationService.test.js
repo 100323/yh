@@ -821,6 +821,116 @@ test('account queue waits are bounded, do not create runs, and merge once into m
   assert.equal(health.droppedQueueWaits, 1);
 });
 
+test('queue association tuples cannot be forged with delimiter text', () => {
+  const timers = createTimerHarness();
+  const { aggregator, calls } = createAggregator();
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot() {},
+    ...timers,
+  });
+
+  assert.equal(observeAccountQueue({ accountId: '1|run:2', queueWaitMs: 777 }), true);
+  observeTaskSettled({ accountId: 1, runId: 2, taskType: 'forged', outcome: 'success' });
+  observeTaskSettled({ accountId: '1|run:2', taskType: 'original', outcome: 'success' });
+
+  assert.equal(calls.recordTask[0].queueWaitMs, undefined);
+  assert.equal(calls.recordTask[1].queueWaitMs, 777);
+});
+
+test('queue associations preserve long primitive identities beyond a shared 160-character prefix', () => {
+  const timers = createTimerHarness();
+  const { aggregator, calls } = createAggregator();
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000, maxMetricKeys: 10 },
+    aggregator,
+    flushSnapshot() {},
+    ...timers,
+  });
+  const sharedPrefix = 'x '.repeat(90);
+  const firstRunId = `${sharedPrefix}:run:first`;
+  const secondRunId = `${sharedPrefix}:run:second`;
+  const firstAccountId = `${sharedPrefix}:account:first`;
+  const secondAccountId = `${sharedPrefix}:account:second`;
+
+  observeAccountQueue({ runId: firstRunId, queueWaitMs: 101 });
+  observeAccountQueue({ runId: secondRunId, queueWaitMs: 102 });
+  observeAccountQueue({ accountId: firstAccountId, queueWaitMs: 201 });
+  observeAccountQueue({ accountId: secondAccountId, queueWaitMs: 202 });
+  observeTaskSettled({ runId: firstRunId, taskType: 'run-first', outcome: 'success' });
+  observeTaskSettled({ runId: secondRunId, taskType: 'run-second', outcome: 'success' });
+  observeTaskSettled({ accountId: firstAccountId, taskType: 'account-first', outcome: 'success' });
+  observeTaskSettled({ accountId: secondAccountId, taskType: 'account-second', outcome: 'success' });
+
+  assert.deepEqual(calls.recordTask.map((event) => event.queueWaitMs), [101, 102, 201, 202]);
+});
+
+test('queue associations hash complete normalized identities beyond 4096 characters', () => {
+  const timers = createTimerHarness();
+  const { aggregator, calls } = createAggregator();
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot() {},
+    ...timers,
+  });
+  const sharedPrefix = 'long identity '.repeat(400);
+  const firstRunId = `${sharedPrefix}:first-tail`;
+  const secondRunId = `${sharedPrefix}:second-tail`;
+  assert.equal(firstRunId.length > 4096, true);
+  assert.equal(secondRunId.length > 4096, true);
+
+  assert.equal(observeAccountQueue({ runId: firstRunId, queueWaitMs: 301 }), true);
+  assert.equal(observeAccountQueue({ runId: secondRunId, queueWaitMs: 302 }), true);
+  observeTaskSettled({ runId: firstRunId, taskType: 'long-first', outcome: 'success' });
+  observeTaskSettled({ runId: secondRunId, taskType: 'long-second', outcome: 'success' });
+
+  assert.deepEqual(calls.recordTask.map((event) => event.queueWaitMs), [301, 302]);
+});
+
+test('queue associations distinguish primitive identity types', () => {
+  const timers = createTimerHarness();
+  const { aggregator, calls } = createAggregator();
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot() {},
+    ...timers,
+  });
+
+  observeAccountQueue({ accountId: 1, queueWaitMs: 11 });
+  observeAccountQueue({ accountId: '1', queueWaitMs: 22 });
+  observeTaskSettled({ accountId: 1, taskType: 'number-id', outcome: 'success' });
+  observeTaskSettled({ accountId: '1', taskType: 'string-id', outcome: 'success' });
+
+  assert.deepEqual(calls.recordTask.map((event) => event.queueWaitMs), [11, 22]);
+});
+
+test('queue association rejects objects and hostile getters without creating keys', () => {
+  const timers = createTimerHarness();
+  const { aggregator, calls } = createAggregator();
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot() {},
+    ...timers,
+  });
+  const hostileIdentity = new Proxy({}, {
+    get() { throw new Error('identity getter must not be read'); },
+  });
+  const hostileEvent = new Proxy({}, {
+    get() { throw new Error('event getter failed'); },
+  });
+
+  assert.doesNotThrow(() => observeAccountQueue({ accountId: hostileIdentity, queueWaitMs: 1 }));
+  assert.equal(observeAccountQueue({ accountId: hostileIdentity, queueWaitMs: 1 }), false);
+  assert.doesNotThrow(() => observeAccountQueue(hostileEvent));
+  assert.equal(observeAccountQueue(hostileEvent), false);
+  assert.equal(getSchedulerObservationHealth().pendingQueueWaits, 0);
+  assert.equal(calls.recordTask.length, 0);
+});
+
 test('observability config defaults locally and clamps finite bounds while falling back for NaN', async () => {
   const originalNodeEnv = process.env.NODE_ENV;
   process.env.NODE_ENV = 'test';

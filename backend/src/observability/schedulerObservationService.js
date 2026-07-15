@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 
 import config from '../config/index.js';
@@ -353,13 +354,42 @@ function buildFailureSummary(event, outcome, latencyMs) {
   return sanitizeObservationMessage(message || `command ${outcome}`, 300);
 }
 
+function queueIdentityHash(value) {
+  try {
+    const valueType = typeof value;
+    let normalizedValue;
+    if (valueType === 'string') {
+      if (value.length === 0) return undefined;
+      normalizedValue = value.normalize('NFKC');
+      if (normalizedValue.length === 0) return undefined;
+    } else if (valueType === 'number') {
+      if (!Number.isFinite(value)) return undefined;
+      normalizedValue = Object.is(value, -0) ? '-0' : value;
+    } else if (valueType === 'bigint') {
+      normalizedValue = value.toString();
+    } else if (valueType === 'boolean') {
+      normalizedValue = value;
+    } else {
+      return undefined;
+    }
+
+    return createHash('sha256')
+      .update(JSON.stringify([valueType, normalizedValue]), 'utf8')
+      .digest('hex');
+  } catch {
+    return undefined;
+  }
+}
+
 function queueAssociationKeys(event) {
-  const accountId = safeIdentifier(safeRead(event, 'accountId'));
-  const runId = safeIdentifier(safeRead(event, 'runId'));
+  const accountId = queueIdentityHash(safeRead(event, 'accountId'));
+  const runId = queueIdentityHash(safeRead(event, 'runId'));
   const keys = [];
-  if (accountId !== undefined && runId !== undefined) keys.push(`account:${accountId}|run:${runId}`);
-  if (runId !== undefined) keys.push(`run:${runId}`);
-  if (accountId !== undefined) keys.push(`account:${accountId}`);
+  if (accountId !== undefined && runId !== undefined) {
+    keys.push(JSON.stringify(['account-run', accountId, runId]));
+  }
+  if (runId !== undefined) keys.push(JSON.stringify(['run', runId]));
+  if (accountId !== undefined) keys.push(JSON.stringify(['account', accountId]));
   return keys;
 }
 
