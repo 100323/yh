@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { isIP } from 'node:net';
+import { domainToASCII } from 'node:url';
 import { get, all } from '../database/index.js';
 import { adminOnly, authMiddleware } from '../middleware/auth.js';
 import { getScheduledJobs, getActiveConnections } from '../scheduler/index.js';
@@ -177,9 +178,16 @@ function normalizeOutputText(value) {
 
 function isDottedHost(value) {
   const host = value.replace(/\.$/u, '');
-  return host.includes('.')
-    && !/^\d+(?:\.\d+)+$/u.test(host)
-    && host.split('.').every((label) => (
+  if (!host.includes('.')) return false;
+  if (/^\d+(?:\.\d+)+$/u.test(host)) return isIP(host) !== 0;
+  let asciiHost;
+  try {
+    asciiHost = domainToASCII(host);
+  } catch {
+    return false;
+  }
+  return asciiHost.includes('.')
+    && asciiHost.split('.').every((label) => (
       label.length > 0
       && label.length <= 63
       && /^[A-Za-z\d](?:[A-Za-z\d-]*[A-Za-z\d])?$/u.test(label)
@@ -201,11 +209,13 @@ function isNetworkOutputToken(rawToken) {
   if (isIP(token.split('%', 1)[0]) !== 0) return true;
 
   const hostWithPort = /^(.*):(\d{1,5})$/u.exec(token);
-  if (!hostWithPort) return false;
-  const host = hostWithPort[1];
-  return isIP(host.split('%', 1)[0]) !== 0
-    || /^localhost$/iu.test(host)
-    || isDottedHost(host);
+  if (hostWithPort) {
+    const host = hostWithPort[1];
+    return isIP(host.split('%', 1)[0]) !== 0
+      || /^localhost$/iu.test(host)
+      || isDottedHost(host);
+  }
+  return isDottedHost(token);
 }
 
 function redactNetworkOutputTokens(value) {
@@ -234,6 +244,14 @@ function normalizePublicIdentifier(value, fallback = 'UNATTRIBUTED') {
   if (sanitized === '[REDACTED]') return sanitized;
   if (!SAFE_FILTER_PATTERN.test(sanitized)) return fallback;
   return sanitized;
+}
+
+function normalizeCommandIdentifier(value) {
+  const normalized = normalizeOutputText(value)?.trim() ?? '';
+  if (SAFE_FILTER_PATTERN.test(normalized) && !SENSITIVE_OUTPUT_PATTERN.test(normalized)) {
+    return normalized;
+  }
+  return normalizePublicIdentifier(value, '');
 }
 
 function normalizeBucket(value) {
@@ -536,7 +554,7 @@ function serializeAnomalyItem(row) {
     batchTaskId: publicNullableInteger(rowValue(row, 'batch_task_id')),
     source: normalizePublicIdentifier(rowValue(row, 'source'), '[REDACTED]'),
     taskType: normalizePublicIdentifier(rowValue(row, 'task_type'), ''),
-    command: normalizePublicIdentifier(rowValue(row, 'command'), ''),
+    command: normalizeCommandIdentifier(rowValue(row, 'command')),
     executionLane: normalizeExecutionLane(rowValue(row, 'execution_lane')),
     egressType: normalizeEgressType(rowValue(row, 'egress_type')),
     egressKey: normalizeEgressKey(

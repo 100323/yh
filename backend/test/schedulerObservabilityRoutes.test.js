@@ -342,8 +342,25 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
         occurred_at: '2026-07-15T11:54:00.000Z',
         summary: 'ｔｏｋｅｎ = fullwidth alpha beta',
       },
+      {
+        occurred_at: '2026-07-15T11:53:00.000Z',
+        summary: 'connect edge.example',
+      },
+      {
+        occurred_at: '2026-07-15T11:52:00.000Z',
+        summary: 'connect edge.example/path',
+      },
+      {
+        occurred_at: '2026-07-15T11:51:00.000Z',
+        summary: 'connect 例子.测试/path',
+      },
+      {
+        occurred_at: '2026-07-15T11:50:00.000Z',
+        command: 'arena.start',
+        summary: 'version 1.25',
+      },
     ],
-    total: 6,
+    total: 10,
     page: 2,
     pageSize: 10,
   });
@@ -371,6 +388,11 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
   assert.equal(data.items[0].executionLane, 'proxy');
   assert.equal(data.items[0].egressType, 'proxy');
   assert.equal(data.items[0].egressKey, 'proxy:012345abcdef');
+  assert.equal(data.items[6].summary, 'connect [REDACTED]');
+  assert.equal(data.items[7].summary, 'connect [REDACTED]');
+  assert.equal(data.items[8].summary, 'connect [REDACTED]');
+  assert.equal(data.items[9].command, 'arena.start');
+  assert.equal(data.items[9].summary, 'version 1.25');
   const serialized = JSON.stringify(data);
   for (const secret of [
     'alpha',
@@ -383,6 +405,8 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
     'edge.example',
     'auth.example',
     'source.example',
+    '例子',
+    '测试',
     'alice:pw',
     'bob:secret',
     'params-secret',
