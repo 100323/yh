@@ -25,6 +25,20 @@ const DEFAULT_OBSERVABILITY_PAGE_SIZE = 25;
 const MAX_OBSERVABILITY_PAGE_SIZE = 100;
 const SAFE_FILTER_PATTERN = /^[A-Za-z0-9_.:-]{1,100}$/u;
 const SENSITIVE_OUTPUT_PATTERN = /(?:role\s*token|token|params?|arguments?|requests?|responses?|body|stack|proxy)/iu;
+const TRAILING_NETWORK_PUNCTUATION = /[\p{Pf}.,;!?\u3001\u3002\uff0c\uff1b\uff01\uff1f\u2026]+$/u;
+const NETWORK_WRAPPER_PAIRS = new Map([
+  ['(', ')'],
+  ['[', ']'],
+  ['{', '}'],
+  ['<', '>'],
+  ['"', '"'],
+  ["'", "'"],
+  ['`', '`'],
+  ['\u201c', '\u201d'],
+  ['\u2018', '\u2019'],
+  ['\u300c', '\u300d'],
+  ['\u300e', '\u300f'],
+]);
 const HEALTH_BOOLEAN_FIELDS = ['enabled', 'started'];
 const HEALTH_NUMBER_FIELDS = [
   'flushErrors',
@@ -194,10 +208,20 @@ function isDottedHost(value) {
     ));
 }
 
+function unwrapNetworkToken(rawToken) {
+  let token = normalizeOutputText(rawToken)?.trim() ?? '';
+  for (let index = 0; index < 12 && token; index += 1) {
+    const previous = token;
+    token = token.replace(TRAILING_NETWORK_PUNCTUATION, '');
+    const closing = NETWORK_WRAPPER_PAIRS.get(token[0]);
+    if (closing && token.endsWith(closing)) token = token.slice(1, -closing.length);
+    if (token === previous) break;
+  }
+  return token;
+}
+
 function isNetworkOutputToken(rawToken) {
-  let token = rawToken
-    .replace(/^[({<"'`]+/u, '')
-    .replace(/[)}>;,"'`!?]+$/u, '');
+  let token = unwrapNetworkToken(rawToken);
   const equalsIndex = token.lastIndexOf('=');
   if (equalsIndex >= 0) token = token.slice(equalsIndex + 1);
   if (/^(?:[A-Za-z][A-Za-z\d+.-]*:)?\/\//u.test(token)) return true;
@@ -261,6 +285,24 @@ function normalizeBucket(value) {
     return null;
   }
   return normalized;
+}
+
+function bucketMinuteTimestamp(value) {
+  if (typeof value !== 'string') return null;
+  const sqliteUtc = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::\d{2}(?:\.\d+)?)?$/u.exec(value.trim());
+  let timestamp;
+  if (sqliteUtc) {
+    timestamp = Date.UTC(
+      Number(sqliteUtc[1]),
+      Number(sqliteUtc[2]) - 1,
+      Number(sqliteUtc[3]),
+      Number(sqliteUtc[4]),
+      Number(sqliteUtc[5]),
+    );
+  } else {
+    timestamp = Date.parse(value);
+  }
+  return Number.isFinite(timestamp) ? Math.floor(timestamp / 60_000) * 60_000 : null;
 }
 
 function createBucketAggregate(bucket) {
@@ -484,8 +526,14 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
       averageTaskDurationMs: roundedRatio(bucket.durationSumMs, bucket.durationCount),
       maxQueueWaitMs: bucket.maxQueueWaitMs,
     }));
-  headline.currentCommandRate = series.at(-1)?.commandCount ?? 0;
-  headline.peakCommandRate = series.reduce(
+  const generatedMinute = Math.floor(normalizeClock(options.generatedAt).getTime() / 60_000) * 60_000;
+  headline.currentCommandRate = series.find(
+    (bucket) => bucketMinuteTimestamp(bucket.bucket) === generatedMinute,
+  )?.commandCount ?? 0;
+  headline.peakCommandRate = series.filter((bucket) => {
+    const timestamp = bucketMinuteTimestamp(bucket.bucket);
+    return timestamp !== null && timestamp <= generatedMinute;
+  }).reduce(
     (peak, bucket) => Math.max(peak, bucket.commandCount),
     0,
   );
@@ -653,19 +701,34 @@ export function createSchedulerObservabilityHandlers({
   };
 }
 
-const router = Router();
+function registerAuthenticatedSchedulerObservabilityRoutes(targetRouter, dependencies) {
+  targetRouter.use(authMiddleware);
+  const handlers = createSchedulerObservabilityHandlers({
+    ...dependencies,
+    now: Date.now,
+  });
+  targetRouter.get('/observability/summary', adminOnly, handlers.summary);
+  targetRouter.get('/observability/anomalies', adminOnly, handlers.anomalies);
+  return targetRouter;
+}
 
-router.use(authMiddleware);
+export function createSchedulerObservabilityRouter({
+  querySummary = querySchedulerObservationSummary,
+  queryAnomalies = querySchedulerObservationAnomalies,
+  getHealth = getSchedulerObservationHealth,
+} = {}) {
+  return registerAuthenticatedSchedulerObservabilityRoutes(Router(), {
+    querySummary,
+    queryAnomalies,
+    getHealth,
+  });
+}
 
-const schedulerObservabilityHandlers = createSchedulerObservabilityHandlers({
+const router = registerAuthenticatedSchedulerObservabilityRoutes(Router(), {
   querySummary: querySchedulerObservationSummary,
   queryAnomalies: querySchedulerObservationAnomalies,
   getHealth: getSchedulerObservationHealth,
-  now: Date.now,
 });
-
-router.get('/observability/summary', adminOnly, schedulerObservabilityHandlers.summary);
-router.get('/observability/anomalies', adminOnly, schedulerObservabilityHandlers.anomalies);
 
 const BENIGN_FAILURE_KEYWORDS = [
   '模块未开启',

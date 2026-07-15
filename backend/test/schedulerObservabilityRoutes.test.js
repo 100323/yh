@@ -1,13 +1,31 @@
-import test from 'node:test';
+import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
+import { once } from 'node:events';
+import { mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import express from 'express';
 
-import statsRouter, {
+const tempDir = await mkdtemp(path.join(os.tmpdir(), 'scheduler-observability-routes-'));
+process.env.DB_PATH = path.join(tempDir, 'routes.test.db');
+const statsModule = await import('../src/routes/stats.js');
+const databaseModule = await import('../src/database/index.js');
+const { default: jwt } = await import('../src/utils/jwt.js');
+const { adminOnly, authMiddleware } = await import('../src/middleware/auth.js');
+const {
+  default: statsRouter,
   buildSchedulerObservabilitySummary,
   createSchedulerObservabilityHandlers,
+  createSchedulerObservabilityRouter,
   normalizeObservabilityQuery,
   serializeSchedulerAnomalies,
-} from '../src/routes/stats.js';
-import { adminOnly, authMiddleware } from '../src/middleware/auth.js';
+} = statsModule;
+
+after(async () => {
+  await databaseModule.closeDatabase();
+  await rm(tempDir, { recursive: true, force: true });
+  delete process.env.DB_PATH;
+});
 
 const FIXED_NOW = '2026-07-15T12:00:00.000Z';
 
@@ -40,6 +58,16 @@ async function runMiddlewareChain(middleware, req, res) {
     if (nextPromise) await nextPromise;
   };
   await dispatch();
+}
+
+async function listenOnEphemeralPort(app, t) {
+  const server = app.listen(0, '127.0.0.1');
+  await once(server, 'listening');
+  t.after(() => new Promise((resolve, reject) => {
+    server.close((error) => (error ? reject(error) : resolve()));
+  }));
+  const address = server.address();
+  return `http://127.0.0.1:${address.port}`;
 }
 
 test('normalizes fixed ranges to exact server-generated ISO cutoffs', () => {
@@ -255,7 +283,7 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
     'health',
   ]);
   assert.deepEqual(data.headline, {
-    currentCommandRate: 4,
+    currentCommandRate: 0,
     peakCommandRate: 15,
     rateLimitedCount: 1,
     timeoutCount: 1,
@@ -294,6 +322,24 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
     flushErrors: 2,
   });
   assert.doesNotMatch(JSON.stringify(data), /NaN|Infinity|must-not-leak|retrySnapshot/);
+});
+
+test('current command rate uses only the generated UTC minute while peak ignores future buckets', () => {
+  const data = buildSchedulerObservabilitySummary({
+    commandMetrics: [
+      { bucket_minute: '2026-07-15 11:59:00', command_count: 10 },
+      { bucket_minute: '2026-07-15 12:00:00', command_count: 7 },
+      { bucket_minute: '2026-07-15 12:01:00', command_count: 99 },
+    ],
+    taskMetrics: [],
+  }, {
+    range: '1h',
+    generatedAt: FIXED_NOW,
+    health: {},
+  });
+
+  assert.equal(data.headline.currentCommandRate, 7);
+  assert.equal(data.headline.peakCommandRate, 10);
 });
 
 test('serializes anomaly results with an allowlist and fail-closed sensitive/network redaction', () => {
@@ -359,8 +405,28 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
         command: 'arena.start',
         summary: 'version 1.25',
       },
+      {
+        occurred_at: '2026-07-15T11:49:00.000Z',
+        summary: 'connect edge.example:8080.',
+      },
+      {
+        occurred_at: '2026-07-15T11:48:00.000Z',
+        summary: 'connect 192.0.2.10:8080.',
+      },
+      {
+        occurred_at: '2026-07-15T11:47:00.000Z',
+        summary: 'connect edge.example:8080。',
+      },
+      {
+        occurred_at: '2026-07-15T11:46:00.000Z',
+        summary: 'connect 例子.测试。',
+      },
+      {
+        occurred_at: '2026-07-15T11:45:00.000Z',
+        summary: 'connect (edge.example:8080).',
+      },
     ],
-    total: 10,
+    total: 15,
     page: 2,
     pageSize: 10,
   });
@@ -393,6 +459,9 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
   assert.equal(data.items[8].summary, 'connect [REDACTED]');
   assert.equal(data.items[9].command, 'arena.start');
   assert.equal(data.items[9].summary, 'version 1.25');
+  for (const item of data.items.slice(10)) {
+    assert.equal(item.summary, 'connect [REDACTED]');
+  }
   const serialized = JSON.stringify(data);
   for (const secret of [
     'alpha',
@@ -405,6 +474,10 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
     'edge.example',
     'auth.example',
     'source.example',
+    '8080',
+    '8443',
+    '9000',
+    '1080',
     '例子',
     '测试',
     'alice:pw',
@@ -601,4 +674,70 @@ test('new routes require authentication and admin while existing stats permissio
     adminRes,
   );
   assert.equal(adminRes.statusCode, 200);
+});
+
+test('real Express routing enforces production auth order and closes error boundaries', async (t) => {
+  const db = await databaseModule.initDatabase();
+  const ordinaryUser = db.run(
+    'INSERT INTO users (username, password_hash, salt, role) VALUES (?, ?, ?, ?)',
+    ['route-user', 'hash', 'salt', 'user'],
+  );
+  const adminUser = db.run(
+    'INSERT INTO users (username, password_hash, salt, role) VALUES (?, ?, ?, ?)',
+    ['route-admin', 'hash', 'salt', 'admin'],
+  );
+  const ordinaryToken = jwt.sign({ userId: Number(ordinaryUser.lastInsertRowid) });
+  const adminToken = jwt.sign({ userId: Number(adminUser.lastInsertRowid) });
+  let failRepository = false;
+  const observabilityRouter = createSchedulerObservabilityRouter({
+    querySummary() {
+      if (failRepository) throw new Error('SQL token stack secret');
+      return { commandMetrics: [], taskMetrics: [] };
+    },
+    queryAnomalies(filters) {
+      if (failRepository) return Promise.reject(new Error('proxy password secret'));
+      return { items: [], total: 0, page: filters.page, pageSize: filters.pageSize };
+    },
+    getHealth: () => ({ enabled: true, started: true }),
+  });
+  const app = express();
+  app.use('/api/stats', observabilityRouter);
+  let expressBoundaryErrors = 0;
+  app.use((error, req, res, next) => {
+    expressBoundaryErrors += 1;
+    res.status(500).json({ success: false, error: 'Express boundary failure' });
+  });
+  const baseUrl = await listenOnEphemeralPort(app, t);
+  const request = async (pathName, token) => {
+    const response = await fetch(`${baseUrl}${pathName}`, {
+      headers: token ? { authorization: `Bearer ${token}` } : {},
+    });
+    return { status: response.status, body: await response.json() };
+  };
+
+  assert.equal((await request('/api/stats/observability/summary')).status, 401);
+  assert.equal((await request('/api/stats/observability/summary', ordinaryToken)).status, 403);
+  const adminResponse = await request('/api/stats/observability/summary', adminToken);
+  assert.equal(adminResponse.status, 200);
+  assert.deepEqual(Object.keys(adminResponse.body.data), [
+    'range', 'generatedAt', 'headline', 'series', 'tasks', 'egresses', 'health',
+  ]);
+
+  failRepository = true;
+  const repositoryFailure = await request('/api/stats/observability/anomalies', adminToken);
+  assert.equal(repositoryFailure.status, 500);
+  assert.deepEqual(repositoryFailure.body, {
+    success: false,
+    error: 'Failed to fetch scheduler observability anomalies',
+  });
+  assert.equal(expressBoundaryErrors, 0);
+
+  await databaseModule.closeDatabase();
+  const authFailure = await request('/api/stats/observability/summary', adminToken);
+  assert.equal(authFailure.status, 500);
+  assert.deepEqual(authFailure.body, {
+    success: false,
+    error: 'Express boundary failure',
+  });
+  assert.equal(expressBoundaryErrors, 1);
 });
