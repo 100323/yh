@@ -40,3 +40,17 @@
 - 代码质量复核：`APPROVED`。
 - 最终提交：`21c0e9e`。
 - 环境注记：实现早期默认并行 runner 曾出现既有 Node 24 IPC 反序列化瞬态；串行全量通过，后续默认全量连续通过。
+
+### Task 3：SQLite 表、批量仓储与 3 天清理
+
+- 环境：官方便携 Node `v22.23.1` 位于 `D:\CodexTools\node-v22.23.1-win-x64`；SHA-256 已校验。`better-sqlite3@11.10.0` 预编译绑定成功加载，SQLite 版本 3.49.2。
+- RED：仓储模块缺失；后续覆盖安全整数溢出、raw proxy/Unicode/IDN 绕过、毫秒 cutoff、坏行原子性和合法 proxy lane。
+- GREEN：真实 SQLite 仓储测试 16/16。
+- 回归：Node 22 `--test --test-concurrency=1` 后端全量 107/107。
+- Schema：真实 `initDatabase()` + PRAGMA 验证三表、列、默认值、复合 PK 和四索引。
+- 隔离：所有临时数据库已关闭并删除；`backend/data/xyzw.db` 测试前后均不存在。
+- 范围：仅数据库 schema/维护入口、仓储与真实数据库测试；无 service/API/调度接入/WAL 变化。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`017dda274b15baf8d89407589e87130d09ff24d8`。
+- 残余风险：`julianday(indexed_column)` 保留毫秒语义但阻止时间范围索引搜索，登记到 Task 10 负载验证。
