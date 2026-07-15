@@ -81,3 +81,16 @@
 - 规格复核：`APPROVED`。
 - 代码质量复核：`APPROVED`。
 - 最终提交：`e78c4a9ebfff26acfeb544fa311828da1062f3a2`。
+
+### Task 6：账户队列与调度上下文
+
+- RED：queue 观察缺失、调度包装边界缺失；后续覆盖 observer getter、daily-point 边界和自解析 thenable 活锁。
+- GREEN：目标/控制 15/15；相关观测回归 95/95。
+- 回归：Node 22 串行后端全量 153/153。
+- 兼容：FIFO `[1,2]`、acquire/release、任务顺序、retry、client 与 Error 引用保持。
+- 上下文：scheduler/catchup/manual/system/batch、account/task/batchTask/lane/queueWait；lane proxy 与 actual direct 分离。
+- Daily point：主命令与领取命令共享 taskType/runId，任务仅结算一次且 duration 覆盖领取阶段。
+- 观察隔离：getter/throw/reject/self-return/self-resolving thenable 不影响任务或定时器。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`6114a2846274434ad9b168c78290276fc3e6b71b`。
