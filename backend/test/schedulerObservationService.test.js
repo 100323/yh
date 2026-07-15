@@ -476,6 +476,124 @@ test('stop treats a throwing options getter as flush true and always returns a r
   assert.equal(flushed.length, 1);
 });
 
+test('completed stop disables observation, is idempotent, and restart uses a clean runtime', async () => {
+  const timers = createTimerHarness();
+  const retainedSnapshot = commandSnapshot('old-retry');
+  const { aggregator, calls } = createAggregator({
+    snapshots: [retainedSnapshot, snapshot()],
+    overrides: {
+      mergeSnapshot(value) {
+        calls.mergeSnapshot.push(value);
+        return false;
+      },
+    },
+  });
+  const repositoryCalls = [];
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000, maxMetricKeys: 2 },
+    aggregator,
+    async flushSnapshot(value) {
+      repositoryCalls.push(value);
+      throw new Error('repository unavailable');
+    },
+    ...timers,
+  });
+  observeAccountQueue({ accountId: 41, queueWaitMs: 15 });
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+  assert.equal(getSchedulerObservationHealth().pendingRetrySnapshots, 1);
+
+  await stopSchedulerObservationService({ flush: true });
+  const stoppedHealth = getSchedulerObservationHealth();
+  assert.equal(stoppedHealth.enabled, false);
+  assert.equal(stoppedHealth.started, false);
+  assert.equal(stoppedHealth.pendingRetrySnapshots, 1);
+  assert.equal(stoppedHealth.pendingQueueWaits, 0);
+
+  const oldCommandCount = calls.recordCommand.length;
+  assert.equal(observeCommandSent({ command: 'after-stop' }), false);
+  assert.equal(calls.recordCommand.length, oldCommandCount);
+  const takeCount = calls.takeSnapshot;
+  const repositoryCount = repositoryCalls.length;
+  await assert.doesNotReject(stopSchedulerObservationService());
+  assert.equal(calls.takeSnapshot, takeCount);
+  assert.equal(repositoryCalls.length, repositoryCount);
+
+  const restartTimers = createTimerHarness();
+  const restarted = createAggregator();
+  assert.equal(startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000, maxMetricKeys: 2 },
+    aggregator: restarted.aggregator,
+    flushSnapshot() {},
+    ...restartTimers,
+  }), true);
+  assert.equal(restartTimers.intervals.length, 1);
+  assert.equal(getSchedulerObservationHealth().pendingRetrySnapshots, 0);
+  assert.equal(getSchedulerObservationHealth().pendingQueueWaits, 0);
+  assert.equal(observeCommandSent({ command: 'after-restart' }), true);
+  assert.equal(restarted.calls.recordCommand.length, 1);
+  assert.equal(calls.recordCommand.length, oldCommandCount);
+});
+
+test('stop admits late settlements into the final flush and blocks a concurrent restart', async () => {
+  const timers = createTimerHarness();
+  const firstWrite = deferred();
+  const created = createAggregator({ snapshots: [] });
+  const { aggregator, calls } = created;
+  aggregator.takeSnapshot = () => {
+    calls.takeSnapshot += 1;
+    if (calls.takeSnapshot === 1) return commandSnapshot('in-flight-before-stop');
+    if (calls.recordTask.length > 0) {
+      return snapshot({ taskMetrics: [{ task: 'late-task', outcome: 'success' }] });
+    }
+    return snapshot();
+  };
+  const flushed = [];
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot(value) {
+      flushed.push(value);
+      return flushed.length === 1 ? firstWrite.promise : undefined;
+    },
+    ...timers,
+  });
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+
+  const stopping = stopSchedulerObservationService({ flush: true });
+  assert.equal(observeTaskSettled({
+    accountId: 7,
+    runId: 'late-run',
+    taskType: 'LATE_TASK',
+    outcome: 'success',
+  }), true);
+
+  const restartTimers = createTimerHarness();
+  const restarted = createAggregator();
+  assert.equal(startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator: restarted.aggregator,
+    flushSnapshot() {},
+    ...restartTimers,
+  }), false);
+  assert.equal(restartTimers.intervals.length, 0);
+
+  firstWrite.resolve();
+  await assert.doesNotReject(stopping);
+  assert.equal(flushed.length, 2);
+  assert.equal(flushed[1].taskMetrics[0].task, 'late-task');
+  assert.equal(getSchedulerObservationHealth().enabled, false);
+
+  assert.equal(startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator: restarted.aggregator,
+    flushSnapshot() {},
+    ...restartTimers,
+  }), true);
+  assert.equal(restartTimers.intervals.length, 1);
+});
+
 test('all observation and health entry points swallow malicious getters and dependency errors', () => {
   const timers = createTimerHarness();
   const maliciousEvent = new Proxy({}, {

@@ -425,6 +425,7 @@ function baseHealth(state) {
 
 export function startSchedulerObservationService(options = {}) {
   try {
+    if (serviceState.stopping) return false;
     if (serviceState.started) return true;
 
     const observationConfig = options?.config ?? config.observability;
@@ -496,6 +497,11 @@ export async function stopSchedulerObservationService(options = {}) {
       } catch {
         return false;
       } finally {
+        state.enabled = false;
+        state.started = false;
+        state.pendingQueueWaits.clear();
+        state.queueWaitAliases.clear();
+        state.queueWaitSequence = 0;
         state.stopping = false;
       }
     })();
