@@ -276,6 +276,60 @@ test('merge failure is swallowed and visible in health', async () => {
   assert.equal(calls.mergeSnapshot.length, 1);
 });
 
+test('mergeSnapshot false retains one retry snapshot until a later tick persists it', async () => {
+  const timers = createTimerHarness();
+  const failedSnapshot = commandSnapshot('retry-first');
+  const laterSnapshot = commandSnapshot('aggregator-later');
+  const { aggregator, calls } = createAggregator({
+    snapshots: [failedSnapshot, laterSnapshot],
+    overrides: {
+      mergeSnapshot(value) {
+        calls.mergeSnapshot.push(value);
+        return false;
+      },
+    },
+  });
+  const repositoryCalls = [];
+
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    async flushSnapshot(value) {
+      repositoryCalls.push(value);
+      if (repositoryCalls.length <= 2) throw new Error('repository unavailable');
+    },
+    ...timers,
+  });
+
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+  assert.equal(getSchedulerObservationHealth().flushErrors, 1);
+  assert.equal(getSchedulerObservationHealth().mergeErrors, 1);
+  assert.equal(getSchedulerObservationHealth().pendingRetrySnapshots, 1);
+  assert.equal(calls.takeSnapshot, 1);
+  assert.deepEqual(calls.mergeSnapshot, [failedSnapshot]);
+
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+  assert.equal(repositoryCalls.length, 2);
+  assert.strictEqual(repositoryCalls[0], failedSnapshot);
+  assert.strictEqual(repositoryCalls[1], failedSnapshot);
+  assert.equal(calls.takeSnapshot, 1);
+  assert.deepEqual(calls.mergeSnapshot, [failedSnapshot]);
+  assert.equal(getSchedulerObservationHealth().pendingRetrySnapshots, 1);
+
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+  assert.equal(getSchedulerObservationHealth().pendingRetrySnapshots, 0);
+  assert.equal(calls.takeSnapshot, 1);
+
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+  assert.equal(repositoryCalls.length, 4);
+  assert.strictEqual(repositoryCalls[3], laterSnapshot);
+  assert.equal(calls.takeSnapshot, 2);
+});
+
 test('ticks do not overlap a pending flush and later data flushes on the next tick', async () => {
   const timers = createTimerHarness();
   const firstWrite = deferred();
@@ -344,6 +398,44 @@ test('stop with flush clears the timer, awaits in-flight work, and flushes remai
   assert.equal(flushed.length, 2);
 });
 
+test('stop retries a retained snapshot before one final aggregator snapshot and bounds a second failure', async () => {
+  const timers = createTimerHarness();
+  const retainedSnapshot = commandSnapshot('retained-first');
+  const finalSnapshot = commandSnapshot('final-second');
+  const { aggregator, calls } = createAggregator({
+    snapshots: [retainedSnapshot, finalSnapshot],
+    overrides: {
+      mergeSnapshot(value) {
+        calls.mergeSnapshot.push(value);
+        return false;
+      },
+    },
+  });
+  const repositoryCalls = [];
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    async flushSnapshot(value) {
+      repositoryCalls.push(value);
+      throw new Error('repository remains unavailable');
+    },
+    ...timers,
+  });
+
+  timers.intervals[0].callback();
+  await drainAsyncWork();
+  assert.equal(getSchedulerObservationHealth().pendingRetrySnapshots, 1);
+
+  await assert.doesNotReject(stopSchedulerObservationService());
+  assert.deepEqual(repositoryCalls, [retainedSnapshot, retainedSnapshot, finalSnapshot]);
+  assert.deepEqual(calls.mergeSnapshot, [retainedSnapshot, finalSnapshot]);
+  const health = getSchedulerObservationHealth();
+  assert.equal(health.pendingRetrySnapshots, 1);
+  assert.equal(health.droppedRetrySnapshots, 1);
+  assert.equal(health.flushErrors, 3);
+  assert.equal(health.mergeErrors, 2);
+});
+
 test('stop without flush never drains buffered observations', async () => {
   const timers = createTimerHarness();
   const { aggregator, calls } = createAggregator({ snapshots: [commandSnapshot()] });
@@ -359,6 +451,29 @@ test('stop without flush never drains buffered observations', async () => {
   assert.equal(timers.cleared.length, 1);
   assert.equal(calls.takeSnapshot, 0);
   assert.equal(flushCalls, 0);
+});
+
+test('stop treats a throwing options getter as flush true and always returns a resolving Promise', async () => {
+  const timers = createTimerHarness();
+  const { aggregator } = createAggregator({ snapshots: [commandSnapshot('malicious-stop')] });
+  const flushed = [];
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot(value) { flushed.push(value); },
+    ...timers,
+  });
+  const maliciousOptions = new Proxy({}, {
+    get() { throw new Error('options getter failed'); },
+  });
+
+  let stopping;
+  assert.doesNotThrow(() => {
+    stopping = stopSchedulerObservationService(maliciousOptions);
+  });
+  assert.equal(typeof stopping?.then, 'function');
+  await assert.doesNotReject(stopping);
+  assert.equal(flushed.length, 1);
 });
 
 test('all observation and health entry points swallow malicious getters and dependency errors', () => {
@@ -456,6 +571,54 @@ test('command and task mappings classify failures, emit only approved sanitized 
     const serialized = JSON.stringify(anomaly);
     assert.doesNotMatch(serialized, /-secret|private|params-secret|response-secret/);
     assert.doesNotMatch(serialized, /params|response|body|stack/);
+  }
+});
+
+test('rate-limited anomalies normalize error codes by the approved priority without retaining errors', () => {
+  const timers = createTimerHarness();
+  const { aggregator, calls } = createAggregator();
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000, slowCommandMs: 5000 },
+    aggregator,
+    flushSnapshot() {},
+    ...timers,
+  });
+
+  observeCommandSettled({
+    command: 'root-error-code',
+    errorCode: '200400',
+    code: '12400000',
+    error: Object.assign(new Error('limited'), { errorCode: 9, code: 10 }),
+  });
+  observeCommandSettled({
+    command: 'root-code',
+    code: '12400000',
+    error: Object.assign(new Error('limited'), { errorCode: 11, code: 12 }),
+  });
+  observeCommandSettled({
+    command: 'nested-error-code',
+    error: Object.assign(new Error('limited'), { errorCode: '200400', code: '12400000' }),
+  });
+  observeCommandSettled({
+    command: 'nested-code',
+    error: Object.assign(new Error('limited'), { code: '12400000' }),
+  });
+
+  assert.deepEqual(calls.recordCommand.map((event) => event.outcome), [
+    'rate_limited',
+    'rate_limited',
+    'rate_limited',
+    'rate_limited',
+  ]);
+  assert.deepEqual(
+    calls.recordAnomaly.map((anomaly) => anomaly.dimensions.errorCode),
+    [200400, 12400000, 200400, 12400000],
+  );
+  for (const anomaly of calls.recordAnomaly) {
+    assert.equal(Number.isInteger(anomaly.dimensions.errorCode), true);
+    assert.equal(Object.hasOwn(anomaly, 'error'), false);
+    assert.equal(Object.hasOwn(anomaly, 'stack'), false);
+    assert.doesNotMatch(JSON.stringify(anomaly), /"error"|"stack"/);
   }
 });
 

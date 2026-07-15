@@ -32,8 +32,10 @@ function createIdleState() {
     monotonicNow: () => performance.now(),
     flushPromise: null,
     stopPromise: null,
+    retrySnapshot: null,
     flushErrors: 0,
     mergeErrors: 0,
+    droppedRetrySnapshots: 0,
     observationErrors: 0,
     healthErrors: 0,
     lastFlushAt: null,
@@ -65,6 +67,21 @@ function normalizeNonNegativeNumber(value) {
   const numericValue = typeof value === 'number' ? value : Number(value);
   if (!Number.isFinite(numericValue) || numericValue < 0) return undefined;
   return Math.min(MAX_OBSERVATION_NUMBER, numericValue);
+}
+
+function normalizeFiniteInteger(value) {
+  if (value === null || value === undefined || value === '') return undefined;
+  if (!['number', 'string', 'bigint'].includes(typeof value)) return undefined;
+  try {
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return undefined;
+    return Math.max(
+      -MAX_OBSERVATION_NUMBER,
+      Math.min(MAX_OBSERVATION_NUMBER, Math.trunc(numericValue)),
+    );
+  } catch {
+    return undefined;
+  }
 }
 
 function normalizePositiveInteger(value, fallback) {
@@ -120,15 +137,50 @@ function incrementHealthCounter(state, name) {
 
 function safelyMergeSnapshot(state, snapshot) {
   try {
-    return state.aggregator?.mergeSnapshot(snapshot) === true;
+    const merged = state.aggregator?.mergeSnapshot(snapshot) === true;
+    if (!merged) incrementHealthCounter(state, 'mergeErrors');
+    return merged;
   } catch {
     incrementHealthCounter(state, 'mergeErrors');
     return false;
   }
 }
 
-async function flushOnce(state) {
+function retainRetrySnapshot(state, snapshot) {
+  if (state.retrySnapshot === null) {
+    state.retrySnapshot = snapshot;
+    return true;
+  }
+  if (state.retrySnapshot !== snapshot) {
+    incrementHealthCounter(state, 'droppedRetrySnapshots');
+  }
+  return false;
+}
+
+async function persistSnapshot(state, pendingSnapshot, { retry = false } = {}) {
   const startedAt = readClock(state.monotonicNow, () => performance.now());
+  try {
+    await state.flushSnapshot(pendingSnapshot);
+    if (retry && state.retrySnapshot === pendingSnapshot) state.retrySnapshot = null;
+    state.lastFlushAt = normalizeTimestamp(readClock(state.now, Date.now));
+    state.lastFlushDurationMs = elapsedMilliseconds(state, startedAt);
+    return true;
+  } catch {
+    incrementHealthCounter(state, 'flushErrors');
+    if (!retry && !safelyMergeSnapshot(state, pendingSnapshot)) {
+      retainRetrySnapshot(state, pendingSnapshot);
+    }
+    return false;
+  }
+}
+
+async function flushRetrySnapshot(state) {
+  const pendingSnapshot = state.retrySnapshot;
+  if (pendingSnapshot === null) return false;
+  return persistSnapshot(state, pendingSnapshot, { retry: true });
+}
+
+async function flushAggregatorSnapshot(state) {
   let pendingSnapshot;
 
   try {
@@ -139,27 +191,27 @@ async function flushOnce(state) {
   }
 
   if (!pendingSnapshot || isSnapshotEmpty(pendingSnapshot)) return false;
-
-  try {
-    await state.flushSnapshot(pendingSnapshot);
-    state.lastFlushAt = normalizeTimestamp(readClock(state.now, Date.now));
-    state.lastFlushDurationMs = elapsedMilliseconds(state, startedAt);
-    return true;
-  } catch {
-    incrementHealthCounter(state, 'flushErrors');
-    safelyMergeSnapshot(state, pendingSnapshot);
-    return false;
-  }
+  return persistSnapshot(state, pendingSnapshot);
 }
 
-function beginFlush(state, { allowStopping = false } = {}) {
+async function flushOnce(state) {
+  if (state.retrySnapshot !== null) return flushRetrySnapshot(state);
+  return flushAggregatorSnapshot(state);
+}
+
+async function flushForStop(state) {
+  if (state.retrySnapshot !== null) await flushRetrySnapshot(state);
+  return flushAggregatorSnapshot(state);
+}
+
+function beginFlush(state, { allowStopping = false, final = false } = {}) {
   if (!state.enabled || (!allowStopping && (!state.started || state.stopping))) {
     return Promise.resolve(false);
   }
   if (state.flushPromise) return state.flushPromise;
 
   const flushPromise = Promise.resolve()
-    .then(() => flushOnce(state))
+    .then(() => (final ? flushForStop(state) : flushOnce(state)))
     .catch(() => {
       incrementHealthCounter(state, 'flushErrors');
       return false;
@@ -205,21 +257,37 @@ function buildAnomalyDimensions(event, command, latencyMs) {
   const dimensions = {};
   const identifierNames = [
     'runId',
-    'accountId',
-    'batchTaskId',
     'source',
     'taskType',
     'executionLane',
     'egressType',
     'egressKey',
-    'errorCode',
-    'queueWaitMs',
   ];
 
   for (const name of identifierNames) {
     const value = safeIdentifier(safeRead(event, name));
     if (value !== undefined) dimensions[name] = value;
   }
+  for (const name of ['accountId', 'batchTaskId']) {
+    const value = normalizeFiniteInteger(safeRead(event, name));
+    if (value !== undefined) dimensions[name] = value;
+  }
+  const error = safeRead(event, 'error');
+  const errorCodeCandidates = [
+    safeRead(event, 'errorCode'),
+    safeRead(event, 'code'),
+    safeRead(error, 'errorCode'),
+    safeRead(error, 'code'),
+  ];
+  for (const candidate of errorCodeCandidates) {
+    const errorCode = normalizeFiniteInteger(candidate);
+    if (errorCode !== undefined) {
+      dimensions.errorCode = errorCode;
+      break;
+    }
+  }
+  const queueWaitMs = normalizeNonNegativeNumber(safeRead(event, 'queueWaitMs'));
+  if (queueWaitMs !== undefined) dimensions.queueWaitMs = queueWaitMs;
   if (command !== undefined) dimensions.command = command;
   if (latencyMs !== undefined) dimensions.latencyMs = latencyMs;
   return dimensions;
@@ -231,7 +299,11 @@ function safelyClassifyOutcome(event) {
 
   const error = safeRead(event, 'error');
   try {
-    return classifyCommandFailure(error, {
+    return classifyCommandFailure({
+      errorCode: safeRead(event, 'errorCode') ?? safeRead(error, 'errorCode'),
+      code: safeRead(event, 'code') ?? safeRead(error, 'code'),
+      message: typeof error === 'string' ? error : safeRead(error, 'message'),
+    }, {
       timeout: Boolean(safeRead(event, 'timeout')),
       disconnected: Boolean(safeRead(event, 'disconnected')),
     });
@@ -336,6 +408,8 @@ function baseHealth(state) {
     flushing: Boolean(state.flushPromise),
     flushErrors: state.flushErrors,
     mergeErrors: state.mergeErrors,
+    pendingRetrySnapshots: state.retrySnapshot === null ? 0 : 1,
+    droppedRetrySnapshots: state.droppedRetrySnapshots,
     observationErrors: state.observationErrors,
     healthErrors: state.healthErrors,
     lastFlushAt: state.lastFlushAt,
@@ -395,11 +469,13 @@ export function startSchedulerObservationService(options = {}) {
   }
 }
 
-export function stopSchedulerObservationService({ flush = true } = {}) {
+export async function stopSchedulerObservationService(options = {}) {
   try {
+    const requestedFlush = safeRead(options, 'flush');
+    const flush = requestedFlush === undefined ? true : Boolean(requestedFlush);
     const state = serviceState;
-    if (state.stopPromise) return state.stopPromise;
-    if (!state.enabled && !state.started) return Promise.resolve(false);
+    if (state.stopPromise) return await state.stopPromise;
+    if (!state.enabled && !state.started) return false;
 
     state.stopping = true;
     state.started = false;
@@ -415,17 +491,17 @@ export function stopSchedulerObservationService({ flush = true } = {}) {
     state.stopPromise = (async () => {
       try {
         if (state.flushPromise) await state.flushPromise;
-        if (flush) await beginFlush(state, { allowStopping: true });
+        if (flush) await beginFlush(state, { allowStopping: true, final: true });
         return true;
       } catch {
         return false;
       } finally {
-        if (serviceState === state) serviceState = createIdleState();
+        state.stopping = false;
       }
     })();
-    return state.stopPromise;
+    return await state.stopPromise;
   } catch {
-    return Promise.resolve(false);
+    return false;
   }
 }
 
