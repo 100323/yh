@@ -94,13 +94,9 @@ export function buildTrendBars(series) {
   ));
 
   const maximum = rows.reduce((current, row) => Math.max(current, row.value), 0);
-  const keyCounts = new Map();
 
   return rows.map((row) => {
-    const keyBase = row.bucket || `trend-${row.originalIndex}`;
-    const keyOccurrence = keyCounts.get(keyBase) ?? 0;
-    keyCounts.set(keyBase, keyOccurrence + 1);
-    const key = keyOccurrence === 0 ? keyBase : `${keyBase}-${keyOccurrence + 1}`;
+    const key = JSON.stringify([row.bucket, row.originalIndex]);
     const scaledHeight = maximum === 0 ? 0 : (row.value / maximum) * 100;
     const height = Number.isFinite(scaledHeight)
       ? Math.min(100, Math.max(0, Math.round(scaledHeight * 100) / 100))

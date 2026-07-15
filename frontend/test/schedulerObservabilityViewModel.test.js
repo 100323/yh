@@ -55,10 +55,10 @@ test('builds sorted, bounded trend bars without mutating the input', () => {
   const snapshot = series.map((row) => ({ ...row }));
 
   assert.deepEqual(buildTrendBars(series), [
-    { key: '2026-07-15T12:00:00.000Z', bucket: '2026-07-15T12:00:00.000Z', value: 10, height: 50 },
-    { key: '2026-07-15T12:01:00.000Z', bucket: '2026-07-15T12:01:00.000Z', value: 0, height: 0 },
-    { key: '2026-07-15T12:02:00.000Z', bucket: '2026-07-15T12:02:00.000Z', value: 20, height: 100 },
-    { key: '2026-07-15T12:03:00.000Z', bucket: '2026-07-15T12:03:00.000Z', value: 0, height: 0 },
+    { key: JSON.stringify(['2026-07-15T12:00:00.000Z', 1]), bucket: '2026-07-15T12:00:00.000Z', value: 10, height: 50 },
+    { key: JSON.stringify(['2026-07-15T12:01:00.000Z', 2]), bucket: '2026-07-15T12:01:00.000Z', value: 0, height: 0 },
+    { key: JSON.stringify(['2026-07-15T12:02:00.000Z', 0]), bucket: '2026-07-15T12:02:00.000Z', value: 20, height: 100 },
+    { key: JSON.stringify(['2026-07-15T12:03:00.000Z', 3]), bucket: '2026-07-15T12:03:00.000Z', value: 0, height: 0 },
   ]);
   assert.deepEqual(series, snapshot);
 });
@@ -70,8 +70,8 @@ test('builds safe zero-height bars for empty, all-zero, and hostile input', () =
     { bucket: 'b', commandCount: 0 },
     { bucket: 'a', commandCount: 0 },
   ]), [
-    { key: 'a', bucket: 'a', value: 0, height: 0 },
-    { key: 'b', bucket: 'b', value: 0, height: 0 },
+    { key: JSON.stringify(['a', 1]), bucket: 'a', value: 0, height: 0 },
+    { key: JSON.stringify(['b', 0]), bucket: 'b', value: 0, height: 0 },
   ]);
 
   const hostile = {};
@@ -85,6 +85,30 @@ test('builds safe zero-height bars for empty, all-zero, and hostile input', () =
   assert.equal(bars[0].value, 0);
   assert.equal(bars[0].height, 0);
   assert.equal(Number.isFinite(bars[0].height), true);
+});
+
+test('builds globally unique deterministic keys for duplicate and empty buckets', () => {
+  const series = [
+    { bucket: 'b', commandCount: 5 },
+    { bucket: 'a', commandCount: 4 },
+    { bucket: 'a', commandCount: 3 },
+    { bucket: 'a-2', commandCount: 2 },
+    { bucket: '', commandCount: 1 },
+  ];
+  const snapshot = series.map((row) => ({ ...row }));
+
+  const first = buildTrendBars(series);
+  const second = buildTrendBars(series);
+  assert.deepEqual(first.map((bar) => bar.key), [
+    JSON.stringify(['', 4]),
+    JSON.stringify(['a', 1]),
+    JSON.stringify(['a', 2]),
+    JSON.stringify(['a-2', 3]),
+    JSON.stringify(['b', 0]),
+  ]);
+  assert.equal(new Set(first.map((bar) => bar.key)).size, first.length);
+  assert.deepEqual(second, first);
+  assert.deepEqual(series, snapshot);
 });
 
 test('formats only allow-listed egress descriptors without reflecting raw addresses', () => {
