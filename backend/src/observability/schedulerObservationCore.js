@@ -89,17 +89,26 @@ export function runObservedTask(context, executor, observer) {
   }, () => {
     const observationContext = getSchedulerObservationContext();
     const monotonicStartedAt = monotonicNow();
-    const observeSuccess = () => safelyObserveTaskSettlement(observer, {
-      ...observationContext,
-      outcome: 'success',
-      durationMs: elapsedMilliseconds(monotonicStartedAt),
-    });
-    const observeFailure = (error) => safelyObserveTaskSettlement(observer, {
-      ...observationContext,
-      outcome: safelyClassifyCommandFailure(error),
-      durationMs: elapsedMilliseconds(monotonicStartedAt),
-      error,
-    });
+    let observed = false;
+    const observeSuccess = () => {
+      if (observed) return;
+      observed = true;
+      safelyObserveTaskSettlement(observer, {
+        ...observationContext,
+        outcome: 'success',
+        durationMs: elapsedMilliseconds(monotonicStartedAt),
+      });
+    };
+    const observeFailure = (error) => {
+      if (observed) return;
+      observed = true;
+      safelyObserveTaskSettlement(observer, {
+        ...observationContext,
+        outcome: safelyClassifyCommandFailure(error),
+        durationMs: elapsedMilliseconds(monotonicStartedAt),
+        error,
+      });
+    };
 
     let result;
     try {

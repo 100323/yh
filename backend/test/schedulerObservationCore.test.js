@@ -381,6 +381,92 @@ test('runObservedTask safely attaches observation to hostile executor thenables'
   }
 });
 
+test('runObservedTask observes only the first success from a repeating executor thenable', () => {
+  const calls = [];
+  const thenable = {
+    then(resolve) {
+      resolve('first');
+      resolve('second');
+      return Promise.resolve();
+    },
+  };
+
+  assert.strictEqual(runObservedTask({}, () => thenable, {
+    observeTaskSettled: (payload) => calls.push(payload),
+  }), thenable);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].outcome, 'success');
+});
+
+test('runObservedTask keeps the first success when a thenable later rejects and resolves', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const originalError = new Error('late rejection');
+    const calls = [];
+    const thenable = {
+      then(resolve, reject) {
+        resolve('first');
+        reject(originalError);
+        resolve('third');
+        return Promise.resolve();
+      },
+    };
+
+    assert.strictEqual(runObservedTask({}, () => thenable, {
+      observeTaskSettled: (payload) => calls.push(payload),
+    }), thenable);
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].outcome, 'success');
+
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask keeps the first classified failure when a thenable later resolves', () => {
+  const originalError = Object.assign(new Error('too fast'), { code: 200400 });
+  const calls = [];
+  const thenable = {
+    then(resolve, reject) {
+      reject(originalError);
+      resolve('late success');
+      return Promise.resolve();
+    },
+  };
+
+  assert.strictEqual(runObservedTask({}, () => thenable, {
+    observeTaskSettled: (payload) => calls.push(payload),
+  }), thenable);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].outcome, 'rate_limited');
+  assert.strictEqual(calls[0].error, originalError);
+});
+
+test('runObservedTask does not reopen settlement after the first observer call throws', () => {
+  let observerCalls = 0;
+  const thenable = {
+    then(resolve) {
+      resolve('first');
+      resolve('second');
+      return Promise.resolve();
+    },
+  };
+
+  assert.strictEqual(runObservedTask({}, () => thenable, {
+    observeTaskSettled() {
+      observerCalls += 1;
+      throw new Error('observer failure');
+    },
+  }), thenable);
+  assert.equal(observerCalls, 1);
+});
+
 test('runObservedTask observes a non-function executor as a failed settlement', () => {
   const calls = [];
   let caught;
