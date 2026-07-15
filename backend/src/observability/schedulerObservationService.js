@@ -205,7 +205,7 @@ async function flushForStop(state) {
 }
 
 function beginFlush(state, { allowStopping = false, final = false } = {}) {
-  if (!state.enabled || (!allowStopping && (!state.started || state.stopping))) {
+  if ((!state.enabled && !final) || (!allowStopping && (!state.started || state.stopping))) {
     return Promise.resolve(false);
   }
   if (state.flushPromise) return state.flushPromise;
@@ -492,6 +492,7 @@ export async function stopSchedulerObservationService(options = {}) {
     state.stopPromise = (async () => {
       try {
         if (state.flushPromise) await state.flushPromise;
+        state.enabled = false;
         if (flush) await beginFlush(state, { allowStopping: true, final: true });
         return true;
       } catch {

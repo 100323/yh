@@ -594,6 +594,41 @@ test('stop admits late settlements into the final flush and blocks a concurrent 
   assert.equal(restartTimers.intervals.length, 1);
 });
 
+test('stop seals observation before the final repository promise settles', async () => {
+  const timers = createTimerHarness();
+  const finalWrite = deferred();
+  const finalSnapshot = commandSnapshot('final-before-seal');
+  const { aggregator, calls } = createAggregator({ snapshots: [finalSnapshot] });
+  const repositoryCalls = [];
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 1000 },
+    aggregator,
+    flushSnapshot(value) {
+      repositoryCalls.push(value);
+      return finalWrite.promise;
+    },
+    ...timers,
+  });
+  assert.equal(observeCommandSent({ command: 'before-stop' }), true);
+  const acceptedBeforeStop = calls.recordCommand.length;
+
+  const stopping = stopSchedulerObservationService({ flush: true });
+  try {
+    await drainAsyncWork();
+    assert.equal(calls.takeSnapshot, 1);
+    assert.deepEqual(repositoryCalls, [finalSnapshot]);
+    assert.equal(getSchedulerObservationHealth().enabled, false);
+    assert.equal(observeCommandSent({ command: 'during-final-write' }), false);
+    assert.equal(calls.recordCommand.length, acceptedBeforeStop);
+  } finally {
+    finalWrite.resolve();
+    await assert.doesNotReject(stopping);
+  }
+  assert.equal(calls.takeSnapshot, 1);
+  assert.equal(repositoryCalls.length, 1);
+  assert.equal(getSchedulerObservationHealth().pendingQueueWaits, 0);
+});
+
 test('all observation and health entry points swallow malicious getters and dependency errors', () => {
   const timers = createTimerHarness();
   const maliciousEvent = new Proxy({}, {
