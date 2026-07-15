@@ -980,3 +980,71 @@ test('flush normalizes Unicode secrets and redacts whole complex network tokens 
     egress_key: 'proxy:abcdef123456',
   });
 });
+
+test('flush redacts complete sensitive identifiers and summary tokens without secret fragments', () => {
+  const sensitive = {
+    runId: 'ｐｒｏｘｙ-secret',
+    source: 'ｓｔａｃｋ-secret',
+    taskType: 'ｔｏｋｅｎ-secret',
+    command: 'roleToken-secret',
+    category: 'body-secret',
+    summary: '正常诊断 params-secret',
+  };
+  repository.flushSchedulerObservationSnapshot(snapshot({
+    anomalies: [{
+      timestamp: '2026-07-15T00:00:00.000Z',
+      type: sensitive.category,
+      message: sensitive.summary,
+      dimensions: {
+        runId: sensitive.runId,
+        source: sensitive.source,
+        taskType: sensitive.taskType,
+        command: sensitive.command,
+        executionLane: 'proxy',
+        egressType: 'proxy',
+        egressKey: 'proxy:abcdef123456',
+      },
+    }],
+  }), db);
+
+  const row = db.get(
+    `SELECT occurred_at, run_id, source, task_type, command, execution_lane,
+            egress_type, egress_key, category, summary
+     FROM command_anomalies`,
+  );
+  const persistedText = Object.values(row)
+    .filter((value) => typeof value === 'string')
+    .join('|')
+    .normalize('NFKC')
+    .toLowerCase();
+  for (const raw of Object.values(sensitive)) {
+    assert.equal(persistedText.includes(raw.normalize('NFKC').toLowerCase()), false, raw);
+  }
+  assert.equal(persistedText.includes('secret'), false);
+  assert.equal(row.execution_lane, 'proxy');
+  assert.equal(row.egress_type, 'proxy');
+  assert.equal(row.egress_key, 'proxy:abcdef123456');
+  assert.match(row.summary, /正常诊断/);
+});
+
+test('summary preserves ordinary numeric decimals while redacting complete IPv4 addresses', () => {
+  repository.flushSchedulerObservationSnapshot(snapshot({
+    anomalies: [{
+      timestamp: '2026-07-15T00:00:00.000Z',
+      type: 'numeric_diagnostic',
+      message: 'version 1.25 ready; ipv4 192.0.2.1 hidden',
+      dimensions: {
+        source: 'scheduler',
+        taskType: 'ARENA',
+        command: 'arena_startarea',
+        executionLane: 'proxy',
+        egressType: 'proxy',
+        egressKey: 'proxy:abcdef123456',
+      },
+    }],
+  }), db);
+
+  const summary = db.get('SELECT summary FROM command_anomalies').summary;
+  assert.match(summary, /version 1\.25 ready/);
+  assert.equal(summary.includes('192.0.2.1'), false);
+});

@@ -11,7 +11,9 @@ const DEFAULT_MAX_ANOMALIES = 50_000;
 const MAX_INTEGER = Number.MAX_SAFE_INTEGER;
 const DEFAULT_IDENTIFIER_LENGTH = 160;
 const OBSERVATION_OUTCOME_SET = new Set(OBSERVATION_OUTCOMES);
-const SENSITIVE_IDENTIFIER_PATTERN = /(roleToken|token|params?|arguments?|requests?|responses?|body|stack|proxy)/gi;
+const SENSITIVE_FIELD_PATTERN_SOURCE = '(?:roleToken|token|params?|arguments?|requests?|responses?|body|stack|proxy)';
+const SENSITIVE_IDENTIFIER_DETECTION_PATTERN = new RegExp(SENSITIVE_FIELD_PATTERN_SOURCE, 'i');
+const SENSITIVE_SUMMARY_TOKEN_PATTERN = new RegExp(`\\S*${SENSITIVE_FIELD_PATTERN_SOURCE}\\S*`, 'gi');
 
 const COMMAND_METRIC_COLUMNS = `
   bucket_minute, source, command_class, task_type, command, execution_lane,
@@ -111,6 +113,7 @@ function normalizeIpHost(value) {
 function isDottedHostname(value) {
   const host = value.replace(/\.$/, '');
   if (!host.includes('.')) return false;
+  if (/^\d+(?:\.\d+)+$/.test(host)) return false;
   try {
     const ascii = domainToASCII(host);
     return ascii.includes('.') && ascii.split('.').every((label) => (
@@ -156,15 +159,24 @@ function redactNetworkAuthorities(value) {
   return value
     .replace(/\b([a-z][a-z\d+.-]*:\/\/)[^\s/?#]+/gi, '$1[REDACTED]')
     .replace(/(^|[\s([{=])\/\/[^\s/?#]+/g, '$1//[REDACTED]')
-    .replace(/\S+/gu, (token) => (isNetworkCandidate(token) ? '[REDACTED]' : token))
-    .replace(SENSITIVE_IDENTIFIER_PATTERN, '[REDACTED]');
+    .replace(/\S+/gu, (token) => (isNetworkCandidate(token) ? '[REDACTED]' : token));
 }
 
 function normalizeIdentifier(value, maxLength = DEFAULT_IDENTIFIER_LENGTH) {
   const normalized = normalizeNfkc(value);
   if (normalized === null || normalized === '') return '';
   const sanitized = sanitizeObservationMessage(normalized, Number.MAX_SAFE_INTEGER);
+  if (SENSITIVE_IDENTIFIER_DETECTION_PATTERN.test(sanitized)) return '[REDACTED]';
   return redactNetworkAuthorities(sanitized).slice(0, maxLength);
+}
+
+function normalizeSummary(value, maxLength = 300) {
+  const normalized = normalizeNfkc(value);
+  if (normalized === null || normalized === '') return '';
+  const sanitized = sanitizeObservationMessage(normalized, Number.MAX_SAFE_INTEGER);
+  return redactNetworkAuthorities(sanitized)
+    .replace(SENSITIVE_SUMMARY_TOKEN_PATTERN, '[REDACTED]')
+    .slice(0, maxLength);
 }
 
 function readValue(input, dimensions, name) {
@@ -310,7 +322,7 @@ function normalizeAnomaly(anomaly) {
     ?? readValue(anomaly, dimensions, 'type');
   const summary = typeof summaryValue === 'object' || typeof summaryValue === 'function'
     ? ''
-    : normalizeIdentifier(summaryValue, 300);
+    : normalizeSummary(summaryValue, 300);
 
   return [
     normalizeTimestamp(anomaly.occurredAt ?? anomaly.timestamp, 'anomaly occurrence'),
