@@ -114,7 +114,14 @@ export function runSchedulerTaskObserved(context, executor, observer = scheduler
   if (context?.source !== undefined) {
     observationContext.source = normalizeSchedulerObservationSource(context.source);
   }
-  return runObservedTask(observationContext, executor, observer);
+  const observedExecutor = typeof context?.afterTask === 'function'
+    ? async () => {
+      const result = await executor();
+      await context.afterTask(result);
+      return result;
+    }
+    : executor;
+  return runObservedTask(observationContext, observedExecutor, observer);
 }
 
 async function resolveAccountExecutionLane(accountName) {
@@ -761,7 +768,12 @@ async function executeScheduledTaskWithClient(task, context = {}) {
     }
 
     currentClient = await context.ensureClient();
-    const execution = await runSchedulerTaskObserved({ taskType }, () => (
+    const execution = await runSchedulerTaskObserved({
+      taskType,
+      afterTask: async (completedExecution) => {
+        await claimDailyPointRewardsByTask(completedExecution.client, taskType, taskConfig);
+      },
+    }, () => (
       executeTaskWithFlowControl({
         accountId,
         accountName,
@@ -775,7 +787,6 @@ async function executeScheduledTaskWithClient(task, context = {}) {
     currentClient = execution.client;
     const result = execution.result;
 
-    await claimDailyPointRewardsByTask(currentClient, taskType, taskConfig);
     markScheduledTaskSuccess(task, result);
     return {
       ok: true,

@@ -64,6 +64,8 @@ function safeObservationIdentifier(context, name) {
   }
 }
 
+function noop() {}
+
 function safelyObserveAccountQueue(options, event) {
   try {
     let observer;
@@ -81,7 +83,10 @@ function safelyObserveAccountQueue(options, event) {
       : event;
     const result = method.call(observer, payload);
     if (result === null || (typeof result !== 'object' && typeof result !== 'function')) return;
-    Promise.resolve(result).catch(() => {});
+    const then = result.then;
+    if (typeof then !== 'function') return;
+    const chained = then.call(result, undefined, noop);
+    if (chained !== result) Promise.resolve(chained).catch(noop);
   } catch {
     // Observation must never affect account execution or slot release.
   }

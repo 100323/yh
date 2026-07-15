@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import config from '../src/config/index.js';
 import {
   clearAccountTaskCoordinator,
@@ -8,6 +10,8 @@ import {
   runTaskTypeThrottled,
 } from '../src/utils/accountTaskCoordinator.js';
 import { withSchedulerObservationContext } from '../src/observability/schedulerObservationCore.js';
+
+const execFileAsync = promisify(execFile);
 
 function deferred() {
   let resolve;
@@ -149,6 +153,50 @@ test('account queue observer getter, throw, and rejection cannot change return o
   );
 
   assert.equal(await runAccountTaskExclusive('after-error', async () => 'released'), 'released');
+});
+
+test('self-resolving observer thenable cannot starve account FIFO or timers', async () => {
+  const configUrl = new URL('../src/config/index.js', import.meta.url).href;
+  const coordinatorUrl = new URL('../src/utils/accountTaskCoordinator.js', import.meta.url).href;
+  const script = `
+    import config from ${JSON.stringify(configUrl)};
+    import {
+      clearAccountTaskCoordinator,
+      runAccountTaskExclusive,
+    } from ${JSON.stringify(coordinatorUrl)};
+
+    config.scheduler.maxConcurrentAccounts = 1;
+    config.scheduler.accountDispatchIntervalMs = 0;
+    clearAccountTaskCoordinator();
+
+    const hostile = {};
+    hostile.then = (resolve) => resolve(hostile);
+    const observer = { observeAccountQueue: () => hostile };
+    const starts = [];
+    const results = await Promise.all([
+      runAccountTaskExclusive(1, async () => {
+        starts.push(1);
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        return 'first';
+      }, { observer }),
+      runAccountTaskExclusive(2, async () => {
+        starts.push(2);
+        return 'second';
+      }, { observer }),
+    ]);
+
+    if (JSON.stringify(starts) !== '[1,2]') throw new Error('FIFO changed');
+    if (JSON.stringify(results) !== '["first","second"]') throw new Error('results changed');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    process.stdout.write('completed');
+  `;
+
+  const { stdout } = await execFileAsync(process.execPath, [
+    '--input-type=module',
+    '--eval',
+    script,
+  ], { timeout: 1000 });
+  assert.equal(stdout, 'completed');
 });
 
 test('limits concurrent GENIE_SWEEP task executions when configured', async (t) => {

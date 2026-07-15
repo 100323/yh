@@ -81,7 +81,14 @@ export function runBatchAccountObserved(context, executor, options = {}) {
 }
 
 export function runBatchTaskObserved(context, executor, observer = schedulerObservationService) {
-  return runObservedTask({ taskType: context?.taskType }, executor, observer);
+  const observedExecutor = typeof context?.afterTask === 'function'
+    ? async () => {
+      const result = await executor();
+      await context.afterTask(result);
+      return result;
+    }
+    : executor;
+  return runObservedTask({ taskType: context?.taskType }, observedExecutor, observer);
 }
 const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;
 const DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS = 3;
@@ -631,7 +638,12 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
     importMethod: account.import_method || null,
     updatedAt: account.updated_at || null,
   });
-  const execution = await runBatchTaskObserved({ taskType }, () => executeTaskWithFlowControl({
+  const execution = await runBatchTaskObserved({
+    taskType,
+    afterTask: async (completedExecution) => {
+      await claimDailyPointRewardsByTask(completedExecution.client, taskType, taskConfig);
+    },
+  }, () => executeTaskWithFlowControl({
     accountId: account.id,
     accountName: account.name,
     taskType,
@@ -650,7 +662,6 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
   }));
   client = execution.client;
   const result = execution.result;
-  await claimDailyPointRewardsByTask(client, taskType, taskConfig);
   
   addBatchTaskLogEntry(batchTaskId, account.id, taskType, 'success', result.message || '执行成功', JSON.stringify(result.data || {}));
   

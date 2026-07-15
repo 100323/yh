@@ -123,6 +123,67 @@ test('batch context includes batch task, account, task type, and lane', async ()
   assert.equal(tasks[0].accountId, 42);
 });
 
+test('scheduler and batch task settlements include daily-point claims in one run', async () => {
+  const cases = [
+    {
+      runAccount: requiredFunction(scheduler, 'runSchedulerAccountObserved'),
+      runTask: requiredFunction(scheduler, 'runSchedulerTaskObserved'),
+      source: 'scheduler',
+      accountId: 61,
+      accountContext: { source: 'scheduler', accountId: 61, executionLane: 'direct' },
+    },
+    {
+      runAccount: requiredFunction(batchScheduler, 'runBatchAccountObserved'),
+      runTask: requiredFunction(batchScheduler, 'runBatchTaskObserved'),
+      source: 'batch',
+      accountId: 62,
+      accountContext: { batchTaskId: 11, accountId: 62, executionLane: 'direct' },
+    },
+  ];
+
+  for (const { runAccount, runTask, source, accountId, accountContext } of cases) {
+    const commands = [];
+    const tasks = [];
+    const client = createOpenClient({
+      observeCommandSent(event) {
+        commands.push(event);
+      },
+    });
+
+    const resultPromise = runAccount(accountContext, () => runTask({
+      taskType: 'SIGN_IN',
+      afterTask: async () => {
+        await client.claimDailyPoint(1);
+        await new Promise((resolve) => setTimeout(resolve, 25));
+      },
+    }, () => client.sendWithPromise('role_getroleinfo', {}), {
+      observeTaskSettled(event) {
+        tasks.push(event);
+      },
+    }), { observer: { observeAccountQueue() {} } });
+
+    await waitFor(() => commands.length === 1);
+    client._handleMessage({ resp: 1, seq: 2, cmd: 'role_getroleinforesp', body: { ok: true } });
+    await waitFor(() => commands.length === 2);
+    assert.deepEqual(commands.map((event) => event.command), [
+      'role_getroleinfo',
+      'task_claimdailypoint',
+    ]);
+    assert.equal(commands[1].source, source);
+    assert.equal(commands[1].accountId, accountId);
+    assert.equal(commands[1].taskType, 'SIGN_IN');
+    assert.equal(commands[1].runId, commands[0].runId);
+    assert.equal(tasks.length, 0);
+
+    client._handleMessage({ resp: 1, seq: 3, cmd: 'syncresp', body: { ok: true } });
+    assert.deepEqual(await resultPromise, { ok: true });
+    assert.equal(tasks.length, 1);
+    assert.equal(tasks[0].taskType, 'SIGN_IN');
+    assert.equal(tasks[0].runId, commands[0].runId);
+    assert.ok(tasks[0].durationMs >= 20);
+  }
+});
+
 test('proxy scheduling lane does not become the actual command egress', async () => {
   const runAccount = requiredFunction(scheduler, 'runSchedulerAccountObserved');
   const runTask = requiredFunction(scheduler, 'runSchedulerTaskObserved');
