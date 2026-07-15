@@ -54,3 +54,17 @@
 - 代码质量复核：`APPROVED`。
 - 最终提交：`017dda274b15baf8d89407589e87130d09ff24d8`。
 - 残余风险：`julianday(indexed_column)` 保留毫秒语义但阻止时间范围索引搜索，登记到 Task 10 负载验证。
+
+### Task 4：观测服务、配置与生命周期
+
+- RED：服务模块缺失；后续覆盖 merge=false、恶意 stop 参数、errorCode、stop 最终写窗口和 queue alias 碰撞。
+- GREEN：服务目标测试 25/25。
+- 回归：Node 22 串行后端全量 132/132。
+- 禁用：定时器创建 0 次，观察入口快速返回 false。
+- 失败恢复：单 retry 槽、flush/merge/drop 健康可见；普通 tick 最多一次仓储调用。
+- 关停：等待旧在途期间接收晚事件；最终 snapshot 前封口；stop resolve 后 disabled；restart 全新状态。
+- Queue 关联：完整 NFKC primitive 的类型化 SHA-256 元组，无分隔符/截断/类型碰撞，hash 不持久化。
+- 配置：本地默认 `enabled=false`、`retentionDays=3`；生产 ecosystem 显式默认启用。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`da2dffe8f3781e349425641e77c01078b44442f6`。
