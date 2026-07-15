@@ -467,6 +467,127 @@ test('runObservedTask does not reopen settlement after the first observer call t
   assert.equal(observerCalls, 1);
 });
 
+test('runObservedTask observes hostile then getter and call errors as failures', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const getterError = new Error('executor then getter failure');
+    const throwingGetter = {};
+    Object.defineProperty(throwingGetter, 'then', {
+      get() { throw getterError; },
+    });
+
+    const getterCalls = [];
+    assert.strictEqual(runObservedTask({}, () => throwingGetter, {
+      observeTaskSettled: (payload) => getterCalls.push(payload),
+    }), throwingGetter);
+    assert.equal(getterCalls.length, 1);
+    assert.equal(getterCalls[0].outcome, 'error');
+    assert.strictEqual(getterCalls[0].error, getterError);
+
+    const callError = new Error('executor then call failure');
+    const throwingCall = {
+      then() { throw callError; },
+    };
+    const callCalls = [];
+    assert.strictEqual(runObservedTask({}, () => throwingCall, {
+      observeTaskSettled: (payload) => callCalls.push(payload),
+    }), throwingCall);
+    assert.equal(callCalls.length, 1);
+    assert.equal(callCalls[0].outcome, 'error');
+    assert.strictEqual(callCalls[0].error, callError);
+
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask retains success when a thenable resolves before throwing', () => {
+  const laterError = new Error('late then failure');
+  const calls = [];
+  const thenable = {
+    then(resolve) {
+      resolve('first');
+      throw laterError;
+    },
+  };
+
+  assert.strictEqual(runObservedTask({}, () => thenable, {
+    observeTaskSettled: (payload) => calls.push(payload),
+  }), thenable);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].outcome, 'success');
+});
+
+test('runObservedTask does not assimilate an executor thenable returned by its own then', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const calls = [];
+    const thenable = {
+      thenCalls: 0,
+      then(resolve) {
+        this.thenCalls += 1;
+        resolve('settled');
+        return this;
+      },
+    };
+
+    assert.strictEqual(runObservedTask({}, () => thenable, {
+      observeTaskSettled: (payload) => calls.push(payload),
+    }), thenable);
+    await nextTurn();
+    await nextTurn();
+
+    assert.equal(thenable.thenCalls, 1);
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].outcome, 'success');
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask does not assimilate an observer thenable returned by its own then', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const observerThenable = {
+      thenCalls: 0,
+      then() {
+        this.thenCalls += 1;
+        return this;
+      },
+    };
+    let observerCalls = 0;
+
+    const value = { ok: true };
+    assert.strictEqual(runObservedTask({}, () => value, {
+      observeTaskSettled() {
+        observerCalls += 1;
+        return observerThenable;
+      },
+    }), value);
+    await nextTurn();
+    await nextTurn();
+
+    assert.equal(observerCalls, 1);
+    assert.equal(observerThenable.thenCalls, 1);
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
 test('runObservedTask observes a non-function executor as a failed settlement', () => {
   const calls = [];
   let caught;

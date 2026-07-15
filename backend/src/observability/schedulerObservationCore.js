@@ -33,7 +33,7 @@ function safelyObserveTaskSettlement(observer, payload) {
     if (typeof then !== 'function') return;
 
     const chained = then.call(result, undefined, noop);
-    Promise.resolve(chained).catch(noop);
+    if (chained !== result) Promise.resolve(chained).catch(noop);
   } catch {
     // Observation must never affect task settlement.
   }
@@ -57,9 +57,10 @@ function safelyAttachTaskSettlement(result, onSuccess, onFailure) {
     if (typeof then !== 'function') return false;
 
     const chained = then.call(result, onSuccess, onFailure);
-    Promise.resolve(chained).catch(noop);
+    if (chained !== result) Promise.resolve(chained).catch(noop);
     return true;
-  } catch {
+  } catch (error) {
+    onFailure(error);
     return true;
   }
 }
