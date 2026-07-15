@@ -5,6 +5,83 @@ import { normalizeErrorMessage, summarizeHeaders, truncate } from './wsDiagnosti
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { runTaskTypeCommandThrottled } from './accountTaskCoordinator.js';
+import {
+  createEgressDescriptor,
+  getSchedulerObservationContext,
+} from '../observability/schedulerObservationCore.js';
+import * as schedulerObservationService from '../observability/schedulerObservationService.js';
+
+const OBSERVATION_CONTEXT_FIELDS = Object.freeze([
+  'source',
+  'taskType',
+  'runId',
+  'accountId',
+  'batchTaskId',
+  'executionLane',
+  'queueWaitMs',
+]);
+
+function monotonicNow() {
+  return Number(process.hrtime.bigint()) / 1e6;
+}
+
+function copySchedulerObservationContext() {
+  let context;
+  try {
+    context = getSchedulerObservationContext();
+  } catch {
+    return {};
+  }
+  if (!context || typeof context !== 'object') return {};
+
+  const allowed = {};
+  for (const field of OBSERVATION_CONTEXT_FIELDS) {
+    try {
+      if (context[field] !== undefined) allowed[field] = context[field];
+    } catch {
+      // Observation context must never affect command delivery.
+    }
+  }
+  return allowed;
+}
+
+function classifyCommand(cmd) {
+  const normalized = typeof cmd === 'string' ? cmd.trim().toLowerCase() : '';
+  return /^_sys(?:[\/:_]|$)/.test(normalized) || /^(?:ack|heartbeat|ping|pong)$/.test(normalized)
+    ? 'system'
+    : 'game';
+}
+
+function finiteInteger(value) {
+  try {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) && Number.isInteger(numeric) ? numeric : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function consumeObserverResult(result) {
+  if (result === null || (typeof result !== 'object' && typeof result !== 'function')) return;
+  try {
+    const then = result.then;
+    if (typeof then !== 'function') return;
+    const chained = then.call(result, undefined, () => undefined);
+    if (chained !== result) Promise.resolve(chained).catch(() => {});
+  } catch {
+    // Hostile thenables are observation failures, not command failures.
+  }
+}
+
+function safelyCallCommandObserver(observer, methodName, event) {
+  try {
+    const method = observer?.[methodName];
+    if (typeof method !== 'function') return;
+    consumeObserverResult(method.call(observer, event));
+  } catch {
+    // Observer getters and synchronous failures are isolated from the command path.
+  }
+}
 
 const ERROR_CODE_MAP = {
   700010: '任务未达成完成条件',
@@ -424,6 +501,8 @@ export class GameClient {
 
     // 代理配置
     this.proxy = options.proxy || null; // { host, port, protocol }
+    this.activeEgressProxy = null;
+    this.commandObserver = options.commandObserver || schedulerObservationService;
 
     this.ws = null;
     this.seq = 0;
@@ -518,6 +597,7 @@ export class GameClient {
         }
 
         this.ws = this.createWebSocket(this.wsUrl, wsOptions);
+        this.activeEgressProxy = wsOptions.agent ? this.proxy : null;
 
         this.ws.on('open', () => {
           opened = true;
@@ -606,6 +686,7 @@ export class GameClient {
       this.ws.close();
       this.ws = null;
     }
+    this.activeEgressProxy = null;
     this.connected = false;
   }
 
@@ -616,8 +697,16 @@ export class GameClient {
 
     const message = this._buildMessage(cmd, params);
     const encoded = encode(message, getEnc('x'));
-    
-    this.ws.send(encoded);
+    const observation = this._createCommandObservation(cmd, message.seq, message.ack);
+
+    try {
+      this.ws.send(encoded);
+    } catch (error) {
+      this._settleCommandObservation(observation, 'error', error);
+      throw error;
+    }
+    this._observeCommandSent(observation);
+    this._settleCommandObservation(observation, 'success');
     return message.seq;
   }
 
@@ -643,20 +732,94 @@ export class GameClient {
 
       const seq = ++this.seq;
       const promiseKey = String(seq);
+      let observation = null;
       
       const timer = setTimeout(() => {
         console.warn(`⏱️ 请求超时: ${cmd}, seq=${seq}, pending=${this.promises.size}`);
         this.promises.delete(promiseKey);
-        reject(new Error(`请求超时: ${cmd}`));
+        const error = new Error(`请求超时: ${cmd}`);
+        reject(error);
+        this._settleCommandObservation(observation, 'timeout', error);
       }, timeout);
 
-      this.promises.set(promiseKey, { resolve, reject, timer, cmd, seq });
+      observation = this._createCommandObservation(cmd, seq, this.ack);
+      this.promises.set(promiseKey, { resolve, reject, timer, cmd, seq, observation });
 
       const message = this._buildMessage(cmd, params, seq);
       const encoded = encode(message, getEnc('x'));
       
-      this.ws.send(encoded);
+      try {
+        this.ws.send(encoded);
+      } catch (error) {
+        this._settleCommandObservation(observation, 'error', error);
+        throw error;
+      }
+      this._observeCommandSent(observation);
     });
+  }
+
+  _createCommandObservation(command, seq, ack) {
+    let egress;
+    try {
+      egress = createEgressDescriptor(this.activeEgressProxy);
+    } catch {
+      egress = { type: 'direct', key: 'direct' };
+    }
+
+    return {
+      metadata: Object.freeze({
+        ...copySchedulerObservationContext(),
+        command,
+        commandClass: classifyCommand(command),
+        seq,
+        ack,
+        timestamp: new Date().toISOString(),
+        egressType: egress.type,
+        egressKey: egress.key,
+        monotonicStartedAt: monotonicNow(),
+      }),
+      settled: false,
+    };
+  }
+
+  _commandObservationEvent(metadata) {
+    const { monotonicStartedAt: _monotonicStartedAt, ...event } = metadata;
+    return event;
+  }
+
+  _observeCommandSent(observation) {
+    const metadata = observation?.metadata;
+    if (!metadata) return;
+    safelyCallCommandObserver(
+      this.commandObserver,
+      'observeCommandSent',
+      this._commandObservationEvent(metadata),
+    );
+  }
+
+  _settleCommandObservation(observation, outcome, error = null) {
+    if (!observation || observation.settled) return;
+    observation.settled = true;
+    const metadata = observation.metadata;
+    observation.metadata = null;
+    if (!metadata) return;
+
+    const event = {
+      ...this._commandObservationEvent(metadata),
+      outcome,
+      latencyMs: Math.max(0, monotonicNow() - metadata.monotonicStartedAt),
+    };
+    let code;
+    try {
+      code = finiteInteger(error?.errorCode ?? error?.code);
+    } catch {
+      code = undefined;
+    }
+    if (code !== undefined) {
+      event.code = code;
+      event.errorCode = code;
+    }
+    safelyCallCommandObserver(this.commandObserver, 'observeCommandSettled', event);
   }
 
   _buildMessage(cmd, params = {}, seq = null) {
@@ -733,8 +896,10 @@ export class GameClient {
         const responseError = buildResponseError();
         if (responseError) {
           promise.reject(responseError);
+          this._settleCommandObservation(promise.observation, 'error', responseError);
         } else {
           promise.resolve(body);
+          this._settleCommandObservation(promise.observation, 'success');
         }
         return;
       }
@@ -758,8 +923,10 @@ export class GameClient {
           const responseError = buildResponseError();
           if (responseError) {
             promise.reject(responseError);
+            this._settleCommandObservation(promise.observation, 'error', responseError);
           } else {
             promise.resolve(body);
+            this._settleCommandObservation(promise.observation, 'success');
           }
           return;
         }
@@ -807,6 +974,7 @@ export class GameClient {
       clearTimeout(promise.timer);
       promise.reject(rejectError);
       this.promises.delete(promiseKey);
+      this._settleCommandObservation(promise.observation, 'disconnected', rejectError);
     }
   }
 

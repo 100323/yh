@@ -24,10 +24,11 @@ test('rejects pending promises when websocket closes/disconnects', async () => {
     seq: 1
   });
 
-  client._rejectPendingPromises(new Error('WebSocket连接已断开(1006)'));
+  const disconnectError = new Error('WebSocket连接已断开(1006)');
+  client._rejectPendingPromises(disconnectError);
 
   assert.equal(client.promises.size, 0);
-  assert.ok(rejectedError instanceof Error);
+  assert.strictEqual(rejectedError, disconnectError);
   assert.match(rejectedError.message, /WebSocket连接已断开/);
 });
 
