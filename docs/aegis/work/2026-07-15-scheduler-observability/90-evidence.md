@@ -68,3 +68,16 @@
 - 规格复核：`APPROVED`。
 - 代码质量复核：`APPROVED`。
 - 最终提交：`da2dffe8f3781e349425641e77c01078b44442f6`。
+
+### Task 5：GameClient 命令生命周期
+
+- RED：新增观测测试 7 项因 sent/settled 缺失失败，既有 GameClient 8/8 保持绿色；后续覆盖对象上下文泄漏和限频误分类。
+- GREEN：目标测试 18/18。
+- 回归：Node 22 串行后端全量 142/142。
+- 生命周期：success、timeout/迟到回包、disconnect、业务错误、proxy/direct、system/game、同步 send throw 与 hostile observer。
+- 兼容：seq/ack、timer、pending 注册、ws.send 次数/字节、回包匹配和 Error 引用保持。
+- 安全：上下文逐字段标量化；事件独立；无 params/body/token/raw proxy/stack；实际 agent 决定匿名出口。
+- 分类：200400/12400000 为 `rate_limited`，普通业务错误为 `error`。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`e78c4a9ebfff26acfeb544fa311828da1062f3a2`。

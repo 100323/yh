@@ -8,8 +8,8 @@
 2. AsyncLocalStorage 上下文与任务包装器（已完成）
 3. SQLite 表、批量仓储与 3 天清理（已完成）
 4. 观测服务、配置开关与生命周期（已完成）
-5. GameClient 命令生命周期接入（进行中）
-6. 账户队列、普通调度与批量调度关联（待开始）
+5. GameClient 命令生命周期接入（已完成）
+6. 账户队列、普通调度与批量调度关联（进行中）
 7. 管理员只读查询 API（待开始）
 8. 前端视图模型与 API 客户端（待开始）
 9. 管理员“调度观测”页面和导航（待开始）
@@ -18,7 +18,7 @@
 
 ## Active Slice
 
-Task 5：GameClient 命令生命周期接入。仅在最终发送/结算边界产生观察事件，不改变协议和 Promise 语义。
+Task 6：账户队列、普通调度与批量调度关联。为 GameClient 事件提供来源、任务、账户、车道和排队等待上下文。
 
 ## Completed Todos
 
@@ -28,6 +28,7 @@ Task 5：GameClient 命令生命周期接入。仅在最终发送/结算边界�
 - Task 2 已完成 TDD，并通过规格复核与代码质量复核。
 - Task 3 已完成真实 SQLite TDD，并通过规格复核与代码质量复核。
 - Task 4 已完成服务生命周期 TDD，并通过规格复核与代码质量复核。
+- Task 5 已完成 GameClient 传输边界 TDD，并通过规格复核与代码质量复核。
 
 ## Evidence Refs
 
@@ -47,6 +48,9 @@ Task 5：GameClient 命令生命周期接入。仅在最终发送/结算边界�
 - Task 4 最终证据：服务测试 25/25、Node 22 串行后端全量 132/132、`git diff --check` 通过。
 - Task 4 规格复核：`APPROVED`；代码质量复核：`APPROVED`。
 - Task 4 HEAD：`da2dffe8f3781e349425641e77c01078b44442f6`。
+- Task 5 最终证据：目标测试 18/18、Node 22 串行全量 142/142、`git diff --check` 通过。
+- Task 5 规格复核：`APPROVED`；代码质量复核：`APPROVED`。
+- Task 5 HEAD：`e78c4a9ebfff26acfeb544fa311828da1062f3a2`。
 
 ## Blocked On
 
@@ -54,17 +58,17 @@ Task 5：GameClient 命令生命周期接入。仅在最终发送/结算边界�
 
 ## ResumeStateHint
 
-从 Task 5 开始。使用新的实现代理接入 GameClient，并依次完成规格与代码质量复核。后续所有修改与测试必须在本 worktree 内执行；统一使用 Node 22 回归。
+从 Task 6 开始。使用新的实现代理关联账户协调器和两条后端调度链路，并依次完成规格与代码质量复核。统一使用 Node 22 回归。
 
 ## DriftCheckDraft
 
-- 原始意图：一致，Task 1–4 已建立被动观测基础设施和可关闭服务。
-- 兼容边界：尚未接入命令生产者，未修改调度参数；服务禁用时零定时器。
+- 原始意图：一致，Task 1–5 已建立基础设施并只在最终命令边界产生被动事件。
+- 兼容边界：GameClient 协议、Promise、超时、错误和调度参数未改变。
 - 新 owner/fallback/分支：无。
 - 退役轨：现有任务日志和 system-status 继续保留。
-- 证据充分性：Task 4 双复核通过，可进入最终传输边界接入。
+- 证据充分性：Task 5 双复核通过，可进入任务/账户上下文关联。
 - decision：`continue`。
 
 ## Next
 
-派发新的 Task 5 实现代理，锁定 GameClient 发送、成功、超时、断线和业务错误语义。
+派发新的 Task 6 实现代理，锁定账户 FIFO、槽位释放、普通/批量调度返回与错误语义。
