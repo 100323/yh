@@ -160,8 +160,10 @@ test('maps complete scheduler observability API fixtures without mutating inputs
     errorRate: 0.0645,
     errorRateDisplay: '6.45%',
   });
-  assert.equal(model.health.status, 'degraded');
-  assert.equal(model.health.statusLabel, '存在异常');
+  assert.deepEqual(
+    { state: model.health.state, label: model.health.label, tone: model.health.tone },
+    { state: 'degraded', label: '存在异常', tone: 'danger' },
+  );
   assert.equal(model.health.lastFlushAt, '2026-07-15T11:59:55.000Z');
   assert.equal(model.health.droppedRetrySnapshots, 3);
   assert.equal(model.health.droppedAnomalies, 11);
@@ -235,7 +237,10 @@ test('view model fails closed for missing and dirty scheduler observability valu
   assert.equal(model.tasks[0].errorRate, 1);
   assert.equal(model.egresses[0].label, '未知出口');
   assert.equal(JSON.stringify(model).includes('secret.example'), false);
-  assert.equal(model.health.status, 'disabled');
+  assert.deepEqual(
+    { state: model.health.state, label: model.health.label, tone: model.health.tone },
+    { state: 'unknown', label: '状态未知', tone: 'neutral' },
+  );
   assert.equal(model.health.lastFlushAt, null);
   assert.equal(model.health.flushErrors, 0);
   assert.equal(model.anomalies.page, 1);
@@ -246,8 +251,10 @@ test('view model fails closed for missing and dirty scheduler observability valu
 
   const missingModel = buildSchedulerObservabilityViewModel();
   assert.equal(missingModel.hasSummaryData, false);
-  assert.equal(missingModel.health.status, 'unknown');
-  assert.equal(missingModel.health.statusLabel, '状态未知');
+  assert.deepEqual(
+    { state: missingModel.health.state, label: missingModel.health.label, tone: missingModel.health.tone },
+    { state: 'unknown', label: '状态未知', tone: 'neutral' },
+  );
 
   let symbolModel;
   assert.doesNotThrow(() => {
@@ -256,6 +263,45 @@ test('view model fails closed for missing and dirty scheduler observability valu
     });
   });
   assert.equal(symbolModel.anomalies.items[0].id, null);
+});
+
+test('classifies observation health through one five-state semantic contract', () => {
+  const cases = [
+    {
+      summary: {},
+      expected: { state: 'unknown', label: '状态未知', tone: 'neutral' },
+    },
+    {
+      summary: { headline: {}, health: {} },
+      expected: { state: 'unknown', label: '状态未知', tone: 'neutral' },
+    },
+    {
+      summary: { headline: {}, health: { enabled: false } },
+      expected: { state: 'disabled', label: '观测未启用', tone: 'warning' },
+    },
+    {
+      summary: { headline: {}, health: { enabled: true, started: false } },
+      expected: { state: 'stopped', label: '服务未启动', tone: 'warning' },
+    },
+    {
+      summary: { headline: {}, health: { enabled: true, started: true, droppedMetrics: 2 } },
+      expected: { state: 'degraded', label: '存在异常', tone: 'danger' },
+    },
+    {
+      summary: { headline: {}, health: { enabled: true, started: true } },
+      expected: { state: 'healthy', label: '运行正常', tone: 'success' },
+    },
+  ];
+
+  for (const { summary, expected } of cases) {
+    const health = buildSchedulerObservabilityViewModel(summary).health;
+    assert.deepEqual(
+      { state: health.state, label: health.label, tone: health.tone },
+      expected,
+    );
+    assert.equal(Object.hasOwn(health, 'status'), false);
+    assert.equal(Object.hasOwn(health, 'statusLabel'), false);
+  }
 });
 
 test('exposes the exact supported observability ranges', () => {
@@ -457,11 +503,22 @@ test('scheduler observability route, shared admin menu, and page lifecycle stay 
 
   assert.match(pageSource, /const POLL_INTERVAL_MS = 30_000/);
   assert.match(pageSource, /Promise\.allSettled/);
+  assert.match(pageSource, /summaryError\.value = !successfulData\(summaryResult\)/);
+  assert.match(pageSource, /anomaliesError\.value = !successfulData\(anomaliesResult\)/);
+  assert.match(pageSource, /if \(!summaryError\.value\) summaryPayload\.value = summaryResult\.value\.data/);
+  assert.match(pageSource, /if \(!anomaliesError\.value\) anomaliesPayload\.value = anomaliesResult\.value\.data/);
   assert.match(pageSource, /requestGeneration/);
   assert.match(pageSource, /anomalyPage\.value = 1/);
   assert.match(pageSource, /clearInterval\(pollTimer\)/);
   assert.match(pageSource, /onUnmounted/);
   assert.match(pageSource, /overflow-x:\s*auto/);
   assert.match(pageSource, /prefers-reduced-motion:\s*reduce/);
+  assert.match(pageSource, /model\.health\.state/);
+  assert.match(pageSource, /model\.health\.label/);
+  assert.match(pageSource, /model\.health\.tone/);
+  assert.doesNotMatch(pageSource, /model\.health\.(?:status|statusLabel|enabled|started)/);
+  for (const state of ['unknown', 'disabled', 'stopped', 'degraded', 'healthy']) {
+    assert.match(pageSource, new RegExp(`\\.health-${state}`));
+  }
   assert.doesNotMatch(pageSource, /n-(?:card|data-table|select|button)|a-(?:card|table|select|button)/);
 });

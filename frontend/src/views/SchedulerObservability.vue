@@ -252,7 +252,11 @@
         </nav>
       </section>
 
-      <section class="health-surface" :class="`health-${model.health.status}`" aria-labelledby="health-title">
+      <section
+        class="health-surface"
+        :class="[`health-${model.health.state}`, `health-tone-${model.health.tone}`]"
+        aria-labelledby="health-title"
+      >
         <div class="section-heading health-heading">
           <div>
             <p class="section-index">05</p>
@@ -260,14 +264,14 @@
           </div>
           <div class="health-status" role="status">
             <span class="health-status-mark" aria-hidden="true"></span>
-            {{ model.health.statusLabel }}
+            {{ model.health.label }}
           </div>
         </div>
 
         <dl class="flush-facts">
           <div>
             <dt>服务状态</dt>
-            <dd>{{ model.health.enabled ? (model.health.started ? '已启用并运行' : '已启用但未启动') : '观测未启用' }}</dd>
+            <dd>{{ model.health.label }}</dd>
           </div>
           <div>
             <dt>最近写入</dt>
@@ -543,8 +547,7 @@ onUnmounted(() => {
   font-variant-numeric: tabular-nums;
 }
 
-.freshness-mark,
-.health-status-mark {
+.freshness-mark {
   width: 8px;
   height: 8px;
   flex: 0 0 auto;
@@ -827,35 +830,70 @@ onUnmounted(() => {
 }
 
 .health-surface {
-  border-left: 3px solid #35a46f;
-}
-
-.health-disabled,
-.health-stopped,
-.health-degraded {
-  border-left-color: #c2812b;
+  border-left: 3px solid #8090ad;
 }
 
 .health-heading {
   .health-status {
     gap: 8px;
-    color: #247d55;
+    color: #66738d;
     font-size: 12px;
     font-weight: 700;
   }
 }
 
-.health-disabled,
-.health-stopped,
-.health-degraded {
-  .health-status {
-    color: #9b661d;
-  }
+.health-status-mark {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #8090ad;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
 
-  .health-status-mark {
-    background: #c2812b;
-    box-shadow: 0 0 0 4px rgba(194, 129, 43, 0.12);
+  &::before {
+    content: '?';
   }
+}
+
+.health-unknown {
+  border-left-color: #8090ad;
+}
+
+.health-disabled {
+  border-left-color: #c2812b;
+
+  .health-status { color: #9b661d; }
+  .health-status-mark { background: #c2812b; }
+  .health-status-mark::before { content: '–'; }
+}
+
+.health-stopped {
+  border-left-color: #c2812b;
+
+  .health-status { color: #9b661d; }
+  .health-status-mark { background: #c2812b; }
+  .health-status-mark::before { content: '■'; font-size: 8px; }
+}
+
+.health-degraded {
+  border-left-color: #c05245;
+
+  .health-status { color: #a33f34; }
+  .health-status-mark { background: #c05245; }
+  .health-status-mark::before { content: '!'; }
+}
+
+.health-healthy {
+  border-left-color: #35a46f;
+
+  .health-status { color: #247d55; }
+  .health-status-mark { background: #35a46f; }
+  .health-status-mark::before { content: '✓'; }
 }
 
 .flush-facts,

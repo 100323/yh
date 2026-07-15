@@ -295,8 +295,10 @@ function buildEgresses(egresses) {
 
 function buildHealth(health) {
   const hasHealthPayload = health !== null && typeof health === 'object';
-  const enabled = safeRead(health, 'enabled') === true;
-  const started = safeRead(health, 'started') === true;
+  const enabledValue = safeRead(health, 'enabled');
+  const startedValue = safeRead(health, 'started');
+  const enabled = typeof enabledValue === 'boolean' ? enabledValue : null;
+  const started = typeof startedValue === 'boolean' ? startedValue : null;
   const counterRows = HEALTH_COUNTER_DEFINITIONS.map(({ key, label }) => ({
     key,
     label,
@@ -305,27 +307,33 @@ function buildHealth(health) {
   const hasIssues = counterRows.some((counter) => (
     HEALTH_ISSUE_KEYS.has(counter.key) && counter.value > 0
   ));
-  let status = 'healthy';
-  let statusLabel = '运行正常';
-  if (!hasHealthPayload) {
-    status = 'unknown';
-    statusLabel = '状态未知';
-  } else if (!enabled) {
-    status = 'disabled';
-    statusLabel = '观测未启用';
-  } else if (!started) {
-    status = 'stopped';
-    statusLabel = '服务未启动';
-  } else if (hasIssues) {
-    status = 'degraded';
-    statusLabel = '存在异常';
+  let state = 'unknown';
+  let label = '状态未知';
+  let tone = 'neutral';
+  if (hasHealthPayload && enabled === false) {
+    state = 'disabled';
+    label = '观测未启用';
+    tone = 'warning';
+  } else if (enabled === true && started === false) {
+    state = 'stopped';
+    label = '服务未启动';
+    tone = 'warning';
+  } else if (enabled === true && started === true && hasIssues) {
+    state = 'degraded';
+    label = '存在异常';
+    tone = 'danger';
+  } else if (enabled === true && started === true) {
+    state = 'healthy';
+    label = '运行正常';
+    tone = 'success';
   }
 
   return {
     enabled,
     started,
-    status,
-    statusLabel,
+    state,
+    label,
+    tone,
     lastFlushAt: safeDateTime(safeRead(health, 'lastFlushAt')),
     lastFlushDurationMs: finiteNonNegative(safeRead(health, 'lastFlushDurationMs')),
     ...Object.fromEntries(counterRows.map(({ key, value }) => [key, value])),
