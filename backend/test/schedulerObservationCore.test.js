@@ -93,6 +93,21 @@ test('sanitizeObservationMessage redacts unterminated sensitive values and compl
   );
 });
 
+test('sanitizeObservationMessage keeps structural characters inside closed sensitive quotes redacted', () => {
+  const cases = [
+    ['token="first,comma-secret"', 'comma-secret'],
+    ["roleToken='first;semicolon-secret'", 'semicolon-secret'],
+    ['p="first&amp-secret"', 'amp-secret'],
+    ['token="first]bracket-secret"', 'bracket-secret'],
+  ];
+
+  for (const [input, secret] of cases) {
+    const result = sanitizeObservationMessage(input);
+    assert.equal(result.includes(secret), false);
+    assert.match(result, /\[REDACTED\]/);
+  }
+});
+
 test('classifyCommandFailure recognizes structured and textual rate limits', () => {
   assert.equal(classifyCommandFailure({ code: 200400 }), 'rate_limited');
   assert.equal(
@@ -545,6 +560,57 @@ test('mergeSnapshot keeps chronological FIFO across multiple restores and stable
     tiedTarget.takeSnapshot().anomalies.map((entry) => entry.type),
     ['first', 'second', 'current'],
   );
+});
+
+test('mergeSnapshot keeps same-millisecond restores before live anomalies in merge order', () => {
+  const timestamp = Date.parse('2026-07-15T01:00:00.000Z');
+  const createSnapshot = (type) => {
+    const source = new SchedulerObservationAggregator({ now: () => timestamp });
+    source.recordAnomaly({ type, message: type });
+    return source.takeSnapshot();
+  };
+
+  const firstSnapshot = createSnapshot('snapshot-first');
+  const target = new SchedulerObservationAggregator({ now: () => timestamp });
+  target.recordAnomaly({ type: 'current-second', message: 'current-second' });
+  target.mergeSnapshot(firstSnapshot);
+
+  assert.deepEqual(
+    target.takeSnapshot().anomalies.map((entry) => entry.type),
+    ['snapshot-first', 'current-second'],
+  );
+
+  const multiTarget = new SchedulerObservationAggregator({ now: () => timestamp });
+  multiTarget.recordAnomaly({ type: 'current', message: 'current' });
+  multiTarget.mergeSnapshot(createSnapshot('first-snapshot'));
+  multiTarget.mergeSnapshot(createSnapshot('second-snapshot'));
+
+  assert.deepEqual(
+    multiTarget.takeSnapshot().anomalies.map((entry) => entry.type),
+    ['first-snapshot', 'second-snapshot', 'current'],
+  );
+});
+
+test('recordAnomaly evicts only live anomalies after restored data exceeds capacity', () => {
+  const timestamp = Date.parse('2026-07-15T01:00:00.000Z');
+  const createSnapshot = (type) => {
+    const source = new SchedulerObservationAggregator({ now: () => timestamp });
+    source.recordAnomaly({ type, message: type });
+    return source.takeSnapshot();
+  };
+  const target = new SchedulerObservationAggregator({ now: () => timestamp, maxAnomalies: 1 });
+  target.recordAnomaly({ type: 'old-live', message: 'old-live' });
+  target.mergeSnapshot(createSnapshot('restored-first'));
+  target.mergeSnapshot(createSnapshot('restored-second'));
+
+  target.recordAnomaly({ type: 'new-live', message: 'new-live' });
+  const snapshot = target.takeSnapshot();
+
+  assert.deepEqual(
+    snapshot.anomalies.map((entry) => entry.type),
+    ['restored-first', 'restored-second', 'new-live'],
+  );
+  assert.equal(snapshot.health.droppedAnomalies, 1);
 });
 
 test('mergeSnapshot preserves an anomaly ISO timestamp', () => {

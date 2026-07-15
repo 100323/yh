@@ -76,13 +76,13 @@ function redactSensitiveAssignments(value) {
 
     if (value[valueStart] === '\\' && /["']/.test(value[valueStart + 1] ?? '')) {
       const quote = value[valueStart + 1];
-      const closingIndex = findEscapedQuoteEnd(value, valueStart + 2, quote, boundary);
+      const closingIndex = findEscapedQuoteEnd(value, valueStart + 2, quote, value.length);
       const valueEnd = closingIndex < 0 ? boundary : closingIndex + 2;
       result += `\\${quote}[REDACTED]${closingIndex < 0 ? '' : `\\${quote}`}`;
       cursor = valueEnd;
     } else if (/["']/.test(value[valueStart] ?? '')) {
       const quote = value[valueStart];
-      const closingIndex = findNormalQuoteEnd(value, valueStart + 1, quote, boundary);
+      const closingIndex = findNormalQuoteEnd(value, valueStart + 1, quote, value.length);
       const valueEnd = closingIndex < 0 ? boundary : closingIndex + 1;
       result += `${quote}[REDACTED]${closingIndex < 0 ? '' : quote}`;
       cursor = valueEnd;
@@ -420,6 +420,7 @@ export class SchedulerObservationAggregator {
     this._commandMetrics = new Map();
     this._taskMetrics = new Map();
     this._anomalies = [];
+    this._restoredAnomalyCount = 0;
     this._droppedMetrics = 0;
     this._droppedAnomalies = 0;
   }
@@ -504,14 +505,17 @@ export class SchedulerObservationAggregator {
   }
 
   recordAnomaly(anomaly = {}) {
-    this._anomalies.push(this._createAnomalyEntry(anomaly));
+    const entry = this._createAnomalyEntry(anomaly);
+    this._anomalies.push(entry);
+    let retained = true;
 
-    while (this._anomalies.length > this._maxAnomalies) {
-      this._anomalies.shift();
+    if (this._anomalies.length > this._maxAnomalies) {
+      const [removed] = this._anomalies.splice(this._restoredAnomalyCount, 1);
       this._droppedAnomalies = addObservationNumbers(this._droppedAnomalies, 1);
+      retained = removed !== entry;
     }
 
-    return this._maxAnomalies > 0;
+    return retained;
   }
 
   getHealth() {
@@ -532,6 +536,7 @@ export class SchedulerObservationAggregator {
     this._commandMetrics = new Map();
     this._taskMetrics = new Map();
     this._anomalies = [];
+    this._restoredAnomalyCount = 0;
     this._droppedMetrics = 0;
     this._droppedAnomalies = 0;
 
@@ -567,9 +572,8 @@ export class SchedulerObservationAggregator {
     for (const row of snapshot.taskMetrics) this._mergeMetricRow('task', row);
 
     const restoredAnomalies = snapshot.anomalies.map((anomaly) => this._createAnomalyEntry(anomaly));
-    this._anomalies = [...this._anomalies, ...restoredAnomalies].sort((left, right) => (
-      Date.parse(left.timestamp) - Date.parse(right.timestamp)
-    ));
+    this._anomalies.splice(this._restoredAnomalyCount, 0, ...restoredAnomalies);
+    this._restoredAnomalyCount += restoredAnomalies.length;
 
     this._droppedMetrics = addObservationNumbers(
       this._droppedMetrics,
