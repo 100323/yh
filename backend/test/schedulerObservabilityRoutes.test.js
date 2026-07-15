@@ -425,8 +425,25 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
         occurred_at: '2026-07-15T11:45:00.000Z',
         summary: 'connect (edge.example:8080).',
       },
+      {
+        occurred_at: '2026-07-15T11:44:00.000Z',
+        summary: 'host=(edge.example:8080).',
+      },
+      {
+        occurred_at: '2026-07-15T11:43:00.000Z',
+        summary: 'url=(https://edge.example/private).',
+      },
+      {
+        occurred_at: '2026-07-15T11:42:00.000Z',
+        summary: 'host=\u300c\u4f8b\u5b50.\u6d4b\u8bd5:8080\u300d\u3002',
+      },
+      {
+        occurred_at: '2026-07-15T11:41:00.000Z',
+        command: 'arena.start',
+        summary: 'key=value version 1.25',
+      },
     ],
-    total: 15,
+    total: 19,
     page: 2,
     pageSize: 10,
   });
@@ -460,8 +477,13 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
   assert.equal(data.items[9].command, 'arena.start');
   assert.equal(data.items[9].summary, 'version 1.25');
   for (const item of data.items.slice(10)) {
-    assert.equal(item.summary, 'connect [REDACTED]');
+    if (item.command !== 'arena.start') assert.match(item.summary, /^connect \[REDACTED\]$|^\[REDACTED\]$/u);
   }
+  assert.equal(data.items[15].summary, '[REDACTED]');
+  assert.equal(data.items[16].summary, '[REDACTED]');
+  assert.equal(data.items[17].summary, '[REDACTED]');
+  assert.equal(data.items[18].command, 'arena.start');
+  assert.equal(data.items[18].summary, 'key=value version 1.25');
   const serialized = JSON.stringify(data);
   for (const secret of [
     'alpha',
@@ -487,6 +509,10 @@ test('serializes anomaly results with an allowlist and fail-closed sensitive/net
     'token-secret',
     'stack-secret',
     'raw-proxy.example',
+    'https://',
+    'private',
+    'host=',
+    'url=',
   ]) {
     assert.equal(serialized.includes(secret), false, secret);
   }

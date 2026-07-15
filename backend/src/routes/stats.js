@@ -220,10 +220,24 @@ function unwrapNetworkToken(rawToken) {
   return token;
 }
 
+function networkTokenCandidate(rawToken) {
+  let token = rawToken;
+  for (let index = 0; index < 3; index += 1) {
+    const previous = token;
+    token = unwrapNetworkToken(token);
+    const authorityIndex = token.search(/(?:[A-Za-z][A-Za-z\d+.-]*:)?\/\//u);
+    const equalsIndex = authorityIndex >= 0
+      ? token.lastIndexOf('=', authorityIndex)
+      : token.lastIndexOf('=');
+    if (equalsIndex >= 0) token = token.slice(equalsIndex + 1);
+    token = unwrapNetworkToken(token);
+    if (token === previous) break;
+  }
+  return token;
+}
+
 function isNetworkOutputToken(rawToken) {
-  let token = unwrapNetworkToken(rawToken);
-  const equalsIndex = token.lastIndexOf('=');
-  if (equalsIndex >= 0) token = token.slice(equalsIndex + 1);
+  let token = networkTokenCandidate(rawToken);
   if (/^(?:[A-Za-z][A-Za-z\d+.-]*:)?\/\//u.test(token)) return true;
   token = token.split(/[/?#]/u, 1)[0];
   if (!token) return false;
