@@ -62,6 +62,12 @@ const routes = [
         meta: { title: '执行日志' }
       },
       {
+        path: 'scheduler-observability',
+        name: 'SchedulerObservability',
+        component: () => import('@views/SchedulerObservability.vue'),
+        meta: { title: '调度观测', requiresAdmin: true }
+      },
+      {
         path: 'profile',
         name: 'Profile',
         component: () => import('@views/Profile.vue'),
