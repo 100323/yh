@@ -108,6 +108,29 @@ test('sanitizeObservationMessage keeps structural characters inside closed sensi
   }
 });
 
+test('sanitizeObservationMessage continues through chained secrets after an unterminated value', () => {
+  const cases = [
+    {
+      input: 'token="token-secret, p="proxy-secret"',
+      secrets: ['token-secret', 'proxy-secret'],
+    },
+    {
+      input: "roleToken='role-secret; token='token-secret'",
+      secrets: ['role-secret', 'token-secret'],
+    },
+    {
+      input: String.raw`token="first-secret, roleToken=\"second-secret\"; p='third-secret'`,
+      secrets: ['first-secret', 'second-secret', 'third-secret'],
+    },
+  ];
+
+  for (const { input, secrets } of cases) {
+    const result = sanitizeObservationMessage(input);
+    for (const secret of secrets) assert.equal(result.includes(secret), false);
+    assert.equal((result.match(/\[REDACTED\]/g) ?? []).length, secrets.length);
+  }
+});
+
 test('classifyCommandFailure recognizes structured and textual rate limits', () => {
   assert.equal(classifyCommandFailure({ code: 200400 }), 'rate_limited');
   assert.equal(
