@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   OBSERVABILITY_RANGE_OPTIONS,
+  buildSchedulerObservabilityRequestParams,
   buildSchedulerObservabilityViewModel,
   buildTrendBars,
   formatAmplification,
@@ -288,12 +289,29 @@ test('classifies observation health through one five-state semantic contract', (
       expected: { state: 'degraded', label: '存在异常', tone: 'danger' },
     },
     {
-      summary: { headline: {}, health: { enabled: true, started: true } },
+      summary: {
+        headline: {},
+        health: {
+          enabled: true,
+          started: true,
+          lastFlushAt: null,
+          lastFlushDurationMs: null,
+          flushErrors: 0,
+          mergeErrors: 0,
+          droppedRetrySnapshots: 0,
+          observationErrors: 0,
+          healthErrors: 0,
+          droppedQueueWaits: 0,
+          droppedMetrics: 0,
+          droppedAnomalies: 0,
+        },
+      },
       expected: { state: 'healthy', label: '运行正常', tone: 'success' },
+      expectedFlushDurationMs: null,
     },
   ];
 
-  for (const { summary, expected } of cases) {
+  for (const { summary, expected, expectedFlushDurationMs } of cases) {
     const health = buildSchedulerObservabilityViewModel(summary).health;
     assert.deepEqual(
       { state: health.state, label: health.label, tone: health.tone },
@@ -301,7 +319,57 @@ test('classifies observation health through one five-state semantic contract', (
     );
     assert.equal(Object.hasOwn(health, 'status'), false);
     assert.equal(Object.hasOwn(health, 'statusLabel'), false);
+    if (expectedFlushDurationMs !== undefined) {
+      assert.equal(health.lastFlushAt, null);
+      assert.equal(health.lastFlushDurationMs, expectedFlushDurationMs);
+    }
   }
+
+  assert.equal(buildSchedulerObservabilityViewModel({
+    headline: {},
+    health: { enabled: true, started: true, lastFlushDurationMs: 0 },
+  }).health.lastFlushDurationMs, 0);
+  for (const dirtyDuration of [undefined, null, -1, Number.POSITIVE_INFINITY, '0']) {
+    assert.equal(buildSchedulerObservabilityViewModel({
+      headline: {},
+      health: { enabled: true, started: true, lastFlushDurationMs: dirtyDuration },
+    }).health.lastFlushDurationMs, null);
+  }
+});
+
+test('builds immutable endpoint-scoped observability request params', () => {
+  const filters = {
+    range: '6h',
+    source: 'batch',
+    taskType: 'DAILY_TASK',
+    commandClass: 'game',
+    egressType: 'proxy',
+  };
+  const snapshot = { ...filters };
+  const params = buildSchedulerObservabilityRequestParams(filters, 3, 25);
+
+  assert.deepEqual(params, {
+    summary: {
+      range: '6h',
+      source: 'batch',
+      taskType: 'DAILY_TASK',
+      commandClass: 'game',
+      egressType: 'proxy',
+    },
+    anomalies: {
+      range: '6h',
+      source: 'batch',
+      taskType: 'DAILY_TASK',
+      egressType: 'proxy',
+      page: 3,
+      pageSize: 25,
+    },
+  });
+  assert.equal(Object.hasOwn(params.anomalies, 'commandClass'), false);
+  for (const name of ['range', 'source', 'taskType', 'egressType']) {
+    assert.equal(params.anomalies[name], params.summary[name]);
+  }
+  assert.deepEqual(filters, snapshot);
 });
 
 test('exposes the exact supported observability ranges', () => {
@@ -503,6 +571,10 @@ test('scheduler observability route, shared admin menu, and page lifecycle stay 
 
   assert.match(pageSource, /const POLL_INTERVAL_MS = 30_000/);
   assert.match(pageSource, /Promise\.allSettled/);
+  assert.match(pageSource, /buildSchedulerObservabilityRequestParams/);
+  assert.match(pageSource, /命令类别（仅汇总）/);
+  assert.match(pageSource, /异常明细不受命令类别筛选影响/);
+  assert.match(pageSource, /value === null \? '暂无' : formatMetricDuration\(value\)/);
   assert.match(pageSource, /summaryError\.value = !successfulData\(summaryResult\)/);
   assert.match(pageSource, /anomaliesError\.value = !successfulData\(anomaliesResult\)/);
   assert.match(pageSource, /if \(!summaryError\.value\) summaryPayload\.value = summaryResult\.value\.data/);

@@ -56,6 +56,10 @@ function safeRatio(value) {
   return Math.min(1, finiteNonNegative(value));
 }
 
+function finiteNullableNonNegative(value) {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
+}
+
 function safePositiveInteger(value, fallback) {
   const number = finiteNonNegative(value);
   return number >= 1 ? Math.floor(number) : fallback;
@@ -194,6 +198,26 @@ export function formatAnomalyCategory(category) {
 
   const canonicalCategory = ANOMALY_CATEGORY_ALIASES.get(categoryValue) ?? categoryValue;
   return ANOMALY_CATEGORY_LABELS.get(canonicalCategory) ?? '未知异常';
+}
+
+export function buildSchedulerObservabilityRequestParams(filters = {}, page = 1, pageSize = 25) {
+  const common = {};
+  for (const name of ['range', 'source', 'taskType', 'egressType']) {
+    const value = safeString(safeRead(filters, name));
+    if (value !== '') common[name] = value;
+  }
+  const summary = { ...common };
+  const commandClass = safeString(safeRead(filters, 'commandClass'));
+  if (commandClass !== '') summary.commandClass = commandClass;
+
+  return {
+    summary,
+    anomalies: {
+      ...common,
+      page: safePositiveInteger(page, 1),
+      pageSize: Math.min(100, safePositiveInteger(pageSize, 25)),
+    },
+  };
 }
 
 const HEADLINE_DEFINITIONS = [
@@ -335,7 +359,7 @@ function buildHealth(health) {
     label,
     tone,
     lastFlushAt: safeDateTime(safeRead(health, 'lastFlushAt')),
-    lastFlushDurationMs: finiteNonNegative(safeRead(health, 'lastFlushDurationMs')),
+    lastFlushDurationMs: finiteNullableNonNegative(safeRead(health, 'lastFlushDurationMs')),
     ...Object.fromEntries(counterRows.map(({ key, value }) => [key, value])),
     counterRows,
   };

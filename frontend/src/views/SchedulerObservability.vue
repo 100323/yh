@@ -64,11 +64,11 @@
       </div>
 
       <div class="filter-field">
-        <label for="observability-command">命令类别</label>
+        <label for="observability-command">命令类别（仅汇总）</label>
         <el-select
           id="observability-command"
           v-model="filters.commandClass"
-          aria-label="命令类别"
+          aria-label="命令类别（仅汇总）"
           clearable
           placeholder="全部命令"
         >
@@ -211,7 +211,7 @@
             <p class="section-index">04</p>
             <h2 id="anomalies-title">异常明细</h2>
           </div>
-          <p>共 {{ model.anomalies.total }} 条脱敏异常，按服务端分页返回。</p>
+          <p>异常明细不受命令类别筛选影响；共 {{ model.anomalies.total }} 条脱敏异常。</p>
         </div>
         <div class="table-scroll" tabindex="0" aria-label="异常明细表，可横向滚动">
           <el-table :data="model.anomalies.items" row-key="key" empty-text="当前筛选范围内暂无异常">
@@ -303,6 +303,7 @@ import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import api from '@/api';
 import {
   OBSERVABILITY_RANGE_OPTIONS,
+  buildSchedulerObservabilityRequestParams,
   buildSchedulerObservabilityViewModel,
   formatMetricDuration,
 } from '@/utils/schedulerObservabilityViewModel';
@@ -376,31 +377,6 @@ const errorDescription = computed(() => {
     : '异常明细未更新，汇总与健康数据仍可继续查看。';
 });
 
-function compactParams(params) {
-  return Object.fromEntries(Object.entries(params).filter(([, value]) => value !== ''));
-}
-
-function summaryRequestParams() {
-  return compactParams({
-    range: filters.range,
-    source: filters.source,
-    taskType: filters.taskType,
-    commandClass: filters.commandClass,
-    egressType: filters.egressType,
-  });
-}
-
-function anomalyRequestParams() {
-  return compactParams({
-    range: filters.range,
-    source: filters.source,
-    taskType: filters.taskType,
-    egressType: filters.egressType,
-    page: anomalyPage.value,
-    pageSize: ANOMALY_PAGE_SIZE,
-  });
-}
-
 function successfulData(result) {
   return result.status === 'fulfilled'
     && result.value?.success === true
@@ -416,9 +392,14 @@ async function refreshObservability({ background = false } = {}) {
   else if (background || hasLoaded.value) refreshing.value = true;
 
   try {
+    const requestParams = buildSchedulerObservabilityRequestParams(
+      filters,
+      anomalyPage.value,
+      ANOMALY_PAGE_SIZE,
+    );
     const [summaryResult, anomaliesResult] = await Promise.allSettled([
-      api.stats.getSchedulerObservabilitySummary(summaryRequestParams()),
-      api.stats.getSchedulerObservabilityAnomalies(anomalyRequestParams()),
+      api.stats.getSchedulerObservabilitySummary(requestParams.summary),
+      api.stats.getSchedulerObservabilityAnomalies(requestParams.anomalies),
     ]);
     if (!isMounted || requestId !== requestGeneration) return;
 
@@ -454,7 +435,7 @@ function formatAccount(value) {
 }
 
 function formatDuration(value) {
-  return formatMetricDuration(value);
+  return value === null ? '暂无' : formatMetricDuration(value);
 }
 
 function isHealthIssueCounter(key, value) {
