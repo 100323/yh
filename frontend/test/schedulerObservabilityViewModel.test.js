@@ -116,22 +116,44 @@ test('formats only allow-listed egress descriptors without reflecting raw addres
   assert.equal(formatEgressLabel(hostile), '未知出口');
 });
 
-test('localizes anomaly categories without changing the original category', () => {
-  const labels = {
-    rate_limited: '触发限流',
-    timeout: '请求超时',
-    disconnected: '连接断开',
-    slow: '响应缓慢',
-    error: '命令错误',
+test('localizes canonical API anomaly categories without changing string or object input', () => {
+  const canonicalLabels = {
+    command_rate_limited: '触发限流',
+    command_timeout: '请求超时',
+    command_disconnected: '连接断开',
+    slow_command: '响应缓慢',
+    command_error: '命令错误',
   };
 
-  for (const [category, label] of Object.entries(labels)) {
+  for (const [category, label] of Object.entries(canonicalLabels)) {
     const original = category;
     assert.equal(formatAnomalyCategory(category), label);
     assert.equal(category, original);
+
+    const row = { category, marker: 'unchanged' };
+    const snapshot = { ...row };
+    assert.equal(formatAnomalyCategory(row), label);
+    assert.deepEqual(row, snapshot);
   }
+});
+
+test('keeps short category aliases compatible and fails closed for unknown input', () => {
+  assert.equal(formatAnomalyCategory('rate_limited'), '触发限流');
+  assert.equal(formatAnomalyCategory('timeout'), '请求超时');
+  assert.equal(formatAnomalyCategory('disconnected'), '连接断开');
+  assert.equal(formatAnomalyCategory('slow'), '响应缓慢');
+  assert.equal(formatAnomalyCategory('error'), '命令错误');
   assert.equal(formatAnomalyCategory('raw secret error'), '未知异常');
   assert.equal(formatAnomalyCategory(null), '未知异常');
+
+  const hostile = {};
+  Object.defineProperty(hostile, 'category', {
+    get() {
+      throw new Error('must not escape');
+    },
+  });
+  assert.doesNotThrow(() => formatAnomalyCategory(hostile));
+  assert.equal(formatAnomalyCategory(hostile), '未知异常');
 });
 
 test('stats observability APIs pass the original params through request options', async () => {

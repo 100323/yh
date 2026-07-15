@@ -5,13 +5,21 @@ export const OBSERVABILITY_RANGE_OPTIONS = [
   { label: '最近 3 天', value: '3d' },
 ];
 
-const ANOMALY_CATEGORY_LABELS = Object.freeze({
-  rate_limited: '触发限流',
-  timeout: '请求超时',
-  disconnected: '连接断开',
-  slow: '响应缓慢',
-  error: '命令错误',
-});
+const ANOMALY_CATEGORY_LABELS = new Map([
+  ['command_rate_limited', '触发限流'],
+  ['command_timeout', '请求超时'],
+  ['command_disconnected', '连接断开'],
+  ['slow_command', '响应缓慢'],
+  ['command_error', '命令错误'],
+]);
+
+const ANOMALY_CATEGORY_ALIASES = new Map([
+  ['rate_limited', 'command_rate_limited'],
+  ['timeout', 'command_timeout'],
+  ['disconnected', 'command_disconnected'],
+  ['slow', 'slow_command'],
+  ['error', 'command_error'],
+]);
 
 function finiteNonNegative(value) {
   try {
@@ -112,7 +120,9 @@ export function formatEgressLabel(row) {
 }
 
 export function formatAnomalyCategory(category) {
-  return typeof category === 'string'
-    ? ANOMALY_CATEGORY_LABELS[category] ?? '未知异常'
-    : '未知异常';
+  const categoryValue = typeof category === 'string' ? category : safeRead(category, 'category');
+  if (typeof categoryValue !== 'string') return '未知异常';
+
+  const canonicalCategory = ANOMALY_CATEGORY_ALIASES.get(categoryValue) ?? categoryValue;
+  return ANOMALY_CATEGORY_LABELS.get(canonicalCategory) ?? '未知异常';
 }
