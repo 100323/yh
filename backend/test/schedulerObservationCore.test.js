@@ -240,6 +240,147 @@ test('runObservedTask isolates missing and failing observers without unhandled r
   }
 });
 
+test('runObservedTask isolates a throwing observer method getter for every settlement path', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const getterError = new Error('observer getter failure');
+    const createObserver = () => ({
+      get observeTaskSettled() { throw getterError; },
+    });
+    const value = { ok: true };
+
+    assert.strictEqual(runObservedTask({}, () => value, createObserver()), value);
+
+    const syncError = new Error('sync executor failure');
+    assert.throws(
+      () => runObservedTask({}, () => { throw syncError; }, createObserver()),
+      (error) => error === syncError,
+    );
+
+    const asyncError = new Error('async executor failure');
+    const rejected = Promise.reject(asyncError);
+    assert.strictEqual(runObservedTask({}, () => rejected, createObserver()), rejected);
+    await assert.rejects(rejected, (error) => error === asyncError);
+
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask falls back to error when failure classification reads throw', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const createExecutorError = () => {
+      const error = new Error('executor failure');
+      const classificationError = new Error('classification getter failure');
+      Object.defineProperty(error, 'timeout', {
+        get() { throw classificationError; },
+      });
+      return error;
+    };
+
+    const syncError = createExecutorError();
+    const syncCalls = [];
+    assert.throws(
+      () => runObservedTask({}, () => { throw syncError; }, {
+        observeTaskSettled: (payload) => syncCalls.push(payload),
+      }),
+      (error) => error === syncError,
+    );
+    assert.equal(syncCalls.length, 1);
+    assert.equal(syncCalls[0].outcome, 'error');
+    assert.strictEqual(syncCalls[0].error, syncError);
+
+    const asyncError = createExecutorError();
+    const asyncCalls = [];
+    const rejected = Promise.reject(asyncError);
+    assert.strictEqual(runObservedTask({}, () => rejected, {
+      observeTaskSettled: (payload) => asyncCalls.push(payload),
+    }), rejected);
+    await assert.rejects(rejected, (error) => error === asyncError);
+    assert.equal(asyncCalls.length, 1);
+    assert.equal(asyncCalls[0].outcome, 'error');
+    assert.strictEqual(asyncCalls[0].error, asyncError);
+
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask consumes a rejected chain returned by an observer thenable', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const chainError = new Error('observer chain failure');
+    const observer = {
+      observeTaskSettled() {
+        return {
+          then() { return Promise.reject(chainError); },
+        };
+      },
+    };
+    const value = { ok: true };
+    assert.strictEqual(runObservedTask({}, () => value, observer), value);
+
+    const promise = Promise.resolve(value);
+    assert.strictEqual(runObservedTask({}, () => promise, observer), promise);
+    assert.strictEqual(await promise, value);
+
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask safely attaches observation to hostile executor thenables', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const getterError = new Error('executor then getter failure');
+    const throwingGetter = {};
+    Object.defineProperty(throwingGetter, 'then', {
+      get() { throw getterError; },
+    });
+    assert.strictEqual(runObservedTask({}, () => throwingGetter), throwingGetter);
+
+    const callError = new Error('executor then call failure');
+    const throwingCall = {
+      then() { throw callError; },
+    };
+    assert.strictEqual(runObservedTask({}, () => throwingCall), throwingCall);
+
+    const chainError = new Error('executor chain failure');
+    const rejectedChain = {
+      then() { return Promise.reject(chainError); },
+    };
+    assert.strictEqual(runObservedTask({}, () => rejectedChain), rejectedChain);
+
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
 test('runObservedTask observes a non-function executor as a failed settlement', () => {
   const calls = [];
   let caught;

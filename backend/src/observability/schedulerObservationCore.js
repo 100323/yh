@@ -19,16 +19,48 @@ function elapsedMilliseconds(startedAt) {
   return Number.isFinite(elapsed) && elapsed >= 0 ? elapsed : 0;
 }
 
-function safelyObserveTaskSettlement(observer, payload) {
-  if (typeof observer?.observeTaskSettled !== 'function') return;
+function noop() {}
 
+function safelyObserveTaskSettlement(observer, payload) {
   try {
-    const result = observer.observeTaskSettled(payload);
-    if (result && typeof result.then === 'function') {
-      result.then(undefined, () => {});
-    }
+    const method = observer?.observeTaskSettled;
+    if (typeof method !== 'function') return;
+
+    const result = method.call(observer, payload);
+    if (result === null || (typeof result !== 'object' && typeof result !== 'function')) return;
+
+    const then = result.then;
+    if (typeof then !== 'function') return;
+
+    const chained = then.call(result, undefined, noop);
+    Promise.resolve(chained).catch(noop);
   } catch {
     // Observation must never affect task settlement.
+  }
+}
+
+function safelyClassifyCommandFailure(error) {
+  try {
+    return classifyCommandFailure(error, error);
+  } catch {
+    return 'error';
+  }
+}
+
+function safelyAttachTaskSettlement(result, onSuccess, onFailure) {
+  if (result === null || (typeof result !== 'object' && typeof result !== 'function')) {
+    return false;
+  }
+
+  try {
+    const then = result.then;
+    if (typeof then !== 'function') return false;
+
+    const chained = then.call(result, onSuccess, onFailure);
+    Promise.resolve(chained).catch(noop);
+    return true;
+  } catch {
+    return true;
   }
 }
 
@@ -64,7 +96,7 @@ export function runObservedTask(context, executor, observer) {
     });
     const observeFailure = (error) => safelyObserveTaskSettlement(observer, {
       ...observationContext,
-      outcome: classifyCommandFailure(error, error),
+      outcome: safelyClassifyCommandFailure(error),
       durationMs: elapsedMilliseconds(monotonicStartedAt),
       error,
     });
@@ -77,9 +109,7 @@ export function runObservedTask(context, executor, observer) {
       throw error;
     }
 
-    if (result && typeof result.then === 'function') {
-      result.then(observeSuccess, observeFailure);
-    } else {
+    if (!safelyAttachTaskSettlement(result, observeSuccess, observeFailure)) {
       observeSuccess();
     }
     return result;
