@@ -51,6 +51,23 @@ test('sanitizeObservationMessage honors a custom maximum and handles empty value
   assert.equal(sanitizeObservationMessage('value', 0), '');
 });
 
+test('sanitizeObservationMessage removes escaped secrets and C1 controls without swallowing context', () => {
+  const escapedPayload = 'prefix payload="{\\"token\\":\\"escaped-secret\\"}" suffix';
+  const escapedQuote = 'before token="part1\\"part2-secret" after';
+
+  const payloadResult = sanitizeObservationMessage(escapedPayload);
+  const quoteResult = sanitizeObservationMessage(escapedQuote);
+  const controlResult = sanitizeObservationMessage('left\u0085right');
+
+  assert.equal(payloadResult.includes('escaped-secret'), false);
+  assert.match(payloadResult, /prefix/);
+  assert.match(payloadResult, /suffix/);
+  assert.equal(quoteResult.includes('part2-secret'), false);
+  assert.match(quoteResult, /before/);
+  assert.match(quoteResult, /after/);
+  assert.equal(controlResult, 'leftright');
+});
+
 test('classifyCommandFailure recognizes structured and textual rate limits', () => {
   assert.equal(classifyCommandFailure({ code: 200400 }), 'rate_limited');
   assert.equal(
@@ -136,6 +153,42 @@ test('SchedulerObservationAggregator separates command outcomes and totals count
   assert.ok(snapshot.commandMetrics.every((row) => row.minute === '2026-07-15 08:09:00'));
 });
 
+test('recordCommand accumulates outcome counts and valid latency statistics', () => {
+  const aggregator = new SchedulerObservationAggregator({ now: () => 0 });
+
+  aggregator.recordCommand({ command: 'observe', outcome: 'error', latencyMs: 12.5 });
+  aggregator.recordCommand({ command: 'observe', outcome: 'timeout', latencyMs: 0 });
+  aggregator.recordCommand({ command: 'observe', outcome: 'disconnected', latencyMs: -1 });
+  aggregator.recordCommand({ command: 'observe', outcome: 'rate_limited', latencyMs: Infinity });
+
+  const rows = Object.fromEntries(
+    aggregator.takeSnapshot().commandMetrics.map((row) => [row.outcome, row]),
+  );
+
+  assert.deepEqual(rows.error, {
+    minute: '1970-01-01 00:00:00',
+    dimensions: { command: 'observe' },
+    outcome: 'error',
+    commandCount: 1,
+    errorCount: 1,
+    timeoutCount: 0,
+    disconnectedCount: 0,
+    rateLimitedCount: 0,
+    latencyCount: 1,
+    latencySumMs: 12.5,
+    latencyMaxMs: 12.5,
+  });
+  assert.equal(rows.timeout.timeoutCount, 1);
+  assert.equal(rows.timeout.latencyCount, 1);
+  assert.equal(rows.timeout.latencySumMs, 0);
+  assert.equal(rows.disconnected.disconnectedCount, 1);
+  assert.equal(rows.disconnected.latencyCount, 0);
+  assert.equal(rows.disconnected.latencySumMs, 0);
+  assert.equal(rows.rate_limited.rateLimitedCount, 1);
+  assert.equal(rows.rate_limited.latencyCount, 0);
+  assert.equal(rows.rate_limited.latencyMaxMs, 0);
+});
+
 test('recordTask normalizes empty and object dimensions without object key coercion', () => {
   const aggregator = new SchedulerObservationAggregator({ now: () => 0 });
 
@@ -153,6 +206,47 @@ test('recordTask normalizes empty and object dimensions without object key coerc
   assert.equal(JSON.stringify(snapshot).includes('[object Object]'), false);
 });
 
+test('recordTask accumulates valid timing statistics and attributed command aliases', () => {
+  const aggregator = new SchedulerObservationAggregator({ now: () => 0 });
+
+  aggregator.recordTask({
+    task: 'daily',
+    outcome: 'success',
+    durationMs: 25,
+    queueWaitMs: 5,
+    commandCount: '2.9',
+  });
+  aggregator.recordTask({
+    task: 'daily',
+    outcome: 'success',
+    durationMs: -1,
+    queueWaitMs: Infinity,
+    attributedCommandCount: 3,
+  });
+  aggregator.recordTask({
+    task: 'daily',
+    outcome: 'success',
+    durationMs: 'not-a-number',
+    queueWaitMs: -10,
+    commandCount: -4,
+  });
+
+  const row = aggregator.takeSnapshot().taskMetrics[0];
+  assert.deepEqual(row, {
+    minute: '1970-01-01 00:00:00',
+    dimensions: { task: 'daily' },
+    outcome: 'success',
+    runCount: 3,
+    durationCount: 1,
+    durationSumMs: 25,
+    durationMaxMs: 25,
+    queueWaitCount: 1,
+    queueWaitSumMs: 5,
+    queueWaitMaxMs: 5,
+    attributedCommandCount: 5,
+  });
+});
+
 test('metric capacity drops only new keys and reports health', () => {
   const aggregator = new SchedulerObservationAggregator({ maxMetricKeys: 1 });
 
@@ -168,7 +262,7 @@ test('metric capacity drops only new keys and reports health', () => {
   });
 
   const snapshot = aggregator.takeSnapshot();
-  assert.equal(snapshot.commandMetrics[0].count, 2);
+  assert.equal(snapshot.commandMetrics[0].commandCount, 2);
   assert.equal(snapshot.totals.commandCount, 2);
   assert.equal(snapshot.health.droppedMetrics, 1);
 });
@@ -242,11 +336,95 @@ test('mergeSnapshot combines matching metric rows, anomalies, and drop counters'
 
   const merged = target.takeSnapshot();
   assert.equal(merged.commandMetrics.length, 1);
-  assert.equal(merged.commandMetrics[0].count, 2);
+  assert.equal(merged.commandMetrics[0].commandCount, 2);
   assert.equal(merged.totals.commandCount, 2);
   assert.equal(merged.totals.rateLimitedCount, 2);
   assert.deepEqual(merged.anomalies.map((entry) => entry.type), ['source']);
   assert.equal(merged.health.droppedMetrics, 1);
+});
+
+test('mergeSnapshot bypasses metric capacity and combines every command field losslessly', () => {
+  const target = new SchedulerObservationAggregator({ now: () => 0, maxMetricKeys: 1 });
+  target.recordCommand({ command: 'current', outcome: 'error', latencyMs: 10 });
+
+  const source = new SchedulerObservationAggregator({ now: () => 0 });
+  source.recordCommand({ command: 'current', outcome: 'error', latencyMs: 20 });
+  source.recordCommand({ command: 'source', outcome: 'timeout', latencyMs: 7 });
+
+  target.mergeSnapshot(source.takeSnapshot());
+  const snapshot = target.takeSnapshot();
+  const rows = Object.fromEntries(
+    snapshot.commandMetrics.map((row) => [row.dimensions.command, row]),
+  );
+
+  assert.equal(snapshot.commandMetrics.length, 2);
+  assert.equal(rows.current.commandCount, 2);
+  assert.equal(rows.current.errorCount, 2);
+  assert.equal(rows.current.latencyCount, 2);
+  assert.equal(rows.current.latencySumMs, 30);
+  assert.equal(rows.current.latencyMaxMs, 20);
+  assert.equal(rows.source.commandCount, 1);
+  assert.equal(rows.source.timeoutCount, 1);
+  assert.equal(snapshot.health.droppedMetrics, 0);
+});
+
+test('mergeSnapshot combines every task field using sums and maxima', () => {
+  const target = new SchedulerObservationAggregator({ now: () => 0 });
+  target.recordTask({
+    task: 'shared',
+    outcome: 'success',
+    durationMs: 10,
+    queueWaitMs: 4,
+    commandCount: 2,
+  });
+
+  const source = new SchedulerObservationAggregator({ now: () => 0 });
+  source.recordTask({
+    task: 'shared',
+    outcome: 'success',
+    durationMs: 30,
+    queueWaitMs: 1,
+    attributedCommandCount: 3,
+  });
+
+  target.mergeSnapshot(source.takeSnapshot());
+  const row = target.takeSnapshot().taskMetrics[0];
+
+  assert.equal(row.runCount, 2);
+  assert.equal(row.durationCount, 2);
+  assert.equal(row.durationSumMs, 40);
+  assert.equal(row.durationMaxMs, 30);
+  assert.equal(row.queueWaitCount, 2);
+  assert.equal(row.queueWaitSumMs, 5);
+  assert.equal(row.queueWaitMaxMs, 4);
+  assert.equal(row.attributedCommandCount, 5);
+});
+
+test('mergeSnapshot prepends all older anomalies without applying current capacity', () => {
+  const target = new SchedulerObservationAggregator({
+    now: () => Date.parse('2026-07-15T03:00:00.000Z'),
+    maxAnomalies: 1,
+  });
+  target.recordAnomaly({ type: 'current', message: 'current' });
+
+  let sourceTime = Date.parse('2026-07-15T01:00:00.000Z');
+  const source = new SchedulerObservationAggregator({
+    now: () => sourceTime,
+    maxAnomalies: 5,
+  });
+  source.recordAnomaly({ type: 'oldest', message: 'oldest' });
+  sourceTime += 60 * 60 * 1000;
+  source.recordAnomaly({ type: 'older', message: 'older' });
+
+  target.mergeSnapshot(source.takeSnapshot());
+  const snapshot = target.takeSnapshot();
+
+  assert.deepEqual(
+    snapshot.anomalies.map((entry) => entry.type),
+    ['oldest', 'older', 'current'],
+  );
+  assert.equal(snapshot.health.anomalyCount, 3);
+  assert.equal(snapshot.health.droppedAnomalies, 0);
 });
 
 test('mergeSnapshot preserves an anomaly ISO timestamp', () => {

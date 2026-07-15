@@ -22,25 +22,39 @@ function normalizeMaxLength(maxLength) {
   return Math.max(0, Math.floor(numericLength));
 }
 
+function redactSensitiveAssignments(value) {
+  const keyPrefix = String.raw`((?:\\?["'])?\b(?:roleToken|token|p)\b(?:\\?["'])?\s*[:=]\s*)`;
+  const escapedQuotedValue = new RegExp(
+    `${keyPrefix}\\\\(["'])(?:(?!\\\\\\2)[\\s\\S])*?\\\\\\2`,
+    'gi',
+  );
+  const quotedValue = new RegExp(
+    `${keyPrefix}(["'])(?:\\\\.|(?!\\2)[\\s\\S])*\\2`,
+    'gi',
+  );
+  const unquotedValue = new RegExp(
+    `${keyPrefix}(?!["'])[^\\s,;&}\\]]+`,
+    'gi',
+  );
+
+  return value
+    .replace(escapedQuotedValue, (_, prefix, quote) => `${prefix}\\${quote}[REDACTED]\\${quote}`)
+    .replace(quotedValue, (_, prefix, quote) => `${prefix}${quote}[REDACTED]${quote}`)
+    .replace(unquotedValue, '$1[REDACTED]');
+}
+
 export function sanitizeObservationMessage(value, maxLength = 300) {
   if (value === null || value === undefined) return '';
 
   const limit = normalizeMaxLength(maxLength);
   let summary = String(value);
 
-  summary = summary.replace(/[\u0000-\u001f\u007f]/g, '');
+  summary = summary.replace(/[\u0000-\u001f\u007f-\u009f]/g, '');
   summary = summary.replace(
     /\b([a-z][a-z\d+.-]*:\/\/[^\s?"'<>]+)\?[^\s"'<>]*/gi,
     '$1',
   );
-  summary = summary.replace(
-    /(["']?\b(?:roleToken|token|p)\b["']?\s*[:=]\s*)(["'])(.*?)\2/gi,
-    '$1$2[REDACTED]$2',
-  );
-  summary = summary.replace(
-    /(["']?\b(?:roleToken|token|p)\b["']?\s*[:=]\s*)(?!["'])([^\s,;&}\]]+)/gi,
-    '$1[REDACTED]',
-  );
+  summary = redactSensitiveAssignments(summary);
   summary = summary.replace(
     /(^|[^A-Za-z\d+/_=-])([A-Za-z\d+/_=-]{80,})(?=$|[^A-Za-z\d+/_=-])/g,
     '$1[REDACTED]',
@@ -209,13 +223,106 @@ function metricKey(minute, outcome, dimensions) {
   return JSON.stringify([minute, outcome, Object.entries(dimensions)]);
 }
 
+function normalizeMeasurement(value) {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0
+    ? value
+    : null;
+}
+
+function commandMetricRow({ minute, dimensions, outcome }, observation = {}) {
+  const latencyMs = normalizeMeasurement(observation.latencyMs);
+  return {
+    minute,
+    dimensions,
+    outcome,
+    commandCount: 1,
+    errorCount: outcome === 'error' ? 1 : 0,
+    timeoutCount: outcome === 'timeout' ? 1 : 0,
+    disconnectedCount: outcome === 'disconnected' ? 1 : 0,
+    rateLimitedCount: outcome === 'rate_limited' ? 1 : 0,
+    latencyCount: latencyMs === null ? 0 : 1,
+    latencySumMs: latencyMs ?? 0,
+    latencyMaxMs: latencyMs ?? 0,
+  };
+}
+
+function taskMetricRow({ minute, dimensions, outcome }, observation = {}) {
+  const durationMs = normalizeMeasurement(observation.durationMs);
+  const queueWaitMs = normalizeMeasurement(observation.queueWaitMs);
+  const attributedCommandCount = normalizeCapacity(
+    observation.attributedCommandCount ?? observation.commandCount,
+    0,
+  );
+
+  return {
+    minute,
+    dimensions,
+    outcome,
+    runCount: 1,
+    durationCount: durationMs === null ? 0 : 1,
+    durationSumMs: durationMs ?? 0,
+    durationMaxMs: durationMs ?? 0,
+    queueWaitCount: queueWaitMs === null ? 0 : 1,
+    queueWaitSumMs: queueWaitMs ?? 0,
+    queueWaitMaxMs: queueWaitMs ?? 0,
+    attributedCommandCount,
+  };
+}
+
+function normalizeCommandMetricRow(identity, row) {
+  return {
+    ...identity,
+    commandCount: normalizeCapacity(row?.commandCount, 0),
+    errorCount: normalizeCapacity(row?.errorCount, 0),
+    timeoutCount: normalizeCapacity(row?.timeoutCount, 0),
+    disconnectedCount: normalizeCapacity(row?.disconnectedCount, 0),
+    rateLimitedCount: normalizeCapacity(row?.rateLimitedCount, 0),
+    latencyCount: normalizeCapacity(row?.latencyCount, 0),
+    latencySumMs: normalizeMeasurement(row?.latencySumMs) ?? 0,
+    latencyMaxMs: normalizeMeasurement(row?.latencyMaxMs) ?? 0,
+  };
+}
+
+function normalizeTaskMetricRow(identity, row) {
+  return {
+    ...identity,
+    runCount: normalizeCapacity(row?.runCount, 0),
+    durationCount: normalizeCapacity(row?.durationCount, 0),
+    durationSumMs: normalizeMeasurement(row?.durationSumMs) ?? 0,
+    durationMaxMs: normalizeMeasurement(row?.durationMaxMs) ?? 0,
+    queueWaitCount: normalizeCapacity(row?.queueWaitCount, 0),
+    queueWaitSumMs: normalizeMeasurement(row?.queueWaitSumMs) ?? 0,
+    queueWaitMaxMs: normalizeMeasurement(row?.queueWaitMaxMs) ?? 0,
+    attributedCommandCount: normalizeCapacity(row?.attributedCommandCount, 0),
+  };
+}
+
+function mergeCommandMetricRows(target, source) {
+  target.commandCount += source.commandCount;
+  target.errorCount += source.errorCount;
+  target.timeoutCount += source.timeoutCount;
+  target.disconnectedCount += source.disconnectedCount;
+  target.rateLimitedCount += source.rateLimitedCount;
+  target.latencyCount += source.latencyCount;
+  target.latencySumMs += source.latencySumMs;
+  target.latencyMaxMs = Math.max(target.latencyMaxMs, source.latencyMaxMs);
+}
+
+function mergeTaskMetricRows(target, source) {
+  target.runCount += source.runCount;
+  target.durationCount += source.durationCount;
+  target.durationSumMs += source.durationSumMs;
+  target.durationMaxMs = Math.max(target.durationMaxMs, source.durationMaxMs);
+  target.queueWaitCount += source.queueWaitCount;
+  target.queueWaitSumMs += source.queueWaitSumMs;
+  target.queueWaitMaxMs = Math.max(target.queueWaitMaxMs, source.queueWaitMaxMs);
+  target.attributedCommandCount += source.attributedCommandCount;
+}
+
 function cloneMetricRow(row) {
   return {
-    minute: row.minute,
+    ...row,
     dimensions: { ...row.dimensions },
-    outcome: row.outcome,
-    count: row.count,
-    rateLimitedCount: row.rateLimitedCount,
   };
 }
 
@@ -225,12 +332,11 @@ function sumMetricRows(commandMetrics, taskMetrics) {
   let rateLimitedCount = 0;
 
   for (const row of commandMetrics) {
-    commandCount += row.count;
+    commandCount += row.commandCount;
     rateLimitedCount += row.rateLimitedCount;
   }
   for (const row of taskMetrics) {
-    taskCount += row.count;
-    rateLimitedCount += row.rateLimitedCount;
+    taskCount += row.runCount;
   }
 
   return { commandCount, taskCount, rateLimitedCount };
@@ -252,18 +358,27 @@ export class SchedulerObservationAggregator {
     return normalizeTimestamp(this._now(), Date.now());
   }
 
-  _recordMetric(metricType, input, count = 1) {
-    const target = metricType === 'command' ? this._commandMetrics : this._taskMetrics;
+  _metricIdentity(metricType, input) {
     const currentTimestamp = this._currentTimestamp();
-    const minute = formatUtcMinute(input?.minute ?? input?.timestamp, currentTimestamp);
-    const outcome = normalizeOutcome(input?.outcome);
-    const dimensions = normalizeDimensions(input, metricType);
-    const key = metricKey(minute, outcome, dimensions);
+    return {
+      minute: formatUtcMinute(input?.minute ?? input?.timestamp, currentTimestamp),
+      outcome: normalizeOutcome(input?.outcome),
+      dimensions: normalizeDimensions(input, metricType),
+    };
+  }
+
+  _recordMetric(metricType, input) {
+    const target = metricType === 'command' ? this._commandMetrics : this._taskMetrics;
+    const identity = this._metricIdentity(metricType, input);
+    const key = metricKey(identity.minute, identity.outcome, identity.dimensions);
     const existing = target.get(key);
+    const row = metricType === 'command'
+      ? commandMetricRow(identity, input)
+      : taskMetricRow(identity, input);
 
     if (existing) {
-      existing.count += count;
-      if (outcome === 'rate_limited') existing.rateLimitedCount += count;
+      if (metricType === 'command') mergeCommandMetricRows(existing, row);
+      else mergeTaskMetricRows(existing, row);
       return true;
     }
 
@@ -272,14 +387,25 @@ export class SchedulerObservationAggregator {
       return false;
     }
 
-    target.set(key, {
-      minute,
-      dimensions,
-      outcome,
-      count,
-      rateLimitedCount: outcome === 'rate_limited' ? count : 0,
-    });
+    target.set(key, row);
     return true;
+  }
+
+  _mergeMetricRow(metricType, input) {
+    const target = metricType === 'command' ? this._commandMetrics : this._taskMetrics;
+    const identity = this._metricIdentity(metricType, input);
+    const key = metricKey(identity.minute, identity.outcome, identity.dimensions);
+    const row = metricType === 'command'
+      ? normalizeCommandMetricRow(identity, input)
+      : normalizeTaskMetricRow(identity, input);
+    const existing = target.get(key);
+
+    if (existing) {
+      if (metricType === 'command') mergeCommandMetricRows(existing, row);
+      else mergeTaskMetricRows(existing, row);
+    } else {
+      target.set(key, row);
+    }
   }
 
   recordCommand(observation = {}) {
@@ -290,7 +416,7 @@ export class SchedulerObservationAggregator {
     return this._recordMetric('task', observation);
   }
 
-  recordAnomaly(anomaly = {}) {
+  _createAnomalyEntry(anomaly) {
     const input = anomaly instanceof Error ? anomaly : anomaly ?? {};
     const currentTimestamp = this._currentTimestamp();
     const timestamp = normalizeTimestamp(input.timestamp, currentTimestamp);
@@ -298,13 +424,17 @@ export class SchedulerObservationAggregator {
     const message = sanitizeObservationMessage(input.message ?? input, 300);
     const dimensions = normalizeDimensions({ dimensions: input.dimensions }, 'anomaly');
 
-    this._anomalies.push({
+    return {
       timestamp: new Date(timestamp).toISOString(),
       minute: formatUtcMinute(timestamp, currentTimestamp),
       type: type || 'UNATTRIBUTED',
       message,
       dimensions,
-    });
+    };
+  }
+
+  recordAnomaly(anomaly = {}) {
+    this._anomalies.push(this._createAnomalyEntry(anomaly));
 
     while (this._anomalies.length > this._maxAnomalies) {
       this._anomalies.shift();
@@ -363,29 +493,11 @@ export class SchedulerObservationAggregator {
       return false;
     }
 
-    for (const row of snapshot.commandMetrics) {
-      const count = normalizeCapacity(row?.count, 0);
-      if (count > 0) {
-        this._recordMetric('command', {
-          minute: row.minute,
-          outcome: row.outcome,
-          dimensions: row.dimensions,
-        }, count);
-      }
-    }
+    for (const row of snapshot.commandMetrics) this._mergeMetricRow('command', row);
+    for (const row of snapshot.taskMetrics) this._mergeMetricRow('task', row);
 
-    for (const row of snapshot.taskMetrics) {
-      const count = normalizeCapacity(row?.count, 0);
-      if (count > 0) {
-        this._recordMetric('task', {
-          minute: row.minute,
-          outcome: row.outcome,
-          dimensions: row.dimensions,
-        }, count);
-      }
-    }
-
-    for (const anomaly of snapshot.anomalies) this.recordAnomaly(anomaly);
+    const restoredAnomalies = snapshot.anomalies.map((anomaly) => this._createAnomalyEntry(anomaly));
+    this._anomalies = [...restoredAnomalies, ...this._anomalies];
 
     this._droppedMetrics += normalizeCapacity(snapshot.health?.droppedMetrics, 0);
     this._droppedAnomalies += normalizeCapacity(snapshot.health?.droppedAnomalies, 0);
