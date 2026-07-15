@@ -6,24 +6,66 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { runTaskTypeCommandThrottled } from './accountTaskCoordinator.js';
 import {
+  classifyCommandFailure,
   createEgressDescriptor,
   getSchedulerObservationContext,
+  sanitizeObservationMessage,
 } from '../observability/schedulerObservationCore.js';
 import * as schedulerObservationService from '../observability/schedulerObservationService.js';
 
-const OBSERVATION_CONTEXT_FIELDS = Object.freeze([
-  'source',
-  'taskType',
-  'runId',
-  'accountId',
-  'batchTaskId',
-  'executionLane',
-  'queueWaitMs',
-]);
+const OBSERVATION_IDENTIFIER_MAX_LENGTH = 160;
+const OBSERVATION_ERROR_MAX_LENGTH = 300;
 
 function monotonicNow() {
   return Number(process.hrtime.bigint()) / 1e6;
 }
+
+function normalizeObservationString(value, maxLength = OBSERVATION_IDENTIFIER_MAX_LENGTH) {
+  if (typeof value !== 'string') return undefined;
+  try {
+    const normalized = sanitizeObservationMessage(value.normalize('NFKC'), maxLength).trim();
+    return normalized || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function normalizeObservationId(value) {
+  if (typeof value === 'number') {
+    return Number.isSafeInteger(value) ? value : undefined;
+  }
+  if (typeof value === 'bigint') {
+    const numeric = Number(value);
+    return Number.isSafeInteger(numeric) ? numeric : undefined;
+  }
+  return normalizeObservationString(value);
+}
+
+function normalizeQueueWaitMs(value) {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return undefined;
+  return Math.min(Number.MAX_SAFE_INTEGER, value);
+}
+
+function normalizeEgressDescriptor(egress) {
+  try {
+    if (egress?.type === 'proxy' && /^proxy:[0-9a-f]{12}$/.test(egress?.key)) {
+      return { type: 'proxy', key: egress.key };
+    }
+  } catch {
+    // Invalid egress descriptors fail closed to direct.
+  }
+  return { type: 'direct', key: 'direct' };
+}
+
+const OBSERVATION_CONTEXT_NORMALIZERS = Object.freeze({
+  source: normalizeObservationString,
+  taskType: normalizeObservationString,
+  runId: normalizeObservationString,
+  accountId: normalizeObservationId,
+  batchTaskId: normalizeObservationId,
+  executionLane: normalizeObservationString,
+  queueWaitMs: normalizeQueueWaitMs,
+});
 
 function copySchedulerObservationContext() {
   let context;
@@ -35,9 +77,10 @@ function copySchedulerObservationContext() {
   if (!context || typeof context !== 'object') return {};
 
   const allowed = {};
-  for (const field of OBSERVATION_CONTEXT_FIELDS) {
+  for (const [field, normalize] of Object.entries(OBSERVATION_CONTEXT_NORMALIZERS)) {
     try {
-      if (context[field] !== undefined) allowed[field] = context[field];
+      const normalized = normalize(context[field]);
+      if (normalized !== undefined) allowed[field] = normalized;
     } catch {
       // Observation context must never affect command delivery.
     }
@@ -59,6 +102,28 @@ function finiteInteger(value) {
   } catch {
     return undefined;
   }
+}
+
+function readObservationProperty(value, property) {
+  try {
+    return value?.[property];
+  } catch {
+    return undefined;
+  }
+}
+
+function createSafeErrorObservation(error) {
+  const safeError = {};
+  const code = finiteInteger(
+    readObservationProperty(error, 'errorCode') ?? readObservationProperty(error, 'code'),
+  );
+  const rawMessage = typeof error === 'string'
+    ? error
+    : readObservationProperty(error, 'message');
+  const message = normalizeObservationString(rawMessage, OBSERVATION_ERROR_MAX_LENGTH);
+  if (code !== undefined) safeError.code = code;
+  if (message !== undefined) safeError.message = message;
+  return Object.freeze(safeError);
 }
 
 function consumeObserverResult(result) {
@@ -765,17 +830,18 @@ export class GameClient {
     } catch {
       egress = { type: 'direct', key: 'direct' };
     }
+    const normalizedEgress = normalizeEgressDescriptor(egress);
 
     return {
       metadata: Object.freeze({
         ...copySchedulerObservationContext(),
-        command,
+        command: normalizeObservationString(command) || 'unknown',
         commandClass: classifyCommand(command),
         seq,
         ack,
         timestamp: new Date().toISOString(),
-        egressType: egress.type,
-        egressKey: egress.key,
+        egressType: normalizedEgress.type,
+        egressKey: normalizedEgress.key,
         monotonicStartedAt: monotonicNow(),
       }),
       settled: false,
@@ -804,17 +870,23 @@ export class GameClient {
     observation.metadata = null;
     if (!metadata) return;
 
+    const safeError = error === null ? null : createSafeErrorObservation(error);
+    let observedOutcome = outcome;
+    if (outcome === 'error') {
+      try {
+        observedOutcome = classifyCommandFailure(safeError || {});
+      } catch {
+        observedOutcome = 'error';
+      }
+    }
+
     const event = {
       ...this._commandObservationEvent(metadata),
-      outcome,
+      outcome: observedOutcome,
       latencyMs: Math.max(0, monotonicNow() - metadata.monotonicStartedAt),
     };
-    let code;
-    try {
-      code = finiteInteger(error?.errorCode ?? error?.code);
-    } catch {
-      code = undefined;
-    }
+    if (safeError) event.error = safeError;
+    const code = safeError?.code;
     if (code !== undefined) {
       event.code = code;
       event.errorCode = code;

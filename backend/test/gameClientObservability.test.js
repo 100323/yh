@@ -6,6 +6,10 @@ import {
   createEgressDescriptor,
   withSchedulerObservationContext,
 } from '../src/observability/schedulerObservationCore.js';
+import {
+  startSchedulerObservationService,
+  stopSchedulerObservationService,
+} from '../src/observability/schedulerObservationService.js';
 
 const FORBIDDEN_EVENT_KEYS = new Set([
   'params',
@@ -96,6 +100,7 @@ test('successful request emits one sent and one success without changing the res
     // Observer-owned event objects must not be the mutable pending metadata.
     sent.command = 'tampered';
     sent.seq = 999;
+    sent.source = { token: 'observer-injected-secret' };
 
     client._handleMessage({ resp: 1, seq: 18, cmd: 'role_getroleinforesp', body: response });
     assert.strictEqual(await resultPromise, response);
@@ -103,11 +108,60 @@ test('successful request emits one sent and one success without changing the res
     assert.equal(capture.settled[0].command, 'role_getroleinfo');
     assert.equal(capture.settled[0].seq, 1);
     assert.equal(capture.settled[0].ack, 17);
+    assert.equal(capture.settled[0].source, 'daily');
     assert.equal(capture.settled[0].outcome, 'success');
     assertEventIsSafe(capture.settled[0]);
   } finally {
     if (client.promises.size > 0) client._rejectPendingPromises(new Error('test cleanup'));
     await resultPromise.catch(() => {});
+  }
+});
+
+test('object-valued scheduler context is omitted and cannot leak through sent or settled events', async () => {
+  const sentSnapshots = [];
+  const settled = [];
+  const observer = {
+    observeCommandSent(event) {
+      sentSnapshots.push(JSON.stringify(event));
+      event.source = { token: 'observer-injected-secret' };
+      event.executionLane = { params: { password: 'observer-secret' } };
+    },
+    observeCommandSettled(event) {
+      settled.push(event);
+    },
+  };
+  const { client } = createOpenClient(observer);
+  const nestedSecret = 'nested-secret';
+
+  const resultPromise = withSchedulerObservationContext({
+    source: { token: nestedSecret, params: { private: true } },
+    taskType: ['task', { token: nestedSecret }],
+    runId: { token: nestedSecret },
+    accountId: { token: nestedSecret },
+    batchTaskId: () => nestedSecret,
+    executionLane: { params: { token: nestedSecret } },
+    queueWaitMs: { valueOf: () => 42, token: nestedSecret },
+  }, () => client.sendWithPromise('role_getroleinfo', {}));
+
+  client._handleMessage({ resp: 1, seq: 2, cmd: 'role_getroleinforesp', body: { ok: true } });
+  await resultPromise;
+
+  assert.equal(sentSnapshots.length, 1);
+  assert.equal(settled.length, 1);
+  for (const serialized of [...sentSnapshots, JSON.stringify(settled[0])]) {
+    assert.equal(serialized.includes(nestedSecret), false);
+    assert.doesNotMatch(serialized, /"token"|"params"/);
+  }
+  for (const field of [
+    'source',
+    'taskType',
+    'runId',
+    'accountId',
+    'batchTaskId',
+    'executionLane',
+    'queueWaitMs',
+  ]) {
+    assert.equal(Object.hasOwn(settled[0], field), false, `unsafe context field retained: ${field}`);
   }
 });
 
@@ -178,7 +232,7 @@ test('business error preserves the rejected Error and exposes only numeric class
     seq: 2,
     cmd: 'genie_sweepresp',
     code: 200400,
-    hint: 'too fast',
+    error: 'token=business-secret body=response-secret',
     body: { responseSecret: true },
   });
 
@@ -186,13 +240,91 @@ test('business error preserves the rejected Error and exposes only numeric class
   assert.strictEqual(caught, rejectedError);
   assert.equal(caught.code, 200400);
   assert.equal(capture.settled.length, 1);
-  assert.equal(capture.settled[0].outcome, 'error');
+  assert.equal(capture.settled[0].outcome, 'rate_limited');
   assert.equal(capture.settled[0].code, 200400);
   assert.equal(capture.settled[0].errorCode, 200400);
   assert.equal(Number.isInteger(capture.settled[0].errorCode), true);
+  assert.notStrictEqual(capture.settled[0].error, caught);
+  assert.deepEqual(Object.keys(capture.settled[0].error).sort(), ['code', 'message']);
+  assert.equal(capture.settled[0].error.code, 200400);
+  assert.equal(typeof capture.settled[0].error.message, 'string');
+  assert.doesNotMatch(JSON.stringify(capture.settled[0]), /business-secret|response-secret/);
+  assert.equal('stack' in capture.settled[0].error, false);
+  assert.equal('body' in capture.settled[0].error, false);
   assertEventIsSafe(capture.settled[0]);
   assert.equal('response' in capture.settled[0], false);
   assert.equal('body' in capture.settled[0], false);
+});
+
+test('default observation service classifies rate-limit codes without changing business errors', async () => {
+  const commandCalls = [];
+  const anomalyCalls = [];
+  let fakeTimerRegistrations = 0;
+  const aggregator = {
+    recordCommand(event) {
+      commandCalls.push(event);
+      return true;
+    },
+    recordAnomaly(event) {
+      anomalyCalls.push(event);
+      return true;
+    },
+  };
+
+  const started = startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 60_000, slowCommandMs: 5_000 },
+    aggregator,
+    flushSnapshot() {},
+    setIntervalFn() {
+      fakeTimerRegistrations += 1;
+      return { unref() {} };
+    },
+    clearIntervalFn() {},
+  });
+  assert.equal(started, true);
+
+  try {
+    const cases = [
+      { code: 200400, expected: 'rate_limited' },
+      { code: 12400000, expected: 'rate_limited' },
+      { code: 3300060, expected: 'error' },
+    ];
+    for (const [index, { code }] of cases.entries()) {
+      const { client } = createOpenClient(undefined);
+      let rejectedError = null;
+      const resultPromise = client.sendWithPromise(`command_${code}`, {});
+      resultPromise.catch((error) => {
+        rejectedError = error;
+      });
+      client._handleMessage({
+        resp: 1,
+        seq: 2,
+        cmd: `command_${code}resp`,
+        code,
+        hint: `business failure ${index}`,
+        body: { responseSecret: true },
+      });
+      const caught = await resultPromise.catch((error) => error);
+      assert.strictEqual(caught, rejectedError);
+      assert.equal(caught.code, code);
+    }
+
+    assert.equal(fakeTimerRegistrations, 1);
+    assert.deepEqual(
+      commandCalls.filter((event) => event.outcome !== 'sent').map((event) => event.outcome),
+      cases.map(({ expected }) => expected),
+    );
+    assert.deepEqual(
+      anomalyCalls.map((event) => event.type),
+      ['command_rate_limited', 'command_rate_limited', 'command_error'],
+    );
+    for (const anomaly of anomalyCalls) {
+      const serialized = JSON.stringify(anomaly);
+      assert.doesNotMatch(serialized, /responseSecret|response|body|stack/);
+    }
+  } finally {
+    await stopSchedulerObservationService({ flush: false });
+  }
 });
 
 test('egress reflects the proxy actually installed on the websocket and never leaks proxy details', async () => {
