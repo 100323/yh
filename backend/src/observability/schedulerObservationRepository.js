@@ -1,3 +1,5 @@
+import { isIP } from 'node:net';
+import { domainToASCII } from 'node:url';
 import { getDatabase } from '../database/index.js';
 import {
   OBSERVATION_OUTCOMES,
@@ -89,28 +91,80 @@ function normalizeInteger(value, fallback = 0, nullable = false) {
   return Math.min(MAX_INTEGER, Math.floor(numeric));
 }
 
+function normalizeNfkc(value) {
+  if (typeof value !== 'string') return null;
+  try {
+    return value.normalize('NFKC');
+  } catch {
+    return null;
+  }
+}
+
+function normalizeIpHost(value) {
+  let host = value;
+  if (host.startsWith('[') && host.endsWith(']')) host = host.slice(1, -1);
+  const zoneIndex = host.indexOf('%');
+  if (zoneIndex >= 0) host = host.slice(0, zoneIndex);
+  return host;
+}
+
+function isDottedHostname(value) {
+  const host = value.replace(/\.$/, '');
+  if (!host.includes('.')) return false;
+  try {
+    const ascii = domainToASCII(host);
+    return ascii.includes('.') && ascii.split('.').every((label) => (
+      label.length > 0
+      && label.length <= 63
+      && /^[a-z\d](?:[a-z\d-]*[a-z\d])?$/i.test(label)
+    ));
+  } catch {
+    return false;
+  }
+}
+
+function isNetworkHost(value) {
+  const host = normalizeIpHost(value);
+  return isIP(host) !== 0
+    || /^\d+$/.test(host)
+    || /^localhost$/i.test(host)
+    || isDottedHostname(host);
+}
+
+function isNetworkCandidate(rawToken) {
+  let token = rawToken
+    .replace(/^[({<"'`]+/u, '')
+    .replace(/[)}>;,"'`!?]+$/u, '');
+  const equalsIndex = token.lastIndexOf('=');
+  if (equalsIndex >= 0) token = token.slice(equalsIndex + 1);
+  token = token.split(/[/?#]/u, 1)[0];
+  if (!token) return false;
+
+  const bracketed = /^\[([^\]]+)\](?::\d{1,5})?$/u.exec(token);
+  if (bracketed) return isIP(normalizeIpHost(bracketed[1])) !== 0;
+
+  if (isIP(normalizeIpHost(token)) !== 0) return true;
+  if (token.includes('%') && isIP(normalizeIpHost(token)) !== 0) return true;
+
+  const hostWithPort = /^(.*):(\d{1,5})$/u.exec(token);
+  if (hostWithPort && isNetworkHost(hostWithPort[1])) return true;
+
+  return isNetworkHost(token) && (token.includes('.') || /^localhost$/i.test(token));
+}
+
 function redactNetworkAuthorities(value) {
   return value
     .replace(/\b([a-z][a-z\d+.-]*:\/\/)[^\s/?#]+/gi, '$1[REDACTED]')
     .replace(/(^|[\s([{=])\/\/[^\s/?#]+/g, '$1//[REDACTED]')
-    .replace(/\[[0-9a-f:]{2,}\](?::\d{1,5})?/gi, '[REDACTED]')
-    .replace(
-      /(?<![A-Za-z\d:])(?=[A-Fa-f\d:]*:[A-Fa-f\d:]*:)[A-Fa-f\d]{0,4}(?::[A-Fa-f\d]{0,4}){2,7}(?![A-Za-z\d:])/g,
-      '[REDACTED]',
-    )
-    .replace(/\b(?:\d{1,3}\.){3}\d{1,3}(?::\d{1,5})?\b/g, '[REDACTED]')
-    .replace(/\blocalhost(?::\d{1,5})?\b/gi, '[REDACTED]')
-    .replace(
-      /\b(?=[a-z\d.-]*[a-z])[a-z\d-]+(?:\.[a-z\d-]+)+(?::\d{1,5})?\b/gi,
-      '[REDACTED]',
-    )
+    .replace(/\S+/gu, (token) => (isNetworkCandidate(token) ? '[REDACTED]' : token))
     .replace(SENSITIVE_IDENTIFIER_PATTERN, '[REDACTED]');
 }
 
 function normalizeIdentifier(value, maxLength = DEFAULT_IDENTIFIER_LENGTH) {
-  if (value === null || value === undefined || value === '') return '';
-  if (typeof value === 'object' || typeof value === 'function' || typeof value === 'symbol') return '';
-  return redactNetworkAuthorities(sanitizeObservationMessage(String(value), maxLength)).slice(0, maxLength);
+  const normalized = normalizeNfkc(value);
+  if (normalized === null || normalized === '') return '';
+  const sanitized = sanitizeObservationMessage(normalized, Number.MAX_SAFE_INTEGER);
+  return redactNetworkAuthorities(sanitized).slice(0, maxLength);
 }
 
 function readValue(input, dimensions, name) {
@@ -119,22 +173,25 @@ function readValue(input, dimensions, name) {
 }
 
 function normalizeEgressType(value) {
-  if (typeof value !== 'string') return '';
-  const normalized = value.trim().toLowerCase();
+  const normalizedValue = normalizeNfkc(value);
+  if (normalizedValue === null) return '';
+  const normalized = normalizedValue.trim().toLowerCase();
   return normalized === 'direct' || normalized === 'proxy' ? normalized : '';
 }
 
 function normalizeExecutionLane(value) {
-  if (typeof value === 'string') {
-    const normalized = value.trim().toLowerCase();
+  const normalizedValue = normalizeNfkc(value);
+  if (normalizedValue !== null) {
+    const normalized = normalizedValue.trim().toLowerCase();
     if (normalized === 'direct' || normalized === 'proxy') return normalized;
   }
   return normalizeIdentifier(value);
 }
 
 function normalizeEgressKey(value) {
-  if (typeof value !== 'string') return '';
-  const normalized = value.trim().toLowerCase();
+  const normalizedValue = normalizeNfkc(value);
+  if (normalizedValue === null) return '';
+  const normalized = normalizedValue.trim().toLowerCase();
   return normalized === 'direct' || /^proxy:[a-f\d]{12}$/.test(normalized) ? normalized : '';
 }
 
@@ -147,8 +204,9 @@ function isPlainObject(value) {
 function parseTimestamp(value) {
   if (value instanceof Date) return Number.isNaN(value.getTime()) ? null : value.getTime();
   if (typeof value === 'number') return Number.isFinite(value) ? value : null;
-  if (typeof value !== 'string' || value.trim() === '') return null;
-  const parsed = Date.parse(value.trim());
+  const normalized = normalizeNfkc(value);
+  if (normalized === null || normalized.trim() === '') return null;
+  const parsed = Date.parse(normalized.trim());
   return Number.isFinite(parsed) ? parsed : null;
 }
 
@@ -162,7 +220,7 @@ function normalizeBucketMinute(row) {
   const value = row.minute ?? row.bucketMinute;
   if (parseTimestamp(value) === null) throw new RangeError('metric minute is invalid');
   if (value instanceof Date || typeof value === 'number') return new Date(parseTimestamp(value)).toISOString();
-  const normalized = value.trim();
+  const normalized = normalizeNfkc(value)?.trim() ?? '';
   if (normalized.length > 40 || /[\u0000-\u001f\u007f-\u009f]/.test(normalized)) {
     throw new RangeError('metric minute is invalid');
   }
@@ -252,7 +310,7 @@ function normalizeAnomaly(anomaly) {
     ?? readValue(anomaly, dimensions, 'type');
   const summary = typeof summaryValue === 'object' || typeof summaryValue === 'function'
     ? ''
-    : redactNetworkAuthorities(sanitizeObservationMessage(summaryValue, 300)).slice(0, 300);
+    : normalizeIdentifier(summaryValue, 300);
 
   return [
     normalizeTimestamp(anomaly.occurredAt ?? anomaly.timestamp, 'anomaly occurrence'),

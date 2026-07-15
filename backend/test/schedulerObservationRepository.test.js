@@ -884,3 +884,99 @@ test('flush preserves proxy execution lanes separately from actual egress while 
   assert.equal(unknownLanes.includes('lane.example'), false);
   assert.equal(unknownLanes.includes('anomaly-lane.example'), false);
 });
+
+test('flush normalizes Unicode secrets and redacts whole complex network tokens without fragments', () => {
+  const unsafe = {
+    mappedIpv6: '::ffff:192.0.2.1:8080',
+    bracketedZoneIpv6: '[fe80::1%eth0]:8080',
+    bareZoneIpv6: 'fe80::1%eth0',
+    idnWithPort: '例子.测试:8080',
+    idn: '例子.测试',
+    numericHost: '2130706433:8080',
+    fullwidthToken: 'ｔｏｋｅｎ="secret-value"',
+    fullwidthProxy: 'ｐｒｏｘｙ-secret',
+    fullwidthStack: 'ｓｔａｃｋ-secret',
+  };
+  repository.flushSchedulerObservationSnapshot(snapshot({
+    commandMetrics: [
+      commandMetric({
+        dimensions: {
+          source: unsafe.mappedIpv6,
+          commandClass: unsafe.bracketedZoneIpv6,
+          taskType: unsafe.idnWithPort,
+          command: unsafe.fullwidthToken,
+          executionLane: 'proxy',
+          egressType: 'proxy',
+          egressKey: 'proxy:abcdef123456',
+        },
+      }),
+      commandMetric({
+        dimensions: {
+          source: 'scheduler',
+          commandClass: 'batch_scheduler',
+          taskType: 'ARENA',
+          command: 'arena_startarea',
+          executionLane: 'proxy',
+          egressType: 'proxy',
+          egressKey: 'proxy:abcdef123456',
+        },
+      }),
+    ],
+    taskMetrics: [taskMetric({
+      dimensions: {
+        source: unsafe.bareZoneIpv6,
+        taskType: unsafe.idn,
+        executionLane: unsafe.numericHost,
+      },
+    })],
+    anomalies: [{
+      timestamp: '2026-07-15T00:00:00.000Z',
+      type: 'unicode_secret_anomaly',
+      message: `正常中文诊断 connect ${Object.values(unsafe).join(' connect ')}`,
+      dimensions: {
+        runId: unsafe.fullwidthProxy,
+        source: unsafe.fullwidthStack,
+        taskType: 'ARENA',
+        command: unsafe.mappedIpv6,
+        executionLane: 'proxy',
+        egressType: 'proxy',
+        egressKey: 'proxy:abcdef123456',
+      },
+    }],
+  }), db);
+
+  const rows = {
+    commandMetrics: db.all('SELECT * FROM command_metric_minutes'),
+    taskMetrics: db.all('SELECT * FROM task_metric_minutes'),
+    anomalies: db.all('SELECT * FROM command_anomalies'),
+  };
+  const persisted = JSON.stringify(rows).toLowerCase();
+  for (const forbidden of [
+    ...Object.values(unsafe),
+    '.0.2.1:8080',
+    '192.0.2.1',
+    '8080',
+    'fe80',
+    'eth0',
+    '2130706433',
+    'secret-value',
+    'token=',
+    'proxy-secret',
+    'stack-secret',
+  ]) {
+    assert.equal(persisted.includes(forbidden.toLowerCase()), false, forbidden);
+  }
+
+  assert.match(rows.anomalies[0].summary, /正常中文诊断/);
+  assert.deepEqual(db.get(
+    `SELECT source, task_type, command, execution_lane, egress_type, egress_key
+     FROM command_metric_minutes WHERE source = 'scheduler'`,
+  ), {
+    source: 'scheduler',
+    task_type: 'ARENA',
+    command: 'arena_startarea',
+    execution_lane: 'proxy',
+    egress_type: 'proxy',
+    egress_key: 'proxy:abcdef123456',
+  });
+});
