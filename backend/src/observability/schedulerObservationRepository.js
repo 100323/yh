@@ -124,6 +124,14 @@ function normalizeEgressType(value) {
   return normalized === 'direct' || normalized === 'proxy' ? normalized : '';
 }
 
+function normalizeExecutionLane(value) {
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === 'direct' || normalized === 'proxy') return normalized;
+  }
+  return normalizeIdentifier(value);
+}
+
 function normalizeEgressKey(value) {
   if (typeof value !== 'string') return '';
   const normalized = value.trim().toLowerCase();
@@ -200,7 +208,7 @@ function normalizeCommandMetric(row) {
     normalizeIdentifier(readValue(row, dimensions, 'commandClass')),
     normalizeIdentifier(readValue(row, dimensions, 'taskType')),
     normalizeIdentifier(readValue(row, dimensions, 'command')),
-    normalizeIdentifier(readValue(row, dimensions, 'executionLane')),
+    normalizeExecutionLane(readValue(row, dimensions, 'executionLane')),
     normalizeEgressType(readValue(row, dimensions, 'egressType')),
     normalizeEgressKey(readValue(row, dimensions, 'egressKey')),
     row.outcome,
@@ -222,7 +230,7 @@ function normalizeTaskMetric(row) {
     normalizeBucketMinute(row),
     normalizeIdentifier(readValue(row, dimensions, 'source')),
     normalizeIdentifier(readValue(row, dimensions, 'taskType')),
-    normalizeIdentifier(readValue(row, dimensions, 'executionLane')),
+    normalizeExecutionLane(readValue(row, dimensions, 'executionLane')),
     row.outcome,
     normalizeInteger(row?.runCount),
     normalizeInteger(row?.durationCount),
@@ -254,7 +262,7 @@ function normalizeAnomaly(anomaly) {
     normalizeIdentifier(readValue(anomaly, dimensions, 'source')),
     normalizeIdentifier(readValue(anomaly, dimensions, 'taskType')),
     normalizeIdentifier(readValue(anomaly, dimensions, 'command')),
-    normalizeIdentifier(readValue(anomaly, dimensions, 'executionLane')),
+    normalizeExecutionLane(readValue(anomaly, dimensions, 'executionLane')),
     normalizeEgressType(readValue(anomaly, dimensions, 'egressType')),
     normalizeEgressKey(readValue(anomaly, dimensions, 'egressKey')),
     normalizeIdentifier(category, 100) || 'UNATTRIBUTED',

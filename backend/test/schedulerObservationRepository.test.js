@@ -784,3 +784,103 @@ test('flush fail-closes every persisted text column while preserving normal sche
     egress_key: 'direct',
   });
 });
+
+test('flush preserves proxy execution lanes separately from actual egress while sanitizing unknown lanes', () => {
+  const proxyEgress = {
+    egressType: 'proxy',
+    egressKey: 'proxy:abcdef123456',
+  };
+  repository.flushSchedulerObservationSnapshot(snapshot({
+    commandMetrics: [
+      commandMetric({
+        dimensions: {
+          ...commandMetric().dimensions,
+          command: 'arena_lane_selected',
+          executionLane: 'proxy',
+          ...proxyEgress,
+        },
+      }),
+      commandMetric({
+        dimensions: {
+          ...commandMetric().dimensions,
+          command: 'arena_lane_unknown',
+          executionLane: 'proxy.example',
+          ...proxyEgress,
+        },
+      }),
+    ],
+    taskMetrics: [
+      taskMetric({
+        dimensions: {
+          ...taskMetric().dimensions,
+          taskType: 'LANE_SELECTED_TASK',
+          executionLane: 'proxy',
+          ...proxyEgress,
+        },
+      }),
+      taskMetric({
+        dimensions: {
+          ...taskMetric().dimensions,
+          taskType: 'LANE_UNKNOWN_TASK',
+          executionLane: 'http://lane.example:8080/path',
+          ...proxyEgress,
+        },
+      }),
+    ],
+    anomalies: [
+      {
+        timestamp: '2026-07-15T00:00:00.000Z',
+        type: 'lane_anomaly',
+        message: 'safe proxy lane',
+        dimensions: {
+          source: 'scheduler',
+          taskType: 'ARENA',
+          command: 'arena_lane_selected',
+          executionLane: 'proxy',
+          ...proxyEgress,
+        },
+      },
+      {
+        timestamp: '2026-07-15T00:00:01.000Z',
+        type: 'lane_unknown_anomaly',
+        message: 'unknown lane must sanitize',
+        dimensions: {
+          source: 'scheduler',
+          taskType: 'ARENA',
+          command: 'arena_lane_unknown',
+          executionLane: 'http://anomaly-lane.example:8080/path',
+          ...proxyEgress,
+        },
+      },
+    ],
+  }), db);
+
+  assert.deepEqual(db.get(
+    `SELECT execution_lane, egress_type, egress_key
+     FROM command_metric_minutes WHERE command = 'arena_lane_selected'`,
+  ), {
+    execution_lane: 'proxy',
+    egress_type: 'proxy',
+    egress_key: 'proxy:abcdef123456',
+  });
+  assert.deepEqual(db.get(
+    `SELECT execution_lane FROM task_metric_minutes WHERE task_type = 'LANE_SELECTED_TASK'`,
+  ), { execution_lane: 'proxy' });
+  assert.deepEqual(db.get(
+    `SELECT execution_lane, egress_type, egress_key
+     FROM command_anomalies WHERE category = 'lane_anomaly'`,
+  ), {
+    execution_lane: 'proxy',
+    egress_type: 'proxy',
+    egress_key: 'proxy:abcdef123456',
+  });
+
+  const unknownLanes = JSON.stringify([
+    db.get("SELECT execution_lane FROM command_metric_minutes WHERE command = 'arena_lane_unknown'"),
+    db.get("SELECT execution_lane FROM task_metric_minutes WHERE task_type = 'LANE_UNKNOWN_TASK'"),
+    db.get("SELECT execution_lane FROM command_anomalies WHERE category = 'lane_unknown_anomaly'"),
+  ]);
+  assert.equal(unknownLanes.includes('proxy.example'), false);
+  assert.equal(unknownLanes.includes('lane.example'), false);
+  assert.equal(unknownLanes.includes('anomaly-lane.example'), false);
+});
