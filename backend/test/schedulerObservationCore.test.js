@@ -68,6 +68,31 @@ test('sanitizeObservationMessage removes escaped secrets and C1 controls without
   assert.equal(controlResult, 'leftright');
 });
 
+test('sanitizeObservationMessage redacts unterminated sensitive values and complete URL queries', () => {
+  const sensitiveCases = [
+    ['token="unterminated-secret', 'unterminated-secret'],
+    ["roleToken='unterminated-role", 'unterminated-role'],
+    ['p="unterminated-proxy', 'unterminated-proxy'],
+  ];
+
+  for (const [input, secret] of sensitiveCases) {
+    assert.equal(sanitizeObservationMessage(input).includes(secret), false);
+  }
+
+  assert.equal(
+    sanitizeObservationMessage('https://game.example/path?foo="query-secret"'),
+    'https://game.example/path',
+  );
+  assert.equal(
+    sanitizeObservationMessage('//game.example/path?foo=query-secret'),
+    '//game.example/path',
+  );
+  assert.equal(
+    sanitizeObservationMessage('ordinary diagnostic text without assignments'),
+    'ordinary diagnostic text without assignments',
+  );
+});
+
 test('classifyCommandFailure recognizes structured and textual rate limits', () => {
   assert.equal(classifyCommandFailure({ code: 200400 }), 'rate_limited');
   assert.equal(
@@ -247,6 +272,39 @@ test('recordTask accumulates valid timing statistics and attributed command alia
   });
 });
 
+test('record metrics saturate extreme measurements and counts at a finite safe limit', () => {
+  const aggregator = new SchedulerObservationAggregator({ now: () => 0 });
+
+  for (let index = 0; index < 2; index += 1) {
+    aggregator.recordCommand({ command: 'extreme', outcome: 'success', latencyMs: Number.MAX_VALUE });
+    aggregator.recordTask({
+      task: 'extreme',
+      outcome: 'success',
+      durationMs: Number.MAX_VALUE,
+      queueWaitMs: Number.MAX_VALUE,
+      attributedCommandCount: Number.MAX_VALUE,
+    });
+  }
+
+  const snapshot = aggregator.takeSnapshot();
+  const command = snapshot.commandMetrics[0];
+  const task = snapshot.taskMetrics[0];
+  const numericValues = [
+    ...Object.values(command).filter((value) => typeof value === 'number'),
+    ...Object.values(task).filter((value) => typeof value === 'number'),
+    ...Object.values(snapshot.totals),
+  ];
+
+  assert.ok(numericValues.every((value) => Number.isFinite(value)));
+  assert.ok(numericValues.every((value) => value <= Number.MAX_SAFE_INTEGER));
+  assert.equal(command.latencySumMs, Number.MAX_SAFE_INTEGER);
+  assert.equal(command.latencyMaxMs, Number.MAX_SAFE_INTEGER);
+  assert.equal(task.durationSumMs, Number.MAX_SAFE_INTEGER);
+  assert.equal(task.queueWaitSumMs, Number.MAX_SAFE_INTEGER);
+  assert.equal(task.attributedCommandCount, Number.MAX_SAFE_INTEGER);
+  assert.equal(JSON.stringify(snapshot).includes(':null'), false);
+});
+
 test('metric capacity drops only new keys and reports health', () => {
   const aggregator = new SchedulerObservationAggregator({ maxMetricKeys: 1 });
 
@@ -400,6 +458,34 @@ test('mergeSnapshot combines every task field using sums and maxima', () => {
   assert.equal(row.attributedCommandCount, 5);
 });
 
+test('mergeSnapshot saturates every command and task numeric field without Infinity', () => {
+  const target = new SchedulerObservationAggregator({ now: () => 0 });
+  target.recordCommand({ command: 'overflow', outcome: 'error', latencyMs: 1 });
+  target.recordTask({ task: 'overflow', outcome: 'success', durationMs: 1, queueWaitMs: 1 });
+
+  const source = new SchedulerObservationAggregator({ now: () => 0 });
+  source.recordCommand({ command: 'overflow', outcome: 'error', latencyMs: 1 });
+  source.recordTask({ task: 'overflow', outcome: 'success', durationMs: 1, queueWaitMs: 1 });
+  const sourceSnapshot = source.takeSnapshot();
+
+  for (const row of [...sourceSnapshot.commandMetrics, ...sourceSnapshot.taskMetrics]) {
+    for (const [key, value] of Object.entries(row)) {
+      if (typeof value === 'number') row[key] = Number.MAX_VALUE;
+    }
+  }
+
+  target.mergeSnapshot(sourceSnapshot);
+  const merged = target.takeSnapshot();
+  const rows = [...merged.commandMetrics, ...merged.taskMetrics];
+  const numericValues = rows.flatMap((row) => (
+    Object.values(row).filter((value) => typeof value === 'number')
+  ));
+
+  assert.ok(numericValues.every((value) => Number.isFinite(value)));
+  assert.ok(numericValues.every((value) => value <= Number.MAX_SAFE_INTEGER));
+  assert.equal(JSON.stringify(merged).includes(':null'), false);
+});
+
 test('mergeSnapshot prepends all older anomalies without applying current capacity', () => {
   const target = new SchedulerObservationAggregator({
     now: () => Date.parse('2026-07-15T03:00:00.000Z'),
@@ -425,6 +511,40 @@ test('mergeSnapshot prepends all older anomalies without applying current capaci
   );
   assert.equal(snapshot.health.anomalyCount, 3);
   assert.equal(snapshot.health.droppedAnomalies, 0);
+});
+
+test('mergeSnapshot keeps chronological FIFO across multiple restores and stable ties', () => {
+  const createSnapshot = (type, timestamp) => {
+    const source = new SchedulerObservationAggregator({ now: () => timestamp });
+    source.recordAnomaly({ type, message: type });
+    return source.takeSnapshot();
+  };
+
+  const target = new SchedulerObservationAggregator({
+    now: () => Date.parse('2026-07-15T03:00:00.000Z'),
+    maxAnomalies: 1,
+  });
+  target.recordAnomaly({ type: 'current', message: 'current' });
+  target.mergeSnapshot(createSnapshot('oldest', Date.parse('2026-07-15T01:00:00.000Z')));
+  target.mergeSnapshot(createSnapshot('older', Date.parse('2026-07-15T02:00:00.000Z')));
+
+  assert.deepEqual(
+    target.takeSnapshot().anomalies.map((entry) => entry.type),
+    ['oldest', 'older', 'current'],
+  );
+
+  const tiedTarget = new SchedulerObservationAggregator({
+    now: () => Date.parse('2026-07-15T03:00:00.000Z'),
+  });
+  tiedTarget.recordAnomaly({ type: 'current', message: 'current' });
+  const tiedTime = Date.parse('2026-07-15T01:00:00.000Z');
+  tiedTarget.mergeSnapshot(createSnapshot('first', tiedTime));
+  tiedTarget.mergeSnapshot(createSnapshot('second', tiedTime));
+
+  assert.deepEqual(
+    tiedTarget.takeSnapshot().anomalies.map((entry) => entry.type),
+    ['first', 'second', 'current'],
+  );
 });
 
 test('mergeSnapshot preserves an anomaly ISO timestamp', () => {

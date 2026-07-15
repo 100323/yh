@@ -15,6 +15,8 @@ const RATE_LIMIT_CODES = new Set(['200400', '12400000']);
 const RATE_LIMIT_MESSAGE_PATTERN = /操作过快|请稍后重试|过于频繁/;
 const UTC_MINUTE_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:00$/;
 const SENSITIVE_DIMENSION_PATTERN = /^(?:token|roleToken|p|params?|arguments?|request(?:Body)?|response(?:Body)?|body|stack)$/i;
+const MAX_OBSERVATION_NUMBER = Number.MAX_SAFE_INTEGER;
+const SENSITIVE_ASSIGNMENT_PATTERN = /(?:\\?["'])?\b(?:roleToken|token|p)\b(?:\\?["'])?\s*[:=]\s*/gi;
 
 function normalizeMaxLength(maxLength) {
   const numericLength = Number(maxLength);
@@ -22,25 +24,77 @@ function normalizeMaxLength(maxLength) {
   return Math.max(0, Math.floor(numericLength));
 }
 
-function redactSensitiveAssignments(value) {
-  const keyPrefix = String.raw`((?:\\?["'])?\b(?:roleToken|token|p)\b(?:\\?["'])?\s*[:=]\s*)`;
-  const escapedQuotedValue = new RegExp(
-    `${keyPrefix}\\\\(["'])(?:(?!\\\\\\2)[\\s\\S])*?\\\\\\2`,
-    'gi',
-  );
-  const quotedValue = new RegExp(
-    `${keyPrefix}(["'])(?:\\\\.|(?!\\2)[\\s\\S])*\\2`,
-    'gi',
-  );
-  const unquotedValue = new RegExp(
-    `${keyPrefix}(?!["'])[^\\s,;&}\\]]+`,
-    'gi',
-  );
+function isEscapedQuote(value, index) {
+  let slashCount = 0;
+  for (let cursor = index - 1; cursor >= 0 && value[cursor] === '\\'; cursor -= 1) {
+    slashCount += 1;
+  }
+  return slashCount % 2 === 1;
+}
 
-  return value
-    .replace(escapedQuotedValue, (_, prefix, quote) => `${prefix}\\${quote}[REDACTED]\\${quote}`)
-    .replace(quotedValue, (_, prefix, quote) => `${prefix}${quote}[REDACTED]${quote}`)
-    .replace(unquotedValue, '$1[REDACTED]');
+function findStructuralBoundary(value, start) {
+  for (let index = start; index < value.length; index += 1) {
+    if (/[,;&}\]]/.test(value[index])) return index;
+  }
+  return value.length;
+}
+
+function findNormalQuoteEnd(value, start, quote, boundary) {
+  for (let index = start; index < boundary; index += 1) {
+    if (value[index] === quote && !isEscapedQuote(value, index)) return index;
+  }
+  return -1;
+}
+
+function findEscapedQuoteEnd(value, start, quote, boundary) {
+  for (let index = start; index + 1 < boundary; index += 1) {
+    if (value[index] === '\\' && value[index + 1] === quote && !isEscapedQuote(value, index)) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+function findUnquotedValueEnd(value, start) {
+  for (let index = start; index < value.length; index += 1) {
+    if (/[\s,;&}\]]/.test(value[index])) return index;
+  }
+  return value.length;
+}
+
+function redactSensitiveAssignments(value) {
+  let result = '';
+  let cursor = 0;
+  SENSITIVE_ASSIGNMENT_PATTERN.lastIndex = 0;
+
+  for (let match = SENSITIVE_ASSIGNMENT_PATTERN.exec(value); match; match = SENSITIVE_ASSIGNMENT_PATTERN.exec(value)) {
+    if (match.index < cursor) continue;
+
+    const valueStart = SENSITIVE_ASSIGNMENT_PATTERN.lastIndex;
+    const boundary = findStructuralBoundary(value, valueStart);
+    result += value.slice(cursor, valueStart);
+
+    if (value[valueStart] === '\\' && /["']/.test(value[valueStart + 1] ?? '')) {
+      const quote = value[valueStart + 1];
+      const closingIndex = findEscapedQuoteEnd(value, valueStart + 2, quote, boundary);
+      const valueEnd = closingIndex < 0 ? boundary : closingIndex + 2;
+      result += `\\${quote}[REDACTED]${closingIndex < 0 ? '' : `\\${quote}`}`;
+      cursor = valueEnd;
+    } else if (/["']/.test(value[valueStart] ?? '')) {
+      const quote = value[valueStart];
+      const closingIndex = findNormalQuoteEnd(value, valueStart + 1, quote, boundary);
+      const valueEnd = closingIndex < 0 ? boundary : closingIndex + 1;
+      result += `${quote}[REDACTED]${closingIndex < 0 ? '' : quote}`;
+      cursor = valueEnd;
+    } else {
+      cursor = findUnquotedValueEnd(value, valueStart);
+      result += '[REDACTED]';
+    }
+
+    SENSITIVE_ASSIGNMENT_PATTERN.lastIndex = cursor;
+  }
+
+  return result + value.slice(cursor);
 }
 
 export function sanitizeObservationMessage(value, maxLength = 300) {
@@ -51,8 +105,8 @@ export function sanitizeObservationMessage(value, maxLength = 300) {
 
   summary = summary.replace(/[\u0000-\u001f\u007f-\u009f]/g, '');
   summary = summary.replace(
-    /\b([a-z][a-z\d+.-]*:\/\/[^\s?"'<>]+)\?[^\s"'<>]*/gi,
-    '$1',
+    /(^|[^A-Za-z\d+.-])((?:[a-z][a-z\d+.-]*:)?\/\/[^\s?"'<>]+)\?[^\s<>]*/gi,
+    '$1$2',
   );
   summary = redactSensitiveAssignments(summary);
   summary = summary.replace(
@@ -151,7 +205,7 @@ export function createEgressDescriptor(proxy) {
 function normalizeCapacity(value, fallback) {
   const numericValue = Number(value);
   if (!Number.isFinite(numericValue)) return fallback;
-  return Math.max(0, Math.floor(numericValue));
+  return Math.min(MAX_OBSERVATION_NUMBER, Math.max(0, Math.floor(numericValue)));
 }
 
 function normalizeOutcome(outcome) {
@@ -225,8 +279,21 @@ function metricKey(minute, outcome, dimensions) {
 
 function normalizeMeasurement(value) {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0
-    ? value
+    ? Math.min(MAX_OBSERVATION_NUMBER, value)
     : null;
+}
+
+function addObservationNumbers(left, right) {
+  const normalizedLeft = normalizeMeasurement(left) ?? 0;
+  const normalizedRight = normalizeMeasurement(right) ?? 0;
+  return Math.min(MAX_OBSERVATION_NUMBER, normalizedLeft + normalizedRight);
+}
+
+function maxObservationNumber(left, right) {
+  return Math.min(
+    MAX_OBSERVATION_NUMBER,
+    Math.max(normalizeMeasurement(left) ?? 0, normalizeMeasurement(right) ?? 0),
+  );
 }
 
 function commandMetricRow({ minute, dimensions, outcome }, observation = {}) {
@@ -298,25 +365,28 @@ function normalizeTaskMetricRow(identity, row) {
 }
 
 function mergeCommandMetricRows(target, source) {
-  target.commandCount += source.commandCount;
-  target.errorCount += source.errorCount;
-  target.timeoutCount += source.timeoutCount;
-  target.disconnectedCount += source.disconnectedCount;
-  target.rateLimitedCount += source.rateLimitedCount;
-  target.latencyCount += source.latencyCount;
-  target.latencySumMs += source.latencySumMs;
-  target.latencyMaxMs = Math.max(target.latencyMaxMs, source.latencyMaxMs);
+  target.commandCount = addObservationNumbers(target.commandCount, source.commandCount);
+  target.errorCount = addObservationNumbers(target.errorCount, source.errorCount);
+  target.timeoutCount = addObservationNumbers(target.timeoutCount, source.timeoutCount);
+  target.disconnectedCount = addObservationNumbers(target.disconnectedCount, source.disconnectedCount);
+  target.rateLimitedCount = addObservationNumbers(target.rateLimitedCount, source.rateLimitedCount);
+  target.latencyCount = addObservationNumbers(target.latencyCount, source.latencyCount);
+  target.latencySumMs = addObservationNumbers(target.latencySumMs, source.latencySumMs);
+  target.latencyMaxMs = maxObservationNumber(target.latencyMaxMs, source.latencyMaxMs);
 }
 
 function mergeTaskMetricRows(target, source) {
-  target.runCount += source.runCount;
-  target.durationCount += source.durationCount;
-  target.durationSumMs += source.durationSumMs;
-  target.durationMaxMs = Math.max(target.durationMaxMs, source.durationMaxMs);
-  target.queueWaitCount += source.queueWaitCount;
-  target.queueWaitSumMs += source.queueWaitSumMs;
-  target.queueWaitMaxMs = Math.max(target.queueWaitMaxMs, source.queueWaitMaxMs);
-  target.attributedCommandCount += source.attributedCommandCount;
+  target.runCount = addObservationNumbers(target.runCount, source.runCount);
+  target.durationCount = addObservationNumbers(target.durationCount, source.durationCount);
+  target.durationSumMs = addObservationNumbers(target.durationSumMs, source.durationSumMs);
+  target.durationMaxMs = maxObservationNumber(target.durationMaxMs, source.durationMaxMs);
+  target.queueWaitCount = addObservationNumbers(target.queueWaitCount, source.queueWaitCount);
+  target.queueWaitSumMs = addObservationNumbers(target.queueWaitSumMs, source.queueWaitSumMs);
+  target.queueWaitMaxMs = maxObservationNumber(target.queueWaitMaxMs, source.queueWaitMaxMs);
+  target.attributedCommandCount = addObservationNumbers(
+    target.attributedCommandCount,
+    source.attributedCommandCount,
+  );
 }
 
 function cloneMetricRow(row) {
@@ -332,11 +402,11 @@ function sumMetricRows(commandMetrics, taskMetrics) {
   let rateLimitedCount = 0;
 
   for (const row of commandMetrics) {
-    commandCount += row.commandCount;
-    rateLimitedCount += row.rateLimitedCount;
+    commandCount = addObservationNumbers(commandCount, row.commandCount);
+    rateLimitedCount = addObservationNumbers(rateLimitedCount, row.rateLimitedCount);
   }
   for (const row of taskMetrics) {
-    taskCount += row.runCount;
+    taskCount = addObservationNumbers(taskCount, row.runCount);
   }
 
   return { commandCount, taskCount, rateLimitedCount };
@@ -383,7 +453,7 @@ export class SchedulerObservationAggregator {
     }
 
     if (this._commandMetrics.size + this._taskMetrics.size >= this._maxMetricKeys) {
-      this._droppedMetrics += 1;
+      this._droppedMetrics = addObservationNumbers(this._droppedMetrics, 1);
       return false;
     }
 
@@ -438,7 +508,7 @@ export class SchedulerObservationAggregator {
 
     while (this._anomalies.length > this._maxAnomalies) {
       this._anomalies.shift();
-      this._droppedAnomalies += 1;
+      this._droppedAnomalies = addObservationNumbers(this._droppedAnomalies, 1);
     }
 
     return this._maxAnomalies > 0;
@@ -497,10 +567,18 @@ export class SchedulerObservationAggregator {
     for (const row of snapshot.taskMetrics) this._mergeMetricRow('task', row);
 
     const restoredAnomalies = snapshot.anomalies.map((anomaly) => this._createAnomalyEntry(anomaly));
-    this._anomalies = [...restoredAnomalies, ...this._anomalies];
+    this._anomalies = [...this._anomalies, ...restoredAnomalies].sort((left, right) => (
+      Date.parse(left.timestamp) - Date.parse(right.timestamp)
+    ));
 
-    this._droppedMetrics += normalizeCapacity(snapshot.health?.droppedMetrics, 0);
-    this._droppedAnomalies += normalizeCapacity(snapshot.health?.droppedAnomalies, 0);
+    this._droppedMetrics = addObservationNumbers(
+      this._droppedMetrics,
+      normalizeCapacity(snapshot.health?.droppedMetrics, 0),
+    );
+    this._droppedAnomalies = addObservationNumbers(
+      this._droppedAnomalies,
+      normalizeCapacity(snapshot.health?.droppedAnomalies, 0),
+    );
     return true;
   }
 }
