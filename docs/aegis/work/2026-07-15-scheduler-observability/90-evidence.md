@@ -94,3 +94,16 @@
 - 规格复核：`APPROVED`。
 - 代码质量复核：`APPROVED`。
 - 最终提交：`6114a2846274434ad9b168c78290276fc3e6b71b`。
+
+### Task 7：管理员只读查询 API
+
+- RED：新导出缺失；后续覆盖 commandClass、历史敏感网络数据、当前分钟速率和真实路由顺序。
+- GREEN：目标测试 12/12。
+- 回归：Node 22 串行后端全量 165/165。
+- 权限：真实 Express + JWT + auth/admin，未登录 401、普通用户 403、管理员 200；旧端点权限不变。
+- 契约：固定 range/cutoff/page/filter；summary/anomalies shape；安全 500；无任意 SQL/sort/cutoff。
+- 安全：多词 token、URL、IPv4/IPv6、IDN、host/path、assignment+wrapper 历史值防御性脱敏；合法 proxy lane/type/fingerprint 保留。
+- 资源：port0 server、临时 SQLite 均在 after 关闭删除。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`42d51852fd50a258046d1eba867b41867bea1cc3`。
