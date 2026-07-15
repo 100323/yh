@@ -97,6 +97,7 @@ test('normalizes pagination and exposes only safe fixed filters', () => {
       category: 'command_timeout',
       source: 'batch',
       taskType: 'DAILY_TASK',
+      commandClass: 'game.read',
       egressType: 'proxy',
       cutoff: '1970-01-01T00:00:00.000Z',
       sort: 'id DESC',
@@ -115,6 +116,7 @@ test('normalizes pagination and exposes only safe fixed filters', () => {
         category: 'command_timeout',
         source: 'batch',
         taskType: 'DAILY_TASK',
+        commandClass: 'game.read',
         egressType: 'proxy',
       },
     },
@@ -130,6 +132,8 @@ test('normalizes pagination and exposes only safe fixed filters', () => {
     { category: "timeout' OR 1=1 --" },
     { source: ['batch'] },
     { taskType: { value: 'DAILY_TASK' } },
+    { commandClass: ['game.read'] },
+    { commandClass: { value: 'game.read' } },
     { egressType: 'http://127.0.0.1:8080' },
   ]) {
     assert.equal(
@@ -292,32 +296,54 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
   assert.doesNotMatch(JSON.stringify(data), /NaN|Infinity|must-not-leak|retrySnapshot/);
 });
 
-test('serializes anomaly results with an allowlist and no payload or proxy-address leakage', () => {
+test('serializes anomaly results with an allowlist and fail-closed sensitive/network redaction', () => {
   const data = serializeSchedulerAnomalies({
-    items: [{
-      id: 7,
-      occurred_at: '2026-07-15T11:59:00.000Z',
-      run_id: 'run-7',
-      account_id: 3,
-      batch_task_id: 9,
-      source: 'http://source.example:8080/private',
-      task_type: 'DAILY',
-      command: 'role:info',
-      execution_lane: 'account',
-      egress_type: 'proxy',
-      egress_key: 'proxy:012345abcdef',
-      category: 'command_timeout',
-      error_code: 504,
-      latency_ms: 8000,
-      queue_wait_ms: 40,
-      summary: 'token=super-secret via http://alice:pw@10.0.0.8:8080/path',
-      params: 'params-secret',
-      body: 'body-secret',
-      token: 'token-secret',
-      stack: 'stack-secret',
-      proxy: 'http://raw-proxy.example:9000',
-    }],
-    total: 1,
+    items: [
+      {
+        id: 7,
+        occurred_at: '2026-07-15T11:59:00.000Z',
+        run_id: 'run-7',
+        account_id: 3,
+        batch_task_id: 9,
+        source: 'http://alice:pw@source.example:8080/private',
+        task_type: 'DAILY',
+        command: 'role:info',
+        execution_lane: 'proxy',
+        egress_type: 'proxy',
+        egress_key: 'proxy:012345abcdef',
+        category: 'command_timeout',
+        error_code: 504,
+        latency_ms: 8000,
+        queue_wait_ms: 40,
+        summary: 'token = alpha beta',
+        params: 'params-secret',
+        body: 'body-secret',
+        token: 'token-secret',
+        stack: 'stack-secret',
+        proxy: 'http://raw-proxy.example:9000',
+      },
+      {
+        occurred_at: '2026-07-15T11:58:00.000Z',
+        summary: 'roleToken = alpha beta',
+      },
+      {
+        occurred_at: '2026-07-15T11:57:00.000Z',
+        summary: 'proxy=[2001:db8::1]:1080',
+      },
+      {
+        occurred_at: '2026-07-15T11:56:00.000Z',
+        summary: 'connect http://bob:secret@auth.example:8443/path',
+      },
+      {
+        occurred_at: '2026-07-15T11:55:00.000Z',
+        summary: 'connect 192.0.2.10:8080 edge.example:9000 [2001:db8::2]:443 2001:db8::3',
+      },
+      {
+        occurred_at: '2026-07-15T11:54:00.000Z',
+        summary: 'ｔｏｋｅｎ = fullwidth alpha beta',
+      },
+    ],
+    total: 6,
     page: 2,
     pageSize: 10,
   });
@@ -342,12 +368,23 @@ test('serializes anomaly results with an allowlist and no payload or proxy-addre
     'summary',
   ]);
   assert.equal(data.items[0].source, '[REDACTED]');
+  assert.equal(data.items[0].executionLane, 'proxy');
+  assert.equal(data.items[0].egressType, 'proxy');
   assert.equal(data.items[0].egressKey, 'proxy:012345abcdef');
   const serialized = JSON.stringify(data);
   for (const secret of [
-    'super-secret',
-    '10.0.0.8',
+    'alpha',
+    'beta',
+    'fullwidth',
+    '192.0.2.10',
+    '2001:db8::1',
+    '2001:db8::2',
+    '2001:db8::3',
+    'edge.example',
+    'auth.example',
+    'source.example',
     'alice:pw',
+    'bob:secret',
     'params-secret',
     'body-secret',
     'token-secret',
@@ -384,7 +421,7 @@ test('invalid queries return 400 without entering the repository', async () => {
   assert.equal(calls, 0);
 });
 
-test('handlers pass only normalized repository filters and return exact success envelopes', async () => {
+test('handlers pass only endpoint-approved normalized repository filters and return exact success envelopes', async () => {
   const calls = [];
   const handlers = createSchedulerObservabilityHandlers({
     querySummary(filters) {
@@ -400,13 +437,23 @@ test('handlers pass only normalized repository filters and return exact success 
   });
 
   const summaryRes = responseRecorder();
-  await handlers.summary({ query: { range: '1h', cutoff: 'evil', sort: 'evil' } }, summaryRes);
+  await handlers.summary({
+    query: {
+      range: '1h',
+      commandClass: 'game.read',
+      cutoff: 'evil',
+      sort: 'evil',
+    },
+  }, summaryRes);
   assert.equal(summaryRes.statusCode, 200);
   assert.deepEqual(Object.keys(summaryRes.body), ['success', 'data']);
   assert.deepEqual(Object.keys(summaryRes.body.data), [
     'range', 'generatedAt', 'headline', 'series', 'tasks', 'egresses', 'health',
   ]);
-  assert.deepEqual(calls[0], ['summary', { cutoff: '2026-07-15T11:00:00.000Z' }]);
+  assert.deepEqual(calls[0], ['summary', {
+    cutoff: '2026-07-15T11:00:00.000Z',
+    commandClass: 'game.read',
+  }]);
 
   const anomalyRes = responseRecorder();
   await handlers.anomalies({
@@ -415,6 +462,7 @@ test('handlers pass only normalized repository filters and return exact success 
       page: '2',
       pageSize: '10',
       source: 'batch',
+      commandClass: 'game.write',
       sort: 'id DESC',
       cutoff: 'evil',
     },
@@ -430,6 +478,26 @@ test('handlers pass only normalized repository filters and return exact success 
     pageSize: 10,
     source: 'batch',
   }]);
+});
+
+test('invalid summary commandClass returns 400 without entering the repository', async () => {
+  let calls = 0;
+  const handlers = createSchedulerObservabilityHandlers({
+    querySummary() {
+      calls += 1;
+      return { commandMetrics: [], taskMetrics: [] };
+    },
+    queryAnomalies: () => ({ items: [], total: 0, page: 1, pageSize: 25 }),
+    getHealth: () => ({}),
+    now: () => FIXED_NOW,
+  });
+
+  for (const commandClass of [['game.read'], { value: 'game.read' }]) {
+    const res = responseRecorder();
+    await handlers.summary({ query: { commandClass } }, res);
+    assert.equal(res.statusCode, 400);
+  }
+  assert.equal(calls, 0);
 });
 
 test('synchronous throws and asynchronous rejects return safe 500 responses', async () => {

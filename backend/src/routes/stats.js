@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { isIP } from 'node:net';
 import { get, all } from '../database/index.js';
 import { adminOnly, authMiddleware } from '../middleware/auth.js';
 import { getScheduledJobs, getActiveConnections } from '../scheduler/index.js';
@@ -10,6 +11,7 @@ import {
   querySchedulerObservationSummary,
 } from '../observability/schedulerObservationRepository.js';
 import { getSchedulerObservationHealth } from '../observability/schedulerObservationService.js';
+import { sanitizeObservationMessage } from '../observability/schedulerObservationCore.js';
 
 const OBSERVABILITY_RANGE_MS = Object.freeze({
   '1h': 60 * 60 * 1000,
@@ -21,6 +23,7 @@ const DEFAULT_OBSERVABILITY_RANGE = '24h';
 const DEFAULT_OBSERVABILITY_PAGE_SIZE = 25;
 const MAX_OBSERVABILITY_PAGE_SIZE = 100;
 const SAFE_FILTER_PATTERN = /^[A-Za-z0-9_.:-]{1,100}$/u;
+const SENSITIVE_OUTPUT_PATTERN = /(?:role\s*token|token|params?|arguments?|requests?|responses?|body|stack|proxy)/iu;
 const HEALTH_BOOLEAN_FIELDS = ['enabled', 'started'];
 const HEALTH_NUMBER_FIELDS = [
   'flushErrors',
@@ -79,7 +82,10 @@ function normalizeFilter(query, name, validator = (value) => SAFE_FILTER_PATTERN
   return validator(value) ? { ok: true, value } : { ok: false };
 }
 
-export function normalizeObservabilityQuery(query = {}, { now = Date.now } = {}) {
+export function normalizeObservabilityQuery(query = {}, {
+  now = Date.now,
+  endpoint = 'all',
+} = {}) {
   if (query === null || typeof query !== 'object' || Array.isArray(query)) {
     return { ok: false, error: 'Invalid observability query' };
   }
@@ -94,7 +100,10 @@ export function normalizeObservabilityQuery(query = {}, { now = Date.now } = {})
   }
 
   const normalizedFilters = {};
-  for (const name of ['category', 'source', 'taskType']) {
+  const filterNames = ['source', 'taskType'];
+  if (endpoint !== 'summary') filterNames.unshift('category');
+  if (endpoint !== 'anomalies') filterNames.push('commandClass');
+  for (const name of filterNames) {
     const normalized = normalizeFilter(query, name);
     if (!normalized.ok) return { ok: false, error: 'Invalid observability query' };
     if (normalized.value !== undefined) normalizedFilters[name] = normalized.value;
@@ -157,12 +166,74 @@ function rowValue(row, property) {
   return safeRead(row, property).value;
 }
 
+function normalizeOutputText(value) {
+  if (typeof value !== 'string') return null;
+  try {
+    return value.normalize('NFKC');
+  } catch {
+    return null;
+  }
+}
+
+function isDottedHost(value) {
+  const host = value.replace(/\.$/u, '');
+  return host.includes('.')
+    && !/^\d+(?:\.\d+)+$/u.test(host)
+    && host.split('.').every((label) => (
+      label.length > 0
+      && label.length <= 63
+      && /^[A-Za-z\d](?:[A-Za-z\d-]*[A-Za-z\d])?$/u.test(label)
+    ));
+}
+
+function isNetworkOutputToken(rawToken) {
+  let token = rawToken
+    .replace(/^[({<"'`]+/u, '')
+    .replace(/[)}>;,"'`!?]+$/u, '');
+  const equalsIndex = token.lastIndexOf('=');
+  if (equalsIndex >= 0) token = token.slice(equalsIndex + 1);
+  if (/^(?:[A-Za-z][A-Za-z\d+.-]*:)?\/\//u.test(token)) return true;
+  token = token.split(/[/?#]/u, 1)[0];
+  if (!token) return false;
+
+  const bracketed = /^\[([^\]]+)\](?::\d{1,5})?$/u.exec(token);
+  if (bracketed) return isIP(bracketed[1].split('%', 1)[0]) !== 0;
+  if (isIP(token.split('%', 1)[0]) !== 0) return true;
+
+  const hostWithPort = /^(.*):(\d{1,5})$/u.exec(token);
+  if (!hostWithPort) return false;
+  const host = hostWithPort[1];
+  return isIP(host.split('%', 1)[0]) !== 0
+    || /^localhost$/iu.test(host)
+    || isDottedHost(host);
+}
+
+function redactNetworkOutputTokens(value) {
+  return value.replace(/\S+/gu, (token) => (
+    isNetworkOutputToken(token) ? '[REDACTED]' : token
+  ));
+}
+
+function sanitizeOutputString(value, maxLength = 300, { allowExactProxy = false } = {}) {
+  const normalized = normalizeOutputText(value);
+  if (normalized === null) return '';
+  const trimmed = normalized.trim();
+  if (allowExactProxy && (trimmed === 'direct' || trimmed === 'proxy')) return trimmed;
+  if (SENSITIVE_OUTPUT_PATTERN.test(trimmed)) return '[REDACTED]';
+  try {
+    const coreSanitized = sanitizeObservationMessage(trimmed, maxLength);
+    if (SENSITIVE_OUTPUT_PATTERN.test(coreSanitized)) return '[REDACTED]';
+    return redactNetworkOutputTokens(coreSanitized).slice(0, maxLength);
+  } catch {
+    return '[REDACTED]';
+  }
+}
+
 function normalizePublicIdentifier(value, fallback = 'UNATTRIBUTED') {
-  if (typeof value !== 'string') return fallback;
-  const normalized = value.trim();
-  if (!SAFE_FILTER_PATTERN.test(normalized)) return fallback;
-  if (/(?:token|params?|body|stack)/iu.test(normalized)) return '[REDACTED]';
-  return normalized;
+  const sanitized = sanitizeOutputString(value, 160);
+  if (sanitized === '[REDACTED]') return sanitized;
+  if (!SAFE_FILTER_PATTERN.test(sanitized)) return fallback;
+  return sanitized;
 }
 
 function normalizeBucket(value) {
@@ -211,6 +282,12 @@ function createTaskAggregate(taskType) {
 
 function normalizeEgressType(value) {
   return value === 'direct' || value === 'proxy' ? value : 'unknown';
+}
+
+function normalizeExecutionLane(value) {
+  const exact = sanitizeOutputString(value, 160, { allowExactProxy: true });
+  if (exact === 'direct' || exact === 'proxy') return exact;
+  return normalizePublicIdentifier(value, '');
 }
 
 function normalizeEgressKey(value, type) {
@@ -447,16 +524,6 @@ function publicNullableInteger(value) {
   return Math.floor(finiteNonNegative(value));
 }
 
-function sanitizePublicSummary(value) {
-  if (typeof value !== 'string') return '';
-  return value
-    .replace(/(?:token|params?|body|stack)\s*[:=]\s*\S+/giu, '[REDACTED]')
-    .replace(/\b([a-z][a-z\d+.-]*:\/\/)[^\s/?#]+/giu, '$1[REDACTED]')
-    .replace(/\b(?:\d{1,3}\.){3}\d{1,3}(?::\d{1,5})?\b/gu, '[REDACTED]')
-    .replace(/\b(?:[A-Za-z\d-]+\.)+[A-Za-z]{2,}(?::\d{1,5})?\b/gu, '[REDACTED]')
-    .slice(0, 300);
-}
-
 function serializeAnomalyItem(row) {
   const occurredAt = rowValue(row, 'occurred_at');
   return {
@@ -470,7 +537,7 @@ function serializeAnomalyItem(row) {
     source: normalizePublicIdentifier(rowValue(row, 'source'), '[REDACTED]'),
     taskType: normalizePublicIdentifier(rowValue(row, 'task_type'), ''),
     command: normalizePublicIdentifier(rowValue(row, 'command'), ''),
-    executionLane: normalizePublicIdentifier(rowValue(row, 'execution_lane'), ''),
+    executionLane: normalizeExecutionLane(rowValue(row, 'execution_lane')),
     egressType: normalizeEgressType(rowValue(row, 'egress_type')),
     egressKey: normalizeEgressKey(
       rowValue(row, 'egress_key'),
@@ -480,7 +547,7 @@ function serializeAnomalyItem(row) {
     errorCode: publicNullableInteger(rowValue(row, 'error_code')),
     latencyMs: publicNullableInteger(rowValue(row, 'latency_ms')),
     queueWaitMs: publicNullableInteger(rowValue(row, 'queue_wait_ms')),
-    summary: sanitizePublicSummary(rowValue(row, 'summary')),
+    summary: sanitizeOutputString(rowValue(row, 'summary'), 300),
   };
 }
 
@@ -500,16 +567,17 @@ export function serializeSchedulerAnomalies(raw = {}) {
   };
 }
 
-function repositoryFilters(query, includePagination) {
+function repositoryFilters(query, endpoint) {
   const filters = { cutoff: query.cutoff };
-  if (includePagination) {
+  if (endpoint === 'anomalies') {
     filters.page = query.page;
     filters.pageSize = query.pageSize;
   }
-  for (const name of ['category', 'source', 'taskType', 'egressType']) {
-    if (query[name] !== undefined && (includePagination || name !== 'category')) {
-      filters[name] = query[name];
-    }
+  const filterNames = endpoint === 'summary'
+    ? ['source', 'taskType', 'commandClass', 'egressType']
+    : ['category', 'source', 'taskType', 'egressType'];
+  for (const name of filterNames) {
+    if (query[name] !== undefined) filters[name] = query[name];
   }
   return filters;
 }
@@ -522,12 +590,12 @@ export function createSchedulerObservabilityHandlers({
 }) {
   return {
     async summary(req, res) {
-      const normalized = normalizeObservabilityQuery(req?.query, { now });
+      const normalized = normalizeObservabilityQuery(req?.query, { now, endpoint: 'summary' });
       if (!normalized.ok) {
         return res.status(400).json({ success: false, error: normalized.error });
       }
       try {
-        const raw = await querySummary(repositoryFilters(normalized.value, false));
+        const raw = await querySummary(repositoryFilters(normalized.value, 'summary'));
         const health = await getHealth();
         return res.json({
           success: true,
@@ -545,12 +613,12 @@ export function createSchedulerObservabilityHandlers({
       }
     },
     async anomalies(req, res) {
-      const normalized = normalizeObservabilityQuery(req?.query, { now });
+      const normalized = normalizeObservabilityQuery(req?.query, { now, endpoint: 'anomalies' });
       if (!normalized.ok) {
         return res.status(400).json({ success: false, error: normalized.error });
       }
       try {
-        const raw = await queryAnomalies(repositoryFilters(normalized.value, true));
+        const raw = await queryAnomalies(repositoryFilters(normalized.value, 'anomalies'));
         const data = serializeSchedulerAnomalies({
           ...raw,
           page: normalized.value.page,
