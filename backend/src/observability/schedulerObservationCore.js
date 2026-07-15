@@ -14,9 +14,34 @@ const OBSERVATION_OUTCOME_SET = new Set(OBSERVATION_OUTCOMES);
 const RATE_LIMIT_CODES = new Set(['200400', '12400000']);
 const RATE_LIMIT_MESSAGE_PATTERN = /操作过快|请稍后重试|过于频繁/;
 const UTC_MINUTE_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:00$/;
-const SENSITIVE_DIMENSION_PATTERN = /^(?:token|roleToken|p|params?|arguments?|request(?:Body)?|response(?:Body)?|body|stack)$/i;
 const MAX_OBSERVATION_NUMBER = Number.MAX_SAFE_INTEGER;
-const SENSITIVE_ASSIGNMENT_PATTERN = /(?:\\?["'])?\b(?:roleToken|token|p)\b(?:\\?["'])?\s*[:=]\s*/gi;
+const SENSITIVE_FIELD_NAMES = Object.freeze([
+  'token',
+  'roleToken',
+  'p',
+  'param',
+  'params',
+  'argument',
+  'arguments',
+  'request',
+  'requestBody',
+  'response',
+  'responseBody',
+  'body',
+  'stack',
+  'proxy',
+  'proxyUrl',
+]);
+const SENSITIVE_FIELD_NAME_SET = new Set(SENSITIVE_FIELD_NAMES.map((name) => name.toLowerCase()));
+const SENSITIVE_FIELD_PATTERN_SOURCE = SENSITIVE_FIELD_NAMES.join('|');
+const SENSITIVE_ASSIGNMENT_PATTERN = new RegExp(
+  `(?:\\\\?["'])?\\b(${SENSITIVE_FIELD_PATTERN_SOURCE})\\b(?:\\\\?["'])?\\s*[:=]\\s*`,
+  'gi',
+);
+
+function isSensitiveFieldName(value) {
+  return SENSITIVE_FIELD_NAME_SET.has(String(value).toLowerCase());
+}
 
 function normalizeMaxLength(maxLength) {
   const numericLength = Number(maxLength);
@@ -30,13 +55,6 @@ function isEscapedQuote(value, index) {
     slashCount += 1;
   }
   return slashCount % 2 === 1;
-}
-
-function findStructuralBoundary(value, start) {
-  for (let index = start; index < value.length; index += 1) {
-    if (/[,;&}\]]/.test(value[index])) return index;
-  }
-  return value.length;
 }
 
 function findNormalQuoteEnd(value, start, quote, boundary) {
@@ -56,16 +74,41 @@ function findEscapedQuoteEnd(value, start, quote, boundary) {
 }
 
 function findUnquotedValueEnd(value, start) {
-  for (let index = start; index < value.length; index += 1) {
-    if (/[\s,;&}\]]/.test(value[index])) return index;
+  const opening = value[start];
+  const closing = opening === '{' ? '}' : opening === '[' ? ']' : null;
+  if (closing) {
+    const closingIndex = value.indexOf(closing, start + 1);
+    return closingIndex < 0 ? value.length : closingIndex + 1;
   }
   return value.length;
 }
 
 function findChainedSensitiveAssignment(value, start, candidateClosingIndex) {
-  const prefixBeforeCandidate = /(?:\\?["'])?\b(?:roleToken|token|p)\b(?:\\?["'])?\s*[:=]\s*$/i;
+  const prefixBeforeCandidate = new RegExp(
+    `(?:\\\\?["'])?\\b(?:${SENSITIVE_FIELD_PATTERN_SOURCE})\\b(?:\\\\?["'])?\\s*[:=]\\s*$`,
+    'i',
+  );
   const match = prefixBeforeCandidate.exec(value.slice(start, candidateClosingIndex));
   return match ? { boundary: start + match.index } : null;
+}
+
+function hasCompleteSensitiveValue(value, start) {
+  if (value[start] === '\\' && /["']/.test(value[start + 1] ?? '')) {
+    return findEscapedQuoteEnd(value, start + 2, value[start + 1], value.length) >= 0;
+  }
+  if (/["']/.test(value[start] ?? '')) {
+    return findNormalQuoteEnd(value, start + 1, value[start], value.length) >= 0;
+  }
+  return start < value.length;
+}
+
+function findNextCompleteSensitiveAssignment(value, start) {
+  const pattern = new RegExp(SENSITIVE_ASSIGNMENT_PATTERN.source, 'gi');
+  pattern.lastIndex = start;
+  for (let match = pattern.exec(value); match; match = pattern.exec(value)) {
+    if (hasCompleteSensitiveValue(value, pattern.lastIndex)) return { boundary: match.index };
+  }
+  return null;
 }
 
 function redactSensitiveAssignments(value) {
@@ -77,27 +120,26 @@ function redactSensitiveAssignments(value) {
     if (match.index < cursor) continue;
 
     const valueStart = SENSITIVE_ASSIGNMENT_PATTERN.lastIndex;
-    const boundary = findStructuralBoundary(value, valueStart);
     result += value.slice(cursor, valueStart);
 
     if (value[valueStart] === '\\' && /["']/.test(value[valueStart + 1] ?? '')) {
       const quote = value[valueStart + 1];
       const closingIndex = findEscapedQuoteEnd(value, valueStart + 2, quote, value.length);
       const chainedAssignment = closingIndex < 0
-        ? null
+        ? findNextCompleteSensitiveAssignment(value, valueStart + 2)
         : findChainedSensitiveAssignment(value, valueStart + 2, closingIndex);
       const isClosed = closingIndex >= 0 && chainedAssignment === null;
-      const valueEnd = isClosed ? closingIndex + 2 : chainedAssignment?.boundary ?? boundary;
+      const valueEnd = isClosed ? closingIndex + 2 : chainedAssignment?.boundary ?? value.length;
       result += `\\${quote}[REDACTED]${isClosed ? `\\${quote}` : ''}`;
       cursor = valueEnd;
     } else if (/["']/.test(value[valueStart] ?? '')) {
       const quote = value[valueStart];
       const closingIndex = findNormalQuoteEnd(value, valueStart + 1, quote, value.length);
       const chainedAssignment = closingIndex < 0
-        ? null
+        ? findNextCompleteSensitiveAssignment(value, valueStart + 1)
         : findChainedSensitiveAssignment(value, valueStart + 1, closingIndex);
       const isClosed = closingIndex >= 0 && chainedAssignment === null;
-      const valueEnd = isClosed ? closingIndex + 1 : chainedAssignment?.boundary ?? boundary;
+      const valueEnd = isClosed ? closingIndex + 1 : chainedAssignment?.boundary ?? value.length;
       result += `${quote}[REDACTED]${isClosed ? quote : ''}`;
       cursor = valueEnd;
     } else {
@@ -226,7 +268,7 @@ function normalizeOutcome(outcome) {
   return OBSERVATION_OUTCOME_SET.has(outcome) ? outcome : 'error';
 }
 
-function normalizeTimestamp(value, fallback) {
+function parseTimestamp(value) {
   let timestamp;
   if (value instanceof Date) {
     timestamp = value.getTime();
@@ -235,7 +277,12 @@ function normalizeTimestamp(value, fallback) {
   } else {
     timestamp = Number(value);
   }
-  return Number.isFinite(timestamp) ? timestamp : fallback;
+  if (!Number.isFinite(timestamp) || Number.isNaN(new Date(timestamp).getTime())) return null;
+  return timestamp;
+}
+
+function normalizeTimestamp(value, fallback) {
+  return parseTimestamp(value) ?? parseTimestamp(fallback) ?? Date.now();
 }
 
 function formatUtcMinute(value, fallback) {
@@ -249,11 +296,11 @@ function formatUtcMinute(value, fallback) {
   return `${isoMinute.replace('T', ' ')}:00`;
 }
 
-function normalizeDimensionValue(key, value) {
+function normalizeDimensionValue(rawKey, normalizedKey, value) {
+  if (isSensitiveFieldName(rawKey) || isSensitiveFieldName(normalizedKey)) return '[REDACTED]';
   if (value === null || value === undefined || value === '') return '';
-  if (SENSITIVE_DIMENSION_PATTERN.test(key)) return '[REDACTED]';
 
-  if (key === 'egress' || key === 'proxy') {
+  if (normalizedKey === 'egress') {
     if (value === 'direct' || /^proxy:[a-f\d]{12}$/.test(value)) return value;
     return createEgressDescriptor(value).key;
   }
@@ -280,10 +327,18 @@ function normalizeDimensions(input, metricType) {
   const primaryName = metricType === 'command' ? 'command' : 'task';
   if (input?.[primaryName] !== undefined) rawDimensions[primaryName] = input[primaryName];
 
+  const normalizedDimensions = new Map();
+  for (const rawKey of Object.keys(rawDimensions).sort()) {
+    const normalizedKey = sanitizeObservationMessage(rawKey, 80);
+    const normalizedValue = normalizeDimensionValue(rawKey, normalizedKey, rawDimensions[rawKey]);
+    const existingValue = normalizedDimensions.get(normalizedKey);
+
+    if (existingValue === '[REDACTED]' && normalizedValue !== '[REDACTED]') continue;
+    normalizedDimensions.set(normalizedKey, normalizedValue);
+  }
+
   return Object.fromEntries(
-    Object.keys(rawDimensions)
-      .sort()
-      .map((key) => [sanitizeObservationMessage(key, 80), normalizeDimensionValue(key, rawDimensions[key])]),
+    [...normalizedDimensions.entries()].sort(([left], [right]) => left.localeCompare(right)),
   );
 }
 
@@ -424,6 +479,82 @@ function sumMetricRows(commandMetrics, taskMetrics) {
   }
 
   return { commandCount, taskCount, rateLimitedCount };
+}
+
+const COMMAND_METRIC_NUMBER_FIELDS = [
+  'commandCount',
+  'errorCount',
+  'timeoutCount',
+  'disconnectedCount',
+  'rateLimitedCount',
+  'latencyCount',
+  'latencySumMs',
+  'latencyMaxMs',
+];
+const TASK_METRIC_NUMBER_FIELDS = [
+  'runCount',
+  'durationCount',
+  'durationSumMs',
+  'durationMaxMs',
+  'queueWaitCount',
+  'queueWaitSumMs',
+  'queueWaitMaxMs',
+  'attributedCommandCount',
+];
+
+function isRecord(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function hasValidDimensions(dimensions) {
+  return isRecord(dimensions)
+    && Object.values(dimensions).every((value) => typeof value === 'string');
+}
+
+function hasValidMetricIdentity(row) {
+  if (!isRecord(row) || !UTC_MINUTE_PATTERN.test(row.minute)) return false;
+  const timestamp = parseTimestamp(`${row.minute.replace(' ', 'T')}Z`);
+  return timestamp !== null
+    && OBSERVATION_OUTCOME_SET.has(row.outcome)
+    && hasValidDimensions(row.dimensions);
+}
+
+function hasValidMetricNumbers(row, fields) {
+  return fields.every((field) => (
+    typeof row[field] === 'number' && Number.isFinite(row[field]) && row[field] >= 0
+  ));
+}
+
+function isValidSnapshotForMerge(snapshot) {
+  if (
+    snapshot?.version !== 1
+    || !Array.isArray(snapshot.commandMetrics)
+    || !Array.isArray(snapshot.taskMetrics)
+    || !Array.isArray(snapshot.anomalies)
+    || !isRecord(snapshot.health)
+  ) {
+    return false;
+  }
+
+  if (!snapshot.commandMetrics.every((row) => (
+    hasValidMetricIdentity(row) && hasValidMetricNumbers(row, COMMAND_METRIC_NUMBER_FIELDS)
+  ))) return false;
+  if (!snapshot.taskMetrics.every((row) => (
+    hasValidMetricIdentity(row) && hasValidMetricNumbers(row, TASK_METRIC_NUMBER_FIELDS)
+  ))) return false;
+  if (!snapshot.anomalies.every((anomaly) => (
+    isRecord(anomaly)
+    && parseTimestamp(anomaly.timestamp) !== null
+    && typeof anomaly.type === 'string'
+    && typeof anomaly.message === 'string'
+    && hasValidDimensions(anomaly.dimensions)
+  ))) return false;
+
+  return ['metricKeys', 'anomalyCount', 'droppedMetrics', 'droppedAnomalies'].every((field) => (
+    typeof snapshot.health[field] === 'number'
+    && Number.isFinite(snapshot.health[field])
+    && snapshot.health[field] >= 0
+  ));
 }
 
 export class SchedulerObservationAggregator {
@@ -573,30 +704,58 @@ export class SchedulerObservationAggregator {
   }
 
   mergeSnapshot(snapshot) {
-    if (
-      snapshot?.version !== 1
-      || !Array.isArray(snapshot.commandMetrics)
-      || !Array.isArray(snapshot.taskMetrics)
-      || !Array.isArray(snapshot.anomalies)
-    ) {
+    try {
+      if (!isValidSnapshotForMerge(snapshot)) return false;
+
+      const staging = new SchedulerObservationAggregator({
+        now: this._now,
+        maxMetricKeys: this._maxMetricKeys,
+        maxAnomalies: this._maxAnomalies,
+      });
+      staging._commandMetrics = new Map(
+        [...this._commandMetrics].map(([key, row]) => [key, cloneMetricRow(row)]),
+      );
+      staging._taskMetrics = new Map(
+        [...this._taskMetrics].map(([key, row]) => [key, cloneMetricRow(row)]),
+      );
+      staging._anomalies = this._anomalies.map((entry) => ({
+        ...entry,
+        dimensions: { ...entry.dimensions },
+      }));
+      staging._restoredAnomalyCount = this._restoredAnomalyCount;
+      staging._droppedMetrics = this._droppedMetrics;
+      staging._droppedAnomalies = this._droppedAnomalies;
+
+      for (const row of snapshot.commandMetrics) staging._mergeMetricRow('command', row);
+      for (const row of snapshot.taskMetrics) staging._mergeMetricRow('task', row);
+
+      const restoredAnomalies = snapshot.anomalies.map((anomaly) => (
+        staging._createAnomalyEntry(anomaly)
+      ));
+      staging._anomalies.splice(
+        staging._restoredAnomalyCount,
+        0,
+        ...restoredAnomalies,
+      );
+      staging._restoredAnomalyCount += restoredAnomalies.length;
+      staging._droppedMetrics = addObservationNumbers(
+        staging._droppedMetrics,
+        normalizeCapacity(snapshot.health.droppedMetrics, 0),
+      );
+      staging._droppedAnomalies = addObservationNumbers(
+        staging._droppedAnomalies,
+        normalizeCapacity(snapshot.health.droppedAnomalies, 0),
+      );
+
+      this._commandMetrics = staging._commandMetrics;
+      this._taskMetrics = staging._taskMetrics;
+      this._anomalies = staging._anomalies;
+      this._restoredAnomalyCount = staging._restoredAnomalyCount;
+      this._droppedMetrics = staging._droppedMetrics;
+      this._droppedAnomalies = staging._droppedAnomalies;
+      return true;
+    } catch {
       return false;
     }
-
-    for (const row of snapshot.commandMetrics) this._mergeMetricRow('command', row);
-    for (const row of snapshot.taskMetrics) this._mergeMetricRow('task', row);
-
-    const restoredAnomalies = snapshot.anomalies.map((anomaly) => this._createAnomalyEntry(anomaly));
-    this._anomalies.splice(this._restoredAnomalyCount, 0, ...restoredAnomalies);
-    this._restoredAnomalyCount += restoredAnomalies.length;
-
-    this._droppedMetrics = addObservationNumbers(
-      this._droppedMetrics,
-      normalizeCapacity(snapshot.health?.droppedMetrics, 0),
-    );
-    this._droppedAnomalies = addObservationNumbers(
-      this._droppedAnomalies,
-      normalizeCapacity(snapshot.health?.droppedAnomalies, 0),
-    );
-    return true;
   }
 }

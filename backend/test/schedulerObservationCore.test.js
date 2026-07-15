@@ -93,6 +93,22 @@ test('sanitizeObservationMessage redacts unterminated sensitive values and compl
   );
 });
 
+test('sanitizeObservationMessage fails closed for unterminated quoted values with separators', () => {
+  const cases = [
+    ['token="abc,still-secret', 'still-secret'],
+    ['roleToken="abc;still-secret', 'still-secret'],
+    ['p="abc]still-secret', 'still-secret'],
+    ['token="abc&still-secret', 'still-secret'],
+    ['roleToken="abc still-secret', 'still-secret'],
+  ];
+
+  for (const [input, secret] of cases) {
+    const result = sanitizeObservationMessage(input);
+    assert.equal(result.includes(secret), false);
+    assert.match(result, /\[REDACTED\]/);
+  }
+});
+
 test('sanitizeObservationMessage keeps structural characters inside closed sensitive quotes redacted', () => {
   const cases = [
     ['token="first,comma-secret"', 'comma-secret'],
@@ -169,6 +185,29 @@ test('sanitizeObservationMessage keeps closed values with assignment-like text a
     assert.equal(result, expected);
     assert.equal((result.match(/\[REDACTED\]/g) ?? []).length, 1);
     for (const secret of secrets) assert.equal(result.includes(secret), false);
+  }
+});
+
+test('sanitizeObservationMessage redacts every prohibited observation field', () => {
+  const cases = [
+    ['params={password: short-secret}', ['short-secret']],
+    ['responseBody={private: short-secret}', ['short-secret']],
+    ['proxy=http://raw.proxy.local:8080', ['raw.proxy.local']],
+    ['stack=Error: boom at full-sensitive-stack', ['boom', 'full-sensitive-stack']],
+  ];
+
+  for (const [input, secrets] of cases) {
+    const result = sanitizeObservationMessage(input);
+    assert.match(result, /\[REDACTED\]/);
+    for (const secret of secrets) assert.equal(result.includes(secret), false);
+  }
+
+  const aggregator = new SchedulerObservationAggregator({ maxAnomalies: 10 });
+  for (const [message] of cases) aggregator.recordAnomaly({ type: 'safety', message });
+  const serialized = JSON.stringify(aggregator.takeSnapshot());
+
+  for (const secret of ['short-secret', 'raw.proxy.local', 'boom', 'full-sensitive-stack']) {
+    assert.equal(serialized.includes(secret), false);
   }
 });
 
@@ -308,6 +347,30 @@ test('recordTask normalizes empty and object dimensions without object key coerc
   assert.equal(snapshot.taskMetrics[0].minute, '1970-01-01 00:00:00');
   assert.equal(snapshot.totals.taskCount, 1);
   assert.equal(JSON.stringify(snapshot).includes('[object Object]'), false);
+});
+
+test('dimension keys are normalized before sensitive matching and redaction wins collisions', () => {
+  const aggregator = new SchedulerObservationAggregator({ now: () => 0 });
+
+  aggregator.recordAnomaly({
+    type: 'normalized-key',
+    message: 'safe',
+    dimensions: { 'token\u0000': 'dimension-secret' },
+  });
+  aggregator.recordAnomaly({
+    type: 'collision',
+    message: 'safe',
+    dimensions: { 'to\u0000ken': 'alias-secret', token: 'direct-secret' },
+  });
+
+  const snapshot = aggregator.takeSnapshot();
+  const serialized = JSON.stringify(snapshot);
+
+  assert.deepEqual(snapshot.anomalies[0].dimensions, { token: '[REDACTED]' });
+  assert.deepEqual(snapshot.anomalies[1].dimensions, { token: '[REDACTED]' });
+  assert.equal(serialized.includes('dimension-secret'), false);
+  assert.equal(serialized.includes('alias-secret'), false);
+  assert.equal(serialized.includes('direct-secret'), false);
 });
 
 test('recordTask accumulates valid timing statistics and attributed command aliases', () => {
@@ -704,4 +767,36 @@ test('mergeSnapshot rejects non-snapshot input without changing state', () => {
     droppedMetrics: 0,
     droppedAnomalies: 0,
   });
+});
+
+test('mergeSnapshot rejects invalid nested data atomically and remains idempotent', () => {
+  const target = new SchedulerObservationAggregator({ now: () => 0 });
+  target.recordCommand({ command: 'current', outcome: 'success' });
+  target.recordAnomaly({ type: 'current', message: 'current' });
+  const healthBefore = target.getHealth();
+
+  const invalidSource = new SchedulerObservationAggregator({ now: () => 0 });
+  invalidSource.recordCommand({ command: 'source', outcome: 'error' });
+  invalidSource.recordAnomaly({ type: 'source', message: 'source' });
+  const invalidSnapshot = invalidSource.takeSnapshot();
+  invalidSnapshot.anomalies[0].timestamp = 9e15;
+
+  assert.doesNotThrow(() => target.mergeSnapshot(invalidSnapshot));
+  assert.equal(target.mergeSnapshot(invalidSnapshot), false);
+  assert.equal(target.mergeSnapshot(invalidSnapshot), false);
+  assert.deepEqual(target.getHealth(), healthBefore);
+
+  const afterInvalid = target.takeSnapshot();
+  assert.deepEqual(afterInvalid.commandMetrics.map((row) => row.dimensions.command), ['current']);
+  assert.equal(afterInvalid.commandMetrics[0].commandCount, 1);
+  assert.deepEqual(afterInvalid.anomalies.map((entry) => entry.type), ['current']);
+
+  const validSource = new SchedulerObservationAggregator({ now: () => 0 });
+  validSource.recordCommand({ command: 'source', outcome: 'error' });
+  validSource.recordAnomaly({ type: 'source', message: 'source' });
+  assert.equal(target.mergeSnapshot(validSource.takeSnapshot()), true);
+
+  const afterValid = target.takeSnapshot();
+  assert.deepEqual(afterValid.commandMetrics.map((row) => row.dimensions.command), ['source']);
+  assert.deepEqual(afterValid.anomalies.map((entry) => entry.type), ['source']);
 });
