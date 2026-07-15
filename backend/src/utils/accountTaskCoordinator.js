@@ -1,4 +1,7 @@
+import { performance } from 'node:perf_hooks';
 import config from '../config/index.js';
+import { getSchedulerObservationContext } from '../observability/schedulerObservationCore.js';
+import * as schedulerObservationService from '../observability/schedulerObservationService.js';
 import {
   getSchedulerAccountDispatchIntervalMsSetting,
   getSchedulerMaxConcurrentAccountsSetting,
@@ -35,6 +38,53 @@ const taskTypeCommandNextAllowedAt = new Map();
 
 function normalizeAccountId(accountId) {
   return String(accountId);
+}
+
+function monotonicNow() {
+  const value = performance.now();
+  if (Number.isFinite(value)) return value;
+  return Number(process.hrtime.bigint()) / 1_000_000;
+}
+
+function safeObservationIdentifier(context, name) {
+  try {
+    const value = context?.[name];
+    if (
+      value === null
+      || value === undefined
+      || typeof value === 'object'
+      || typeof value === 'function'
+      || typeof value === 'symbol'
+    ) {
+      return undefined;
+    }
+    return value;
+  } catch {
+    return undefined;
+  }
+}
+
+function safelyObserveAccountQueue(options, event) {
+  try {
+    let observer;
+    try {
+      observer = options?.observer;
+    } catch {
+      return;
+    }
+    if (observer === undefined) observer = schedulerObservationService;
+
+    const method = observer?.observeAccountQueue;
+    if (typeof method !== 'function') return;
+    const payload = observer === schedulerObservationService
+      ? { accountId: event.accountId, runId: event.runId, queueWaitMs: event.waitMs }
+      : event;
+    const result = method.call(observer, payload);
+    if (result === null || (typeof result !== 'object' && typeof result !== 'function')) return;
+    Promise.resolve(result).catch(() => {});
+  } catch {
+    // Observation must never affect account execution or slot release.
+  }
 }
 
 function getMaxConcurrentAccounts() {
@@ -247,7 +297,25 @@ export async function runAccountTaskExclusive(accountId, taskExecutor, options =
   const current = previous
     .catch(() => {})
     .then(async () => {
+      const requestedAt = monotonicNow();
       await acquireGlobalAccountSlot(key, lane);
+      const acquiredAt = monotonicNow();
+      let observationContext = null;
+      try {
+        observationContext = getSchedulerObservationContext();
+      } catch {
+        // Observation context is optional.
+      }
+      const queueObservation = {
+        accountId,
+        executionLane: lane,
+        waitMs: Math.max(0, acquiredAt - requestedAt),
+      };
+      for (const name of ['source', 'runId', 'taskType']) {
+        const value = safeObservationIdentifier(observationContext, name);
+        if (value !== undefined) queueObservation[name] = value;
+      }
+      safelyObserveAccountQueue(options, queueObservation);
       try {
         return await taskExecutor();
       } finally {

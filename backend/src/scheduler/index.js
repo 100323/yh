@@ -58,12 +58,64 @@ import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
+import {
+  runObservedTask,
+  withSchedulerObservationContext,
+} from '../observability/schedulerObservationCore.js';
+import * as schedulerObservationService from '../observability/schedulerObservationService.js';
 
 const activeConnections = new Map();
 const scheduledJobs = new Map();
 const connectionPromises = new Map();
 const dailyRewardFlushState = new Map();
 const pendingAccountTaskBatches = new Map();
+const SCHEDULER_OBSERVATION_SOURCES = new Set([
+  'scheduler',
+  'scheduler-catchup',
+  'scheduler-manual',
+  'system',
+]);
+
+function normalizeSchedulerObservationSource(source) {
+  return SCHEDULER_OBSERVATION_SOURCES.has(source) ? source : 'scheduler';
+}
+
+export function runSchedulerAccountObserved(context, executor, options = {}) {
+  const accountId = context?.accountId;
+  const executionLane = context?.executionLane === EXECUTION_LANES.PROXY
+    ? EXECUTION_LANES.PROXY
+    : EXECUTION_LANES.DIRECT;
+  const observationContext = {
+    source: normalizeSchedulerObservationSource(context?.source),
+    accountId,
+    executionLane,
+  };
+  if (context?.taskType !== undefined) observationContext.taskType = context.taskType;
+  let queueObserver;
+  try {
+    queueObserver = options?.observer;
+  } catch {
+    queueObserver = null;
+  }
+  const accountExecutor = context?.taskType === undefined
+    ? executor
+    : () => runSchedulerTaskObserved({ taskType: context.taskType }, executor);
+
+  return withSchedulerObservationContext(observationContext, () => (
+    runAccountTaskExclusive(accountId, accountExecutor, {
+      lane: executionLane,
+      observer: queueObserver,
+    })
+  ));
+}
+
+export function runSchedulerTaskObserved(context, executor, observer = schedulerObservationService) {
+  const observationContext = { taskType: context?.taskType };
+  if (context?.source !== undefined) {
+    observationContext.source = normalizeSchedulerObservationSource(context.source);
+  }
+  return runObservedTask(observationContext, executor, observer);
+}
 
 async function resolveAccountExecutionLane(accountName) {
   try {
@@ -709,15 +761,17 @@ async function executeScheduledTaskWithClient(task, context = {}) {
     }
 
     currentClient = await context.ensureClient();
-    const execution = await executeTaskWithFlowControl({
-      accountId,
-      accountName,
-      taskType,
-      taskConfig,
-      client: currentClient,
-      source,
-      reconnect: context.reconnect,
-    });
+    const execution = await runSchedulerTaskObserved({ taskType }, () => (
+      executeTaskWithFlowControl({
+        accountId,
+        accountName,
+        taskType,
+        taskConfig,
+        client: currentClient,
+        source,
+        reconnect: context.reconnect,
+      })
+    ));
     currentClient = execution.client;
     const result = execution.result;
 
@@ -757,7 +811,11 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
   const accountName = getTaskAccountName(firstTask);
   const lane = await resolveAccountExecutionLane(accountName);
 
-  return runAccountTaskExclusive(accountId, async () => {
+  return runSchedulerAccountObserved({
+    source: context.source || 'scheduler',
+    accountId,
+    executionLane: lane,
+  }, async () => {
     console.log('🚀 开始账号批次执行', {
       accountId,
       accountName,
@@ -904,7 +962,7 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         source: context.source || 'scheduler',
       });
     }
-  }, { lane });
+  });
 }
 
 async function flushPendingAccountTaskBatch(accountId) {
@@ -1423,7 +1481,11 @@ export async function executeTask(task) {
 
   const lane = await resolveAccountExecutionLane(accountName);
 
-  return runAccountTaskExclusive(accountId, async () => {
+  return runSchedulerAccountObserved({
+    source: 'scheduler-manual',
+    accountId,
+    executionLane: lane,
+  }, async () => {
     console.log(`🚀 开始执行任务: ${accountName} - ${task.task_type}`);
     try {
       await ensureTaskUserAvailable(task);
@@ -1485,7 +1547,7 @@ export async function executeTask(task) {
       }
       throw error;
     }
-  }, { lane });
+  });
 }
 
 async function executeTaskWithFlowControl({
@@ -1741,7 +1803,10 @@ async function flushDailyRewardClaimOnClient(
   }
 
   try {
-    const execution = await executeTaskWithFlowControl({
+    const execution = await runSchedulerTaskObserved({
+      source: 'system',
+      taskType: 'DAILY_TASK_CLAIM',
+    }, () => executeTaskWithFlowControl({
       accountId,
       accountName: flushContext.accountName || entry.accountName || `账号${accountId}`,
       taskType: 'DAILY_TASK_CLAIM',
@@ -1749,7 +1814,7 @@ async function flushDailyRewardClaimOnClient(
       client,
       source: 'scheduler-batch-finalize',
       reconnect,
-    });
+    }));
     const currentClient = execution.client;
     const result = execution.result;
 
@@ -1832,7 +1897,12 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
 
   const lane = await resolveAccountExecutionLane(flushContext.accountName);
 
-  entry.flushingPromise = runAccountTaskExclusive(accountId, async () => {
+  entry.flushingPromise = runSchedulerAccountObserved({
+    source: 'system',
+    accountId,
+    executionLane: lane,
+    taskType: 'DAILY_TASK_CLAIM',
+  }, async () => {
     try {
       if (!entry.dirty) {
         return false;
@@ -1923,7 +1993,7 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
     } finally {
       entry.flushingPromise = null;
     }
-  }, { lane });
+  });
 
   return await entry.flushingPromise;
 }

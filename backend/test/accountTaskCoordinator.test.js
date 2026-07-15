@@ -3,9 +3,153 @@ import assert from 'node:assert/strict';
 import config from '../src/config/index.js';
 import {
   clearAccountTaskCoordinator,
+  runAccountTaskExclusive,
   runTaskTypeCommandThrottled,
   runTaskTypeThrottled,
 } from '../src/utils/accountTaskCoordinator.js';
+import { withSchedulerObservationContext } from '../src/observability/schedulerObservationCore.js';
+
+function deferred() {
+  let resolve;
+  const promise = new Promise((resolvePromise) => {
+    resolve = resolvePromise;
+  });
+  return { promise, resolve };
+}
+
+test('account queue observation preserves FIFO and reports one wait per acquired account', async (t) => {
+  const originalMaxConcurrentAccounts = config.scheduler.maxConcurrentAccounts;
+  const originalDispatchIntervalMs = config.scheduler.accountDispatchIntervalMs;
+  config.scheduler.maxConcurrentAccounts = 1;
+  config.scheduler.accountDispatchIntervalMs = 0;
+  clearAccountTaskCoordinator();
+
+  t.after(() => {
+    config.scheduler.maxConcurrentAccounts = originalMaxConcurrentAccounts;
+    config.scheduler.accountDispatchIntervalMs = originalDispatchIntervalMs;
+    clearAccountTaskCoordinator();
+  });
+
+  const firstMayFinish = deferred();
+  const firstStarted = deferred();
+  const starts = [];
+  const observations = [];
+  const observer = {
+    observeAccountQueue(event) {
+      observations.push(event);
+    },
+  };
+
+  const first = withSchedulerObservationContext({
+    source: 'scheduler',
+    runId: 'run-1',
+    taskType: 'FIRST',
+  }, () => runAccountTaskExclusive(1, async () => {
+    starts.push(1);
+    firstStarted.resolve();
+    await firstMayFinish.promise;
+    return 'first';
+  }, { lane: 'direct', observer }));
+
+  await firstStarted.promise;
+  const second = withSchedulerObservationContext({
+    source: 'scheduler',
+    runId: 'run-2',
+    taskType: 'SECOND',
+  }, () => runAccountTaskExclusive(2, async () => {
+    starts.push(2);
+    return 'second';
+  }, { lane: 'direct', observer }));
+
+  await new Promise((resolve) => setTimeout(resolve, 15));
+  assert.deepEqual(starts, [1]);
+  firstMayFinish.resolve();
+  assert.deepEqual(await Promise.all([first, second]), ['first', 'second']);
+  assert.deepEqual(starts, [1, 2]);
+  assert.equal(observations.length, 2);
+  assert.deepEqual(Object.keys(observations[1]).sort(), [
+    'accountId',
+    'executionLane',
+    'runId',
+    'source',
+    'taskType',
+    'waitMs',
+  ]);
+  assert.equal(observations[1].accountId, 2);
+  assert.equal(observations[1].executionLane, 'direct');
+  assert.equal(observations[1].source, 'scheduler');
+  assert.equal(observations[1].runId, 'run-2');
+  assert.equal(observations[1].taskType, 'SECOND');
+  assert.ok(observations[1].waitMs > 0);
+});
+
+test('account queue observer getter, throw, and rejection cannot change return or release', async (t) => {
+  const originalMaxConcurrentAccounts = config.scheduler.maxConcurrentAccounts;
+  const originalDispatchIntervalMs = config.scheduler.accountDispatchIntervalMs;
+  config.scheduler.maxConcurrentAccounts = 1;
+  config.scheduler.accountDispatchIntervalMs = 0;
+  clearAccountTaskCoordinator();
+
+  t.after(() => {
+    config.scheduler.maxConcurrentAccounts = originalMaxConcurrentAccounts;
+    config.scheduler.accountDispatchIntervalMs = originalDispatchIntervalMs;
+    clearAccountTaskCoordinator();
+  });
+
+  const result = { ok: true };
+  const optionsWithThrowingObserverGetter = {};
+  Object.defineProperty(optionsWithThrowingObserverGetter, 'observer', {
+    get() {
+      throw new Error('observer getter failed');
+    },
+  });
+  assert.strictEqual(
+    await runAccountTaskExclusive('getter', async () => result, optionsWithThrowingObserverGetter),
+    result,
+  );
+
+  const observerWithThrowingMethodGetter = {};
+  Object.defineProperty(observerWithThrowingMethodGetter, 'observeAccountQueue', {
+    get() {
+      throw new Error('method getter failed');
+    },
+  });
+  assert.equal(await runAccountTaskExclusive('method-getter', async () => 1, {
+    observer: observerWithThrowingMethodGetter,
+  }), 1);
+
+  assert.equal(await runAccountTaskExclusive('throw', async () => 2, {
+    observer: {
+      observeAccountQueue() {
+        throw new Error('observer failed');
+      },
+    },
+  }), 2);
+
+  assert.equal(await runAccountTaskExclusive('reject', async () => 3, {
+    observer: {
+      observeAccountQueue() {
+        return Promise.reject(new Error('observer rejected'));
+      },
+    },
+  }), 3);
+
+  const taskError = new Error('task failed');
+  await assert.rejects(
+    runAccountTaskExclusive('error', async () => {
+      throw taskError;
+    }, {
+      observer: {
+        observeAccountQueue() {
+          throw new Error('observer failed while task fails');
+        },
+      },
+    }),
+    (error) => error === taskError,
+  );
+
+  assert.equal(await runAccountTaskExclusive('after-error', async () => 'released'), 'released');
+});
 
 test('limits concurrent GENIE_SWEEP task executions when configured', async (t) => {
   const originalTaskTypeMaxConcurrency = config.scheduler.taskTypeMaxConcurrency;
