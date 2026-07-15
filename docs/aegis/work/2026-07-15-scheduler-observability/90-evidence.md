@@ -28,3 +28,15 @@
 - 代码质量复核：`APPROVED`。
 - 最终提交：`aff45d09d4d5f86f4e45aed85e3e6015e910da85`。
 - 环境注记：Node 24 测试运行器数次出现 IPC 反序列化瞬态；既有文件单测均通过，随后全量重跑通过，未修改无关代码。
+
+### Task 2：AsyncLocalStorage 上下文与任务包装器
+
+- RED：缺少 `getSchedulerObservationContext` 导出；后续边界 RED 覆盖 observer getter、分类 getter、hostile thenable、重复结算与自返回链。
+- GREEN：`pnpm --dir backend exec node --test test/schedulerObservationCore.test.js`，58/58 通过。
+- 回归：默认 `pnpm --dir backend test`，最终 91/91 通过。
+- 静态检查：`git diff --check` 通过；无新增 `console` 或敏感输出。
+- 范围：仅修改观测核心与对应测试；未接入 scheduler、service、database 或 GameClient。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`21c0e9e`。
+- 环境注记：实现早期默认并行 runner 曾出现既有 Node 24 IPC 反序列化瞬态；串行全量通过，后续默认全量连续通过。
