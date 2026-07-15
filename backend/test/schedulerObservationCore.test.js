@@ -5,8 +5,257 @@ import {
   SchedulerObservationAggregator,
   classifyCommandFailure,
   createEgressDescriptor,
+  getSchedulerObservationContext,
+  runObservedTask,
   sanitizeObservationMessage,
+  withSchedulerObservationContext,
 } from '../src/observability/schedulerObservationCore.js';
+
+const nextTurn = () => new Promise((resolve) => setImmediate(resolve));
+
+test('scheduler observation context is null outside a scope and returned as a shallow copy', () => {
+  assert.equal(getSchedulerObservationContext(), null);
+
+  return withSchedulerObservationContext({ source: 'batch', accountId: 'account-1' }, () => {
+    const first = getSchedulerObservationContext();
+    first.source = 'mutated';
+    first.extra = 'caller-only';
+
+    assert.deepEqual(getSchedulerObservationContext(), {
+      source: 'batch',
+      accountId: 'account-1',
+    });
+  });
+});
+
+test('withSchedulerObservationContext merges nested scopes across awaits and restores the parent', async () => {
+  await withSchedulerObservationContext({
+    source: 'scheduler',
+    accountId: 'account-1',
+    queueWaitMs: 12,
+    executionLane: 'lane-a',
+    taskType: 'parent-task',
+  }, async () => {
+    await Promise.resolve();
+    await nextTurn();
+    assert.equal(getSchedulerObservationContext().taskType, 'parent-task');
+
+    await withSchedulerObservationContext({ taskType: 'child-task' }, async () => {
+      await Promise.resolve();
+      await nextTurn();
+      assert.deepEqual(getSchedulerObservationContext(), {
+        source: 'scheduler',
+        accountId: 'account-1',
+        queueWaitMs: 12,
+        executionLane: 'lane-a',
+        taskType: 'child-task',
+      });
+    });
+
+    assert.equal(getSchedulerObservationContext().taskType, 'parent-task');
+  });
+
+  assert.equal(getSchedulerObservationContext(), null);
+});
+
+test('withSchedulerObservationContext treats non-object context as empty', () => (
+  withSchedulerObservationContext({ source: 'parent' }, () => (
+    withSchedulerObservationContext(null, () => {
+      assert.deepEqual(getSchedulerObservationContext(), { source: 'parent' });
+    })
+  ))
+));
+
+test('concurrent scheduler observation contexts remain isolated', async () => {
+  let releaseFirst;
+  let releaseSecond;
+  const firstGate = new Promise((resolve) => { releaseFirst = resolve; });
+  const secondGate = new Promise((resolve) => { releaseSecond = resolve; });
+
+  const first = withSchedulerObservationContext({ accountId: 'first' }, async () => {
+    releaseSecond();
+    await firstGate;
+    return getSchedulerObservationContext();
+  });
+  const second = withSchedulerObservationContext({ accountId: 'second' }, async () => {
+    await secondGate;
+    releaseFirst();
+    await Promise.resolve();
+    return getSchedulerObservationContext();
+  });
+
+  assert.deepEqual(await Promise.all([first, second]), [
+    { accountId: 'first' },
+    { accountId: 'second' },
+  ]);
+});
+
+test('context wrapper preserves synchronous and asynchronous settlement identity', async () => {
+  const value = { ok: true };
+  assert.strictEqual(withSchedulerObservationContext({}, () => value), value);
+
+  const promise = Promise.resolve(value);
+  assert.strictEqual(withSchedulerObservationContext({}, () => promise), promise);
+  assert.strictEqual(await promise, value);
+
+  const syncError = new Error('sync failure');
+  assert.throws(
+    () => withSchedulerObservationContext({}, () => { throw syncError; }),
+    (error) => error === syncError,
+  );
+
+  const asyncError = new Error('async failure');
+  const rejected = Promise.reject(asyncError);
+  assert.strictEqual(withSchedulerObservationContext({}, () => rejected), rejected);
+  await assert.rejects(rejected, (error) => error === asyncError);
+});
+
+test('runObservedTask creates protected run metadata visible to the executor', async () => {
+  await withSchedulerObservationContext({
+    source: 'scheduler',
+    accountId: 'account-1',
+    queueWaitMs: 18,
+    executionLane: 'lane-a',
+  }, async () => {
+    const context = await runObservedTask({
+      taskType: 'daily',
+      runId: 'caller-run-id',
+      startedAt: 'caller-started-at',
+    }, async () => {
+      await Promise.resolve();
+      return getSchedulerObservationContext();
+    });
+
+    assert.equal(context.source, 'scheduler');
+    assert.equal(context.accountId, 'account-1');
+    assert.equal(context.queueWaitMs, 18);
+    assert.equal(context.executionLane, 'lane-a');
+    assert.equal(context.taskType, 'daily');
+    assert.notEqual(context.runId, 'caller-run-id');
+    assert.match(context.runId, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+    assert.notEqual(context.startedAt, 'caller-started-at');
+    assert.equal(new Date(context.startedAt).toISOString(), context.startedAt);
+  });
+});
+
+test('runObservedTask preserves return identity and observes success exactly once', async () => {
+  const calls = [];
+  const observer = { observeTaskSettled: (payload) => calls.push(payload) };
+  const value = { result: 'ok' };
+  assert.strictEqual(runObservedTask({ taskType: 'sync', source: 'manual' }, () => value, observer), value);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].taskType, 'sync');
+  assert.equal(calls[0].source, 'manual');
+  assert.equal(calls[0].outcome, 'success');
+  assert.ok(Number.isFinite(calls[0].durationMs));
+  assert.ok(calls[0].durationMs >= 0);
+  assert.ok(calls[0].runId);
+  assert.ok(calls[0].startedAt);
+
+  const asyncCalls = [];
+  const promise = Promise.resolve(value);
+  const returned = runObservedTask(
+    { taskType: 'async' },
+    () => promise,
+    { observeTaskSettled: (payload) => asyncCalls.push(payload) },
+  );
+  assert.strictEqual(returned, promise);
+  assert.strictEqual(await returned, value);
+  assert.equal(asyncCalls.length, 1);
+  assert.equal(asyncCalls[0].outcome, 'success');
+});
+
+test('runObservedTask classifies failures once and preserves the original error', async () => {
+  const cases = [
+    { error: Object.assign(new Error('timed out'), { timeout: true }), outcome: 'timeout' },
+    { error: Object.assign(new Error('socket closed'), { disconnected: true }), outcome: 'disconnected' },
+    { error: Object.assign(new Error('too fast'), { code: 200400 }), outcome: 'rate_limited' },
+    { error: new Error('ordinary failure'), outcome: 'error' },
+  ];
+
+  for (const { error, outcome } of cases) {
+    const syncCalls = [];
+    assert.throws(
+      () => runObservedTask(
+        { taskType: 'sync-failure' },
+        () => { throw error; },
+        { observeTaskSettled: (payload) => syncCalls.push(payload) },
+      ),
+      (caught) => caught === error,
+    );
+    assert.equal(syncCalls.length, 1);
+    assert.equal(syncCalls[0].outcome, outcome);
+    assert.strictEqual(syncCalls[0].error, error);
+    assert.ok(Number.isFinite(syncCalls[0].durationMs));
+    assert.ok(syncCalls[0].durationMs >= 0);
+
+    const asyncCalls = [];
+    const rejected = Promise.reject(error);
+    assert.strictEqual(runObservedTask(
+      { taskType: 'async-failure' },
+      () => rejected,
+      { observeTaskSettled: (payload) => asyncCalls.push(payload) },
+    ), rejected);
+    await assert.rejects(rejected, (caught) => caught === error);
+    assert.equal(asyncCalls.length, 1);
+    assert.equal(asyncCalls[0].outcome, outcome);
+    assert.strictEqual(asyncCalls[0].error, error);
+  }
+});
+
+test('runObservedTask isolates missing and failing observers without unhandled rejections', async () => {
+  const unhandled = [];
+  const onUnhandled = (reason) => unhandled.push(reason);
+  process.on('unhandledRejection', onUnhandled);
+
+  try {
+    const value = { ok: true };
+    assert.strictEqual(runObservedTask({}, () => value), value);
+    assert.strictEqual(runObservedTask({}, () => value, {}), value);
+    assert.strictEqual(runObservedTask({}, () => value, {
+      observeTaskSettled() { throw new Error('observer sync failure'); },
+    }), value);
+    assert.strictEqual(runObservedTask({}, () => value, {
+      observeTaskSettled() { return Promise.reject(new Error('observer async failure')); },
+    }), value);
+
+    const executorError = new Error('executor failure');
+    assert.throws(
+      () => runObservedTask({}, () => { throw executorError; }, {
+        observeTaskSettled() { throw new Error('observer sync failure'); },
+      }),
+      (error) => error === executorError,
+    );
+
+    const rejected = Promise.reject(executorError);
+    assert.strictEqual(runObservedTask({}, () => rejected, {
+      observeTaskSettled() { return Promise.reject(new Error('observer async failure')); },
+    }), rejected);
+    await assert.rejects(rejected, (error) => error === executorError);
+    await nextTurn();
+    await nextTurn();
+    assert.deepEqual(unhandled, []);
+  } finally {
+    process.off('unhandledRejection', onUnhandled);
+  }
+});
+
+test('runObservedTask observes a non-function executor as a failed settlement', () => {
+  const calls = [];
+  let caught;
+  try {
+    runObservedTask({ taskType: 'invalid' }, null, {
+      observeTaskSettled: (payload) => calls.push(payload),
+    });
+  } catch (error) {
+    caught = error;
+  }
+
+  assert.ok(caught instanceof TypeError);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].outcome, 'error');
+  assert.strictEqual(calls[0].error, caught);
+});
 
 test('exports exactly the supported observation outcomes', () => {
   assert.deepEqual([...OBSERVATION_OUTCOMES], [

@@ -1,4 +1,90 @@
-import { createHash } from 'node:crypto';
+import { AsyncLocalStorage } from 'node:async_hooks';
+import { createHash, randomUUID } from 'node:crypto';
+import { performance } from 'node:perf_hooks';
+
+const schedulerObservationStorage = new AsyncLocalStorage();
+
+function isContextObject(value) {
+  return value !== null && typeof value === 'object';
+}
+
+function monotonicNow() {
+  const value = performance.now();
+  if (Number.isFinite(value)) return value;
+  return Number(process.hrtime.bigint()) / 1_000_000;
+}
+
+function elapsedMilliseconds(startedAt) {
+  const elapsed = monotonicNow() - startedAt;
+  return Number.isFinite(elapsed) && elapsed >= 0 ? elapsed : 0;
+}
+
+function safelyObserveTaskSettlement(observer, payload) {
+  if (typeof observer?.observeTaskSettled !== 'function') return;
+
+  try {
+    const result = observer.observeTaskSettled(payload);
+    if (result && typeof result.then === 'function') {
+      result.then(undefined, () => {});
+    }
+  } catch {
+    // Observation must never affect task settlement.
+  }
+}
+
+export function getSchedulerObservationContext() {
+  const context = schedulerObservationStorage.getStore();
+  return context ? { ...context } : null;
+}
+
+export function withSchedulerObservationContext(context, executor) {
+  const parent = schedulerObservationStorage.getStore();
+  const merged = {
+    ...(parent ?? {}),
+    ...(isContextObject(context) ? context : {}),
+  };
+  return schedulerObservationStorage.run(merged, executor);
+}
+
+export function runObservedTask(context, executor, observer) {
+  const runId = randomUUID();
+  const startedAt = new Date().toISOString();
+
+  return withSchedulerObservationContext({
+    ...(isContextObject(context) ? context : {}),
+    runId,
+    startedAt,
+  }, () => {
+    const observationContext = getSchedulerObservationContext();
+    const monotonicStartedAt = monotonicNow();
+    const observeSuccess = () => safelyObserveTaskSettlement(observer, {
+      ...observationContext,
+      outcome: 'success',
+      durationMs: elapsedMilliseconds(monotonicStartedAt),
+    });
+    const observeFailure = (error) => safelyObserveTaskSettlement(observer, {
+      ...observationContext,
+      outcome: classifyCommandFailure(error, error),
+      durationMs: elapsedMilliseconds(monotonicStartedAt),
+      error,
+    });
+
+    let result;
+    try {
+      result = executor();
+    } catch (error) {
+      observeFailure(error);
+      throw error;
+    }
+
+    if (result && typeof result.then === 'function') {
+      result.then(observeSuccess, observeFailure);
+    } else {
+      observeSuccess();
+    }
+    return result;
+  });
+}
 
 export const OBSERVATION_OUTCOMES = Object.freeze([
   'success',
