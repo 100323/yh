@@ -16,6 +16,68 @@ const OBSERVATION_INDEXES = [
   'idx_task_metrics_bucket',
 ];
 const FORBIDDEN_FIELDS = ['params', 'body', 'token', 'proxy', 'stack'];
+const EXPECTED_TABLE_INFO = {
+  command_metric_minutes: [
+    ['bucket_minute', 'TEXT', 1, null, 1],
+    ['source', 'TEXT', 1, "''", 2],
+    ['command_class', 'TEXT', 1, "''", 3],
+    ['task_type', 'TEXT', 1, "''", 4],
+    ['command', 'TEXT', 1, "''", 5],
+    ['execution_lane', 'TEXT', 1, "''", 6],
+    ['egress_type', 'TEXT', 1, "''", 7],
+    ['egress_key', 'TEXT', 1, "''", 8],
+    ['outcome', 'TEXT', 1, "''", 9],
+    ['command_count', 'INTEGER', 1, '0', 0],
+    ['error_count', 'INTEGER', 1, '0', 0],
+    ['timeout_count', 'INTEGER', 1, '0', 0],
+    ['disconnected_count', 'INTEGER', 1, '0', 0],
+    ['rate_limited_count', 'INTEGER', 1, '0', 0],
+    ['latency_count', 'INTEGER', 1, '0', 0],
+    ['latency_sum_ms', 'INTEGER', 1, '0', 0],
+    ['latency_max_ms', 'INTEGER', 1, '0', 0],
+    ['updated_at', 'DATETIME', 0, 'CURRENT_TIMESTAMP', 0],
+  ],
+  task_metric_minutes: [
+    ['bucket_minute', 'TEXT', 1, null, 1],
+    ['source', 'TEXT', 1, "''", 2],
+    ['task_type', 'TEXT', 1, "''", 3],
+    ['execution_lane', 'TEXT', 1, "''", 4],
+    ['outcome', 'TEXT', 1, "''", 5],
+    ['run_count', 'INTEGER', 1, '0', 0],
+    ['duration_count', 'INTEGER', 1, '0', 0],
+    ['duration_sum_ms', 'INTEGER', 1, '0', 0],
+    ['duration_max_ms', 'INTEGER', 1, '0', 0],
+    ['queue_wait_count', 'INTEGER', 1, '0', 0],
+    ['queue_wait_sum_ms', 'INTEGER', 1, '0', 0],
+    ['queue_wait_max_ms', 'INTEGER', 1, '0', 0],
+    ['attributed_command_count', 'INTEGER', 1, '0', 0],
+    ['updated_at', 'DATETIME', 0, 'CURRENT_TIMESTAMP', 0],
+  ],
+  command_anomalies: [
+    ['id', 'INTEGER', 0, null, 1],
+    ['occurred_at', 'DATETIME', 1, null, 0],
+    ['run_id', 'TEXT', 0, null, 0],
+    ['account_id', 'INTEGER', 0, null, 0],
+    ['batch_task_id', 'INTEGER', 0, null, 0],
+    ['source', 'TEXT', 1, "''", 0],
+    ['task_type', 'TEXT', 1, "''", 0],
+    ['command', 'TEXT', 1, "''", 0],
+    ['execution_lane', 'TEXT', 1, "''", 0],
+    ['egress_type', 'TEXT', 1, "''", 0],
+    ['egress_key', 'TEXT', 1, "''", 0],
+    ['category', 'TEXT', 1, null, 0],
+    ['error_code', 'INTEGER', 0, null, 0],
+    ['latency_ms', 'INTEGER', 0, null, 0],
+    ['queue_wait_ms', 'INTEGER', 0, null, 0],
+    ['summary', 'TEXT', 0, null, 0],
+  ],
+};
+const EXPECTED_INDEX_COLUMNS = {
+  idx_command_metrics_bucket: ['bucket_minute'],
+  idx_task_metrics_bucket: ['bucket_minute'],
+  idx_command_anomalies_time: ['occurred_at'],
+  idx_command_anomalies_category: ['category', 'occurred_at'],
+};
 
 let databaseModule;
 let repository;
@@ -136,6 +198,26 @@ test('initDatabase creates exactly the scheduler observation tables and indexes 
     ...OBSERVATION_INDEXES.map((name) => ({ type: 'index', name })),
     ...OBSERVATION_TABLES.map((name) => ({ type: 'table', name })),
   ]);
+  for (const [table, expected] of Object.entries(EXPECTED_TABLE_INFO)) {
+    assert.deepEqual(
+      db.all(`PRAGMA table_info('${table}')`).map((column) => [
+        column.name,
+        column.type,
+        column.notnull,
+        column.dflt_value,
+        column.pk,
+      ]),
+      expected,
+      table,
+    );
+  }
+  for (const [index, expected] of Object.entries(EXPECTED_INDEX_COLUMNS)) {
+    assert.deepEqual(
+      db.all(`PRAGMA index_info('${index}')`).map((column) => column.name),
+      expected,
+      index,
+    );
+  }
 
   assert.equal(await databaseModule.initDatabase(), db);
   await databaseModule.closeDatabase();
@@ -269,6 +351,112 @@ test('additive metric upserts remain bounded to nonnegative safe integers', () =
   assert.equal(
     db.get('SELECT duration_sum_ms FROM task_metric_minutes').duration_sum_ms,
     Number.MAX_SAFE_INTEGER,
+  );
+});
+
+test('flush rejects every malformed row before opening a transaction or writing partial data', () => {
+  const countedDb = wrapDatabase(db);
+  const malformedSnapshots = [
+    snapshot({ commandMetrics: [commandMetric(), null] }),
+    snapshot({ commandMetrics: [{ ...commandMetric(), minute: undefined }] }),
+    snapshot({ commandMetrics: [{ ...commandMetric(), outcome: undefined }] }),
+    snapshot({ commandMetrics: [{ ...commandMetric(), dimensions: undefined }] }),
+    snapshot({
+      commandMetrics: [commandMetric()],
+      anomalies: [{
+        timestamp: new Date('invalid'),
+        type: 'invalid_time',
+        message: 'invalid date must reject',
+        dimensions: {},
+      }],
+    }),
+    snapshot({
+      anomalies: [{
+        timestamp: '2026-07-15T00:00:00.000Z',
+        message: 'missing category must reject',
+        dimensions: {},
+      }],
+    }),
+  ];
+
+  for (const malformed of malformedSnapshots) {
+    assert.throws(
+      () => repository.flushSchedulerObservationSnapshot(malformed, countedDb),
+      /invalid|must be|requires/i,
+    );
+  }
+  assert.equal(countedDb.transactionCalls, 0);
+  for (const table of OBSERVATION_TABLES) {
+    assert.equal(db.get(`SELECT COUNT(*) AS count FROM ${table}`).count, 0, table);
+  }
+});
+
+test('millisecond cutoffs exclude and delete older rows while retaining the exact boundary', () => {
+  const times = [
+    '2026-07-15T00:00:00.100Z',
+    '2026-07-15T00:00:00.500Z',
+    '2026-07-15T00:00:00.900Z',
+  ];
+  for (const bucket of times) {
+    db.run(
+      `INSERT INTO command_metric_minutes (bucket_minute, source, command_count)
+       VALUES (?, 'millisecond', 1)`,
+      [bucket],
+    );
+    db.run(
+      `INSERT INTO task_metric_minutes (bucket_minute, source, run_count)
+       VALUES (?, 'millisecond', 1)`,
+      [bucket],
+    );
+    db.run(
+      `INSERT INTO command_anomalies (occurred_at, source, category, summary)
+       VALUES (?, 'millisecond', 'cutoff', ?)`,
+      [bucket, bucket],
+    );
+  }
+  db.run(
+    `INSERT INTO command_metric_minutes (bucket_minute, source, command_count)
+     VALUES ('invalid-time', 'invalid', 1)`,
+  );
+  db.run(
+    `INSERT INTO task_metric_minutes (bucket_minute, source, run_count)
+     VALUES ('invalid-time', 'invalid', 1)`,
+  );
+  db.run(
+    `INSERT INTO command_anomalies (occurred_at, source, category, summary)
+     VALUES ('invalid-time', 'invalid', 'cutoff', 'invalid-time')`,
+  );
+
+  const cutoff = '2026-07-15T00:00:00.500Z';
+  const summaryResult = repository.querySchedulerObservationSummary({ cutoff }, db);
+  const anomalyResult = repository.querySchedulerObservationAnomalies({
+    cutoff,
+    page: 1,
+    pageSize: 10,
+  }, db);
+  assert.deepEqual(
+    summaryResult.commandMetrics.map((row) => row.bucket_minute),
+    times.slice(1),
+  );
+  assert.deepEqual(
+    summaryResult.taskMetrics.map((row) => row.bucket_minute),
+    times.slice(1),
+  );
+  assert.equal(anomalyResult.total, 2);
+  assert.deepEqual(anomalyResult.items.map((row) => row.occurred_at), times.slice(1).reverse());
+
+  repository.cleanupSchedulerObservation(db, { cutoff, maxAnomalies: 100 });
+  assert.deepEqual(
+    db.all('SELECT bucket_minute FROM command_metric_minutes ORDER BY bucket_minute'),
+    times.slice(1).map((bucket_minute) => ({ bucket_minute })),
+  );
+  assert.deepEqual(
+    db.all('SELECT bucket_minute FROM task_metric_minutes ORDER BY bucket_minute'),
+    times.slice(1).map((bucket_minute) => ({ bucket_minute })),
+  );
+  assert.deepEqual(
+    db.all('SELECT occurred_at FROM command_anomalies ORDER BY occurred_at'),
+    times.slice(1).map((occurred_at) => ({ occurred_at })),
   );
 });
 
@@ -498,4 +686,101 @@ test('schema, writes, and query results exclude sensitive payload fields and raw
   assert.equal(summary.commandMetrics[0].egress_key, '');
   assert.equal(anomalies.items[0].egress_key, '');
   assert.match(anomalies.items[0].summary, /\[REDACTED\]/);
+});
+
+test('flush fail-closes every persisted text column while preserving normal scheduler identifiers', () => {
+  const unsafeValues = [
+    '10.0.0.8',
+    '2001:db8::1',
+    'proxy.example',
+    'token-secret',
+    'stack-secret',
+    'localhost',
+    '//relative.example/path',
+    'http://user:pass@auth.example:8080/path',
+    'bare.example:9000',
+    '[2001:db8::2]',
+    'request-secret',
+    'body-secret',
+    'response-secret',
+    'param-secret',
+  ];
+  repository.flushSchedulerObservationSnapshot(snapshot({
+    commandMetrics: [
+      commandMetric({
+        dimensions: {
+          source: unsafeValues[0],
+          commandClass: unsafeValues[1],
+          taskType: unsafeValues[2],
+          command: unsafeValues[3],
+          executionLane: unsafeValues[4],
+          egressType: 'direct',
+          egressKey: 'direct',
+        },
+      }),
+      commandMetric({
+        dimensions: {
+          source: 'scheduler',
+          commandClass: 'batch_scheduler',
+          taskType: 'ARENA',
+          command: 'arena_startarea',
+          executionLane: 'direct',
+          egressType: 'direct',
+          egressKey: 'direct',
+        },
+      }),
+    ],
+    taskMetrics: [
+      taskMetric({
+        dimensions: {
+          source: unsafeValues[5],
+          taskType: unsafeValues[6],
+          executionLane: unsafeValues[7],
+        },
+      }),
+      taskMetric({
+        dimensions: {
+          source: 'scheduler',
+          taskType: 'ARENA',
+          executionLane: 'direct',
+        },
+      }),
+    ],
+    anomalies: [{
+      timestamp: '2026-07-15T00:00:00.000Z',
+      type: unsafeValues[13],
+      message: unsafeValues.join(' | '),
+      dimensions: {
+        runId: unsafeValues[8],
+        source: unsafeValues[9],
+        taskType: unsafeValues[10],
+        command: unsafeValues[11],
+        executionLane: unsafeValues[12],
+        egressType: 'direct',
+        egressKey: 'direct',
+      },
+    }],
+  }), db);
+
+  const persisted = JSON.stringify({
+    commandMetrics: db.all('SELECT * FROM command_metric_minutes'),
+    taskMetrics: db.all('SELECT * FROM task_metric_minutes'),
+    anomalies: db.all('SELECT * FROM command_anomalies'),
+  }).toLowerCase();
+  for (const unsafe of unsafeValues) {
+    assert.equal(persisted.includes(unsafe.toLowerCase()), false, unsafe);
+  }
+
+  assert.deepEqual(db.get(
+    `SELECT source, command_class, task_type, command, execution_lane, egress_type, egress_key
+     FROM command_metric_minutes WHERE source = 'scheduler'`,
+  ), {
+    source: 'scheduler',
+    command_class: 'batch_scheduler',
+    task_type: 'ARENA',
+    command: 'arena_startarea',
+    execution_lane: 'direct',
+    egress_type: 'direct',
+    egress_key: 'direct',
+  });
 });

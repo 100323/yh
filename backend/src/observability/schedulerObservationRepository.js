@@ -1,10 +1,15 @@
 import { getDatabase } from '../database/index.js';
-import { sanitizeObservationMessage } from './schedulerObservationCore.js';
+import {
+  OBSERVATION_OUTCOMES,
+  sanitizeObservationMessage,
+} from './schedulerObservationCore.js';
 
 const DEFAULT_RETENTION_DAYS = 3;
 const DEFAULT_MAX_ANOMALIES = 50_000;
 const MAX_INTEGER = Number.MAX_SAFE_INTEGER;
 const DEFAULT_IDENTIFIER_LENGTH = 160;
+const OBSERVATION_OUTCOME_SET = new Set(OBSERVATION_OUTCOMES);
+const SENSITIVE_IDENTIFIER_PATTERN = /(roleToken|token|params?|arguments?|requests?|responses?|body|stack|proxy)/gi;
 
 const COMMAND_METRIC_COLUMNS = `
   bucket_minute, source, command_class, task_type, command, execution_lane,
@@ -87,10 +92,19 @@ function normalizeInteger(value, fallback = 0, nullable = false) {
 function redactNetworkAuthorities(value) {
   return value
     .replace(/\b([a-z][a-z\d+.-]*:\/\/)[^\s/?#]+/gi, '$1[REDACTED]')
+    .replace(/(^|[\s([{=])\/\/[^\s/?#]+/g, '$1//[REDACTED]')
+    .replace(/\[[0-9a-f:]{2,}\](?::\d{1,5})?/gi, '[REDACTED]')
     .replace(
-      /(?<![A-Za-z\d.-])(?:[^\s:@/]+:[^\s@/]+@)?(?:localhost|(?:\d{1,3}\.){3}\d{1,3}|\[[0-9a-f:]+\]|[a-z\d-]+(?:\.[a-z\d-]+)+):\d{1,5}(?!\d)/gi,
+      /(?<![A-Za-z\d:])(?=[A-Fa-f\d:]*:[A-Fa-f\d:]*:)[A-Fa-f\d]{0,4}(?::[A-Fa-f\d]{0,4}){2,7}(?![A-Za-z\d:])/g,
       '[REDACTED]',
-    );
+    )
+    .replace(/\b(?:\d{1,3}\.){3}\d{1,3}(?::\d{1,5})?\b/g, '[REDACTED]')
+    .replace(/\blocalhost(?::\d{1,5})?\b/gi, '[REDACTED]')
+    .replace(
+      /\b(?=[a-z\d.-]*[a-z])[a-z\d-]+(?:\.[a-z\d-]+)+(?::\d{1,5})?\b/gi,
+      '[REDACTED]',
+    )
+    .replace(SENSITIVE_IDENTIFIER_PATTERN, '[REDACTED]');
 }
 
 function normalizeIdentifier(value, maxLength = DEFAULT_IDENTIFIER_LENGTH) {
@@ -105,7 +119,8 @@ function readValue(input, dimensions, name) {
 }
 
 function normalizeEgressType(value) {
-  const normalized = normalizeIdentifier(value, 16).toLowerCase();
+  if (typeof value !== 'string') return '';
+  const normalized = value.trim().toLowerCase();
   return normalized === 'direct' || normalized === 'proxy' ? normalized : '';
 }
 
@@ -115,17 +130,72 @@ function normalizeEgressKey(value) {
   return normalized === 'direct' || /^proxy:[a-f\d]{12}$/.test(normalized) ? normalized : '';
 }
 
-function normalizeTimestamp(value, fallback) {
-  const candidate = value ?? fallback;
-  const date = candidate instanceof Date ? candidate : new Date(candidate);
-  if (!Number.isNaN(date.getTime())) return date.toISOString();
-  return new Date().toISOString();
+function isPlainObject(value) {
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
+}
+
+function parseTimestamp(value) {
+  if (value instanceof Date) return Number.isNaN(value.getTime()) ? null : value.getTime();
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value !== 'string' || value.trim() === '') return null;
+  const parsed = Date.parse(value.trim());
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function normalizeTimestamp(value, label = 'timestamp') {
+  const timestamp = parseTimestamp(value);
+  if (timestamp === null) throw new RangeError(`${label} is invalid`);
+  return new Date(timestamp).toISOString();
+}
+
+function normalizeBucketMinute(row) {
+  const value = row.minute ?? row.bucketMinute;
+  if (parseTimestamp(value) === null) throw new RangeError('metric minute is invalid');
+  if (value instanceof Date || typeof value === 'number') return new Date(parseTimestamp(value)).toISOString();
+  const normalized = value.trim();
+  if (normalized.length > 40 || /[\u0000-\u001f\u007f-\u009f]/.test(normalized)) {
+    throw new RangeError('metric minute is invalid');
+  }
+  return normalized;
+}
+
+function validateMetricRow(row, metricType) {
+  if (!isPlainObject(row)) throw new TypeError(`${metricType} metric row must be a plain object`);
+  if (!isPlainObject(row.dimensions)) {
+    throw new TypeError(`${metricType} metric dimensions must be a plain object`);
+  }
+  normalizeBucketMinute(row);
+  if (!OBSERVATION_OUTCOME_SET.has(row.outcome)) {
+    throw new RangeError(`${metricType} metric outcome is invalid`);
+  }
+}
+
+function validateAnomalyRow(anomaly) {
+  if (!isPlainObject(anomaly)) throw new TypeError('anomaly row must be a plain object');
+  if (!isPlainObject(anomaly.dimensions)) {
+    throw new TypeError('anomaly dimensions must be a plain object');
+  }
+  normalizeTimestamp(anomaly.occurredAt ?? anomaly.timestamp, 'anomaly occurrence');
+  const category = anomaly.category ?? anomaly.type;
+  if (
+    category === null
+    || category === undefined
+    || category === ''
+    || typeof category === 'object'
+    || typeof category === 'function'
+    || typeof category === 'symbol'
+  ) {
+    throw new TypeError('anomaly requires category or type');
+  }
 }
 
 function normalizeCommandMetric(row) {
-  const dimensions = row?.dimensions;
+  validateMetricRow(row, 'command');
+  const dimensions = row.dimensions;
   return [
-    normalizeIdentifier(row?.minute, 19),
+    normalizeBucketMinute(row),
     normalizeIdentifier(readValue(row, dimensions, 'source')),
     normalizeIdentifier(readValue(row, dimensions, 'commandClass')),
     normalizeIdentifier(readValue(row, dimensions, 'taskType')),
@@ -133,7 +203,7 @@ function normalizeCommandMetric(row) {
     normalizeIdentifier(readValue(row, dimensions, 'executionLane')),
     normalizeEgressType(readValue(row, dimensions, 'egressType')),
     normalizeEgressKey(readValue(row, dimensions, 'egressKey')),
-    normalizeIdentifier(row?.outcome, 32),
+    row.outcome,
     normalizeInteger(row?.commandCount),
     normalizeInteger(row?.errorCount),
     normalizeInteger(row?.timeoutCount),
@@ -146,13 +216,14 @@ function normalizeCommandMetric(row) {
 }
 
 function normalizeTaskMetric(row) {
-  const dimensions = row?.dimensions;
+  validateMetricRow(row, 'task');
+  const dimensions = row.dimensions;
   return [
-    normalizeIdentifier(row?.minute, 19),
+    normalizeBucketMinute(row),
     normalizeIdentifier(readValue(row, dimensions, 'source')),
     normalizeIdentifier(readValue(row, dimensions, 'taskType')),
     normalizeIdentifier(readValue(row, dimensions, 'executionLane')),
-    normalizeIdentifier(row?.outcome, 32),
+    row.outcome,
     normalizeInteger(row?.runCount),
     normalizeInteger(row?.durationCount),
     normalizeInteger(row?.durationSumMs),
@@ -164,19 +235,19 @@ function normalizeTaskMetric(row) {
   ];
 }
 
-function normalizeAnomaly(anomaly, fallbackTimestamp) {
-  const dimensions = anomaly?.dimensions;
+function normalizeAnomaly(anomaly) {
+  validateAnomalyRow(anomaly);
+  const dimensions = anomaly.dimensions;
   const summaryValue = readValue(anomaly, dimensions, 'summary')
     ?? readValue(anomaly, dimensions, 'message');
   const category = readValue(anomaly, dimensions, 'category')
-    ?? readValue(anomaly, dimensions, 'type')
-    ?? 'UNATTRIBUTED';
+    ?? readValue(anomaly, dimensions, 'type');
   const summary = typeof summaryValue === 'object' || typeof summaryValue === 'function'
     ? ''
     : redactNetworkAuthorities(sanitizeObservationMessage(summaryValue, 300)).slice(0, 300);
 
   return [
-    normalizeTimestamp(anomaly?.occurredAt ?? anomaly?.timestamp, fallbackTimestamp),
+    normalizeTimestamp(anomaly.occurredAt ?? anomaly.timestamp, 'anomaly occurrence'),
     normalizeIdentifier(readValue(anomaly, dimensions, 'runId')) || null,
     normalizeInteger(readValue(anomaly, dimensions, 'accountId'), 0, true),
     normalizeInteger(readValue(anomaly, dimensions, 'batchTaskId'), 0, true),
@@ -199,22 +270,27 @@ function writeCount(result) {
 }
 
 export function flushSchedulerObservationSnapshot(snapshot, targetDb = getDatabase()) {
-  const commandMetrics = Array.isArray(snapshot?.commandMetrics) ? snapshot.commandMetrics : [];
-  const taskMetrics = Array.isArray(snapshot?.taskMetrics) ? snapshot.taskMetrics : [];
-  const anomalies = Array.isArray(snapshot?.anomalies) ? snapshot.anomalies : [];
+  if (!isPlainObject(snapshot)) throw new TypeError('snapshot must be a plain object');
+  if (!Array.isArray(snapshot.commandMetrics)) throw new TypeError('snapshot commandMetrics must be an array');
+  if (!Array.isArray(snapshot.taskMetrics)) throw new TypeError('snapshot taskMetrics must be an array');
+  if (!Array.isArray(snapshot.anomalies)) throw new TypeError('snapshot anomalies must be an array');
+
+  const commandMetrics = snapshot.commandMetrics.map(normalizeCommandMetric);
+  const taskMetrics = snapshot.taskMetrics.map(normalizeTaskMetric);
+  const anomalies = snapshot.anomalies.map(normalizeAnomaly);
   if (commandMetrics.length === 0 && taskMetrics.length === 0 && anomalies.length === 0) {
     return { commandMetrics: 0, taskMetrics: 0, anomalies: 0 };
   }
 
   const transaction = targetDb.transaction(() => {
-    for (const row of commandMetrics) {
-      targetDb.run(COMMAND_METRIC_UPSERT, normalizeCommandMetric(row));
+    for (const params of commandMetrics) {
+      targetDb.run(COMMAND_METRIC_UPSERT, params);
     }
-    for (const row of taskMetrics) {
-      targetDb.run(TASK_METRIC_UPSERT, normalizeTaskMetric(row));
+    for (const params of taskMetrics) {
+      targetDb.run(TASK_METRIC_UPSERT, params);
     }
-    for (const anomaly of anomalies) {
-      targetDb.run(ANOMALY_INSERT, normalizeAnomaly(anomaly, snapshot?.generatedAt));
+    for (const params of anomalies) {
+      targetDb.run(ANOMALY_INSERT, params);
     }
   });
   transaction();
@@ -228,7 +304,7 @@ export function flushSchedulerObservationSnapshot(snapshot, targetDb = getDataba
 
 function resolveCutoff(options) {
   if (options.cutoff !== undefined && options.cutoff !== null) {
-    return normalizeTimestamp(options.cutoff);
+    return normalizeTimestamp(options.cutoff, 'cleanup cutoff');
   }
   const retentionDays = normalizeInteger(options.retentionDays, DEFAULT_RETENTION_DAYS);
   const nowValue = typeof options.now === 'function' ? options.now() : options.now ?? Date.now();
@@ -250,15 +326,18 @@ export function cleanupSchedulerObservation(targetDb = getDatabase(), options = 
 
   const transaction = targetDb.transaction(() => {
     result.commandMetricsDeleted = writeCount(targetDb.run(
-      'DELETE FROM command_metric_minutes WHERE datetime(bucket_minute) < datetime(?)',
+      `DELETE FROM command_metric_minutes
+       WHERE julianday(bucket_minute) IS NULL OR julianday(bucket_minute) < julianday(?)`,
       [cutoff],
     ));
     result.taskMetricsDeleted = writeCount(targetDb.run(
-      'DELETE FROM task_metric_minutes WHERE datetime(bucket_minute) < datetime(?)',
+      `DELETE FROM task_metric_minutes
+       WHERE julianday(bucket_minute) IS NULL OR julianday(bucket_minute) < julianday(?)`,
       [cutoff],
     ));
     result.anomaliesExpiredDeleted = writeCount(targetDb.run(
-      'DELETE FROM command_anomalies WHERE datetime(occurred_at) < datetime(?)',
+      `DELETE FROM command_anomalies
+       WHERE julianday(occurred_at) IS NULL OR julianday(occurred_at) < julianday(?)`,
       [cutoff],
     ));
     result.anomaliesOverflowDeleted = writeCount(targetDb.run(
@@ -282,7 +361,10 @@ function addFilter(clauses, params, column, value) {
 }
 
 function buildSummaryQuery(filters, metricType) {
-  const clauses = ['datetime(bucket_minute) >= datetime(?)'];
+  const clauses = [
+    'julianday(bucket_minute) IS NOT NULL',
+    'julianday(bucket_minute) >= julianday(?)',
+  ];
   const params = [filters.cutoff];
   addFilter(clauses, params, 'source', filters.source);
   addFilter(clauses, params, 'task_type', filters.taskType);
@@ -315,7 +397,10 @@ export function querySchedulerObservationSummary(filters = {}, targetDb = getDat
 }
 
 function buildAnomalyQuery(filters) {
-  const clauses = ['datetime(occurred_at) >= datetime(?)'];
+  const clauses = [
+    'julianday(occurred_at) IS NOT NULL',
+    'julianday(occurred_at) >= julianday(?)',
+  ];
   const params = [filters.cutoff];
   addFilter(clauses, params, 'category', filters.category);
   addFilter(clauses, params, 'source', filters.source);
