@@ -131,6 +131,47 @@ test('sanitizeObservationMessage continues through chained secrets after an unte
   }
 });
 
+test('sanitizeObservationMessage recognizes whitespace-separated chained quoted secrets', () => {
+  const cases = [
+    {
+      input: 'token="token-secret p="proxy-secret"',
+      secrets: ['token-secret', 'proxy-secret'],
+    },
+    {
+      input: "roleToken='role-secret token='next-secret'",
+      secrets: ['role-secret', 'next-secret'],
+    },
+  ];
+
+  for (const { input, secrets } of cases) {
+    const result = sanitizeObservationMessage(input);
+    for (const secret of secrets) assert.equal(result.includes(secret), false);
+    assert.equal((result.match(/\[REDACTED\]/g) ?? []).length, 2);
+  }
+});
+
+test('sanitizeObservationMessage keeps closed values with assignment-like text as one redaction', () => {
+  const cases = [
+    {
+      input: 'before token="ordinary, token=inside-text" after',
+      expected: 'before token="[REDACTED]" after',
+      secrets: ['ordinary', 'inside-text'],
+    },
+    {
+      input: "before roleToken='ordinary; p=inside-text' after",
+      expected: "before roleToken='[REDACTED]' after",
+      secrets: ['ordinary', 'inside-text'],
+    },
+  ];
+
+  for (const { input, expected, secrets } of cases) {
+    const result = sanitizeObservationMessage(input);
+    assert.equal(result, expected);
+    assert.equal((result.match(/\[REDACTED\]/g) ?? []).length, 1);
+    for (const secret of secrets) assert.equal(result.includes(secret), false);
+  }
+});
+
 test('classifyCommandFailure recognizes structured and textual rate limits', () => {
   assert.equal(classifyCommandFailure({ code: 200400 }), 'rate_limited');
   assert.equal(

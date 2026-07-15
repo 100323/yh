@@ -62,44 +62,10 @@ function findUnquotedValueEnd(value, start) {
   return value.length;
 }
 
-function hasStructuralAssignmentBoundary(value, start, lowerBound) {
-  let cursor = start - 1;
-  while (cursor >= lowerBound && /\s/.test(value[cursor])) cursor -= 1;
-  return cursor < lowerBound || /[\[{,;&}\]]/.test(value[cursor]);
-}
-
-function hasCompleteAssignmentValue(value, start) {
-  if (value[start] === '\\' && /["']/.test(value[start + 1] ?? '')) {
-    return findEscapedQuoteEnd(value, start + 2, value[start + 1], value.length) >= 0;
-  }
-  if (/["']/.test(value[start] ?? '')) {
-    return findNormalQuoteEnd(value, start + 1, value[start], value.length) >= 0;
-  }
-  return findUnquotedValueEnd(value, start) > start;
-}
-
-function findBoundaryBeforeAssignment(value, assignmentStart, lowerBound) {
-  for (let cursor = assignmentStart - 1; cursor >= lowerBound; cursor -= 1) {
-    if (/[\[{,;&}\]]/.test(value[cursor])) return cursor;
-  }
-  return assignmentStart;
-}
-
 function findChainedSensitiveAssignment(value, start, candidateClosingIndex) {
-  const pattern = new RegExp(SENSITIVE_ASSIGNMENT_PATTERN.source, 'gi');
-  pattern.lastIndex = start;
-
-  for (let match = pattern.exec(value); match; match = pattern.exec(value)) {
-    if (match.index >= candidateClosingIndex) break;
-    if (!hasStructuralAssignmentBoundary(value, match.index, start)) continue;
-    if (!hasCompleteAssignmentValue(value, pattern.lastIndex)) continue;
-
-    return {
-      boundary: findBoundaryBeforeAssignment(value, match.index, start),
-    };
-  }
-
-  return null;
+  const prefixBeforeCandidate = /(?:\\?["'])?\b(?:roleToken|token|p)\b(?:\\?["'])?\s*[:=]\s*$/i;
+  const match = prefixBeforeCandidate.exec(value.slice(start, candidateClosingIndex));
+  return match ? { boundary: start + match.index } : null;
 }
 
 function redactSensitiveAssignments(value) {
