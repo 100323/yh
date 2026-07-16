@@ -96,6 +96,10 @@ function normalizeInteger(value, fallback = 0, nullable = false) {
   return Math.min(MAX_INTEGER, Math.floor(numeric));
 }
 
+function normalizeCappedInteger(value, fallback, hardMaximum) {
+  return Math.min(hardMaximum, normalizeInteger(value, Math.min(fallback, hardMaximum)));
+}
+
 function normalizeNfkc(value) {
   if (typeof value !== 'string') return null;
   try {
@@ -387,9 +391,10 @@ function resolveCutoff(options) {
   if (options.cutoff !== undefined && options.cutoff !== null) {
     return normalizeTimestamp(options.cutoff, 'cleanup cutoff');
   }
-  const retentionDays = normalizeInteger(
+  const retentionDays = normalizeCappedInteger(
     options.retentionDays,
     config.observability?.retentionDays ?? DEFAULT_RETENTION_DAYS,
+    DEFAULT_RETENTION_DAYS,
   );
   const nowValue = typeof options.now === 'function' ? options.now() : options.now ?? Date.now();
   const now = new Date(nowValue);
@@ -401,28 +406,35 @@ function indexedTimeBounds(cutoff) {
   if (parseTimestamp(cutoff) === null) throw new RangeError('query cutoff is invalid');
   const rawCutoff = typeof cutoff === 'string' ? normalizeNfkc(cutoff)?.trim() : null;
   const normalizedCutoff = rawCutoff || normalizeTimestamp(cutoff, 'query cutoff');
-  const datePrefix = /^\d{4}-\d{2}-\d{2}/u.exec(normalizedCutoff)?.[0]
-    ?? normalizeTimestamp(cutoff, 'query cutoff').slice(0, 10);
-  const nextDate = new Date(`${datePrefix}T00:00:00.000Z`);
-  nextDate.setUTCDate(nextDate.getUTCDate() + 1);
+  const utcDate = normalizeTimestamp(cutoff, 'query cutoff').slice(0, 10);
+  const lowerDate = new Date(`${utcDate}T00:00:00.000Z`);
+  lowerDate.setUTCDate(lowerDate.getUTCDate() - 1);
+  const upperDate = new Date(`${utcDate}T00:00:00.000Z`);
+  upperDate.setUTCDate(upperDate.getUTCDate() + 2);
   return {
     cutoff: normalizedCutoff,
-    lowerBound: datePrefix,
-    upperBound: nextDate.toISOString().slice(0, 10),
+    lowerBound: lowerDate.toISOString().slice(0, 10),
+    upperBound: upperDate.toISOString().slice(0, 10),
   };
 }
 
 export function cleanupSchedulerObservation(targetDb = getDatabase(), options = {}) {
   const cutoff = resolveCutoff(options);
   const timeBounds = indexedTimeBounds(cutoff);
-  const maxCommandMetrics = normalizeInteger(
+  const maxCommandMetrics = normalizeCappedInteger(
     options.maxCommandMetrics,
     DEFAULT_MAX_COMMAND_METRICS,
+    DEFAULT_MAX_COMMAND_METRICS,
   );
-  const maxTaskMetrics = normalizeInteger(options.maxTaskMetrics, DEFAULT_MAX_TASK_METRICS);
-  const maxAnomalies = normalizeInteger(
+  const maxTaskMetrics = normalizeCappedInteger(
+    options.maxTaskMetrics,
+    DEFAULT_MAX_TASK_METRICS,
+    DEFAULT_MAX_TASK_METRICS,
+  );
+  const maxAnomalies = normalizeCappedInteger(
     options.maxAnomalies,
     config.observability?.maxAnomalyRows ?? DEFAULT_MAX_ANOMALIES,
+    DEFAULT_MAX_ANOMALIES,
   );
   const result = {
     cutoff,

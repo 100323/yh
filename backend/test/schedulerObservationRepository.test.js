@@ -460,6 +460,89 @@ test('millisecond cutoffs exclude and delete older rows while retaining the exac
   );
 });
 
+test('offset timestamps remain a complete indexed candidate set before julianday filtering', () => {
+  const summaryCutoff = '2026-07-15T00:30:00+14:00';
+  db.run(
+    `INSERT INTO command_metric_minutes (bucket_minute, source, command_count)
+     VALUES ('2026-07-14T09:00:00Z', 'expired', 1),
+            ('2026-07-14T12:00:00Z', 'retained', 1)`,
+  );
+  db.run(
+    `INSERT INTO task_metric_minutes (bucket_minute, source, run_count)
+     VALUES ('2026-07-14T09:00:00Z', 'expired', 1),
+            ('2026-07-14T12:00:00Z', 'retained', 1)`,
+  );
+  db.run(
+    `INSERT INTO command_anomalies (occurred_at, source, category, summary)
+     VALUES ('2026-07-14T09:00:00Z', 'expired', 'offset', 'expired'),
+            ('2026-07-14T12:00:00Z', 'retained', 'offset', 'retained')`,
+  );
+
+  const summary = repository.querySchedulerObservationSummary({ cutoff: summaryCutoff }, db);
+  const anomalies = repository.querySchedulerObservationAnomalies({
+    cutoff: summaryCutoff,
+    page: 1,
+    pageSize: 10,
+  }, db);
+  assert.deepEqual(summary.commandMetrics.map((row) => row.source), ['retained']);
+  assert.deepEqual(summary.taskMetrics.map((row) => row.source), ['retained']);
+  assert.deepEqual(anomalies.items.map((row) => row.source), ['retained']);
+
+  for (const table of OBSERVATION_TABLES) db.run(`DELETE FROM ${table}`);
+  const offsetRow = '2026-07-16T10:00:00+14:00';
+  db.run(
+    `INSERT INTO command_metric_minutes (bucket_minute, source, command_count)
+     VALUES (?, 'offset-old', 1)`,
+    [offsetRow],
+  );
+  db.run(
+    `INSERT INTO task_metric_minutes (bucket_minute, source, run_count)
+     VALUES (?, 'offset-old', 1)`,
+    [offsetRow],
+  );
+  db.run(
+    `INSERT INTO command_anomalies (occurred_at, source, category, summary)
+     VALUES (?, 'offset-old', 'offset', 'offset-old')`,
+    [offsetRow],
+  );
+
+  repository.cleanupSchedulerObservation(db, {
+    cutoff: '2026-07-15T23:00:00.000Z',
+    maxCommandMetrics: 100,
+    maxTaskMetrics: 100,
+    maxAnomalies: 100,
+  });
+  for (const table of OBSERVATION_TABLES) {
+    assert.equal(db.get(`SELECT COUNT(*) AS count FROM ${table}`).count, 0, table);
+  }
+});
+
+test('cleanup options can tighten but cannot exceed hard retention and row caps', () => {
+  const result = repository.cleanupSchedulerObservation(db, {
+    now: '2026-07-15T12:00:00.000Z',
+    retentionDays: 30,
+    maxCommandMetrics: 50001,
+    maxTaskMetrics: 20001,
+    maxAnomalies: 50001,
+  });
+  assert.equal(result.cutoff, '2026-07-12T12:00:00.000Z');
+
+  const deleteLimits = [];
+  const captured = wrapDatabase(db);
+  captured.run = (sql, params) => {
+    if (/WHERE (?:rowid|id) NOT IN/i.test(sql)) deleteLimits.push(params[0]);
+    return db.run(sql, params);
+  };
+  repository.cleanupSchedulerObservation(captured, {
+    now: '2026-07-15T12:00:00.000Z',
+    retentionDays: 2,
+    maxCommandMetrics: 50001,
+    maxTaskMetrics: 20001,
+    maxAnomalies: 50001,
+  });
+  assert.deepEqual(deleteLimits, [50000, 20000, 50000]);
+});
+
 test('cleanup defaults to three days and 50000 newest anomalies, applying time and row limits', () => {
   db.run(
     `INSERT INTO command_metric_minutes (bucket_minute, command_count)
