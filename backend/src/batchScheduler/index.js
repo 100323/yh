@@ -69,6 +69,15 @@ export function runBatchAccountObserved(context, executor, options = {}) {
   } catch {
     queueObserver = null;
   }
+  if (
+    queueObserver === undefined
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return runAccountTaskExclusive(accountId, executor, {
+      lane: executionLane,
+      observer: queueObserver,
+    });
+  }
   return withSchedulerObservationContext({
     source: 'batch',
     batchTaskId: context?.batchTaskId,
@@ -88,6 +97,12 @@ export function runBatchTaskObserved(context, executor, observer = schedulerObse
       return result;
     }
     : executor;
+  if (
+    observer === schedulerObservationService
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return observedExecutor();
+  }
   return runObservedTask({ taskType: context?.taskType }, observedExecutor, observer);
 }
 const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;

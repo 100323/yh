@@ -544,6 +544,10 @@ export async function stopSchedulerObservationService(options = {}) {
   }
 }
 
+export function isSchedulerObservationEnabled() {
+  return serviceState.enabled === true;
+}
+
 export function observeCommandSent(event) {
   const state = serviceState;
   if (!state.enabled) return false;

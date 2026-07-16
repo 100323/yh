@@ -117,6 +117,30 @@ test('successful request emits one sent and one success without changing the res
   }
 });
 
+test('disabled default observer skips command metadata while explicit observers remain compatible', async () => {
+  await stopSchedulerObservationService({ flush: false });
+  let proxyReads = 0;
+  const hostileProxy = new Proxy({}, {
+    get() {
+      proxyReads += 1;
+      throw new Error('disabled observation must not inspect egress');
+    },
+  });
+
+  const { client: disabledClient } = createOpenClient(undefined);
+  disabledClient.activeEgressProxy = hostileProxy;
+  assert.equal(disabledClient.send('role_getroleinfo', {}), 1);
+  assert.equal(proxyReads, 0);
+
+  const capture = createObserver();
+  const { client: customClient } = createOpenClient(capture.observer);
+  customClient.activeEgressProxy = hostileProxy;
+  assert.equal(customClient.send('role_getroleinfo', {}), 1);
+  assert.equal(proxyReads > 0, true);
+  assert.equal(capture.sent.length, 1);
+  assert.equal(capture.settled.length, 1);
+});
+
 test('object-valued scheduler context is omitted and cannot leak through sent or settled events', async () => {
   const sentSnapshots = [];
   const settled = [];

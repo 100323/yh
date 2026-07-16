@@ -716,7 +716,7 @@ test('cleanup defaults to three days and 50000 newest anomalies, applying time a
   assert.equal(anomalyState.oldest, '2026-07-14T00:00:00.000Z');
 });
 
-test('cleanup accepts a fixed cutoff, keeps newest tied anomalies, and is called by daily maintenance', async () => {
+test('cleanup accepts a fixed cutoff and disabled maintenance freezes history until re-enabled', async () => {
   db.run(
     `INSERT INTO command_anomalies (occurred_at, category, summary)
      VALUES ('2026-07-10T00:00:00.000Z', 'old', 'old'),
@@ -737,11 +737,24 @@ test('cleanup accepts a fixed cutoff, keeps newest tied anomalies, and is called
     `INSERT INTO command_anomalies (occurred_at, category, summary)
      VALUES (datetime('now', '-4 days'), 'maintenance', 'expired')`,
   );
-  await databaseModule.runDatabaseMaintenance();
-  assert.equal(
-    db.get("SELECT COUNT(*) AS count FROM command_anomalies WHERE summary = 'expired'").count,
-    0,
-  );
+  const originalEnabled = config.observability.enabled;
+  try {
+    config.observability.enabled = false;
+    await databaseModule.runDatabaseMaintenance();
+    assert.equal(
+      db.get("SELECT COUNT(*) AS count FROM command_anomalies WHERE summary = 'expired'").count,
+      1,
+    );
+
+    config.observability.enabled = true;
+    await databaseModule.runDatabaseMaintenance();
+    assert.equal(
+      db.get("SELECT COUNT(*) AS count FROM command_anomalies WHERE summary = 'expired'").count,
+      0,
+    );
+  } finally {
+    config.observability.enabled = originalEnabled;
+  }
 });
 
 test('summary query applies fixed cutoffs and parameterized dimension filters', () => {

@@ -824,6 +824,12 @@ export class GameClient {
   }
 
   _createCommandObservation(command, seq, ack) {
+    if (
+      this.commandObserver === schedulerObservationService
+      && !schedulerObservationService.isSchedulerObservationEnabled()
+    ) {
+      return null;
+    }
     let egress;
     try {
       egress = createEgressDescriptor(this.activeEgressProxy);

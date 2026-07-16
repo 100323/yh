@@ -983,6 +983,7 @@ export function cleanupLogTables(targetDb = getDatabase()) {
 
 export async function runDatabaseMaintenance() {
   cleanupLogTables();
+  if (config.observability?.enabled !== true) return;
   const { cleanupSchedulerObservation } = await import('../observability/schedulerObservationRepository.js');
   cleanupSchedulerObservation(getDatabase());
 }

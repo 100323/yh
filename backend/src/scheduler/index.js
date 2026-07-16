@@ -85,18 +85,27 @@ export function runSchedulerAccountObserved(context, executor, options = {}) {
   const executionLane = context?.executionLane === EXECUTION_LANES.PROXY
     ? EXECUTION_LANES.PROXY
     : EXECUTION_LANES.DIRECT;
-  const observationContext = {
-    source: normalizeSchedulerObservationSource(context?.source),
-    accountId,
-    executionLane,
-  };
-  if (context?.taskType !== undefined) observationContext.taskType = context.taskType;
   let queueObserver;
   try {
     queueObserver = options?.observer;
   } catch {
     queueObserver = null;
   }
+  if (
+    queueObserver === undefined
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return runAccountTaskExclusive(accountId, executor, {
+      lane: executionLane,
+      observer: queueObserver,
+    });
+  }
+  const observationContext = {
+    source: normalizeSchedulerObservationSource(context?.source),
+    accountId,
+    executionLane,
+  };
+  if (context?.taskType !== undefined) observationContext.taskType = context.taskType;
   const accountExecutor = context?.taskType === undefined
     ? executor
     : () => runSchedulerTaskObserved({ taskType: context.taskType }, executor);
@@ -110,10 +119,6 @@ export function runSchedulerAccountObserved(context, executor, options = {}) {
 }
 
 export function runSchedulerTaskObserved(context, executor, observer = schedulerObservationService) {
-  const observationContext = { taskType: context?.taskType };
-  if (context?.source !== undefined) {
-    observationContext.source = normalizeSchedulerObservationSource(context.source);
-  }
   const observedExecutor = typeof context?.afterTask === 'function'
     ? async () => {
       const result = await executor();
@@ -121,6 +126,16 @@ export function runSchedulerTaskObserved(context, executor, observer = scheduler
       return result;
     }
     : executor;
+  if (
+    observer === schedulerObservationService
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return observedExecutor();
+  }
+  const observationContext = { taskType: context?.taskType };
+  if (context?.source !== undefined) {
+    observationContext.source = normalizeSchedulerObservationSource(context.source);
+  }
   return runObservedTask(observationContext, observedExecutor, observer);
 }
 

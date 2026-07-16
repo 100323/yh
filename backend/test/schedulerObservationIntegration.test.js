@@ -87,6 +87,39 @@ test('scheduler sources and task context flow through the command boundary', asy
   }
 });
 
+test('disabled default observation bypasses scheduler catchup batch contexts before ALS work', async () => {
+  await stopSchedulerObservationService({ flush: false });
+  const wrappers = [
+    {
+      runAccount: requiredFunction(scheduler, 'runSchedulerAccountObserved'),
+      runTask: requiredFunction(scheduler, 'runSchedulerTaskObserved'),
+      context: { source: 'scheduler-catchup', accountId: 81, executionLane: 'direct' },
+    },
+    {
+      runAccount: requiredFunction(batchScheduler, 'runBatchAccountObserved'),
+      runTask: requiredFunction(batchScheduler, 'runBatchTaskObserved'),
+      context: { batchTaskId: 82, accountId: 82, executionLane: 'direct' },
+    },
+  ];
+
+  for (const { runAccount, runTask, context } of wrappers) {
+    let taskContextReads = 0;
+    const taskContext = new Proxy({}, {
+      get(_target, name) {
+        if (name === 'afterTask') return undefined;
+        taskContextReads += 1;
+        throw new Error('disabled observation must not read task context');
+      },
+    });
+    const result = await runAccount(context, () => runTask(taskContext, () => {
+      assert.equal(getSchedulerObservationContext(), null);
+      return 'unchanged';
+    }));
+    assert.equal(result, 'unchanged');
+    assert.equal(taskContextReads, 0);
+  }
+});
+
 test('batch context includes batch task, account, task type, and lane', async () => {
   const runAccount = requiredFunction(batchScheduler, 'runBatchAccountObserved');
   const runTask = requiredFunction(batchScheduler, 'runBatchTaskObserved');

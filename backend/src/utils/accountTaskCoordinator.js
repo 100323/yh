@@ -66,16 +66,30 @@ function safeObservationIdentifier(context, name) {
 
 function noop() {}
 
-function safelyObserveAccountQueue(options, event) {
+function resolveAccountQueueObserver(options) {
   try {
     let observer;
     try {
       observer = options?.observer;
     } catch {
-      return;
+      return null;
     }
     if (observer === undefined) observer = schedulerObservationService;
 
+    if (
+      observer === schedulerObservationService
+      && !schedulerObservationService.isSchedulerObservationEnabled()
+    ) {
+      return null;
+    }
+    return observer;
+  } catch {
+    return null;
+  }
+}
+
+function safelyObserveAccountQueue(observer, event) {
+  try {
     const method = observer?.observeAccountQueue;
     if (typeof method !== 'function') return;
     const payload = observer === schedulerObservationService
@@ -305,22 +319,25 @@ export async function runAccountTaskExclusive(accountId, taskExecutor, options =
       const requestedAt = monotonicNow();
       await acquireGlobalAccountSlot(key, lane);
       const acquiredAt = monotonicNow();
-      let observationContext = null;
-      try {
-        observationContext = getSchedulerObservationContext();
-      } catch {
-        // Observation context is optional.
+      const queueObserver = resolveAccountQueueObserver(options);
+      if (queueObserver !== null) {
+        let observationContext = null;
+        try {
+          observationContext = getSchedulerObservationContext();
+        } catch {
+          // Observation context is optional.
+        }
+        const queueObservation = {
+          accountId,
+          executionLane: lane,
+          waitMs: Math.max(0, acquiredAt - requestedAt),
+        };
+        for (const name of ['source', 'runId', 'taskType']) {
+          const value = safeObservationIdentifier(observationContext, name);
+          if (value !== undefined) queueObservation[name] = value;
+        }
+        safelyObserveAccountQueue(queueObserver, queueObservation);
       }
-      const queueObservation = {
-        accountId,
-        executionLane: lane,
-        waitMs: Math.max(0, acquiredAt - requestedAt),
-      };
-      for (const name of ['source', 'runId', 'taskType']) {
-        const value = safeObservationIdentifier(observationContext, name);
-        if (value !== undefined) queueObservation[name] = value;
-      }
-      safelyObserveAccountQueue(options, queueObservation);
       try {
         return await taskExecutor();
       } finally {
