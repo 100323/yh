@@ -350,7 +350,6 @@ function createTaskAggregate(taskType) {
     queueWaitSumMs: 0,
     maxQueueWaitMs: 0,
     attributedCommandCount: 0,
-    commandCount: 0,
   };
 }
 
@@ -427,6 +426,7 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
     commandAmplification: 0,
   };
   let commandErrorCount = 0;
+  let headlineAttributedCommandCount = 0;
   let latencyCount = 0;
   let latencySumMs = 0;
 
@@ -459,10 +459,6 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
     headline.rateLimitedCount = safeAdd(headline.rateLimitedCount, rateLimitedCount);
     latencyCount = safeAdd(latencyCount, rowLatencyCount);
     latencySumMs = safeAdd(latencySumMs, rowLatencySumMs);
-
-    const taskType = normalizePublicIdentifier(rowValue(row, 'task_type'));
-    if (!tasks.has(taskType)) tasks.set(taskType, createTaskAggregate(taskType));
-    tasks.get(taskType).commandCount = safeAdd(tasks.get(taskType).commandCount, commandCount);
 
     const egressType = normalizeEgressType(rowValue(row, 'egress_type'));
     const egressKey = normalizeEgressKey(rowValue(row, 'egress_key'), egressType);
@@ -508,6 +504,7 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
     bucket.durationSumMs = safeAdd(bucket.durationSumMs, durationSumMs);
     bucket.maxQueueWaitMs = Math.max(bucket.maxQueueWaitMs, queueWaitMaxMs);
     headline.taskCount = safeAdd(headline.taskCount, runCount);
+    headlineAttributedCommandCount = safeAdd(headlineAttributedCommandCount, attributedCommandCount);
     headline.maxQueueWaitMs = Math.max(headline.maxQueueWaitMs, queueWaitMaxMs);
 
     const taskType = normalizePublicIdentifier(rowValue(row, 'task_type'));
@@ -553,7 +550,7 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
   );
   headline.averageLatencyMs = roundedRatio(latencySumMs, latencyCount);
   headline.commandErrorRate = roundedRatio(commandErrorCount, headline.commandCount);
-  headline.commandAmplification = roundedRatio(headline.commandCount, headline.taskCount);
+  headline.commandAmplification = roundedRatio(headlineAttributedCommandCount, headline.taskCount);
 
   const serializedTasks = Array.from(tasks.values())
     .sort((left, right) => left.taskType.localeCompare(right.taskType))
@@ -567,9 +564,9 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
       averageQueueWaitMs: roundedRatio(task.queueWaitSumMs, task.queueWaitCount),
       maxQueueWaitMs: task.maxQueueWaitMs,
       attributedCommandCount: task.attributedCommandCount,
-      commandCount: task.commandCount,
+      commandCount: task.attributedCommandCount,
       errorRate: roundedRatio(task.errorCount, task.runCount),
-      commandAmplification: roundedRatio(task.commandCount, task.runCount),
+      commandAmplification: roundedRatio(task.attributedCommandCount, task.runCount),
     }));
   const serializedEgresses = Array.from(egresses.values())
     .sort((left, right) => left.type.localeCompare(right.type) || left.key.localeCompare(right.key))

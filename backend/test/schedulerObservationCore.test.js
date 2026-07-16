@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   OBSERVATION_OUTCOMES,
   SchedulerObservationAggregator,
+  attributeSchedulerObservationCommandSent,
   classifyCommandFailure,
   createEgressDescriptor,
   getSchedulerObservationContext,
@@ -163,6 +164,36 @@ test('runObservedTask preserves return identity and observes success exactly onc
   assert.strictEqual(await returned, value);
   assert.equal(asyncCalls.length, 1);
   assert.equal(asyncCalls[0].outcome, 'success');
+});
+
+test('task-local sent command attribution is private, excludes system traffic, and isolates concurrent runs', async () => {
+  const settlements = [];
+  let releaseFirst;
+  const firstGate = new Promise((resolve) => { releaseFirst = resolve; });
+
+  const first = runObservedTask({ taskType: 'FIRST' }, async () => {
+    assert.deepEqual(Object.getOwnPropertySymbols(getSchedulerObservationContext()), []);
+    assert.equal(attributeSchedulerObservationCommandSent({ commandClass: 'game' }), true);
+    await withSchedulerObservationContext({ source: 'nested' }, async () => {
+      assert.equal(attributeSchedulerObservationCommandSent({ commandClass: 'game' }), true);
+      assert.equal(attributeSchedulerObservationCommandSent({ commandClass: 'system' }), false);
+    });
+    await firstGate;
+  }, { observeTaskSettled: (event) => settlements.push(event) });
+
+  const second = runObservedTask({ taskType: 'SECOND' }, async () => {
+    assert.equal(attributeSchedulerObservationCommandSent({ commandClass: 'game' }), true);
+    releaseFirst();
+  }, { observeTaskSettled: (event) => settlements.push(event) });
+
+  await Promise.all([first, second]);
+  assert.equal(attributeSchedulerObservationCommandSent({ commandClass: 'game' }), false);
+  assert.deepEqual(
+    settlements
+      .map((event) => [event.taskType, event.attributedCommandCount])
+      .sort(([left], [right]) => left.localeCompare(right)),
+    [['FIRST', 2], ['SECOND', 1]],
+  );
 });
 
 test('runObservedTask classifies failures once and preserves the original error', async () => {

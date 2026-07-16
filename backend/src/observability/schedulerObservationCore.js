@@ -3,6 +3,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 
 const schedulerObservationStorage = new AsyncLocalStorage();
+const TASK_OBSERVATION_STATE = Symbol('schedulerObservationTaskState');
 
 function isContextObject(value) {
   return value !== null && typeof value === 'object';
@@ -67,7 +68,9 @@ function safelyAttachTaskSettlement(result, onSuccess, onFailure) {
 
 export function getSchedulerObservationContext() {
   const context = schedulerObservationStorage.getStore();
-  return context ? { ...context } : null;
+  if (!context) return null;
+  const { [TASK_OBSERVATION_STATE]: _privateState, ...publicContext } = context;
+  return publicContext;
 }
 
 export function withSchedulerObservationContext(context, executor) {
@@ -82,11 +85,13 @@ export function withSchedulerObservationContext(context, executor) {
 export function runObservedTask(context, executor, observer) {
   const runId = randomUUID();
   const startedAt = new Date().toISOString();
+  const taskState = { active: true, attributedCommandCount: 0 };
 
   return withSchedulerObservationContext({
     ...(isContextObject(context) ? context : {}),
     runId,
     startedAt,
+    [TASK_OBSERVATION_STATE]: taskState,
   }, () => {
     const observationContext = getSchedulerObservationContext();
     const monotonicStartedAt = monotonicNow();
@@ -94,19 +99,23 @@ export function runObservedTask(context, executor, observer) {
     const observeSuccess = () => {
       if (observed) return;
       observed = true;
+      taskState.active = false;
       safelyObserveTaskSettlement(observer, {
         ...observationContext,
         outcome: 'success',
         durationMs: elapsedMilliseconds(monotonicStartedAt),
+        attributedCommandCount: taskState.attributedCommandCount,
       });
     };
     const observeFailure = (error) => {
       if (observed) return;
       observed = true;
+      taskState.active = false;
       safelyObserveTaskSettlement(observer, {
         ...observationContext,
         outcome: safelyClassifyCommandFailure(error),
         durationMs: elapsedMilliseconds(monotonicStartedAt),
+        attributedCommandCount: taskState.attributedCommandCount,
         error,
       });
     };
@@ -124,6 +133,21 @@ export function runObservedTask(context, executor, observer) {
     }
     return result;
   });
+}
+
+export function attributeSchedulerObservationCommandSent(event = {}) {
+  try {
+    if (event?.commandClass !== 'game') return false;
+    const taskState = schedulerObservationStorage.getStore()?.[TASK_OBSERVATION_STATE];
+    if (!taskState?.active) return false;
+    taskState.attributedCommandCount = Math.min(
+      Number.MAX_SAFE_INTEGER,
+      taskState.attributedCommandCount + 1,
+    );
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export const OBSERVATION_OUTCOMES = Object.freeze([

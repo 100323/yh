@@ -184,6 +184,70 @@ test('scheduler and batch task settlements include daily-point claims in one run
   }
 });
 
+test('task settlement attributes only game commands sent inside its active run', async (t) => {
+  const runAccount = requiredFunction(scheduler, 'runSchedulerAccountObserved');
+  const runTask = requiredFunction(scheduler, 'runSchedulerTaskObserved');
+  const commands = [];
+  const tasks = [];
+  startSchedulerObservationService({
+    config: { enabled: true, flushIntervalMs: 60_000, maxMetricKeys: 100 },
+    aggregator: {
+      recordCommand(event) {
+        commands.push(event);
+        return true;
+      },
+      recordTask(event) {
+        tasks.push(event);
+        return true;
+      },
+      recordAnomaly() { return true; },
+      getHealth() { return {}; },
+      takeSnapshot() {
+        return {
+          version: 1,
+          generatedAt: new Date().toISOString(),
+          commandMetrics: [],
+          taskMetrics: [],
+          anomalies: [],
+          totals: { commandCount: 0, taskCount: 0, rateLimitedCount: 0 },
+          health: { metricKeys: 0, anomalyCount: 0, droppedMetrics: 0, droppedAnomalies: 0 },
+        };
+      },
+    },
+    flushSnapshot() {},
+  });
+  t.after(async () => {
+    await stopSchedulerObservationService({ flush: false });
+    clearAccountTaskCoordinator();
+  });
+
+  const outsideClient = createOpenClient();
+  outsideClient.send('_sys/ack', {});
+  outsideClient.send('warmup_getinfo', {});
+
+  const client = createOpenClient();
+  const resultPromise = runAccount({
+    source: 'scheduler',
+    accountId: 63,
+    executionLane: 'direct',
+  }, () => runTask({ taskType: 'ATTRIBUTED' }, async () => {
+    const first = client.sendWithPromise('role_getroleinfo', {});
+    await waitFor(() => commands.some((row) => row.command === 'role_getroleinfo'));
+    client._handleMessage({ resp: 1, seq: 2, cmd: 'role_getroleinforesp', body: { ok: 1 } });
+    await first;
+    const second = client.sendWithPromise('tower_getinfo', {});
+    await waitFor(() => commands.some((row) => row.command === 'tower_getinfo'));
+    client._handleMessage({ resp: 1, seq: 3, cmd: 'tower_getinforesp', body: { ok: 2 } });
+    return second;
+  }));
+
+  assert.deepEqual(await resultPromise, { ok: 2 });
+  assert.equal(tasks.length, 1);
+  assert.equal(tasks[0].task, 'ATTRIBUTED');
+  assert.equal(tasks[0].attributedCommandCount, 2);
+  assert.equal(commands.filter((row) => row.commandCount === 1).length, 4);
+});
+
 test('proxy scheduling lane does not become the actual command egress', async () => {
   const runAccount = requiredFunction(scheduler, 'runSchedulerAccountObserved');
   const runTask = requiredFunction(scheduler, 'runSchedulerTaskObserved');

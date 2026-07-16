@@ -4,6 +4,7 @@ import { performance } from 'node:perf_hooks';
 import config from '../config/index.js';
 import {
   SchedulerObservationAggregator,
+  attributeSchedulerObservationCommandSent,
   classifyCommandFailure,
   sanitizeObservationMessage,
 } from './schedulerObservationCore.js';
@@ -547,6 +548,7 @@ export function observeCommandSent(event) {
   const state = serviceState;
   if (!state.enabled) return false;
   try {
+    attributeSchedulerObservationCommandSent(event);
     return safelyRecord(state, 'recordCommand', buildCommandObservation(event, 'sent'));
   } catch {
     incrementHealthCounter(state, 'observationErrors');

@@ -337,9 +337,9 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
     averageQueueWaitMs: 100,
     maxQueueWaitMs: 200,
     attributedCommandCount: 19,
-    commandCount: 15,
+    commandCount: 19,
     errorRate: 0.3333,
-    commandAmplification: 5,
+    commandAmplification: 6.3333,
   });
   assert.deepEqual(data.egresses.map((row) => [row.type, row.key, row.commandCount]), [
     ['direct', 'direct', 14],
@@ -369,6 +369,32 @@ test('current command rate uses only the generated UTC minute while peak ignores
 
   assert.equal(data.headline.currentCommandRate, 7);
   assert.equal(data.headline.peakCommandRate, 10);
+});
+
+test('headline amplification excludes system and unattributed command volume', () => {
+  const data = buildSchedulerObservabilitySummary({
+    commandMetrics: [{
+      bucket_minute: '2026-07-15 12:00:00',
+      task_type: 'UNATTRIBUTED',
+      command_count: 100,
+    }],
+    taskMetrics: [{
+      bucket_minute: '2026-07-15 12:00:00',
+      task_type: 'DAILY',
+      outcome: 'success',
+      run_count: 1,
+      attributed_command_count: 2,
+    }],
+  }, {
+    range: '1h',
+    generatedAt: FIXED_NOW,
+    health: {},
+  });
+
+  assert.equal(data.headline.commandCount, 100);
+  assert.equal(data.headline.commandAmplification, 2);
+  assert.equal(data.tasks[0].commandCount, 2);
+  assert.equal(data.tasks[0].commandAmplification, 2);
 });
 
 test('real command lifecycle counts each send once through SQLite and API aggregates', async (t) => {
