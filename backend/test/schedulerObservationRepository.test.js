@@ -81,6 +81,7 @@ const EXPECTED_INDEX_COLUMNS = {
 
 let databaseModule;
 let repository;
+let config;
 let db;
 let tempDir;
 let tempDbPath;
@@ -172,6 +173,7 @@ before(async () => {
   tempDbPath = path.join(tempDir, 'observability.test.db');
   process.env.DB_PATH = tempDbPath;
   databaseModule = await import('../src/database/index.js');
+  config = (await import('../src/config/index.js')).default;
   repository = await import('../src/observability/schedulerObservationRepository.js');
   db = await databaseModule.initDatabase();
 });
@@ -333,7 +335,79 @@ test('flush uses one transaction for a multi-row snapshot and rolls the entire b
 
   const emptyDb = wrapDatabase(db);
   repository.flushSchedulerObservationSnapshot(snapshot(), emptyDb);
-  assert.equal(emptyDb.transactionCalls, 0);
+  assert.equal(emptyDb.transactionCalls, 1);
+});
+
+test('every flush transaction caps all observation tables across consecutive real SQLite writes', () => {
+  db.run(`
+    WITH RECURSIVE seq(n) AS (
+      SELECT 1 UNION ALL SELECT n + 1 FROM seq WHERE n < 50001
+    )
+    INSERT INTO command_metric_minutes (
+      bucket_minute, source, command_class, task_type, command, execution_lane,
+      egress_type, egress_key, outcome
+    )
+    SELECT '2026-07-14 00:00:00', 'seed', 'read', 'SEED', 'command-' || n,
+           'direct', 'direct', 'direct', 'success'
+    FROM seq
+  `);
+  db.run(`
+    WITH RECURSIVE seq(n) AS (
+      SELECT 1 UNION ALL SELECT n + 1 FROM seq WHERE n < 20001
+    )
+    INSERT INTO task_metric_minutes (
+      bucket_minute, source, task_type, execution_lane, outcome
+    )
+    SELECT '2026-07-14 00:00:00', 'seed', 'task-' || n, 'direct', 'success'
+    FROM seq
+  `);
+  db.run(`
+    INSERT INTO command_anomalies (occurred_at, category, summary)
+    VALUES
+      ('2026-07-14T00:00:00.000Z', 'seed-1', 'seed-1'),
+      ('2026-07-14T00:00:01.000Z', 'seed-2', 'seed-2'),
+      ('2026-07-14T00:00:02.000Z', 'seed-3', 'seed-3')
+  `);
+
+  const originalMaxAnomalyRows = config.observability.maxAnomalyRows;
+  config.observability.maxAnomalyRows = 2;
+  try {
+    for (const suffix of ['first', 'second']) {
+      repository.flushSchedulerObservationSnapshot(snapshot({
+        commandMetrics: [commandMetric({
+          minute: '2026-07-16 00:00:00',
+          dimensions: { ...commandMetric().dimensions, command: `new-command-${suffix}` },
+        })],
+        taskMetrics: [taskMetric({
+          minute: '2026-07-16 00:00:00',
+          dimensions: { ...taskMetric().dimensions, taskType: `NEW-TASK-${suffix}` },
+        })],
+        anomalies: [{
+          timestamp: `2026-07-16T00:00:0${suffix === 'first' ? '1' : '2'}.000Z`,
+          type: `new-anomaly-${suffix}`,
+          message: suffix,
+          dimensions: {},
+        }],
+      }), db);
+
+      assert.equal(db.get('SELECT COUNT(*) AS count FROM command_metric_minutes').count, 50000);
+      assert.equal(db.get('SELECT COUNT(*) AS count FROM task_metric_minutes').count, 20000);
+      assert.equal(db.get('SELECT COUNT(*) AS count FROM command_anomalies').count, 2);
+    }
+  } finally {
+    config.observability.maxAnomalyRows = originalMaxAnomalyRows;
+  }
+
+  assert.equal(db.get(
+    `SELECT COUNT(*) AS count FROM command_metric_minutes WHERE command LIKE 'new-command-%'`,
+  ).count, 2);
+  assert.equal(db.get(
+    `SELECT COUNT(*) AS count FROM task_metric_minutes WHERE task_type LIKE 'NEW-TASK-%'`,
+  ).count, 2);
+  assert.deepEqual(
+    db.all('SELECT category FROM command_anomalies ORDER BY occurred_at').map((row) => row.category),
+    ['new-anomaly-first', 'new-anomaly-second'],
+  );
 });
 
 test('additive metric upserts remain bounded to nonnegative safe integers', () => {

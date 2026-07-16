@@ -354,6 +354,45 @@ function writeCount(result) {
   return Number(result?.changes || 0);
 }
 
+function trimObservationRows(targetDb, {
+  maxCommandMetrics = DEFAULT_MAX_COMMAND_METRICS,
+  maxTaskMetrics = DEFAULT_MAX_TASK_METRICS,
+  maxAnomalies = normalizeCappedInteger(
+    config.observability?.maxAnomalyRows,
+    DEFAULT_MAX_ANOMALIES,
+    DEFAULT_MAX_ANOMALIES,
+  ),
+} = {}) {
+  const commandMetricsDeleted = writeCount(targetDb.run(
+    `DELETE FROM command_metric_minutes
+     WHERE rowid NOT IN (
+       SELECT rowid FROM command_metric_minutes
+       ORDER BY bucket_minute DESC, rowid DESC
+       LIMIT ?
+     )`,
+    [maxCommandMetrics],
+  ));
+  const taskMetricsDeleted = writeCount(targetDb.run(
+    `DELETE FROM task_metric_minutes
+     WHERE rowid NOT IN (
+       SELECT rowid FROM task_metric_minutes
+       ORDER BY bucket_minute DESC, rowid DESC
+       LIMIT ?
+     )`,
+    [maxTaskMetrics],
+  ));
+  const anomaliesDeleted = writeCount(targetDb.run(
+    `DELETE FROM command_anomalies
+     WHERE id NOT IN (
+       SELECT id FROM command_anomalies
+       ORDER BY occurred_at DESC, id DESC
+       LIMIT ?
+     )`,
+    [maxAnomalies],
+  ));
+  return { commandMetricsDeleted, taskMetricsDeleted, anomaliesDeleted };
+}
+
 export function flushSchedulerObservationSnapshot(snapshot, targetDb = getDatabase()) {
   if (!isPlainObject(snapshot)) throw new TypeError('snapshot must be a plain object');
   if (!Array.isArray(snapshot.commandMetrics)) throw new TypeError('snapshot commandMetrics must be an array');
@@ -363,9 +402,6 @@ export function flushSchedulerObservationSnapshot(snapshot, targetDb = getDataba
   const commandMetrics = snapshot.commandMetrics.map(normalizeCommandMetric);
   const taskMetrics = snapshot.taskMetrics.map(normalizeTaskMetric);
   const anomalies = snapshot.anomalies.map(normalizeAnomaly);
-  if (commandMetrics.length === 0 && taskMetrics.length === 0 && anomalies.length === 0) {
-    return { commandMetrics: 0, taskMetrics: 0, anomalies: 0 };
-  }
 
   const transaction = targetDb.transaction(() => {
     for (const params of commandMetrics) {
@@ -377,6 +413,7 @@ export function flushSchedulerObservationSnapshot(snapshot, targetDb = getDataba
     for (const params of anomalies) {
       targetDb.run(ANOMALY_INSERT, params);
     }
+    trimObservationRows(targetDb);
   });
   transaction();
 
@@ -476,33 +513,14 @@ export function cleanupSchedulerObservation(targetDb = getDatabase(), options = 
        WHERE occurred_at < ? AND julianday(occurred_at) < julianday(?)`,
       [timeBounds.upperBound, cutoff],
     ));
-    result.commandMetricsOverflowDeleted = writeCount(targetDb.run(
-      `DELETE FROM command_metric_minutes
-       WHERE rowid NOT IN (
-         SELECT rowid FROM command_metric_minutes
-         ORDER BY bucket_minute DESC, rowid DESC
-         LIMIT ?
-       )`,
-      [maxCommandMetrics],
-    ));
-    result.taskMetricsOverflowDeleted = writeCount(targetDb.run(
-      `DELETE FROM task_metric_minutes
-       WHERE rowid NOT IN (
-         SELECT rowid FROM task_metric_minutes
-         ORDER BY bucket_minute DESC, rowid DESC
-         LIMIT ?
-       )`,
-      [maxTaskMetrics],
-    ));
-    result.anomaliesOverflowDeleted = writeCount(targetDb.run(
-      `DELETE FROM command_anomalies
-       WHERE id NOT IN (
-         SELECT id FROM command_anomalies
-         ORDER BY occurred_at DESC, id DESC
-         LIMIT ?
-       )`,
-      [maxAnomalies],
-    ));
+    const overflow = trimObservationRows(targetDb, {
+      maxCommandMetrics,
+      maxTaskMetrics,
+      maxAnomalies,
+    });
+    result.commandMetricsOverflowDeleted = overflow.commandMetricsDeleted;
+    result.taskMetricsOverflowDeleted = overflow.taskMetricsDeleted;
+    result.anomaliesOverflowDeleted = overflow.anomaliesDeleted;
   });
   transaction();
   return result;

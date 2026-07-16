@@ -787,6 +787,34 @@ export class SchedulerObservationAggregator {
     }
   }
 
+  _trimMetricCapacity(preferredKeys = new Set()) {
+    const entries = [
+      ...[...this._commandMetrics].map(([key, row]) => ({ metricType: 'command', key, row })),
+      ...[...this._taskMetrics].map(([key, row]) => ({ metricType: 'task', key, row })),
+    ];
+    if (entries.length <= this._maxMetricKeys) return;
+
+    entries.sort((left, right) => (
+      right.row.minute.localeCompare(left.row.minute)
+      || Number(preferredKeys.has(`${right.metricType}:${right.key}`))
+        - Number(preferredKeys.has(`${left.metricType}:${left.key}`))
+    ));
+    const removed = entries.slice(this._maxMetricKeys);
+    for (const entry of removed) {
+      const target = entry.metricType === 'command' ? this._commandMetrics : this._taskMetrics;
+      target.delete(entry.key);
+    }
+    this._droppedMetrics = addObservationNumbers(this._droppedMetrics, removed.length);
+  }
+
+  _trimAnomalyCapacity() {
+    const overflow = Math.max(0, this._anomalies.length - this._maxAnomalies);
+    if (overflow === 0) return;
+    this._anomalies.splice(0, overflow);
+    this._restoredAnomalyCount = Math.max(0, this._restoredAnomalyCount - overflow);
+    this._droppedAnomalies = addObservationNumbers(this._droppedAnomalies, overflow);
+  }
+
   recordCommand(observation = {}) {
     return this._recordMetric('command', observation);
   }
@@ -815,15 +843,8 @@ export class SchedulerObservationAggregator {
   recordAnomaly(anomaly = {}) {
     const entry = this._createAnomalyEntry(anomaly);
     this._anomalies.push(entry);
-    let retained = true;
-
-    if (this._anomalies.length > this._maxAnomalies) {
-      const [removed] = this._anomalies.splice(this._restoredAnomalyCount, 1);
-      this._droppedAnomalies = addObservationNumbers(this._droppedAnomalies, 1);
-      retained = removed !== entry;
-    }
-
-    return retained;
+    this._trimAnomalyCapacity();
+    return this._anomalies.includes(entry);
   }
 
   getHealth() {
@@ -889,8 +910,14 @@ export class SchedulerObservationAggregator {
       staging._droppedMetrics = this._droppedMetrics;
       staging._droppedAnomalies = this._droppedAnomalies;
 
+      const currentMetricKeys = new Set([
+        ...[...staging._commandMetrics.keys()].map((key) => `command:${key}`),
+        ...[...staging._taskMetrics.keys()].map((key) => `task:${key}`),
+      ]);
+
       for (const row of snapshot.commandMetrics) staging._mergeMetricRow('command', row);
       for (const row of snapshot.taskMetrics) staging._mergeMetricRow('task', row);
+      staging._trimMetricCapacity(currentMetricKeys);
 
       const restoredAnomalies = snapshot.anomalies.map((anomaly) => (
         staging._createAnomalyEntry(anomaly)
@@ -901,6 +928,7 @@ export class SchedulerObservationAggregator {
         ...restoredAnomalies,
       );
       staging._restoredAnomalyCount += restoredAnomalies.length;
+      staging._trimAnomalyCapacity();
       staging._droppedMetrics = addObservationNumbers(
         staging._droppedMetrics,
         normalizeCapacity(snapshot.health.droppedMetrics, 0),

@@ -1239,7 +1239,7 @@ test('mergeSnapshot combines matching metric rows, anomalies, and drop counters'
   assert.equal(merged.health.droppedMetrics, 1);
 });
 
-test('mergeSnapshot bypasses metric capacity and combines every command field losslessly', () => {
+test('mergeSnapshot keeps matching sums but drops older metric keys at capacity', () => {
   const target = new SchedulerObservationAggregator({ now: () => 0, maxMetricKeys: 1 });
   target.recordCommand({ command: 'current', outcome: 'error', latencyMs: 10 });
 
@@ -1253,15 +1253,29 @@ test('mergeSnapshot bypasses metric capacity and combines every command field lo
     snapshot.commandMetrics.map((row) => [row.dimensions.command, row]),
   );
 
-  assert.equal(snapshot.commandMetrics.length, 2);
+  assert.equal(snapshot.commandMetrics.length, 1);
   assert.equal(rows.current.commandCount, 2);
   assert.equal(rows.current.errorCount, 2);
   assert.equal(rows.current.latencyCount, 2);
   assert.equal(rows.current.latencySumMs, 30);
   assert.equal(rows.current.latencyMaxMs, 20);
-  assert.equal(rows.source.commandCount, 1);
-  assert.equal(rows.source.timeoutCount, 1);
-  assert.equal(snapshot.health.droppedMetrics, 0);
+  assert.equal(rows.source, undefined);
+  assert.equal(snapshot.health.droppedMetrics, 1);
+});
+
+test('mergeSnapshot retains newest metric keys when a larger snapshot is restored', () => {
+  const source = new SchedulerObservationAggregator({ now: () => 0 });
+  source.recordCommand({ minute: '2026-07-15 01:00:00', command: 'old-command' });
+  source.recordTask({ minute: '2026-07-15 02:00:00', task: 'new-task' });
+
+  const target = new SchedulerObservationAggregator({ now: () => 0, maxMetricKeys: 1 });
+  assert.equal(target.mergeSnapshot(source.takeSnapshot()), true);
+  const snapshot = target.takeSnapshot();
+
+  assert.equal(snapshot.commandMetrics.length, 0);
+  assert.equal(snapshot.taskMetrics.length, 1);
+  assert.equal(snapshot.taskMetrics[0].dimensions.task, 'new-task');
+  assert.equal(snapshot.health.droppedMetrics, 1);
 });
 
 test('mergeSnapshot combines every task field using sums and maxima', () => {
@@ -1324,7 +1338,7 @@ test('mergeSnapshot saturates every command and task numeric field without Infin
   assert.equal(JSON.stringify(merged).includes(':null'), false);
 });
 
-test('mergeSnapshot prepends all older anomalies without applying current capacity', () => {
+test('mergeSnapshot drops oldest restored anomalies at current capacity', () => {
   const target = new SchedulerObservationAggregator({
     now: () => Date.parse('2026-07-15T03:00:00.000Z'),
     maxAnomalies: 1,
@@ -1345,10 +1359,10 @@ test('mergeSnapshot prepends all older anomalies without applying current capaci
 
   assert.deepEqual(
     snapshot.anomalies.map((entry) => entry.type),
-    ['oldest', 'older', 'current'],
+    ['current'],
   );
-  assert.equal(snapshot.health.anomalyCount, 3);
-  assert.equal(snapshot.health.droppedAnomalies, 0);
+  assert.equal(snapshot.health.anomalyCount, 1);
+  assert.equal(snapshot.health.droppedAnomalies, 2);
 });
 
 test('mergeSnapshot keeps chronological FIFO across multiple restores and stable ties', () => {
@@ -1368,7 +1382,7 @@ test('mergeSnapshot keeps chronological FIFO across multiple restores and stable
 
   assert.deepEqual(
     target.takeSnapshot().anomalies.map((entry) => entry.type),
-    ['oldest', 'older', 'current'],
+    ['current'],
   );
 
   const tiedTarget = new SchedulerObservationAggregator({
@@ -1414,7 +1428,7 @@ test('mergeSnapshot keeps same-millisecond restores before live anomalies in mer
   );
 });
 
-test('recordAnomaly evicts only live anomalies after restored data exceeds capacity', () => {
+test('recordAnomaly evicts the oldest anomaly after restored data reaches capacity', () => {
   const timestamp = Date.parse('2026-07-15T01:00:00.000Z');
   const createSnapshot = (type) => {
     const source = new SchedulerObservationAggregator({ now: () => timestamp });
@@ -1431,9 +1445,9 @@ test('recordAnomaly evicts only live anomalies after restored data exceeds capac
 
   assert.deepEqual(
     snapshot.anomalies.map((entry) => entry.type),
-    ['restored-first', 'restored-second', 'new-live'],
+    ['new-live'],
   );
-  assert.equal(snapshot.health.droppedAnomalies, 1);
+  assert.equal(snapshot.health.droppedAnomalies, 3);
 });
 
 test('mergeSnapshot preserves an anomaly ISO timestamp', () => {
