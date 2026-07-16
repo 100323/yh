@@ -130,3 +130,17 @@
 - 规格复核：`APPROVED`。
 - 代码质量复核：`APPROVED`。
 - 最终提交：`98419e423e1e9dd5874d2c28ae934aac13bd9fcb`。
+
+### Task 10：负载、故障隔离、保留期与文档验证
+
+- RED：聚合表行数 cap 缺失（40 行未收敛到 25）；纯 `julianday(indexed_column)` 无法使用时间范围索引；保留期/异常行 cap 未接入每日维护。
+- 初始 GREEN：100000 条命令全部记录并聚合为 144 个命令键；异常队列 1000 条；快照 269590 bytes；禁止 payload 未进入快照。
+- SQLite：真实临时数据库验证命令分钟、任务分钟、异常明细均执行时间与行数双上限；6 个查询/清理范围通过 `EXPLAIN QUERY PLAN` 命中对应时间索引。
+- 质量修正 1：补充 ±14 小时时区 offset 查询/清理回归；索引候选窗口使用 UTC 日期超集，最终由 `julianday` 保持精确语义；显式 options 也强制 3 天、50000/20000/50000 行硬上限。
+- 质量修正 2：使用低/高索引哨兵覆盖 SQLite `0000..9999` 日期域，新增 0000 年初查询与 9999 年末三表清理回归。
+- README：记录全部 7 个环境变量、3 天硬上限、禁止字段、管理员入口、24–72 小时观察清单、关闭重启回滚及观察期间不改调度并发。
+- 最终验证：仓储+负载 22/22；Node 22 串行后端全量 171/171；前端 21/21；TypeScript、Vite build、`git diff --check` 通过；worktree clean；未触碰 `backend/data/xyzw.db`。
+- 规格复核：`APPROVED`。
+- 代码质量复核：两轮 `CHANGES_REQUESTED` 均经 TDD 修复，同一 reviewer 最终 `APPROVED`。
+- 提交：`0db9157 test: verify scheduler observation production bounds`、`9270312 fix: enforce scheduler observation retention bounds`、`0833fbe fix: bound observation index sentinels`。
+- 残余风险：无效时间清理每日执行一次全表扫描，但三表均受硬行数 cap 约束；线上真实基数仍需按计划观察 24–72 小时。
