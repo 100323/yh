@@ -119,3 +119,14 @@
 - 规格复核：`APPROVED`。
 - 代码质量复核：`APPROVED`。
 - 最终提交：`fc7448c6ee399884f3f2491db5f9440a57dac396`。
+
+### Task 9：管理员“调度观测”页面和导航
+
+- 前端测试：Node 22 运行 17/17 通过。
+- 静态验证：TypeScript typecheck 通过；Vite production build 通过，仅有既有大 chunk 警告。
+- 路由与导航：router、桌面菜单、移动菜单和页面统一使用 `/scheduler-observability`；路由要求 `requiresAdmin: true`，桌面与移动端共用 `visibleMenuItems`。
+- 页面生命周期：30 秒轮询；generation 防止旧请求覆盖新筛选；卸载时清除定时器并使在途结果失效。
+- 契约显示：五个筛选项中 `commandClass` 明确标注“仅汇总”；健康状态覆盖 unknown、disabled、stopped、degraded、healthy；`lastFlushDurationMs=null` 显示“暂无”，`0` 显示 `0 ms`。
+- 规格复核：`APPROVED`。
+- 代码质量复核：`APPROVED`。
+- 最终提交：`98419e423e1e9dd5874d2c28ae934aac13bd9fcb`。
