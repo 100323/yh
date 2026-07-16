@@ -1,5 +1,6 @@
 import { isIP } from 'node:net';
 import { domainToASCII } from 'node:url';
+import config from '../config/index.js';
 import { getDatabase } from '../database/index.js';
 import {
   OBSERVATION_OUTCOMES,
@@ -7,6 +8,8 @@ import {
 } from './schedulerObservationCore.js';
 
 const DEFAULT_RETENTION_DAYS = 3;
+const DEFAULT_MAX_COMMAND_METRICS = 50_000;
+const DEFAULT_MAX_TASK_METRICS = 20_000;
 const DEFAULT_MAX_ANOMALIES = 50_000;
 const MAX_INTEGER = Number.MAX_SAFE_INTEGER;
 const DEFAULT_IDENTIFIER_LENGTH = 160;
@@ -384,39 +387,98 @@ function resolveCutoff(options) {
   if (options.cutoff !== undefined && options.cutoff !== null) {
     return normalizeTimestamp(options.cutoff, 'cleanup cutoff');
   }
-  const retentionDays = normalizeInteger(options.retentionDays, DEFAULT_RETENTION_DAYS);
+  const retentionDays = normalizeInteger(
+    options.retentionDays,
+    config.observability?.retentionDays ?? DEFAULT_RETENTION_DAYS,
+  );
   const nowValue = typeof options.now === 'function' ? options.now() : options.now ?? Date.now();
   const now = new Date(nowValue);
   const nowTimestamp = Number.isNaN(now.getTime()) ? Date.now() : now.getTime();
   return new Date(nowTimestamp - retentionDays * 24 * 60 * 60 * 1000).toISOString();
 }
 
+function indexedTimeBounds(cutoff) {
+  if (parseTimestamp(cutoff) === null) throw new RangeError('query cutoff is invalid');
+  const rawCutoff = typeof cutoff === 'string' ? normalizeNfkc(cutoff)?.trim() : null;
+  const normalizedCutoff = rawCutoff || normalizeTimestamp(cutoff, 'query cutoff');
+  const datePrefix = /^\d{4}-\d{2}-\d{2}/u.exec(normalizedCutoff)?.[0]
+    ?? normalizeTimestamp(cutoff, 'query cutoff').slice(0, 10);
+  const nextDate = new Date(`${datePrefix}T00:00:00.000Z`);
+  nextDate.setUTCDate(nextDate.getUTCDate() + 1);
+  return {
+    cutoff: normalizedCutoff,
+    lowerBound: datePrefix,
+    upperBound: nextDate.toISOString().slice(0, 10),
+  };
+}
+
 export function cleanupSchedulerObservation(targetDb = getDatabase(), options = {}) {
   const cutoff = resolveCutoff(options);
-  const maxAnomalies = normalizeInteger(options.maxAnomalies, DEFAULT_MAX_ANOMALIES);
+  const timeBounds = indexedTimeBounds(cutoff);
+  const maxCommandMetrics = normalizeInteger(
+    options.maxCommandMetrics,
+    DEFAULT_MAX_COMMAND_METRICS,
+  );
+  const maxTaskMetrics = normalizeInteger(options.maxTaskMetrics, DEFAULT_MAX_TASK_METRICS);
+  const maxAnomalies = normalizeInteger(
+    options.maxAnomalies,
+    config.observability?.maxAnomalyRows ?? DEFAULT_MAX_ANOMALIES,
+  );
   const result = {
     cutoff,
     commandMetricsDeleted: 0,
+    commandMetricsOverflowDeleted: 0,
     taskMetricsDeleted: 0,
+    taskMetricsOverflowDeleted: 0,
     anomaliesExpiredDeleted: 0,
     anomaliesOverflowDeleted: 0,
   };
 
   const transaction = targetDb.transaction(() => {
-    result.commandMetricsDeleted = writeCount(targetDb.run(
+    result.commandMetricsDeleted += writeCount(targetDb.run(
       `DELETE FROM command_metric_minutes
-       WHERE julianday(bucket_minute) IS NULL OR julianday(bucket_minute) < julianday(?)`,
-      [cutoff],
+       WHERE julianday(bucket_minute) IS NULL`,
     ));
-    result.taskMetricsDeleted = writeCount(targetDb.run(
+    result.commandMetricsDeleted += writeCount(targetDb.run(
+      `DELETE FROM command_metric_minutes
+       WHERE bucket_minute < ? AND julianday(bucket_minute) < julianday(?)`,
+      [timeBounds.upperBound, cutoff],
+    ));
+    result.taskMetricsDeleted += writeCount(targetDb.run(
       `DELETE FROM task_metric_minutes
-       WHERE julianday(bucket_minute) IS NULL OR julianday(bucket_minute) < julianday(?)`,
-      [cutoff],
+       WHERE julianday(bucket_minute) IS NULL`,
     ));
-    result.anomaliesExpiredDeleted = writeCount(targetDb.run(
+    result.taskMetricsDeleted += writeCount(targetDb.run(
+      `DELETE FROM task_metric_minutes
+       WHERE bucket_minute < ? AND julianday(bucket_minute) < julianday(?)`,
+      [timeBounds.upperBound, cutoff],
+    ));
+    result.anomaliesExpiredDeleted += writeCount(targetDb.run(
       `DELETE FROM command_anomalies
-       WHERE julianday(occurred_at) IS NULL OR julianday(occurred_at) < julianday(?)`,
-      [cutoff],
+       WHERE julianday(occurred_at) IS NULL`,
+    ));
+    result.anomaliesExpiredDeleted += writeCount(targetDb.run(
+      `DELETE FROM command_anomalies
+       WHERE occurred_at < ? AND julianday(occurred_at) < julianday(?)`,
+      [timeBounds.upperBound, cutoff],
+    ));
+    result.commandMetricsOverflowDeleted = writeCount(targetDb.run(
+      `DELETE FROM command_metric_minutes
+       WHERE rowid NOT IN (
+         SELECT rowid FROM command_metric_minutes
+         ORDER BY bucket_minute DESC, rowid DESC
+         LIMIT ?
+       )`,
+      [maxCommandMetrics],
+    ));
+    result.taskMetricsOverflowDeleted = writeCount(targetDb.run(
+      `DELETE FROM task_metric_minutes
+       WHERE rowid NOT IN (
+         SELECT rowid FROM task_metric_minutes
+         ORDER BY bucket_minute DESC, rowid DESC
+         LIMIT ?
+       )`,
+      [maxTaskMetrics],
     ));
     result.anomaliesOverflowDeleted = writeCount(targetDb.run(
       `DELETE FROM command_anomalies
@@ -439,11 +501,12 @@ function addFilter(clauses, params, column, value) {
 }
 
 function buildSummaryQuery(filters, metricType) {
+  const timeBounds = indexedTimeBounds(filters.cutoff);
   const clauses = [
-    'julianday(bucket_minute) IS NOT NULL',
+    'bucket_minute >= ?',
     'julianday(bucket_minute) >= julianday(?)',
   ];
-  const params = [filters.cutoff];
+  const params = [timeBounds.lowerBound, timeBounds.cutoff];
   addFilter(clauses, params, 'source', filters.source);
   addFilter(clauses, params, 'task_type', filters.taskType);
   if (metricType === 'command') {
@@ -475,11 +538,12 @@ export function querySchedulerObservationSummary(filters = {}, targetDb = getDat
 }
 
 function buildAnomalyQuery(filters) {
+  const timeBounds = indexedTimeBounds(filters.cutoff);
   const clauses = [
-    'julianday(occurred_at) IS NOT NULL',
+    'occurred_at >= ?',
     'julianday(occurred_at) >= julianday(?)',
   ];
-  const params = [filters.cutoff];
+  const params = [timeBounds.lowerBound, timeBounds.cutoff];
   addFilter(clauses, params, 'category', filters.category);
   addFilter(clauses, params, 'source', filters.source);
   addFilter(clauses, params, 'task_type', filters.taskType);
