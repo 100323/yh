@@ -16,8 +16,8 @@
         DB_PATH: './data/xyzw.db',
 
         // Replace these before production use.
-        JWT_SECRET: 'replace_with_a_strong_jwt_secret',
-        ENCRYPTION_KEY: 'replace_with_a_strong_32_byte_key',
+        JWT_SECRET: process.env.JWT_SECRET || 'replace_with_a_strong_jwt_secret',
+        ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || 'replace_with_a_strong_32_byte_key',
 
         GAME_CLIENT_VERSION: '2.3.9-wx',
         GAME_BATTLE_VERSION: 241201,
