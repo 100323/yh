@@ -517,6 +517,59 @@ test('offset timestamps remain a complete indexed candidate set before julianday
   }
 });
 
+test('indexed candidate bounds cover SQLite minimum and maximum supported years', () => {
+  db.run(
+    `INSERT INTO command_metric_minutes (bucket_minute, source, command_count)
+     VALUES ('0000-01-01T00:00:00Z', 'expired', 1),
+            ('0000-01-01T02:00:00Z', 'retained', 1)`,
+  );
+  db.run(
+    `INSERT INTO task_metric_minutes (bucket_minute, source, run_count)
+     VALUES ('0000-01-01T00:00:00Z', 'expired', 1),
+            ('0000-01-01T02:00:00Z', 'retained', 1)`,
+  );
+  db.run(
+    `INSERT INTO command_anomalies (occurred_at, source, category, summary)
+     VALUES ('0000-01-01T00:00:00Z', 'expired', 'year-bound', 'expired'),
+            ('0000-01-01T02:00:00Z', 'retained', 'year-bound', 'retained')`,
+  );
+
+  const cutoff = '0000-01-01T01:00:00.000Z';
+  const summary = repository.querySchedulerObservationSummary({ cutoff }, db);
+  const anomalies = repository.querySchedulerObservationAnomalies({
+    cutoff,
+    page: 1,
+    pageSize: 10,
+  }, db);
+  assert.deepEqual(summary.commandMetrics.map((row) => row.source), ['retained']);
+  assert.deepEqual(summary.taskMetrics.map((row) => row.source), ['retained']);
+  assert.deepEqual(anomalies.items.map((row) => row.source), ['retained']);
+
+  for (const table of OBSERVATION_TABLES) db.run(`DELETE FROM ${table}`);
+  db.run(
+    `INSERT INTO command_metric_minutes (bucket_minute, source, command_count)
+     VALUES ('9999-12-31T22:00:00Z', 'expired', 1)`,
+  );
+  db.run(
+    `INSERT INTO task_metric_minutes (bucket_minute, source, run_count)
+     VALUES ('9999-12-31T22:00:00Z', 'expired', 1)`,
+  );
+  db.run(
+    `INSERT INTO command_anomalies (occurred_at, source, category, summary)
+     VALUES ('9999-12-31T22:00:00Z', 'expired', 'year-bound', 'expired')`,
+  );
+
+  repository.cleanupSchedulerObservation(db, {
+    cutoff: '9999-12-31T23:00:00.000Z',
+    maxCommandMetrics: 100,
+    maxTaskMetrics: 100,
+    maxAnomalies: 100,
+  });
+  for (const table of OBSERVATION_TABLES) {
+    assert.equal(db.get(`SELECT COUNT(*) AS count FROM ${table}`).count, 0, table);
+  }
+});
+
 test('cleanup options can tighten but cannot exceed hard retention and row caps', () => {
   const result = repository.cleanupSchedulerObservation(db, {
     now: '2026-07-15T12:00:00.000Z',

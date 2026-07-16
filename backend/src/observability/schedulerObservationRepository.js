@@ -411,10 +411,12 @@ function indexedTimeBounds(cutoff) {
   lowerDate.setUTCDate(lowerDate.getUTCDate() - 1);
   const upperDate = new Date(`${utcDate}T00:00:00.000Z`);
   upperDate.setUTCDate(upperDate.getUTCDate() + 2);
+  const lowerIso = lowerDate.toISOString();
+  const upperIso = upperDate.toISOString();
   return {
     cutoff: normalizedCutoff,
-    lowerBound: lowerDate.toISOString().slice(0, 10),
-    upperBound: upperDate.toISOString().slice(0, 10),
+    lowerBound: /^\d{4}-\d{2}-\d{2}T/u.test(lowerIso) ? lowerIso.slice(0, 10) : '',
+    upperBound: /^\d{4}-\d{2}-\d{2}T/u.test(upperIso) ? upperIso.slice(0, 10) : ':',
   };
 }
 
