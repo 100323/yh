@@ -226,6 +226,7 @@ CREATE TABLE IF NOT EXISTS command_metric_minutes (
   latency_sum_ms INTEGER NOT NULL DEFAULT 0,
   latency_max_ms INTEGER NOT NULL DEFAULT 0,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  slow_count INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY (bucket_minute, source, command_class, task_type, command,
                execution_lane, egress_type, egress_key, outcome)
 );
@@ -491,6 +492,7 @@ export async function initDatabase() {
   dirty = ensureTaskConfigSchema() || dirty;
   dirty = ensureTaskExecutionMarkerSchema() || dirty;
   dirty = ensureSystemSettingsSchema() || dirty;
+  dirty = ensureSchedulerObservationSchema() || dirty;
 
   console.log('🗃️ initDatabase[5/5] 执行数据规范化...');
   const normalizeResult = normalizeGameAccounts();
@@ -505,6 +507,22 @@ export async function initDatabase() {
 
   console.log(`✅ 数据库初始化完成: ${dbPath}（用时 ${Date.now() - startedAt}ms）`);
   return db;
+}
+
+function ensureSchedulerObservationSchema() {
+  let changed = false;
+  try {
+    const columns = getTableColumns('command_metric_minutes');
+    if (!columns.has('slow_count')) {
+      rawDb.exec(
+        'ALTER TABLE command_metric_minutes ADD COLUMN slow_count INTEGER NOT NULL DEFAULT 0',
+      );
+      changed = true;
+    }
+  } catch (error) {
+    console.warn('Failed to ensure scheduler observation schema:', error?.message || error);
+  }
+  return changed;
 }
 
 function ensureUsersSchema() {

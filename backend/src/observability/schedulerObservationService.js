@@ -335,6 +335,7 @@ function buildCommandObservation(event, outcome, commandCount = 1) {
     command,
     outcome,
     commandCount,
+    slowCount: 0,
     dimensions: buildMetricDimensions(event, { includeCommandClass: true }),
   };
   const timestamp = safeRead(event, 'timestamp');
@@ -566,9 +567,13 @@ export function observeCommandSettled(event) {
   try {
     const outcome = safelyClassifyOutcome(event);
     const observation = buildCommandObservation(event, outcome, 0);
+    const isSlow = !ANOMALY_OUTCOMES.has(outcome)
+      && observation.latencyMs !== undefined
+      && observation.latencyMs >= state.slowCommandMs;
+    observation.slowCount = isSlow ? 1 : 0;
     const recorded = safelyRecord(state, 'recordCommand', observation);
     const latencyMs = observation.latencyMs;
-    if (ANOMALY_OUTCOMES.has(outcome) || (latencyMs !== undefined && latencyMs >= state.slowCommandMs)) {
+    if (ANOMALY_OUTCOMES.has(outcome) || isSlow) {
       const anomalyType = ANOMALY_OUTCOMES.has(outcome) ? `command_${outcome}` : 'slow_command';
       safelyRecord(state, 'recordAnomaly', {
         type: anomalyType,

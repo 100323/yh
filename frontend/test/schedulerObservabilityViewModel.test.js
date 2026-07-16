@@ -45,6 +45,8 @@ test('maps complete scheduler observability API fixtures without mutating inputs
       maxQueueWaitMs: 480,
       attributedCommandCount: 34,
       commandCount: 36,
+      anomalyCount: 6,
+      anomalyRate: 0.1667,
       errorRate: 0.1667,
       commandAmplification: 6,
     }],
@@ -56,6 +58,9 @@ test('maps complete scheduler observability API fixtures without mutating inputs
       timeoutCount: 2,
       disconnectedCount: 1,
       rateLimitedCount: 3,
+      slowCount: 4,
+      anomalyCount: 12,
+      anomalyRate: 0.3871,
       averageLatencyMs: 880,
       maxLatencyMs: 2200,
       errorRate: 0.0645,
@@ -140,6 +145,9 @@ test('maps complete scheduler observability API fixtures without mutating inputs
     maxQueueWaitMs: 480,
     attributedCommandCount: 34,
     commandCount: 36,
+    anomalyCount: 6,
+    anomalyRate: 0.1667,
+    anomalyRateDisplay: '16.67%',
     errorRate: 0.1667,
     errorRateDisplay: '16.67%',
     commandAmplification: 6,
@@ -156,6 +164,10 @@ test('maps complete scheduler observability API fixtures without mutating inputs
     timeoutCount: 2,
     disconnectedCount: 1,
     rateLimitedCount: 3,
+    slowCount: 4,
+    anomalyCount: 12,
+    anomalyRate: 0.3871,
+    anomalyRateDisplay: '38.71%',
     averageLatencyMs: 880,
     maxLatencyMs: 2200,
     errorRate: 0.0645,
@@ -588,6 +600,9 @@ test('scheduler observability route, shared admin menu, and page lifecycle stay 
   assert.match(pageSource, /model\.health\.state/);
   assert.match(pageSource, /model\.health\.label/);
   assert.match(pageSource, /model\.health\.tone/);
+  assert.match(pageSource, /scope\.row\.anomalyRate/);
+  assert.match(pageSource, /scope\.row\.anomalyRateDisplay/);
+  assert.doesNotMatch(pageSource, /scope\.row\.errorRate/);
   assert.doesNotMatch(pageSource, /model\.health\.(?:status|statusLabel|enabled|started)/);
   for (const state of ['unknown', 'disabled', 'stopped', 'degraded', 'healthy']) {
     assert.match(pageSource, new RegExp(`\\.health-${state}`));

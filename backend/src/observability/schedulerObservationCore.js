@@ -539,6 +539,7 @@ function commandMetricRow({ minute, dimensions, outcome }, observation = {}) {
     timeoutCount: outcome === 'timeout' ? 1 : 0,
     disconnectedCount: outcome === 'disconnected' ? 1 : 0,
     rateLimitedCount: outcome === 'rate_limited' ? 1 : 0,
+    slowCount: normalizeCapacity(observation.slowCount, 0),
     latencyCount: latencyMs === null ? 0 : 1,
     latencySumMs: latencyMs ?? 0,
     latencyMaxMs: latencyMs ?? 0,
@@ -576,6 +577,7 @@ function normalizeCommandMetricRow(identity, row) {
     timeoutCount: normalizeCapacity(row?.timeoutCount, 0),
     disconnectedCount: normalizeCapacity(row?.disconnectedCount, 0),
     rateLimitedCount: normalizeCapacity(row?.rateLimitedCount, 0),
+    slowCount: normalizeCapacity(row?.slowCount, 0),
     latencyCount: normalizeCapacity(row?.latencyCount, 0),
     latencySumMs: normalizeMeasurement(row?.latencySumMs) ?? 0,
     latencyMaxMs: normalizeMeasurement(row?.latencyMaxMs) ?? 0,
@@ -602,6 +604,7 @@ function mergeCommandMetricRows(target, source) {
   target.timeoutCount = addObservationNumbers(target.timeoutCount, source.timeoutCount);
   target.disconnectedCount = addObservationNumbers(target.disconnectedCount, source.disconnectedCount);
   target.rateLimitedCount = addObservationNumbers(target.rateLimitedCount, source.rateLimitedCount);
+  target.slowCount = addObservationNumbers(target.slowCount, source.slowCount);
   target.latencyCount = addObservationNumbers(target.latencyCount, source.latencyCount);
   target.latencySumMs = addObservationNumbers(target.latencySumMs, source.latencySumMs);
   target.latencyMaxMs = maxObservationNumber(target.latencyMaxMs, source.latencyMaxMs);
@@ -650,6 +653,7 @@ const COMMAND_METRIC_NUMBER_FIELDS = [
   'timeoutCount',
   'disconnectedCount',
   'rateLimitedCount',
+  'slowCount',
   'latencyCount',
   'latencySumMs',
   'latencyMaxMs',

@@ -258,7 +258,7 @@ function isNetworkOutputToken(rawToken) {
 
 function redactNetworkOutputTokens(value) {
   return value.replace(/\S+/gu, (token) => (
-    isNetworkOutputToken(token) ? '[REDACTED]' : token
+    token.includes('[REDACTED]') || isNetworkOutputToken(token) ? '[REDACTED]' : token
   ));
 }
 
@@ -350,6 +350,8 @@ function createTaskAggregate(taskType) {
     queueWaitSumMs: 0,
     maxQueueWaitMs: 0,
     attributedCommandCount: 0,
+    commandCount: 0,
+    anomalyCount: 0,
   };
 }
 
@@ -378,6 +380,8 @@ function createEgressAggregate(type, key) {
     timeoutCount: 0,
     disconnectedCount: 0,
     rateLimitedCount: 0,
+    slowCount: 0,
+    anomalyCount: 0,
     latencyCount: 0,
     latencySumMs: 0,
     latencyMaxMs: 0,
@@ -441,6 +445,14 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
     const timeoutCount = finiteNonNegative(rowValue(row, 'timeout_count'));
     const disconnectedCount = finiteNonNegative(rowValue(row, 'disconnected_count'));
     const rateLimitedCount = finiteNonNegative(rowValue(row, 'rate_limited_count'));
+    const slowCount = finiteNonNegative(rowValue(row, 'slow_count'));
+    const anomalyCount = [
+      errorCount,
+      timeoutCount,
+      disconnectedCount,
+      rateLimitedCount,
+      slowCount,
+    ].reduce(safeAdd, 0);
     const rowLatencyCount = finiteNonNegative(rowValue(row, 'latency_count'));
     const rowLatencySumMs = rowLatencyCount > 0
       ? finiteNonNegative(rowValue(row, 'latency_sum_ms'))
@@ -460,6 +472,12 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
     latencyCount = safeAdd(latencyCount, rowLatencyCount);
     latencySumMs = safeAdd(latencySumMs, rowLatencySumMs);
 
+    const taskType = normalizePublicIdentifier(rowValue(row, 'task_type'));
+    if (!tasks.has(taskType)) tasks.set(taskType, createTaskAggregate(taskType));
+    const task = tasks.get(taskType);
+    task.commandCount = safeAdd(task.commandCount, commandCount);
+    task.anomalyCount = safeAdd(task.anomalyCount, anomalyCount);
+
     const egressType = normalizeEgressType(rowValue(row, 'egress_type'));
     const egressKey = normalizeEgressKey(rowValue(row, 'egress_key'), egressType);
     const egressMapKey = `${egressType}\u0000${egressKey}`;
@@ -472,6 +490,8 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
     egress.timeoutCount = safeAdd(egress.timeoutCount, timeoutCount);
     egress.disconnectedCount = safeAdd(egress.disconnectedCount, disconnectedCount);
     egress.rateLimitedCount = safeAdd(egress.rateLimitedCount, rateLimitedCount);
+    egress.slowCount = safeAdd(egress.slowCount, slowCount);
+    egress.anomalyCount = safeAdd(egress.anomalyCount, anomalyCount);
     egress.latencyCount = safeAdd(egress.latencyCount, rowLatencyCount);
     egress.latencySumMs = safeAdd(egress.latencySumMs, rowLatencySumMs);
     egress.latencyMaxMs = Math.max(egress.latencyMaxMs, latencyMaxMs);
@@ -564,7 +584,9 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
       averageQueueWaitMs: roundedRatio(task.queueWaitSumMs, task.queueWaitCount),
       maxQueueWaitMs: task.maxQueueWaitMs,
       attributedCommandCount: task.attributedCommandCount,
-      commandCount: task.attributedCommandCount,
+      commandCount: task.commandCount,
+      anomalyCount: task.anomalyCount,
+      anomalyRate: roundedRatio(task.anomalyCount, task.commandCount),
       errorRate: roundedRatio(task.errorCount, task.runCount),
       commandAmplification: roundedRatio(task.attributedCommandCount, task.runCount),
     }));
@@ -578,9 +600,12 @@ export function buildSchedulerObservabilitySummary(raw = {}, options = {}) {
       timeoutCount: egress.timeoutCount,
       disconnectedCount: egress.disconnectedCount,
       rateLimitedCount: egress.rateLimitedCount,
+      slowCount: egress.slowCount,
+      anomalyCount: egress.anomalyCount,
       averageLatencyMs: roundedRatio(egress.latencySumMs, egress.latencyCount),
       maxLatencyMs: egress.latencyMaxMs,
       errorRate: roundedRatio(egress.errorCount, egress.commandCount),
+      anomalyRate: roundedRatio(egress.anomalyCount, egress.commandCount),
     }));
 
   return {

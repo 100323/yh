@@ -168,10 +168,10 @@
             <el-table-column prop="amplificationDisplay" label="放大倍数" width="112" align="right" />
             <el-table-column prop="averageDurationDisplay" label="平均耗时" width="116" align="right" />
             <el-table-column prop="maxDurationDisplay" label="最大耗时" width="116" align="right" />
-            <el-table-column prop="errorRateDisplay" label="异常率" width="106" align="right">
+            <el-table-column prop="anomalyRateDisplay" label="异常率" width="106" align="right">
               <template #default="scope">
-                <span class="rate-value" :class="{ 'has-issue': scope.row.errorRate > 0 }">
-                  {{ scope.row.errorRateDisplay }}
+                <span class="rate-value" :class="{ 'has-issue': scope.row.anomalyRate > 0 }">
+                  {{ scope.row.anomalyRateDisplay }}
                 </span>
               </template>
             </el-table-column>
@@ -194,10 +194,10 @@
             <el-table-column prop="errorCount" label="错误" width="96" align="right" />
             <el-table-column prop="timeoutCount" label="超时" width="96" align="right" />
             <el-table-column prop="rateLimitedCount" label="限频" width="96" align="right" />
-            <el-table-column prop="errorRateDisplay" label="错误率" width="106" align="right">
+            <el-table-column prop="anomalyRateDisplay" label="异常率" width="106" align="right">
               <template #default="scope">
-                <span class="rate-value" :class="{ 'has-issue': scope.row.errorRate > 0 }">
-                  {{ scope.row.errorRateDisplay }}
+                <span class="rate-value" :class="{ 'has-issue': scope.row.anomalyRate > 0 }">
+                  {{ scope.row.anomalyRateDisplay }}
                 </span>
               </template>
             </el-table-column>

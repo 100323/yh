@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import test, { after, before, beforeEach } from 'node:test';
+import Database from 'better-sqlite3';
 
 const OBSERVATION_TABLES = [
   'command_anomalies',
@@ -36,6 +38,7 @@ const EXPECTED_TABLE_INFO = {
     ['latency_sum_ms', 'INTEGER', 1, '0', 0],
     ['latency_max_ms', 'INTEGER', 1, '0', 0],
     ['updated_at', 'DATETIME', 0, 'CURRENT_TIMESTAMP', 0],
+    ['slow_count', 'INTEGER', 1, '0', 0],
   ],
   task_metric_minutes: [
     ['bucket_minute', 'TEXT', 1, null, 1],
@@ -104,6 +107,7 @@ function commandMetric(overrides = {}) {
     timeoutCount: 0,
     disconnectedCount: 0,
     rateLimitedCount: 0,
+    slowCount: 1,
     latencyCount: 1,
     latencySumMs: 10,
     latencyMaxMs: 10,
@@ -230,6 +234,61 @@ test('initDatabase creates exactly the scheduler observation tables and indexes 
   ]);
 });
 
+test('initDatabase migrates a legacy command metric table with slow_count exactly once', () => {
+  const legacyPath = path.join(tempDir, 'legacy-observability.db');
+  const legacyDb = new Database(legacyPath);
+  legacyDb.exec(`
+    CREATE TABLE command_metric_minutes (
+      bucket_minute TEXT NOT NULL,
+      source TEXT NOT NULL DEFAULT '',
+      command_class TEXT NOT NULL DEFAULT '',
+      task_type TEXT NOT NULL DEFAULT '',
+      command TEXT NOT NULL DEFAULT '',
+      execution_lane TEXT NOT NULL DEFAULT '',
+      egress_type TEXT NOT NULL DEFAULT '',
+      egress_key TEXT NOT NULL DEFAULT '',
+      outcome TEXT NOT NULL DEFAULT '',
+      command_count INTEGER NOT NULL DEFAULT 0,
+      error_count INTEGER NOT NULL DEFAULT 0,
+      timeout_count INTEGER NOT NULL DEFAULT 0,
+      disconnected_count INTEGER NOT NULL DEFAULT 0,
+      rate_limited_count INTEGER NOT NULL DEFAULT 0,
+      latency_count INTEGER NOT NULL DEFAULT 0,
+      latency_sum_ms INTEGER NOT NULL DEFAULT 0,
+      latency_max_ms INTEGER NOT NULL DEFAULT 0,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (bucket_minute, source, command_class, task_type, command,
+                   execution_lane, egress_type, egress_key, outcome)
+    )
+  `);
+  legacyDb.close();
+
+  const initialize = [
+    '--input-type=module',
+    '-e',
+    "const db = await import('./backend/src/database/index.js'); await db.initDatabase(); await db.closeDatabase();",
+  ];
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    execFileSync(process.execPath, initialize, {
+      cwd: path.resolve('.'),
+      env: { ...process.env, DB_PATH: legacyPath },
+      stdio: 'pipe',
+    });
+  }
+
+  const migratedDb = new Database(legacyPath, { readonly: true });
+  const columns = migratedDb.prepare("PRAGMA table_info('command_metric_minutes')").all();
+  migratedDb.close();
+  assert.deepEqual(
+    columns.filter((column) => column.name === 'slow_count').map((column) => ({
+      type: column.type,
+      notnull: column.notnull,
+      defaultValue: column.dflt_value,
+    })),
+    [{ type: 'INTEGER', notnull: 1, defaultValue: '0' }],
+  );
+});
+
 test('flush additively upserts matching metric dimensions and parameterizes anomalies', () => {
   repository.flushSchedulerObservationSnapshot(snapshot({
     commandMetrics: [commandMetric()],
@@ -266,10 +325,11 @@ test('flush additively upserts matching metric dimensions and parameterizes anom
   }), db);
 
   assert.deepEqual(db.get(
-    `SELECT command_count, latency_count, latency_sum_ms, latency_max_ms
+    `SELECT command_count, slow_count, latency_count, latency_sum_ms, latency_max_ms
      FROM command_metric_minutes`,
   ), {
     command_count: 2,
+    slow_count: 2,
     latency_count: 2,
     latency_sum_ms: 30,
     latency_max_ms: 20,

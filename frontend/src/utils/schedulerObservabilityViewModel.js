@@ -271,6 +271,7 @@ function buildTasks(tasks) {
   return safeRows(tasks).map(({ row, index }) => {
     const taskType = safeString(safeRead(row, 'taskType')) || '未归类';
     const errorRate = safeRatio(safeRead(row, 'errorRate'));
+    const anomalyRate = safeRatio(safeRead(row, 'anomalyRate'));
     const commandAmplification = finiteNonNegative(safeRead(row, 'commandAmplification'));
     const averageDurationMs = finiteNonNegative(safeRead(row, 'averageDurationMs'));
     const maxDurationMs = finiteNonNegative(safeRead(row, 'maxDurationMs'));
@@ -286,6 +287,9 @@ function buildTasks(tasks) {
       maxQueueWaitMs: finiteNonNegative(safeRead(row, 'maxQueueWaitMs')),
       attributedCommandCount: finiteNonNegative(safeRead(row, 'attributedCommandCount')),
       commandCount: finiteNonNegative(safeRead(row, 'commandCount')),
+      anomalyCount: finiteNonNegative(safeRead(row, 'anomalyCount')),
+      anomalyRate,
+      anomalyRateDisplay: formatPercent(anomalyRate),
       errorRate,
       errorRateDisplay: formatPercent(errorRate),
       commandAmplification,
@@ -300,6 +304,7 @@ function buildEgresses(egresses) {
   return safeRows(egresses).map(({ row, index }) => {
     const descriptor = normalizeEgressDescriptor(row);
     const errorRate = safeRatio(safeRead(row, 'errorRate'));
+    const anomalyRate = safeRatio(safeRead(row, 'anomalyRate'));
     return {
       key: JSON.stringify([descriptor.type, descriptor.key, index]),
       label: formatEgressLabel(descriptor),
@@ -309,10 +314,14 @@ function buildEgresses(egresses) {
       timeoutCount: finiteNonNegative(safeRead(row, 'timeoutCount')),
       disconnectedCount: finiteNonNegative(safeRead(row, 'disconnectedCount')),
       rateLimitedCount: finiteNonNegative(safeRead(row, 'rateLimitedCount')),
+      slowCount: finiteNonNegative(safeRead(row, 'slowCount')),
+      anomalyCount: finiteNonNegative(safeRead(row, 'anomalyCount')),
       averageLatencyMs: finiteNonNegative(safeRead(row, 'averageLatencyMs')),
       maxLatencyMs: finiteNonNegative(safeRead(row, 'maxLatencyMs')),
       errorRate,
       errorRateDisplay: formatPercent(errorRate),
+      anomalyRate,
+      anomalyRateDisplay: formatPercent(anomalyRate),
     };
   });
 }

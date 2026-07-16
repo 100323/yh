@@ -1013,6 +1013,7 @@ test('recordCommand accumulates outcome counts and valid latency statistics', ()
     timeoutCount: 0,
     disconnectedCount: 0,
     rateLimitedCount: 0,
+    slowCount: 0,
     latencyCount: 1,
     latencySumMs: 12.5,
     latencyMaxMs: 12.5,
@@ -1026,6 +1027,16 @@ test('recordCommand accumulates outcome counts and valid latency statistics', ()
   assert.equal(rows.rate_limited.rateLimitedCount, 1);
   assert.equal(rows.rate_limited.latencyCount, 0);
   assert.equal(rows.rate_limited.latencyMaxMs, 0);
+
+  const slowAggregator = new SchedulerObservationAggregator({ now: () => 0 });
+  slowAggregator.recordCommand({
+    command: 'observe',
+    outcome: 'success',
+    commandCount: 0,
+    slowCount: 1,
+    latencyMs: 5000,
+  });
+  assert.equal(slowAggregator.takeSnapshot().commandMetrics[0].slowCount, 1);
 });
 
 test('recordTask normalizes empty and object dimensions without object key coercion', () => {

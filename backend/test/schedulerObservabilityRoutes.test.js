@@ -213,6 +213,7 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
         timeout_count: 1,
         disconnected_count: 0,
         rate_limited_count: 1,
+        slow_count: 2,
         latency_count: 8,
         latency_sum_ms: 400,
         latency_max_ms: 100,
@@ -227,6 +228,7 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
         timeout_count: 0,
         disconnected_count: 0,
         rate_limited_count: 0,
+        slow_count: 1,
         latency_count: 2,
         latency_sum_ms: 200,
         latency_max_ms: 150,
@@ -337,7 +339,9 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
     averageQueueWaitMs: 100,
     maxQueueWaitMs: 200,
     attributedCommandCount: 19,
-    commandCount: 19,
+    commandCount: 15,
+    anomalyCount: 7,
+    anomalyRate: 0.4667,
     errorRate: 0.3333,
     commandAmplification: 6.3333,
   });
@@ -345,6 +349,10 @@ test('builds the exact summary shape with deterministic bucket, task, and egress
     ['direct', 'direct', 14],
     ['proxy', 'proxy:012345abcdef', 5],
   ]);
+  assert.deepEqual(
+    data.egresses.map((row) => [row.type, row.slowCount, row.anomalyCount, row.anomalyRate]),
+    [['direct', 2, 6, 0.4286], ['proxy', 1, 1, 0.2]],
+  );
   assert.deepEqual(data.health, {
     enabled: true,
     started: true,
@@ -393,7 +401,10 @@ test('headline amplification excludes system and unattributed command volume', (
 
   assert.equal(data.headline.commandCount, 100);
   assert.equal(data.headline.commandAmplification, 2);
-  assert.equal(data.tasks[0].commandCount, 2);
+  assert.equal(data.tasks[0].attributedCommandCount, 2);
+  assert.equal(data.tasks[0].commandCount, 0);
+  assert.equal(data.tasks[0].anomalyCount, 0);
+  assert.equal(data.tasks[0].anomalyRate, 0);
   assert.equal(data.tasks[0].commandAmplification, 2);
 });
 

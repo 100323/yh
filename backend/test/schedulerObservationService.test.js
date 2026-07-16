@@ -715,6 +715,10 @@ test('command and task mappings classify failures, emit only approved sanitized 
     calls.recordCommand.slice(1).map((event) => event.outcome),
     ['rate_limited', 'timeout', 'disconnected', 'error', 'success', 'success'],
   );
+  assert.deepEqual(
+    calls.recordCommand.slice(1).map((event) => event.slowCount),
+    [0, 0, 0, 0, 1, 0],
+  );
   assert.equal(calls.recordAnomaly.length, 5);
   assert.equal(calls.recordTask.length, 1);
   assert.equal(calls.recordTask[0].task, 'DAILY_SIGN_IN');

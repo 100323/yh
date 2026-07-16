@@ -22,7 +22,7 @@ const COMMAND_METRIC_COLUMNS = `
   bucket_minute, source, command_class, task_type, command, execution_lane,
   egress_type, egress_key, outcome, command_count, error_count, timeout_count,
   disconnected_count, rate_limited_count, latency_count, latency_sum_ms,
-  latency_max_ms, updated_at
+  latency_max_ms, slow_count, updated_at
 `;
 const TASK_METRIC_COLUMNS = `
   bucket_minute, source, task_type, execution_lane, outcome, run_count,
@@ -40,8 +40,8 @@ const COMMAND_METRIC_UPSERT = `
     bucket_minute, source, command_class, task_type, command, execution_lane,
     egress_type, egress_key, outcome, command_count, error_count, timeout_count,
     disconnected_count, rate_limited_count, latency_count, latency_sum_ms,
-    latency_max_ms
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    latency_max_ms, slow_count
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   ON CONFLICT (
     bucket_minute, source, command_class, task_type, command, execution_lane,
     egress_type, egress_key, outcome
@@ -54,6 +54,7 @@ const COMMAND_METRIC_UPSERT = `
     latency_count = MIN(9007199254740991, command_metric_minutes.latency_count + excluded.latency_count),
     latency_sum_ms = MIN(9007199254740991, command_metric_minutes.latency_sum_ms + excluded.latency_sum_ms),
     latency_max_ms = MAX(command_metric_minutes.latency_max_ms, excluded.latency_max_ms),
+    slow_count = MIN(9007199254740991, command_metric_minutes.slow_count + excluded.slow_count),
     updated_at = CURRENT_TIMESTAMP
 `;
 
@@ -297,6 +298,7 @@ function normalizeCommandMetric(row) {
     normalizeInteger(row?.latencyCount),
     normalizeInteger(row?.latencySumMs),
     normalizeInteger(row?.latencyMaxMs),
+    normalizeInteger(row?.slowCount),
   ];
 }
 
