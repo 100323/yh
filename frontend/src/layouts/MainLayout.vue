@@ -177,6 +177,7 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import {
   ArrowDown,
   Clock,
+  DataAnalysis,
   Document,
   HomeFilled,
   Key,
@@ -217,6 +218,7 @@ const menuItems = [
   { index: '/daily-tasks', label: '日常任务', icon: Clock },
   { index: '/tasks', label: '任务配置', icon: Setting },
   { index: '/logs', label: '执行日志', icon: Document },
+  { index: '/scheduler-observability', label: '调度观测', icon: DataAnalysis, adminOnly: true },
   { index: '/user-management', label: '用户管理', icon: User, adminOnly: true },
   { index: '/activation-codes', label: '激活码管理', icon: Lock, adminOnly: true },
   { index: '/invite-codes', label: '邀请码管理', icon: Ticket, adminOnly: true }

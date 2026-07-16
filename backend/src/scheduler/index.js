@@ -58,12 +58,86 @@ import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
+import {
+  runObservedTask,
+  withSchedulerObservationContext,
+} from '../observability/schedulerObservationCore.js';
+import * as schedulerObservationService from '../observability/schedulerObservationService.js';
 
 const activeConnections = new Map();
 const scheduledJobs = new Map();
 const connectionPromises = new Map();
 const dailyRewardFlushState = new Map();
 const pendingAccountTaskBatches = new Map();
+const SCHEDULER_OBSERVATION_SOURCES = new Set([
+  'scheduler',
+  'scheduler-catchup',
+  'scheduler-manual',
+  'system',
+]);
+
+function normalizeSchedulerObservationSource(source) {
+  return SCHEDULER_OBSERVATION_SOURCES.has(source) ? source : 'scheduler';
+}
+
+export function runSchedulerAccountObserved(context, executor, options = {}) {
+  const accountId = context?.accountId;
+  const executionLane = context?.executionLane === EXECUTION_LANES.PROXY
+    ? EXECUTION_LANES.PROXY
+    : EXECUTION_LANES.DIRECT;
+  let queueObserver;
+  try {
+    queueObserver = options?.observer;
+  } catch {
+    queueObserver = null;
+  }
+  if (
+    queueObserver === undefined
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return runAccountTaskExclusive(accountId, executor, {
+      lane: executionLane,
+      observer: queueObserver,
+    });
+  }
+  const observationContext = {
+    source: normalizeSchedulerObservationSource(context?.source),
+    accountId,
+    executionLane,
+  };
+  if (context?.taskType !== undefined) observationContext.taskType = context.taskType;
+  const accountExecutor = context?.taskType === undefined
+    ? executor
+    : () => runSchedulerTaskObserved({ taskType: context.taskType }, executor);
+
+  return withSchedulerObservationContext(observationContext, () => (
+    runAccountTaskExclusive(accountId, accountExecutor, {
+      lane: executionLane,
+      observer: queueObserver,
+    })
+  ));
+}
+
+export function runSchedulerTaskObserved(context, executor, observer = schedulerObservationService) {
+  const observedExecutor = typeof context?.afterTask === 'function'
+    ? async () => {
+      const result = await executor();
+      await context.afterTask(result);
+      return result;
+    }
+    : executor;
+  if (
+    observer === schedulerObservationService
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return observedExecutor();
+  }
+  const observationContext = { taskType: context?.taskType };
+  if (context?.source !== undefined) {
+    observationContext.source = normalizeSchedulerObservationSource(context.source);
+  }
+  return runObservedTask(observationContext, observedExecutor, observer);
+}
 
 async function resolveAccountExecutionLane(accountName) {
   try {
@@ -709,19 +783,25 @@ async function executeScheduledTaskWithClient(task, context = {}) {
     }
 
     currentClient = await context.ensureClient();
-    const execution = await executeTaskWithFlowControl({
-      accountId,
-      accountName,
+    const execution = await runSchedulerTaskObserved({
       taskType,
-      taskConfig,
-      client: currentClient,
-      source,
-      reconnect: context.reconnect,
-    });
+      afterTask: async (completedExecution) => {
+        await claimDailyPointRewardsByTask(completedExecution.client, taskType, taskConfig);
+      },
+    }, () => (
+      executeTaskWithFlowControl({
+        accountId,
+        accountName,
+        taskType,
+        taskConfig,
+        client: currentClient,
+        source,
+        reconnect: context.reconnect,
+      })
+    ));
     currentClient = execution.client;
     const result = execution.result;
 
-    await claimDailyPointRewardsByTask(currentClient, taskType, taskConfig);
     markScheduledTaskSuccess(task, result);
     return {
       ok: true,
@@ -757,7 +837,11 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
   const accountName = getTaskAccountName(firstTask);
   const lane = await resolveAccountExecutionLane(accountName);
 
-  return runAccountTaskExclusive(accountId, async () => {
+  return runSchedulerAccountObserved({
+    source: context.source || 'scheduler',
+    accountId,
+    executionLane: lane,
+  }, async () => {
     console.log('🚀 开始账号批次执行', {
       accountId,
       accountName,
@@ -904,7 +988,7 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         source: context.source || 'scheduler',
       });
     }
-  }, { lane });
+  });
 }
 
 async function flushPendingAccountTaskBatch(accountId) {
@@ -1423,7 +1507,11 @@ export async function executeTask(task) {
 
   const lane = await resolveAccountExecutionLane(accountName);
 
-  return runAccountTaskExclusive(accountId, async () => {
+  return runSchedulerAccountObserved({
+    source: 'scheduler-manual',
+    accountId,
+    executionLane: lane,
+  }, async () => {
     console.log(`🚀 开始执行任务: ${accountName} - ${task.task_type}`);
     try {
       await ensureTaskUserAvailable(task);
@@ -1485,7 +1573,7 @@ export async function executeTask(task) {
       }
       throw error;
     }
-  }, { lane });
+  });
 }
 
 async function executeTaskWithFlowControl({
@@ -1741,7 +1829,10 @@ async function flushDailyRewardClaimOnClient(
   }
 
   try {
-    const execution = await executeTaskWithFlowControl({
+    const execution = await runSchedulerTaskObserved({
+      source: 'system',
+      taskType: 'DAILY_TASK_CLAIM',
+    }, () => executeTaskWithFlowControl({
       accountId,
       accountName: flushContext.accountName || entry.accountName || `账号${accountId}`,
       taskType: 'DAILY_TASK_CLAIM',
@@ -1749,7 +1840,7 @@ async function flushDailyRewardClaimOnClient(
       client,
       source: 'scheduler-batch-finalize',
       reconnect,
-    });
+    }));
     const currentClient = execution.client;
     const result = execution.result;
 
@@ -1832,7 +1923,11 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
 
   const lane = await resolveAccountExecutionLane(flushContext.accountName);
 
-  entry.flushingPromise = runAccountTaskExclusive(accountId, async () => {
+  entry.flushingPromise = runSchedulerAccountObserved({
+    source: 'system',
+    accountId,
+    executionLane: lane,
+  }, async () => {
     try {
       if (!entry.dirty) {
         return false;
@@ -1842,40 +1937,47 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
       }
 
       console.log(`🎁 开始自动收尾补领: ${flushContext.accountName} (${reason})`);
-      let client = await ensureConnectedClient(
-        accountId,
-        flushContext.accountName,
-        flushContext.tokenCandidates,
-        flushContext.roleId,
-        flushContext.wsUrl,
-        {
-          importMethod: flushContext.importMethod,
-          updatedAt: flushContext.updatedAt,
-        }
-      );
-      let result;
-      try {
-        result = await executeDailyTaskClaim(client, {});
-      } catch (error) {
-        if (isRetryableWsError(error)) {
-          console.warn(`🔁 自动补领检测到连接断开，重连后重试: ${flushContext.accountName}`);
-          forceDisconnectClient(accountId);
-          client = await ensureConnectedClient(
-            accountId,
-            flushContext.accountName,
-            flushContext.tokenCandidates,
-            flushContext.roleId,
-            flushContext.wsUrl,
-            {
-              importMethod: flushContext.importMethod,
-              updatedAt: flushContext.updatedAt,
-            }
-          );
+      const execution = await runSchedulerTaskObserved({
+        source: 'system',
+        taskType: 'DAILY_TASK_CLAIM',
+      }, async () => {
+        let client = await ensureConnectedClient(
+          accountId,
+          flushContext.accountName,
+          flushContext.tokenCandidates,
+          flushContext.roleId,
+          flushContext.wsUrl,
+          {
+            importMethod: flushContext.importMethod,
+            updatedAt: flushContext.updatedAt,
+          }
+        );
+        let result;
+        try {
           result = await executeDailyTaskClaim(client, {});
-        } else {
-          throw error;
+        } catch (error) {
+          if (isRetryableWsError(error)) {
+            console.warn(`🔁 自动补领检测到连接断开，重连后重试: ${flushContext.accountName}`);
+            forceDisconnectClient(accountId);
+            client = await ensureConnectedClient(
+              accountId,
+              flushContext.accountName,
+              flushContext.tokenCandidates,
+              flushContext.roleId,
+              flushContext.wsUrl,
+              {
+                importMethod: flushContext.importMethod,
+                updatedAt: flushContext.updatedAt,
+              }
+            );
+            result = await executeDailyTaskClaim(client, {});
+          } else {
+            throw error;
+          }
         }
-      }
+        return { client, result };
+      });
+      const { result } = execution;
 
       const claimedCount = Number(result?.data?.claimedCount || 0);
       const rewardConfirmed = didDailyTaskClaimConfirmReward(result);
@@ -1923,7 +2025,7 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
     } finally {
       entry.flushingPromise = null;
     }
-  }, { lane });
+  });
 
   return await entry.flushingPromise;
 }
