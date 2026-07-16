@@ -293,6 +293,32 @@ function redactSensitiveAssignments(value) {
   return result + value.slice(cursor);
 }
 
+function redactNetworkAuthorities(value) {
+  return value
+    .replace(/(?:[a-z][a-z\d+.-]*:)?\/\/[^\s<>]+/giu, '[REDACTED]')
+    .replace(/\[[0-9a-f:.]+(?:%[\p{L}\p{N}_.-]+)?\](?::\d{1,5})?(?:\/[^\s"'<>]*)?/giu, '[REDACTED]')
+    .replace(
+      /(^|[^\p{L}\p{N}])(?:[0-9a-f]{0,4}:){2,}(?:\d{1,3}\.){3}\d{1,3}(?::\d{1,5})?(?:%[\p{L}\p{N}_.-]+)?(?=$|[^\p{L}\p{N}:])/giu,
+      '$1[REDACTED]',
+    )
+    .replace(
+      /(^|[^\p{L}\p{N}])(?:[0-9a-f]{0,4}:){2,}[0-9a-f]{0,4}(?:%[\p{L}\p{N}_.-]+)?(?=$|[^\p{L}\p{N}:])/giu,
+      '$1[REDACTED]',
+    )
+    .replace(
+      /(^|[^\p{L}\p{N}])(?:\d{1,3}\.){3}\d{1,3}(?::\d{1,5})?(?:\/[^\s"'<>]*)?/gu,
+      '$1[REDACTED]',
+    )
+    .replace(
+      /(^|[^\p{L}\p{N}])(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?\.)+(?:[\p{L}]{2,63}|xn--[a-z\d-]{2,59})(?::\d{1,5})?(?:\/[^\s"'<>]*)?/giu,
+      '$1[REDACTED]',
+    )
+    .replace(
+      /(^|[^\p{L}\p{N}])(?:[a-z][a-z\d-]{0,62}):\d{1,5}(?:\/[^\s"'<>]*)?/giu,
+      '$1[REDACTED]',
+    );
+}
+
 export function sanitizeObservationMessage(value, maxLength = 300) {
   if (value === null || value === undefined) return '';
 
@@ -300,10 +326,7 @@ export function sanitizeObservationMessage(value, maxLength = 300) {
   let summary = String(value);
 
   summary = summary.replace(/[\u0000-\u001f\u007f-\u009f]/g, '');
-  summary = summary.replace(
-    /(^|[^A-Za-z\d+.-])((?:[a-z][a-z\d+.-]*:)?\/\/[^\s?"'<>]+)\?[^\s<>]*/gi,
-    '$1$2',
-  );
+  summary = redactNetworkAuthorities(summary);
   summary = redactSensitiveAssignments(summary);
   summary = summary.replace(
     /(^|[^A-Za-z\d+/_=-])([A-Za-z\d+/_=-]{80,})(?=$|[^A-Za-z\d+/_=-])/g,

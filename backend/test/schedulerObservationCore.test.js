@@ -670,7 +670,7 @@ test('sanitizeObservationMessage removes secrets and caps the summary length', (
   assert.equal(result.includes('role-secret'), false);
   assert.equal(result.includes('proxy-secret'), false);
   assert.equal(result.includes(longEncoding), false);
-  assert.match(result, /https:\/\/game\.example\/path/);
+  assert.match(result, /\[REDACTED\]/);
 });
 
 test('sanitizeObservationMessage honors a custom maximum and handles empty values', () => {
@@ -696,7 +696,54 @@ test('sanitizeObservationMessage removes escaped secrets and C1 controls without
   assert.equal(controlResult, 'leftright');
 });
 
-test('sanitizeObservationMessage redacts unterminated sensitive values and complete URL queries', () => {
+test('sanitizeObservationMessage redacts network authorities before anomaly buffering', () => {
+  const inputs = [
+    'connect failed http://user:pass@1.2.3.4:8080/private/path?token=secret',
+    'connect 192.0.2.10:8080 edge.example:9000 [2001:db8::2]:443 2001:db8::3',
+    'connect ::ffff:192.0.2.1:8080 [fe80::1%eth0]:8080 fe80::1%eth0',
+    'connect https://alice:pw@auth.example:8443/private',
+    'connect 例子.测试/path',
+    'connect\u0000 edge.example/path\u001f failed',
+  ];
+  const forbidden = [
+    'user:pass',
+    'alice:pw',
+    '1.2.3.4',
+    '192.0.2.10',
+    '2001:db8::2',
+    '2001:db8::3',
+    '::ffff:192.0.2.1:8080',
+    'fe80::1%eth0',
+    'eth0',
+    'edge.example',
+    'auth.example',
+    '例子',
+    '测试',
+    '8080',
+    '8443',
+    'private/path',
+  ];
+
+  for (const input of inputs) {
+    const sanitized = sanitizeObservationMessage(input);
+    assert.match(sanitized, /connect/u);
+    assert.match(sanitized, /\[REDACTED\]/u);
+    for (const secret of forbidden) assert.equal(sanitized.includes(secret), false, secret);
+  }
+
+  const aggregator = new SchedulerObservationAggregator();
+  for (const input of inputs) {
+    aggregator.recordAnomaly({
+      type: 'network_error',
+      message: input,
+      dimensions: { source: input, executionLane: 'proxy' },
+    });
+  }
+  const buffered = JSON.stringify(aggregator.takeSnapshot());
+  for (const secret of forbidden) assert.equal(buffered.includes(secret), false, secret);
+});
+
+test('sanitizeObservationMessage redacts unterminated sensitive values and complete URLs', () => {
   const sensitiveCases = [
     ['token="unterminated-secret', 'unterminated-secret'],
     ["roleToken='unterminated-role", 'unterminated-role'],
@@ -709,11 +756,11 @@ test('sanitizeObservationMessage redacts unterminated sensitive values and compl
 
   assert.equal(
     sanitizeObservationMessage('https://game.example/path?foo="query-secret"'),
-    'https://game.example/path',
+    '[REDACTED]',
   );
   assert.equal(
     sanitizeObservationMessage('//game.example/path?foo=query-secret'),
-    '//game.example/path',
+    '[REDACTED]',
   );
   assert.equal(
     sanitizeObservationMessage('ordinary diagnostic text without assignments'),
