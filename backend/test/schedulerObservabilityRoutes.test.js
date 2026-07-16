@@ -8,10 +8,24 @@ import express from 'express';
 
 const tempDir = await mkdtemp(path.join(os.tmpdir(), 'scheduler-observability-routes-'));
 process.env.DB_PATH = path.join(tempDir, 'routes.test.db');
-const statsModule = await import('../src/routes/stats.js');
-const databaseModule = await import('../src/database/index.js');
+const [statsModule, databaseModule, gameClientModule, observationService, observationRepository] = await Promise.all([
+  import('../src/routes/stats.js'),
+  import('../src/database/index.js'),
+  import('../src/utils/gameClient.js'),
+  import('../src/observability/schedulerObservationService.js'),
+  import('../src/observability/schedulerObservationRepository.js'),
+]);
 const { default: jwt } = await import('../src/utils/jwt.js');
 const { adminOnly, authMiddleware } = await import('../src/middleware/auth.js');
+const { default: GameClient } = gameClientModule;
+const {
+  startSchedulerObservationService,
+  stopSchedulerObservationService,
+} = observationService;
+const {
+  flushSchedulerObservationSnapshot,
+  querySchedulerObservationSummary,
+} = observationRepository;
 const {
   default: statsRouter,
   buildSchedulerObservabilitySummary,
@@ -28,6 +42,21 @@ after(async () => {
 });
 
 const FIXED_NOW = '2026-07-15T12:00:00.000Z';
+
+function createOpenObservedClient() {
+  const client = new GameClient('must-not-leak');
+  client.connected = true;
+  client.ws = { readyState: 1, send() {} };
+  return client;
+}
+
+async function waitFor(predicate) {
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    if (predicate()) return;
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+  assert.fail('condition was not reached');
+}
 
 function responseRecorder() {
   return {
@@ -340,6 +369,83 @@ test('current command rate uses only the generated UTC minute while peak ignores
 
   assert.equal(data.headline.currentCommandRate, 7);
   assert.equal(data.headline.peakCommandRate, 10);
+});
+
+test('real command lifecycle counts each send once through SQLite and API aggregates', async (t) => {
+  const db = await databaseModule.initDatabase();
+  for (const table of ['command_metric_minutes', 'task_metric_minutes', 'command_anomalies']) {
+    db.run(`DELETE FROM ${table}`);
+  }
+  startSchedulerObservationService({
+    config: {
+      enabled: true,
+      flushIntervalMs: 60_000,
+      slowCommandMs: 60_000,
+      maxMetricKeys: 100,
+      maxAnomalyBuffer: 100,
+    },
+    flushSnapshot: (snapshot) => flushSchedulerObservationSnapshot(snapshot, db),
+  });
+  t.after(async () => {
+    await stopSchedulerObservationService({ flush: false });
+  });
+
+  const successClient = createOpenObservedClient();
+  const success = successClient.sendWithPromise('role_getroleinfo', {});
+  successClient._handleMessage({ resp: 1, seq: 2, cmd: 'role_getroleinforesp', body: { ok: true } });
+  await success;
+
+  const timeoutClient = createOpenObservedClient();
+  const originalWarn = console.warn;
+  console.warn = () => {};
+  try {
+    await assert.rejects(timeoutClient.sendWithPromise('tower_getinfo', {}, 5), /tower_getinfo/);
+  } finally {
+    console.warn = originalWarn;
+  }
+
+  const disconnectedClient = createOpenObservedClient();
+  const disconnected = disconnectedClient.sendWithPromise('arena_getareatarget', {});
+  disconnectedClient._rejectPendingPromises(new Error('socket gone'));
+  await assert.rejects(disconnected, /socket gone/);
+
+  const businessClient = createOpenObservedClient();
+  const business = businessClient.sendWithPromise('genie_sweep', {});
+  businessClient._handleMessage({
+    resp: 1,
+    seq: 2,
+    cmd: 'genie_sweepresp',
+    code: 3300060,
+    hint: 'business failure',
+  });
+  await assert.rejects(business);
+
+  await stopSchedulerObservationService({ flush: true });
+  await waitFor(() => db.get('SELECT COUNT(*) AS count FROM command_metric_minutes').count > 0);
+  const raw = querySchedulerObservationSummary({
+    cutoff: new Date(Date.now() - 60_000).toISOString(),
+  }, db);
+  const bucketCounts = new Map();
+  for (const row of raw.commandMetrics) {
+    bucketCounts.set(
+      row.bucket_minute,
+      (bucketCounts.get(row.bucket_minute) ?? 0) + row.command_count,
+    );
+  }
+  const latestBucket = [...bucketCounts.keys()].sort().at(-1);
+  const summary = buildSchedulerObservabilitySummary(raw, {
+    range: '1h',
+    generatedAt: `${latestBucket.replace(' ', 'T').slice(0, 16)}:30.000Z`,
+    health: {},
+  });
+
+  assert.equal(summary.headline.commandCount, 4);
+  assert.equal(summary.headline.currentCommandRate, bucketCounts.get(latestBucket));
+  assert.equal(summary.headline.peakCommandRate, Math.max(...bucketCounts.values()));
+  assert.equal(summary.headline.timeoutCount, 1);
+  assert.equal(summary.egresses.reduce((sum, row) => sum + row.commandCount, 0), 4);
+  assert.equal(raw.commandMetrics.reduce((sum, row) => sum + row.disconnected_count, 0), 1);
+  assert.equal(raw.commandMetrics.reduce((sum, row) => sum + row.error_count, 0), 1);
 });
 
 test('serializes anomaly results with an allowlist and fail-closed sensitive/network redaction', () => {

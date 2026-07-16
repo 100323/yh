@@ -328,11 +328,12 @@ function eventCommand(event) {
   return safeIdentifier(safeRead(event, 'command') ?? safeRead(event, 'cmd'));
 }
 
-function buildCommandObservation(event, outcome) {
+function buildCommandObservation(event, outcome, commandCount = 1) {
   const command = eventCommand(event);
   const observation = {
     command,
     outcome,
+    commandCount,
     dimensions: buildMetricDimensions(event, { includeCommandClass: true }),
   };
   const timestamp = safeRead(event, 'timestamp');
@@ -558,7 +559,7 @@ export function observeCommandSettled(event) {
   if (!state.enabled) return false;
   try {
     const outcome = safelyClassifyOutcome(event);
-    const observation = buildCommandObservation(event, outcome);
+    const observation = buildCommandObservation(event, outcome, 0);
     const recorded = safelyRecord(state, 'recordCommand', observation);
     const latencyMs = observation.latencyMs;
     if (ANOMALY_OUTCOMES.has(outcome) || (latencyMs !== undefined && latencyMs >= state.slowCommandMs)) {

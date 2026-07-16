@@ -487,7 +487,7 @@ function commandMetricRow({ minute, dimensions, outcome }, observation = {}) {
     minute,
     dimensions,
     outcome,
-    commandCount: 1,
+    commandCount: normalizeCapacity(observation.commandCount, 1),
     errorCount: outcome === 'error' ? 1 : 0,
     timeoutCount: outcome === 'timeout' ? 1 : 0,
     disconnectedCount: outcome === 'disconnected' ? 1 : 0,
