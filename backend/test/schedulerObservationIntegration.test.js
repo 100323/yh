@@ -402,6 +402,25 @@ test('single system account task consumes its queue wait in exactly one settleme
   assert.equal(recordedTasks[0].queueWaitMs >= 0, true);
 });
 
+test('daily task auto-claim records only inside claim execution, not on the account wrapper', () => {
+  const source = fs.readFileSync(new URL('../src/scheduler/index.js', import.meta.url), 'utf8');
+  const start = source.indexOf('async function flushDailyRewardClaim(accountId');
+  const end = source.indexOf('\nfunction getDateKey()', start);
+  assert.equal(start >= 0 && end > start, true);
+  const implementation = source.slice(start, end);
+  const accountCallStart = implementation.indexOf('runSchedulerAccountObserved({');
+  const accountExecutorStart = implementation.indexOf('}, async () => {', accountCallStart);
+  assert.equal(accountCallStart >= 0 && accountExecutorStart > accountCallStart, true);
+  assert.doesNotMatch(
+    implementation.slice(accountCallStart, accountExecutorStart),
+    /taskType\s*:/,
+  );
+  assert.match(
+    implementation,
+    /runSchedulerTaskObserved\(\{[\s\S]*?taskType:\s*'DAILY_TASK_CLAIM'[\s\S]*?executeDailyTaskClaim/,
+  );
+});
+
 test('queue wait associates with one task settlement without duplicate runs', async (t) => {
   const runAccount = requiredFunction(scheduler, 'runSchedulerAccountObserved');
   const runTask = requiredFunction(scheduler, 'runSchedulerTaskObserved');

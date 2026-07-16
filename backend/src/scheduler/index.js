@@ -1927,7 +1927,6 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
     source: 'system',
     accountId,
     executionLane: lane,
-    taskType: 'DAILY_TASK_CLAIM',
   }, async () => {
     try {
       if (!entry.dirty) {
@@ -1938,40 +1937,47 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
       }
 
       console.log(`🎁 开始自动收尾补领: ${flushContext.accountName} (${reason})`);
-      let client = await ensureConnectedClient(
-        accountId,
-        flushContext.accountName,
-        flushContext.tokenCandidates,
-        flushContext.roleId,
-        flushContext.wsUrl,
-        {
-          importMethod: flushContext.importMethod,
-          updatedAt: flushContext.updatedAt,
-        }
-      );
-      let result;
-      try {
-        result = await executeDailyTaskClaim(client, {});
-      } catch (error) {
-        if (isRetryableWsError(error)) {
-          console.warn(`🔁 自动补领检测到连接断开，重连后重试: ${flushContext.accountName}`);
-          forceDisconnectClient(accountId);
-          client = await ensureConnectedClient(
-            accountId,
-            flushContext.accountName,
-            flushContext.tokenCandidates,
-            flushContext.roleId,
-            flushContext.wsUrl,
-            {
-              importMethod: flushContext.importMethod,
-              updatedAt: flushContext.updatedAt,
-            }
-          );
+      const execution = await runSchedulerTaskObserved({
+        source: 'system',
+        taskType: 'DAILY_TASK_CLAIM',
+      }, async () => {
+        let client = await ensureConnectedClient(
+          accountId,
+          flushContext.accountName,
+          flushContext.tokenCandidates,
+          flushContext.roleId,
+          flushContext.wsUrl,
+          {
+            importMethod: flushContext.importMethod,
+            updatedAt: flushContext.updatedAt,
+          }
+        );
+        let result;
+        try {
           result = await executeDailyTaskClaim(client, {});
-        } else {
-          throw error;
+        } catch (error) {
+          if (isRetryableWsError(error)) {
+            console.warn(`🔁 自动补领检测到连接断开，重连后重试: ${flushContext.accountName}`);
+            forceDisconnectClient(accountId);
+            client = await ensureConnectedClient(
+              accountId,
+              flushContext.accountName,
+              flushContext.tokenCandidates,
+              flushContext.roleId,
+              flushContext.wsUrl,
+              {
+                importMethod: flushContext.importMethod,
+                updatedAt: flushContext.updatedAt,
+              }
+            );
+            result = await executeDailyTaskClaim(client, {});
+          } else {
+            throw error;
+          }
         }
-      }
+        return { client, result };
+      });
+      const { result } = execution;
 
       const claimedCount = Number(result?.data?.claimedCount || 0);
       const rewardConfirmed = didDailyTaskClaimConfirmReward(result);
