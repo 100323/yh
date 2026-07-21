@@ -21,6 +21,61 @@ const ANOMALY_CATEGORY_ALIASES = new Map([
   ['error', 'command_error'],
 ]);
 
+const SOURCE_LABELS = new Map([
+  ['scheduler', '定时调度'],
+  ['scheduler-recovery', '重启恢复'],
+  ['scheduler-reconcile', '分钟对账补漏'],
+  ['scheduler-catchup', '晚间补偿'],
+  ['scheduler-manual', '手动执行'],
+  ['batch', '批量任务'],
+  ['system', '系统收尾'],
+]);
+
+export const SCHEDULER_SOURCE_OPTIONS = [
+  { value: 'scheduler', label: '定时调度', description: '按任务配置的时间自动执行。' },
+  { value: 'scheduler-recovery', label: '重启恢复', description: '服务重启后恢复尚未开始的错峰任务。' },
+  { value: 'scheduler-reconcile', label: '分钟对账补漏', description: '检测定时回调未触发且没有生成槽位的任务，并重新入队。' },
+  { value: 'scheduler-catchup', label: '晚间补偿', description: '晚间检查并补做符合条件的任务。' },
+  { value: 'scheduler-manual', label: '手动执行', description: '在任务管理中由人工单独触发。' },
+  { value: 'batch', label: '批量任务', description: '从批量任务计划发起的执行。' },
+  { value: 'system', label: '系统收尾', description: '任务完成后的系统自动收尾操作。' },
+];
+
+const COMMAND_LABELS = new Map([
+  ['role_getroleinfo', '获取角色信息'],
+  ['system_getdatabundlever', '获取数据版本'],
+  ['fight_startlevel', '挑战关卡'],
+  ['system_mysharecallback', '领取分享奖励'],
+  ['system_claimhangupreward', '领取挂机奖励'],
+  ['task_claimdailypoint', '领取日常活跃奖励'],
+  ['fight_starttower', '挑战爬塔'],
+  ['fight_startareaarena', '挑战竞技场'],
+  ['arena_getareatarget', '获取竞技场目标'],
+  ['arena_startarea', '发起竞技场战斗'],
+  ['mail_getlist', '获取邮件列表'],
+  ['mail_claimallattachment', '一键领取邮件'],
+  ['card_claimreward', '领取卡牌奖励'],
+  ['genie_sweep', '灯神扫荡'],
+  ['genie_buysweep', '购买灯神扫荡次数'],
+  ['fight_startboss', '挑战军团BOSS'],
+  ['system_buygold', '购买金币'],
+  ['hero_recruit', '英雄招募'],
+  ['item_openbox', '开启宝箱'],
+  ['store_purchase', '商店购买'],
+  ['mergebox_getinfo', '获取合成箱信息'],
+  ['mergebox_mergeitem', '合成物品'],
+  ['mergebox_openbox', '开启合成箱'],
+  ['legion_signin', '军团签到'],
+  ['presetteam_getinfo', '获取预设阵容'],
+  ['presetteam_saveteam', '保存预设阵容'],
+]);
+
+const BUILTIN_TASK_TYPE_LABELS = new Map([
+  ['BATCH', '批量任务'],
+  ['DAILY_TASK', '日常任务'],
+  ['DAILY_TASK_CLAIM', '日常活跃奖励'],
+]);
+
 function finiteNonNegative(value) {
   try {
     const number = typeof value === 'number' ? value : Number(value);
@@ -200,6 +255,23 @@ export function formatAnomalyCategory(category) {
   return ANOMALY_CATEGORY_LABELS.get(canonicalCategory) ?? '未知异常';
 }
 
+export function formatSourceLabel(source) {
+  return SOURCE_LABELS.get(safeString(source)) || '未知来源';
+}
+
+export function formatCommandLabel(command) {
+  const normalized = safeString(command);
+  if (!normalized) return '未记录命令';
+  return COMMAND_LABELS.get(normalized) || '未收录命令';
+}
+
+export function formatTaskTypeLabel(taskType, taskTypeLabels = {}) {
+  const normalized = safeString(taskType);
+  const label = safeString(safeRead(taskTypeLabels, normalized));
+  if (!normalized || normalized === '未归类') return '未归类';
+  return label || BUILTIN_TASK_TYPE_LABELS.get(normalized) || '未收录任务';
+}
+
 export function buildSchedulerObservabilityRequestParams(filters = {}, page = 1, pageSize = 25) {
   const common = {};
   for (const name of ['range', 'source', 'taskType', 'egressType']) {
@@ -267,7 +339,7 @@ function buildHeadline(headline) {
   });
 }
 
-function buildTasks(tasks) {
+function buildTasks(tasks, taskTypeLabels) {
   return safeRows(tasks).map(({ row, index }) => {
     const taskType = safeString(safeRead(row, 'taskType')) || '未归类';
     const errorRate = safeRatio(safeRead(row, 'errorRate'));
@@ -278,6 +350,7 @@ function buildTasks(tasks) {
     return {
       key: JSON.stringify([taskType, index]),
       taskType,
+      taskTypeLabel: formatTaskTypeLabel(taskType, taskTypeLabels),
       runCount: finiteNonNegative(safeRead(row, 'runCount')),
       errorCount: finiteNonNegative(safeRead(row, 'errorCount')),
       timeoutCount: finiteNonNegative(safeRead(row, 'timeoutCount')),
@@ -374,7 +447,7 @@ function buildHealth(health) {
   };
 }
 
-function buildAnomalies(anomalies) {
+function buildAnomalies(anomalies, taskTypeLabels) {
   const items = safeRows(safeRead(anomalies, 'items')).map(({ row, index }) => {
     const id = safeNullableInteger(safeRead(row, 'id'));
     const occurredAt = safeDateTime(safeRead(row, 'occurredAt'));
@@ -391,6 +464,9 @@ function buildAnomalies(anomalies) {
       source: safeString(safeRead(row, 'source')),
       taskType: safeString(safeRead(row, 'taskType')),
       command: safeString(safeRead(row, 'command')),
+      sourceLabel: formatSourceLabel(safeRead(row, 'source')),
+      taskTypeLabel: formatTaskTypeLabel(safeRead(row, 'taskType'), taskTypeLabels),
+      commandLabel: formatCommandLabel(safeRead(row, 'command')),
       executionLane: safeString(safeRead(row, 'executionLane')),
       egressType: descriptor.type,
       egressKey: descriptor.key,
@@ -413,8 +489,31 @@ function buildAnomalies(anomalies) {
   };
 }
 
-export function buildSchedulerObservabilityViewModel(summary = {}, anomalies = {}) {
+function buildSlots(slotSummary) {
+  const hasData = slotSummary !== null
+    && typeof slotSummary === 'object'
+    && safeRead(slotSummary, 'totalCount') !== undefined;
+  const metricDefinitions = [
+    { key: 'queuedCount', label: '等待执行', tone: 'warning' },
+    { key: 'recoveredCount', label: '重启恢复', tone: 'success' },
+    { key: 'interruptedCount', label: '中断未重放', tone: 'danger' },
+    { key: 'unavailableCount', label: '配置不可用', tone: 'neutral' },
+  ];
+  return {
+    hasData,
+    range: safeString(safeRead(slotSummary, 'range')),
+    generatedAt: safeDateTime(safeRead(slotSummary, 'generatedAt')),
+    totalCount: finiteNonNegative(safeRead(slotSummary, 'totalCount')),
+    metrics: metricDefinitions.map((definition) => ({
+      ...definition,
+      value: finiteNonNegative(safeRead(slotSummary, definition.key)),
+    })),
+  };
+}
+
+export function buildSchedulerObservabilityViewModel(summary = {}, anomalies = {}, options = {}) {
   const headline = safeRead(summary, 'headline');
+  const taskTypeLabels = safeRead(options, 'taskTypeLabels') || {};
   return {
     hasSummaryData: headline !== null && typeof headline === 'object',
     range: safeString(safeRead(summary, 'range')),
@@ -427,9 +526,10 @@ export function buildSchedulerObservabilityViewModel(summary = {}, anomalies = {
       commandAmplification: finiteNonNegative(safeRead(headline, 'commandAmplification')),
     },
     trend: buildTrendBars(safeRead(summary, 'series')),
-    tasks: buildTasks(safeRead(summary, 'tasks')),
+    tasks: buildTasks(safeRead(summary, 'tasks'), taskTypeLabels),
     egresses: buildEgresses(safeRead(summary, 'egresses')),
     health: buildHealth(safeRead(summary, 'health')),
-    anomalies: buildAnomalies(anomalies),
+    anomalies: buildAnomalies(anomalies, taskTypeLabels),
+    slots: buildSlots(safeRead(options, 'slotSummary')),
   };
 }

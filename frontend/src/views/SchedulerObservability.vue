@@ -43,8 +43,14 @@
           default-first-option
           placeholder="全部来源"
         >
-          <el-option v-for="source in sourceOptions" :key="source" :label="source" :value="source" />
+          <el-option
+            v-for="source in sourceOptions"
+            :key="source.value"
+            :label="source.label"
+            :value="source.value"
+          />
         </el-select>
+        <p v-if="selectedSourceDescription" class="filter-description">{{ selectedSourceDescription }}</p>
       </div>
 
       <div class="filter-field">
@@ -59,7 +65,12 @@
           default-first-option
           placeholder="全部任务"
         >
-          <el-option v-for="taskType in taskTypeOptions" :key="taskType" :label="taskType" :value="taskType" />
+          <el-option
+            v-for="taskType in taskTypeOptions"
+            :key="taskType.value"
+            :label="taskType.label"
+            :value="taskType.value"
+          />
         </el-select>
       </div>
 
@@ -93,7 +104,7 @@
     </section>
 
     <el-alert
-      v-if="summaryError || anomaliesError"
+      v-if="summaryError || anomaliesError || slotsError"
       class="data-alert"
       type="warning"
       :closable="false"
@@ -152,6 +163,22 @@
         </figure>
       </section>
 
+      <section class="overview-surface" aria-labelledby="slots-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">02</p>
+            <h2 id="slots-title">漏做保护</h2>
+          </div>
+          <p>重启恢复表示检测到漏做后已重新入队；中断未重放表示任务已开始，为避免重复领取或战斗而只告警。</p>
+        </div>
+        <div class="kpi-grid" role="list" aria-label="调度槽位恢复摘要">
+          <div v-for="metric in model.slots.metrics" :key="metric.key" class="kpi-item" role="listitem">
+            <span class="kpi-label">{{ metric.label }}</span>
+            <span class="kpi-value">{{ model.slots.hasData ? metric.value : '—' }}</span>
+          </div>
+        </div>
+      </section>
+
       <section class="table-surface" aria-labelledby="tasks-title">
         <div class="section-heading">
           <div>
@@ -162,7 +189,11 @@
         </div>
         <div class="table-scroll" tabindex="0" aria-label="任务表现表，可横向滚动">
           <el-table :data="model.tasks" row-key="key" empty-text="当前筛选范围内暂无任务数据">
-            <el-table-column prop="taskType" label="任务类型" min-width="180" fixed="left" />
+            <el-table-column label="任务类型" min-width="180" fixed="left">
+              <template #default="scope">
+                <span :title="scope.row.taskType">{{ scope.row.taskTypeLabel }}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="runCount" label="运行" width="96" align="right" />
             <el-table-column prop="commandCount" label="命令" width="96" align="right" />
             <el-table-column prop="amplificationDisplay" label="放大倍数" width="112" align="right" />
@@ -221,11 +252,14 @@
             <el-table-column label="账号" width="96" align="right">
               <template #default="scope">{{ formatAccount(scope.row.accountId) }}</template>
             </el-table-column>
-            <el-table-column prop="taskType" label="任务" min-width="160">
-              <template #default="scope">{{ scope.row.taskType || '未归类' }}</template>
+            <el-table-column label="来源" min-width="120">
+              <template #default="scope"><span :title="scope.row.source">{{ scope.row.sourceLabel }}</span></template>
             </el-table-column>
-            <el-table-column prop="command" label="命令" min-width="170">
-              <template #default="scope">{{ scope.row.command || '—' }}</template>
+            <el-table-column label="任务" min-width="160">
+              <template #default="scope"><span :title="scope.row.taskType">{{ scope.row.taskTypeLabel }}</span></template>
+            </el-table-column>
+            <el-table-column label="命令" min-width="170">
+              <template #default="scope"><span :title="scope.row.command">{{ scope.row.commandLabel }}</span></template>
             </el-table-column>
             <el-table-column label="类别" min-width="130">
               <template #default="scope">
@@ -303,14 +337,16 @@ import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import api from '@/api';
 import {
   OBSERVABILITY_RANGE_OPTIONS,
+  SCHEDULER_SOURCE_OPTIONS,
   buildSchedulerObservabilityRequestParams,
   buildSchedulerObservabilityViewModel,
   formatMetricDuration,
+  formatTaskTypeLabel,
 } from '@/utils/schedulerObservabilityViewModel';
 
 const POLL_INTERVAL_MS = 30_000;
 const ANOMALY_PAGE_SIZE = 25;
-const sourceOptions = ['scheduler', 'scheduler-manual', 'scheduler-catchup', 'batch', 'system'];
+const sourceOptions = SCHEDULER_SOURCE_OPTIONS;
 const healthIssueKeys = new Set([
   'flushErrors',
   'mergeErrors',
@@ -340,11 +376,14 @@ const filters = reactive({
 const anomalyPage = ref(1);
 const summaryPayload = ref(null);
 const anomaliesPayload = ref(null);
+const slotsPayload = ref(null);
 const initialLoading = ref(true);
 const refreshing = ref(false);
 const hasLoaded = ref(false);
 const summaryError = ref(false);
 const anomaliesError = ref(false);
+const slotsError = ref(false);
+const taskTypeNameMap = ref({});
 let pollTimer = null;
 let requestGeneration = 0;
 let isMounted = false;
@@ -352,6 +391,10 @@ let isMounted = false;
 const model = computed(() => buildSchedulerObservabilityViewModel(
   summaryPayload.value || {},
   anomaliesPayload.value || {},
+  {
+    taskTypeLabels: taskTypeNameMap.value,
+    slotSummary: slotsPayload.value,
+  },
 ));
 
 const taskTypeOptions = computed(() => {
@@ -359,8 +402,14 @@ const taskTypeOptions = computed(() => {
   for (const task of model.value.tasks) {
     if (task.taskType && task.taskType !== '未归类') options.add(task.taskType);
   }
-  return Array.from(options).sort((left, right) => left.localeCompare(right));
+  return Array.from(options)
+    .map((value) => ({ value, label: formatTaskTypeLabel(value, taskTypeNameMap.value) }))
+    .sort((left, right) => left.label.localeCompare(right.label, 'zh-CN'));
 });
+
+const selectedSourceDescription = computed(() => (
+  sourceOptions.find((source) => source.value === filters.source)?.description || ''
+));
 
 const freshnessText = computed(() => (
   model.value.generatedAt
@@ -369,12 +418,12 @@ const freshnessText = computed(() => (
 ));
 
 const errorDescription = computed(() => {
-  if (summaryError.value && anomaliesError.value) {
-    return '汇总与异常数据均未更新；若已有成功结果，页面会继续保留。';
-  }
-  return summaryError.value
-    ? '汇总数据未更新，异常明细仍可继续查看。'
-    : '异常明细未更新，汇总与健康数据仍可继续查看。';
+  const failed = [
+    summaryError.value ? '汇总' : '',
+    anomaliesError.value ? '异常明细' : '',
+    slotsError.value ? '漏做摘要' : '',
+  ].filter(Boolean);
+  return `${failed.join('、')}数据未更新；已成功加载的区域会继续保留。`;
 });
 
 function successfulData(result) {
@@ -397,22 +446,40 @@ async function refreshObservability({ background = false } = {}) {
       anomalyPage.value,
       ANOMALY_PAGE_SIZE,
     );
-    const [summaryResult, anomaliesResult] = await Promise.allSettled([
+    const [summaryResult, anomaliesResult, slotsResult] = await Promise.allSettled([
       api.stats.getSchedulerObservabilitySummary(requestParams.summary),
       api.stats.getSchedulerObservabilityAnomalies(requestParams.anomalies),
+      api.stats.getSchedulerObservabilitySlots({ range: filters.range }),
     ]);
     if (!isMounted || requestId !== requestGeneration) return;
 
     summaryError.value = !successfulData(summaryResult);
     anomaliesError.value = !successfulData(anomaliesResult);
+    slotsError.value = !successfulData(slotsResult);
     if (!summaryError.value) summaryPayload.value = summaryResult.value.data;
     if (!anomaliesError.value) anomaliesPayload.value = anomaliesResult.value.data;
+    if (!slotsError.value) slotsPayload.value = slotsResult.value.data;
   } finally {
     if (isMounted && requestId === requestGeneration) {
       initialLoading.value = false;
       refreshing.value = false;
       hasLoaded.value = true;
     }
+  }
+}
+
+async function fetchTaskTypes() {
+  try {
+    const result = await api.get('/tasks/types');
+    if (result?.success && Array.isArray(result.data)) {
+      taskTypeNameMap.value = result.data.reduce((labels, item) => {
+        const type = typeof item?.type === 'string' ? item.type.trim() : '';
+        if (type) labels[type] = item?.name || type;
+        return labels;
+      }, {});
+    }
+  } catch (error) {
+    console.warn('获取任务类型名称失败:', error);
   }
 }
 
@@ -453,7 +520,7 @@ watch(
 
 onMounted(() => {
   isMounted = true;
-  void refreshObservability();
+  void fetchTaskTypes().finally(() => refreshObservability());
   pollTimer = setInterval(() => {
     void refreshObservability({ background: true });
   }, POLL_INTERVAL_MS);
@@ -582,6 +649,13 @@ onUnmounted(() => {
     min-height: 36px;
     box-shadow: 0 0 0 1px var(--observation-border) inset;
   }
+}
+
+.filter-description {
+  margin: 6px 0 0;
+  color: var(--text-tertiary);
+  font-size: 11px;
+  line-height: 1.45;
 }
 
 .data-alert {

@@ -53,7 +53,7 @@ test('scheduler sources and task context flow through the command boundary', asy
   const runAccount = requiredFunction(scheduler, 'runSchedulerAccountObserved');
   const runTask = requiredFunction(scheduler, 'runSchedulerTaskObserved');
 
-  for (const source of ['scheduler', 'scheduler-catchup', 'scheduler-manual', 'system']) {
+  for (const source of ['scheduler', 'scheduler-recovery', 'scheduler-reconcile', 'scheduler-catchup', 'scheduler-manual', 'system']) {
     const commands = [];
     const tasks = [];
     const client = createOpenClient({
@@ -418,6 +418,30 @@ test('daily task auto-claim records only inside claim execution, not on the acco
   assert.match(
     implementation,
     /runSchedulerTaskObserved\(\{[\s\S]*?taskType:\s*'DAILY_TASK_CLAIM'[\s\S]*?executeDailyTaskClaim/,
+  );
+});
+
+test('minute scheduler refresh also scans durable slots left by an older instance', () => {
+  const source = fs.readFileSync(new URL('../src/scheduler/index.js', import.meta.url), 'utf8');
+  const start = source.indexOf('export async function checkAndRunDueTasks()');
+  const end = source.indexOf('\nexport async function executeTask(', start);
+  assert.equal(start >= 0 && end > start, true);
+  assert.match(source.slice(start, end), /await recoverQueuedSchedulerSlots\(tasks\)/);
+});
+
+test('minute scheduler refresh reconciles cron callbacks that never created a durable slot', () => {
+  const source = fs.readFileSync(new URL('../src/scheduler/index.js', import.meta.url), 'utf8');
+  const checkStart = source.indexOf('export async function checkAndRunDueTasks()');
+  const checkEnd = source.indexOf('\nexport async function executeTask(', checkStart);
+  const initializeStart = source.indexOf('export async function initScheduler()');
+  const initializeEnd = source.indexOf('\nexport function scheduleTask(', initializeStart);
+  assert.equal(checkStart >= 0 && checkEnd > checkStart, true);
+  assert.equal(initializeStart >= 0 && initializeEnd > initializeStart, true);
+  assert.match(source.slice(checkStart, checkEnd), /reconcileMissingSchedulerSlots\(tasks/);
+  assert.match(source.slice(initializeStart, initializeEnd), /reconcileMissingSchedulerSlots\(tasks/);
+  assert.match(
+    source.slice(initializeStart, initializeEnd),
+    /cron\.schedule\('\* \* \* \* \*'[\s\S]*?recoverMissedExecutions:\s*true/,
   );
 });
 

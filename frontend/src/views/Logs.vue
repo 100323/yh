@@ -92,6 +92,7 @@ import { computed, onMounted, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Refresh } from '@element-plus/icons-vue';
 import api from '@/api';
+import { getTaskLogDisplayStatus } from '@/utils/taskLogStatus';
 
 const accounts = ref([]);
 const accountsLoading = ref(false);
@@ -99,16 +100,6 @@ const loading = ref(false);
 const selectedAccountId = ref(null);
 const logs = ref([]);
 const taskTypeNameMap = ref({});
-const BENIGN_LOG_KEYWORDS = [
-  '活动未开放',
-  '不在开启时间内',
-  '出了点小问题',
-  '扫荡条件不满足',
-  '已经选择过上阵武将了',
-  '今日已领取免费奖励',
-  '今天已经签到过了',
-];
-
 const currentAccountName = computed(() => {
   const currentAccount = accounts.value.find((account) => account.id === selectedAccountId.value);
   return currentAccount?.name || '未选择账号';
@@ -118,23 +109,12 @@ const getTaskLabel = (taskType) => {
   return taskTypeNameMap.value[taskType] || taskType || '-';
 };
 
-const getDisplayStatus = (log) => {
-  if (isBenignLog(log)) return 'ignored';
-  return log?.status || 'error';
-};
-
 const getLogStatusType = (log) => {
-  const status = getDisplayStatus(log);
-  if (status === 'success') return 'success';
-  if (status === 'ignored') return 'info';
-  return 'danger';
+  return getTaskLogDisplayStatus(log).tone;
 };
 
 const getLogStatusText = (log) => {
-  const status = getDisplayStatus(log);
-  if (status === 'success') return '成功';
-  if (status === 'ignored') return '已忽略';
-  return '失败';
+  return getTaskLogDisplayStatus(log).label;
 };
 
 const formatTime = (time) => {
@@ -146,11 +126,6 @@ const formatTime = (time) => {
   const parsed = new Date(hasTimezone ? normalized : `${normalized}Z`);
 
   return Number.isNaN(parsed.getTime()) ? raw : parsed.toLocaleString('zh-CN');
-};
-
-const isBenignLog = (log) => {
-  const text = `${log?.message || ''} ${log?.details || ''}`;
-  return BENIGN_LOG_KEYWORDS.some((keyword) => text.includes(keyword));
 };
 
 const fetchTaskTypes = async () => {

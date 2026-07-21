@@ -1,4 +1,5 @@
 import cron from 'node-cron';
+import { randomUUID } from 'node:crypto';
 import {
   getEnabledTasks,
   updateTaskRunTime,
@@ -9,13 +10,13 @@ import {
   rebalanceDefaultTaskCronExpressions,
   clampHistoricalTowerTaskConfigs,
 } from '../routes/tasks.js';
-import { get, all } from '../database/index.js';
+import { get, all, getDatabase } from '../database/index.js';
 import { decrypt } from '../utils/crypto.js';
 import GameClient from '../utils/gameClient.js';
 import config from '../config/index.js';
 import { resolveStudyAnswer } from '../utils/studyQuestions.js';
 import { parseTokenPayload } from '../utils/token.js';
-import { calculateNextRunAt, parseCronField } from '../utils/cronSchedule.js';
+import { calculateNextRunAt } from '../utils/cronSchedule.js';
 import { isTowerTaskDisabled, normalizeTowerMaxFloors } from '../utils/towerTaskConfig.js';
 import {
   buildCarClaimTaskMessage,
@@ -54,6 +55,7 @@ import {
   sleep,
 } from '../utils/taskExecutionControl.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
+import { getSystemSettingValue, setSystemSettingValue } from '../utils/systemSettings.js';
 import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
@@ -63,14 +65,35 @@ import {
   withSchedulerObservationContext,
 } from '../observability/schedulerObservationCore.js';
 import * as schedulerObservationService from '../observability/schedulerObservationService.js';
+import {
+  markScheduleSlotStarted,
+  queueScheduleSlot,
+  settleScheduleSlot,
+} from './scheduleSlotLedger.js';
+import {
+  appendScheduleSlot,
+  getScheduleSlots,
+} from './scheduleSlotBatchState.js';
+import {
+  recordRecoveredEnqueueFailure,
+  recoverQueuedScheduleSlots,
+} from './scheduleSlotRecovery.js';
+import { findLatestDueScheduleSlot } from './scheduleDueSlot.js';
+import { reconcileMissingScheduleSlots } from './scheduleSlotReconciliation.js';
+import { resolveSchedulerReconciliationActivatedAt } from './scheduleSlotReconciliationActivation.js';
 
 const activeConnections = new Map();
 const scheduledJobs = new Map();
 const connectionPromises = new Map();
 const dailyRewardFlushState = new Map();
 const pendingAccountTaskBatches = new Map();
+const reconciledScheduleSlots = new Map();
+const schedulerInstanceId = randomUUID();
+let schedulerReconciliationActivatedAt = null;
 const SCHEDULER_OBSERVATION_SOURCES = new Set([
   'scheduler',
+  'scheduler-recovery',
+  'scheduler-reconcile',
   'scheduler-catchup',
   'scheduler-manual',
   'system',
@@ -78,6 +101,129 @@ const SCHEDULER_OBSERVATION_SOURCES = new Set([
 
 function normalizeSchedulerObservationSource(source) {
   return SCHEDULER_OBSERVATION_SOURCES.has(source) ? source : 'scheduler';
+}
+
+function schedulerSlotCutoff() {
+  return new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString();
+}
+
+function scheduleSlotTimestamp(now = new Date()) {
+  const timestamp = new Date(now);
+  timestamp.setUTCSeconds(0, 0);
+  return timestamp.toISOString();
+}
+
+function markBatchItemSlotStarted(item) {
+  for (const slot of getScheduleSlots(item)) {
+    markScheduleSlotStarted(getDatabase(), slot.id, { instanceId: schedulerInstanceId });
+  }
+}
+
+function settleBatchItemSlot(item, outcome) {
+  const error = outcome?.error;
+  const message = outcome?.result?.message || error?.message || error || null;
+  const status = outcome?.ok
+    ? 'success'
+    : shouldIgnoreFailure(error) ? 'ignored' : 'error';
+  for (const slot of getScheduleSlots(item)) {
+    settleScheduleSlot(getDatabase(), slot.id, { outcome: status, message });
+  }
+}
+
+async function enqueueScheduledTaskSlot(task, { source = 'scheduler', now = new Date() } = {}) {
+  const queued = queueScheduleSlot(getDatabase(), {
+    taskConfigId: task.id,
+    accountId: getTaskAccountId(task),
+    taskType: task.task_type,
+    scheduledAt: scheduleSlotTimestamp(now),
+    source,
+    instanceId: schedulerInstanceId,
+  });
+  if (!queued.created) {
+    return { duplicate: true, slot: queued.slot };
+  }
+
+  return await enqueueAccountTaskBatch(task, {
+    source,
+    now,
+    scheduleSlot: queued.slot,
+  });
+}
+
+async function recoverQueuedSchedulerSlots(tasks) {
+  const taskById = new Map(tasks.map((task) => [Number(task.id), task]));
+  return await recoverQueuedScheduleSlots({
+    database: getDatabase(),
+    instanceId: schedulerInstanceId,
+    cutoff: schedulerSlotCutoff(),
+    loadTask: (taskConfigId) => taskById.get(Number(taskConfigId)) || null,
+    enqueueTask: (task, options) => {
+      void enqueueAccountTaskBatch(task, {
+        ...options,
+        now: new Date(),
+      }).catch((error) => {
+        try {
+          recordRecoveredEnqueueFailure({
+            database: getDatabase(),
+            slot: options.scheduleSlot,
+            error,
+            addLog: addTaskLog,
+          });
+        } catch (recordError) {
+          console.error('❌ 记录重启恢复任务失败状态异常:', recordError?.message || recordError);
+        }
+        console.error('❌ 重启恢复任务执行失败:', error?.message || error);
+      });
+    },
+    addLog: addTaskLog,
+  });
+}
+
+function ensureSchedulerReconciliationActivatedAt(now = new Date()) {
+  if (schedulerReconciliationActivatedAt) return schedulerReconciliationActivatedAt;
+  try {
+    schedulerReconciliationActivatedAt = resolveSchedulerReconciliationActivatedAt({
+      now,
+      getValue: getSystemSettingValue,
+      setValue: setSystemSettingValue,
+    });
+    return schedulerReconciliationActivatedAt;
+  } catch (error) {
+    console.error('❌ 无法持久化分钟对账启用时间，本轮对账已跳过:', error?.message || error);
+    return null;
+  }
+}
+
+function reconcileMissingSchedulerSlots(tasks, now = new Date()) {
+  const notBefore = ensureSchedulerReconciliationActivatedAt(now);
+  if (!notBefore) {
+    return {
+      scannedCount: Array.isArray(tasks) ? tasks.length : 0,
+      dueCount: 0,
+      createdCount: 0,
+      duplicateCount: 0,
+      cachedCount: 0,
+      failedCount: 1,
+    };
+  }
+  const result = reconcileMissingScheduleSlots({
+    database: getDatabase(),
+    tasks,
+    instanceId: schedulerInstanceId,
+    now,
+    graceMs: SCHEDULE_SLOT_RECONCILE_GRACE_MS,
+    lookbackDays: 1,
+    notBefore,
+    seenSlots: reconciledScheduleSlots,
+    getCronExpressions: getTaskCronExpressions,
+    enqueueTask: (task, options) => enqueueAccountTaskBatch(task, options),
+    addLog: addTaskLog,
+  });
+
+  if (result.createdCount > 0 || result.failedCount > 0) {
+    console.warn('🧭 分钟对账发现未生成槽位的定时任务', result);
+  }
+  return result;
 }
 
 export function runSchedulerAccountObserved(context, executor, options = {}) {
@@ -188,6 +334,7 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
 };
 const DAILY_CATCHUP_CRON = '15 19 * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
+const SCHEDULE_SLOT_RECONCILE_GRACE_MS = 60_000;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
@@ -316,45 +463,6 @@ function isRetryableWsError(error) {
   return message.includes('WebSocket未连接') || message.includes('WebSocket连接已断开');
 }
 
-function getCronExecutionSlotsForToday(cronExpression, now = new Date()) {
-  const parts = String(cronExpression || '').trim().split(/\s+/);
-  if (parts.length !== 5) return [];
-
-  const [minuteField, hourField, dayOfMonthField, monthField, dayOfWeekField] = parts;
-  const minutes = parseCronField(minuteField, 0, 59);
-  const hours = parseCronField(hourField, 0, 23);
-  const daysOfMonth = parseCronField(dayOfMonthField, 1, 31);
-  const months = parseCronField(monthField, 1, 12);
-  const daysOfWeek = parseCronField(dayOfWeekField, 0, 7).map((value) => (value === 7 ? 0 : value));
-  const shanghaiParts = getShanghaiDateParts(now);
-  const todayMonth = shanghaiParts.month;
-  const todayDayOfMonth = shanghaiParts.day;
-  const todayDayOfWeek = shanghaiParts.dayOfWeek;
-
-  if (
-    !minutes.length ||
-    !hours.length ||
-    !daysOfMonth.length ||
-    !months.length ||
-    !daysOfWeek.length ||
-    !months.includes(todayMonth) ||
-    !daysOfMonth.includes(todayDayOfMonth) ||
-    !daysOfWeek.includes(todayDayOfWeek)
-  ) {
-    return [];
-  }
-
-  const pairs = [];
-
-  for (const hour of hours) {
-    for (const minute of minutes) {
-      pairs.push({ hour, minute, cronExpression });
-    }
-  }
-
-  return pairs.sort((a, b) => (a.hour - b.hour) || (a.minute - b.minute));
-}
-
 function getTodayTaskLogSnapshots(tasks = []) {
   if (!Array.isArray(tasks) || tasks.length === 0) {
     return new Map();
@@ -424,26 +532,11 @@ function getLatestDueSlotForToday(task, now = new Date()) {
   if (cronExpressions.length === 0) {
     return null;
   }
-
-  const pairs = cronExpressions.flatMap((cronExpression) => getCronExecutionSlotsForToday(cronExpression, now));
-  if (pairs.length === 0) {
-    return null;
-  }
-
   const catchupGraceMs = Math.max(0, Number(config?.scheduler?.staggerWindowMs) || 0);
-  const readyBoundary = new Date(now.getTime() - catchupGraceMs);
-  const nowLocal = formatShanghaiLocalDateTime(getShanghaiDateParts(readyBoundary));
-  const shanghaiParts = getShanghaiDateParts(now);
-  let latestSlot = null;
-
-  for (const { hour, minute } of pairs) {
-    const slot = `${shanghaiParts.year}-${pad2(shanghaiParts.month)}-${pad2(shanghaiParts.day)} ${pad2(hour)}:${pad2(minute)}:00`;
-    if (slot <= nowLocal && (!latestSlot || slot > latestSlot)) {
-      latestSlot = slot;
-    }
-  }
-
-  return latestSlot;
+  return findLatestDueScheduleSlot(cronExpressions, {
+    now,
+    graceMs: catchupGraceMs,
+  })?.localScheduledAt || null;
 }
 
 function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR, now = new Date()) {
@@ -875,13 +968,16 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
             getLatestScheduledAccountSnapshot(accountId)
           );
           const result = getDisabledTowerTaskResult(latestTask.task_type, parseTaskConfig(latestTask));
+          markBatchItemSlotStarted(item);
           markScheduledTaskSuccess(latestTask, result);
-          resolveScheduledTaskBatchWaiters(item, {
+          const slotOutcome = {
             ok: true,
             task: latestTask,
             result,
             client: null,
-          });
+          };
+          settleBatchItemSlot(item, slotOutcome);
+          resolveScheduledTaskBatchWaiters(item, slotOutcome);
           processedItemCount += 1;
         }
         return;
@@ -935,6 +1031,7 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
           item.task,
           getLatestScheduledAccountSnapshot(accountId)
         );
+        markBatchItemSlotStarted(item);
         const outcome = await executeScheduledTaskWithClient(latestTask, {
           source: context.source || 'scheduler',
           ensureClient: ensureBatchClient,
@@ -945,18 +1042,21 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
         if (outcome.client) {
           batchClient = outcome.client;
         }
+        settleBatchItemSlot(item, outcome);
         resolveScheduledTaskBatchWaiters(item, outcome);
         processedItemCount += 1;
 
         if (!outcome.ok && shouldAbortAccountBatchOnError(outcome.error)) {
           for (const pendingItem of batchItems.slice(index + 1)) {
             markScheduledTaskFailure(pendingItem.task, new Error(outcome.error));
-            resolveScheduledTaskBatchWaiters(pendingItem, {
+            const pendingOutcome = {
               ok: false,
               task: pendingItem.task,
               error: outcome.error,
               client: batchClient,
-            });
+            };
+            settleBatchItemSlot(pendingItem, pendingOutcome);
+            resolveScheduledTaskBatchWaiters(pendingItem, pendingOutcome);
             processedItemCount += 1;
           }
           break;
@@ -973,12 +1073,14 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
 
       for (const item of batchItems.slice(processedItemCount)) {
         markScheduledTaskFailure(item.task, error);
-        resolveScheduledTaskBatchWaiters(item, {
+        const pendingOutcome = {
           ok: false,
           task: item.task,
           error: error?.message || String(error),
           client: batchClient,
-        });
+        };
+        settleBatchItemSlot(item, pendingOutcome);
+        resolveScheduledTaskBatchWaiters(item, pendingOutcome);
       }
     } finally {
       forceDisconnectClient(accountId);
@@ -1032,6 +1134,7 @@ function enqueueAccountTaskBatch(task, options = {}) {
       task: { ...task },
       order: entry.sequence++,
       waiters: [],
+      scheduleSlots: options.scheduleSlot ? [options.scheduleSlot] : [],
     });
   } else {
     const existingItem = entry.items.get(batchItemKey);
@@ -1039,6 +1142,7 @@ function enqueueAccountTaskBatch(task, options = {}) {
       ...existingItem.task,
       ...task,
     };
+    appendScheduleSlot(existingItem, options.scheduleSlot);
   }
 
   const item = entry.items.get(batchItemKey);
@@ -1387,6 +1491,17 @@ export async function initScheduler() {
     });
   }
 
+  const recoveryResult = await recoverQueuedSchedulerSlots(tasks);
+  if (
+    recoveryResult.recoveredCount > 0
+    || recoveryResult.unavailableCount > 0
+    || recoveryResult.interruptedCount > 0
+  ) {
+    console.warn('🛟 服务重启后的错峰任务恢复完成', recoveryResult);
+  }
+
+  reconcileMissingSchedulerSlots(tasks);
+
   if (schedulerRefreshJob) {
     schedulerRefreshJob.stop();
     schedulerRefreshJob = null;
@@ -1394,7 +1509,8 @@ export async function initScheduler() {
   schedulerRefreshJob = cron.schedule('* * * * *', async () => {
     await checkAndRunDueTasks();
   }, {
-    timezone: config.cron.timezone
+    timezone: config.cron.timezone,
+    recoverMissedExecutions: true,
   });
 
   if (dailyCatchupJob) {
@@ -1441,7 +1557,7 @@ export function scheduleTask(task, options = {}) {
           taskType: task.task_type || null,
           cronExpression,
         });
-        await enqueueAccountTaskBatch(task, {
+        await enqueueScheduledTaskSlot(task, {
           source: 'scheduler',
           now: new Date(),
         });
@@ -1473,6 +1589,23 @@ export function scheduleTask(task, options = {}) {
 
 export async function checkAndRunDueTasks() {
   const tasks = getEnabledTasks();
+  try {
+    const recoveryResult = await recoverQueuedSchedulerSlots(tasks);
+    if (
+      recoveryResult.recoveredCount > 0
+      || recoveryResult.unavailableCount > 0
+      || recoveryResult.interruptedCount > 0
+    ) {
+      console.warn('🛟 每分钟检查发现并处理旧实例遗留任务', recoveryResult);
+    }
+  } catch (error) {
+    console.error('❌ 每分钟检查旧实例遗留任务失败:', error?.message || error);
+  }
+  try {
+    reconcileMissingSchedulerSlots(tasks);
+  } catch (error) {
+    console.error('❌ 每分钟对账未生成槽位的定时任务失败:', error?.message || error);
+  }
   const enabledTaskMap = new Map(
     tasks.map(task => [`${task.account_id}_${task.task_type}`, task])
   );
@@ -3676,6 +3809,7 @@ export function stopScheduler() {
     jobs.forEach((job) => job.stop());
   }
   scheduledJobs.clear();
+  reconciledScheduleSlots.clear();
   connectionPromises.clear();
 
   for (const entry of pendingAccountTaskBatches.values()) {

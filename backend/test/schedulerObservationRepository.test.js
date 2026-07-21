@@ -266,7 +266,7 @@ test('initDatabase migrates a legacy command metric table with slow_count exactl
   const initialize = [
     '--input-type=module',
     '-e',
-    "const db = await import('./backend/src/database/index.js'); await db.initDatabase(); await db.closeDatabase();",
+    "const db = await import('./src/database/index.js'); await db.initDatabase(); await db.closeDatabase();",
   ];
   for (let attempt = 0; attempt < 2; attempt += 1) {
     execFileSync(process.execPath, initialize, {

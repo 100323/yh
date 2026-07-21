@@ -1,7 +1,7 @@
 # Scheduler Command Observability Design
 
 Date: 2026-07-15  
-Status: Approved design, awaiting written-spec review
+Status: Approved design; implementation and final architecture review complete (2026-07-16)
 
 ## 1. Task Intent Draft
 

@@ -14,7 +14,7 @@
 8. 前端视图模型与 API 客户端（已完成）
 9. 管理员“调度观测”页面和导航（已完成）
 10. 负载、故障隔离、保留期与文档验证（已完成）
-11. 最终架构复核与上线交接（进行中）
+11. 最终架构复核与上线交接（已完成）
 
 ## Active Slice
 
@@ -34,6 +34,7 @@ Task 11：最终架构复核与上线交接。对照设计、基线和文件映�
 - Task 8 已完成前端纯视图模型/API TDD，并通过规格复核与代码质量复核。
 - Task 9 已完成管理员页面、路由和同源菜单，并通过规格复核与代码质量复核。
 - Task 10 已完成 10 万事件、真实 SQLite 保留/索引、硬上限与上线文档验证，并通过规格复核与代码质量复核。
+- Task 11 已关闭最终架构 review 发现的 7 个 Important：命令重复计数、任务归因、buffer 脱敏、故障恢复/SQLite hard cap、disabled 快速旁路、DAILY_TASK_CLAIM 双 wrapper、异常率口径。
 
 ## Evidence Refs
 
@@ -73,6 +74,10 @@ Task 11：最终架构复核与上线交接。对照设计、基线和文件映�
 - Task 10 回归：仓储+负载 22/22、Node 22 串行后端全量 171/171、前端 21/21、typecheck/build 与 `git diff --check` 通过。
 - Task 10 规格复核：`APPROVED`；代码质量复核经两轮修正后最终 `APPROVED`。
 - Task 10 提交：`0db9157`、`9270312`、`0833fbe`。
+- Task 11 提交链：`40d5d70`、`4fba5c2`、`b8ff760`、`806c0ff`、`68c4698`、`79f67ff`、`d5f1f29`。
+- Task 11 最终架构 reviewer：`APPROVED`，无新的 Critical/Important。
+- Task 11 fresh 回归：Node 22 串行后端 182/182；前端测试 21/21；项目 typecheck 通过；Vite build 通过（仅既有大 chunk 警告）；`git diff --check` 通过。
+- Task 11 数据库迁移：旧 SQLite `slow_count` 幂等初始化测试通过；`backend/data/xyzw.db` 不存在且未触碰。
 
 ## Blocked On
 
@@ -80,7 +85,7 @@ Task 11：最终架构复核与上线交接。对照设计、基线和文件映�
 
 ## ResumeStateHint
 
-从 Task 11 开始。使用独立架构 reviewer 对照设计与基线审查全部计划文件；只修复验证证实的规格内缺陷，再做最终全量和浏览器验证。
+实现与代码验证已完成。浏览器视觉 QA 尝试访问本地 `127.0.0.1:4173` 时被浏览器安全策略拒绝；没有绕过策略，也没有管理员会话实测证据。若后续允许本地浏览器访问，再补桌面/移动截图和真实管理员页面检查。
 
 ## DriftCheckDraft
 
@@ -88,9 +93,9 @@ Task 11：最终架构复核与上线交接。对照设计、基线和文件映�
 - 兼容边界：FIFO、槽位、调度顺序、重试、GameClient 协议和错误语义未改变。
 - 新 owner/fallback/分支：无。
 - 退役轨：现有任务日志和 system-status 继续保留。
-- 证据充分性：Task 10 双复核通过，可进入最终跨模块架构复核。
-- decision：`continue`。
+- 证据充分性：Task 11 架构复核与自动化回归通过；视觉 QA 受本地浏览器策略阻塞。
+- decision：`pause-for-user`。
 
 ## Next
 
-派发新的 Task 11 架构 reviewer，按检查清单审查所有计划文件和零行为漂移证据。
+等待用户决定是否在允许本地浏览器访问后补视觉 QA；代码与自动化证据已达到交接候选状态。

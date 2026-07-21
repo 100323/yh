@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { isIP } from 'node:net';
 import { domainToASCII } from 'node:url';
-import { get, all } from '../database/index.js';
+import { get, all, getDatabase } from '../database/index.js';
 import { adminOnly, authMiddleware } from '../middleware/auth.js';
 import { getScheduledJobs, getActiveConnections } from '../scheduler/index.js';
 import { getScheduledBatchJobs, getActiveBatchConnections } from '../batchScheduler/index.js';
@@ -13,6 +13,7 @@ import {
 } from '../observability/schedulerObservationRepository.js';
 import { getSchedulerObservationHealth } from '../observability/schedulerObservationService.js';
 import { sanitizeObservationMessage } from '../observability/schedulerObservationCore.js';
+import { queryScheduleSlotSummary } from '../scheduler/scheduleSlotLedger.js';
 
 const OBSERVABILITY_RANGE_MS = Object.freeze({
   '1h': 60 * 60 * 1000,
@@ -669,6 +670,25 @@ export function serializeSchedulerAnomalies(raw = {}) {
   };
 }
 
+export function serializeScheduleSlotSummary(raw = {}, options = {}) {
+  const count = (key) => Math.floor(finiteNonNegative(rowValue(raw, key)));
+  return {
+    range: Object.hasOwn(OBSERVABILITY_RANGE_MS, options.range)
+      ? options.range
+      : DEFAULT_OBSERVABILITY_RANGE,
+    generatedAt: normalizeClock(options.generatedAt).toISOString(),
+    totalCount: count('totalCount'),
+    queuedCount: count('queuedCount'),
+    startedCount: count('startedCount'),
+    successCount: count('successCount'),
+    ignoredCount: count('ignoredCount'),
+    errorCount: count('errorCount'),
+    recoveredCount: count('recoveredCount'),
+    interruptedCount: count('interruptedCount'),
+    unavailableCount: count('unavailableCount'),
+  };
+}
+
 function repositoryFilters(query, endpoint) {
   const filters = { cutoff: query.cutoff };
   if (endpoint === 'anomalies') {
@@ -687,6 +707,7 @@ function repositoryFilters(query, endpoint) {
 export function createSchedulerObservabilityHandlers({
   querySummary,
   queryAnomalies,
+  querySlots,
   getHealth,
   now = Date.now,
 }) {
@@ -734,6 +755,27 @@ export function createSchedulerObservabilityHandlers({
         });
       }
     },
+    async slots(req, res) {
+      const normalized = normalizeObservabilityQuery(req?.query, { now, endpoint: 'summary' });
+      if (!normalized.ok) {
+        return res.status(400).json({ success: false, error: normalized.error });
+      }
+      try {
+        const raw = await querySlots({ cutoff: normalized.value.cutoff });
+        return res.json({
+          success: true,
+          data: serializeScheduleSlotSummary(raw, {
+            range: normalized.value.range,
+            generatedAt: normalized.value.generatedAt,
+          }),
+        });
+      } catch {
+        return res.status(500).json({
+          success: false,
+          error: 'Failed to fetch scheduler observability slots',
+        });
+      }
+    },
   };
 }
 
@@ -745,17 +787,20 @@ function registerAuthenticatedSchedulerObservabilityRoutes(targetRouter, depende
   });
   targetRouter.get('/observability/summary', adminOnly, handlers.summary);
   targetRouter.get('/observability/anomalies', adminOnly, handlers.anomalies);
+  targetRouter.get('/observability/slots', adminOnly, handlers.slots);
   return targetRouter;
 }
 
 export function createSchedulerObservabilityRouter({
   querySummary = querySchedulerObservationSummary,
   queryAnomalies = querySchedulerObservationAnomalies,
+  querySlots = (filters) => queryScheduleSlotSummary(getDatabase(), filters),
   getHealth = getSchedulerObservationHealth,
 } = {}) {
   return registerAuthenticatedSchedulerObservabilityRoutes(Router(), {
     querySummary,
     queryAnomalies,
+    querySlots,
     getHealth,
   });
 }
@@ -763,6 +808,7 @@ export function createSchedulerObservabilityRouter({
 const router = registerAuthenticatedSchedulerObservabilityRoutes(Router(), {
   querySummary: querySchedulerObservationSummary,
   queryAnomalies: querySchedulerObservationAnomalies,
+  querySlots: (filters) => queryScheduleSlotSummary(getDatabase(), filters),
   getHealth: getSchedulerObservationHealth,
 });
 

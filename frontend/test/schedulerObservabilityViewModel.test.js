@@ -9,9 +9,61 @@ import {
   buildTrendBars,
   formatAmplification,
   formatAnomalyCategory,
+  formatCommandLabel,
   formatEgressLabel,
   formatMetricDuration,
+  formatSourceLabel,
 } from '../src/utils/schedulerObservabilityViewModel.js';
+
+test('localizes scheduler sources, configured task names, and common game commands', () => {
+  assert.equal(formatSourceLabel('scheduler-recovery'), '重启恢复');
+  assert.equal(formatSourceLabel('scheduler-reconcile'), '分钟对账补漏');
+  assert.equal(formatSourceLabel('batch'), '批量任务');
+  assert.equal(formatCommandLabel('role_getroleinfo'), '获取角色信息');
+  assert.equal(formatCommandLabel('genie_sweep'), '灯神扫荡');
+  assert.equal(formatCommandLabel('unknown_command'), '未收录命令');
+
+  const model = buildSchedulerObservabilityViewModel({
+    headline: {},
+    tasks: [{ taskType: 'GENIE_SWEEP' }],
+  }, {
+    items: [{
+      id: 1,
+      occurredAt: '2026-07-18T00:00:00.000Z',
+      source: 'scheduler-recovery',
+      taskType: 'GENIE_SWEEP',
+      command: 'genie_sweep',
+    }],
+  }, {
+    taskTypeLabels: { GENIE_SWEEP: '精灵扫荡' },
+    slotSummary: {
+      range: '3d',
+      generatedAt: '2026-07-18T00:00:00.000Z',
+      totalCount: 12,
+      queuedCount: 3,
+      recoveredCount: 4,
+      interruptedCount: 2,
+      unavailableCount: 1,
+    },
+  });
+
+  assert.equal(model.tasks[0].taskTypeLabel, '精灵扫荡');
+  assert.equal(model.anomalies.items[0].sourceLabel, '重启恢复');
+  assert.equal(model.anomalies.items[0].commandLabel, '灯神扫荡');
+  assert.equal(model.anomalies.items[0].taskTypeLabel, '精灵扫荡');
+  assert.deepEqual(model.slots, {
+    hasData: true,
+    range: '3d',
+    generatedAt: '2026-07-18T00:00:00.000Z',
+    totalCount: 12,
+    metrics: [
+      { key: 'queuedCount', label: '等待执行', value: 3, tone: 'warning' },
+      { key: 'recoveredCount', label: '重启恢复', value: 4, tone: 'success' },
+      { key: 'interruptedCount', label: '中断未重放', value: 2, tone: 'danger' },
+      { key: 'unavailableCount', label: '配置不可用', value: 1, tone: 'neutral' },
+    ],
+  });
+});
 
 test('maps complete scheduler observability API fixtures without mutating inputs', () => {
   const summary = {
@@ -136,6 +188,7 @@ test('maps complete scheduler observability API fixtures without mutating inputs
   assert.deepEqual(model.tasks[0], {
     key: JSON.stringify(['DAILY_TASK', 0]),
     taskType: 'DAILY_TASK',
+    taskTypeLabel: '日常任务',
     runCount: 6,
     errorCount: 1,
     timeoutCount: 1,
@@ -192,6 +245,9 @@ test('maps complete scheduler observability API fixtures without mutating inputs
       source: 'scheduler',
       taskType: 'DAILY_TASK',
       command: 'role:info',
+      sourceLabel: '定时调度',
+      taskTypeLabel: '日常任务',
+      commandLabel: '未收录命令',
       executionLane: 'proxy',
       egressType: 'proxy',
       egressKey: 'proxy:012345abcdef',
@@ -563,6 +619,10 @@ test('stats observability APIs pass the original params through request options'
   assert.match(
     apiSource,
     /getSchedulerObservabilityAnomalies:\s*\(params\)\s*=>\s*request\.get\('\/stats\/observability\/anomalies',\s*\{\s*params\s*\}\)/,
+  );
+  assert.match(
+    apiSource,
+    /getSchedulerObservabilitySlots:\s*\(params\)\s*=>\s*request\.get\('\/stats\/observability\/slots',\s*\{\s*params\s*\}\)/,
   );
   assert.doesNotMatch(apiSource, /observability\/(?:summary|anomalies)\?\$\{/);
 });

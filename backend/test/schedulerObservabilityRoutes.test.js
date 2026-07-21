@@ -746,6 +746,52 @@ test('handlers pass only endpoint-approved normalized repository filters and ret
   }]);
 });
 
+test('slot summary handler exposes only three-day bounded aggregate counts', async () => {
+  const calls = [];
+  const handlers = createSchedulerObservabilityHandlers({
+    querySummary: () => ({ commandMetrics: [], taskMetrics: [] }),
+    queryAnomalies: () => ({ items: [], total: 0 }),
+    querySlots(filters) {
+      calls.push(filters);
+      return {
+        totalCount: 12,
+        queuedCount: 3,
+        startedCount: 1,
+        successCount: 5,
+        ignoredCount: 1,
+        errorCount: 2,
+        recoveredCount: 4,
+        interruptedCount: 2,
+        unavailableCount: 1,
+      };
+    },
+    getHealth: () => ({}),
+    now: () => FIXED_NOW,
+  });
+  const res = responseRecorder();
+
+  await handlers.slots({ query: { range: '3d', sort: 'secret' } }, res);
+
+  assert.equal(res.statusCode, 200);
+  assert.deepEqual(calls, [{ cutoff: '2026-07-12T12:00:00.000Z' }]);
+  assert.deepEqual(res.body, {
+    success: true,
+    data: {
+      range: '3d',
+      generatedAt: FIXED_NOW,
+      totalCount: 12,
+      queuedCount: 3,
+      startedCount: 1,
+      successCount: 5,
+      ignoredCount: 1,
+      errorCount: 2,
+      recoveredCount: 4,
+      interruptedCount: 2,
+      unavailableCount: 1,
+    },
+  });
+});
+
 test('invalid summary commandClass returns 400 without entering the repository', async () => {
   let calls = 0;
   const handlers = createSchedulerObservabilityHandlers({
@@ -815,7 +861,7 @@ test('new routes require authentication and admin while existing stats permissio
       .filter((layer) => layer.route)
       .map((layer) => [layer.route.path, layer.route.stack.map((entry) => entry.handle)]),
   );
-  for (const path of ['/observability/summary', '/observability/anomalies']) {
+  for (const path of ['/observability/summary', '/observability/anomalies', '/observability/slots']) {
     assert.equal(routeLayers.get(path)?.[0], adminOnly, path);
   }
   for (const path of ['/overview', '/system-status', '/task-summary', '/recent-activities']) {

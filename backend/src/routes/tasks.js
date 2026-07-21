@@ -6,6 +6,7 @@ import { calculateNextRunAt } from '../utils/cronSchedule.js';
 import {
   normalizeTowerTaskConfig,
 } from '../utils/towerTaskConfig.js';
+import { shouldRecordTaskExecutionMarker } from '../utils/taskLogMarkerPolicy.js';
 
 const router = Router();
 
@@ -1349,7 +1350,9 @@ export function addTaskLog(accountId, taskType, status, message, details = null)
     'INSERT INTO task_logs (account_id, task_type, status, message, details) VALUES (?, ?, ?, ?, ?)',
     [accountId, taskType, status, message, normalizedDetails]
   );
-  upsertTaskExecutionMarker(undefined, accountId, taskType, status, message, normalizedDetails);
+  if (shouldRecordTaskExecutionMarker(status)) {
+    upsertTaskExecutionMarker(undefined, accountId, taskType, status, message, normalizedDetails);
+  }
   cleanupTaskLogs(undefined, accountId);
   return info;
 }

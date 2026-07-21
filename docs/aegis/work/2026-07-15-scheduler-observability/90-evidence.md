@@ -144,3 +144,14 @@
 - 代码质量复核：两轮 `CHANGES_REQUESTED` 均经 TDD 修复，同一 reviewer 最终 `APPROVED`。
 - 提交：`0db9157 test: verify scheduler observation production bounds`、`9270312 fix: enforce scheduler observation retention bounds`、`0833fbe fix: bound observation index sentinels`。
 - 残余风险：无效时间清理每日执行一次全表扫描，但三表均受硬行数 cap 约束；线上真实基数仍需按计划观察 24–72 小时。
+
+### Task 11：最终架构复核与上线交接
+
+- 最终独立架构 reviewer：`APPROVED`；逐项复核非抛入口、disabled producer guard、禁止字段、source/lane/actual egress、3 天与硬 cap、管理员权限、前端轮询清理、依赖和调度参数零漂移。
+- 修复提交：`40d5d70`（命令只计一次）、`4fba5c2`（ALS 任务归因）、`b8ff760`（buffer 网络脱敏）、`806c0ff`（恢复与 flush hard cap）、`68c4698`（disabled 快速旁路）、`79f67ff`（补领 task owner）、`d5f1f29`（聚合异常率/slow_count 迁移）。
+- Fresh 后端：Node 22 `--test --test-concurrency=1`，182/182 通过。
+- Fresh 前端：Node 测试 21/21；`tsc --noEmit -p tsconfig.typecheck.json` 通过；Vite production build 通过，仅有既有大 chunk 警告。
+- Fresh 目标：仓储 21/21；10 万负载与保留测试 3/3；`git diff --check` 通过。
+- 测试隔离：未创建或触碰 `backend/data/xyzw.db`；临时 `backend/data/proxy_config.json` 已确认是测试产物并清理。
+- 浏览器视觉 QA：已尝试启动并访问本地页面，但浏览器安全策略拒绝 `127.0.0.1:4173`；未绕过限制，未伪称管理员桌面/移动实测通过。
+- 工作区限制：测试路径一行修正已通过仓储 21/21 与后端 182/182，但提交时受 `.git/worktrees/scheduler-observability` ACL 拒绝创建 `index.lock`；该未提交 diff 为 `backend/test/schedulerObservationRepository.test.js` 的相对导入修正。

@@ -3,6 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import config from '../config/index.js';
+import {
+  cleanupScheduleSlots,
+  initializeScheduleSlotSchema,
+} from '../scheduler/scheduleSlotLedger.js';
+import { shouldRecordTaskExecutionMarker } from '../utils/taskLogMarkerPolicy.js';
 import { DEFAULT_MAX_GAME_ACCOUNTS } from '../utils/userLimits.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -493,6 +498,7 @@ export async function initDatabase() {
   dirty = ensureTaskExecutionMarkerSchema() || dirty;
   dirty = ensureSystemSettingsSchema() || dirty;
   dirty = ensureSchedulerObservationSchema() || dirty;
+  initializeScheduleSlotSchema(rawDb);
 
   console.log('🗃️ initDatabase[5/5] 执行数据规范化...');
   const normalizeResult = normalizeGameAccounts();
@@ -678,7 +684,9 @@ function backfillTaskExecutionMarkersIfNeeded() {
     );
 
     rows.forEach((row) => {
-      upsertTaskExecutionMarker(rawDb, row.account_id, row.task_type, row.status, row.message, row.details, row.created_at);
+      if (shouldRecordTaskExecutionMarker(row.status)) {
+        upsertTaskExecutionMarker(rawDb, row.account_id, row.task_type, row.status, row.message, row.details, row.created_at);
+      }
     });
 
     changed = rows.length > 0;
@@ -997,6 +1005,9 @@ export function cleanupLogTables(targetDb = getDatabase()) {
   cleanupBatchTaskLogs(targetDb);
   cleanupTaskExecutionMarkers(targetDb);
   cleanupTaskConfigAuditLogs(targetDb);
+  cleanupScheduleSlots(targetDb, {
+    cutoff: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+  });
 }
 
 export async function runDatabaseMaintenance() {

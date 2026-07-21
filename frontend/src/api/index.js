@@ -39,6 +39,7 @@ const api = Object.assign(request, {
     getRecentActivities: (limit = 10) => request.get(`/stats/recent-activities?limit=${limit}`),
     getSchedulerObservabilitySummary: (params) => request.get('/stats/observability/summary', { params }),
     getSchedulerObservabilityAnomalies: (params) => request.get('/stats/observability/anomalies', { params }),
+    getSchedulerObservabilitySlots: (params) => request.get('/stats/observability/slots', { params }),
   },
 
   batchScheduler: {
