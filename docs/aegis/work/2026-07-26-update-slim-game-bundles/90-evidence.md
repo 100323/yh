@@ -17,13 +17,20 @@
 - `corepack pnpm@10.19.0 build`：Vite 转换 5674 个模块，`built in 35.16s`，退出 0；仅有既存的大 chunk 警告。
 - 依赖缓存使用 `D:/CodexTools/pnpm-store`；首次误用 pnpm 11 产生的两个未跟踪 `pnpm-workspace.yaml` 已删除。
 
-## Pending release evidence
+## Release evidence
 
-- GitHub `main` 推送提交 ID。
-- 三台服务器的 HEAD、活动文件哈希、PM2 状态与 `/api/health`。
+- GitHub `main` 游戏 bundle 提交：`978ecb8`。
+- `VM-0-13-ubuntu`：根目录 `/home/ubuntu/zy`，PM2 PID `260438`，`FINAL_VERIFY_OK`。
+- `VM-0-12-ubuntu`：根目录 `/home/ubuntu/zy`，PM2 PID `3809156`，`FINAL_VERIFY_OK`。
+- `VM-0-9-ubuntu`：根目录 `/var/www/xyzw`，PM2 PID `3547787`，`FINAL_VERIFY_OK`。
+- 三台磁盘文件哈希与三项源哈希一致。
+- 三台 `http://127.0.0.1:3001/slim-game/...` 响应哈希与三项源哈希一致。
+- 三台 `http://127.0.0.1:3001/api/health` 均返回 `status=ok`，database、scheduler、batchScheduler 均为 `ready`。
+- 三台旧文件备份：各项目根目录 `.deploy-backups/slim-bundles-20260726-111635-978ecb8/`。
 
 ## Evidence boundary
 
 - 未加载三个大型脚本的完整 diff 正文；使用完整文件哈希、文件大小、语法解析和字符串集合摘要判断。
 - 未读取或输出 Token、JWT、API Key、数据库内容或服务器生产环境变量。
 - 本机后端测试未运行，原因是 Node 24 对 `better-sqlite3@11.10.0` 无预编译包且缺少 C++ 编译链；部署后以服务器运行与健康检查补足。
+- 三台服务器在部署前已有不同的本地提交和工作树改动，因此未运行会重置工作树的仓库部署脚本；本次发布只替换三个静态文件，不宣称服务器 Git HEAD 与 GitHub `main` 完全一致。
