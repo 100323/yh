@@ -11,7 +11,10 @@ const router = Router();
 
 router.use(authMiddleware);
 
-export const CURRENT_DEFAULT_CRON_VERSION = 5;
+export const CURRENT_DEFAULT_CRON_VERSION = 6;
+
+const DREAM_OPEN_CRON = '10 12 * * 0,1,3,4';
+const DREAM_GOLD_PURCHASE_LIST = ['1-5', '1-6', '2-6', '2-7', '3-5', '3-6', '3-7'];
 
 export const TASK_TYPES = {
   SIGN_IN: { name: '每日签到', cron: '0 8 * * *', group: 'daily' },
@@ -44,10 +47,10 @@ export const TASK_TYPES = {
   DAILY_TASK_CLAIM: { name: '日周活跃奖励领取', cron: '25 12 * * *', group: 'daily' },
   PKROOM_APPOINT: { name: '预约比赛', cron: '6 16 * * *', group: 'daily' },
   FREE_JADE_PACK: { name: '免费白玉礼包', cron: '5 12 * * 1', group: 'resource' },
-  DREAM: { name: '梦境', cron: '10 12 * * 0,3,6', group: 'dungeon' },
+  DREAM: { name: '梦境', cron: DREAM_OPEN_CRON, group: 'dungeon' },
   SKIN_CHALLENGE: { name: '换皮闯关', cron: '10 12 * * *', group: 'dungeon' },
   STAR_TEMPLE: { name: '星级十殿', cron: '10 12 * * *', group: 'dungeon' },
-  DREAM_PURCHASE: { name: '购买梦境商品', cron: '10 12 * * 0,3,6', group: 'dungeon' },
+  DREAM_PURCHASE: { name: '购买梦境商品', cron: DREAM_OPEN_CRON, group: 'dungeon' },
   PEACH_TASK: { name: '蟠桃园任务', cron: '0 10 * * *', group: 'dungeon' },
   BOX_OPEN: { name: '批量开箱', cron: '7 12 * * *', group: 'resource' },
   LEGION_STORE_FRAGMENT: { name: '购买四圣碎片', cron: '0 8 * * 1', group: 'resource' },
@@ -75,9 +78,9 @@ export const LEGACY_DEFAULT_TASK_CRONS = {
   WELFARE_CLAIM: ['1 12 * * *'],
   DAILY_TASK_CLAIM: ['1 12 * * *', '4 12 * * *'],
   PKROOM_APPOINT: ['6 8 * * *'],
-  DREAM: ['1 12 * * *', '10 12 * * *'],
+  DREAM: ['1 12 * * *', '10 12 * * *', '10 12 * * 0,3,6'],
   SKIN_CHALLENGE: ['1 12 * * *'],
-  DREAM_PURCHASE: ['1 12 * * *', '10 12 * * *'],
+  DREAM_PURCHASE: ['1 12 * * *', '10 12 * * *', '10 12 * * 0,3,6'],
   BOX_OPEN: ['1 12 * * *'],
   LEGION_STORE_FRAGMENT: ['1 12 * * *', '7 12 * * *'],
   RECRUIT: ['1 12 * * *'],
@@ -159,7 +162,7 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
       ),
     },
   },
-  DREAM_PURCHASE: { enabled: true, config: { purchaseList: ['1-3', '1-5', '2-6', '2-7', '3-1', '3-2', '3-7'] } },
+  DREAM_PURCHASE: { enabled: true, config: { purchaseList: DREAM_GOLD_PURCHASE_LIST } },
   GENIE_SWEEP: { enabled: true, config: {} },
   GACHA: { enabled: true, config: {} },
 };

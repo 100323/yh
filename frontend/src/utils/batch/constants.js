@@ -2,6 +2,7 @@
  * 批量日常任务常量配置
  */
 
+import { DREAM_OPEN_WEEKDAYS, goldItemsConfig } from "@/utils/dreamConstants";
 import { TOWER_MAX_FLOORS, TOWER_MIN_FLOORS } from "./towerConfig.js";
 
 export const FISH_TARGET = 320;
@@ -283,7 +284,14 @@ export const taskConfigDefinitions = {
     description: "一键购买梦境商品",
     defaultEnabled: true,
     configFields: [
-      { key: "dreamPurchaseList", label: "购买清单", type: "input", default: "1-3,1-5,2-6,2-7,3-1,3-2,3-7", description: "格式: 商人ID-商品索引,多个用逗号分隔。如: 1-5,1-6,2-6,3-5" },
+      {
+        key: "dreamPurchaseList",
+        label: "购买清单",
+        type: "dreamPurchaseList",
+        default: Object.entries(goldItemsConfig).flatMap(([merchantId, itemIndexes]) =>
+          itemIndexes.map((index) => `${merchantId}-${index}`)
+        ),
+      },
     ],
   },
   batchClaimFreeEnergy: {
@@ -417,10 +425,10 @@ const defaultTaskScheduleOverrides = {
   batchWelfareClaim: { runTime: createDefaultRunTime(12, 1) },
   batchDailyTaskClaim: { runTime: createDefaultRunTime(12, 1) },
   pkroomAppoint: { runTime: createDefaultRunTime(16, 6) },
-  batchmengjing: { scheduleType: "weekly", weekdays: [0, 3, 6], runTime: createDefaultRunTime(12, 10) },
+  batchmengjing: { scheduleType: "weekly", weekdays: DREAM_OPEN_WEEKDAYS, runTime: createDefaultRunTime(12, 10) },
   skinChallenge: { runTime: createDefaultRunTime(12, 1) },
   starTemple: { runTime: createDefaultRunTime(12, 1) },
-  batchBuyDreamItems: { scheduleType: "weekly", weekdays: [0, 3, 6], runTime: createDefaultRunTime(12, 10) },
+  batchBuyDreamItems: { scheduleType: "weekly", weekdays: DREAM_OPEN_WEEKDAYS, runTime: createDefaultRunTime(12, 10) },
   batchBuyGold: { runTime: createDefaultRunTime(12, 1) },
   batchRecruit: { runTime: createDefaultRunTime(12, 1) },
   batchFish: { runTime: createDefaultRunTime(12, 1) },

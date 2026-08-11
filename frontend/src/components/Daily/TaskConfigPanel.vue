@@ -135,6 +135,30 @@
                           />
                         </div>
                       </div>
+                      <div
+                        v-else-if="field.type === 'dreamPurchaseList'"
+                        class="dream-purchase-config"
+                      >
+                        <div class="dream-purchase-actions">
+                          <n-button size="tiny" type="warning" :disabled="disabled" @click="selectDreamGoldItems(task.value, field.key)">一键勾选金币商品</n-button>
+                          <n-button size="tiny" :disabled="disabled" @click="selectDreamAllItems(task.value, field.key)">全选</n-button>
+                          <n-button size="tiny" :disabled="disabled" @click="clearDreamItems(task.value, field.key)">清空</n-button>
+                        </div>
+                        <div v-for="(merchant, mId) in dreamMerchantConfig" :key="mId" class="dream-merchant-group">
+                          <div class="dream-merchant-name">{{ merchant.name }}</div>
+                          <div class="dream-merchant-items">
+                            <n-checkbox
+                              v-for="(item, idx) in merchant.items"
+                              :key="idx"
+                              :checked="isDreamItemSelected(task.value, field.key, `${mId}-${idx}`)"
+                              :disabled="disabled"
+                              @update:checked="(checked) => toggleDreamItem(task.value, field.key, `${mId}-${idx}`, checked)"
+                            >
+                              {{ item }}
+                            </n-checkbox>
+                          </div>
+                        </div>
+                      </div>
                       <n-input
                         v-else
                         v-model:value="getTaskConfig(task.value).config[field.key]"
@@ -173,6 +197,7 @@ import {
   starTempleStageIds,
   createDefaultStarTempleStages,
 } from '@/utils/batch/constants';
+import { merchantConfig as dreamMerchantConfig, goldItemsConfig as dreamGoldItemsConfig } from '@/utils/dreamConstants';
 import { InformationCircle, ChevronUp, ChevronDown } from '@vicons/ionicons5';
 
 const props = defineProps({
@@ -221,6 +246,50 @@ const starTempleAttemptOptions = [1, 2, 3, 4, 5].map((value) => ({
 
 const getOptionByRef = (refName) => {
   return optionRefs[refName] || [];
+};
+
+const getDreamList = (taskValue, fieldKey) => {
+  const value = getTaskConfig(taskValue).config?.[fieldKey];
+  if (Array.isArray(value)) return value;
+  if (typeof value === 'string' && value) {
+    return value.split(',').map((item) => item.trim()).filter((item) => item.includes('-'));
+  }
+  return [];
+};
+
+const isDreamItemSelected = (taskValue, fieldKey, itemKey) => {
+  return getDreamList(taskValue, fieldKey).includes(itemKey);
+};
+
+const toggleDreamItem = (taskValue, fieldKey, itemKey, checked) => {
+  const list = getDreamList(taskValue, fieldKey);
+  if (checked) {
+    if (!list.includes(itemKey)) list.push(itemKey);
+  } else {
+    const index = list.indexOf(itemKey);
+    if (index > -1) list.splice(index, 1);
+  }
+  getTaskConfig(taskValue).config[fieldKey] = [...list];
+};
+
+const selectDreamGoldItems = (taskValue, fieldKey) => {
+  const list = new Set(getDreamList(taskValue, fieldKey));
+  Object.entries(dreamGoldItemsConfig).forEach(([merchantId, itemIndexes]) => {
+    itemIndexes.forEach((index) => list.add(`${merchantId}-${index}`));
+  });
+  getTaskConfig(taskValue).config[fieldKey] = Array.from(list);
+};
+
+const selectDreamAllItems = (taskValue, fieldKey) => {
+  const list = new Set(getDreamList(taskValue, fieldKey));
+  Object.entries(dreamMerchantConfig).forEach(([merchantId, merchant]) => {
+    merchant.items.forEach((_, index) => list.add(`${merchantId}-${index}`));
+  });
+  getTaskConfig(taskValue).config[fieldKey] = Array.from(list);
+};
+
+const clearDreamItems = (taskValue, fieldKey) => {
+  getTaskConfig(taskValue).config[fieldKey] = [];
 };
 
 const normalizeStarTempleTaskConfig = (taskConfig = {}) => {
@@ -535,6 +604,43 @@ watch(
   gap: 8px;
   width: 100%;
   max-width: 520px;
+}
+
+.dream-purchase-config {
+  width: 100%;
+  max-width: 520px;
+}
+
+.dream-purchase-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.dream-merchant-group {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  border: 1px solid rgba(138, 151, 185, 0.1);
+}
+
+.dream-merchant-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.dream-merchant-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.config-field:has(.dream-purchase-config) {
+  align-items: flex-start;
 }
 
 .star-temple-stage-row {

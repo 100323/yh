@@ -1034,6 +1034,9 @@ async function runTaskByType(client, taskType, config, context = {}) {
     
     case 'DREAM':
       return await executeDream(client, config);
+
+    case 'DREAM_PURCHASE':
+      return await executeDreamPurchase(client, config);
     
     case 'SKIN_CHALLENGE':
       return await executeSkinChallenge(client, config);
@@ -1642,6 +1645,23 @@ async function executeDream(client, config) {
   throw new Error('梦境后端自动执行暂未接入');
 }
 
+async function executeDreamPurchase(client, config) {
+  const purchaseList = config?.purchaseList || [];
+  if (!Array.isArray(purchaseList) || purchaseList.length === 0) {
+    return { message: '购买清单为空，跳过购买', data: {} };
+  }
+
+  const result = await client.buyDreamItems(purchaseList);
+  if (result.skipped) {
+    return { message: result.reason, data: result };
+  }
+
+  return {
+    message: `梦境购买完成 (成功${result.successCount}/${result.results?.length || 0})`,
+    data: result,
+  };
+}
+
 async function _unusedExecuteSkinChallengeLegacyPlaceholder(client, config) {
   throw new Error('换皮闯关后端自动执行暂未接入');
 }
@@ -1729,6 +1749,10 @@ export function getScheduledBatchJobs() {
 export function getActiveBatchConnections() {
   return activeConnections;
 }
+
+export const __testing = {
+  runTaskByType,
+};
 
 export default {
   initBatchScheduler,

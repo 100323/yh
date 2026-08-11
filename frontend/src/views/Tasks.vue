@@ -673,7 +673,7 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
   }
   if (taskKey === 'batchBuyDreamItems') {
     const list = backendConfig.purchaseList || [];
-    mapped.dreamPurchaseList = Array.isArray(list) ? list.join(',') : (list || '');
+    mapped.dreamPurchaseList = Array.isArray(list) ? list : [];
   }
   if (taskKey === 'starTemple') {
     const defaultStages = Object.fromEntries(
@@ -784,11 +784,10 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
     };
   }
   if (taskKey === 'batchBuyDreamItems') {
-    const rawList = sourceConfig.dreamPurchaseList ?? '';
-    const purchaseList = String(rawList)
-      .split(',')
-      .map((v) => v.trim())
-      .filter((v) => v && v.includes('-'));
+    const rawList = sourceConfig.dreamPurchaseList ?? [];
+    const purchaseList = Array.isArray(rawList)
+      ? rawList.filter((v) => v && String(v).includes('-'))
+      : String(rawList).split(',').map((v) => v.trim()).filter((v) => v && v.includes('-'));
     return {
       purchaseList: purchaseList.length > 0 ? purchaseList : [],
     };
