@@ -7,17 +7,18 @@
 - [x] Restore frontend configuration and mappings.
 - [x] Restore backend defaults, migration, and batch execution.
 - [x] Run tests and build.
-- [ ] Commit, push, and deploy.
+- [x] Commit, push, and deploy.
 
 ## Active slice
 
-Regression test added. The next verification is the RED test run before production edits.
+All implementation, verification, push, and deployment steps are complete. No active slice remains.
 
 ## Drift check
 
-The work remains within the requested dream purchase configuration and deployment scope. Existing unrelated worktree changes remain excluded. Repair is verified locally; deployment is the active slice.
+The work remained within the requested dream purchase configuration and deployment scope. Existing unrelated worktree changes were excluded. The repair is committed, pushed, deployed, and remotely verified.
 
 ## Evidence / blockers
 
 - Baseline files and the prior unreachable Git object were inspected.
-- Local tests and build are green. GitHub authentication and remote server state are the remaining external checks.
+- Commit `b803a2c` is present on `origin/codex/tower-floor-limits`.
+- All three servers pass the target regression test and report healthy scheduler services.

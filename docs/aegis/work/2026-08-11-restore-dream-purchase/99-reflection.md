@@ -10,4 +10,4 @@ The old text-input purchase configuration remains accepted as a compatibility in
 
 ## Residual risk
 
-The browser interaction was compile-verified but not exercised through a live browser session in this slice. Deployment and remote health checks remain pending.
+The browser interaction was compile-verified and the deployed frontend entry was hash-verified on all servers, but the authenticated checkbox workflow was not exercised manually in a browser. Runtime health and the backend purchase routing are covered by remote checks and regression tests.
