@@ -16,6 +16,14 @@ export const useTaskStore = defineStore('task', () => {
     return res;
   }
 
+  async function fetchSchedulerPolicy() {
+    return await api.get('/tasks/policy');
+  }
+
+  async function updateSchedulerPolicy(saturdayBlackoutEnabled) {
+    return await api.put('/tasks/policy', { saturdayBlackoutEnabled });
+  }
+
   async function fetchAccountTasks(accountId) {
     loading.value = true;
     try {
@@ -96,6 +104,8 @@ export const useTaskStore = defineStore('task', () => {
     taskConfigRevisions,
     loading,
     fetchTaskTypes,
+    fetchSchedulerPolicy,
+    updateSchedulerPolicy,
     fetchAccountTasks,
     updateTaskConfig,
     batchUpdateAccountTasks,

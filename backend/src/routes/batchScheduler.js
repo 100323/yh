@@ -2,10 +2,18 @@ import { Router } from 'express';
 import { run, get, all, cleanupBatchTaskLogs, getDatabase, saveDatabase } from '../database/index.js';
 import { authMiddleware } from '../middleware/auth.js';
 import { scheduleBatchTask, unscheduleBatchTask, executeBatchTask } from '../batchScheduler/index.js';
+import { containsDisabledTaskType, filterDisabledTaskTypes } from '../utils/disabledTaskTypes.js';
+import { TOWER_DAILY_CRON } from '../utils/towerTaskConfig.js';
 
 const router = Router();
 
 router.use(authMiddleware);
+
+function containsTowerTask(taskTypes = []) {
+  return Array.isArray(taskTypes) && taskTypes.some((taskType) =>
+    taskType === 'TOWER' || taskType === 'WEIRD_TOWER'
+  );
+}
 
 export const BATCH_TASK_TYPES = {
   SIGN_IN: { name: '每日签到', group: 'daily' },
@@ -25,8 +33,6 @@ export const BATCH_TASK_TYPES = {
   HANGUP_ADD_TIME: { name: '一键加钟', group: 'daily' },
   BOTTLE_RESET: { name: '重置罐子', group: 'daily' },
   BOTTLE_CLAIM: { name: '领取罐子', group: 'daily' },
-  CAR_SEND: { name: '智能发车', group: 'daily' },
-  CAR_CLAIM: { name: '一键收车', group: 'daily' },
   BLACK_MARKET: { name: '黑市采购', group: 'daily' },
   TREASURE_CLAIM: { name: '珍宝阁领取', group: 'daily' },
   LEGACY_CLAIM: { name: '残卷收取', group: 'daily' },
@@ -64,7 +70,7 @@ router.get('/', (req, res) => {
       ...task,
       enabled: !!task.enabled,
       selectedAccountIds: JSON.parse(task.selected_account_ids || '[]'),
-      selectedTaskTypes: JSON.parse(task.selected_task_types || '[]')
+      selectedTaskTypes: filterDisabledTaskTypes(JSON.parse(task.selected_task_types || '[]'))
     }));
 
     res.json({
@@ -100,7 +106,7 @@ router.get('/:id', (req, res) => {
         ...task,
         enabled: !!task.enabled,
         selectedAccountIds: JSON.parse(task.selected_account_ids || '[]'),
-        selectedTaskTypes: JSON.parse(task.selected_task_types || '[]')
+        selectedTaskTypes: filterDisabledTaskTypes(JSON.parse(task.selected_task_types || '[]'))
       }
     });
   } catch (error) {
@@ -137,14 +143,26 @@ router.post('/', (req, res) => {
       });
     }
 
-    if (runType === 'daily' && !runTime) {
+    if (containsDisabledTaskType(selectedTaskTypes)) {
+      return res.status(400).json({
+        success: false,
+        error: '智能发车和一键收车已停用'
+      });
+    }
+
+    const hasTowerTask = containsTowerTask(selectedTaskTypes);
+    const normalizedRunType = hasTowerTask ? 'daily' : (runType || 'daily');
+    const normalizedRunTime = hasTowerTask ? '09:20' : (runTime || null);
+    const normalizedCronExpression = hasTowerTask ? null : (cronExpression || null);
+
+    if (normalizedRunType === 'daily' && !normalizedRunTime) {
       return res.status(400).json({
         success: false,
         error: '请选择运行时间'
       });
     }
 
-    if (runType === 'cron' && !cronExpression) {
+    if (normalizedRunType === 'cron' && !normalizedCronExpression) {
       return res.status(400).json({
         success: false,
         error: '请输入Cron表达式'
@@ -157,7 +175,7 @@ router.post('/', (req, res) => {
     const result = run(
       `INSERT INTO batch_scheduled_tasks (user_id, name, run_type, run_time, cron_expression, selected_account_ids, selected_task_types, enabled) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [req.user.userId, name, runType || 'daily', runTime || null, cronExpression || null, accountIdsJson, taskTypesJson, enabled !== false ? 1 : 0]
+      [req.user.userId, name, normalizedRunType, normalizedRunTime, normalizedCronExpression, accountIdsJson, taskTypesJson, enabled !== false ? 1 : 0]
     );
 
     const newTask = get('SELECT * FROM batch_scheduled_tasks WHERE id = ?', [result.lastInsertRowid]);
@@ -202,22 +220,37 @@ router.put('/:id', (req, res) => {
       });
     }
 
+    const existingTaskTypes = JSON.parse(existingTask.selected_task_types || '[]');
+    const effectiveTaskTypes = selectedTaskTypes !== undefined ? selectedTaskTypes : existingTaskTypes;
+    if (containsDisabledTaskType(effectiveTaskTypes)) {
+      return res.status(400).json({
+        success: false,
+        error: '智能发车和一键收车已停用'
+      });
+    }
+
     const updateFields = [];
     const updateValues = [];
+    const hasTowerTask = containsTowerTask(effectiveTaskTypes);
+
+    if (hasTowerTask) {
+      updateFields.push('run_type = ?', 'run_time = ?', 'cron_expression = ?');
+      updateValues.push('daily', '09:20', null);
+    }
 
     if (name !== undefined) {
       updateFields.push('name = ?');
       updateValues.push(name);
     }
-    if (runType !== undefined) {
+    if (!hasTowerTask && runType !== undefined) {
       updateFields.push('run_type = ?');
       updateValues.push(runType);
     }
-    if (runTime !== undefined) {
+    if (!hasTowerTask && runTime !== undefined) {
       updateFields.push('run_time = ?');
       updateValues.push(runTime);
     }
-    if (cronExpression !== undefined) {
+    if (!hasTowerTask && cronExpression !== undefined) {
       updateFields.push('cron_expression = ?');
       updateValues.push(cronExpression);
     }
@@ -262,8 +295,8 @@ router.put('/:id', (req, res) => {
       data: {
         ...updatedTask,
         enabled: !!updatedTask.enabled,
-        selectedAccountIds: JSON.parse(updatedTask.selected_account_ids || '[]'),
-        selectedTaskTypes: JSON.parse(updatedTask.selected_task_types || '[]')
+      selectedAccountIds: JSON.parse(updatedTask.selected_account_ids || '[]'),
+      selectedTaskTypes: filterDisabledTaskTypes(JSON.parse(updatedTask.selected_task_types || '[]'))
       }
     });
   } catch (error) {
@@ -281,6 +314,13 @@ router.delete('/:id', (req, res) => {
       'SELECT id FROM batch_scheduled_tasks WHERE id = ? AND user_id = ?',
       [req.params.id, req.user.userId]
     );
+
+    if (containsDisabledTaskType(JSON.parse(task.selected_task_types || '[]'))) {
+      return res.status(400).json({
+        success: false,
+        error: '批量任务包含已停用的智能发车或一键收车'
+      });
+    }
 
     if (!task) {
       return res.status(404).json({

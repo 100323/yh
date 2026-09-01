@@ -19,6 +19,8 @@ interface TokenWsMessagingOptions {
   getErrorMessage: (error: unknown) => string;
 }
 
+const DISABLED_COMMANDS = new Set(['car_send', 'car_claim']);
+
 export function createTokenWsMessagingManager({
   wsConnections,
   ensureWebSocketConnected,
@@ -42,6 +44,11 @@ export function createTokenWsMessagingManager({
     params = {},
     options = {},
   ) => {
+    if (DISABLED_COMMANDS.has(cmd)) {
+      wsLogger.error(`任务已停用：${cmd}`);
+      return false;
+    }
+
     const connection = wsConnections.value[tokenId];
     if (!connection || connection.status !== 'connected') {
       wsLogger.error(`WebSocket未连接，无法发送消息 [${tokenId}]`);
@@ -70,6 +77,10 @@ export function createTokenWsMessagingManager({
     params = {},
     timeout = 5000,
   ) => {
+    if (DISABLED_COMMANDS.has(cmd)) {
+      return Promise.reject(new Error(`任务已停用：${cmd}`));
+    }
+
     let connection = wsConnections.value[tokenId];
     if (!connection || connection.status !== 'connected' || !connection.client) {
       connection = await ensureWebSocketConnected(tokenId);

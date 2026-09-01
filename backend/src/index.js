@@ -28,6 +28,7 @@ import { preloadStudyQuestionBank } from './utils/studyQuestions.js';
 import { consumeSlimEntryTicket } from './utils/slimEntryTicketStore.js';
 import { proxyConfigManager } from './utils/proxyConfigManager.js';
 import { proxyPoolManager } from './utils/proxyPool/index.js';
+import { isDisabledTaskType } from './utils/disabledTaskTypes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -163,6 +164,13 @@ app.post('/api/tasks/execute', authMiddleware, async (req, res) => {
       return res.status(400).json({
         success: false,
         error: '缺少必要参数'
+      });
+    }
+
+    if (isDisabledTaskType(taskType)) {
+      return res.status(400).json({
+        success: false,
+        error: '智能发车和一键收车已停用'
       });
     }
 

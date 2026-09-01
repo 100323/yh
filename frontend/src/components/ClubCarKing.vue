@@ -41,28 +41,6 @@
             </template>
             {{ carLoading ? "加载中..." : "刷新数据" }}
           </n-button>
-          <n-button
-            size="small"
-            secondary
-            :disabled="carLoading || !isConnected"
-            @click="smartSendCar"
-          >
-            <template #icon>
-              <n-icon><Flash /></n-icon>
-            </template>
-            智能发车
-          </n-button>
-          <n-button
-            size="small"
-            secondary
-            :disabled="carLoading || !isConnected"
-            @click="claimAllCars"
-          >
-            <template #icon>
-              <n-icon><ArrowUpCircle /></n-icon>
-            </template>
-            一键收车
-          </n-button>
         </n-space>
       </template>
     </n-thing>
@@ -143,18 +121,6 @@
                   >
                     <template #icon><n-icon><Refresh /></n-icon></template>
                     {{ Number(c.refreshCount ?? 0) === 0 ? "免费刷新" : "刷新品阶(需车票)" }}
-                  </n-button>
-                </n-gi>
-                <n-gi>
-                  <n-button
-                    size="tiny"
-                    block
-                    type="primary"
-                    :disabled="carLoading || actionDisabled(c)"
-                    @click="handleAction(c)"
-                  >
-                    <template #icon><n-icon><CarSport /></n-icon></template>
-                    {{ actionLabel(c) === '发车' ? '发车' : '收车' }}
                   </n-button>
                 </n-gi>
                 <n-gi>

@@ -65,14 +65,8 @@
             "
           >
             <button class="query-btn" @click="refreshCar(car.id)">刷新</button>
-            <button class="query-btn" @click="claimCar(car.id)">收车</button>
-            <button class="query-btn" @click="sendCar(car.id)">发车</button>
           </div>
         </div>
-      </div>
-      <div style="margin-top: 10px">
-        <button class="query-btn" @click="smartSendCar">智能发车</button>
-        <button class="query-btn" @click="claimAllCars">一键收车</button>
       </div>
     </div>
   </div>

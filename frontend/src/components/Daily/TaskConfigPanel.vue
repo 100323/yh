@@ -191,7 +191,6 @@ import {
   defaultTaskConfigs,
   formationOptions,
   bossTimesOptions,
-  carMinColorOptions,
   boxTypeOptions,
   fishTypeOptions,
   starTempleStageIds,
@@ -229,7 +228,6 @@ const taskConfigs = ref({});
 const optionRefs = {
   formationOptions,
   bossTimesOptions,
-  carMinColorOptions,
   boxTypeOptions,
   fishTypeOptions,
 };

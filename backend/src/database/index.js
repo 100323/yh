@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import config from '../config/index.js';
 import { DEFAULT_MAX_GAME_ACCOUNTS } from '../utils/userLimits.js';
+import { TOWER_DAILY_BATTLE_LIMIT } from '../utils/towerTaskConfig.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const backendRoot = path.resolve(__dirname, '../..');
@@ -89,6 +90,17 @@ CREATE TABLE IF NOT EXISTS task_execution_markers (
   latest_message TEXT,
   latest_details TEXT,
   executed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
+  UNIQUE (account_id, task_type, business_date)
+);
+
+CREATE TABLE IF NOT EXISTS tower_battle_daily_usage (
+  account_id INTEGER NOT NULL,
+  task_type TEXT NOT NULL,
+  business_date TEXT NOT NULL,
+  reserved_count INTEGER NOT NULL DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE CASCADE,
   UNIQUE (account_id, task_type, business_date)
@@ -207,12 +219,45 @@ CREATE TABLE IF NOT EXISTS system_settings (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS scheduler_execution_policies (
+  user_id INTEGER PRIMARY KEY,
+  saturday_blackout_enabled INTEGER NOT NULL DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS scheduler_deferred_runs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  deferred_identity TEXT NOT NULL UNIQUE,
+  user_id INTEGER NOT NULL,
+  source TEXT NOT NULL,
+  task_config_id INTEGER,
+  batch_task_id INTEGER,
+  account_id INTEGER,
+  task_type TEXT,
+  planned_at DATETIME NOT NULL,
+  release_at DATETIME NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  attempt_count INTEGER NOT NULL DEFAULT 0,
+  claimed_at DATETIME,
+  completed_at DATETIME,
+  last_error TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (task_config_id) REFERENCES task_configs(id) ON DELETE SET NULL,
+  FOREIGN KEY (batch_task_id) REFERENCES batch_scheduled_tasks(id) ON DELETE SET NULL,
+  FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE SET NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_game_accounts_user ON game_accounts(user_id);
 CREATE INDEX IF NOT EXISTS idx_task_configs_account ON task_configs(account_id);
 CREATE INDEX IF NOT EXISTS idx_task_logs_account ON task_logs(account_id);
 CREATE INDEX IF NOT EXISTS idx_task_logs_created ON task_logs(created_at);
 CREATE INDEX IF NOT EXISTS idx_task_execution_markers_account_date ON task_execution_markers(account_id, business_date);
 CREATE INDEX IF NOT EXISTS idx_task_execution_markers_date ON task_execution_markers(business_date);
+CREATE INDEX IF NOT EXISTS idx_tower_battle_daily_usage_account_date ON tower_battle_daily_usage(account_id, business_date);
 CREATE INDEX IF NOT EXISTS idx_task_config_audit_logs_account_created ON task_config_audit_logs(account_id, created_at);
 CREATE INDEX IF NOT EXISTS idx_task_config_audit_logs_request ON task_config_audit_logs(request_id);
 CREATE INDEX IF NOT EXISTS idx_batch_scheduled_tasks_user ON batch_scheduled_tasks(user_id);
@@ -221,6 +266,8 @@ CREATE INDEX IF NOT EXISTS idx_account_batch_settings_account ON account_batch_s
 CREATE INDEX IF NOT EXISTS idx_batch_task_templates_user ON batch_task_templates(user_id);
 CREATE INDEX IF NOT EXISTS idx_account_lineups_account ON account_lineups(account_id);
 CREATE INDEX IF NOT EXISTS idx_account_lineups_account_team ON account_lineups(account_id, team_id);
+CREATE INDEX IF NOT EXISTS idx_scheduler_deferred_runs_release ON scheduler_deferred_runs(status, release_at, planned_at, id);
+CREATE INDEX IF NOT EXISTS idx_scheduler_deferred_runs_user ON scheduler_deferred_runs(user_id, status);
 `;
 
 const TASK_LOG_RETENTION_DAYS = 30;
@@ -350,7 +397,7 @@ function allStatement(database, sql, params = []) {
   return stmt.all(...normalizeParams(params));
 }
 
-function getShanghaiBusinessDate(value = new Date()) {
+function calculateShanghaiBusinessDate(value = new Date()) {
   const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) {
     return null;
@@ -361,6 +408,77 @@ function getShanghaiBusinessDate(value = new Date()) {
   const month = String(shifted.getUTCMonth() + 1).padStart(2, '0');
   const day = String(shifted.getUTCDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+function normalizeTowerUsageDate(value) {
+  const date = value instanceof Date ? getShanghaiBusinessDate(value) : String(value || '').trim();
+  return date || getShanghaiBusinessDate();
+}
+
+function normalizeTowerUsageIdentity(accountId, taskType) {
+  const normalizedAccountId = Number(accountId);
+  const normalizedTaskType = String(taskType || '').trim();
+  if (!Number.isInteger(normalizedAccountId) || normalizedAccountId <= 0) {
+    return null;
+  }
+  if (!['TOWER', 'WEIRD_TOWER'].includes(normalizedTaskType)) {
+    return null;
+  }
+  return { accountId: normalizedAccountId, taskType: normalizedTaskType };
+}
+
+export function getShanghaiBusinessDate(value = new Date()) {
+  return calculateShanghaiBusinessDate(value);
+}
+
+export function getTowerBattleUsage(accountId, taskType, businessDate = getShanghaiBusinessDate(), targetDb = getDatabase()) {
+  const identity = normalizeTowerUsageIdentity(accountId, taskType);
+  if (!identity) return 0;
+
+  const row = targetDb.get(
+    `SELECT reserved_count
+       FROM tower_battle_daily_usage
+      WHERE account_id = ? AND task_type = ? AND business_date = ?`,
+    [identity.accountId, identity.taskType, normalizeTowerUsageDate(businessDate)],
+  );
+  return Math.max(0, Number(row?.reserved_count || 0));
+}
+
+export function reserveTowerBattleSlot(accountId, taskType, businessDate = getShanghaiBusinessDate(), targetDb = getDatabase()) {
+  const identity = normalizeTowerUsageIdentity(accountId, taskType);
+  if (!identity) return false;
+
+  const normalizedDate = normalizeTowerUsageDate(businessDate);
+  targetDb.run(
+    `INSERT OR IGNORE INTO tower_battle_daily_usage (account_id, task_type, business_date, reserved_count)
+     VALUES (?, ?, ?, 0)`,
+    [identity.accountId, identity.taskType, normalizedDate],
+  );
+  const result = targetDb.run(
+    `UPDATE tower_battle_daily_usage
+        SET reserved_count = reserved_count + 1,
+            updated_at = CURRENT_TIMESTAMP
+      WHERE account_id = ?
+        AND task_type = ?
+        AND business_date = ?
+        AND reserved_count < ?`,
+    [identity.accountId, identity.taskType, normalizedDate, TOWER_DAILY_BATTLE_LIMIT],
+  );
+  return Number(result?.changes || 0) === 1;
+}
+
+export function releaseTowerBattleSlot(accountId, taskType, businessDate = getShanghaiBusinessDate(), targetDb = getDatabase()) {
+  const identity = normalizeTowerUsageIdentity(accountId, taskType);
+  if (!identity) return false;
+
+  const result = targetDb.run(
+    `UPDATE tower_battle_daily_usage
+        SET reserved_count = MAX(0, reserved_count - 1),
+            updated_at = CURRENT_TIMESTAMP
+      WHERE account_id = ? AND task_type = ? AND business_date = ? AND reserved_count > 0`,
+    [identity.accountId, identity.taskType, normalizeTowerUsageDate(businessDate)],
+  );
+  return Number(result?.changes || 0) === 1;
 }
 
 function createDatabaseAdapter(database) {
@@ -981,6 +1099,10 @@ export default {
   cleanupBatchTaskLogs,
   cleanupTaskExecutionMarkers,
   cleanupTaskConfigAuditLogs,
+  getShanghaiBusinessDate,
+  getTowerBattleUsage,
+  reserveTowerBattleSlot,
+  releaseTowerBattleSlot,
   cleanupLogTables,
   runDatabaseMaintenance,
   runDatabaseVacuum,

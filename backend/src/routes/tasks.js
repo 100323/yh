@@ -4,8 +4,16 @@ import { run, get, all, addTaskConfigAuditLog, cleanupTaskLogs, getDatabase, sav
 import { authMiddleware } from '../middleware/auth.js';
 import { calculateNextRunAt } from '../utils/cronSchedule.js';
 import {
+  isHourlyCronExpression,
   normalizeTowerTaskConfig,
+  normalizeTowerCronExpression,
+  TOWER_DAILY_CRON,
 } from '../utils/towerTaskConfig.js';
+import { isDisabledTaskType, filterDisabledTaskTypes, containsDisabledTaskType } from '../utils/disabledTaskTypes.js';
+import {
+  getSaturdaySchedulerPolicy,
+  updateSaturdaySchedulerPolicy,
+} from '../utils/saturdaySchedulerBlackoutStore.js';
 
 const router = Router();
 
@@ -20,9 +28,9 @@ export const TASK_TYPES = {
   SIGN_IN: { name: '每日签到', cron: '0 8 * * *', group: 'daily' },
   LEGION_SIGN: { name: '军团签到', cron: '0 8 * * *', group: 'daily' },
   ARENA: { name: '竞技场战斗', cron: '4 12 * * *', group: 'daily' },
-  TOWER: { name: '爬塔', cron: '13 12 * * *', group: 'dungeon' },
+  TOWER: { name: '爬塔', cron: TOWER_DAILY_CRON, group: 'dungeon' },
   BOSS_TOWER: { name: '咸王宝库', cron: '0 10 * * *', group: 'dungeon' },
-  WEIRD_TOWER: { name: '怪异塔', cron: '13 12 * * *', group: 'dungeon' },
+  WEIRD_TOWER: { name: '怪异塔', cron: TOWER_DAILY_CRON, group: 'dungeon' },
   WEIRD_TOWER_FREE_ITEM: { name: '怪异塔免费道具', cron: '13 12 * * *', group: 'dungeon' },
   WEIRD_TOWER_USE_ITEM: { name: '使用怪异塔道具', cron: '16 12 * * *', group: 'dungeon' },
   WEIRD_TOWER_MERGE_ITEM: { name: '怪异塔合成', cron: '16 12 * * *', group: 'dungeon' },
@@ -38,8 +46,6 @@ export const TASK_TYPES = {
   HANGUP_ADD_TIME: { name: '一键加钟', cron: '11 */3 * * *', group: 'daily' },
   BOTTLE_RESET: { name: '重置罐子', cron: '0 */7 * * *', group: 'daily' },
   BOTTLE_CLAIM: { name: '领取罐子', cron: '13 12 * * *', group: 'daily' },
-  CAR_SEND: { name: '智能发车', cron: '7 8 * * 1-3', group: 'daily' },
-  CAR_CLAIM: { name: '一键收车', cron: '7 15 * * 1-3', group: 'daily' },
   BLACK_MARKET: { name: '黑市采购', cron: '4 12 * * *', group: 'daily' },
   TREASURE_CLAIM: { name: '珍宝阁领取', cron: '1 0 * * *', group: 'daily' },
   LEGACY_CLAIM: { name: '残卷收取', cron: '23 */6 * * *', group: 'daily' },
@@ -107,21 +113,6 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   MAIL_CLAIM: { enabled: true, config: {} },
   STUDY: { enabled: true, config: {} },
   ARENA: { enabled: true, config: { arenaFormation: 1, battleCount: 3 } },
-  CAR_SEND: {
-    enabled: true,
-    config: {
-      minCarColor: 4,
-      maxRefreshAttempts: 3,
-      allowGoldRefresh: false,
-      fallbackSendWhenStuck: true,
-      goldThreshold: 0,
-      recruitThreshold: 0,
-      jadeThreshold: 0,
-      ticketThreshold: 0,
-      matchAll: false,
-    }
-  },
-  CAR_CLAIM: { enabled: true, config: {} },
   BUY_GOLD: { enabled: true, config: { buyNum: 3 } },
   RECRUIT: {
     enabled: true,
@@ -310,6 +301,42 @@ export async function clampHistoricalTowerTaskConfigs(targetDb = getDatabase()) 
   return { updated, details };
 }
 
+export async function migrateHistoricalTowerTaskCrons(targetDb = getDatabase()) {
+  const rows = targetDb.all(
+    `SELECT id, task_type, cron_expression
+       FROM task_configs
+      WHERE task_type IN ('TOWER', 'WEIRD_TOWER')`,
+  );
+  const targets = rows.filter((row) => isHourlyCronExpression(row.cron_expression));
+
+  targets.forEach((row) => {
+    targetDb.run(
+      `UPDATE task_configs
+          SET cron_expression = ?,
+              next_run_at = ?,
+              cron_is_customized = 0,
+              default_cron_version = ?,
+              updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?`,
+      [TOWER_DAILY_CRON, calculateNextRunAt(TOWER_DAILY_CRON), CURRENT_DEFAULT_CRON_VERSION, row.id],
+    );
+  });
+
+  if (targets.length > 0) {
+    await saveDatabase();
+  }
+
+  return {
+    updated: targets.length,
+    details: targets.map((row) => ({
+      id: row.id,
+      taskType: row.task_type,
+      from: row.cron_expression,
+      to: TOWER_DAILY_CRON,
+    })),
+  };
+}
+
 function stableSortValue(value) {
   if (Array.isArray(value)) {
     return value.map((item) => stableSortValue(item));
@@ -338,13 +365,14 @@ function parseTaskConfigJson(configJson) {
 }
 
 function getAccountTaskConfigRows(accountId, targetDb = getDatabase()) {
-  return targetDb.all(
+  const rows = targetDb.all(
     `SELECT id, account_id, task_type, enabled, cron_expression, config_json, last_run_at, next_run_at, created_at, updated_at
        FROM task_configs
       WHERE account_id = ?
       ORDER BY task_type ASC, id ASC`,
     [accountId]
   );
+  return rows.filter((row) => !isDisabledTaskType(row.task_type));
 }
 
 function getTaskConfigsRevision(rows = []) {
@@ -424,6 +452,19 @@ export function ensureDefaultTaskConfigsForAccount(accountId, targetDb = getData
       .map((row) => String(row.task_type || ''))
       .filter(Boolean)
   );
+
+  const disabledRows = all(
+    'SELECT id FROM task_configs WHERE account_id = ? AND enabled = 1',
+    [normalizedAccountId],
+  ).filter((row) => isDisabledTaskType(row.task_type));
+  if (disabledRows.length > 0) {
+    const placeholders = disabledRows.map(() => '?').join(', ');
+    targetDb.run(
+      `UPDATE task_configs SET enabled = 0, updated_at = CURRENT_TIMESTAMP
+       WHERE id IN (${placeholders})`,
+      disabledRows.map((row) => row.id),
+    );
+  }
 
   const insertedTaskTypes = [];
   for (const [taskType, seed] of Object.entries(DEFAULT_TASK_CONFIG_SEEDS)) {
@@ -726,6 +767,35 @@ router.get('/types', (req, res) => {
   });
 });
 
+router.get('/policy', (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: getSaturdaySchedulerPolicy(req.user.userId),
+    });
+  } catch (error) {
+    console.error('获取自动任务策略失败:', error);
+    res.status(500).json({ success: false, error: '获取自动任务策略失败' });
+  }
+});
+
+router.put('/policy', (req, res) => {
+  try {
+    const { saturdayBlackoutEnabled } = req.body || {};
+    if (typeof saturdayBlackoutEnabled !== 'boolean') {
+      return res.status(400).json({ success: false, error: '策略开关必须是布尔值' });
+    }
+
+    res.json({
+      success: true,
+      data: updateSaturdaySchedulerPolicy(req.user.userId, saturdayBlackoutEnabled),
+    });
+  } catch (error) {
+    console.error('更新自动任务策略失败:', error);
+    res.status(500).json({ success: false, error: '更新自动任务策略失败' });
+  }
+});
+
 router.get('/account/:accountId', (req, res) => {
   try {
     const { accountId } = req.params;
@@ -817,7 +887,10 @@ router.put('/account/:accountId/batch', async (req, res) => {
           throw typeError;
         }
 
-        const cronExpression = taskItem?.cronExpression || TASK_TYPES[taskType].cron;
+        const cronExpression = normalizeTowerCronExpression(
+          taskType,
+          taskItem?.cronExpression || TASK_TYPES[taskType].cron,
+        ) || TASK_TYPES[taskType].cron;
         const normalizedConfig = normalizeTaskConfigPayload(taskType, taskItem?.config);
         const configJson = JSON.stringify(normalizedConfig || {});
         const cronIsCustomized = Number(cronExpression !== TASK_TYPES[taskType].cron);
@@ -1011,7 +1084,10 @@ router.post('/account/:accountId', async (req, res) => {
       [accountId, taskType]
     );
 
-    const cron = cronExpression || TASK_TYPES[taskType].cron;
+    const cron = normalizeTowerCronExpression(
+      taskType,
+      cronExpression || TASK_TYPES[taskType].cron,
+    ) || TASK_TYPES[taskType].cron;
     const normalizedConfig = normalizeTaskConfigPayload(taskType, config);
     const configJson = normalizedConfig ? JSON.stringify(normalizedConfig) : null;
     const cronIsCustomized = Number(cron !== TASK_TYPES[taskType].cron);
@@ -1141,6 +1217,13 @@ router.put('/:id', async (req, res) => {
       });
     }
 
+    if (isDisabledTaskType(taskConfig.task_type)) {
+      return res.status(400).json({
+        success: false,
+        error: '该任务已停用，无法修改'
+      });
+    }
+
     const updateFields = [];
     const updateValues = [];
 
@@ -1149,10 +1232,11 @@ router.put('/:id', async (req, res) => {
       updateValues.push(enabled ? 1 : 0);
     }
     if (cronExpression !== undefined) {
+      const normalizedCron = normalizeTowerCronExpression(taskConfig.task_type, cronExpression);
       updateFields.push('cron_expression = ?');
-      updateValues.push(cronExpression);
+      updateValues.push(normalizedCron);
       updateFields.push('cron_is_customized = ?');
-      const cronIsCustomized = Number(cronExpression !== TASK_TYPES[taskConfig.task_type]?.cron);
+      const cronIsCustomized = Number(normalizedCron !== TASK_TYPES[taskConfig.task_type]?.cron);
       updateValues.push(cronIsCustomized);
       updateFields.push('default_cron_version = ?');
       updateValues.push(cronIsCustomized ? null : getTaskDefaultCronVersion(taskConfig.task_type));
@@ -1271,7 +1355,7 @@ router.get('/logs/:accountId', (req, res) => {
 });
 
 export function getEnabledTasks() {
-  return all(
+  const rows = all(
     `SELECT tc.*, ga.user_id, ga.name as account_name, ga.token_encrypted, ga.token_iv, ga.server, ga.ws_url,
             ga.import_method AS account_import_method, ga.updated_at AS account_updated_at
      FROM task_configs tc
@@ -1283,6 +1367,7 @@ export function getEnabledTasks() {
        AND (u.access_start_at IS NULL OR datetime(u.access_start_at) <= datetime('now'))
        AND (u.access_end_at IS NULL OR datetime(u.access_end_at) >= datetime('now'))`
   );
+  return rows.filter((task) => !isDisabledTaskType(task.task_type));
 }
 
 export function updateTaskRunTime(taskId, nextRunAt) {
@@ -1290,6 +1375,51 @@ export function updateTaskRunTime(taskId, nextRunAt) {
     'UPDATE task_configs SET next_run_at = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
     [nextRunAt, taskId]
   );
+}
+
+export async function disableRetiredTaskTypes() {
+  const retiredPlaceholders = ['CAR_SEND', 'CAR_CLAIM'].map(() => '?').join(', ');
+  const disabledTaskConfigRows = all(
+    `SELECT id FROM task_configs WHERE task_type IN (${retiredPlaceholders}) AND enabled = 1`,
+    ['CAR_SEND', 'CAR_CLAIM']
+  );
+  if (disabledTaskConfigRows.length > 0) {
+    run(
+      `UPDATE task_configs SET enabled = 0, updated_at = CURRENT_TIMESTAMP
+       WHERE id IN (${disabledTaskConfigRows.map(() => '?').join(', ')})`,
+      disabledTaskConfigRows.map((row) => row.id)
+    );
+  }
+
+  const batchTasks = all('SELECT id, selected_task_types, enabled FROM batch_scheduled_tasks');
+  let cleanedBatchTasks = 0;
+  for (const task of batchTasks) {
+    let taskTypes = [];
+    try {
+      taskTypes = JSON.parse(task.selected_task_types || '[]');
+    } catch {
+      taskTypes = [];
+    }
+    if (!containsDisabledTaskType(taskTypes)) {
+      continue;
+    }
+
+    const remainingTaskTypes = filterDisabledTaskTypes(taskTypes);
+    run(
+      'UPDATE batch_scheduled_tasks SET selected_task_types = ?, enabled = ? WHERE id = ?',
+      [JSON.stringify(remainingTaskTypes), remainingTaskTypes.length > 0 ? Number(task.enabled || 0) : 0, task.id]
+    );
+    cleanedBatchTasks += 1;
+  }
+
+  if (disabledTaskConfigRows.length > 0 || cleanedBatchTasks > 0) {
+    await saveDatabase();
+  }
+
+  return {
+    disabledTaskConfigs: disabledTaskConfigRows.length,
+    cleanedBatchTasks,
+  };
 }
 
 export async function updateTaskRunTimesBatch(updates = []) {

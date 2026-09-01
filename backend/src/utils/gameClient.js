@@ -5,6 +5,148 @@ import { normalizeErrorMessage, summarizeHeaders, truncate } from './wsDiagnosti
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { runTaskTypeCommandThrottled } from './accountTaskCoordinator.js';
+import {
+  classifyCommandFailure,
+  createEgressDescriptor,
+  getSchedulerObservationContext,
+  sanitizeObservationMessage,
+} from '../observability/schedulerObservationCore.js';
+import * as schedulerObservationService from '../observability/schedulerObservationService.js';
+
+const OBSERVATION_IDENTIFIER_MAX_LENGTH = 160;
+const OBSERVATION_ERROR_MAX_LENGTH = 300;
+
+function monotonicNow() {
+  return Number(process.hrtime.bigint()) / 1e6;
+}
+
+function normalizeObservationString(value, maxLength = OBSERVATION_IDENTIFIER_MAX_LENGTH) {
+  if (typeof value !== 'string') return undefined;
+  try {
+    const normalized = sanitizeObservationMessage(value.normalize('NFKC'), maxLength).trim();
+    return normalized || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function normalizeObservationId(value) {
+  if (typeof value === 'number') {
+    return Number.isSafeInteger(value) ? value : undefined;
+  }
+  if (typeof value === 'bigint') {
+    const numeric = Number(value);
+    return Number.isSafeInteger(numeric) ? numeric : undefined;
+  }
+  return normalizeObservationString(value);
+}
+
+function normalizeQueueWaitMs(value) {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return undefined;
+  return Math.min(Number.MAX_SAFE_INTEGER, value);
+}
+
+function normalizeEgressDescriptor(egress) {
+  try {
+    if (egress?.type === 'proxy' && /^proxy:[0-9a-f]{12}$/.test(egress?.key)) {
+      return { type: 'proxy', key: egress.key };
+    }
+  } catch {
+    // Invalid egress descriptors fail closed to direct.
+  }
+  return { type: 'direct', key: 'direct' };
+}
+
+const OBSERVATION_CONTEXT_NORMALIZERS = Object.freeze({
+  source: normalizeObservationString,
+  taskType: normalizeObservationString,
+  runId: normalizeObservationString,
+  accountId: normalizeObservationId,
+  batchTaskId: normalizeObservationId,
+  executionLane: normalizeObservationString,
+  queueWaitMs: normalizeQueueWaitMs,
+});
+
+function copySchedulerObservationContext() {
+  let context;
+  try {
+    context = getSchedulerObservationContext();
+  } catch {
+    return {};
+  }
+  if (!context || typeof context !== 'object') return {};
+
+  const allowed = {};
+  for (const [field, normalize] of Object.entries(OBSERVATION_CONTEXT_NORMALIZERS)) {
+    try {
+      const normalized = normalize(context[field]);
+      if (normalized !== undefined) allowed[field] = normalized;
+    } catch {
+      // Observation context must never affect command delivery.
+    }
+  }
+  return allowed;
+}
+
+function classifyCommand(cmd) {
+  const normalized = typeof cmd === 'string' ? cmd.trim().toLowerCase() : '';
+  return /^_sys(?:[\/:_]|$)/.test(normalized) || /^(?:ack|heartbeat|ping|pong)$/.test(normalized)
+    ? 'system'
+    : 'game';
+}
+
+function finiteInteger(value) {
+  try {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) && Number.isInteger(numeric) ? numeric : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function readObservationProperty(value, property) {
+  try {
+    return value?.[property];
+  } catch {
+    return undefined;
+  }
+}
+
+function createSafeErrorObservation(error) {
+  const safeError = {};
+  const code = finiteInteger(
+    readObservationProperty(error, 'errorCode') ?? readObservationProperty(error, 'code'),
+  );
+  const rawMessage = typeof error === 'string'
+    ? error
+    : readObservationProperty(error, 'message');
+  const message = normalizeObservationString(rawMessage, OBSERVATION_ERROR_MAX_LENGTH);
+  if (code !== undefined) safeError.code = code;
+  if (message !== undefined) safeError.message = message;
+  return Object.freeze(safeError);
+}
+
+function consumeObserverResult(result) {
+  if (result === null || (typeof result !== 'object' && typeof result !== 'function')) return;
+  try {
+    const then = result.then;
+    if (typeof then !== 'function') return;
+    const chained = then.call(result, undefined, () => undefined);
+    if (chained !== result) Promise.resolve(chained).catch(() => {});
+  } catch {
+    // Hostile thenables are observation failures, not command failures.
+  }
+}
+
+function safelyCallCommandObserver(observer, methodName, event) {
+  try {
+    const method = observer?.[methodName];
+    if (typeof method !== 'function') return;
+    consumeObserverResult(method.call(observer, event));
+  } catch {
+    // Observer getters and synchronous failures are isolated from the command path.
+  }
+}
 
 const ERROR_CODE_MAP = {
   700010: '任务未达成完成条件',
@@ -424,6 +566,8 @@ export class GameClient {
 
     // 代理配置
     this.proxy = options.proxy || null; // { host, port, protocol }
+    this.activeEgressProxy = null;
+    this.commandObserver = options.commandObserver || schedulerObservationService;
 
     this.ws = null;
     this.seq = 0;
@@ -518,6 +662,7 @@ export class GameClient {
         }
 
         this.ws = this.createWebSocket(this.wsUrl, wsOptions);
+        this.activeEgressProxy = wsOptions.agent ? this.proxy : null;
 
         this.ws.on('open', () => {
           opened = true;
@@ -606,6 +751,7 @@ export class GameClient {
       this.ws.close();
       this.ws = null;
     }
+    this.activeEgressProxy = null;
     this.connected = false;
   }
 
@@ -616,8 +762,16 @@ export class GameClient {
 
     const message = this._buildMessage(cmd, params);
     const encoded = encode(message, getEnc('x'));
-    
-    this.ws.send(encoded);
+    const observation = this._createCommandObservation(cmd, message.seq, message.ack);
+
+    try {
+      this.ws.send(encoded);
+    } catch (error) {
+      this._settleCommandObservation(observation, 'error', error);
+      throw error;
+    }
+    this._observeCommandSent(observation);
+    this._settleCommandObservation(observation, 'success');
     return message.seq;
   }
 
@@ -643,20 +797,107 @@ export class GameClient {
 
       const seq = ++this.seq;
       const promiseKey = String(seq);
+      let observation = null;
       
       const timer = setTimeout(() => {
         console.warn(`⏱️ 请求超时: ${cmd}, seq=${seq}, pending=${this.promises.size}`);
         this.promises.delete(promiseKey);
-        reject(new Error(`请求超时: ${cmd}`));
+        const error = new Error(`请求超时: ${cmd}`);
+        reject(error);
+        this._settleCommandObservation(observation, 'timeout', error);
       }, timeout);
 
-      this.promises.set(promiseKey, { resolve, reject, timer, cmd, seq });
+      observation = this._createCommandObservation(cmd, seq, this.ack);
+      this.promises.set(promiseKey, { resolve, reject, timer, cmd, seq, observation });
 
       const message = this._buildMessage(cmd, params, seq);
       const encoded = encode(message, getEnc('x'));
       
-      this.ws.send(encoded);
+      try {
+        this.ws.send(encoded);
+      } catch (error) {
+        this._settleCommandObservation(observation, 'error', error);
+        throw error;
+      }
+      this._observeCommandSent(observation);
     });
+  }
+
+  _createCommandObservation(command, seq, ack) {
+    if (
+      this.commandObserver === schedulerObservationService
+      && !schedulerObservationService.isSchedulerObservationEnabled()
+    ) {
+      return null;
+    }
+    let egress;
+    try {
+      egress = createEgressDescriptor(this.activeEgressProxy);
+    } catch {
+      egress = { type: 'direct', key: 'direct' };
+    }
+    const normalizedEgress = normalizeEgressDescriptor(egress);
+
+    return {
+      metadata: Object.freeze({
+        ...copySchedulerObservationContext(),
+        command: normalizeObservationString(command) || 'unknown',
+        commandClass: classifyCommand(command),
+        seq,
+        ack,
+        timestamp: new Date().toISOString(),
+        egressType: normalizedEgress.type,
+        egressKey: normalizedEgress.key,
+        monotonicStartedAt: monotonicNow(),
+      }),
+      settled: false,
+    };
+  }
+
+  _commandObservationEvent(metadata) {
+    const { monotonicStartedAt: _monotonicStartedAt, ...event } = metadata;
+    return event;
+  }
+
+  _observeCommandSent(observation) {
+    const metadata = observation?.metadata;
+    if (!metadata) return;
+    safelyCallCommandObserver(
+      this.commandObserver,
+      'observeCommandSent',
+      this._commandObservationEvent(metadata),
+    );
+  }
+
+  _settleCommandObservation(observation, outcome, error = null) {
+    if (!observation || observation.settled) return;
+    observation.settled = true;
+    const metadata = observation.metadata;
+    observation.metadata = null;
+    if (!metadata) return;
+
+    const safeError = error === null ? null : createSafeErrorObservation(error);
+    let observedOutcome = outcome;
+    if (outcome === 'error') {
+      try {
+        observedOutcome = classifyCommandFailure(safeError || {});
+      } catch {
+        observedOutcome = 'error';
+      }
+    }
+
+    const event = {
+      ...this._commandObservationEvent(metadata),
+      outcome: observedOutcome,
+      latencyMs: Math.max(0, monotonicNow() - metadata.monotonicStartedAt),
+    };
+    if (safeError) event.error = safeError;
+    const code = safeError?.code;
+    if (code !== undefined) {
+      event.code = code;
+      event.errorCode = code;
+    }
+    safelyCallCommandObserver(this.commandObserver, 'observeCommandSettled', event);
   }
 
   _buildMessage(cmd, params = {}, seq = null) {
@@ -733,8 +974,10 @@ export class GameClient {
         const responseError = buildResponseError();
         if (responseError) {
           promise.reject(responseError);
+          this._settleCommandObservation(promise.observation, 'error', responseError);
         } else {
           promise.resolve(body);
+          this._settleCommandObservation(promise.observation, 'success');
         }
         return;
       }
@@ -758,8 +1001,10 @@ export class GameClient {
           const responseError = buildResponseError();
           if (responseError) {
             promise.reject(responseError);
+            this._settleCommandObservation(promise.observation, 'error', responseError);
           } else {
             promise.resolve(body);
+            this._settleCommandObservation(promise.observation, 'success');
           }
           return;
         }
@@ -807,6 +1052,7 @@ export class GameClient {
       clearTimeout(promise.timer);
       promise.reject(rejectError);
       this.promises.delete(promiseKey);
+      this._settleCommandObservation(promise.observation, 'disconnected', rejectError);
     }
   }
 
@@ -1100,6 +1346,16 @@ export class GameClient {
     const maxRefreshAttempts = Math.max(0, Number(options?.maxRefreshAttempts ?? 3) || 0);
     const allowGoldRefresh = options?.allowGoldRefresh === true;
     const fallbackSendWhenStuck = options?.fallbackSendWhenStuck !== false;
+    // Official car_refresh/car_send rate limits: fixed gap between related commands.
+    const commandDelayMs = normalizeDelayMs(options?.commandDelayMs, 1000);
+    const waitCommandGap = async () => {
+      if (commandDelayMs <= 0) return;
+      if (typeof this.__sleep === 'function') {
+        await this.__sleep(commandDelayMs);
+        return;
+      }
+      await sleep(commandDelayMs);
+    };
 
     let currentRoleId = null;
     let sortedHelpers = [];
@@ -1205,6 +1461,7 @@ export class GameClient {
         }
 
         try {
+          await waitCommandGap();
           const refreshed = await this.sendWithPromise('car_refresh', { carId: String(car.id) });
           const refreshedCar = refreshed?.car || refreshed?.body?.car || refreshed || {};
           if (refreshedCar && typeof refreshedCar === 'object') {
@@ -1249,6 +1506,7 @@ export class GameClient {
           });
           continue;
         }
+        await waitCommandGap();
         const result = await this.sendWithPromise('car_send', {
           carId: String(car.id),
           helperId: normalizeHelperId(helperAssignment.helperId || car.helperId || car.guardId || 0),
@@ -1287,6 +1545,7 @@ export class GameClient {
       maxRefreshAttempts,
       allowGoldRefresh,
       fallbackSendWhenStuck,
+      commandDelayMs,
       goldThreshold: Math.max(0, Number(options?.goldThreshold) || 0),
       recruitThreshold: Math.max(0, Number(options?.recruitThreshold) || 0),
       jadeThreshold: Math.max(0, Number(options?.jadeThreshold) || 0),

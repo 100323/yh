@@ -262,8 +262,6 @@ const taskTypeNames = {
   HANGUP_ADD_TIME: '一键加钟',
   BOTTLE_RESET: '重置罐子',
   BOTTLE_CLAIM: '领取罐子',
-  CAR_SEND: '智能发车',
-  CAR_CLAIM: '一键收车',
   BLACK_MARKET: '黑市采购',
   TREASURE_CLAIM: '珍宝阁领取',
   LEGACY_CLAIM: '残卷收取',

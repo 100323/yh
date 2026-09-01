@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import { get, all, run } from '../database/index.js';
+import { get, all, run, reserveTowerBattleSlot, releaseTowerBattleSlot } from '../database/index.js';
 import { decrypt } from '../utils/crypto.js';
 import GameClient from '../utils/gameClient.js';
 import config from '../config/index.js';
@@ -47,6 +47,12 @@ import {
 } from '../utils/studyTask.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
+import { isDisabledTaskType, filterDisabledTaskTypes } from '../utils/disabledTaskTypes.js';
+import { shouldDeferAutomaticExecution } from '../utils/saturdaySchedulerBlackout.js';
+import {
+  deferScheduledRun,
+  getSaturdaySchedulerPolicy,
+} from '../utils/saturdaySchedulerBlackoutStore.js';
 
 const scheduledBatchJobs = new Map();
 const activeConnections = new Map();
@@ -315,6 +321,29 @@ function shouldIgnoreFailure(error) {
   ].some((keyword) => message.includes(keyword));
 }
 
+function deferAutomaticBatchTaskIfNeeded(task, plannedAt = new Date()) {
+  const policy = getSaturdaySchedulerPolicy(task?.user_id);
+  if (!shouldDeferAutomaticExecution({ source: 'batch', policy, now: new Date() })) {
+    return null;
+  }
+
+  const deferredRun = deferScheduledRun({
+    userId: task.user_id,
+    source: 'batch',
+    batchTaskId: task.id,
+    plannedAt,
+  });
+  addBatchTaskLogEntry(
+    task.id,
+    null,
+    'BATCH_DEFERRED',
+    'info',
+    'Saturday scheduler blackout: automatic batch task deferred until 21:00',
+    JSON.stringify({ deferredRunId: deferredRun?.id || null }),
+  );
+  return deferredRun;
+}
+
 export async function initBatchScheduler() {
   console.log('🕐 初始化批量任务调度器...');
   
@@ -400,6 +429,10 @@ export function scheduleBatchTask(task, options = {}) {
     const nextRunAt = calculateNextRunAt(cronExpression);
     const job = cron.schedule(cronExpression, async () => {
       try {
+        const plannedAt = new Date();
+        if (deferAutomaticBatchTaskIfNeeded(task, plannedAt)) {
+          return;
+        }
         await waitForScheduledTaskStagger({
           scope: 'batch',
           taskId,
@@ -407,7 +440,10 @@ export function scheduleBatchTask(task, options = {}) {
           taskType: 'BATCH',
           cronExpression,
         });
-        await executeBatchTask(task);
+        if (deferAutomaticBatchTaskIfNeeded(task, plannedAt)) {
+          return;
+        }
+        await executeBatchTask(task, { source: 'batch' });
       } finally {
         const nextRunAt = calculateNextRunAt(cronExpression);
         const scheduled = scheduledBatchJobs.get(taskId);
@@ -477,7 +513,7 @@ export async function checkAndRunDueBatchTasks() {
   }
 }
 
-export async function executeBatchTask(task) {
+export async function executeBatchTask(task, options = {}) {
   if (runningTasks.has(task.id)) {
     console.log(`⏭️ 批量任务 ${task.name} 正在运行中，跳过`);
     return;
@@ -501,7 +537,7 @@ export async function executeBatchTask(task) {
     }
 
     const accountIds = JSON.parse(task.selected_account_ids || '[]');
-    const taskTypes = JSON.parse(task.selected_task_types || '[]');
+    const taskTypes = filterDisabledTaskTypes(JSON.parse(task.selected_task_types || '[]'));
 
     const accounts = all(
       `SELECT id, name, token_encrypted, token_iv, ws_url, server, import_method, updated_at
@@ -575,6 +611,19 @@ export async function executeBatchTask(task) {
   } finally {
     runningTasks.delete(task.id);
   }
+}
+
+export async function replayDeferredBatchTask(batchTaskId) {
+  const task = get(
+    'SELECT * FROM batch_scheduled_tasks WHERE id = ? AND enabled = 1 LIMIT 1',
+    [batchTaskId],
+  );
+  if (!task) {
+    return { ok: true, skipped: true, reason: 'batch_task_unavailable' };
+  }
+
+  await executeBatchTask(task, { source: 'batch-replay' });
+  return { ok: true };
 }
 
 async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandidates, roleId = null, wsUrl = '') {
@@ -962,6 +1011,10 @@ async function executePostTaskRewardsForAccount(account, tokenCandidates, roleId
 }
 
 async function runTaskByType(client, taskType, config, context = {}) {
+  if (isDisabledTaskType(taskType)) {
+    throw new Error(`任务已停用：${taskType}`);
+  }
+
   switch (taskType) {
     case 'SIGN_IN':
       return await executeSignIn(client);
@@ -973,13 +1026,13 @@ async function runTaskByType(client, taskType, config, context = {}) {
       return await executeArena(client, config);
     
     case 'TOWER':
-      return await executeTower(client, config);
+      return await executeTower(client, config, context);
     
     case 'BOSS_TOWER':
       return await executeBossTower(client, config);
     
     case 'WEIRD_TOWER':
-      return await executeWeirdTower(client, config);
+      return await executeWeirdTower(client, config, context);
     
     case 'LEGION_BOSS':
       return await executeLegionBoss(client, config);
@@ -1086,21 +1139,25 @@ async function executeArena(client, config) {
   return executeArenaScheduledTask(client, config);
 }
 
-async function executeTower(client, config) {
+async function executeTower(client, config, context = {}) {
   const disabledResult = getDisabledTowerTaskResult('TOWER', config);
   if (disabledResult) {
     return disabledResult;
   }
 
   return runWithTemporaryPresetTeam(client, config?.towerFormation, '批量爬塔', () =>
-    executeTowerCore(client, config)
+    executeTowerCore(client, config, context)
   );
 }
 
-async function executeTowerCore(client, config = {}) {
+async function executeTowerCore(client, config = {}, context = {}) {
   const maxFloors = normalizeTowerMaxFloors(config?.maxFloors, 10);
   const results = [];
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const sleep = context.sleep || ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+  const reserve = context.reserveTowerBattleSlot || reserveTowerBattleSlot;
+  const release = context.releaseTowerBattleSlot || releaseTowerBattleSlot;
+  const accountId = context.accountId;
+  let successCount = 0;
 
   const claimPendingTowerReward = async () => {
     let rewardFloor = 0;
@@ -1118,11 +1175,19 @@ async function executeTowerCore(client, config = {}) {
   };
   
   for (let i = 0; i < maxFloors; i++) {
+    const reserved = await reserve(accountId, 'TOWER');
+    if (!reserved) {
+      results.push({ limitReached: true, info: '今日爬塔战斗次数已达到10次' });
+      break;
+    }
+
     try {
       const result = await client.startTowerFight();
       results.push(result);
+      successCount += 1;
       await sleep(500);
     } catch (error) {
+      await release(accountId, 'TOWER');
       const message = String(error?.message || '');
       if (message.includes('已经全部通关') || message.includes('能量不足')) {
         break;
@@ -1145,8 +1210,7 @@ async function executeTowerCore(client, config = {}) {
     }
   }
 
-  const successCount = results.filter(item => !item?.error).length;
-  if (successCount === 0 && results.length > 0) {
+  if (successCount === 0 && results.some((item) => item?.error)) {
     const firstError = results.find(item => item?.error)?.error || '未知错误';
     throw new Error(`爬塔执行失败: ${firstError}`);
   }
@@ -1166,21 +1230,25 @@ async function executeBossTower(client, config) {
   }
 }
 
-async function executeWeirdTower(client, config) {
+async function executeWeirdTower(client, config, context = {}) {
   const disabledResult = getDisabledTowerTaskResult('WEIRD_TOWER', config);
   if (disabledResult) {
     return disabledResult;
   }
 
   return runWithTemporaryPresetTeam(client, config?.weirdTowerFormation, '批量怪异塔', () =>
-    executeWeirdTowerCore(client, config)
+    executeWeirdTowerCore(client, config, context)
   );
 }
 
-async function executeWeirdTowerCore(client, config = {}) {
+async function executeWeirdTowerCore(client, config = {}, context = {}) {
   const results = [];
   let successCount = 0;
   const maxFloors = normalizeTowerMaxFloors(config?.weirdTowerMaxFloors ?? config?.maxFloors, 10);
+  const sleep = context.sleep || ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+  const reserve = context.reserveTowerBattleSlot || reserveTowerBattleSlot;
+  const release = context.releaseTowerBattleSlot || releaseTowerBattleSlot;
+  const accountId = context.accountId;
   
   // 获取怪异塔信息
   let towerInfo;
@@ -1199,6 +1267,13 @@ async function executeWeirdTowerCore(client, config = {}) {
   let consecutiveFailures = 0;
   
   while (currentEnergy > 0 && count < maxFloors) {
+    const reserved = await reserve(accountId, 'WEIRD_TOWER');
+    if (!reserved) {
+      results.push({ limitReached: true, info: '今日怪异塔战斗次数已达到10次' });
+      break;
+    }
+
+    let fightCompleted = false;
     try {
       // 准备战斗
       await client.sendWithPromise('evotower_readyfight', {}, 5000);
@@ -1211,10 +1286,11 @@ async function executeWeirdTowerCore(client, config = {}) {
       
       count++;
       successCount++;
+      fightCompleted = true;
       consecutiveFailures = 0;
       results.push({ floor: count, ok: true, result: fightResult });
       
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await sleep(500);
       
       // 获取最新信息
       const newInfo = await client.sendWithPromise('evotower_getinfo', {}, 5000);
@@ -1235,7 +1311,7 @@ async function executeWeirdTowerCore(client, config = {}) {
             } catch (e) {
               // 忽略领取失败
             }
-            await new Promise(resolve => setTimeout(resolve, 200));
+            await sleep(200);
           }
         }
       }
@@ -1249,13 +1325,16 @@ async function executeWeirdTowerCore(client, config = {}) {
         } catch (e) {
           // 忽略领取失败
         }
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await sleep(500);
       }
       
       // 刷新能量
       currentEnergy = newInfo?.evoTower?.energy || 0;
       
     } catch (error) {
+      if (reserved && !fightCompleted) {
+        await release(accountId, 'WEIRD_TOWER');
+      }
       consecutiveFailures++;
       results.push({ floor: count + 1, ok: false, error: error.message });
       
@@ -1263,7 +1342,7 @@ async function executeWeirdTowerCore(client, config = {}) {
         break;
       }
       
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await sleep(1000);
     }
   }
   
@@ -1752,6 +1831,8 @@ export function getActiveBatchConnections() {
 
 export const __testing = {
   runTaskByType,
+  executeTowerCore,
+  executeWeirdTowerCore,
 };
 
 export default {
@@ -1761,7 +1842,8 @@ export default {
   executeBatchTask,
   stopBatchScheduler,
   getScheduledBatchJobs,
-  getActiveBatchConnections
+  getActiveBatchConnections,
+  __testing,
 };
 
 async function executeSkinChallenge(client, config) {

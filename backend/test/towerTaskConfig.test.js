@@ -8,7 +8,13 @@ import {
   clampHistoricalBatchTowerSettings,
   normalizeHistoricalBatchTowerSettings,
 } from '../src/routes/batchSettings.js';
-import { isTowerTaskDisabled } from '../src/utils/towerTaskConfig.js';
+import {
+  TOWER_DAILY_BATTLE_LIMIT,
+  TOWER_DAILY_CRON,
+  isHourlyCronExpression,
+  isTowerTaskDisabled,
+  normalizeTowerCronExpression,
+} from '../src/utils/towerTaskConfig.js';
 
 test('tower task defaults run at most ten floors', () => {
   assert.equal(DEFAULT_TASK_CONFIG_SEEDS.TOWER.config.maxFloors, 10);
@@ -57,4 +63,15 @@ test('historical batch settings clamp only existing tower floor fields', () => {
     towerMaxFloors: 10,
     weirdTowerMaxFloors: 0,
   });
+});
+
+test('tower tasks have a shared daily battle limit and fixed Shanghai schedule', () => {
+  assert.equal(TOWER_DAILY_BATTLE_LIMIT, 10);
+  assert.equal(TOWER_DAILY_CRON, '20 9 * * *');
+  assert.equal(isHourlyCronExpression('0 * * * *'), true);
+  assert.equal(isHourlyCronExpression('15 */3 * * *'), true);
+  assert.equal(isHourlyCronExpression('20 9 * * *'), false);
+  assert.equal(normalizeTowerCronExpression('TOWER', '0 */2 * * *'), TOWER_DAILY_CRON);
+  assert.equal(normalizeTowerCronExpression('WEIRD_TOWER', '7 12 * * *'), TOWER_DAILY_CRON);
+  assert.equal(normalizeTowerCronExpression('ARENA', '0 */2 * * *'), '0 */2 * * *');
 });

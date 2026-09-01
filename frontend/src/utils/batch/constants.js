@@ -47,13 +47,6 @@ export const createDefaultStarTempleStages = () =>
     ]),
   );
 
-export const carMinColorOptions = [
-  { label: '不限制', value: 0 },
-  { label: '橙·传说及以上', value: 4 },
-  { label: '红·神话及以上', value: 5 },
-  { label: '金·传奇', value: 6 },
-];
-
 // 任务分组定义
 export const taskGroupDefinitions = [
   { name: "daily", label: "日常", icon: "📅" },
@@ -139,30 +132,6 @@ export const taskConfigDefinitions = {
       { key: "arenaFormation", label: "竞技场阵容", type: "select", options: "formationOptions", default: 1 },
       { key: "arenaBattleCount", label: "战斗次数", type: "number", min: 1, max: 10, default: 3 },
     ],
-  },
-  batchSmartSendCar: {
-    label: "智能发车",
-    group: "daily",
-    description: "根据车辆奖励自动判断是否发车\n\n场景1：金砖阈值=5000\n 8000金砖→✅发车\n 3000金砖→❌刷新\n\n场景2：金砖=5000,招募令=5\n 不勾选\"需满足所有\":\n 3000金砖+10招募令→✅\n 8000金砖+2招募令→✅\n 3000金砖+2招募令→❌\n\n场景3：金砖=5000,招募令=5\n 勾选\"需满足所有\":\n 8000金砖+10招募令→✅\n 8000金砖+2招募令→❌\n 3000金砖+10招募令→❌",
-    defaultEnabled: true,
-    configFields: [
-      { key: "smartDepartureMinCarColor", label: "最低车品质", type: "select", options: "carMinColorOptions", default: 4 },
-      { key: "smartDepartureMaxRefreshAttempts", label: "每车最大刷新次数", type: "number", min: 0, max: 50, default: 3, description: "0表示不刷新，直接按当前车辆判断" },
-      { key: "smartDepartureAllowGoldRefresh", label: "允许金砖刷新", type: "switch", default: false },
-      { key: "smartDepartureFallbackSendWhenStuck", label: "刷不到时仍发车", type: "switch", default: true },
-      { key: "smartDepartureGoldThreshold", label: "金砖阈值", type: "number", min: 0, default: 0, description: "0表示不限制" },
-      { key: "smartDepartureRecruitThreshold", label: "招募令阈值", type: "number", min: 0, default: 0 },
-      { key: "smartDepartureJadeThreshold", label: "白玉阈值", type: "number", min: 0, default: 0 },
-      { key: "smartDepartureTicketThreshold", label: "门票阈值", type: "number", min: 0, default: 0 },
-      { key: "smartDepartureMatchAll", label: "需满足所有条件", type: "switch", default: false },
-    ],
-  },
-  batchClaimCars: {
-    label: "一键收车",
-    group: "daily",
-    description: "一键收取所有车辆",
-    defaultEnabled: true,
-    configFields: [],
   },
   store_purchase: {
     label: "黑市采购",
@@ -409,13 +378,11 @@ const defaultTaskScheduleOverrides = {
   batchMailClaim: { runTime: createDefaultRunTime(8, 0) },
   batchStudy: { runTime: createDefaultRunTime(12, 1) },
   batcharenafight: { runTime: createDefaultRunTime(12, 1) },
-  batchSmartSendCar: { scheduleType: "weekly", weekdays: [1, 2, 3], runTime: createDefaultRunTime(8, 7) },
-  batchClaimCars: { scheduleType: "weekly", weekdays: [1, 2, 3], runTime: createDefaultRunTime(15, 7) },
   store_purchase: { runTime: createDefaultRunTime(12, 1) },
   collection_claimfreereward: { runTime: createDefaultRunTime(0, 1) },
   batchLegacyClaim: { scheduleType: "interval", intervalHours: 6 },
-  climbTower: { runTime: createDefaultRunTime(12, 1) },
-  climbWeirdTower: { runTime: createDefaultRunTime(12, 1) },
+  climbTower: { runTime: createDefaultRunTime(9, 20) },
+  climbWeirdTower: { runTime: createDefaultRunTime(9, 20) },
   batchClaimFreeEnergy: { runTime: createDefaultRunTime(12, 1) },
   batchUseItems: { runTime: createDefaultRunTime(12, 1) },
   batchMergeItems: { runTime: createDefaultRunTime(12, 1) },
@@ -540,21 +507,13 @@ export const defaultBatchSettings = {
   defaultFishType: 1,
   receiverId: "",
   password: "",
-  useGoldRefreshFallback: false,
   tokenListColumns: 2,
   commandDelay: 500,
   taskDelay: 500,
   maxActive: 2,
-  carMinColor: 4,
   connectionTimeout: 10000,
   reconnectDelay: 1000,
   maxLogEntries: 1000,
-  // 智能发车阈值设置
-  smartDepartureGoldThreshold: 0,
-  smartDepartureRecruitThreshold: 0,
-  smartDepartureJadeThreshold: 0,
-  smartDepartureTicketThreshold: 0,
-  smartDepartureMatchAll: false,
 };
 
 // 默认模板

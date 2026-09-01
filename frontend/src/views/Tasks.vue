@@ -22,6 +22,18 @@
         选择账号后，可单独配置该账号的任务执行参数。每个账号的配置独立保存。
       </n-alert>
 
+      <div class="scheduler-policy-row">
+        <div>
+          <div class="scheduler-policy-title">周六自动任务避让补跑</div>
+          <div class="scheduler-policy-description">每周六 20:00-21:00 不自动登录，21:00 后补跑定时任务；手动执行不受影响。</div>
+        </div>
+        <n-switch
+          :value="saturdayBlackoutEnabled"
+          :loading="schedulerPolicySaving"
+          @update:value="updateSaturdayBlackoutPolicy"
+        />
+      </div>
+
       <div class="account-selector">
         <span>选择账号：</span>
         <n-select
@@ -116,7 +128,7 @@
                     <n-space align="center" size="small">
                       <n-select
                         :value="getTaskScheduleType(task.value)"
-                        :options="scheduleModeOptions"
+                        :options="getTaskScheduleOptions(task.value)"
                         size="small"
                         class="task-schedule-mode"
                         :disabled="taskConfigOperating"
@@ -138,8 +150,8 @@
                         :value="getTaskRunTime(task.value)"
                         format="HH:mm"
                         size="small"
-                        clearable
-                        :disabled="taskConfigOperating"
+                        :clearable="!isTowerTask(task.value)"
+                        :disabled="taskConfigOperating || isTowerTask(task.value)"
                         placeholder="默认时间"
                         @update:value="(val) => setTaskRunTime(task.value, val)"
                       />
@@ -198,6 +210,8 @@ const taskStore = useTaskStore();
 const accountStore = useAccountStore();
 
 const saving = ref(false);
+const saturdayBlackoutEnabled = ref(true);
+const schedulerPolicySaving = ref(false);
 const debugReopening = ref(false);
 const debugClaiming = ref(false);
 const dailyRunTime = ref(null);
@@ -210,6 +224,8 @@ const TASK_CONFIG_DISMISSED_STORAGE_KEY = 'allAccountsTaskConfig_legacy_dismisse
 const legacyLocalConfigs = ref({});
 const legacyImporting = ref(false);
 const dismissedLegacyAccounts = ref({});
+const TOWER_TASK_KEYS = new Set(['climbTower', 'climbWeirdTower']);
+const TOWER_DEFAULT_RUN_TIME = new Date(2000, 0, 1, 9, 20, 0, 0).getTime();
 
 const scheduleModeOptions = [
   { label: '每日固定时间', value: 'daily' },
@@ -237,8 +253,6 @@ const frontendToBackendTaskMap = {
   batchMailClaim: 'MAIL_CLAIM',
   batchStudy: 'STUDY',
   batcharenafight: 'ARENA',
-  batchSmartSendCar: 'CAR_SEND',
-  batchClaimCars: 'CAR_CLAIM',
   batchBuyGold: 'BUY_GOLD',
   batchRecruit: 'RECRUIT',
   batchFish: 'FISHING',
@@ -290,6 +304,17 @@ const normalizeTaskConfigs = (taskConfigs = {}) => {
     };
   });
 
+  TOWER_TASK_KEYS.forEach((taskKey) => {
+    if (!normalized[taskKey]) return;
+    normalized[taskKey] = {
+      ...normalized[taskKey],
+      scheduleType: 'daily',
+      runTime: TOWER_DEFAULT_RUN_TIME,
+      intervalHours: 4,
+      weekdays: [],
+    };
+  });
+
   return normalized;
 };
 
@@ -325,6 +350,39 @@ const createEmptyTaskScheduleConfig = () => ({
   runTime: null,
   weekdays: [],
 });
+
+const loadSchedulerPolicy = async () => {
+  try {
+    const result = await taskStore.fetchSchedulerPolicy();
+    if (result?.success) {
+      saturdayBlackoutEnabled.value = result.data?.saturdayBlackoutEnabled !== false;
+    }
+  } catch (error) {
+    console.error('加载自动任务策略失败:', error);
+  }
+};
+
+const updateSaturdayBlackoutPolicy = async (enabled) => {
+  if (schedulerPolicySaving.value) {
+    return;
+  }
+
+  const previousValue = saturdayBlackoutEnabled.value;
+  schedulerPolicySaving.value = true;
+  try {
+    const result = await taskStore.updateSchedulerPolicy(enabled);
+    if (!result?.success) {
+      throw new Error(result?.error || '保存自动任务策略失败');
+    }
+    saturdayBlackoutEnabled.value = result.data?.saturdayBlackoutEnabled !== false;
+    message.success('自动任务策略已保存');
+  } catch (error) {
+    saturdayBlackoutEnabled.value = previousValue;
+    message.error(error?.response?.data?.error || error?.message || '保存自动任务策略失败');
+  } finally {
+    schedulerPolicySaving.value = false;
+  }
+};
 
 const normalizeWeekdays = (weekdays = []) => {
   const allowed = new Set(weekdayOptions.map((item) => item.value));
@@ -366,6 +424,10 @@ const parseCronWeekdays = (dayField = '') => {
 };
 
 const buildCronExpressionForConfig = (taskKey, taskConfig, fallbackDailyRunTime = null) => {
+  if (TOWER_TASK_KEYS.has(taskKey)) {
+    return '20 9 * * *';
+  }
+
   const scheduleType = taskConfig?.scheduleType || 'daily';
 
   if (scheduleType === 'interval') {
@@ -454,6 +516,9 @@ const setTaskEnabled = (taskValue, enabled) => {
 };
 
 const getTaskRunTime = (taskValue) => {
+  if (TOWER_TASK_KEYS.has(taskValue)) {
+    return TOWER_DEFAULT_RUN_TIME;
+  }
   const config = currentAccountConfig.value.taskConfigs[taskValue];
   return config?.runTime || null;
 };
@@ -462,10 +527,21 @@ const setTaskRunTime = (taskValue, runTime) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
     currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
-  currentAccountConfig.value.taskConfigs[taskValue].runTime = runTime;
+  currentAccountConfig.value.taskConfigs[taskValue].runTime = TOWER_TASK_KEYS.has(taskValue)
+    ? TOWER_DEFAULT_RUN_TIME
+    : runTime;
 };
 
+const isTowerTask = (taskValue) => TOWER_TASK_KEYS.has(taskValue);
+
+const getTaskScheduleOptions = (taskValue) => (
+  isTowerTask(taskValue) ? scheduleModeOptions.filter(({ value }) => value === 'daily') : scheduleModeOptions
+);
+
 const getTaskScheduleType = (taskValue) => {
+  if (isTowerTask(taskValue)) {
+    return 'daily';
+  }
   const config = currentAccountConfig.value.taskConfigs[taskValue];
   return config?.scheduleType || 'daily';
 };
@@ -474,6 +550,13 @@ const setTaskScheduleType = (taskValue, scheduleType) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
     currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
+  if (isTowerTask(taskValue)) {
+    currentAccountConfig.value.taskConfigs[taskValue].scheduleType = 'daily';
+    currentAccountConfig.value.taskConfigs[taskValue].runTime = TOWER_DEFAULT_RUN_TIME;
+    currentAccountConfig.value.taskConfigs[taskValue].weekdays = [];
+    return;
+  }
+
   currentAccountConfig.value.taskConfigs[taskValue].scheduleType = scheduleType;
   if (scheduleType === 'interval' && !currentAccountConfig.value.taskConfigs[taskValue].intervalHours) {
     currentAccountConfig.value.taskConfigs[taskValue].intervalHours = 4;
@@ -510,6 +593,9 @@ const getTaskIntervalHours = (taskValue) => {
 };
 
 const setTaskIntervalHours = (taskValue, intervalHours) => {
+  if (isTowerTask(taskValue)) {
+    return;
+  }
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
     currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
@@ -533,7 +619,16 @@ const getGroupLabel = (groupName) => {
   return group ? group.label : '其他';
 };
 
-const parseCronToSchedule = (cronExpression) => {
+const parseCronToSchedule = (cronExpression, taskKey = '') => {
+  if (TOWER_TASK_KEYS.has(taskKey)) {
+    return {
+      scheduleType: 'daily',
+      runTime: TOWER_DEFAULT_RUN_TIME,
+      intervalHours: 4,
+      weekdays: [],
+    };
+  }
+
   if (!cronExpression) {
     return {
       scheduleType: 'daily',
@@ -621,17 +716,6 @@ const mapBackendConfigToFrontend = (taskKey, backendConfig = {}) => {
   if (taskKey === 'batchLegionBoss') {
     mapped.bossFormation = backendConfig.bossFormation ?? 2;
     mapped.bossTimes = backendConfig.bossTimes ?? 2;
-  }
-  if (taskKey === 'batchSmartSendCar') {
-    mapped.smartDepartureMinCarColor = backendConfig.minCarColor ?? 4;
-    mapped.smartDepartureMaxRefreshAttempts = backendConfig.maxRefreshAttempts ?? 3;
-    mapped.smartDepartureAllowGoldRefresh = backendConfig.allowGoldRefresh ?? false;
-    mapped.smartDepartureFallbackSendWhenStuck = backendConfig.fallbackSendWhenStuck ?? true;
-    mapped.smartDepartureGoldThreshold = backendConfig.goldThreshold ?? 0;
-    mapped.smartDepartureRecruitThreshold = backendConfig.recruitThreshold ?? 0;
-    mapped.smartDepartureJadeThreshold = backendConfig.jadeThreshold ?? 0;
-    mapped.smartDepartureTicketThreshold = backendConfig.ticketThreshold ?? 0;
-    mapped.smartDepartureMatchAll = backendConfig.matchAll ?? false;
   }
   if (taskKey === 'batchLegacyClaim' && backendConfig.interval !== undefined) {
     mapped.legacyClaimInterval = backendConfig.interval;
@@ -722,19 +806,6 @@ const mapFrontendConfigToBackend = (taskKey, taskConfig = {}) => {
     return {
       bossFormation: Number(sourceConfig.bossFormation ?? 2) || 2,
       bossTimes: Math.max(0, Number(sourceConfig.bossTimes ?? 2) || 0),
-    };
-  }
-  if (taskKey === 'batchSmartSendCar') {
-    return {
-      minCarColor: Math.max(0, Number(sourceConfig.smartDepartureMinCarColor ?? 4) || 0),
-      maxRefreshAttempts: Math.max(0, Number(sourceConfig.smartDepartureMaxRefreshAttempts ?? 3) || 0),
-      allowGoldRefresh: sourceConfig.smartDepartureAllowGoldRefresh ?? false,
-      fallbackSendWhenStuck: sourceConfig.smartDepartureFallbackSendWhenStuck ?? true,
-      goldThreshold: sourceConfig.smartDepartureGoldThreshold ?? 0,
-      recruitThreshold: sourceConfig.smartDepartureRecruitThreshold ?? 0,
-      jadeThreshold: sourceConfig.smartDepartureJadeThreshold ?? 0,
-      ticketThreshold: sourceConfig.smartDepartureTicketThreshold ?? 0,
-      matchAll: sourceConfig.smartDepartureMatchAll ?? false,
     };
   }
   if (taskKey === 'batchLegacyClaim') {
@@ -853,7 +924,7 @@ const loadAccountTaskConfigsFromBackend = async (accountId, options = {}) => {
       return;
     }
 
-    const schedule = parseCronToSchedule(item.cron_expression);
+    const schedule = parseCronToSchedule(item.cron_expression, frontendTaskKey);
     mergedTaskConfigs[frontendTaskKey] = {
       ...mergedTaskConfigs[frontendTaskKey],
       enabled: !!item.enabled,
@@ -918,11 +989,20 @@ const applyDailyTime = () => {
   }
 
   Object.keys(currentAccountConfig.value.taskConfigs).forEach((key) => {
-    if (
-      currentAccountConfig.value.taskConfigs[key].enabled &&
-      (currentAccountConfig.value.taskConfigs[key].scheduleType || 'daily') === 'daily'
-    ) {
-      currentAccountConfig.value.taskConfigs[key].runTime = dailyRunTime.value;
+    const taskConfig = currentAccountConfig.value.taskConfigs[key];
+    if (!taskConfig?.enabled) {
+      return;
+    }
+
+    if (isTowerTask(key)) {
+      taskConfig.scheduleType = 'daily';
+      taskConfig.runTime = TOWER_DEFAULT_RUN_TIME;
+      taskConfig.weekdays = [];
+      return;
+    }
+
+    if ((taskConfig.scheduleType || 'daily') === 'daily') {
+      taskConfig.runTime = dailyRunTime.value;
     }
   });
 
@@ -1240,6 +1320,7 @@ onMounted(() => {
   Promise.all([
     accountStore.fetchAccounts(),
     taskStore.fetchTaskTypes(),
+    loadSchedulerPolicy(),
   ]).then(([accountRes, taskTypesRes]) => {
     if (taskTypesRes?.success && Array.isArray(taskTypesRes.data)) {
       backendTypeDefaultCronMap.value = Object.fromEntries(
@@ -1307,6 +1388,29 @@ onMounted(() => {
   flex-wrap: wrap;
   color: var(--text-secondary);
   font-weight: 600;
+}
+
+.scheduler-policy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: rgba(42, 176, 126, 0.07);
+  border: 1px solid rgba(42, 176, 126, 0.22);
+  border-radius: 8px;
+}
+
+.scheduler-policy-title {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.scheduler-policy-description {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 
 .legacy-migration-alert {

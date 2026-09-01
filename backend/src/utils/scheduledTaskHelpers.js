@@ -336,6 +336,8 @@ export function normalizeSmartSendCarOptions(config = {}) {
     maxRefreshAttempts: normalizeNonNegativeNumber(source.maxRefreshAttempts ?? 3, 3),
     allowGoldRefresh: source.allowGoldRefresh === true,
     fallbackSendWhenStuck: source.fallbackSendWhenStuck !== false,
+    // 默认 1s 固定间隔，降低 car_send/car_refresh 被官方“操作过快”限频的概率
+    commandDelayMs: normalizeNonNegativeNumber(source.commandDelayMs ?? 1000, 1000),
     goldThreshold: normalizeNonNegativeNumber(source.goldThreshold ?? 0, 0),
     recruitThreshold: normalizeNonNegativeNumber(source.recruitThreshold ?? 0, 0),
     jadeThreshold: normalizeNonNegativeNumber(source.jadeThreshold ?? 0, 0),
@@ -789,4 +791,78 @@ export async function executeDailyTaskClaimScheduledTask(client) {
 export async function executeLegacyClaimWithAutoReopen(client) {
   const result = await client.claimLegacyScrolls();
   return { message: '残卷收取完成', data: result };
+}
+
+export async function executeDailyBossScheduledTask(client, options = {}) {
+  await client.ensureBattleVersion();
+
+  const bossId = Number(options.bossId);
+  const totalChallenges = Math.max(1, Number(options.totalChallenges ?? 5) || 0);
+  const challengeDelayMs = normalizeNonNegativeNumber(options.challengeDelayMs ?? 500);
+  const tooFastRetryDelaysMs = Array.isArray(options.tooFastRetryDelaysMs)
+    ? options.tooFastRetryDelaysMs.map((delay) => normalizeNonNegativeNumber(delay))
+    : [5000, 15000, 30000];
+
+  const results = [];
+  let successCount = 0;
+  let attempt = 0;
+  let retryAttempt = 0;
+
+  while (attempt < totalChallenges) {
+    try {
+      const result = await client.startDailyBossFight(bossId);
+      successCount += 1;
+      results.push({ round: attempt + 1, ok: true, result });
+      attempt += 1;
+      if (attempt < totalChallenges) {
+        await sleep(challengeDelayMs);
+      }
+    } catch (error) {
+      const message = normalizeErrorMessage(error);
+
+      if (message.includes('次数') || message.includes('已挑战')) {
+        results.push({ round: attempt + 1, ok: false, error: message, stop: true });
+        break;
+      }
+
+      if (isTooFastError(error)) {
+        if (retryAttempt >= tooFastRetryDelaysMs.length) {
+          results.push({ round: attempt + 1, ok: false, error: message, rateLimited: true });
+          break;
+        }
+
+        await sleep(tooFastRetryDelaysMs[retryAttempt]);
+        retryAttempt += 1;
+        continue;
+      }
+
+      results.push({ round: attempt + 1, ok: false, error: message });
+      attempt += 1;
+    }
+  }
+
+  if (successCount === 0 && !results.some((item) => item.stop === true)) {
+    throw createDetailedError('每日咸王连续限频或挑战失败', {
+      bossId,
+      successCount,
+      totalChallenges,
+      results,
+      tooFastRetryDelaysMs,
+    });
+  }
+
+  const stoppedReason = results.find((item) => item.stop === true)?.error;
+  const alreadyChallenged = /(?:已经|已)挑战/.test(stoppedReason || '');
+  return {
+    message: stoppedReason
+      ? (alreadyChallenged ? '每日咸王已挑战，无需重复执行' : '每日咸王今日挑战次数已用完')
+      : `每日咸王挑战完成 (${successCount}/${totalChallenges}次)`,
+    data: {
+      bossId,
+      results,
+      successCount,
+      totalChallenges,
+      tooFastRetryDelaysMs,
+    },
+  };
 }

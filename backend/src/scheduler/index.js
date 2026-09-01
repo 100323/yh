@@ -1,6 +1,7 @@
 import cron from 'node-cron';
 import {
   getEnabledTasks,
+  disableRetiredTaskTypes,
   updateTaskRunTime,
   updateTaskRunTimesBatch,
   markTaskRunTime,
@@ -8,8 +9,9 @@ import {
   ensureDefaultTaskConfigsForAllAccounts,
   rebalanceDefaultTaskCronExpressions,
   clampHistoricalTowerTaskConfigs,
+  migrateHistoricalTowerTaskCrons,
 } from '../routes/tasks.js';
-import { get, all } from '../database/index.js';
+import { get, all, reserveTowerBattleSlot, releaseTowerBattleSlot } from '../database/index.js';
 import { decrypt } from '../utils/crypto.js';
 import GameClient from '../utils/gameClient.js';
 import config from '../config/index.js';
@@ -23,6 +25,7 @@ import {
   claimDailyPointWithRetry,
   didDailyTaskClaimConfirmReward,
   executeArenaScheduledTask,
+  executeDailyBossScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
   executeLegacyClaimWithAutoReopen,
@@ -58,6 +61,17 @@ import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
+import { isDisabledTaskType } from '../utils/disabledTaskTypes.js';
+import { shouldDeferAutomaticExecution } from '../utils/saturdaySchedulerBlackout.js';
+import {
+  deferScheduledRun,
+  getSaturdaySchedulerPolicy,
+  claimDeferredRun,
+  completeDeferredRun,
+  listReplayableDeferredRuns,
+  releaseDeferredRun,
+} from '../utils/saturdaySchedulerBlackoutStore.js';
+import { replayDeferredBatchTask } from '../batchScheduler/index.js';
 
 const activeConnections = new Map();
 const scheduledJobs = new Map();
@@ -79,6 +93,7 @@ async function resolveAccountExecutionLane(accountName) {
 
 let schedulerRefreshJob = null;
 let dailyCatchupJob = null;
+let saturdayBlackoutReplayJob = null;
 const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
 const DAILY_REWARD_RETRY_DELAY_MS = 30000;
 const DAILY_REWARD_MAX_RETRIES = 3;
@@ -552,7 +567,35 @@ function parseTaskConfig(task) {
   return JSON.parse(task.config_json);
 }
 
+function deferAutomaticTaskIfNeeded(task, source, plannedAt = new Date()) {
+  const policy = getSaturdaySchedulerPolicy(task?.user_id);
+  if (!shouldDeferAutomaticExecution({ source, policy, now: new Date() })) {
+    return null;
+  }
+
+  const deferredRun = deferScheduledRun({
+    userId: task.user_id,
+    source,
+    taskConfigId: task.id,
+    accountId: task.account_id,
+    taskType: task.task_type,
+    plannedAt,
+  });
+
+  addTaskLog(
+    task.account_id,
+    task.task_type,
+    'info',
+    'Saturday scheduler blackout: automatic task deferred until 21:00',
+    JSON.stringify({ deferredRunId: deferredRun?.id || null, source }),
+  );
+  return deferredRun;
+}
+
 function buildTaskConnectionContext(task) {
+  if (isDisabledTaskType(task?.task_type)) {
+    throw new Error(`任务已停用：${task.task_type}`);
+  }
   const accountId = getTaskAccountId(task);
   const accountName = getTaskAccountName(task);
   const rawToken = task?.token || decrypt(task?.token_encrypted, task?.token_iv);
@@ -778,6 +821,36 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
       );
       await ensureTaskUserAvailable(batchSeedTask);
 
+      const deferredRuns = new Map();
+      for (const item of batchItems) {
+        const task = mergeTaskWithLatestAccountSnapshot(
+          item.task,
+          getLatestScheduledAccountSnapshot(accountId),
+        );
+        const deferredRun = deferAutomaticTaskIfNeeded(
+          task,
+          item.source || context.source || 'scheduler',
+          item.plannedAt || new Date(),
+        );
+        if (deferredRun) {
+          deferredRuns.set(item.key, deferredRun);
+        }
+      }
+
+      if (deferredRuns.size > 0) {
+        for (const item of batchItems) {
+          resolveScheduledTaskBatchWaiters(item, {
+            ok: true,
+            deferred: true,
+            task: item.task,
+            deferredRun: deferredRuns.get(item.key) || null,
+            client: null,
+          });
+          processedItemCount += 1;
+        }
+        return;
+      }
+
       if (batchItems.every((item) => {
         const latestTask = mergeTaskWithLatestAccountSnapshot(
           item.task,
@@ -852,7 +925,7 @@ async function executeAccountTaskBatch(batchItems, context = {}) {
           getLatestScheduledAccountSnapshot(accountId)
         );
         const outcome = await executeScheduledTaskWithClient(latestTask, {
-          source: context.source || 'scheduler',
+          source: item.source || context.source || 'scheduler',
           ensureClient: ensureBatchClient,
           reconnect: async () => await reconnectBatchClient(latestTask.task_type),
           connectionContext,
@@ -937,8 +1010,20 @@ async function flushPendingAccountTaskBatch(accountId) {
   }
 }
 
-function enqueueAccountTaskBatch(task, options = {}) {
+async function enqueueAccountTaskBatch(task, options = {}) {
   const source = options.source || 'scheduler';
+  const plannedAt = options.now instanceof Date ? options.now : new Date();
+  const deferredRun = deferAutomaticTaskIfNeeded(task, source, plannedAt);
+  if (deferredRun) {
+    return {
+      ok: true,
+      deferred: true,
+      task,
+      deferredRun,
+      client: null,
+    };
+  }
+
   const entry = ensurePendingAccountTaskBatch(task, source);
   const batchItemKey = getScheduledTaskBatchItemKey(task);
 
@@ -946,6 +1031,8 @@ function enqueueAccountTaskBatch(task, options = {}) {
     entry.items.set(batchItemKey, {
       key: batchItemKey,
       task: { ...task },
+      source,
+      plannedAt,
       order: entry.sequence++,
       waiters: [],
     });
@@ -955,6 +1042,8 @@ function enqueueAccountTaskBatch(task, options = {}) {
       ...existingItem.task,
       ...task,
     };
+    existingItem.source = source;
+    existingItem.plannedAt = plannedAt;
   }
 
   const item = entry.items.get(batchItemKey);
@@ -965,7 +1054,7 @@ function enqueueAccountTaskBatch(task, options = {}) {
   if (!entry.timer) {
     const delayMs = options.immediate === true
       ? 0
-      : getAccountBatchDelayMs(task, source, options.now instanceof Date ? options.now : new Date());
+      : getAccountBatchDelayMs(task, source, plannedAt);
 
     console.log('📥 定时任务已加入账号批次队列', {
       accountId: entry.accountId,
@@ -1105,6 +1194,81 @@ export async function runDailyTaskCatchup(options = {}) {
   };
 }
 
+export async function replaySaturdayBlackoutDeferredRuns(now = new Date()) {
+  const deferredRuns = listReplayableDeferredRuns(now);
+  if (deferredRuns.length === 0) {
+    return { total: 0, completed: 0, released: 0 };
+  }
+
+  const enabledTaskById = new Map(getEnabledTasks().map((task) => [Number(task.id), task]));
+  const normalRunsByAccount = new Map();
+  const batchRuns = [];
+
+  for (const deferredRun of deferredRuns) {
+    if (deferredRun.source === 'batch') {
+      batchRuns.push(deferredRun);
+      continue;
+    }
+
+    const accountId = Number(deferredRun.account_id || 0);
+    if (!normalRunsByAccount.has(accountId)) {
+      normalRunsByAccount.set(accountId, []);
+    }
+    normalRunsByAccount.get(accountId).push(deferredRun);
+  }
+
+  let completed = 0;
+  let released = 0;
+  const replayNormalRuns = async (runs) => {
+    for (const deferredRun of runs) {
+      if (!claimDeferredRun(deferredRun.id, now)) {
+        continue;
+      }
+      try {
+        const task = enabledTaskById.get(Number(deferredRun.task_config_id));
+        if (!task) {
+          completeDeferredRun(deferredRun.id);
+          completed += 1;
+          continue;
+        }
+        const outcome = deferredRun.source === 'scheduler-catchup'
+          ? await runCatchupTask(task)
+          : await enqueueAccountTaskBatch(task, {
+              source: 'scheduler-replay',
+              immediate: true,
+              now: new Date(deferredRun.planned_at),
+            });
+        if (outcome?.ok === false) {
+          throw new Error(outcome.error || 'Deferred task replay failed');
+        }
+        completeDeferredRun(deferredRun.id);
+        completed += 1;
+      } catch (error) {
+        releaseDeferredRun(deferredRun.id, error);
+        released += 1;
+      }
+    }
+  };
+
+  await Promise.all(Array.from(normalRunsByAccount.values()).map(replayNormalRuns));
+
+  for (const deferredRun of batchRuns) {
+    if (!claimDeferredRun(deferredRun.id, now)) {
+      continue;
+    }
+    try {
+      await replayDeferredBatchTask(deferredRun.batch_task_id);
+      completeDeferredRun(deferredRun.id);
+      completed += 1;
+    } catch (error) {
+      releaseDeferredRun(deferredRun.id, error);
+      released += 1;
+    }
+  }
+
+  return { total: deferredRuns.length, completed, released };
+}
+
 function discardInactiveClient(accountId, accountName, client, reason) {
   console.warn('🧹 丢弃不可复用的定时任务连接', {
     accountId,
@@ -1240,6 +1404,11 @@ async function recruitWithReconnect(client, recruitType, mode, maxReconnectRetri
 export async function initScheduler() {
   console.log('🕐 初始化定时任务调度器...');
 
+  const retiredTaskResult = await disableRetiredTaskTypes();
+  if (retiredTaskResult.disabledTaskConfigs > 0 || retiredTaskResult.cleanedBatchTasks > 0) {
+    console.log('🚫 已停用发车相关历史任务配置', retiredTaskResult);
+  }
+
   const seedResult = await ensureDefaultTaskConfigsForAllAccounts();
   if (seedResult.created > 0) {
     console.log('🧩 已为现有账号补齐默认定时任务配置', {
@@ -1269,6 +1438,11 @@ export async function initScheduler() {
       updated: towerConfigClampResult.updated,
       details: towerConfigClampResult.details,
     });
+  }
+
+  const towerCronMigrationResult = await migrateHistoricalTowerTaskCrons();
+  if (towerCronMigrationResult.updated > 0) {
+    console.log('已将历史每小时爬塔任务强制迁移到每天09:20', towerCronMigrationResult);
   }
   
   const tasks = getEnabledTasks();
@@ -1325,6 +1499,18 @@ export async function initScheduler() {
     timezone: config.cron.timezone,
   });
 
+  if (saturdayBlackoutReplayJob) {
+    saturdayBlackoutReplayJob.stop();
+    saturdayBlackoutReplayJob = null;
+  }
+  saturdayBlackoutReplayJob = cron.schedule('0 21 * * 6', async () => {
+    await replaySaturdayBlackoutDeferredRuns();
+  }, {
+    timezone: config.cron.timezone,
+  });
+
+  await replaySaturdayBlackoutDeferredRuns();
+
   console.log('✅ 定时任务调度器初始化完成');
 }
 
@@ -1342,6 +1528,10 @@ export function scheduleTask(task, options = {}) {
   }
 
   if (!task.enabled) {
+    return { scheduled: false, nextRunAt: null };
+  }
+
+  if (isDisabledTaskType(task.task_type)) {
     return { scheduled: false, nextRunAt: null };
   }
 
@@ -1419,6 +1609,10 @@ export async function executeTask(task) {
 
   if (!accountId) {
     throw new Error('缺少账号ID，无法执行任务');
+  }
+
+  if (isDisabledTaskType(task?.task_type)) {
+    throw new Error(`任务已停用：${task.task_type}`);
   }
 
   const lane = await resolveAccountExecutionLane(accountName);
@@ -2277,6 +2471,10 @@ async function ensureConnectedClient(accountId, accountName, tokenCandidates, ro
 }
 
 async function runTaskByType(client, taskType, config, context = {}) {
+  if (isDisabledTaskType(taskType)) {
+    throw new Error(`任务已停用：${taskType}`);
+  }
+
   switch (taskType) {
     case 'SIGN_IN':
       return await executeSignIn(client);
@@ -2288,13 +2486,13 @@ async function runTaskByType(client, taskType, config, context = {}) {
       return await executeArena(client, config);
     
     case 'TOWER':
-      return await executeTower(client, config);
+      return await executeTower(client, config, context);
     
     case 'BOSS_TOWER':
       return await executeBossTower(client, config);
     
     case 'WEIRD_TOWER':
-      return await executeWeirdTower(client, config);
+      return await executeWeirdTower(client, config, context);
 
     case 'WEIRD_TOWER_FREE_ITEM':
       return await executeWeirdTowerFreeItem(client, config);
@@ -2431,21 +2629,25 @@ async function executeArena(client, config) {
   return executeArenaScheduledTask(client, config);
 }
 
-async function executeTower(client, config) {
+async function executeTower(client, config, context = {}) {
   const disabledResult = getDisabledTowerTaskResult('TOWER', config);
   if (disabledResult) {
     return disabledResult;
   }
 
   return runWithTemporaryPresetTeam(client, config?.towerFormation, '爬塔', () =>
-    executeTowerCore(client, config)
+    executeTowerCore(client, config, context)
   );
 }
 
-async function executeTowerCore(client, config = {}) {
+async function executeTowerCore(client, config = {}, context = {}) {
   const maxFloors = normalizeTowerMaxFloors(config?.maxFloors, 10);
   const results = [];
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const sleep = context.sleep || ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+  const reserve = context.reserveTowerBattleSlot || reserveTowerBattleSlot;
+  const release = context.releaseTowerBattleSlot || releaseTowerBattleSlot;
+  const accountId = context.accountId;
+  let successCount = 0;
 
   await client.ensureBattleVersion();
 
@@ -2465,11 +2667,19 @@ async function executeTowerCore(client, config = {}) {
   };
   
   for (let i = 0; i < maxFloors; i++) {
+    const reserved = await reserve(accountId, 'TOWER');
+    if (!reserved) {
+      results.push({ limitReached: true, info: '今日爬塔战斗次数已达到10次' });
+      break;
+    }
+
     try {
       const result = await client.startTowerFight();
       results.push(result);
+      successCount += 1;
       await sleep(500);
     } catch (error) {
+      await release(accountId, 'TOWER');
       const message = String(error?.message || '');
       if (message.includes('已经全部通关') || message.includes('能量不足')) {
         break;
@@ -2492,8 +2702,7 @@ async function executeTowerCore(client, config = {}) {
     }
   }
 
-  const successCount = results.filter(item => !item?.error).length;
-  if (successCount === 0 && results.length > 0) {
+  if (successCount === 0 && results.some((item) => item?.error)) {
     const firstError = results.find(item => item?.error)?.error || '未知错误';
     throw new Error(`爬塔执行失败: ${firstError}`);
   }
@@ -2514,21 +2723,25 @@ async function executeBossTower(client, config) {
   }
 }
 
-async function executeWeirdTower(client, config) {
+async function executeWeirdTower(client, config, context = {}) {
   const disabledResult = getDisabledTowerTaskResult('WEIRD_TOWER', config);
   if (disabledResult) {
     return disabledResult;
   }
 
   return runWithTemporaryPresetTeam(client, config?.weirdTowerFormation, '怪异塔', () =>
-    executeWeirdTowerCore(client, config)
+    executeWeirdTowerCore(client, config, context)
   );
 }
 
-async function executeWeirdTowerCore(client, config = {}) {
+async function executeWeirdTowerCore(client, config = {}, context = {}) {
   const results = [];
   let successCount = 0;
   const maxFloors = normalizeTowerMaxFloors(config?.weirdTowerMaxFloors ?? config?.maxFloors, 10);
+  const sleep = context.sleep || ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+  const reserve = context.reserveTowerBattleSlot || reserveTowerBattleSlot;
+  const release = context.releaseTowerBattleSlot || releaseTowerBattleSlot;
+  const accountId = context.accountId;
   
   // 获取怪异塔信息
   let towerInfo;
@@ -2547,6 +2760,13 @@ async function executeWeirdTowerCore(client, config = {}) {
   let consecutiveFailures = 0;
   
   while (currentEnergy > 0 && count < maxFloors) {
+    const reserved = await reserve(accountId, 'WEIRD_TOWER');
+    if (!reserved) {
+      results.push({ limitReached: true, info: '今日怪异塔战斗次数已达到10次' });
+      break;
+    }
+
+    let fightCompleted = false;
     try {
       // 准备战斗
       await client.sendWithPromise('evotower_readyfight', {}, 5000);
@@ -2559,10 +2779,11 @@ async function executeWeirdTowerCore(client, config = {}) {
       
       count++;
       successCount++;
+      fightCompleted = true;
       consecutiveFailures = 0;
       results.push({ floor: count, ok: true, result: fightResult });
       
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await sleep(500);
       
       // 获取最新信息
       const newInfo = await client.sendWithPromise('evotower_getinfo', {}, 5000);
@@ -2583,7 +2804,7 @@ async function executeWeirdTowerCore(client, config = {}) {
             } catch (e) {
               // 忽略领取失败
             }
-            await new Promise(resolve => setTimeout(resolve, 200));
+            await sleep(200);
           }
         }
       }
@@ -2597,13 +2818,16 @@ async function executeWeirdTowerCore(client, config = {}) {
         } catch (e) {
           // 忽略领取失败
         }
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await sleep(500);
       }
       
       // 刷新能量
       currentEnergy = newInfo?.evoTower?.energy || 0;
       
     } catch (error) {
+      if (reserved && !fightCompleted) {
+        await release(accountId, 'WEIRD_TOWER');
+      }
       consecutiveFailures++;
       results.push({ floor: count + 1, ok: false, error: error.message });
       
@@ -2611,7 +2835,7 @@ async function executeWeirdTowerCore(client, config = {}) {
         break;
       }
       
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await sleep(1000);
     }
   }
   
@@ -3248,31 +3472,9 @@ function getTodayBossId() {
 }
 
 async function executeDailyBoss(client, config) {
-  await client.ensureBattleVersion();
-  const todayBossId = getTodayBossId();
-  const results = [];
-  let successCount = 0;
-  const maxAttempts = 5;
-  
-  for (let i = 0; i < maxAttempts; i++) {
-    try {
-      const result = await client.startDailyBossFight(todayBossId);
-      results.push({ round: i + 1, ok: true, result });
-      successCount++;
-      await new Promise((resolve) => setTimeout(resolve, 500));
-    } catch (error) {
-      if (error.message.includes('次数') || error.message.includes('已挑战')) {
-        results.push({ round: i + 1, ok: false, error: error.message, stop: true });
-        break;
-      }
-      results.push({ round: i + 1, ok: false, error: error.message });
-    }
-  }
-  
-  return { 
-    message: `每日咸王挑战完成 (${successCount}/${results.length}次)`, 
-    data: { results, successCount, bossId: todayBossId } 
-  };
+  return executeDailyBossScheduledTask(client, {
+    bossId: getTodayBossId(),
+  });
 }
 
 async function executeDream(client, config) {
@@ -3569,6 +3771,10 @@ export function stopScheduler() {
     dailyCatchupJob.stop();
     dailyCatchupJob = null;
   }
+  if (saturdayBlackoutReplayJob) {
+    saturdayBlackoutReplayJob.stop();
+    saturdayBlackoutReplayJob = null;
+  }
 
   for (const [, { jobs = [] }] of scheduledJobs) {
     jobs.forEach((job) => job.stop());
@@ -3607,12 +3813,20 @@ export function getScheduledJobs() {
   return scheduledJobs;
 }
 
+export const __testing = {
+  runTaskByType,
+  executeTowerCore,
+  executeWeirdTowerCore,
+};
+
 export default {
   initScheduler,
   scheduleTask,
   executeTask,
   runDailyTaskCatchup,
+  replaySaturdayBlackoutDeferredRuns,
   stopScheduler,
   getActiveConnections,
-  getScheduledJobs
+  getScheduledJobs,
+  __testing,
 };

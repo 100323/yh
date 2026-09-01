@@ -1,5 +1,12 @@
 import { getTowerActId } from "../towerActId.js";
-import { isTowerTaskDisabled, normalizeTowerMaxFloors } from "./towerConfig.js";
+import {
+  getEffectiveTowerBattleLimit,
+  getTowerBattleUsage,
+  isTowerTaskDisabled,
+  normalizeTowerMaxFloors,
+  reserveTowerBattleSlot,
+  releaseTowerBattleSlot,
+} from "./towerConfig.js";
 
 /**
  * 爬塔类任务
@@ -28,7 +35,10 @@ export function createTasksTower(deps) {
     currentRunningTokenId,
     currentSettings,
     loadSettings,
+    towerBattleUsageStorage,
   } = deps;
+
+  const usageOptions = towerBattleUsageStorage ? { storage: towerBattleUsageStorage } : {};
 
   /**
    * 爬塔
@@ -122,10 +132,22 @@ export function createTasksTower(deps) {
         });
 
         let count = 0;
-        const maxClimb = normalizeTowerMaxFloors(tokenSettings.towerMaxFloors, 10);
+        const configuredMaxClimb = normalizeTowerMaxFloors(tokenSettings.towerMaxFloors, 10);
+        const dailyUsage = getTowerBattleUsage(tokenId, "TOWER", usageOptions);
+        const maxClimb = getEffectiveTowerBattleLimit(configuredMaxClimb, 10 - dailyUsage);
         let consecutiveFailures = 0;
 
         while (energy > 0 && count < maxClimb && !shouldStop.value) {
+          const reserved = reserveTowerBattleSlot(tokenId, "TOWER", usageOptions);
+          if (!reserved) {
+            addLog({
+              time: new Date().toLocaleTimeString(),
+              message: `${token.name} 今日爬塔战斗次数已达到10次，停止任务`,
+              type: "warning",
+            });
+            break;
+          }
+          let fightCompleted = false;
           try {
             await tokenStore.sendMessageWithPromise(
               tokenId,
@@ -134,6 +156,7 @@ export function createTasksTower(deps) {
               5000,
             );
             count++;
+            fightCompleted = true;
             consecutiveFailures = 0;
             addLog({
               time: new Date().toLocaleTimeString(),
@@ -166,6 +189,9 @@ export function createTasksTower(deps) {
                }
             }
           } catch (err) {
+            if (!fightCompleted) {
+              releaseTowerBattleSlot(tokenId, "TOWER", usageOptions);
+            }
             if (err.message && err.message.includes("200400")) {
               addLog({
                 time: new Date().toLocaleTimeString(),
@@ -384,10 +410,22 @@ export function createTasksTower(deps) {
         });
 
         let count = 0;
-        const maxClimb = normalizeTowerMaxFloors(tokenSettings.weirdTowerMaxFloors, 10);
+        const configuredMaxClimb = normalizeTowerMaxFloors(tokenSettings.weirdTowerMaxFloors, 10);
+        const dailyUsage = getTowerBattleUsage(tokenId, "WEIRD_TOWER", usageOptions);
+        const maxClimb = getEffectiveTowerBattleLimit(configuredMaxClimb, 10 - dailyUsage);
         let consecutiveFailures = 0;
 
         while (currentEnergy > 0 && count < maxClimb && !shouldStop.value) {
+          const reserved = reserveTowerBattleSlot(tokenId, "WEIRD_TOWER", usageOptions);
+          if (!reserved) {
+            addLog({
+              time: new Date().toLocaleTimeString(),
+              message: `${token.name} 今日怪异塔战斗次数已达到10次，停止任务`,
+              type: "warning",
+            });
+            break;
+          }
+          let fightCompleted = false;
           try {
             await tokenStore.sendMessageWithPromise(
               tokenId,
@@ -407,6 +445,7 @@ export function createTasksTower(deps) {
             );
 
             count++;
+            fightCompleted = true;
             consecutiveFailures = 0;
             addLog({
               time: new Date().toLocaleTimeString(),
@@ -488,6 +527,9 @@ export function createTasksTower(deps) {
               // 忽略刷新失败
             }
           } catch (err) {
+            if (!fightCompleted) {
+              releaseTowerBattleSlot(tokenId, "WEIRD_TOWER", usageOptions);
+            }
             consecutiveFailures++;
             addLog({
               time: new Date().toLocaleTimeString(),
