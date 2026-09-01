@@ -1459,10 +1459,6 @@ function normalizeTaskLogDetails(status, details) {
     return null;
   }
 
-  if (status === 'success') {
-    return null;
-  }
-
   const raw = typeof details === 'string' ? details : JSON.stringify(details);
   if (!raw) {
     return null;
@@ -1486,5 +1482,9 @@ export function addTaskLog(accountId, taskType, status, message, details = null)
   cleanupTaskLogs(undefined, accountId);
   return info;
 }
+
+export const __testing = {
+  normalizeTaskLogDetails,
+};
 
 export default router;

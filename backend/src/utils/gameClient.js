@@ -2071,16 +2071,23 @@ export class GameClient {
         const result = await sendSweepWithRetry(genieId);
         sweepResults.push({ genieId, name: genieNames[genieId], success: true, result });
       } catch (error) {
-        if (!isGenieSweepSkippableError(error)) {
-          throw error;
+        if (isGenieSweepSkippableError(error)) {
+          sweepResults.push({
+            genieId,
+            name: genieNames[genieId],
+            skipped: true,
+            reason: describeGenieError(error, '扫荡条件不满足'),
+            code: getErrorCode(error) || undefined,
+          });
+        } else {
+          sweepResults.push({
+            genieId,
+            name: genieNames[genieId],
+            success: false,
+            error: describeGenieError(error, '扫荡请求失败'),
+            code: getErrorCode(error) || undefined,
+          });
         }
-        sweepResults.push({
-          genieId,
-          name: genieNames[genieId],
-          skipped: true,
-          reason: describeGenieError(error, '扫荡条件不满足'),
-          code: getErrorCode(error) || undefined,
-        });
       }
       await sleep(sweepDelayMs);
     }
@@ -2099,7 +2106,13 @@ export class GameClient {
           });
           break;
         }
-        throw error;
+        ticketResults.push({
+          index: index + 1,
+          success: false,
+          error: describeGenieError(error, '领取扫荡券失败'),
+          code: getErrorCode(error) || undefined,
+        });
+        break;
       }
       await sleep(ticketDelayMs);
     }
@@ -2107,7 +2120,9 @@ export class GameClient {
     const sweptCount = sweepResults.filter((item) => item.success).length;
     const claimedTickets = ticketResults.filter((item) => item.success).length;
 
-    if (sweptCount === 0 && claimedTickets === 0) {
+    const hasFailedStage = sweepResults.some((item) => item?.success === false)
+      || ticketResults.some((item) => item?.success === false);
+    if (sweptCount === 0 && claimedTickets === 0 && !hasFailedStage) {
       return {
         skipped: true,
         reason: '四国已扫荡且今日扫荡券已领完',

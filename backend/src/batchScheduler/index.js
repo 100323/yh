@@ -47,6 +47,7 @@ import {
 } from '../utils/studyTask.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
+import { createTaskCompletionLogDetails, getTaskCompletionState } from '../utils/taskCompletion.js';
 import { isDisabledTaskType, filterDisabledTaskTypes } from '../utils/disabledTaskTypes.js';
 import { shouldDeferAutomaticExecution } from '../utils/saturdaySchedulerBlackout.js';
 import {
@@ -583,7 +584,7 @@ export async function executeBatchTask(task, options = {}) {
               taskType,
               shouldIgnoreFailure(error) ? 'ignored' : 'error',
               error.message,
-              error?.details ? JSON.stringify(error.details) : null
+              error?.details ? createTaskCompletionLogDetails(taskType, error.details) : null
             );
           }
         }
@@ -636,7 +637,7 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
       taskType,
       'success',
       disabledTowerResult.message,
-      JSON.stringify(disabledTowerResult.data || {}),
+      createTaskCompletionLogDetails(taskType, disabledTowerResult.data || {}),
     );
     return disabledTowerResult;
   }
@@ -666,7 +667,14 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
   const result = execution.result;
   await claimDailyPointRewardsByTask(client, taskType, taskConfig);
   
-  addBatchTaskLogEntry(batchTaskId, account.id, taskType, 'success', result.message || '执行成功', JSON.stringify(result.data || {}));
+  addBatchTaskLogEntry(
+    batchTaskId,
+    account.id,
+    taskType,
+    'success',
+    result.message || '执行成功',
+    createTaskCompletionLogDetails(taskType, result.data || {}),
+  );
   
   return result;
 }
@@ -1507,10 +1515,20 @@ async function executeBuyGold(client, config) {
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
   const successCount = results.filter((x) => x.ok).length;
-  if (successCount === 0 && results.length > 0) {
-    throw new Error(results[0].error || '点金执行失败');
+  const completion = getTaskCompletionState('BUY_GOLD', { buyNum, results, successCount });
+  const data = {
+    buyNum,
+    results,
+    successCount,
+    remainingCount: completion.remainingCount,
+    completion,
+  };
+  if (successCount === 0 && results.length > 0 && !completion.complete) {
+    const error = new Error(results[0].error || '点金执行失败');
+    error.details = data;
+    throw error;
   }
-  return { message: `点金完成 (${successCount}/${results.length})`, data: { buyNum, results, successCount } };
+  return { message: `点金完成 (${successCount}/${buyNum})`, data };
 }
 
 async function executeFishing(client, config) {
@@ -1786,8 +1804,12 @@ async function executeBoxOpen(client, config) {
 
 async function executeGenieSweep(client, config) {
   const result = await client.genieDailySweep(buildGenieSweepTaskOptions(config));
+  const data = {
+    ...result,
+    completion: getTaskCompletionState('GENIE_SWEEP', result),
+  };
   if (result?.skipped) {
-    return { message: `灯神扫荡跳过: ${result.reason}`, data: result };
+    return { message: `灯神扫荡跳过: ${result.reason}`, data };
   }
 
   const sweptNames = (result?.sweepResults || [])
@@ -1796,8 +1818,8 @@ async function executeGenieSweep(client, config) {
     .join('、');
   const sweptSummary = sweptNames || '无';
   return {
-    message: `灯神扫荡完成 (扫荡:${sweptSummary}, 领取扫荡券:${result?.claimedTickets || 0}次)`,
-    data: result,
+    message: `灯神扫荡${data.completion.complete ? '完成' : '部分完成'} (扫荡:${sweptSummary}, 领取扫荡券:${result?.claimedTickets || 0}次)`,
+    data,
   };
 }
 

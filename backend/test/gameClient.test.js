@@ -184,6 +184,44 @@ test('genieDailySweep retries transient too-fast sweep failures', async () => {
   assert.equal(result.sweepResults[0].success, true);
 });
 
+test('genieDailySweep records a transient kingdom failure and preserves other results for catchup', async () => {
+  const client = new GameClient('dummy-token');
+  const sweepCalls = [];
+
+  client.getRoleInfo = async () => ({ role: { statisticsTime: {} } });
+  client.sendWithPromise = async (cmd, params) => {
+    if (cmd === 'genie_sweep') {
+      sweepCalls.push(params.genieId);
+      if (params.genieId === 2) {
+        throw new Error('请求超时');
+      }
+      return { ok: true, genieId: params.genieId };
+    }
+
+    if (cmd === 'genie_buysweep') {
+      const error = new Error('今日扫荡券已领完');
+      error.code = 3300050;
+      throw error;
+    }
+
+    throw new Error(`unexpected command: ${cmd}`);
+  };
+
+  const result = await client.genieDailySweep({
+    commandDelayMs: 0,
+    sweepDelayMs: 0,
+    ticketDelayMs: 0,
+    maxCommandRetries: 0,
+    commandThrottleEnabled: false,
+  });
+
+  assert.deepEqual(sweepCalls, [1, 2, 3, 4]);
+  assert.equal(result.sweepResults[1].success, false);
+  assert.equal(result.sweepResults[1].error, '请求超时');
+  assert.equal(result.sweepResults[2].success, true);
+  assert.equal(result.ticketResults[0].skipped, true);
+});
+
 test('buildGenieSweepTaskOptions slows sweep commands more than ticket claims', () => {
   const options = buildGenieSweepTaskOptions({ dryRun: true });
 

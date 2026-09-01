@@ -61,6 +61,12 @@ import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
+import {
+  createTaskCompletionLogDetails,
+  getTaskCompletionState,
+  parseTaskDetails,
+  shouldRetryTaskCompletion,
+} from '../utils/taskCompletion.js';
 import { isDisabledTaskType } from '../utils/disabledTaskTypes.js';
 import { shouldDeferAutomaticExecution } from '../utils/saturdaySchedulerBlackout.js';
 import {
@@ -127,7 +133,7 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
   DAILY_TASK_CLAIM: ['30 23 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
-const DAILY_CATCHUP_CRON = '15 19 * * *';
+const DAILY_CATCHUP_CRON = '*/15 * * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -321,7 +327,7 @@ function getTodayTaskLogSnapshots(tasks = []) {
   });
 
   const rows = all(
-    `SELECT account_id, task_type, status, message, created_at,
+    `SELECT account_id, task_type, status, message, details, created_at,
             datetime(created_at, '+8 hours') AS local_created_at
        FROM task_logs
       WHERE datetime(created_at, '+8 hours') >= date('now', '+8 hours')
@@ -387,15 +393,36 @@ function getLatestDueSlotForToday(task, now = new Date()) {
   return latestSlot;
 }
 
-function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR, now = new Date()) {
-  const todayMarkerSnapshots = getTodayTaskExecutionMarkerSnapshots();
+function buildCatchupTask(task, metadata = {}) {
+  const catchupTask = {
+    ...task,
+    ...metadata,
+  };
+  const completion = metadata.catchupCompletion;
+  const remainingCount = Math.max(0, Math.floor(Number(completion?.remainingCount) || 0));
+
+  if (task?.task_type === 'BUY_GOLD' && remainingCount > 0) {
+    const taskConfig = parseTaskConfig(task);
+    catchupTask.config_json = JSON.stringify({
+      ...taskConfig,
+      buyNum: remainingCount,
+      buyGoldTimes: remainingCount,
+    });
+  }
+
+  return catchupTask;
+}
+
+function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR, now = new Date(), snapshots = {}) {
+  const todayMarkerSnapshots = snapshots.markerSnapshots || getTodayTaskExecutionMarkerSnapshots();
   const tasksWithoutMarker = tasks.filter((task) => {
     const key = `${task.account_id}_${task.task_type}`;
     return !todayMarkerSnapshots.has(key);
   });
-  const todayLogSnapshots = getTodayTaskLogSnapshots(tasksWithoutMarker);
+  const todayLogSnapshots = snapshots.logSnapshots || getTodayTaskLogSnapshots(tasksWithoutMarker);
   const missingTasks = [];
   const failedTasks = [];
+  const incompleteTasks = [];
 
   for (const task of tasks) {
     const key = `${task.account_id}_${task.task_type}`;
@@ -414,42 +441,55 @@ function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
       .at(-1) || null;
     const latestStatus = String(latestMarker?.latest_status || latestLog?.status || '');
     const latestMessage = latestMarker?.latest_message || latestLog?.message || '';
+    const latestDetails = latestMarker?.latest_details ?? latestLog?.details ?? null;
+    const parsedDetails = parseTaskDetails(latestDetails);
+    const completion = parsedDetails ? getTaskCompletionState(task.task_type, parsedDetails) : null;
 
     if (!latestEvidenceAt) {
-      missingTasks.push({
-        ...task,
+      missingTasks.push(buildCatchupTask(task, {
         catchupReason: 'missing_today_log',
         catchupExpectedAt: latestDueSlot,
-      });
+      }));
       continue;
     }
 
     if (latestDueSlot && latestEvidenceAt < latestDueSlot) {
-      missingTasks.push({
-        ...task,
+      missingTasks.push(buildCatchupTask(task, {
         catchupReason: 'missing_latest_due_slot',
         catchupExpectedAt: latestDueSlot,
         catchupLastMessage: latestMessage,
         catchupLastLogAt: latestMarkerAt || latestLogAt,
-      });
+      }));
       continue;
     }
 
-    if (latestStatus === 'error') {
-      failedTasks.push({
-        ...task,
+    if (latestStatus === 'error' && shouldRetryTaskCompletion(task.task_type, latestStatus, completion)) {
+      failedTasks.push(buildCatchupTask(task, {
         catchupReason: 'latest_error',
         catchupExpectedAt: latestDueSlot,
         catchupLastMessage: latestMessage,
         catchupLastLogAt: latestMarkerAt || latestLogAt,
-      });
+        catchupCompletion: completion,
+      }));
+      continue;
+    }
+
+    if (latestStatus === 'success' && completion && shouldRetryTaskCompletion(task.task_type, latestStatus, completion)) {
+      incompleteTasks.push(buildCatchupTask(task, {
+        catchupReason: 'incomplete_success',
+        catchupExpectedAt: latestDueSlot,
+        catchupLastMessage: latestMessage,
+        catchupLastLogAt: latestMarkerAt || latestLogAt,
+        catchupCompletion: completion,
+      }));
     }
   }
 
   return {
     missingTasks,
     failedTasks,
-    tasks: [...missingTasks, ...failedTasks],
+    incompleteTasks,
+    tasks: [...missingTasks, ...failedTasks, ...incompleteTasks],
   };
 }
 
@@ -679,7 +719,7 @@ function markScheduledTaskSuccess(task, result) {
     task.task_type,
     'success',
     result?.message || '执行成功',
-    JSON.stringify(result?.data || {})
+    createTaskCompletionLogDetails(task.task_type, result?.data || {})
   );
   if (task.id) {
     markTaskRunTime(task.id, new Date().toISOString(), calculateNextRunAt(task.cron_expression));
@@ -696,7 +736,7 @@ function markScheduledTaskFailure(task, error) {
     task.task_type,
     shouldIgnoreFailure(error) ? 'ignored' : 'error',
     error.message,
-    error?.details ? JSON.stringify(error.details) : null
+    error?.details ? createTaskCompletionLogDetails(task.task_type, error.details) : null
   );
   if (task.id) {
     markTaskRunTime(task.id, new Date().toISOString(), calculateNextRunAt(task.cron_expression));
@@ -1139,6 +1179,7 @@ export async function runDailyTaskCatchup(options = {}) {
     candidateTaskCount: catchup.tasks.length,
     missingCount: catchup.missingTasks.length,
     failedCount: catchup.failedTasks.length,
+    incompleteCount: catchup.incompleteTasks.length,
   });
 
   if (catchup.tasks.length === 0) {
@@ -1146,6 +1187,7 @@ export async function runDailyTaskCatchup(options = {}) {
       total: 0,
       missingCount: 0,
       failedCount: 0,
+      incompleteCount: 0,
       successCount: 0,
       errorCount: 0,
     };
@@ -1182,6 +1224,7 @@ export async function runDailyTaskCatchup(options = {}) {
     errorCount,
     missingCount: catchup.missingTasks.length,
     failedCount: catchup.failedTasks.length,
+    incompleteCount: catchup.incompleteTasks.length,
   });
 
   return {
@@ -1190,6 +1233,7 @@ export async function runDailyTaskCatchup(options = {}) {
     errorCount,
     missingCount: catchup.missingTasks.length,
     failedCount: catchup.failedTasks.length,
+    incompleteCount: catchup.incompleteTasks.length,
     results,
   };
 }
@@ -3137,10 +3181,20 @@ async function executeBuyGold(client, config) {
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
   const successCount = results.filter((x) => x.ok).length;
-  if (successCount === 0 && results.length > 0) {
-    throw new Error(results[0].error || '点金执行失败');
+  const completion = getTaskCompletionState('BUY_GOLD', { buyNum, results, successCount });
+  const data = {
+    buyNum,
+    results,
+    successCount,
+    remainingCount: completion.remainingCount,
+    completion,
+  };
+  if (successCount === 0 && results.length > 0 && !completion.complete) {
+    const error = new Error(results[0].error || '点金执行失败');
+    error.details = data;
+    throw error;
   }
-  return { message: `点金完成 (${successCount}/${results.length})`, data: { buyNum, results, successCount } };
+  return { message: `点金完成 (${successCount}/${buyNum})`, data };
 }
 
 async function executeFishing(client, config) {
@@ -3746,8 +3800,12 @@ async function executeLegionStoreFragment(client, config) {
 
 async function executeGenieSweep(client, config) {
   const result = await client.genieDailySweep(buildGenieSweepTaskOptions(config));
+  const data = {
+    ...result,
+    completion: getTaskCompletionState('GENIE_SWEEP', result),
+  };
   if (result?.skipped) {
-    return { message: `灯神扫荡跳过: ${result.reason}`, data: result };
+    return { message: `灯神扫荡跳过: ${result.reason}`, data };
   }
 
   const sweptNames = (result?.sweepResults || [])
@@ -3756,8 +3814,8 @@ async function executeGenieSweep(client, config) {
     .join('、');
   const sweptSummary = sweptNames || '无';
   return {
-    message: `灯神扫荡完成 (扫荡:${sweptSummary}, 领取扫荡券:${result?.claimedTickets || 0}次)`,
-    data: result,
+    message: `灯神扫荡${data.completion.complete ? '完成' : '部分完成'} (扫荡:${sweptSummary}, 领取扫荡券:${result?.claimedTickets || 0}次)`,
+    data,
   };
 }
 
@@ -3817,6 +3875,7 @@ export const __testing = {
   runTaskByType,
   executeTowerCore,
   executeWeirdTowerCore,
+  collectDailyCatchupTasks,
 };
 
 export default {

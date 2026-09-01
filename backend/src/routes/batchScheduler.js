@@ -461,10 +461,6 @@ function normalizeBatchTaskLogDetails(status, details) {
     return null;
   }
 
-  if (status === 'success' || status === 'info') {
-    return null;
-  }
-
   const raw = typeof details === 'string' ? details : JSON.stringify(details);
   if (!raw) {
     return null;
@@ -485,5 +481,9 @@ export function addBatchTaskLogEntry(batchTaskId, accountId, taskType, status, m
   );
   cleanupBatchTaskLogs(undefined, batchTaskId);
 }
+
+export const __testing = {
+  normalizeBatchTaskLogDetails,
+};
 
 export default router;
