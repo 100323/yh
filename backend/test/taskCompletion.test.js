@@ -186,3 +186,41 @@ test('catchup 识别成功但完成度不足的点金并只补剩余次数', () 
   assert.equal(catchup.tasks[0].catchupReason, 'incomplete_success');
   assert.equal(JSON.parse(catchup.tasks[0].config_json).buyNum, 1);
 });
+
+test('补做检查从 14:00 起每半小时触发', () => {
+  assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '0,30 14-23 * * *');
+});
+
+test('晚间任务尚未到期时，零候选补做不能提前停止当天检查', () => {
+  const task = {
+    id: 102,
+    account_id: 8,
+    task_type: 'DAILY_TASK_CLAIM',
+    cron_expression: '30 23 * * *',
+  };
+  const now = new Date('2026-09-01T06:00:00.000Z');
+
+  assert.equal(
+    scheduler.__testing.shouldSettleDailyCatchup([task], { tasks: [] }, now),
+    false,
+  );
+});
+
+test('最后一个任务时段已过且没有补做项时，停止当天后续检查', () => {
+  const task = {
+    id: 103,
+    account_id: 9,
+    task_type: 'DAILY_TASK_CLAIM',
+    cron_expression: '30 23 * * *',
+  };
+  const now = new Date('2026-09-01T15:45:00.000Z');
+
+  assert.equal(
+    scheduler.__testing.shouldSettleDailyCatchup([task], { tasks: [] }, now),
+    true,
+  );
+  assert.equal(
+    scheduler.__testing.shouldSettleDailyCatchup([task], { tasks: [task] }, now),
+    false,
+  );
+});

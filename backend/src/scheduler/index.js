@@ -100,6 +100,8 @@ async function resolveAccountExecutionLane(accountName) {
 let schedulerRefreshJob = null;
 let dailyCatchupJob = null;
 let saturdayBlackoutReplayJob = null;
+let dailyCatchupRunPromise = null;
+let dailyCatchupSettledState = null;
 const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
 const DAILY_REWARD_RETRY_DELAY_MS = 30000;
 const DAILY_REWARD_MAX_RETRIES = 3;
@@ -133,7 +135,7 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
   DAILY_TASK_CLAIM: ['30 23 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
-const DAILY_CATCHUP_CRON = '*/15 * * * *';
+const DAILY_CATCHUP_CRON = '0,30 14-23 * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -234,6 +236,71 @@ function getTaskCronExpressions(task) {
 
 function getTaskCronSignature(task) {
   return getTaskCronExpressions(task).join('||');
+}
+
+function getShanghaiBusinessDate(now = new Date()) {
+  const parts = getShanghaiDateParts(now);
+  return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)}`;
+}
+
+function getDailyCatchupTaskSignature(tasks = []) {
+  return tasks
+    .map((task) => [
+      Number(task?.id || 0),
+      String(task?.updated_at || ''),
+      String(task?.task_type || ''),
+      getTaskCronSignature(task),
+    ].join(':'))
+    .sort()
+    .join('|');
+}
+
+function getLatestScheduledTaskSlotForToday(tasks = [], now = new Date()) {
+  const shanghaiParts = getShanghaiDateParts(now);
+  let latestSlot = null;
+
+  for (const task of tasks) {
+    for (const cronExpression of getTaskCronExpressions(task)) {
+      for (const { hour, minute } of getCronExecutionSlotsForToday(cronExpression, now)) {
+        const slot = `${shanghaiParts.year}-${pad2(shanghaiParts.month)}-${pad2(shanghaiParts.day)} ${pad2(hour)}:${pad2(minute)}:00`;
+        if (!latestSlot || slot > latestSlot) {
+          latestSlot = slot;
+        }
+      }
+    }
+  }
+
+  return latestSlot;
+}
+
+function shouldSettleDailyCatchup(tasks = [], catchup = {}, now = new Date()) {
+  if (Array.isArray(catchup?.tasks) && catchup.tasks.length > 0) {
+    return false;
+  }
+
+  const latestSlot = getLatestScheduledTaskSlotForToday(tasks, now);
+  if (!latestSlot) {
+    return true;
+  }
+
+  const graceMs = Math.max(0, Number(config?.scheduler?.staggerWindowMs) || 0);
+  const readyBoundary = new Date(now.getTime() - graceMs);
+  return latestSlot <= formatShanghaiLocalDateTime(getShanghaiDateParts(readyBoundary));
+}
+
+function isDailyCatchupSettled(tasks = [], now = new Date()) {
+  if (!dailyCatchupSettledState) {
+    return false;
+  }
+  return dailyCatchupSettledState.businessDate === getShanghaiBusinessDate(now)
+    && dailyCatchupSettledState.taskSignature === getDailyCatchupTaskSignature(tasks);
+}
+
+function markDailyCatchupSettled(tasks = [], now = new Date()) {
+  dailyCatchupSettledState = {
+    businessDate: getShanghaiBusinessDate(now),
+    taskSignature: getDailyCatchupTaskSignature(tasks),
+  };
 }
 
 function getTaskNextRunAt(task) {
@@ -1166,76 +1233,108 @@ async function runCatchupTask(task) {
 }
 
 export async function runDailyTaskCatchup(options = {}) {
-  const {
-    cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
-    now = new Date(),
-  } = options;
-
-  const tasks = getEnabledTasks();
-  const catchup = collectDailyCatchupTasks(tasks, cutoffHour, now);
-
-  console.log('🛟 每日任务补偿检查完成', {
-    cutoffHour,
-    candidateTaskCount: catchup.tasks.length,
-    missingCount: catchup.missingTasks.length,
-    failedCount: catchup.failedTasks.length,
-    incompleteCount: catchup.incompleteTasks.length,
-  });
-
-  if (catchup.tasks.length === 0) {
-    return {
-      total: 0,
-      missingCount: 0,
-      failedCount: 0,
-      incompleteCount: 0,
-      successCount: 0,
-      errorCount: 0,
-    };
+  if (dailyCatchupRunPromise) {
+    console.log('⏭️ 跳过重叠的每日任务补偿检查');
+    return dailyCatchupRunPromise;
   }
 
-  const groupedTasks = catchup.tasks.reduce((acc, task) => {
-    const accountId = getTaskAccountId(task);
-    if (!acc.has(accountId)) {
-      acc.set(accountId, []);
+  dailyCatchupRunPromise = (async () => {
+    const {
+      cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
+      now = new Date(),
+    } = options;
+
+    const tasks = getEnabledTasks();
+    if (isDailyCatchupSettled(tasks, now)) {
+      return {
+        total: 0,
+        missingCount: 0,
+        failedCount: 0,
+        incompleteCount: 0,
+        successCount: 0,
+        errorCount: 0,
+        skipped: true,
+        reason: 'day_settled',
+      };
     }
-    acc.get(accountId).push(task);
-    return acc;
-  }, new Map());
 
-  console.log('🛟 每日任务补偿开始执行', {
-    total: catchup.tasks.length,
-    accountCount: groupedTasks.size,
-  });
+    const catchup = collectDailyCatchupTasks(tasks, cutoffHour, now);
 
-  const groupedResults = await Promise.all(
-    Array.from(groupedTasks.values()).map(async (tasksOfAccount) => {
-      const promises = tasksOfAccount.map((task) => runCatchupTask(task));
-      return await Promise.all(promises);
-    })
-  );
+    console.log('🛟 每日任务补偿检查完成', {
+      cutoffHour,
+      candidateTaskCount: catchup.tasks.length,
+      missingCount: catchup.missingTasks.length,
+      failedCount: catchup.failedTasks.length,
+      incompleteCount: catchup.incompleteTasks.length,
+    });
 
-  const results = groupedResults.flat();
-  const successCount = results.filter((item) => item?.ok).length;
-  const errorCount = results.length - successCount;
+    if (catchup.tasks.length === 0) {
+      const settledForDay = shouldSettleDailyCatchup(tasks, catchup, now);
+      if (settledForDay) {
+        markDailyCatchupSettled(tasks, now);
+        console.log('✅ 当天所有已配置任务时段已结束，停止后续补偿检查');
+      }
+      return {
+        total: 0,
+        missingCount: 0,
+        failedCount: 0,
+        incompleteCount: 0,
+        successCount: 0,
+        errorCount: 0,
+        settledForDay,
+      };
+    }
 
-  console.log('🛟 每日任务补偿执行结束', {
-    total: results.length,
-    successCount,
-    errorCount,
-    missingCount: catchup.missingTasks.length,
-    failedCount: catchup.failedTasks.length,
-    incompleteCount: catchup.incompleteTasks.length,
-  });
+    const groupedTasks = catchup.tasks.reduce((acc, task) => {
+      const accountId = getTaskAccountId(task);
+      if (!acc.has(accountId)) {
+        acc.set(accountId, []);
+      }
+      acc.get(accountId).push(task);
+      return acc;
+    }, new Map());
 
-  return {
-    total: results.length,
-    successCount,
-    errorCount,
-    missingCount: catchup.missingTasks.length,
-    failedCount: catchup.failedTasks.length,
-    incompleteCount: catchup.incompleteTasks.length,
-    results,
-  };
+    console.log('🛟 每日任务补偿开始执行', {
+      total: catchup.tasks.length,
+      accountCount: groupedTasks.size,
+    });
+
+    const groupedResults = await Promise.all(
+      Array.from(groupedTasks.values()).map(async (tasksOfAccount) => {
+        const promises = tasksOfAccount.map((task) => runCatchupTask(task));
+        return await Promise.all(promises);
+      })
+    );
+
+    const results = groupedResults.flat();
+    const successCount = results.filter((item) => item?.ok).length;
+    const errorCount = results.length - successCount;
+
+    console.log('🛟 每日任务补偿执行结束', {
+      total: results.length,
+      successCount,
+      errorCount,
+      missingCount: catchup.missingTasks.length,
+      failedCount: catchup.failedTasks.length,
+      incompleteCount: catchup.incompleteTasks.length,
+    });
+
+    return {
+      total: results.length,
+      successCount,
+      errorCount,
+      missingCount: catchup.missingTasks.length,
+      failedCount: catchup.failedTasks.length,
+      incompleteCount: catchup.incompleteTasks.length,
+      results,
+    };
+  })();
+
+  try {
+    return await dailyCatchupRunPromise;
+  } finally {
+    dailyCatchupRunPromise = null;
+  }
 }
 
 export async function replaySaturdayBlackoutDeferredRuns(now = new Date()) {
@@ -3820,6 +3919,9 @@ async function executeGenieSweep(client, config) {
 }
 
 export function stopScheduler() {
+  dailyCatchupRunPromise = null;
+  dailyCatchupSettledState = null;
+
   if (schedulerRefreshJob) {
     schedulerRefreshJob.stop();
     schedulerRefreshJob = null;
@@ -3872,10 +3974,12 @@ export function getScheduledJobs() {
 }
 
 export const __testing = {
+  DAILY_CATCHUP_CRON,
   runTaskByType,
   executeTowerCore,
   executeWeirdTowerCore,
   collectDailyCatchupTasks,
+  shouldSettleDailyCatchup,
 };
 
 export default {
