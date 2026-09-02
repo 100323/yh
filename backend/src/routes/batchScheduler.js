@@ -21,6 +21,7 @@ export const BATCH_TASK_TYPES = {
   ARENA: { name: '竞技场战斗', group: 'daily' },
   TOWER: { name: '爬塔', group: 'dungeon' },
   BOSS_TOWER: { name: '咸王宝库', group: 'dungeon' },
+  DAILY_BOSS: { name: '每日咸王', group: 'dungeon' },
   WEIRD_TOWER: { name: '怪异塔', group: 'dungeon' },
   LEGION_BOSS: { name: '军团BOSS', group: 'dungeon' },
   RECRUIT: { name: '武将招募', group: 'resource' },

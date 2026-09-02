@@ -14,6 +14,7 @@ import {
   claimDailyPointWithRetry,
   didDailyTaskClaimConfirmReward,
   executeArenaScheduledTask,
+  executeDailyBossScheduledTask,
   executeMailClaimScheduledTask,
   executeDailyTaskClaimScheduledTask,
   executeLegacyClaimWithAutoReopen,
@@ -76,6 +77,11 @@ const DAILY_POINT_TASK_ID_MAP = {
 };
 
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
+
+function getTodayBossId() {
+  const dayBossMap = [9904, 9905, 9901, 9902, 9903, 9904, 9905];
+  return dayBossMap[new Date().getDay()];
+}
 
 async function resolveAccountExecutionLane(accountName) {
   try {
@@ -1038,6 +1044,9 @@ async function runTaskByType(client, taskType, config, context = {}) {
     
     case 'BOSS_TOWER':
       return await executeBossTower(client, config);
+
+    case 'DAILY_BOSS':
+      return await executeDailyBoss(client, config);
     
     case 'WEIRD_TOWER':
       return await executeWeirdTower(client, config, context);
@@ -1236,6 +1245,14 @@ async function executeBossTower(client, config) {
     }
     throw error;
   }
+}
+
+async function executeDailyBoss(client, config) {
+  return executeDailyBossScheduledTask(client, {
+    ...config,
+    bossId: getTodayBossId(),
+    totalChallenges: 1,
+  });
 }
 
 async function executeWeirdTower(client, config, context = {}) {

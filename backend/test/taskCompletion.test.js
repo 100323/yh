@@ -191,6 +191,58 @@ test('补做检查从 14:00 起每半小时触发', () => {
   assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '0,30 14-23 * * *');
 });
 
+test('weekly task is not a catchup candidate outside its configured weekday', () => {
+  const task = {
+    id: 104,
+    account_id: 10,
+    task_type: 'DAILY_TASK_CLAIM',
+    cron_expression: '0 8 * * 0',
+  };
+
+  const catchup = scheduler.__testing.collectDailyCatchupTasks(
+    [task],
+    19,
+    new Date('2026-09-01T04:00:00.000Z'),
+    { markerSnapshots: new Map(), logSnapshots: new Map() },
+  );
+
+  assert.deepEqual(catchup.tasks, []);
+});
+
+test('weekly task becomes a catchup candidate after its configured weekday slot', () => {
+  const task = {
+    id: 105,
+    account_id: 11,
+    task_type: 'DAILY_TASK_CLAIM',
+    cron_expression: '0 8 * * 0',
+  };
+
+  const catchup = scheduler.__testing.collectDailyCatchupTasks(
+    [task],
+    19,
+    new Date('2026-09-06T03:00:00.000Z'),
+    { markerSnapshots: new Map(), logSnapshots: new Map() },
+  );
+
+  assert.equal(catchup.missingTasks.length, 1);
+  assert.equal(catchup.tasks[0].catchupExpectedAt, '2026-09-06 08:00:00');
+});
+
+test('batch scheduler executes daily boss with one challenge by default', async () => {
+  let callCount = 0;
+  const result = await batchScheduler.__testing.runTaskByType({
+    ensureBattleVersion: async () => {},
+    startDailyBossFight: async () => {
+      callCount += 1;
+      return { round: callCount };
+    },
+  }, 'DAILY_BOSS', { totalChallenges: 5 });
+
+  assert.equal(callCount, 1);
+  assert.equal(result.data.totalChallenges, 1);
+  assert.equal(result.message, '每日咸王挑战完成 (1/1次)');
+});
+
 test('晚间任务尚未到期时，零候选补做不能提前停止当天检查', () => {
   const task = {
     id: 102,

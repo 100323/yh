@@ -24,6 +24,7 @@ test('retries the same daily boss attempt after a too-fast response', async () =
 
   const result = await executeDailyBossScheduledTask(client, {
     bossId: 9904,
+    totalChallenges: 5,
     tooFastRetryDelaysMs: [0],
     challengeDelayMs: 0,
   });
@@ -88,4 +89,22 @@ test('stops as a no-op when the daily boss challenge quota is exhausted', async 
   assert.equal(result.message, '每日咸王今日挑战次数已用完');
   assert.equal(result.data.successCount, 0);
   assert.equal(result.data.results[0].stop, true);
+});
+
+test('defaults daily boss to one challenge', async () => {
+  let callCount = 0;
+  const client = createClient(async () => {
+    callCount += 1;
+    return { round: callCount };
+  });
+
+  const result = await executeDailyBossScheduledTask(client, {
+    bossId: 9904,
+    challengeDelayMs: 0,
+  });
+
+  assert.equal(callCount, 1);
+  assert.equal(result.data.successCount, 1);
+  assert.equal(result.data.totalChallenges, 1);
+  assert.equal(result.message, '每日咸王挑战完成 (1/1次)');
 });

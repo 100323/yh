@@ -797,7 +797,7 @@ export async function executeDailyBossScheduledTask(client, options = {}) {
   await client.ensureBattleVersion();
 
   const bossId = Number(options.bossId);
-  const totalChallenges = Math.max(1, Number(options.totalChallenges ?? 5) || 0);
+  const totalChallenges = Math.max(1, Number(options.totalChallenges ?? 1) || 0);
   const challengeDelayMs = normalizeNonNegativeNumber(options.challengeDelayMs ?? 500);
   const tooFastRetryDelaysMs = Array.isArray(options.tooFastRetryDelaysMs)
     ? options.tooFastRetryDelaysMs.map((delay) => normalizeNonNegativeNumber(delay))
