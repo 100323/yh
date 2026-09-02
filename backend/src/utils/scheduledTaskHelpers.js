@@ -820,6 +820,10 @@ export async function executeDailyBossScheduledTask(client, options = {}) {
     } catch (error) {
       const message = normalizeErrorMessage(error);
 
+      if (/WebSocket未连接|WebSocket连接已断开/.test(message)) {
+        throw error;
+      }
+
       if (message.includes('次数') || message.includes('已挑战')) {
         results.push({ round: attempt + 1, ok: false, error: message, stop: true });
         break;
