@@ -132,10 +132,10 @@ const DAILY_REWARD_DIRTY_TASKS = new Set([
 ]);
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
 const TASK_EXTRA_CRON_EXPRESSIONS = {
-  DAILY_TASK_CLAIM: ['30 23 * * *'],
+  DAILY_TASK_CLAIM: ['30 22 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
-const DAILY_CATCHUP_CRON = '0,30 14-23 * * *';
+const DAILY_CATCHUP_CRON = '0,30 14-22 * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -3975,6 +3975,7 @@ export function getScheduledJobs() {
 
 export const __testing = {
   DAILY_CATCHUP_CRON,
+  TASK_EXTRA_CRON_EXPRESSIONS,
   runTaskByType,
   executeTowerCore,
   executeWeirdTowerCore,

@@ -188,7 +188,13 @@ test('catchup 识别成功但完成度不足的点金并只补剩余次数', () 
 });
 
 test('补做检查从 14:00 起每半小时触发', () => {
-  assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '0,30 14-23 * * *');
+  assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '0,30 14-22 * * *');
+});
+
+test('日周活跃奖励在 22:30 兜底补做', () => {
+  assert.deepEqual(scheduler.__testing.TASK_EXTRA_CRON_EXPRESSIONS.DAILY_TASK_CLAIM, [
+    '30 22 * * *',
+  ]);
 });
 
 test('weekly task is not a catchup candidate outside its configured weekday', () => {
