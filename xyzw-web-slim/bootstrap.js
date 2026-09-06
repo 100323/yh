@@ -1219,6 +1219,126 @@
     return parsed;
   }
 
+  var BUILTIN_GAME_SCRIPTS_ENABLED_KEY = "xyzw-builtin-scripts-enabled";
+  var BUILTIN_GAME_SCRIPTS = [
+    {
+      id: "xingchi",
+      url: "/slim-game/builtin-scripts/xingchi.js",
+      exposeUnsafeWindow: true,
+    },
+    {
+      id: "peach-auto",
+      url: "/slim-game/builtin-scripts/peach-auto.js",
+    },
+    {
+      id: "salt-lineup",
+      url: "/slim-game/builtin-scripts/salt-lineup.js",
+    },
+  ];
+
+  function normalizeBuiltinScriptIds(value) {
+    if (!Array.isArray(value)) {
+      return [];
+    }
+
+    var enabledIds = [];
+    value.forEach(function (id) {
+      var normalizedId = toCleanString(id);
+      if (normalizedId && enabledIds.indexOf(normalizedId) === -1) {
+        var matched = BUILTIN_GAME_SCRIPTS.some(function (script) {
+          return script.id === normalizedId;
+        });
+        if (matched) {
+          enabledIds.push(normalizedId);
+        }
+      }
+    });
+    return enabledIds;
+  }
+
+  function getEnabledBuiltinScriptIds() {
+    try {
+      var payload = readSlimLaunchPayload();
+      if (payload && Array.isArray(payload.builtinScripts)) {
+        return normalizeBuiltinScriptIds(payload.builtinScripts);
+      }
+
+      var storage = getSlimSafeStorage();
+      if (!storage) {
+        return [];
+      }
+      return normalizeBuiltinScriptIds(tryParseJson(storage.getItem(BUILTIN_GAME_SCRIPTS_ENABLED_KEY) || "[]"));
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function injectBuiltinScripts() {
+    var enabledIds = getEnabledBuiltinScriptIds();
+    var injectedIds = [];
+    var failedIds = [];
+
+    if (window.__XYZW_BUILTIN_SCRIPTS__) {
+      return window.__XYZW_BUILTIN_SCRIPTS__;
+    }
+
+    window.__XYZW_BUILTIN_SCRIPTS__ = {
+      enabledIds: enabledIds,
+      injectedIds: injectedIds,
+      failedIds: failedIds,
+    };
+
+    enabledIds.forEach(function (scriptId) {
+      var scriptRecord = BUILTIN_GAME_SCRIPTS.filter(function (script) {
+        return script.id === scriptId;
+      })[0];
+
+      if (!scriptRecord || !scriptRecord.url) {
+        failedIds.push(scriptId);
+        return;
+      }
+
+      try {
+        if (scriptRecord.exposeUnsafeWindow && typeof window.unsafeWindow === "undefined") {
+          window.unsafeWindow = window;
+        }
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.id = "xyzw-builtin-script-" + encodeURIComponent(scriptId).replace(/%/g, "_");
+        script.src = scriptRecord.url;
+        script.async = false;
+        script.onload = function () {
+          injectedIds.push(scriptId);
+        };
+        script.onerror = function () {
+          var failedIndex = failedIds.indexOf(scriptId);
+          if (failedIndex === -1) {
+            failedIds.push(scriptId);
+          }
+          console.warn("[builtin-script] load failed", scriptId);
+        };
+        (document.head || document.documentElement || document.body).appendChild(script);
+      } catch (error) {
+        failedIds.push(scriptId);
+        console.warn("[builtin-script] inject failed", scriptId, error);
+      }
+    });
+
+    if (injectedIds.length > 0) {
+      console.info("[builtin-script] injected", injectedIds);
+      appendDebugLog("builtin-scripts-injected", {
+        ids: injectedIds,
+      });
+    }
+    if (failedIds.length > 0) {
+      appendDebugLog("builtin-scripts-inject-failed", {
+        ids: failedIds,
+      });
+    }
+
+    return window.__XYZW_BUILTIN_SCRIPTS__;
+  }
+
   function normalizeSlimAuthPayload(rawPayload) {
     if (!rawPayload) {
       return null;
@@ -1329,6 +1449,18 @@
 
     try {
       return window.__require(name);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function tryGetInstance(ctor) {
+    if (!ctor) {
+      return null;
+    }
+
+    try {
+      return ctor.instance || null;
     } catch (error) {
       return null;
     }
@@ -1650,18 +1782,15 @@
     var LocalStorageModule = tryRequireModule("LocalStorage");
     var LoginManagerModule = tryRequireModule("LoginManager");
 
-    var platformManager =
+    var platformManager = tryGetInstance(
       PlatformManagerModule && PlatformManagerModule.PlatformManager
-        ? PlatformManagerModule.PlatformManager.instance
-        : null;
-    var storageManager =
+    );
+    var storageManager = tryGetInstance(
       LocalStorageModule && LocalStorageModule.LocalStorage
-        ? LocalStorageModule.LocalStorage.instance
-        : null;
-    var loginManager =
+    );
+    var loginManager = tryGetInstance(
       LoginManagerModule && LoginManagerModule.LoginManager
-        ? LoginManagerModule.LoginManager.instance
-        : null;
+    );
 
     function extractClipboardText(payload) {
       if (typeof payload === "string") {
@@ -1972,10 +2101,9 @@
     var RemoteConfigsModule = tryRequireModule("RemoteConfigs");
     var dataIndex = getDataIndexModule();
 
-    var platformManager =
+    var platformManager = tryGetInstance(
       PlatformManagerModule && PlatformManagerModule.PlatformManager
-        ? PlatformManagerModule.PlatformManager.instance
-        : null;
+    );
     if (platformManager && manifestResult) {
       try {
         if (!platformManager.__xyzwManifestPatched) {
@@ -2343,18 +2471,15 @@
     var resourceManagerModule = tryRequireModule("ResourceManager");
     var remoteConfigsModule = tryRequireModule("RemoteConfigs");
     var dataIndex = getDataIndexModule();
-    var platformManager =
+    var platformManager = tryGetInstance(
       platformManagerModule && platformManagerModule.PlatformManager
-        ? platformManagerModule.PlatformManager.instance
-        : null;
-    var resourceManager =
+    );
+    var resourceManager = tryGetInstance(
       resourceManagerModule && resourceManagerModule.ResourceManager
-        ? resourceManagerModule.ResourceManager.instance
-        : null;
-    var remoteConfigs =
+    );
+    var remoteConfigs = tryGetInstance(
       remoteConfigsModule && remoteConfigsModule.default
-        ? remoteConfigsModule.default.instance
-        : null;
+    );
 
     var battleFromPlatform = null;
     try {
@@ -2397,6 +2522,7 @@
       },
       patches: {
         consoleGuard: !!window.__XYZW_SLIM_CONSOLE_GUARD__,
+        builtinScripts: !!(window.__XYZW_BUILTIN_SCRIPTS__ && window.__XYZW_BUILTIN_SCRIPTS__.injectedIds && window.__XYZW_BUILTIN_SCRIPTS__.injectedIds.length > 0),
         platformManifest: !!(platformManager && platformManager.__xyzwManifestPatched),
         loginManifest: !!(tryRequireModule("LoginService") && tryRequireModule("LoginService").LoginService && tryRequireModule("LoginService").LoginService.__xyzwManifestPatched),
         remoteConfigs: !!(remoteConfigs && remoteConfigs.__xyzwDataVersionPatched),
@@ -3656,6 +3782,7 @@
     applyEmbedModeStyles();
     patchRuntimeShellFullscreen();
     injectRuntimeUserScript();
+    await injectBuiltinScripts();
     initSlimLaunchIntegration();
     updateAppTitle("汤姆猫");
     updateVersionBadge("读取中", "正在加载版本");

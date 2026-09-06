@@ -12,6 +12,10 @@
           </p>
         </div>
         <div class="header-right">
+          <el-button @click="showPluginScriptManager = true">
+            <el-icon><SetUp /></el-icon>
+            管理插件与脚本
+          </el-button>
           <el-button type="primary" :disabled="accountLimitReached" @click="openImportForm">
             <el-icon><Plus /></el-icon>
             添加账号
@@ -19,6 +23,8 @@
         </div>
       </div>
     </el-card>
+
+    <PluginScriptManager v-model:visible="showPluginScriptManager" />
 
     <el-alert
       v-if="accountLimitReached"
@@ -240,7 +246,7 @@
 <script setup>
 import { useTokenStore, selectedTokenId } from "@/stores/tokenStore";
 import { Add } from "@vicons/ionicons5";
-import { Plus, MoreFilled, Edit, CopyDocument, Delete, Refresh as RefreshIcon } from '@element-plus/icons-vue';
+import { Plus, MoreFilled, Edit, CopyDocument, Delete, Refresh as RefreshIcon, SetUp } from '@element-plus/icons-vue';
 import { NIcon, useDialog, useMessage } from "naive-ui";
 import { computed, defineAsyncComponent, onMounted, reactive, ref, watch } from "vue";
 import { transformToken } from "@/utils/token";
@@ -248,6 +254,7 @@ import useIndexedDB from "@/hooks/useIndexedDB";
 import api from "@/api";
 import { useAuthStore } from "@stores/auth";
 import { useGameWorkbenchStore } from "@stores/gameWorkbench";
+import PluginScriptManager from "@components/PluginScriptManager.vue";
 
 const BinTokenForm = defineAsyncComponent(() => import("./bin.vue"));
 const SingleBinTokenForm = defineAsyncComponent(() => import("./singlebin.vue"));
@@ -272,6 +279,7 @@ const authStore = useAuthStore();
 const gameWorkbenchStore = useGameWorkbenchStore();
 
 const showImportForm = ref(false);
+const showPluginScriptManager = ref(false);
 const showEditModal = ref(false);
 const editFormRef = ref(null);
 const editingToken = ref(null);

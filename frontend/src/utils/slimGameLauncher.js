@@ -1,3 +1,4 @@
+import { readEnabledBuiltinScriptIds } from './builtinScripts.js';
 const SLIM_GAME_PATH = '/slim-game/index.html';
 const SLIM_GAME_ENTRY_PATH = '/slim-game/entry';
 const SLIM_LAUNCH_STORAGE_PREFIX = 'xyzw-slim-launch:';
@@ -194,9 +195,10 @@ function createLaunchKey(accountId) {
   return `${SLIM_LAUNCH_STORAGE_PREFIX}${toCleanString(accountId) || 'unknown'}:${suffix}`;
 }
 
-function createLaunchPayload(account = {}) {
+export function createLaunchPayload(account = {}) {
   const launchContext = normalizeLaunchContext(account.launchContext);
   const authPayload = normalizeAuthPayload(account.authPayload || launchContext?.authPayload || launchContext);
+  const builtinScripts = readEnabledBuiltinScriptIds();
   return {
     accountId: toCleanString(account.id),
     name: toCleanString(account.name),
@@ -211,6 +213,7 @@ function createLaunchPayload(account = {}) {
       toCleanString(launchContext?.uid),
     launchContext,
     authPayload,
+    builtinScripts,
     createdAt: Date.now(),
   };
 }
