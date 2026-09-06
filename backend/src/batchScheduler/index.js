@@ -50,7 +50,10 @@ import { proxyConfigManager } from '../utils/proxyConfigManager.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
 import { createTaskCompletionLogDetails, getTaskCompletionState } from '../utils/taskCompletion.js';
 import { isDisabledTaskType, filterDisabledTaskTypes } from '../utils/disabledTaskTypes.js';
-import { shouldDeferAutomaticExecution } from '../utils/saturdaySchedulerBlackout.js';
+import {
+  shouldDeferAutomaticExecution,
+  getSaturdayBlackoutDelayMs,
+} from '../utils/saturdaySchedulerBlackout.js';
 import {
   deferScheduledRun,
   getSaturdaySchedulerPolicy,
@@ -1058,6 +1061,34 @@ async function claimDailyPointRewardsByTask(client, taskType, taskConfig = {}) {
 }
 
 async function executePostTaskRewardsForAccount(account, tokenCandidates, roleId = null, wsUrl = '', extraContext = {}) {
+  const blackoutDelayMs = getSaturdayBlackoutDelayMs(new Date());
+  if (blackoutDelayMs > 0) {
+    const releaseAt = new Date(Date.now() + blackoutDelayMs);
+    console.log(`🔒 Saturday blackout: batch post-task rewards deferred until 21:00: ${account.name}`);
+    setTimeout(() => {
+      void runBatchAccountObserved({
+        accountId: account.id,
+        batchTaskId: extraContext.batchTaskId ?? null,
+      }, async () => executePostTaskRewardsForAccount(
+        account,
+        tokenCandidates,
+        roleId,
+        wsUrl,
+        extraContext,
+      )).catch((error) => {
+        console.error(`❌ 周六避让后的批量收尾补领失败: ${account.name}:`, error.message);
+      });
+    }, blackoutDelayMs + 1000);
+    return {
+      message: 'Saturday scheduler blackout: post-task rewards deferred until 21:00',
+      data: {
+        deferred: true,
+        releaseAt: releaseAt.toISOString(),
+        claimedCount: 0,
+      },
+    };
+  }
+
   let client = await ensureBatchClient(account, tokenCandidates, roleId, wsUrl, extraContext);
   let lastResult = null;
 

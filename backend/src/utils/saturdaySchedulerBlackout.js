@@ -45,6 +45,13 @@ export function getSaturdayBlackoutReleaseAt(date = new Date()) {
   ));
 }
 
+export function getSaturdayBlackoutDelayMs(now = new Date()) {
+  if (!isSaturdaySchedulerBlackout(now)) {
+    return 0;
+  }
+  return Math.max(0, getSaturdayBlackoutReleaseAt(now).getTime() - now.getTime());
+}
+
 export function getDeferredRunClaimExpiresAt(claimedAt) {
   const claimedAtDate = claimedAt instanceof Date ? claimedAt : new Date(claimedAt);
   if (Number.isNaN(claimedAtDate.getTime())) {

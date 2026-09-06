@@ -101,6 +101,17 @@ test('calculates the Saturday 21:00 Shanghai release time', async () => {
   );
 });
 
+test('calculates the remaining Saturday blackout delay', async () => {
+  const { getSaturdayBlackoutDelayMs } = await loadBlackoutModule();
+
+  assert.equal(typeof getSaturdayBlackoutDelayMs, 'function');
+  assert.equal(getSaturdayBlackoutDelayMs(new Date('2026-08-08T11:59:59.000Z')), 0);
+  assert.equal(getSaturdayBlackoutDelayMs(new Date('2026-08-08T12:00:00.000Z')), 3_600_000);
+  assert.equal(getSaturdayBlackoutDelayMs(new Date('2026-08-08T12:45:00.000Z')), 900_000);
+  assert.equal(getSaturdayBlackoutDelayMs(new Date('2026-08-08T13:00:00.000Z')), 0);
+  assert.equal(getSaturdayBlackoutDelayMs(new Date('2026-08-09T12:30:00.000Z')), 0);
+});
+
 test('expires an abandoned replay claim before retrying it', async () => {
   const {
     DEFERRED_RUN_CLAIM_LEASE_MS,

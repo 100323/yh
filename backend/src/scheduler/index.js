@@ -70,8 +70,7 @@ import {
 import { isDisabledTaskType } from '../utils/disabledTaskTypes.js';
 import {
   shouldDeferAutomaticExecution,
-  isSaturdaySchedulerBlackout,
-  getSaturdayBlackoutReleaseAt,
+  getSaturdayBlackoutDelayMs,
 } from '../utils/saturdaySchedulerBlackout.js';
 import {
   deferScheduledRun,
@@ -2169,6 +2168,19 @@ async function flushDailyRewardClaimOnClient(
     return false;
   }
 
+  const blackoutDelayMs = getSaturdayBlackoutDelayMs(new Date());
+  if (blackoutDelayMs > 0) {
+    entry.dirty = true;
+    if (entry.timer) {
+      clearTimeout(entry.timer);
+    }
+    entry.timer = setTimeout(() => {
+      void flushDailyRewardClaim(accountId, reason);
+    }, blackoutDelayMs + 1000);
+    console.log(`🔒 Saturday blackout: daily reward flush deferred until 21:00 (${reason})`);
+    return false;
+  }
+
   try {
     const execution = await runSchedulerTaskObserved({
       source: 'system',
@@ -2242,9 +2254,9 @@ async function flushDailyRewardClaim(accountId, reason = 'debounced') {
     return false;
   }
 
-  if (isSaturdaySchedulerBlackout(new Date())) {
-    const releaseAt = getSaturdayBlackoutReleaseAt(new Date());
-    const delayMs = Math.max(1000, releaseAt.getTime() - Date.now() + 1000);
+  const blackoutDelayMs = getSaturdayBlackoutDelayMs(new Date());
+  if (blackoutDelayMs > 0) {
+    const delayMs = blackoutDelayMs + 1000;
     entry.timer = setTimeout(() => {
       void flushDailyRewardClaim(accountId, reason);
     }, delayMs);
