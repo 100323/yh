@@ -29,6 +29,10 @@ import { consumeSlimEntryTicket } from './utils/slimEntryTicketStore.js';
 import { proxyConfigManager } from './utils/proxyConfigManager.js';
 import { proxyPoolManager } from './utils/proxyPool/index.js';
 import { isDisabledTaskType } from './utils/disabledTaskTypes.js';
+import {
+  startSchedulerObservationService,
+  stopSchedulerObservationService,
+} from './observability/schedulerObservationService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -389,6 +393,7 @@ async function startServer() {
     startupState.database.status = 'starting';
     startupState.database.pathDiagnostics = getDatabasePathDiagnostics();
     await initDatabase();
+    startSchedulerObservationService();
     startupState.database.status = 'ready';
     startupState.database.lastError = null;
     startupState.database.pathDiagnostics = getDatabasePathDiagnostics();
@@ -441,6 +446,7 @@ async function shutdownServer(signal) {
         resolve();
       }
     });
+    await stopSchedulerObservationService();
     await closeDatabase();
     process.exit(0);
   } catch (error) {

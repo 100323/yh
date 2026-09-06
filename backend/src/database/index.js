@@ -251,6 +251,67 @@ CREATE TABLE IF NOT EXISTS scheduler_deferred_runs (
   FOREIGN KEY (account_id) REFERENCES game_accounts(id) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS command_metric_minutes (
+  bucket_minute TEXT NOT NULL,
+  source TEXT NOT NULL DEFAULT '',
+  command_class TEXT NOT NULL DEFAULT '',
+  task_type TEXT NOT NULL DEFAULT '',
+  command TEXT NOT NULL DEFAULT '',
+  execution_lane TEXT NOT NULL DEFAULT '',
+  egress_type TEXT NOT NULL DEFAULT '',
+  egress_key TEXT NOT NULL DEFAULT '',
+  outcome TEXT NOT NULL DEFAULT '',
+  command_count INTEGER NOT NULL DEFAULT 0,
+  error_count INTEGER NOT NULL DEFAULT 0,
+  timeout_count INTEGER NOT NULL DEFAULT 0,
+  disconnected_count INTEGER NOT NULL DEFAULT 0,
+  rate_limited_count INTEGER NOT NULL DEFAULT 0,
+  latency_count INTEGER NOT NULL DEFAULT 0,
+  latency_sum_ms INTEGER NOT NULL DEFAULT 0,
+  latency_max_ms INTEGER NOT NULL DEFAULT 0,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  slow_count INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (bucket_minute, source, command_class, task_type, command,
+               execution_lane, egress_type, egress_key, outcome)
+);
+
+CREATE TABLE IF NOT EXISTS task_metric_minutes (
+  bucket_minute TEXT NOT NULL,
+  source TEXT NOT NULL DEFAULT '',
+  task_type TEXT NOT NULL DEFAULT '',
+  execution_lane TEXT NOT NULL DEFAULT '',
+  outcome TEXT NOT NULL DEFAULT '',
+  run_count INTEGER NOT NULL DEFAULT 0,
+  duration_count INTEGER NOT NULL DEFAULT 0,
+  duration_sum_ms INTEGER NOT NULL DEFAULT 0,
+  duration_max_ms INTEGER NOT NULL DEFAULT 0,
+  queue_wait_count INTEGER NOT NULL DEFAULT 0,
+  queue_wait_sum_ms INTEGER NOT NULL DEFAULT 0,
+  queue_wait_max_ms INTEGER NOT NULL DEFAULT 0,
+  attributed_command_count INTEGER NOT NULL DEFAULT 0,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (bucket_minute, source, task_type, execution_lane, outcome)
+);
+
+CREATE TABLE IF NOT EXISTS command_anomalies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  occurred_at DATETIME NOT NULL,
+  run_id TEXT,
+  account_id INTEGER,
+  batch_task_id INTEGER,
+  source TEXT NOT NULL DEFAULT '',
+  task_type TEXT NOT NULL DEFAULT '',
+  command TEXT NOT NULL DEFAULT '',
+  execution_lane TEXT NOT NULL DEFAULT '',
+  egress_type TEXT NOT NULL DEFAULT '',
+  egress_key TEXT NOT NULL DEFAULT '',
+  category TEXT NOT NULL,
+  error_code INTEGER,
+  latency_ms INTEGER,
+  queue_wait_ms INTEGER,
+  summary TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_game_accounts_user ON game_accounts(user_id);
 CREATE INDEX IF NOT EXISTS idx_task_configs_account ON task_configs(account_id);
 CREATE INDEX IF NOT EXISTS idx_task_logs_account ON task_logs(account_id);
@@ -268,6 +329,10 @@ CREATE INDEX IF NOT EXISTS idx_account_lineups_account ON account_lineups(accoun
 CREATE INDEX IF NOT EXISTS idx_account_lineups_account_team ON account_lineups(account_id, team_id);
 CREATE INDEX IF NOT EXISTS idx_scheduler_deferred_runs_release ON scheduler_deferred_runs(status, release_at, planned_at, id);
 CREATE INDEX IF NOT EXISTS idx_scheduler_deferred_runs_user ON scheduler_deferred_runs(user_id, status);
+CREATE INDEX IF NOT EXISTS idx_command_metrics_bucket ON command_metric_minutes(bucket_minute);
+CREATE INDEX IF NOT EXISTS idx_task_metrics_bucket ON task_metric_minutes(bucket_minute);
+CREATE INDEX IF NOT EXISTS idx_command_anomalies_time ON command_anomalies(occurred_at);
+CREATE INDEX IF NOT EXISTS idx_command_anomalies_category ON command_anomalies(category, occurred_at);
 `;
 
 const TASK_LOG_RETENTION_DAYS = 30;
@@ -545,6 +610,7 @@ export async function initDatabase() {
   dirty = ensureTaskConfigSchema() || dirty;
   dirty = ensureTaskExecutionMarkerSchema() || dirty;
   dirty = ensureSystemSettingsSchema() || dirty;
+  dirty = ensureSchedulerObservationSchema() || dirty;
 
   console.log('🗃️ initDatabase[5/5] 执行数据规范化...');
   const normalizeResult = normalizeGameAccounts();
@@ -559,6 +625,22 @@ export async function initDatabase() {
 
   console.log(`✅ 数据库初始化完成: ${dbPath}（用时 ${Date.now() - startedAt}ms）`);
   return db;
+}
+
+function ensureSchedulerObservationSchema() {
+  let changed = false;
+  try {
+    const columns = getTableColumns('command_metric_minutes');
+    if (!columns.has('slow_count')) {
+      rawDb.exec(
+        'ALTER TABLE command_metric_minutes ADD COLUMN slow_count INTEGER NOT NULL DEFAULT 0',
+      );
+      changed = true;
+    }
+  } catch (error) {
+    console.warn('Failed to ensure scheduler observation schema:', error?.message || error);
+  }
+  return changed;
 }
 
 function ensureUsersSchema() {
@@ -1037,6 +1119,9 @@ export function cleanupLogTables(targetDb = getDatabase()) {
 
 export async function runDatabaseMaintenance() {
   cleanupLogTables();
+  if (config.observability?.enabled !== true) return;
+  const { cleanupSchedulerObservation } = await import('../observability/schedulerObservationRepository.js');
+  cleanupSchedulerObservation(getDatabase());
 }
 
 export async function runDatabaseVacuum() {

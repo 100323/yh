@@ -55,11 +55,64 @@ import {
   deferScheduledRun,
   getSaturdaySchedulerPolicy,
 } from '../utils/saturdaySchedulerBlackoutStore.js';
+import {
+  runObservedTask,
+  withSchedulerObservationContext,
+} from '../observability/schedulerObservationCore.js';
+import * as schedulerObservationService from '../observability/schedulerObservationService.js';
 
 const scheduledBatchJobs = new Map();
 const activeConnections = new Map();
 const runningTasks = new Set();
 let batchSchedulerRefreshJob = null;
+
+export function runBatchAccountObserved(context, executor, options = {}) {
+  const accountId = context?.accountId;
+  const executionLane = context?.executionLane === EXECUTION_LANES.PROXY
+    ? EXECUTION_LANES.PROXY
+    : EXECUTION_LANES.DIRECT;
+  let queueObserver;
+  try {
+    queueObserver = options?.observer;
+  } catch {
+    queueObserver = null;
+  }
+  if (
+    queueObserver === undefined
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return runAccountTaskExclusive(accountId, executor, {
+      lane: executionLane,
+      observer: queueObserver,
+    });
+  }
+  return withSchedulerObservationContext({
+    source: 'batch',
+    batchTaskId: context?.batchTaskId,
+    accountId,
+    executionLane,
+  }, () => runAccountTaskExclusive(accountId, executor, {
+    lane: executionLane,
+    observer: queueObserver,
+  }));
+}
+
+export function runBatchTaskObserved(context, executor, observer = schedulerObservationService) {
+  const observedExecutor = typeof context?.afterTask === 'function'
+    ? async () => {
+      const result = await executor();
+      await context.afterTask(result);
+      return result;
+    }
+    : executor;
+  if (
+    observer === schedulerObservationService
+    && !schedulerObservationService.isSchedulerObservationEnabled()
+  ) {
+    return observedExecutor();
+  }
+  return runObservedTask({ taskType: context?.taskType }, observedExecutor, observer);
+}
 const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;
 const DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS = 3;
 const DAILY_POINT_TASK_ID_MAP = {
@@ -560,7 +613,11 @@ export async function executeBatchTask(task, options = {}) {
 
     const accountExecutions = accounts.map(async (account) => {
       const lane = await resolveAccountExecutionLane(account.name);
-      return runAccountTaskExclusive(account.id, async () => {
+      return runBatchAccountObserved({
+        batchTaskId: task.id,
+        accountId: account.id,
+        executionLane: lane,
+      }, async () => {
         console.log('🚀 开始批量任务账号执行', {
           batchTaskId: task.id,
           accountId: account.id,
@@ -594,7 +651,7 @@ export async function executeBatchTask(task, options = {}) {
             );
           }
         }
-      }, { lane }).catch((error) => {
+      }).catch((error) => {
         console.error(`❌ 批量任务账号执行失败: ${account.name}:`, error.message);
         addBatchTaskLogEntry(task.id, account.id, 'ACCOUNT_ERROR', shouldIgnoreFailure(error) ? 'ignored' : 'error', error.message || '账号执行失败');
       });
@@ -652,7 +709,12 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
     importMethod: account.import_method || null,
     updatedAt: account.updated_at || null,
   });
-  const execution = await executeTaskWithFlowControl({
+  const execution = await runBatchTaskObserved({
+    taskType,
+    afterTask: async (completedExecution) => {
+      await claimDailyPointRewardsByTask(completedExecution.client, taskType, taskConfig);
+    },
+  }, () => executeTaskWithFlowControl({
     accountId: account.id,
     accountName: account.name,
     taskType,
@@ -668,10 +730,9 @@ async function executeTaskForAccount(batchTaskId, account, taskType, tokenCandid
         updatedAt: account.updated_at || null,
       });
     },
-  });
+  }));
   client = execution.client;
   const result = execution.result;
-  await claimDailyPointRewardsByTask(client, taskType, taskConfig);
   
   addBatchTaskLogEntry(
     batchTaskId,

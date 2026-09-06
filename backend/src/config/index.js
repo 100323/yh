@@ -29,6 +29,12 @@ function resolveRequiredSecret(envName) {
   return DEVELOPMENT_DEFAULTS[envName];
 }
 
+function clamp(value, min, max, fallback) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) return fallback;
+  return Math.min(max, Math.max(min, numericValue));
+}
+
 export const config = {
   server: {
     port: process.env.PORT || 3001,
@@ -56,6 +62,15 @@ export const config = {
   },
   cron: {
     timezone: 'Asia/Shanghai'
+  },
+  observability: {
+    enabled: String(process.env.SCHEDULER_OBSERVABILITY_ENABLED || '0') === '1',
+    flushIntervalMs: clamp(process.env.SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS, 1000, 60000, 10000),
+    slowCommandMs: clamp(process.env.SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS, 1000, 30000, 5000),
+    retentionDays: clamp(process.env.SCHEDULER_OBSERVABILITY_RETENTION_DAYS, 1, 3, 3),
+    maxMetricKeys: clamp(process.env.SCHEDULER_OBSERVABILITY_MAX_METRIC_KEYS, 1000, 100000, 20000),
+    maxAnomalyBuffer: clamp(process.env.SCHEDULER_OBSERVABILITY_MAX_ANOMALY_BUFFER, 100, 20000, 5000),
+    maxAnomalyRows: clamp(process.env.SCHEDULER_OBSERVABILITY_MAX_ANOMALY_ROWS, 1000, 50000, 50000)
   },
   scheduler: {
     maxConcurrentAccounts: Number(process.env.MAX_CONCURRENT_ACCOUNTS) || 3,
