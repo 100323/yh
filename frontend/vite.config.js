@@ -121,6 +121,10 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true
+      },
+      '/slim-game': {
+        target: 'http://localhost:3001',
+        changeOrigin: true
       }
     }
   }

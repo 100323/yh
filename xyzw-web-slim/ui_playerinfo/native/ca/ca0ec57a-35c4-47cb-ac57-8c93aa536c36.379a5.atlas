@@ -1,0 +1,41 @@
+
+ygbh_axgp_tongjing.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygbh_axgp_dai
+  rotate: false
+  xy: 2, 2
+  size: 123, 506
+  orig: 123, 506
+  offset: 0, 0
+  index: -1
+ygbh_axgp_tj2
+  rotate: false
+  xy: 127, 330
+  size: 170, 178
+  orig: 170, 178
+  offset: 0, 0
+  index: -1
+ygbh_axgp_tj3
+  rotate: false
+  xy: 127, 22
+  size: 126, 134
+  orig: 126, 134
+  offset: 0, 0
+  index: -1
+ygbh_axgp_tj4
+  rotate: false
+  xy: 299, 347
+  size: 161, 161
+  orig: 161, 161
+  offset: 0, 0
+  index: -1
+ygbh_axgp_tj5
+  rotate: false
+  xy: 127, 158
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1

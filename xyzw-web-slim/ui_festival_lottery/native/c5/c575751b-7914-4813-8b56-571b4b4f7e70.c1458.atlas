@@ -1,0 +1,55 @@
+
+znq25_hdjl.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wyhd_hdjl_guang
+  rotate: false
+  xy: 2, 41
+  size: 237, 174
+  orig: 237, 174
+  offset: 0, 0
+  index: -1
+wyhd_hdjl_guang1
+  rotate: false
+  xy: 2, 217
+  size: 345, 174
+  orig: 345, 174
+  offset: 0, 0
+  index: -1
+wyhd_hdjl_hun1
+  rotate: false
+  xy: 335, 29
+  size: 115, 136
+  orig: 115, 136
+  offset: 0, 0
+  index: -1
+wyhd_hdjl_xiang1
+  rotate: false
+  xy: 2, 2
+  size: 211, 37
+  orig: 211, 37
+  offset: 0, 0
+  index: -1
+wyhd_hdjl_xiang2
+  rotate: true
+  xy: 241, 2
+  size: 213, 92
+  orig: 213, 92
+  offset: 0, 0
+  index: -1
+wyhd_hdjl_xiang3
+  rotate: true
+  xy: 349, 167
+  size: 224, 150
+  orig: 224, 150
+  offset: 0, 0
+  index: -1
+wyhd_hdjl_xing
+  rotate: true
+  xy: 335, 2
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,237 @@
+
+sunce4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 164, 350
+  size: 82, 42
+  orig: 82, 82
+  offset: 0, 40
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 308, 355
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 272, 243
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 222, 3
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+sunce4_band
+  rotate: true
+  xy: 342, 47
+  size: 54, 84
+  orig: 54, 84
+  offset: 0, 0
+  index: -1
+sunce4_beard
+  rotate: false
+  xy: 320, 289
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+sunce4_body
+  rotate: false
+  xy: 2, 347
+  size: 160, 163
+  orig: 160, 163
+  offset: 0, 0
+  index: -1
+sunce4_effect_fire1
+  rotate: true
+  xy: 220, 101
+  size: 40, 62
+  orig: 40, 62
+  offset: 0, 0
+  index: -1
+sunce4_effect_fire2
+  rotate: true
+  xy: 284, 103
+  size: 38, 57
+  orig: 38, 71
+  offset: 0, 0
+  index: -1
+sunce4_effect_fire3
+  rotate: true
+  xy: 275, 8
+  size: 37, 57
+  orig: 37, 57
+  offset: 0, 0
+  index: -1
+sunce4_effect_smoke
+  rotate: false
+  xy: 364, 22
+  size: 50, 23
+  orig: 50, 23
+  offset: 0, 0
+  index: -1
+sunce4_hair
+  rotate: false
+  xy: 2, 91
+  size: 104, 130
+  orig: 104, 130
+  offset: 0, 0
+  index: -1
+sunce4_handl
+  rotate: true
+  xy: 108, 99
+  size: 122, 110
+  orig: 122, 110
+  offset: 0, 0
+  index: -1
+sunce4_handr
+  rotate: true
+  xy: 2, 223
+  size: 122, 115
+  orig: 122, 115
+  offset: 0, 0
+  index: -1
+sunce4_legr
+  rotate: false
+  xy: 247, 238
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+sunce4_shoulderl
+  rotate: false
+  xy: 248, 351
+  size: 58, 50
+  orig: 58, 50
+  offset: 0, 0
+  index: -1
+sunce4_shoulderr
+  rotate: true
+  xy: 356, 391
+  size: 66, 58
+  orig: 66, 58
+  offset: 0, 0
+  index: -1
+sunce4_skill_fire1
+  rotate: true
+  xy: 299, 176
+  size: 65, 63
+  orig: 65, 66
+  offset: 0, 0
+  index: -1
+sunce4_skill_fire2
+  rotate: false
+  xy: 247, 271
+  size: 71, 77
+  orig: 71, 77
+  offset: 0, 0
+  index: -1
+sunce4_skill_fire3
+  rotate: false
+  xy: 364, 227
+  size: 58, 60
+  orig: 58, 60
+  offset: 0, 0
+  index: -1
+sunce4_skill_fire4
+  rotate: false
+  xy: 164, 394
+  size: 66, 116
+  orig: 66, 130
+  offset: 0, 0
+  index: -1
+sunce4_skill_fire5
+  rotate: false
+  xy: 220, 143
+  size: 77, 82
+  orig: 77, 82
+  offset: 0, 0
+  index: -1
+sunce4_skill_fire6
+  rotate: false
+  xy: 343, 104
+  size: 57, 70
+  orig: 57, 70
+  offset: 0, 0
+  index: -1
+sunce4_skill_smoke1
+  rotate: false
+  xy: 232, 403
+  size: 122, 54
+  orig: 124, 54
+  offset: 2, 0
+  index: -1
+sunce4_skill_smoke2
+  rotate: true
+  xy: 192, 227
+  size: 121, 53
+  orig: 121, 53
+  offset: 0, 0
+  index: -1
+sunce4_skill_smoke3
+  rotate: false
+  xy: 222, 47
+  size: 118, 52
+  orig: 118, 52
+  offset: 0, 0
+  index: -1
+sunce_eye
+  rotate: false
+  xy: 119, 223
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+sunce_eyebrow
+  rotate: true
+  xy: 334, 3
+  size: 42, 28
+  orig: 42, 28
+  offset: 0, 0
+  index: -1
+sunce_eyewhite
+  rotate: true
+  xy: 416, 16
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+sunce_head
+  rotate: true
+  xy: 2, 2
+  size: 87, 113
+  orig: 87, 113
+  offset: 0, 0
+  index: -1
+sunce_jaw
+  rotate: false
+  xy: 117, 2
+  size: 103, 95
+  orig: 122, 130
+  offset: 14, 34
+  index: -1
+sunce_skill1
+  rotate: false
+  xy: 232, 459
+  size: 149, 51
+  orig: 149, 51
+  offset: 0, 0
+  index: -1
+sunce_tail
+  rotate: true
+  xy: 119, 232
+  size: 113, 71
+  orig: 113, 71
+  offset: 0, 0
+  index: -1

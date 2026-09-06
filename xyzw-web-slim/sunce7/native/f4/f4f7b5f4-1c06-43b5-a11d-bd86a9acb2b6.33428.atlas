@@ -1,0 +1,48 @@
+
+sunce7_skill_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce7_tx_zd1
+  rotate: false
+  xy: 266, 21
+  size: 93, 104
+  orig: 102, 114
+  offset: 4, 5
+  index: -1
+sunce7_tx_zd2
+  rotate: true
+  xy: 166, 11
+  size: 114, 98
+  orig: 114, 98
+  offset: 0, 0
+  index: -1
+sunce7_tx_zd4
+  rotate: false
+  xy: 83, 18
+  size: 64, 70
+  orig: 64, 70
+  offset: 0, 0
+  index: -1
+sunce7_tx_zd5
+  rotate: false
+  xy: 2, 90
+  size: 162, 162
+  orig: 162, 162
+  offset: 0, 0
+  index: -1
+sunce7_tx_zd6
+  rotate: false
+  xy: 166, 127
+  size: 110, 125
+  orig: 110, 125
+  offset: 0, 0
+  index: -1
+sunce7_tx_zd7
+  rotate: false
+  xy: 2, 2
+  size: 79, 86
+  orig: 79, 86
+  offset: 0, 0
+  index: -1

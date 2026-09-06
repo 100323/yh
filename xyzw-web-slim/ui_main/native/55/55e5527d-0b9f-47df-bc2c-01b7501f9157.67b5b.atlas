@@ -1,0 +1,55 @@
+
+ui_axian_btn_livingroom_mengmo.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ktax_mm_ej
+  rotate: true
+  xy: 135, 22
+  size: 98, 92
+  orig: 98, 92
+  offset: 0, 0
+  index: -1
+ktax_mm_lian
+  rotate: false
+  xy: 2, 16
+  size: 59, 57
+  orig: 59, 57
+  offset: 0, 0
+  index: -1
+ktax_mm_mao
+  rotate: true
+  xy: 135, 122
+  size: 113, 96
+  orig: 113, 96
+  offset: 0, 0
+  index: -1
+ktax_mm_pao
+  rotate: false
+  xy: 63, 2
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+ktax_mm_shen
+  rotate: false
+  xy: 2, 75
+  size: 131, 160
+  orig: 131, 160
+  offset: 0, 0
+  index: -1
+ktax_mm_tf
+  rotate: false
+  xy: 63, 36
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+ktax_mm_zui
+  rotate: true
+  xy: 98, 6
+  size: 28, 17
+  orig: 28, 17
+  offset: 0, 0
+  index: -1

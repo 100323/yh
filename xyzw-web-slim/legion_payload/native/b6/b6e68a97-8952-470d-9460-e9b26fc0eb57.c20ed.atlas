@@ -1,0 +1,97 @@
+
+tgcf_pty_ytc_3.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gvg_ytc_luzil
+  rotate: false
+  xy: 156, 130
+  size: 144, 122
+  orig: 144, 122
+  offset: 0, 0
+  index: -1
+gvg_ytc_luziying
+  rotate: false
+  xy: 2, 2
+  size: 83, 50
+  orig: 83, 50
+  offset: 0, 0
+  index: -1
+gvg_ytc_tao
+  rotate: true
+  xy: 93, 58
+  size: 62, 61
+  orig: 62, 61
+  offset: 0, 0
+  index: -1
+gvg_ytc_tao1
+  rotate: true
+  xy: 156, 14
+  size: 62, 93
+  orig: 62, 93
+  offset: 0, 0
+  index: -1
+gvg_ytc_taoying
+  rotate: true
+  xy: 258, 78
+  size: 50, 25
+  orig: 50, 25
+  offset: 0, 0
+  index: -1
+gvg_ytc_xzk0
+  rotate: false
+  xy: 285, 12
+  size: 76, 65
+  orig: 76, 65
+  offset: 0, 0
+  index: -1
+gvg_ytc_xzkh
+  rotate: false
+  xy: 2, 122
+  size: 152, 130
+  orig: 152, 130
+  offset: 0, 0
+  index: -1
+gvg_ytc_yp2
+  rotate: false
+  xy: 363, 20
+  size: 60, 57
+  orig: 60, 57
+  offset: 0, 0
+  index: -1
+gvg_ytc_yun
+  rotate: false
+  xy: 2, 54
+  size: 89, 66
+  orig: 89, 66
+  offset: 0, 0
+  index: -1
+gvg_ytc_yuntl1
+  rotate: true
+  xy: 302, 79
+  size: 173, 120
+  orig: 173, 120
+  offset: 0, 0
+  index: -1
+gvg_ytc_yuntq
+  rotate: false
+  xy: 156, 78
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 424, 206
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+jilong_qiu3
+  rotate: false
+  xy: 93, 3
+  size: 58, 53
+  orig: 58, 53
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,181 @@
+
+zhangyu_buff_shield.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/cr_down/cr_down_0008
+  rotate: false
+  xy: 86, 820
+  size: 49, 44
+  orig: 169, 166
+  offset: 118, 0
+  index: -1
+images/cr_down/cr_down_0012
+  rotate: false
+  xy: 548, 387
+  size: 169, 150
+  orig: 169, 166
+  offset: 0, 4
+  index: -1
+images/cr_down/cr_down_0016
+  rotate: false
+  xy: 2, 581
+  size: 160, 131
+  orig: 169, 166
+  offset: 0, 29
+  index: -1
+images/cr_down/cr_down_0020
+  rotate: false
+  xy: 807, 528
+  size: 144, 131
+  orig: 169, 166
+  offset: 8, 33
+  index: -1
+images/cr_up/cr_up_0002
+  rotate: false
+  xy: 2, 37
+  size: 317, 227
+  orig: 323, 294
+  offset: 2, 5
+  index: -1
+images/cr_up/cr_up_0006
+  rotate: false
+  xy: 678, 204
+  size: 323, 180
+  orig: 323, 294
+  offset: 0, 11
+  index: -1
+images/cr_up/cr_up_0010
+  rotate: false
+  xy: 168, 696
+  size: 297, 107
+  orig: 323, 294
+  offset: 6, 52
+  index: -1
+images/cr_up/cr_up_0014
+  rotate: false
+  xy: 288, 805
+  size: 243, 59
+  orig: 323, 294
+  offset: 60, 85
+  index: -1
+images/cr_up_down/cr_up_0006
+  rotate: true
+  xy: 898, 705
+  size: 159, 116
+  orig: 323, 294
+  offset: 164, 162
+  index: -1
+images/cr_up_down/cr_up_0010
+  rotate: false
+  xy: 2, 714
+  size: 164, 98
+  orig: 323, 294
+  offset: 149, 184
+  index: -1
+images/cr_up_down/cr_up_0014
+  rotate: false
+  xy: 137, 814
+  size: 149, 50
+  orig: 323, 294
+  offset: 142, 240
+  index: -1
+images/sr_down/sr_down_0005
+  rotate: false
+  xy: 466, 539
+  size: 339, 120
+  orig: 339, 171
+  offset: 0, 27
+  index: -1
+images/sr_down/sr_down_0007
+  rotate: false
+  xy: 2, 266
+  size: 339, 142
+  orig: 339, 171
+  offset: 0, 27
+  index: -1
+images/sr_down/sr_down_0009
+  rotate: false
+  xy: 343, 240
+  size: 333, 145
+  orig: 339, 171
+  offset: 1, 26
+  index: -1
+images/sr_up/sr_up_0003
+  rotate: false
+  xy: 164, 567
+  size: 300, 127
+  orig: 339, 171
+  offset: 7, 1
+  index: -1
+images/sr_up/sr_up_0005
+  rotate: false
+  xy: 2, 441
+  size: 314, 124
+  orig: 339, 171
+  offset: 22, 1
+  index: -1
+images/sr_up/sr_up_0009
+  rotate: false
+  xy: 719, 386
+  size: 287, 140
+  orig: 339, 171
+  offset: 0, 1
+  index: -1
+images/st_down/st_down_0007
+  rotate: false
+  xy: 607, 790
+  size: 88, 74
+  orig: 229, 122
+  offset: 2, 7
+  index: -1
+images/st_down/st_down_0011
+  rotate: false
+  xy: 533, 794
+  size: 72, 70
+  orig: 229, 122
+  offset: 0, 3
+  index: -1
+images/st_up/st_up_0008
+  rotate: false
+  xy: 697, 789
+  size: 199, 75
+  orig: 228, 129
+  offset: 1, 6
+  index: -1
+images/st_up/st_up_0012
+  rotate: false
+  xy: 318, 410
+  size: 228, 127
+  orig: 228, 129
+  offset: 0, 0
+  index: -1
+images/st_up/st_up_0016
+  rotate: false
+  xy: 667, 661
+  size: 223, 126
+  orig: 228, 129
+  offset: 1, 2
+  index: -1
+images/st_up/st_up_0020
+  rotate: false
+  xy: 467, 670
+  size: 198, 118
+  orig: 228, 129
+  offset: 26, 8
+  index: -1
+images/yuling
+  rotate: false
+  xy: 2, 833
+  size: 82, 31
+  orig: 82, 31
+  offset: 0, 0
+  index: -1
+images/zhao/zhao_0009
+  rotate: true
+  xy: 321, 2
+  size: 236, 295
+  orig: 236, 295
+  offset: 0, 0
+  index: -1

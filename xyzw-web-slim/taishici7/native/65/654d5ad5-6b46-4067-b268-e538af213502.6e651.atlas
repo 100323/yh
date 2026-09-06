@@ -1,0 +1,111 @@
+
+taishici7_skill_position2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jnxl_q
+  rotate: true
+  xy: 214, 37
+  size: 267, 92
+  orig: 267, 92
+  offset: 0, 0
+  index: -1
+jnxl_s_00000
+  rotate: true
+  xy: 560, 123
+  size: 250, 142
+  orig: 250, 142
+  offset: 0, 0
+  index: -1
+jnxl_s_00001
+  rotate: false
+  xy: 308, 228
+  size: 250, 145
+  orig: 250, 145
+  offset: 0, 0
+  index: -1
+jnxl_s_00002
+  rotate: false
+  xy: 308, 81
+  size: 250, 145
+  orig: 250, 145
+  offset: 0, 0
+  index: -1
+jnxl_s_00003
+  rotate: true
+  xy: 704, 152
+  size: 250, 145
+  orig: 250, 145
+  offset: 0, 0
+  index: -1
+jnxl_x_00000
+  rotate: true
+  xy: 2, 2
+  size: 302, 104
+  orig: 302, 104
+  offset: 0, 0
+  index: -1
+jnxl_x_00001
+  rotate: false
+  xy: 305, 404
+  size: 302, 104
+  orig: 302, 104
+  offset: 0, 0
+  index: -1
+jnxl_x_00002
+  rotate: true
+  xy: 108, 2
+  size: 302, 104
+  orig: 302, 104
+  offset: 0, 0
+  index: -1
+jnxl_x_00003
+  rotate: false
+  xy: 609, 404
+  size: 302, 104
+  orig: 302, 104
+  offset: 0, 0
+  index: -1
+taishici7_skill_xlhuod
+  rotate: false
+  xy: 2, 306
+  size: 301, 202
+  orig: 301, 202
+  offset: 0, 0
+  index: -1
+taishici7_skill_xltw
+  rotate: false
+  xy: 305, 375
+  size: 379, 27
+  orig: 379, 27
+  offset: 0, 0
+  index: -1
+taishici7_skill_xlx
+  rotate: true
+  xy: 851, 174
+  size: 228, 95
+  orig: 228, 95
+  offset: 0, 0
+  index: -1
+taishici7_skill_xlyan
+  rotate: false
+  xy: 560, 62
+  size: 144, 59
+  orig: 144, 59
+  offset: 0, 0
+  index: -1
+taishici7_skill_xlzd
+  rotate: false
+  xy: 308, 12
+  size: 176, 67
+  orig: 176, 67
+  offset: 0, 0
+  index: -1
+taishici7_wuqitx
+  rotate: true
+  xy: 706, 30
+  size: 120, 144
+  orig: 120, 144
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,146 @@
+
+simayi8_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 449, 222
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+simayi8_skill_c1
+  rotate: true
+  xy: 134, 220
+  size: 284, 194
+  orig: 284, 194
+  offset: 0, 0
+  index: -1
+simayi8_skill_c2
+  rotate: false
+  xy: 2, 2
+  size: 211, 183
+  orig: 211, 183
+  offset: 0, 0
+  index: -1
+simayi8_skill_l1
+  rotate: false
+  xy: 943, 351
+  size: 58, 153
+  orig: 58, 153
+  offset: 0, 0
+  index: -1
+simayi8_skill_l1_2
+  rotate: true
+  xy: 622, 277
+  size: 62, 153
+  orig: 62, 153
+  offset: 0, 0
+  index: -1
+simayi8_skill_l2
+  rotate: false
+  xy: 622, 341
+  size: 157, 163
+  orig: 168, 174
+  offset: 5, 6
+  index: -1
+simayi8_skill_l3
+  rotate: true
+  xy: 492, 35
+  size: 228, 176
+  orig: 228, 176
+  offset: 0, 0
+  index: -1
+simayi8_skill_l4
+  rotate: false
+  xy: 330, 220
+  size: 117, 284
+  orig: 117, 284
+  offset: 0, 0
+  index: -1
+simayi8_skill_l5
+  rotate: false
+  xy: 670, 97
+  size: 134, 139
+  orig: 145, 141
+  offset: 5, 2
+  index: -1
+simayi8_skill_ss1
+  rotate: false
+  xy: 806, 2
+  size: 124, 124
+  orig: 130, 132
+  offset: 3, 4
+  index: -1
+simayi8_skill_ss2
+  rotate: true
+  xy: 781, 256
+  size: 108, 146
+  orig: 115, 153
+  offset: 3, 4
+  index: -1
+simayi8_skill_ss3
+  rotate: false
+  xy: 806, 128
+  size: 112, 126
+  orig: 119, 132
+  offset: 4, 3
+  index: -1
+simayi8_skill_ss4
+  rotate: false
+  xy: 929, 297
+  size: 86, 52
+  orig: 95, 59
+  offset: 6, 5
+  index: -1
+simayi8_skill_ss5
+  rotate: true
+  xy: 929, 238
+  size: 57, 80
+  orig: 63, 88
+  offset: 3, 5
+  index: -1
+simayi8_skill_ss6
+  rotate: true
+  xy: 781, 366
+  size: 138, 160
+  orig: 146, 169
+  offset: 4, 4
+  index: -1
+simayi8_skill_w0
+  rotate: true
+  xy: 333, 27
+  size: 191, 141
+  orig: 191, 141
+  offset: 0, 0
+  index: -1
+simayi8_skill_w1
+  rotate: true
+  xy: 215, 11
+  size: 207, 116
+  orig: 207, 116
+  offset: 0, 0
+  index: -1
+simayi8_skill_w2
+  rotate: true
+  xy: 449, 265
+  size: 239, 171
+  orig: 239, 171
+  offset: 0, 0
+  index: -1
+simayi8_skill_w3
+  rotate: true
+  xy: 2, 187
+  size: 317, 130
+  orig: 317, 130
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 134, 202
+  size: 16, 15
+  orig: 22, 22
+  offset: 4, 4
+  index: -1

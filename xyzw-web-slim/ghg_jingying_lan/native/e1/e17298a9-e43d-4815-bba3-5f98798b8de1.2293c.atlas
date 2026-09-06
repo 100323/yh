@@ -1,0 +1,384 @@
+
+ghg_jingying_lan.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_jingying7_arm1
+  rotate: false
+  xy: 701, 40
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+ghg_jingying7_arm2
+  rotate: false
+  xy: 238, 2
+  size: 78, 46
+  orig: 78, 46
+  offset: 0, 0
+  index: -1
+ghg_jingying7_body
+  rotate: false
+  xy: 959, 627
+  size: 63, 50
+  orig: 63, 52
+  offset: 0, 2
+  index: -1
+ghg_jingying7_c1
+  rotate: false
+  xy: 897, 90
+  size: 85, 94
+  orig: 85, 94
+  offset: 0, 0
+  index: -1
+ghg_jingying7_c2
+  rotate: true
+  xy: 586, 423
+  size: 45, 34
+  orig: 45, 34
+  offset: 0, 0
+  index: -1
+ghg_jingying7_c3
+  rotate: true
+  xy: 984, 159
+  size: 51, 36
+  orig: 51, 36
+  offset: 0, 0
+  index: -1
+ghg_jingying7_ear1
+  rotate: false
+  xy: 959, 874
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+ghg_jingying7_ear2
+  rotate: true
+  xy: 959, 811
+  size: 61, 58
+  orig: 61, 58
+  offset: 0, 0
+  index: -1
+ghg_jingying7_eye1
+  rotate: false
+  xy: 1013, 711
+  size: 5, 9
+  orig: 5, 9
+  offset: 0, 0
+  index: -1
+ghg_jingying7_eye2
+  rotate: false
+  xy: 1013, 722
+  size: 6, 10
+  orig: 6, 10
+  offset: 0, 0
+  index: -1
+ghg_jingying7_eyebrow
+  rotate: true
+  xy: 320, 50
+  size: 34, 11
+  orig: 34, 11
+  offset: 0, 0
+  index: -1
+ghg_jingying7_eyewhite1
+  rotate: false
+  xy: 238, 70
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+ghg_jingying7_eyewhite2
+  rotate: true
+  xy: 321, 172
+  size: 30, 18
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+ghg_jingying7_head
+  rotate: false
+  xy: 897, 7
+  size: 87, 81
+  orig: 87, 81
+  offset: 0, 0
+  index: -1
+ghg_jingying7_lan1
+  rotate: true
+  xy: 885, 323
+  size: 143, 125
+  orig: 143, 125
+  offset: 0, 0
+  index: -1
+ghg_jingying7_lan2
+  rotate: true
+  xy: 341, 49
+  size: 212, 160
+  orig: 212, 160
+  offset: 0, 0
+  index: -1
+ghg_jingying7_leg1
+  rotate: false
+  xy: 586, 389
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+ghg_jingying7_leg2
+  rotate: true
+  xy: 586, 343
+  size: 44, 24
+  orig: 44, 24
+  offset: 0, 0
+  index: -1
+ghg_jingying7_light1
+  rotate: true
+  xy: 346, 263
+  size: 271, 214
+  orig: 271, 214
+  offset: 0, 0
+  index: -1
+ghg_jingying7_light2
+  rotate: false
+  xy: 2, 97
+  size: 265, 204
+  orig: 265, 204
+  offset: 0, 0
+  index: -1
+ghg_jingying7_mouth
+  rotate: false
+  xy: 503, 140
+  size: 49, 52
+  orig: 49, 52
+  offset: 0, 0
+  index: -1
+ghg_jingying7_pd
+  rotate: false
+  xy: 772, 64
+  size: 123, 113
+  orig: 123, 113
+  offset: 0, 0
+  index: -1
+ghg_jingying7_tail
+  rotate: true
+  xy: 503, 194
+  size: 67, 49
+  orig: 67, 49
+  offset: 0, 0
+  index: -1
+ghg_jingying7_vg1
+  rotate: true
+  xy: 984, 117
+  size: 40, 36
+  orig: 40, 38
+  offset: 0, 0
+  index: -1
+ghg_jingying7_vg2
+  rotate: true
+  xy: 658, 83
+  size: 47, 41
+  orig: 47, 41
+  offset: 0, 0
+  index: -1
+ghg_jingying7_vg3
+  rotate: true
+  xy: 959, 679
+  size: 53, 52
+  orig: 53, 52
+  offset: 0, 0
+  index: -1
+ghg_jingying7_vg4
+  rotate: true
+  xy: 701, 85
+  size: 45, 41
+  orig: 45, 41
+  offset: 0, 0
+  index: -1
+ghg_jingying7_vg5
+  rotate: false
+  xy: 607, 87
+  size: 49, 43
+  orig: 52, 43
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_dian
+  rotate: false
+  xy: 623, 343
+  size: 260, 275
+  orig: 260, 275
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_guangnei
+  rotate: true
+  xy: 623, 620
+  size: 399, 334
+  orig: 399, 334
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_guangwai
+  rotate: false
+  xy: 2, 536
+  size: 619, 483
+  orig: 619, 483
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_luobu
+  rotate: true
+  xy: 269, 204
+  size: 97, 70
+  orig: 97, 70
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_bizi
+  rotate: true
+  xy: 320, 121
+  size: 24, 19
+  orig: 24, 19
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_erl
+  rotate: true
+  xy: 890, 212
+  size: 109, 101
+  orig: 109, 101
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_err
+  rotate: false
+  xy: 2, 4
+  size: 125, 91
+  orig: 125, 91
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_meimao
+  rotate: false
+  xy: 551, 87
+  size: 54, 43
+  orig: 54, 43
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_she
+  rotate: false
+  xy: 959, 939
+  size: 60, 80
+  orig: 60, 81
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_shen
+  rotate: false
+  xy: 2, 303
+  size: 342, 231
+  orig: 342, 231
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_tou
+  rotate: true
+  xy: 562, 132
+  size: 209, 208
+  orig: 210, 208
+  offset: 1, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_tuil
+  rotate: true
+  xy: 959, 734
+  size: 75, 53
+  orig: 75, 53
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_tuir
+  rotate: false
+  xy: 562, 470
+  size: 51, 64
+  orig: 51, 64
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_wei
+  rotate: true
+  xy: 129, 8
+  size: 87, 107
+  orig: 87, 107
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_yanl
+  rotate: true
+  xy: 269, 74
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_yanr
+  rotate: true
+  xy: 503, 87
+  size: 51, 46
+  orig: 51, 46
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_yanzhul
+  rotate: true
+  xy: 1012, 455
+  size: 11, 10
+  orig: 13, 10
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_tu_yanzhur
+  rotate: false
+  xy: 318, 37
+  size: 11, 11
+  orig: 12, 12
+  offset: 1, 1
+  index: -1
+ghg_jingying_lan_skill_hit_tu_zui
+  rotate: true
+  xy: 885, 468
+  size: 150, 135
+  orig: 150, 135
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_xian
+  rotate: true
+  xy: 562, 350
+  size: 118, 22
+  orig: 118, 22
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_xian1
+  rotate: false
+  xy: 772, 179
+  size: 116, 142
+  orig: 116, 142
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_yezi
+  rotate: false
+  xy: 269, 147
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit_yingzi
+  rotate: false
+  xy: 890, 186
+  size: 57, 24
+  orig: 57, 24
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 320, 86
+  size: 15, 13
+  orig: 16, 16
+  offset: 0, 1
+  index: -1
+ymj_effect_star1
+  rotate: false
+  xy: 321, 149
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 320, 103
+  size: 16, 15
+  orig: 16, 16
+  offset: 0, 1
+  index: -1

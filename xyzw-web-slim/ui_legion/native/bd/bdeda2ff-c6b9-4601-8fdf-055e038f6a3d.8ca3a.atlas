@@ -1,0 +1,55 @@
+
+jlb_man2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jlb_man_shoubi
+  rotate: false
+  xy: 2, 103
+  size: 204, 39
+  orig: 204, 39
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_che2
+  rotate: true
+  xy: 2, 157
+  size: 11, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_che3
+  rotate: true
+  xy: 19, 157
+  size: 11, 20
+  orig: 11, 20
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_chex
+  rotate: false
+  xy: 2, 2
+  size: 113, 99
+  orig: 113, 99
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_cheyan
+  rotate: false
+  xy: 41, 153
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_shouzhi2
+  rotate: false
+  xy: 63, 147
+  size: 47, 21
+  orig: 47, 21
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_shouzi1
+  rotate: false
+  xy: 112, 144
+  size: 54, 24
+  orig: 55, 24
+  offset: 0, 0
+  index: -1

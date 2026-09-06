@@ -1,0 +1,48 @@
+
+ghyd_live.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghyd_enter_f1
+  rotate: true
+  xy: 2, 2
+  size: 47, 65
+  orig: 49, 67
+  offset: 1, 1
+  index: -1
+ghyd_enter_f2
+  rotate: false
+  xy: 98, 67
+  size: 45, 54
+  orig: 47, 56
+  offset: 1, 1
+  index: -1
+ghyd_enter_f3
+  rotate: false
+  xy: 117, 11
+  size: 45, 54
+  orig: 47, 56
+  offset: 1, 1
+  index: -1
+ghyd_enter_f4
+  rotate: false
+  xy: 69, 4
+  size: 46, 57
+  orig: 48, 59
+  offset: 1, 1
+  index: -1
+ghyd_enter_f5
+  rotate: false
+  xy: 2, 51
+  size: 46, 70
+  orig: 48, 72
+  offset: 1, 1
+  index: -1
+ghyd_enter_f6
+  rotate: false
+  xy: 50, 63
+  size: 46, 58
+  orig: 48, 60
+  offset: 1, 1
+  index: -1

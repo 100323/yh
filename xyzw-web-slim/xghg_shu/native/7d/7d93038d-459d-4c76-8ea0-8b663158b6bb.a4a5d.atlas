@@ -1,0 +1,41 @@
+
+xghg_shu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_shu_gan
+  rotate: false
+  xy: 2, 2
+  size: 120, 84
+  orig: 120, 101
+  offset: 0, 0
+  index: -1
+xghg_shu_guan
+  rotate: true
+  xy: 138, 32
+  size: 144, 76
+  orig: 144, 76
+  offset: 0, 0
+  index: -1
+xghg_shu_ye
+  rotate: true
+  xy: 216, 108
+  size: 68, 38
+  orig: 70, 40
+  offset: 1, 1
+  index: -1
+xghg_shu_ye1
+  rotate: true
+  xy: 216, 65
+  size: 41, 27
+  orig: 43, 29
+  offset: 1, 1
+  index: -1
+xghg_shu_ying
+  rotate: false
+  xy: 2, 88
+  size: 134, 88
+  orig: 134, 88
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+tgcf_ky_dianliang.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_ky_dl_dian
+  rotate: false
+  xy: 235, 147
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+tgcf_ky_dl_quan
+  rotate: false
+  xy: 0, 54
+  size: 110, 107
+  orig: 110, 107
+  offset: 0, 0
+  index: -1
+tgcf_ky_dl_tuowei1
+  rotate: false
+  xy: 150, 10
+  size: 34, 77
+  orig: 34, 77
+  offset: 0, 0
+  index: -1
+tgcf_ky_dl_tuowei2
+  rotate: false
+  xy: 188, 51
+  size: 45, 110
+  orig: 45, 110
+  offset: 0, 0
+  index: -1
+tgcf_ky_dl_tuowei3
+  rotate: false
+  xy: 112, 0
+  size: 36, 87
+  orig: 36, 87
+  offset: 0, 0
+  index: -1
+tgcf_ky_dl_xing
+  rotate: true
+  xy: 112, 89
+  size: 72, 74
+  orig: 81, 83
+  offset: 5, 4
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 186, 3
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

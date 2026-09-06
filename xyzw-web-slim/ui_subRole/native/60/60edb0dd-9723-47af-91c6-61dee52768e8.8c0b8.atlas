@@ -1,0 +1,90 @@
+
+yxdk_robort.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yxdk_robot_arm1
+  rotate: false
+  xy: 355, 129
+  size: 155, 239
+  orig: 155, 239
+  offset: 0, 0
+  index: -1
+yxdk_robot_arm2
+  rotate: true
+  xy: 649, 9
+  size: 119, 268
+  orig: 119, 268
+  offset: 0, 0
+  index: -1
+yxdk_robot_body
+  rotate: false
+  xy: 2, 119
+  size: 351, 390
+  orig: 351, 390
+  offset: 0, 0
+  index: -1
+yxdk_robot_btn
+  rotate: false
+  xy: 418, 2
+  size: 229, 125
+  orig: 229, 125
+  offset: 0, 0
+  index: -1
+yxdk_robot_eye
+  rotate: false
+  xy: 317, 49
+  size: 67, 68
+  orig: 67, 68
+  offset: 0, 0
+  index: -1
+yxdk_robot_eyelid
+  rotate: true
+  xy: 242, 43
+  size: 74, 73
+  orig: 74, 73
+  offset: 0, 0
+  index: -1
+yxdk_robot_hand1
+  rotate: true
+  xy: 47, 14
+  size: 103, 193
+  orig: 103, 193
+  offset: 0, 0
+  index: -1
+yxdk_robot_hand2
+  rotate: false
+  xy: 725, 158
+  size: 158, 210
+  orig: 158, 210
+  offset: 0, 0
+  index: -1
+yxdk_robot_head
+  rotate: false
+  xy: 512, 130
+  size: 211, 238
+  orig: 211, 238
+  offset: 0, 0
+  index: -1
+yxdk_robot_leg
+  rotate: true
+  xy: 418, 370
+  size: 139, 519
+  orig: 139, 519
+  offset: 0, 0
+  index: -1
+yxdk_robot_line
+  rotate: true
+  xy: 242, 13
+  size: 28, 174
+  orig: 28, 174
+  offset: 0, 0
+  index: -1
+yxdk_robot_mask
+  rotate: false
+  xy: 2, 6
+  size: 43, 111
+  orig: 43, 111
+  offset: 0, 0
+  index: -1

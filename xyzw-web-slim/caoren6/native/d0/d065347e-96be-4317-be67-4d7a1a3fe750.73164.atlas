@@ -1,0 +1,41 @@
+
+caoren6_attack_hit.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren6_attack1
+  rotate: false
+  xy: 2, 19
+  size: 63, 40
+  orig: 63, 40
+  offset: 0, 0
+  index: -1
+caoren6_attack2
+  rotate: false
+  xy: 69, 65
+  size: 42, 61
+  orig: 43, 61
+  offset: 0, 0
+  index: -1
+caoren6_attack3
+  rotate: false
+  xy: 2, 61
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 69, 21
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 67, 2
+  size: 17, 17
+  orig: 23, 23
+  offset: 4, 5
+  index: -1

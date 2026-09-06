@@ -1,0 +1,48 @@
+
+bosstower_boss3_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/boss3_j_ql
+  rotate: true
+  xy: 2, 2
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+images/boss3_j_tw
+  rotate: false
+  xy: 2, 205
+  size: 167, 202
+  orig: 167, 202
+  offset: 0, 0
+  index: -1
+images/boss3_j_yg03
+  rotate: false
+  xy: 176, 33
+  size: 95, 94
+  orig: 95, 94
+  offset: 0, 0
+  index: -1
+images/boss3_j_yg04
+  rotate: false
+  xy: 176, 129
+  size: 106, 108
+  orig: 106, 108
+  offset: 0, 0
+  index: -1
+images/boss3_j_yxy
+  rotate: false
+  xy: 171, 239
+  size: 184, 168
+  orig: 186, 170
+  offset: 1, 1
+  index: -1
+images/boss3_r_xuying
+  rotate: false
+  xy: 2, 34
+  size: 172, 169
+  orig: 172, 169
+  offset: 0, 0
+  index: -1

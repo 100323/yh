@@ -1,0 +1,90 @@
+
+lusu4_skill_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu3_pg_di
+  rotate: false
+  xy: 2, 398
+  size: 299, 96
+  orig: 299, 96
+  offset: 0, 0
+  index: -1
+lusu3_pg_lizi1
+  rotate: false
+  xy: 234, 385
+  size: 32, 11
+  orig: 32, 11
+  offset: 0, 0
+  index: -1
+lusu3_pg_lizi2
+  rotate: true
+  xy: 268, 328
+  size: 68, 20
+  orig: 68, 20
+  offset: 0, 0
+  index: -1
+lusu3_pg_lizi3
+  rotate: true
+  xy: 290, 379
+  size: 17, 10
+  orig: 17, 10
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljf01
+  rotate: true
+  xy: 339, 35
+  size: 193, 121
+  orig: 193, 121
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljf02
+  rotate: true
+  xy: 144, 129
+  size: 193, 135
+  orig: 193, 135
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljf03
+  rotate: false
+  xy: 144, 2
+  size: 193, 125
+  orig: 193, 125
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljf1
+  rotate: false
+  xy: 2, 249
+  size: 121, 73
+  orig: 121, 73
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljfd01
+  rotate: true
+  xy: 2, 7
+  size: 221, 140
+  orig: 221, 140
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljfd02
+  rotate: false
+  xy: 303, 359
+  size: 205, 135
+  orig: 205, 135
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljfd03
+  rotate: false
+  xy: 290, 230
+  size: 205, 127
+  orig: 205, 127
+  offset: 0, 0
+  index: -1
+lusu3_pg_tuowei
+  rotate: false
+  xy: 2, 324
+  size: 230, 72
+  orig: 230, 74
+  offset: 0, 0
+  index: -1

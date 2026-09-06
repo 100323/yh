@@ -1,0 +1,118 @@
+
+caoren5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren5_skill_qiu1
+  rotate: false
+  xy: 322, 72
+  size: 90, 90
+  orig: 92, 92
+  offset: 1, 1
+  index: -1
+caoren5_skill_qiu2
+  rotate: true
+  xy: 451, 135
+  size: 120, 56
+  orig: 120, 56
+  offset: 0, 0
+  index: -1
+caoren5_skill_qiu3
+  rotate: true
+  xy: 100, 86
+  size: 63, 100
+  orig: 63, 100
+  offset: 0, 0
+  index: -1
+caoren5_skill_qiu4
+  rotate: true
+  xy: 202, 2
+  size: 120, 41
+  orig: 120, 41
+  offset: 0, 0
+  index: -1
+caoren5_skill_qiu5
+  rotate: true
+  xy: 354, 257
+  size: 88, 120
+  orig: 88, 120
+  offset: 0, 0
+  index: -1
+caoren5_skill_qz1
+  rotate: false
+  xy: 354, 164
+  size: 95, 91
+  orig: 95, 91
+  offset: 0, 0
+  index: -1
+caoren5_skill_qz2
+  rotate: false
+  xy: 2, 151
+  size: 240, 194
+  orig: 240, 194
+  offset: 0, 0
+  index: -1
+caoren5_skill_star
+  rotate: true
+  xy: 2, 7
+  size: 61, 66
+  orig: 65, 70
+  offset: 2, 2
+  index: -1
+caoren5_skill_yun1
+  rotate: false
+  xy: 244, 239
+  size: 108, 106
+  orig: 108, 106
+  offset: 0, 0
+  index: -1
+caoren5_skill_yun2
+  rotate: false
+  xy: 414, 45
+  size: 90, 88
+  orig: 94, 88
+  offset: 4, 0
+  index: -1
+caoren5_skill_yun3
+  rotate: false
+  xy: 2, 70
+  size: 96, 79
+  orig: 96, 79
+  offset: 0, 0
+  index: -1
+caoren5_skill_yun4
+  rotate: true
+  xy: 244, 124
+  size: 113, 76
+  orig: 113, 76
+  offset: 0, 0
+  index: -1
+caoren5_skill_yun5
+  rotate: true
+  xy: 100, 23
+  size: 61, 68
+  orig: 61, 68
+  offset: 0, 0
+  index: -1
+caoren5_skill_yun6
+  rotate: true
+  xy: 245, 37
+  size: 85, 55
+  orig: 85, 55
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 476, 322
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 476, 308
+  size: 12, 12
+  orig: 13, 13
+  offset: 0, 1
+  index: -1

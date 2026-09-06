@@ -1,0 +1,265 @@
+
+axwq_baihe.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_flower_body
+  rotate: true
+  xy: 2, 2
+  size: 51, 111
+  orig: 51, 111
+  offset: 0, 0
+  index: -1
+axwq_flower_dirt1
+  rotate: true
+  xy: 179, 185
+  size: 63, 46
+  orig: 64, 46
+  offset: 1, 0
+  index: -1
+axwq_flower_dirt2
+  rotate: true
+  xy: 457, 329
+  size: 46, 41
+  orig: 46, 41
+  offset: 0, 0
+  index: -1
+axwq_flower_dirt3
+  rotate: true
+  xy: 387, 39
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+axwq_flower_dirt4
+  rotate: false
+  xy: 387, 81
+  size: 42, 51
+  orig: 47, 51
+  offset: 0, 0
+  index: -1
+axwq_flower_dirt5
+  rotate: false
+  xy: 479, 241
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+axwq_flower_dirt6
+  rotate: false
+  xy: 499, 413
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+axwq_flower_eye1
+  rotate: true
+  xy: 502, 487
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+axwq_flower_eye2
+  rotate: false
+  xy: 457, 319
+  size: 10, 8
+  orig: 10, 8
+  offset: 0, 0
+  index: -1
+axwq_flower_eyewhite1
+  rotate: false
+  xy: 479, 290
+  size: 31, 37
+  orig: 31, 37
+  offset: 0, 0
+  index: -1
+axwq_flower_eyewhite2
+  rotate: false
+  xy: 455, 195
+  size: 38, 40
+  orig: 38, 40
+  offset: 0, 0
+  index: -1
+axwq_flower_face1
+  rotate: false
+  xy: 229, 316
+  size: 132, 108
+  orig: 132, 108
+  offset: 0, 0
+  index: -1
+axwq_flower_face2
+  rotate: false
+  xy: 229, 246
+  size: 134, 68
+  orig: 134, 68
+  offset: 0, 0
+  index: -1
+axwq_flower_hand
+  rotate: true
+  xy: 365, 237
+  size: 80, 112
+  orig: 80, 112
+  offset: 0, 0
+  index: -1
+axwq_flower_leaf1
+  rotate: true
+  xy: 117, 57
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+axwq_flower_leaf2
+  rotate: true
+  xy: 427, 427
+  size: 71, 73
+  orig: 71, 73
+  offset: 0, 0
+  index: -1
+axwq_flower_nose
+  rotate: false
+  xy: 180, 158
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+axwq_flower_petal1
+  rotate: false
+  xy: 2, 55
+  size: 113, 121
+  orig: 113, 121
+  offset: 0, 0
+  index: -1
+axwq_flower_petal2
+  rotate: false
+  xy: 285, 41
+  size: 100, 91
+  orig: 100, 91
+  offset: 0, 0
+  index: -1
+axwq_flower_petal3
+  rotate: false
+  xy: 342, 134
+  size: 111, 101
+  orig: 111, 101
+  offset: 0, 0
+  index: -1
+axwq_flower_petal4
+  rotate: true
+  xy: 180, 60
+  size: 96, 103
+  orig: 96, 103
+  offset: 0, 0
+  index: -1
+axwq_flower_petal5
+  rotate: true
+  xy: 227, 158
+  size: 86, 113
+  orig: 86, 113
+  offset: 0, 0
+  index: -1
+axwq_flower_petal6
+  rotate: true
+  xy: 363, 319
+  size: 105, 92
+  orig: 105, 92
+  offset: 0, 0
+  index: -1
+axwq_flower_piece1
+  rotate: false
+  xy: 431, 118
+  size: 18, 14
+  orig: 18, 14
+  offset: 0, 0
+  index: -1
+axwq_flower_piece2
+  rotate: true
+  xy: 492, 167
+  size: 26, 18
+  orig: 26, 18
+  offset: 0, 0
+  index: -1
+axwq_flower_piece3
+  rotate: false
+  xy: 203, 171
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1
+axwq_flower_piece4
+  rotate: true
+  xy: 495, 216
+  size: 23, 15
+  orig: 23, 15
+  offset: 0, 0
+  index: -1
+axwq_flower_pot1
+  rotate: false
+  xy: 2, 305
+  size: 225, 193
+  orig: 225, 193
+  offset: 0, 0
+  index: -1
+axwq_flower_pot2
+  rotate: false
+  xy: 229, 426
+  size: 196, 72
+  orig: 196, 72
+  offset: 0, 0
+  index: -1
+axwq_flower_pot3
+  rotate: false
+  xy: 2, 250
+  size: 225, 53
+  orig: 225, 53
+  offset: 0, 0
+  index: -1
+axwq_flower_shadow
+  rotate: false
+  xy: 2, 178
+  size: 175, 70
+  orig: 175, 70
+  offset: 0, 0
+  index: -1
+axwq_flower_smoke1
+  rotate: true
+  xy: 457, 377
+  size: 48, 40
+  orig: 48, 40
+  offset: 0, 0
+  index: -1
+axwq_flower_smoke2
+  rotate: false
+  xy: 455, 155
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+axwq_flower_stone1
+  rotate: true
+  xy: 495, 196
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+axwq_flower_stone2
+  rotate: false
+  xy: 285, 141
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+axwq_flower_stone3
+  rotate: false
+  xy: 479, 269
+  size: 31, 19
+  orig: 31, 19
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 492, 147
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1

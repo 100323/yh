@@ -1,0 +1,160 @@
+
+heishi_cgbj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ssxt_cgbj_che1
+  rotate: true
+  xy: 254, 317
+  size: 171, 149
+  orig: 171, 149
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_chel1
+  rotate: true
+  xy: 405, 317
+  size: 40, 53
+  orig: 40, 53
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_chel2
+  rotate: false
+  xy: 460, 320
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_g
+  rotate: true
+  xy: 405, 359
+  size: 129, 84
+  orig: 129, 84
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_gou
+  rotate: false
+  xy: 132, 19
+  size: 54, 90
+  orig: 54, 90
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_jjs
+  rotate: false
+  xy: 425, 222
+  size: 83, 93
+  orig: 86, 93
+  offset: 1, 0
+  index: -1
+ssxt_cgbj_shouj
+  rotate: false
+  xy: 254, 144
+  size: 138, 171
+  orig: 138, 171
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_shoul
+  rotate: false
+  xy: 251, 2
+  size: 53, 61
+  orig: 54, 62
+  offset: 1, 0
+  index: -1
+ssxt_cgbj_shour
+  rotate: true
+  xy: 2, 18
+  size: 70, 74
+  orig: 71, 74
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wp1
+  rotate: false
+  xy: 251, 65
+  size: 75, 77
+  orig: 76, 78
+  offset: 0, 1
+  index: -1
+ssxt_cgbj_wp2
+  rotate: false
+  xy: 188, 21
+  size: 61, 88
+  orig: 61, 88
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wp3
+  rotate: true
+  xy: 328, 31
+  size: 66, 80
+  orig: 67, 80
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wp4
+  rotate: true
+  xy: 2, 90
+  size: 147, 128
+  orig: 147, 128
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wp5
+  rotate: true
+  xy: 132, 111
+  size: 126, 117
+  orig: 126, 117
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wp55
+  rotate: false
+  xy: 480, 88
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wpche2
+  rotate: false
+  xy: 2, 239
+  size: 250, 249
+  orig: 250, 249
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_wpjjs
+  rotate: false
+  xy: 394, 99
+  size: 84, 88
+  orig: 86, 89
+  offset: 1, 1
+  index: -1
+ssxt_cgbj_xian1
+  rotate: true
+  xy: 425, 196
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_xian2
+  rotate: true
+  xy: 454, 193
+  size: 27, 22
+  orig: 27, 22
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_yan
+  rotate: false
+  xy: 78, 45
+  size: 42, 43
+  orig: 42, 43
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_zi1
+  rotate: true
+  xy: 394, 189
+  size: 126, 29
+  orig: 126, 29
+  offset: 0, 0
+  index: -1
+ssxt_cgbj_zi2
+  rotate: true
+  xy: 480, 106
+  size: 114, 29
+  orig: 114, 29
+  offset: 0, 0
+  index: -1

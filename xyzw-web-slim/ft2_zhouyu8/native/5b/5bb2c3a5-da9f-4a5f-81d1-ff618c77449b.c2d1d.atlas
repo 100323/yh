@@ -1,0 +1,90 @@
+
+ft2_zhouyu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tyxingchen1
+  rotate: false
+  xy: 195, 236
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+zhuque2_cbl
+  rotate: true
+  xy: 2, 2
+  size: 151, 191
+  orig: 151, 191
+  offset: 0, 0
+  index: -1
+zhuque2_cbr
+  rotate: true
+  xy: 231, 295
+  size: 193, 199
+  orig: 193, 199
+  offset: 0, 0
+  index: -1
+zhuque2_jiao
+  rotate: false
+  xy: 289, 81
+  size: 121, 118
+  orig: 121, 118
+  offset: 0, 0
+  index: -1
+zhuque2_lizi1
+  rotate: false
+  xy: 426, 155
+  size: 83, 98
+  orig: 83, 98
+  offset: 0, 0
+  index: -1
+zhuque2_lizix1
+  rotate: false
+  xy: 102, 165
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+zhuque2_shen
+  rotate: false
+  xy: 2, 267
+  size: 227, 221
+  orig: 230, 221
+  offset: 3, 0
+  index: -1
+zhuque2_tf
+  rotate: true
+  xy: 2, 160
+  size: 105, 98
+  orig: 105, 98
+  offset: 0, 0
+  index: -1
+zhuque2_tou
+  rotate: false
+  xy: 195, 26
+  size: 92, 127
+  orig: 92, 127
+  offset: 0, 0
+  index: -1
+zhuque2_zhua
+  rotate: true
+  xy: 432, 255
+  size: 53, 73
+  orig: 53, 73
+  offset: 0, 0
+  index: -1
+zhuque2_zsl
+  rotate: false
+  xy: 432, 310
+  size: 78, 178
+  orig: 78, 178
+  offset: 0, 0
+  index: -1
+zhuque2_zsr
+  rotate: true
+  xy: 231, 201
+  size: 92, 193
+  orig: 121, 197
+  offset: 29, 4
+  index: -1

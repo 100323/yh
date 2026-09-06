@@ -1,0 +1,244 @@
+
+sunce6.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 761, 124
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 536, 156
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+sunce6_huoqiu
+  rotate: true
+  xy: 2, 8
+  size: 141, 134
+  orig: 141, 134
+  offset: 0, 0
+  index: -1
+sunce6_huoqiu1
+  rotate: true
+  xy: 627, 323
+  size: 186, 185
+  orig: 186, 185
+  offset: 0, 0
+  index: -1
+sunce6_huoqiu2
+  rotate: false
+  xy: 2, 151
+  size: 290, 358
+  orig: 290, 358
+  offset: 0, 0
+  index: -1
+sunce6_jianjia1
+  rotate: false
+  xy: 915, 211
+  size: 103, 78
+  orig: 104, 78
+  offset: 0, 0
+  index: -1
+sunce6_jj
+  rotate: true
+  xy: 755, 208
+  size: 113, 74
+  orig: 114, 74
+  offset: 1, 0
+  index: -1
+sunce6_jjy
+  rotate: false
+  xy: 761, 172
+  size: 57, 34
+  orig: 58, 35
+  offset: 1, 0
+  index: -1
+sunce6_light
+  rotate: false
+  xy: 913, 135
+  size: 69, 74
+  orig: 69, 74
+  offset: 0, 0
+  index: -1
+sunce6_light_1
+  rotate: true
+  xy: 138, 8
+  size: 10, 99
+  orig: 10, 99
+  offset: 0, 0
+  index: -1
+sunce6_light_11
+  rotate: true
+  xy: 294, 180
+  size: 329, 151
+  orig: 329, 151
+  offset: 0, 0
+  index: -1
+sunce6_light_2
+  rotate: true
+  xy: 839, 23
+  size: 98, 174
+  orig: 98, 174
+  offset: 0, 0
+  index: -1
+sunce6_light_3
+  rotate: false
+  xy: 814, 335
+  size: 109, 174
+  orig: 109, 174
+  offset: 0, 0
+  index: -1
+sunce6_mao
+  rotate: true
+  xy: 536, 200
+  size: 117, 116
+  orig: 118, 118
+  offset: 0, 1
+  index: -1
+sunce6_maoh
+  rotate: true
+  xy: 925, 431
+  size: 78, 83
+  orig: 78, 85
+  offset: 0, 1
+  index: -1
+sunce6_pf1
+  rotate: false
+  xy: 262, 23
+  size: 195, 126
+  orig: 195, 126
+  offset: 0, 0
+  index: -1
+sunce6_pf11
+  rotate: true
+  xy: 589, 13
+  size: 185, 110
+  orig: 185, 110
+  offset: 0, 0
+  index: -1
+sunce6_qi
+  rotate: false
+  xy: 701, 21
+  size: 58, 185
+  orig: 58, 185
+  offset: 0, 0
+  index: -1
+sunce6_shen
+  rotate: false
+  xy: 447, 319
+  size: 178, 190
+  orig: 178, 190
+  offset: 0, 0
+  index: -1
+sunce6_shen2
+  rotate: true
+  xy: 447, 154
+  size: 163, 87
+  orig: 164, 88
+  offset: 0, 0
+  index: -1
+sunce6_shouh1
+  rotate: true
+  xy: 831, 123
+  size: 110, 80
+  orig: 110, 80
+  offset: 0, 0
+  index: -1
+sunce6_shouh2
+  rotate: true
+  xy: 761, 11
+  size: 110, 76
+  orig: 110, 76
+  offset: 0, 0
+  index: -1
+sunce6_shouh3
+  rotate: true
+  xy: 459, 2
+  size: 150, 107
+  orig: 150, 107
+  offset: 0, 0
+  index: -1
+sunce6_shoul
+  rotate: false
+  xy: 925, 291
+  size: 83, 58
+  orig: 83, 59
+  offset: 0, 1
+  index: -1
+sunce6_shoul1
+  rotate: true
+  xy: 831, 235
+  size: 98, 82
+  orig: 98, 82
+  offset: 0, 0
+  index: -1
+sunce6_sz1
+  rotate: false
+  xy: 984, 177
+  size: 36, 32
+  orig: 40, 32
+  offset: 4, 0
+  index: -1
+sunce6_tff
+  rotate: true
+  xy: 925, 351
+  size: 78, 83
+  orig: 79, 85
+  offset: 0, 1
+  index: -1
+sunce6_tui1
+  rotate: false
+  xy: 294, 151
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+sunce6_tui2
+  rotate: true
+  xy: 322, 152
+  size: 26, 31
+  orig: 26, 31
+  offset: 0, 0
+  index: -1
+sunce_eye
+  rotate: false
+  xy: 239, 11
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+sunce_eyebrow
+  rotate: true
+  xy: 984, 133
+  size: 42, 28
+  orig: 42, 28
+  offset: 0, 0
+  index: -1
+sunce_eyewhite
+  rotate: false
+  xy: 355, 153
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+sunce_head
+  rotate: false
+  xy: 654, 208
+  size: 99, 113
+  orig: 99, 113
+  offset: 0, 0
+  index: -1
+sunce_jaw
+  rotate: false
+  xy: 138, 20
+  size: 122, 129
+  orig: 122, 130
+  offset: 0, 0
+  index: -1

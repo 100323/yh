@@ -1,0 +1,13 @@
+
+sdsl_boss5_attack_loop.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_boss5_lingpai1
+  rotate: false
+  xy: 2, 2
+  size: 90, 63
+  orig: 90, 63
+  offset: 0, 0
+  index: -1

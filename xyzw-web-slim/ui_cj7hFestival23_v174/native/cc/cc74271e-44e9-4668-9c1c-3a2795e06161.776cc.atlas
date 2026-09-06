@@ -1,0 +1,13 @@
+
+nznh25_choujiang_huoqiu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_huoqiu
+  rotate: false
+  xy: 2, 2
+  size: 88, 219
+  orig: 88, 219
+  offset: 0, 0
+  index: -1

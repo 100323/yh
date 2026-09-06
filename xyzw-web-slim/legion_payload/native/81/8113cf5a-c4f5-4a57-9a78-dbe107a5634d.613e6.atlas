@@ -1,0 +1,146 @@
+
+tgcf_pty_zdz.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 398, 160
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+tgcf_zdz_dipan1
+  rotate: false
+  xy: 170, 256
+  size: 133, 128
+  orig: 135, 133
+  offset: 1, 4
+  index: -1
+tgcf_zdz_dipan2
+  rotate: false
+  xy: 2, 8
+  size: 133, 128
+  orig: 135, 133
+  offset: 1, 4
+  index: -1
+tgcf_zdz_dipan3
+  rotate: false
+  xy: 338, 380
+  size: 133, 127
+  orig: 135, 133
+  offset: 1, 5
+  index: -1
+tgcf_zdz_dipan4
+  rotate: false
+  xy: 170, 126
+  size: 132, 128
+  orig: 134, 133
+  offset: 1, 4
+  index: -1
+tgcf_zdz_gaizi1
+  rotate: false
+  xy: 2, 385
+  size: 166, 122
+  orig: 168, 124
+  offset: 1, 1
+  index: -1
+tgcf_zdz_gaizi2
+  rotate: false
+  xy: 2, 261
+  size: 166, 122
+  orig: 168, 124
+  offset: 1, 1
+  index: -1
+tgcf_zdz_gaizi3
+  rotate: false
+  xy: 170, 386
+  size: 166, 121
+  orig: 168, 123
+  offset: 1, 1
+  index: -1
+tgcf_zdz_gaizi4
+  rotate: false
+  xy: 2, 138
+  size: 166, 121
+  orig: 168, 123
+  offset: 1, 1
+  index: -1
+tgcf_zdz_lian1
+  rotate: true
+  xy: 305, 216
+  size: 52, 120
+  orig: 56, 125
+  offset: 4, 5
+  index: -1
+tgcf_zdz_lian2
+  rotate: true
+  xy: 137, 2
+  size: 39, 98
+  orig: 46, 100
+  offset: 1, 1
+  index: -1
+tgcf_zdz_lian3
+  rotate: true
+  xy: 137, 43
+  size: 81, 123
+  orig: 81, 123
+  offset: 0, 0
+  index: -1
+tgcf_zdz_lian4
+  rotate: true
+  xy: 304, 145
+  size: 69, 92
+  orig: 71, 94
+  offset: 1, 1
+  index: -1
+tgcf_zdz_lian5
+  rotate: false
+  xy: 262, 34
+  size: 69, 90
+  orig: 71, 92
+  offset: 1, 1
+  index: -1
+tgcf_zdz_taozi
+  rotate: false
+  xy: 333, 63
+  size: 78, 80
+  orig: 85, 84
+  offset: 1, 1
+  index: -1
+tgcf_zdz_ying
+  rotate: false
+  xy: 305, 270
+  size: 141, 108
+  orig: 141, 108
+  offset: 0, 0
+  index: -1
+tgcf_zdz_zdw1
+  rotate: false
+  xy: 333, 17
+  size: 44, 44
+  orig: 46, 54
+  offset: 1, 1
+  index: -1
+tgcf_zdz_zdw2
+  rotate: false
+  xy: 379, 17
+  size: 44, 44
+  orig: 46, 54
+  offset: 1, 1
+  index: -1
+tgcf_zdz_zdw3
+  rotate: true
+  xy: 413, 114
+  size: 44, 43
+  orig: 46, 53
+  offset: 1, 1
+  index: -1
+tgcf_zdz_zdw4
+  rotate: true
+  xy: 413, 68
+  size: 44, 43
+  orig: 46, 53
+  offset: 1, 1
+  index: -1

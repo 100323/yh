@@ -1,0 +1,97 @@
+
+ft_zhenji9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lizi05
+  rotate: false
+  xy: 313, 302
+  size: 32, 30
+  orig: 32, 30
+  offset: 0, 0
+  index: -1
+zj_head
+  rotate: false
+  xy: 2, 257
+  size: 209, 219
+  orig: 209, 219
+  offset: 0, 0
+  index: -1
+zj_sd
+  rotate: true
+  xy: 213, 334
+  size: 142, 156
+  orig: 142, 156
+  offset: 0, 0
+  index: -1
+zj_st
+  rotate: false
+  xy: 2, 88
+  size: 217, 167
+  orig: 217, 167
+  offset: 0, 0
+  index: -1
+zj_wb
+  rotate: true
+  xy: 221, 21
+  size: 113, 133
+  orig: 113, 133
+  offset: 0, 0
+  index: -1
+zj_yjj
+  rotate: true
+  xy: 2, 2
+  size: 84, 92
+  orig: 85, 93
+  offset: 0, 0
+  index: -1
+zj_ysq
+  rotate: false
+  xy: 96, 6
+  size: 80, 80
+  orig: 84, 84
+  offset: 2, 2
+  index: -1
+zj_ysq2
+  rotate: true
+  xy: 347, 304
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1
+zj_ysq_1
+  rotate: true
+  xy: 213, 278
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+zj_zjj
+  rotate: true
+  xy: 381, 342
+  size: 134, 93
+  orig: 134, 93
+  offset: 0, 0
+  index: -1
+zj_zsq
+  rotate: false
+  xy: 320, 187
+  size: 114, 113
+  orig: 118, 117
+  offset: 2, 2
+  index: -1
+zj_zsq2
+  rotate: false
+  xy: 270, 293
+  size: 41, 39
+  orig: 41, 39
+  offset: 0, 0
+  index: -1
+zj_zsq_1
+  rotate: true
+  xy: 221, 136
+  size: 140, 97
+  orig: 140, 97
+  offset: 0, 0
+  index: -1

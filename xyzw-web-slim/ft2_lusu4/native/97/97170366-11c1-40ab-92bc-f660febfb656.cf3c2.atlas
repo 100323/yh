@@ -1,0 +1,146 @@
+
+ft2_lusu4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tyxingchen1
+  rotate: false
+  xy: 40, 9
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+zqls_cbl
+  rotate: false
+  xy: 265, 330
+  size: 146, 173
+  orig: 146, 179
+  offset: 0, 0
+  index: -1
+zqls_cbr
+  rotate: false
+  xy: 2, 306
+  size: 261, 197
+  orig: 261, 197
+  offset: 0, 0
+  index: -1
+zqls_liziq
+  rotate: false
+  xy: 308, 95
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1
+zqls_lizix
+  rotate: true
+  xy: 226, 37
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+zqls_shen
+  rotate: false
+  xy: 87, 56
+  size: 94, 70
+  orig: 94, 70
+  offset: 0, 0
+  index: -1
+zqls_tf1
+  rotate: false
+  xy: 413, 338
+  size: 51, 50
+  orig: 51, 50
+  offset: 0, 0
+  index: -1
+zqls_tf2
+  rotate: false
+  xy: 233, 116
+  size: 73, 96
+  orig: 73, 96
+  offset: 0, 0
+  index: -1
+zqls_tf3
+  rotate: true
+  xy: 108, 233
+  size: 71, 136
+  orig: 71, 136
+  offset: 0, 0
+  index: -1
+zqls_tf4
+  rotate: false
+  xy: 183, 45
+  size: 41, 81
+  orig: 41, 81
+  offset: 0, 0
+  index: -1
+zqls_tf5
+  rotate: true
+  xy: 169, 11
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+zqls_tou
+  rotate: true
+  xy: 108, 128
+  size: 84, 123
+  orig: 84, 123
+  offset: 0, 0
+  index: -1
+zqls_ts
+  rotate: false
+  xy: 265, 214
+  size: 114, 114
+  orig: 114, 114
+  offset: 0, 0
+  index: -1
+zqls_wei
+  rotate: false
+  xy: 413, 390
+  size: 93, 113
+  orig: 99, 113
+  offset: 6, 0
+  index: -1
+zqls_zsl
+  rotate: false
+  xy: 381, 168
+  size: 80, 160
+  orig: 80, 160
+  offset: 0, 0
+  index: -1
+zqls_zsl1
+  rotate: true
+  xy: 308, 180
+  size: 32, 54
+  orig: 32, 54
+  offset: 0, 0
+  index: -1
+zqls_zsl2
+  rotate: true
+  xy: 87, 16
+  size: 38, 80
+  orig: 38, 80
+  offset: 0, 0
+  index: -1
+zqls_zsr
+  rotate: false
+  xy: 2, 130
+  size: 104, 174
+  orig: 107, 174
+  offset: 0, 0
+  index: -1
+zqls_zsr2
+  rotate: false
+  xy: 2, 40
+  size: 83, 88
+  orig: 83, 88
+  offset: 0, 0
+  index: -1
+zqls_zsrh
+  rotate: false
+  xy: 2, 2
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1

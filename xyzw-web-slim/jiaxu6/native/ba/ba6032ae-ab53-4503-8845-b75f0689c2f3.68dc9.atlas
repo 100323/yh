@@ -1,0 +1,55 @@
+
+jiaxu6_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaxu7_pg_hit1
+  rotate: false
+  xy: 2, 10
+  size: 261, 78
+  orig: 261, 78
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_hit2
+  rotate: false
+  xy: 336, 135
+  size: 108, 119
+  orig: 108, 119
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_hit3
+  rotate: true
+  xy: 351, 4
+  size: 88, 104
+  orig: 88, 104
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_hit4
+  rotate: true
+  xy: 377, 101
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_hit5
+  rotate: false
+  xy: 265, 2
+  size: 84, 86
+  orig: 84, 86
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_hit6
+  rotate: false
+  xy: 336, 94
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_hit7
+  rotate: true
+  xy: 2, 90
+  size: 164, 332
+  orig: 164, 332
+  offset: 0, 0
+  index: -1

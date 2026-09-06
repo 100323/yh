@@ -1,0 +1,62 @@
+
+tbhdqx_rg_xg_3.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_rg_xg_mb_1
+  rotate: false
+  xy: 62, 3
+  size: 7, 7
+  orig: 9, 9
+  offset: 1, 1
+  index: -1
+tbhdqx_rg_xg_mb_2
+  rotate: false
+  xy: 71, 3
+  size: 7, 7
+  orig: 9, 9
+  offset: 1, 1
+  index: -1
+tbhdqx_rg_xg_mb_3
+  rotate: false
+  xy: 62, 12
+  size: 28, 41
+  orig: 30, 44
+  offset: 1, 1
+  index: -1
+tbhdqx_rg_xg_mb_4
+  rotate: false
+  xy: 92, 24
+  size: 28, 29
+  orig: 31, 31
+  offset: 2, 1
+  index: -1
+tbhdqx_rg_xg_mb_44
+  rotate: false
+  xy: 62, 55
+  size: 64, 69
+  orig: 64, 69
+  offset: 0, 0
+  index: -1
+tbhdqx_rg_xg_mb_5
+  rotate: false
+  xy: 2, 8
+  size: 58, 116
+  orig: 58, 116
+  offset: 0, 0
+  index: -1
+tbhdqx_rg_xg_mb_6
+  rotate: false
+  xy: 92, 2
+  size: 20, 20
+  orig: 22, 22
+  offset: 1, 1
+  index: -1
+tbhdqx_rg_xg_mb_7
+  rotate: false
+  xy: 114, 2
+  size: 20, 20
+  orig: 22, 22
+  offset: 1, 1
+  index: -1

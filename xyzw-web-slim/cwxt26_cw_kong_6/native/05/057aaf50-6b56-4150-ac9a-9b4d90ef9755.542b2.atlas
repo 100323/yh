@@ -1,0 +1,104 @@
+
+cwxt26_kong6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_hy_cb
+  rotate: false
+  xy: 2, 266
+  size: 219, 234
+  orig: 219, 234
+  offset: 0, 0
+  index: -1
+cwxt26_hy_cb2
+  rotate: false
+  xy: 223, 327
+  size: 153, 173
+  orig: 153, 173
+  offset: 0, 0
+  index: -1
+cwxt26_hy_daizi1
+  rotate: false
+  xy: 173, 26
+  size: 145, 147
+  orig: 145, 147
+  offset: 0, 0
+  index: -1
+cwxt26_hy_daizi2
+  rotate: false
+  xy: 378, 367
+  size: 128, 133
+  orig: 128, 133
+  offset: 0, 0
+  index: -1
+cwxt26_hy_guang1
+  rotate: true
+  xy: 378, 330
+  size: 35, 90
+  orig: 44, 104
+  offset: 5, 7
+  index: -1
+cwxt26_hy_shen
+  rotate: true
+  xy: 2, 9
+  size: 255, 169
+  orig: 255, 169
+  offset: 0, 0
+  index: -1
+cwxt26_hy_tou
+  rotate: true
+  xy: 223, 175
+  size: 150, 155
+  orig: 150, 155
+  offset: 0, 0
+  index: -1
+cwxt26_hy_xb
+  rotate: false
+  xy: 470, 340
+  size: 35, 25
+  orig: 36, 26
+  offset: 1, 0
+  index: -1
+cwxt26_hy_xian2
+  rotate: false
+  xy: 2, 2
+  size: 116, 5
+  orig: 116, 7
+  offset: 0, 1
+  index: -1
+cwxt26_hy_ym1
+  rotate: false
+  xy: 380, 286
+  size: 62, 42
+  orig: 63, 42
+  offset: 0, 0
+  index: -1
+cwxt26_hy_ym2
+  rotate: true
+  xy: 173, 187
+  size: 77, 31
+  orig: 77, 31
+  offset: 0, 0
+  index: -1
+cwxt26_hy_yw2
+  rotate: true
+  xy: 320, 98
+  size: 75, 71
+  orig: 81, 76
+  offset: 3, 2
+  index: -1
+cwxt26_hy_yz
+  rotate: false
+  xy: 173, 17
+  size: 5, 7
+  orig: 7, 10
+  offset: 1, 2
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 320, 41
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1

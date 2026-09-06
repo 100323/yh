@@ -1,0 +1,111 @@
+
+zhangjiao4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/hero_effect_halo1
+  rotate: false
+  xy: 111, 13
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j01
+  rotate: true
+  xy: 372, 234
+  size: 128, 82
+  orig: 128, 82
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j02
+  rotate: false
+  xy: 342, 2
+  size: 102, 94
+  orig: 102, 94
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j03
+  rotate: true
+  xy: 454, 406
+  size: 104, 32
+  orig: 104, 32
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j04
+  rotate: false
+  xy: 177, 174
+  size: 88, 336
+  orig: 88, 336
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j05
+  rotate: false
+  xy: 267, 245
+  size: 57, 265
+  orig: 57, 265
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j06
+  rotate: false
+  xy: 326, 255
+  size: 44, 255
+  orig: 44, 255
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j07
+  rotate: false
+  xy: 2, 59
+  size: 173, 451
+  orig: 173, 451
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j08
+  rotate: true
+  xy: 177, 50
+  size: 122, 96
+  orig: 122, 96
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j09
+  rotate: true
+  xy: 409, 146
+  size: 86, 82
+  orig: 86, 82
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j10
+  rotate: true
+  xy: 342, 98
+  size: 134, 65
+  orig: 134, 65
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j12
+  rotate: true
+  xy: 372, 364
+  size: 146, 80
+  orig: 146, 80
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j13
+  rotate: true
+  xy: 275, 85
+  size: 158, 65
+  orig: 158, 65
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j14
+  rotate: false
+  xy: 275, 51
+  size: 47, 32
+  orig: 47, 32
+  offset: 0, 0
+  index: -1
+images/zhangjiao4_j15
+  rotate: false
+  xy: 2, 8
+  size: 107, 49
+  orig: 107, 49
+  offset: 0, 0
+  index: -1

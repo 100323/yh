@@ -1,0 +1,41 @@
+
+guojia6_attack_loop.png
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia6_attack_a1
+  rotate: true
+  xy: 19, 205
+  size: 38, 40
+  orig: 40, 42
+  offset: 1, 1
+  index: -1
+guojia6_attack_b1
+  rotate: false
+  xy: 61, 197
+  size: 60, 46
+  orig: 60, 46
+  offset: 0, 0
+  index: -1
+guojia6_attack_b2
+  rotate: true
+  xy: 2, 112
+  size: 83, 90
+  orig: 83, 90
+  offset: 0, 0
+  index: -1
+guojia6_attack_b3
+  rotate: false
+  xy: 2, 2
+  size: 114, 108
+  orig: 114, 108
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 236
+  size: 15, 7
+  orig: 26, 26
+  offset: 4, 9
+  index: -1

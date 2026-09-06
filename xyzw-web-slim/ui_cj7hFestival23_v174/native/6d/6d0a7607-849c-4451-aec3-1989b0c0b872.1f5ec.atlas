@@ -1,0 +1,20 @@
+
+nznh25_choujiang_guangbiao.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_zhunxing1
+  rotate: true
+  xy: 135, 132
+  size: 78, 75
+  orig: 78, 75
+  offset: 0, 0
+  index: -1
+choujiang_zhunxing2
+  rotate: false
+  xy: 2, 83
+  size: 131, 127
+  orig: 139, 137
+  offset: 4, 5
+  index: -1

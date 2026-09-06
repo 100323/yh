@@ -1,0 +1,27 @@
+
+zhugeliang6_skill_hit2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 202, 7
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+zhugeliang6_skilla1
+  rotate: true
+  xy: 202, 38
+  size: 190, 139
+  orig: 190, 139
+  offset: 0, 0
+  index: -1
+zhugeliang6_skilla2
+  rotate: true
+  xy: 2, 2
+  size: 226, 198
+  orig: 228, 200
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,118 @@
+
+zhouyu8_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhouyu8_pg_dian
+  rotate: false
+  xy: 147, 48
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_diang
+  rotate: true
+  xy: 2, 2
+  size: 31, 34
+  orig: 31, 36
+  offset: 0, 1
+  index: -1
+zhouyu8_pg_guang
+  rotate: false
+  xy: 2, 69
+  size: 78, 77
+  orig: 78, 77
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_xian
+  rotate: true
+  xy: 82, 85
+  size: 61, 63
+  orig: 61, 63
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_xiang
+  rotate: true
+  xy: 127, 19
+  size: 30, 14
+  orig: 30, 14
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan1
+  rotate: false
+  xy: 147, 92
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan2
+  rotate: true
+  xy: 203, 61
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan3
+  rotate: false
+  xy: 48, 29
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan4
+  rotate: false
+  xy: 38, 4
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan5
+  rotate: false
+  xy: 143, 30
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan6
+  rotate: false
+  xy: 161, 31
+  size: 17, 15
+  orig: 17, 15
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_zha1
+  rotate: true
+  xy: 191, 26
+  size: 33, 53
+  orig: 33, 53
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_zha2
+  rotate: true
+  xy: 2, 35
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_zha3
+  rotate: false
+  xy: 82, 51
+  size: 53, 32
+  orig: 54, 34
+  offset: 1, 1
+  index: -1
+zhouyu8_pg_zha4
+  rotate: false
+  xy: 203, 102
+  size: 49, 44
+  orig: 49, 46
+  offset: 0, 1
+  index: -1
+zhouyu8_pg_zha5
+  rotate: true
+  xy: 80, 26
+  size: 23, 45
+  orig: 24, 45
+  offset: 1, 0
+  index: -1

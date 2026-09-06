@@ -1,0 +1,55 @@
+
+yuling_1301.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 226, 179
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+fishsprit_301_body
+  rotate: true
+  xy: 2, 13
+  size: 240, 95
+  orig: 240, 95
+  offset: 0, 0
+  index: -1
+fishsprit_301_eye
+  rotate: false
+  xy: 2, 2
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+fishsprit_301_eyewhite
+  rotate: true
+  xy: 226, 213
+  size: 40, 28
+  orig: 40, 28
+  offset: 0, 0
+  index: -1
+fishsprit_301_fin1
+  rotate: false
+  xy: 99, 18
+  size: 165, 60
+  orig: 165, 60
+  offset: 0, 0
+  index: -1
+fishsprit_301_fin2
+  rotate: true
+  xy: 99, 80
+  size: 173, 125
+  orig: 173, 125
+  offset: 0, 0
+  index: -1
+fishsprit_301_mouth
+  rotate: false
+  xy: 256, 220
+  size: 29, 33
+  orig: 29, 33
+  offset: 0, 0
+  index: -1

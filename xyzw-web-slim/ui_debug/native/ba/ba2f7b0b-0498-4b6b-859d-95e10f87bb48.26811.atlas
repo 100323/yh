@@ -1,0 +1,13 @@
+
+tgcf_jgch_tuowei.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_jgch_effect1
+  rotate: false
+  xy: 0, 0
+  size: 367, 88
+  orig: 367, 88
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,356 @@
+
+jiaxu5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 409, 16
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 365, 5
+  size: 34, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+jiaxu4_zhujian1
+  rotate: false
+  xy: 214, 247
+  size: 97, 60
+  orig: 99, 60
+  offset: 0, 0
+  index: -1
+jiaxu4_zhujian2
+  rotate: false
+  xy: 109, 151
+  size: 76, 97
+  orig: 76, 97
+  offset: 0, 0
+  index: -1
+jiaxu5_arml
+  rotate: false
+  xy: 238, 6
+  size: 51, 79
+  orig: 55, 82
+  offset: 0, 3
+  index: -1
+jiaxu5_armr1
+  rotate: false
+  xy: 93, 21
+  size: 64, 80
+  orig: 64, 80
+  offset: 0, 0
+  index: -1
+jiaxu5_armr2
+  rotate: true
+  xy: 357, 99
+  size: 66, 34
+  orig: 66, 34
+  offset: 0, 0
+  index: -1
+jiaxu5_attack_light1
+  rotate: false
+  xy: 144, 250
+  size: 68, 120
+  orig: 68, 120
+  offset: 0, 0
+  index: -1
+jiaxu5_attack_light2
+  rotate: true
+  xy: 300, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+jiaxu5_attack_light3
+  rotate: false
+  xy: 335, 296
+  size: 98, 82
+  orig: 98, 82
+  offset: 0, 0
+  index: -1
+jiaxu5_beard1
+  rotate: false
+  xy: 357, 41
+  size: 36, 56
+  orig: 37, 60
+  offset: 0, 4
+  index: -1
+jiaxu5_beard2
+  rotate: false
+  xy: 427, 195
+  size: 16, 57
+  orig: 16, 57
+  offset: 0, 0
+  index: -1
+jiaxu5_beard3
+  rotate: true
+  xy: 400, 256
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+jiaxu5_body
+  rotate: false
+  xy: 2, 372
+  size: 199, 138
+  orig: 227, 140
+  offset: 4, 2
+  index: -1
+jiaxu5_eye
+  rotate: false
+  xy: 321, 41
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+jiaxu5_eyebrow
+  rotate: true
+  xy: 269, 87
+  size: 60, 29
+  orig: 60, 29
+  offset: 0, 0
+  index: -1
+jiaxu5_eyewhite
+  rotate: false
+  xy: 480, 16
+  size: 25, 21
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+jiaxu5_ghost1
+  rotate: false
+  xy: 370, 167
+  size: 52, 65
+  orig: 52, 65
+  offset: 0, 0
+  index: -1
+jiaxu5_ghost2
+  rotate: false
+  xy: 393, 100
+  size: 50, 65
+  orig: 50, 65
+  offset: 0, 0
+  index: -1
+jiaxu5_ghost3
+  rotate: false
+  xy: 300, 100
+  size: 55, 65
+  orig: 55, 65
+  offset: 0, 0
+  index: -1
+jiaxu5_ghost4
+  rotate: false
+  xy: 445, 197
+  size: 65, 55
+  orig: 65, 55
+  offset: 0, 0
+  index: -1
+jiaxu5_ghost5
+  rotate: true
+  xy: 445, 144
+  size: 51, 65
+  orig: 51, 65
+  offset: 0, 0
+  index: -1
+jiaxu5_ghosteye1
+  rotate: false
+  xy: 400, 234
+  size: 25, 20
+  orig: 25, 20
+  offset: 0, 0
+  index: -1
+jiaxu5_ghosteye2
+  rotate: false
+  xy: 284, 167
+  size: 84, 29
+  orig: 84, 29
+  offset: 0, 0
+  index: -1
+jiaxu5_handl
+  rotate: false
+  xy: 321, 2
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+jiaxu5_handl2
+  rotate: false
+  xy: 395, 56
+  size: 38, 42
+  orig: 38, 42
+  offset: 0, 0
+  index: -1
+jiaxu5_handr1
+  rotate: false
+  xy: 470, 70
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+jiaxu5_handr2
+  rotate: false
+  xy: 435, 64
+  size: 33, 34
+  orig: 38, 34
+  offset: 0, 0
+  index: -1
+jiaxu5_hat
+  rotate: false
+  xy: 2, 127
+  size: 105, 125
+  orig: 105, 125
+  offset: 0, 0
+  index: -1
+jiaxu5_head
+  rotate: false
+  xy: 2, 19
+  size: 89, 106
+  orig: 89, 106
+  offset: 0, 0
+  index: -1
+jiaxu5_line1
+  rotate: false
+  xy: 411, 380
+  size: 86, 130
+  orig: 86, 130
+  offset: 0, 0
+  index: -1
+jiaxu5_line2
+  rotate: false
+  xy: 214, 309
+  size: 119, 69
+  orig: 130, 94
+  offset: 3, 13
+  index: -1
+jiaxu5_pen
+  rotate: false
+  xy: 2, 254
+  size: 140, 116
+  orig: 144, 116
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_b1
+  rotate: true
+  xy: 291, 2
+  size: 44, 28
+  orig: 44, 28
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_b2
+  rotate: false
+  xy: 445, 103
+  size: 60, 39
+  orig: 62, 40
+  offset: 1, 1
+  index: -1
+jiaxu5_skill_b3
+  rotate: false
+  xy: 187, 149
+  size: 88, 40
+  orig: 88, 40
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_g1
+  rotate: true
+  xy: 109, 103
+  size: 46, 76
+  orig: 46, 76
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_g2
+  rotate: true
+  xy: 435, 334
+  size: 44, 75
+  orig: 44, 75
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_g3
+  rotate: true
+  xy: 159, 21
+  size: 64, 77
+  orig: 64, 77
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_g4
+  rotate: false
+  xy: 435, 254
+  size: 70, 78
+  orig: 70, 78
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_g5
+  rotate: true
+  xy: 284, 198
+  size: 34, 81
+  orig: 34, 86
+  offset: 0, 5
+  index: -1
+jiaxu5_skill_q1
+  rotate: true
+  xy: 313, 234
+  size: 60, 85
+  orig: 60, 85
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_t
+  rotate: false
+  xy: 203, 380
+  size: 112, 130
+  orig: 112, 130
+  offset: 0, 0
+  index: -1
+jiaxu5_skill_zhujian
+  rotate: false
+  xy: 187, 191
+  size: 95, 54
+  orig: 95, 54
+  offset: 0, 0
+  index: -1
+jiaxu5_tail
+  rotate: false
+  xy: 187, 87
+  size: 80, 60
+  orig: 88, 60
+  offset: 0, 0
+  index: -1
+jiaxu5_yan
+  rotate: false
+  xy: 317, 380
+  size: 92, 130
+  orig: 92, 130
+  offset: 0, 0
+  index: -1
+jiaxu5_zhu1
+  rotate: false
+  xy: 449, 33
+  size: 29, 29
+  orig: 30, 29
+  offset: 1, 0
+  index: -1
+jiaxu5_zhu2
+  rotate: false
+  xy: 449, 2
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+jiaxu5_zhu3
+  rotate: false
+  xy: 480, 39
+  size: 29, 29
+  orig: 29, 30
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 277, 149
+  size: 20, 16
+  orig: 21, 21
+  offset: 0, 2
+  index: -1

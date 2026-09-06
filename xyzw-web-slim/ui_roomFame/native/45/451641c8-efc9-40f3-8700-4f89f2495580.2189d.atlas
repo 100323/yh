@@ -1,0 +1,20 @@
+
+dzfj_mrt_hz2_2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hz_g_03
+  rotate: false
+  xy: 2, 2
+  size: 137, 55
+  orig: 137, 55
+  offset: 0, 0
+  index: -1
+hz_g_04
+  rotate: false
+  xy: 2, 59
+  size: 156, 64
+  orig: 160, 64
+  offset: 4, 0
+  index: -1

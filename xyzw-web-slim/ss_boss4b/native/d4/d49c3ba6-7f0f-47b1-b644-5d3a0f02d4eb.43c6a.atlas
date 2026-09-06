@@ -1,0 +1,160 @@
+
+ss_boss4b.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ss_boss4_1arml
+  rotate: false
+  xy: 100, 27
+  size: 58, 22
+  orig: 58, 22
+  offset: 0, 0
+  index: -1
+ss_boss4_1armr2
+  rotate: false
+  xy: 135, 120
+  size: 35, 47
+  orig: 35, 47
+  offset: 0, 0
+  index: -1
+ss_boss4_1eyer
+  rotate: true
+  xy: 2, 2
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+ss_boss4_1eyewhitel
+  rotate: true
+  xy: 234, 235
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+ss_boss4_1eyewhiter
+  rotate: true
+  xy: 224, 192
+  size: 23, 16
+  orig: 23, 16
+  offset: 0, 0
+  index: -1
+ss_boss4_1footl
+  rotate: false
+  xy: 193, 206
+  size: 22, 48
+  orig: 22, 48
+  offset: 0, 0
+  index: -1
+ss_boss4_1footr
+  rotate: false
+  xy: 226, 5
+  size: 25, 50
+  orig: 29, 50
+  offset: 0, 0
+  index: -1
+ss_boss4_1handl1
+  rotate: false
+  xy: 130, 5
+  size: 25, 20
+  orig: 25, 20
+  offset: 0, 0
+  index: -1
+ss_boss4_1handl2
+  rotate: true
+  xy: 218, 147
+  size: 33, 19
+  orig: 33, 19
+  offset: 0, 0
+  index: -1
+ss_boss4_1leye
+  rotate: true
+  xy: 13, 2
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+ss_boss4_1mouth
+  rotate: true
+  xy: 217, 217
+  size: 37, 15
+  orig: 37, 18
+  offset: 0, 3
+  index: -1
+ss_boss4_1mouth2
+  rotate: false
+  xy: 100, 2
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+ss_boss4_1neck
+  rotate: false
+  xy: 193, 182
+  size: 29, 22
+  orig: 29, 22
+  offset: 0, 0
+  index: -1
+ss_boss4_2arml2
+  rotate: false
+  xy: 216, 57
+  size: 20, 37
+  orig: 20, 37
+  offset: 0, 0
+  index: -1
+ss_boss4_2armr1
+  rotate: true
+  xy: 174, 55
+  size: 39, 40
+  orig: 39, 40
+  offset: 0, 0
+  index: -1
+ss_boss4_2body
+  rotate: true
+  xy: 135, 169
+  size: 85, 56
+  orig: 111, 62
+  offset: 10, 6
+  index: -1
+ss_boss4_2body2
+  rotate: false
+  xy: 160, 2
+  size: 64, 47
+  orig: 64, 47
+  offset: 0, 0
+  index: -1
+ss_boss4_2glasses
+  rotate: false
+  xy: 2, 12
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+ss_boss4_2hair
+  rotate: true
+  xy: 174, 96
+  size: 71, 42
+  orig: 71, 42
+  offset: 0, 0
+  index: -1
+ss_boss4_2head
+  rotate: false
+  xy: 2, 110
+  size: 131, 144
+  orig: 131, 144
+  offset: 0, 0
+  index: -1
+ss_boss4_2hip
+  rotate: false
+  xy: 100, 51
+  size: 72, 57
+  orig: 72, 57
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 234, 221
+  size: 13, 12
+  orig: 16, 16
+  offset: 2, 2
+  index: -1

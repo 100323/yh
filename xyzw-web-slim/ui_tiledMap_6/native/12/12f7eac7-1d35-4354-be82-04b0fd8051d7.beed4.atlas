@@ -1,0 +1,48 @@
+
+yg_zy2_anim.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 157, 2
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+yg_effect_fire1
+  rotate: true
+  xy: 157, 146
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+yg_effect_fire2
+  rotate: true
+  xy: 157, 196
+  size: 48, 65
+  orig: 48, 65
+  offset: 0, 0
+  index: -1
+yg_effect_fire3
+  rotate: true
+  xy: 157, 53
+  size: 42, 57
+  orig: 42, 57
+  offset: 0, 0
+  index: -1
+yg_zy2_1
+  rotate: false
+  xy: 2, 23
+  size: 153, 221
+  orig: 153, 221
+  offset: 0, 0
+  index: -1
+yg_zy2_2
+  rotate: true
+  xy: 157, 97
+  size: 47, 59
+  orig: 47, 59
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+hjls25_yunshi1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 156, 159
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+niansai25_yunshi
+  rotate: true
+  xy: 123, 180
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_hd1
+  rotate: false
+  xy: 27, 184
+  size: 66, 21
+  orig: 66, 21
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_hdx1
+  rotate: true
+  xy: 2, 197
+  size: 8, 10
+  orig: 8, 10
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_hdx2
+  rotate: true
+  xy: 14, 197
+  size: 8, 11
+  orig: 8, 11
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_hdy
+  rotate: false
+  xy: 204, 149
+  size: 64, 56
+  orig: 64, 56
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_huo1
+  rotate: true
+  xy: 2, 2
+  size: 68, 446
+  orig: 68, 446
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_huo2
+  rotate: true
+  xy: 2, 72
+  size: 61, 446
+  orig: 61, 446
+  offset: 0, 0
+  index: -1
+niansai25_yunshi_shizi
+  rotate: false
+  xy: 270, 135
+  size: 82, 70
+  orig: 82, 70
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 95, 183
+  size: 22, 26
+  orig: 26, 26
+  offset: 1, 0
+  index: -1

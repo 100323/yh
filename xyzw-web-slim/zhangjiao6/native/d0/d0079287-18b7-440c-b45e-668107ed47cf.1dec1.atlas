@@ -1,0 +1,118 @@
+
+zhangjiao6_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+simayi9_pg_dian
+  rotate: false
+  xy: 140, 31
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+simayi9_pg_diang
+  rotate: true
+  xy: 176, 2
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1
+simayi9_pg_guang
+  rotate: true
+  xy: 2, 58
+  size: 68, 67
+  orig: 68, 67
+  offset: 0, 0
+  index: -1
+simayi9_pg_xian
+  rotate: false
+  xy: 2, 2
+  size: 52, 54
+  orig: 52, 54
+  offset: 0, 0
+  index: -1
+simayi9_pg_xiang
+  rotate: true
+  xy: 177, 40
+  size: 26, 13
+  orig: 26, 13
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan1
+  rotate: false
+  xy: 56, 10
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan2
+  rotate: false
+  xy: 104, 16
+  size: 34, 44
+  orig: 34, 44
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan3
+  rotate: true
+  xy: 140, 2
+  size: 27, 34
+  orig: 27, 34
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: false
+  xy: 111, 62
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 181, 68
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: true
+  xy: 181, 83
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha1
+  rotate: true
+  xy: 134, 68
+  size: 27, 45
+  orig: 27, 45
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha2
+  rotate: true
+  xy: 163, 99
+  size: 27, 38
+  orig: 27, 38
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha3
+  rotate: false
+  xy: 113, 97
+  size: 48, 29
+  orig: 48, 29
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha4
+  rotate: true
+  xy: 71, 83
+  size: 43, 40
+  orig: 43, 40
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha5
+  rotate: true
+  xy: 71, 62
+  size: 19, 38
+  orig: 19, 38
+  offset: 0, 0
+  index: -1

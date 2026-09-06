@@ -1,0 +1,41 @@
+
+xjzw_boss3a_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjzw_boss3_1skill1
+  rotate: false
+  xy: 256, 162
+  size: 230, 345
+  orig: 230, 345
+  offset: 0, 0
+  index: -1
+xjzw_boss3_1skill2
+  rotate: false
+  xy: 2, 112
+  size: 252, 395
+  orig: 252, 395
+  offset: 0, 0
+  index: -1
+xjzw_boss3_1skill3
+  rotate: true
+  xy: 256, 2
+  size: 158, 172
+  orig: 158, 172
+  offset: 0, 0
+  index: -1
+xjzw_boss3_1skill4
+  rotate: false
+  xy: 2, 10
+  size: 92, 100
+  orig: 92, 100
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 96, 97
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1

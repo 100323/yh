@@ -1,0 +1,13 @@
+
+guojia_fahai_xizhang_attack_loop.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojiafh_attack_loop
+  rotate: false
+  xy: 2, 2
+  size: 264, 30
+  orig: 264, 30
+  offset: 0, 0
+  index: -1

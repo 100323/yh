@@ -1,0 +1,34 @@
+
+sqhd25w9_juli_stq3.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 4
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+sqhd25w2_jzjl_stq_qiu
+  rotate: true
+  xy: 303, 31
+  size: 85, 83
+  orig: 85, 83
+  offset: 0, 0
+  index: -1
+sqhd25w2_jzjl_stq_qiu1
+  rotate: true
+  xy: 196, 2
+  size: 114, 105
+  orig: 114, 105
+  offset: 0, 0
+  index: -1
+sqhd25w2_jzjl_stq_shou
+  rotate: false
+  xy: 2, 44
+  size: 192, 72
+  orig: 192, 72
+  offset: 0, 0
+  index: -1

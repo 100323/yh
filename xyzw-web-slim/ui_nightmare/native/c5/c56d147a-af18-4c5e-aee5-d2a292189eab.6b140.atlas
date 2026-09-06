@@ -1,0 +1,27 @@
+
+sdyl_hdlp_light.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_ui_circle4
+  rotate: false
+  xy: 36, 2
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+axwq_ui_circle5
+  rotate: false
+  xy: 107, 2
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 39
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

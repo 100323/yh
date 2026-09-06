@@ -1,0 +1,55 @@
+
+kpyx_dgs_light.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+g1
+  rotate: false
+  xy: 2, 2
+  size: 256, 125
+  orig: 256, 125
+  offset: 0, 0
+  index: -1
+g2
+  rotate: false
+  xy: 532, 163
+  size: 263, 326
+  orig: 263, 326
+  offset: 0, 0
+  index: -1
+g3
+  rotate: false
+  xy: 267, 144
+  size: 263, 345
+  orig: 263, 345
+  offset: 0, 0
+  index: -1
+g4
+  rotate: false
+  xy: 2, 129
+  size: 263, 360
+  orig: 263, 360
+  offset: 0, 0
+  index: -1
+g5
+  rotate: false
+  xy: 260, 14
+  size: 263, 113
+  orig: 263, 113
+  offset: 0, 0
+  index: -1
+g6
+  rotate: false
+  xy: 525, 76
+  size: 263, 66
+  orig: 263, 66
+  offset: 0, 0
+  index: -1
+g7
+  rotate: false
+  xy: 525, 13
+  size: 263, 61
+  orig: 263, 61
+  offset: 0, 0
+  index: -1

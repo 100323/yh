@@ -1,0 +1,153 @@
+
+tbhdqx_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_banner_bg
+  rotate: false
+  xy: 2, 84
+  size: 721, 425
+  orig: 721, 425
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_bz
+  rotate: true
+  xy: 889, 346
+  size: 163, 124
+  orig: 163, 124
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_dai1
+  rotate: true
+  xy: 2, 14
+  size: 68, 88
+  orig: 68, 88
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_dai2
+  rotate: false
+  xy: 176, 40
+  size: 95, 42
+  orig: 95, 42
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_mei
+  rotate: false
+  xy: 328, 56
+  size: 63, 26
+  orig: 63, 26
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_s1
+  rotate: false
+  xy: 725, 357
+  size: 162, 152
+  orig: 162, 152
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_she
+  rotate: true
+  xy: 385, 42
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_shen
+  rotate: true
+  xy: 867, 231
+  size: 113, 144
+  orig: 113, 144
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_shen1
+  rotate: true
+  xy: 92, 28
+  size: 54, 82
+  orig: 54, 82
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_shou
+  rotate: true
+  xy: 273, 28
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_tou
+  rotate: false
+  xy: 725, 188
+  size: 140, 167
+  orig: 140, 167
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_xu
+  rotate: true
+  xy: 328, 32
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_xz
+  rotate: true
+  xy: 867, 105
+  size: 124, 126
+  orig: 124, 126
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_yan1
+  rotate: false
+  xy: 322, 2
+  size: 26, 24
+  orig: 26, 24
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_yan2
+  rotate: false
+  xy: 393, 61
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_yz1
+  rotate: false
+  xy: 2, 3
+  size: 7, 9
+  orig: 7, 9
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_yz2
+  rotate: false
+  xy: 11, 4
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_z1
+  rotate: true
+  xy: 350, 3
+  size: 27, 16
+  orig: 27, 16
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_z2
+  rotate: false
+  xy: 357, 41
+  size: 26, 13
+  orig: 26, 15
+  offset: 0, 2
+  index: -1
+tbhdqx_banner_zui
+  rotate: false
+  xy: 368, 5
+  size: 48, 34
+  orig: 48, 34
+  offset: 0, 0
+  index: -1
+tbhdqx_banner_zz
+  rotate: true
+  xy: 92, 11
+  size: 15, 228
+  orig: 15, 228
+  offset: 0, 0
+  index: -1

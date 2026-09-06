@@ -1,0 +1,174 @@
+
+tgcf_tgsd_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pty_sljs_bj_g
+  rotate: false
+  xy: 875, 327
+  size: 129, 84
+  orig: 129, 84
+  offset: 0, 0
+  index: -1
+pty_sljs_bj_gs
+  rotate: false
+  xy: 292, 226
+  size: 581, 285
+  orig: 581, 285
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_dian
+  rotate: false
+  xy: 695, 29
+  size: 281, 113
+  orig: 281, 113
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_hdj
+  rotate: true
+  xy: 238, 276
+  size: 69, 33
+  orig: 69, 34
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_hulu
+  rotate: false
+  xy: 238, 69
+  size: 175, 155
+  orig: 175, 155
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_huzi
+  rotate: false
+  xy: 875, 256
+  size: 119, 69
+  orig: 119, 69
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_huzi1
+  rotate: true
+  xy: 238, 383
+  size: 30, 36
+  orig: 30, 36
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_huzi2
+  rotate: true
+  xy: 0, 5
+  size: 56, 33
+  orig: 56, 33
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_mei1
+  rotate: false
+  xy: 205, 15
+  size: 85, 46
+  orig: 85, 46
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_mei2
+  rotate: true
+  xy: 238, 480
+  size: 31, 41
+  orig: 31, 41
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_shen
+  rotate: true
+  xy: 415, 28
+  size: 196, 278
+  orig: 196, 278
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_shoul
+  rotate: false
+  xy: 238, 347
+  size: 35, 34
+  orig: 35, 34
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_shour
+  rotate: true
+  xy: 238, 443
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_xian
+  rotate: false
+  xy: 35, 8
+  size: 122, 53
+  orig: 122, 53
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_xiu1
+  rotate: false
+  xy: 875, 413
+  size: 137, 98
+  orig: 137, 98
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_xiu2
+  rotate: false
+  xy: 875, 144
+  size: 114, 110
+  orig: 114, 110
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_yan
+  rotate: false
+  xy: 238, 415
+  size: 37, 26
+  orig: 37, 26
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_yan1
+  rotate: true
+  xy: 159, 14
+  size: 47, 44
+  orig: 47, 44
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_yan2
+  rotate: false
+  xy: 238, 245
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_yan3
+  rotate: false
+  xy: 338, 0
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_yan4
+  rotate: true
+  xy: 0, 63
+  size: 448, 236
+  orig: 448, 236
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_yz
+  rotate: false
+  xy: 35, 0
+  size: 8, 6
+  orig: 8, 6
+  offset: 0, 0
+  index: -1
+tgcf_tgsd_banner_zui
+  rotate: true
+  xy: 292, 4
+  size: 63, 44
+  orig: 63, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 368, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

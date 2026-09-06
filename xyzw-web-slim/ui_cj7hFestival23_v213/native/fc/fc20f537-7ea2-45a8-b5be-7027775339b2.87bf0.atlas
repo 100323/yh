@@ -1,0 +1,76 @@
+
+zxc_cjqh_jpboss3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zxc_cjqh_jp3_1
+  rotate: false
+  xy: 357, 367
+  size: 124, 68
+  orig: 124, 68
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_10
+  rotate: false
+  xy: 2, 2
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_2
+  rotate: false
+  xy: 2, 300
+  size: 110, 101
+  orig: 112, 103
+  offset: 1, 1
+  index: -1
+zxc_cjqh_jp3_4
+  rotate: true
+  xy: 30, 423
+  size: 12, 32
+  orig: 12, 32
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_5
+  rotate: false
+  xy: 64, 403
+  size: 117, 32
+  orig: 117, 32
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_6
+  rotate: false
+  xy: 183, 402
+  size: 117, 33
+  orig: 117, 33
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_7
+  rotate: false
+  xy: 2, 425
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_8
+  rotate: false
+  xy: 16, 425
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp3_9
+  rotate: false
+  xy: 114, 194
+  size: 241, 190
+  orig: 241, 190
+  offset: 0, 0
+  index: -1
+zxc_xjzw_jp_line
+  rotate: false
+  xy: 302, 386
+  size: 53, 49
+  orig: 53, 49
+  offset: 0, 0
+  index: -1

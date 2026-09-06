@@ -1,0 +1,111 @@
+
+xghg_ztz.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 373, 460
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xghg_ztz_1
+  rotate: false
+  xy: 257, 473
+  size: 33, 33
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+xghg_ztz_10
+  rotate: true
+  xy: 310, 11
+  size: 65, 61
+  orig: 67, 63
+  offset: 1, 1
+  index: -1
+xghg_ztz_11
+  rotate: true
+  xy: 240, 164
+  size: 87, 79
+  orig: 87, 79
+  offset: 0, 0
+  index: -1
+xghg_ztz_12
+  rotate: true
+  xy: 240, 78
+  size: 84, 82
+  orig: 84, 82
+  offset: 0, 0
+  index: -1
+xghg_ztz_13
+  rotate: false
+  xy: 2, 15
+  size: 236, 236
+  orig: 236, 236
+  offset: 0, 0
+  index: -1
+xghg_ztz_14
+  rotate: false
+  xy: 2, 253
+  size: 253, 253
+  orig: 253, 253
+  offset: 0, 0
+  index: -1
+xghg_ztz_2
+  rotate: true
+  xy: 324, 449
+  size: 25, 38
+  orig: 25, 38
+  offset: 0, 0
+  index: -1
+xghg_ztz_3
+  rotate: false
+  xy: 240, 2
+  size: 68, 74
+  orig: 68, 74
+  offset: 0, 0
+  index: -1
+xghg_ztz_4
+  rotate: false
+  xy: 292, 478
+  size: 30, 28
+  orig: 31, 28
+  offset: 1, 0
+  index: -1
+xghg_ztz_5
+  rotate: false
+  xy: 257, 429
+  size: 31, 17
+  orig: 31, 17
+  offset: 0, 0
+  index: -1
+xghg_ztz_6
+  rotate: false
+  xy: 292, 437
+  size: 25, 16
+  orig: 26, 19
+  offset: 1, 0
+  index: -1
+xghg_ztz_7
+  rotate: false
+  xy: 324, 476
+  size: 43, 30
+  orig: 43, 31
+  offset: 0, 0
+  index: -1
+xghg_ztz_8
+  rotate: false
+  xy: 257, 448
+  size: 33, 23
+  orig: 34, 23
+  offset: 1, 0
+  index: -1
+xghg_ztz_9
+  rotate: false
+  xy: 292, 455
+  size: 29, 21
+  orig: 30, 22
+  offset: 0, 0
+  index: -1

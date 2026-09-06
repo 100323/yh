@@ -1,0 +1,27 @@
+
+dzfj_mrt_hz1__cj_zhangjiao.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: true
+  xy: 311, 185
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+zhangjiao_shenti
+  rotate: true
+  xy: 2, 2
+  size: 227, 307
+  orig: 228, 307
+  offset: 1, 0
+  index: -1
+zhangjiao_shou
+  rotate: false
+  xy: 311, 133
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1

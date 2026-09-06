@@ -1,0 +1,41 @@
+
+tgcf_pty_cj_jlb1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+piaodai_hl
+  rotate: true
+  xy: 879, 4
+  size: 231, 138
+  orig: 231, 143
+  offset: 0, 0
+  index: -1
+piaodai_hr
+  rotate: true
+  xy: 2, 2
+  size: 159, 422
+  orig: 159, 422
+  offset: 0, 0
+  index: -1
+piaodai_ql
+  rotate: true
+  xy: 438, 93
+  size: 142, 439
+  orig: 142, 439
+  offset: 0, 0
+  index: -1
+piaodai_qr
+  rotate: true
+  xy: 2, 163
+  size: 262, 434
+  orig: 262, 434
+  offset: 0, 0
+  index: -1
+taoshu
+  rotate: false
+  xy: 438, 237
+  size: 484, 188
+  orig: 484, 188
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,34 @@
+
+zhouyu9_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhouyu9_pg_1
+  rotate: false
+  xy: 2, 80
+  size: 335, 300
+  orig: 335, 300
+  offset: 0, 0
+  index: -1
+zhouyu9_pg_2
+  rotate: true
+  xy: 339, 103
+  size: 277, 145
+  orig: 277, 145
+  offset: 0, 0
+  index: -1
+zhouyu9_pg_3
+  rotate: false
+  xy: 440, 37
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+zhouyu9_pg_4
+  rotate: false
+  xy: 339, 2
+  size: 99, 99
+  orig: 99, 99
+  offset: 0, 0
+  index: -1

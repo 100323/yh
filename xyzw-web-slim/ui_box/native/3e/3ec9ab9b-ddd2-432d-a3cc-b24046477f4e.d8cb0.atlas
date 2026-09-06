@@ -1,0 +1,41 @@
+
+ui_main_gift.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jjc_ui_ban
+  rotate: true
+  xy: 2, 2
+  size: 291, 141
+  orig: 291, 141
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 145, 51
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+ui_effectlight_bigcircle01
+  rotate: false
+  xy: 2, 295
+  size: 204, 204
+  orig: 204, 204
+  offset: 0, 0
+  index: -1
+ui_gift_g1
+  rotate: false
+  xy: 208, 314
+  size: 167, 185
+  orig: 167, 185
+  offset: 0, 0
+  index: -1
+ui_gift_g2
+  rotate: false
+  xy: 145, 89
+  size: 173, 204
+  orig: 173, 204
+  offset: 0, 0
+  index: -1

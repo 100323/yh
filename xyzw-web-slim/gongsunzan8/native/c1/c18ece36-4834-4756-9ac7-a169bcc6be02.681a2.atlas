@@ -1,0 +1,244 @@
+
+gongsunzan8_skill_hit2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: false
+  xy: 0, 953
+  size: 23, 23
+  orig: 24, 24
+  offset: 1, 0
+  index: -1
+gongsunzan8_skill2_csm
+  rotate: true
+  xy: 649, 465
+  size: 119, 275
+  orig: 119, 275
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_dg1
+  rotate: true
+  xy: 480, 919
+  size: 57, 74
+  orig: 57, 74
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_dg3
+  rotate: true
+  xy: 883, 705
+  size: 119, 125
+  orig: 119, 125
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_gy
+  rotate: true
+  xy: 403, 920
+  size: 56, 75
+  orig: 56, 75
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_gyun
+  rotate: true
+  xy: 224, 923
+  size: 53, 54
+  orig: 53, 54
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_gyun2
+  rotate: false
+  xy: 704, 833
+  size: 95, 79
+  orig: 95, 79
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hudai1
+  rotate: false
+  xy: 0, 871
+  size: 117, 69
+  orig: 117, 69
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hudai2
+  rotate: false
+  xy: 311, 754
+  size: 180, 90
+  orig: 180, 90
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hudai3
+  rotate: true
+  xy: 181, 763
+  size: 94, 128
+  orig: 94, 128
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hudai4
+  rotate: false
+  xy: 280, 0
+  size: 494, 300
+  orig: 494, 300
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hudaix
+  rotate: true
+  xy: 256, 331
+  size: 137, 385
+  orig: 137, 385
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hupiaodai
+  rotate: false
+  xy: 0, 69
+  size: 278, 260
+  orig: 278, 260
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hushen
+  rotate: false
+  xy: 643, 302
+  size: 299, 161
+  orig: 299, 161
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_hutou
+  rotate: true
+  xy: 492, 629
+  size: 118, 163
+  orig: 118, 163
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_huwei
+  rotate: false
+  xy: 700, 717
+  size: 181, 107
+  orig: 181, 107
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_huzhual
+  rotate: true
+  xy: 657, 586
+  size: 117, 239
+  orig: 117, 239
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_huzhuar
+  rotate: true
+  xy: 493, 749
+  size: 92, 205
+  orig: 92, 205
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_ks1
+  rotate: true
+  xy: 322, 846
+  size: 71, 183
+  orig: 71, 183
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_ks2
+  rotate: false
+  xy: 801, 826
+  size: 145, 86
+  orig: 145, 86
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_ks3
+  rotate: true
+  xy: 280, 923
+  size: 53, 121
+  orig: 53, 121
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_ks4
+  rotate: false
+  xy: 137, 927
+  size: 85, 49
+  orig: 85, 49
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_qiu
+  rotate: false
+  xy: 490, 470
+  size: 157, 157
+  orig: 157, 157
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_xingk
+  rotate: true
+  xy: 787, 914
+  size: 62, 176
+  orig: 62, 176
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_yw1
+  rotate: true
+  xy: 0, 386
+  size: 122, 254
+  orig: 122, 254
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_yw2
+  rotate: true
+  xy: 266, 639
+  size: 113, 224
+  orig: 113, 224
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_yw3
+  rotate: true
+  xy: 0, 528
+  size: 121, 247
+  orig: 121, 247
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_yw4
+  rotate: true
+  xy: 0, 651
+  size: 110, 264
+  orig: 110, 264
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_yw5
+  rotate: true
+  xy: 0, 769
+  size: 88, 179
+  orig: 88, 179
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_yw6
+  rotate: true
+  xy: 249, 510
+  size: 127, 239
+  orig: 127, 239
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_zhuag1
+  rotate: true
+  xy: 25, 942
+  size: 34, 110
+  orig: 34, 110
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_zhuag2
+  rotate: true
+  xy: 556, 917
+  size: 59, 229
+  orig: 59, 229
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_zhuag3
+  rotate: true
+  xy: 119, 859
+  size: 62, 201
+  orig: 62, 201
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill2_zhuag4
+  rotate: true
+  xy: 507, 843
+  size: 72, 195
+  orig: 72, 195
+  offset: 0, 0
+  index: -1

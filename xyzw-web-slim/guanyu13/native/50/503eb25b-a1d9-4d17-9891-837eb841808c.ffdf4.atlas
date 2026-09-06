@@ -1,0 +1,48 @@
+
+guanyu13_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gy13-pg-sj1
+  rotate: true
+  xy: 2, 2
+  size: 205, 192
+  orig: 253, 235
+  offset: 26, 21
+  index: -1
+gy13-pg-sj2
+  rotate: false
+  xy: 2, 209
+  size: 303, 262
+  orig: 303, 274
+  offset: 0, 2
+  index: -1
+gy13-pg-sj3
+  rotate: true
+  xy: 307, 173
+  size: 298, 132
+  orig: 298, 134
+  offset: 0, 1
+  index: -1
+gy13-pg-sj4
+  rotate: false
+  xy: 441, 391
+  size: 53, 80
+  orig: 53, 80
+  offset: 0, 0
+  index: -1
+gy13-pg-sj5
+  rotate: true
+  xy: 196, 75
+  size: 132, 106
+  orig: 132, 106
+  offset: 0, 0
+  index: -1
+gy13-pg-sj6
+  rotate: true
+  xy: 304, 60
+  size: 111, 116
+  orig: 111, 116
+  offset: 0, 0
+  index: -1

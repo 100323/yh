@@ -1,0 +1,104 @@
+
+dianwei7_skill_hit2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei7_zs_hshou
+  rotate: false
+  xy: 530, 507
+  size: 288, 253
+  orig: 288, 253
+  offset: 0, 0
+  index: -1
+dianwei7_zs_hyan1
+  rotate: true
+  xy: 502, 116
+  size: 134, 200
+  orig: 134, 200
+  offset: 0, 0
+  index: -1
+dianwei7_zs_hyan2
+  rotate: false
+  xy: 258, 138
+  size: 242, 127
+  orig: 242, 127
+  offset: 0, 0
+  index: -1
+dianwei7_zs_hzy
+  rotate: false
+  xy: 2, 260
+  size: 254, 207
+  orig: 254, 207
+  offset: 0, 0
+  index: -1
+dianwei7_zs_ks
+  rotate: false
+  xy: 2, 469
+  size: 526, 291
+  orig: 526, 291
+  offset: 0, 0
+  index: -1
+dianwei7_zs_ksqi1
+  rotate: true
+  xy: 926, 624
+  size: 136, 81
+  orig: 136, 81
+  offset: 0, 0
+  index: -1
+dianwei7_zs_ksqi2
+  rotate: true
+  xy: 926, 330
+  size: 123, 69
+  orig: 123, 69
+  offset: 0, 0
+  index: -1
+dianwei7_zs_ksqi3
+  rotate: true
+  xy: 926, 455
+  size: 167, 62
+  orig: 167, 62
+  offset: 0, 0
+  index: -1
+dianwei7_zs_ksqi4
+  rotate: false
+  xy: 926, 278
+  size: 60, 50
+  orig: 60, 50
+  offset: 0, 0
+  index: -1
+dianwei7_zs_lshou
+  rotate: false
+  xy: 530, 252
+  size: 288, 253
+  orig: 288, 253
+  offset: 0, 0
+  index: -1
+dianwei7_zs_lyan1
+  rotate: true
+  xy: 246, 2
+  size: 134, 200
+  orig: 134, 200
+  offset: 0, 0
+  index: -1
+dianwei7_zs_lyan2
+  rotate: false
+  xy: 2, 131
+  size: 242, 127
+  orig: 242, 127
+  offset: 0, 0
+  index: -1
+dianwei7_zs_lzy
+  rotate: false
+  xy: 258, 267
+  size: 248, 200
+  orig: 248, 200
+  offset: 0, 0
+  index: -1
+dianwei7_zs_yun
+  rotate: true
+  xy: 820, 166
+  size: 594, 104
+  orig: 594, 104
+  offset: 0, 0
+  index: -1

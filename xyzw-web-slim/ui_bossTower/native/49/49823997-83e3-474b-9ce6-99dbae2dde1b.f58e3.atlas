@@ -1,0 +1,13 @@
+
+xxwky_huo.png
+size: 32,16
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 17, 10
+  orig: 20, 20
+  offset: 1, 7
+  index: -1

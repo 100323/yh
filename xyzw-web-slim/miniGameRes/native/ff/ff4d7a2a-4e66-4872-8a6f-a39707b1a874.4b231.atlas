@@ -1,0 +1,27 @@
+
+kpyx3_sidewave1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx3_wave4
+  rotate: false
+  xy: 2, 146
+  size: 462, 70
+  orig: 462, 70
+  offset: 0, 0
+  index: -1
+kpyx3_wave5
+  rotate: false
+  xy: 2, 2
+  size: 455, 70
+  orig: 462, 70
+  offset: 2, 0
+  index: -1
+kpyx3_wave6
+  rotate: false
+  xy: 2, 74
+  size: 455, 70
+  orig: 462, 70
+  offset: 1, 0
+  index: -1

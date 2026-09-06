@@ -1,0 +1,48 @@
+
+kpyx5_lvbus_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 364, 62
+  size: 62, 61
+  orig: 62, 61
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 285, 47
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 285, 10
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+lvbu_skill_effect12
+  rotate: true
+  xy: 2, 4
+  size: 120, 152
+  orig: 128, 158
+  offset: 4, 4
+  index: -1
+lvbu_skill_effect22
+  rotate: true
+  xy: 156, 23
+  size: 101, 127
+  orig: 101, 127
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 156, 2
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1

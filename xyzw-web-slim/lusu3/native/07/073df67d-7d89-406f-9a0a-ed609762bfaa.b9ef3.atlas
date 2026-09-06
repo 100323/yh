@@ -1,0 +1,13 @@
+
+lusu3_skill_position.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu3_skill_loop
+  rotate: false
+  xy: 2, 2
+  size: 179, 76
+  orig: 179, 76
+  offset: 0, 0
+  index: -1

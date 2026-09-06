@@ -1,0 +1,27 @@
+
+simayi8_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 140
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+simayi8_attack2
+  rotate: true
+  xy: 244, 2
+  size: 182, 203
+  orig: 182, 203
+  offset: 0, 0
+  index: -1
+simayi8_attack3
+  rotate: false
+  xy: 48, 9
+  size: 194, 175
+  orig: 194, 175
+  offset: 0, 0
+  index: -1

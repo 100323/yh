@@ -1,0 +1,13 @@
+
+bosstower_boss4_attack_hit.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/boss04_sj_g2
+  rotate: false
+  xy: 2, 2
+  size: 118, 96
+  orig: 122, 99
+  offset: 2, 1
+  index: -1

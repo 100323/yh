@@ -1,0 +1,41 @@
+
+wbhj_boss4c_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 213, 63
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_attack3
+  rotate: true
+  xy: 2, 15
+  size: 77, 91
+  orig: 77, 91
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_attack4
+  rotate: false
+  xy: 95, 21
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_attack5
+  rotate: true
+  xy: 168, 38
+  size: 54, 43
+  orig: 54, 43
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_attack6
+  rotate: false
+  xy: 168, 2
+  size: 62, 34
+  orig: 62, 34
+  offset: 0, 0
+  index: -1

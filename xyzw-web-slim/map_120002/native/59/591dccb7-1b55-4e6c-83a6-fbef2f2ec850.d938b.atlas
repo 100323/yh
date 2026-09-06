@@ -1,0 +1,20 @@
+
+ymj_bg_yao.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_bg_tuyao1
+  rotate: true
+  xy: 92, 30
+  size: 61, 60
+  orig: 61, 60
+  offset: 0, 0
+  index: -1
+ghg_bg_tuyao2
+  rotate: true
+  xy: 2, 2
+  size: 89, 88
+  orig: 89, 89
+  offset: 0, 0
+  index: -1

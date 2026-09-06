@@ -1,0 +1,55 @@
+
+sdsl_xiaobing2.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 2, 6
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing2_eye
+  rotate: false
+  xy: 30, 6
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing2_head
+  rotate: false
+  xy: 2, 40
+  size: 72, 84
+  orig: 72, 84
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing2_hip
+  rotate: true
+  xy: 54, 2
+  size: 36, 13
+  orig: 36, 13
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing2_leg1
+  rotate: false
+  xy: 69, 12
+  size: 16, 26
+  orig: 16, 26
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing2_leg2
+  rotate: false
+  xy: 30, 13
+  size: 22, 25
+  orig: 22, 25
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 76, 108
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

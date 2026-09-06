@@ -1,0 +1,48 @@
+
+qhzr_smoke.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: true
+  xy: 70, 10
+  size: 25, 23
+  orig: 26, 26
+  offset: 1, 1
+  index: -1
+zbz_fight_sc1
+  rotate: true
+  xy: 64, 37
+  size: 25, 28
+  orig: 25, 28
+  offset: 0, 0
+  index: -1
+zbz_fight_sc2
+  rotate: false
+  xy: 2, 28
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+zbz_fight_sc4
+  rotate: false
+  xy: 35, 35
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+zbz_fight_sc5
+  rotate: true
+  xy: 43, 4
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+zbz_fight_sc6
+  rotate: false
+  xy: 2, 2
+  size: 39, 24
+  orig: 39, 24
+  offset: 0, 0
+  index: -1

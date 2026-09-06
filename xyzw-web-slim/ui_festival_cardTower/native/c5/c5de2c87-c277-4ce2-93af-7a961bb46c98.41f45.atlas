@@ -1,0 +1,20 @@
+
+2024znq_dtwf_xbs4.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_dtwf_4
+  rotate: false
+  xy: 2, 48
+  size: 142, 162
+  orig: 144, 164
+  offset: 1, 1
+  index: -1
+2024znq_dtwf_xing
+  rotate: false
+  xy: 2, 2
+  size: 44, 44
+  orig: 49, 49
+  offset: 3, 3
+  index: -1

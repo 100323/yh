@@ -1,0 +1,48 @@
+
+yuling_1411.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 45, 115
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_411_body
+  rotate: false
+  xy: 2, 2
+  size: 239, 95
+  orig: 239, 95
+  offset: 0, 0
+  index: -1
+yuling_411_cheek
+  rotate: false
+  xy: 79, 105
+  size: 50, 42
+  orig: 50, 43
+  offset: 0, 0
+  index: -1
+yuling_411_eye
+  rotate: false
+  xy: 2, 140
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+yuling_411_eyewhite
+  rotate: false
+  xy: 11, 116
+  size: 32, 31
+  orig: 33, 31
+  offset: 1, 0
+  index: -1
+yuling_411_fin
+  rotate: false
+  xy: 131, 99
+  size: 64, 48
+  orig: 65, 48
+  offset: 1, 0
+  index: -1

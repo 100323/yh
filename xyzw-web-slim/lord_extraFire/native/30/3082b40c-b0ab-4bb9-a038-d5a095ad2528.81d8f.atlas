@@ -1,0 +1,27 @@
+
+poyou2_skill_hit1.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+youtong_tong
+  rotate: true
+  xy: 2, 2
+  size: 248, 366
+  orig: 248, 367
+  offset: 0, 0
+  index: -1
+youtong_you
+  rotate: true
+  xy: 370, 85
+  size: 165, 367
+  orig: 188, 389
+  offset: 11, 12
+  index: -1
+youtong_you1
+  rotate: true
+  xy: 739, 98
+  size: 152, 143
+  orig: 152, 143
+  offset: 0, 0
+  index: -1

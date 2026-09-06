@@ -1,0 +1,62 @@
+
+ygjqr_gui_2.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygjqr_gz_ft1
+  rotate: false
+  xy: 2, 310
+  size: 239, 174
+  orig: 239, 174
+  offset: 0, 0
+  index: -1
+ygjqr_gz_ft2
+  rotate: false
+  xy: 243, 301
+  size: 193, 183
+  orig: 193, 183
+  offset: 0, 0
+  index: -1
+ygjqr_gz_ft3
+  rotate: false
+  xy: 438, 275
+  size: 52, 209
+  orig: 53, 209
+  offset: 1, 0
+  index: -1
+ygjqr_gz_ft4
+  rotate: false
+  xy: 191, 116
+  size: 193, 183
+  orig: 193, 183
+  offset: 0, 0
+  index: -1
+ygjqr_gz_gui
+  rotate: false
+  xy: 2, 486
+  size: 463, 458
+  orig: 463, 458
+  offset: 0, 0
+  index: -1
+ygjqr_gz_men1
+  rotate: true
+  xy: 191, 33
+  size: 81, 248
+  orig: 81, 248
+  offset: 0, 0
+  index: -1
+ygjqr_gz_men2
+  rotate: false
+  xy: 94, 46
+  size: 95, 262
+  orig: 95, 262
+  offset: 0, 0
+  index: -1
+ygjqr_gz_ying
+  rotate: true
+  xy: 2, 2
+  size: 306, 90
+  orig: 306, 90
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+lvbu8_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu8_attack3
+  rotate: false
+  xy: 30, 3
+  size: 175, 78
+  orig: 175, 78
+  offset: 0, 0
+  index: -1
+lvbu8_attack4
+  rotate: false
+  xy: 207, 2
+  size: 198, 79
+  orig: 198, 79
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 67
+  size: 26, 14
+  orig: 26, 26
+  offset: 0, 7
+  index: -1

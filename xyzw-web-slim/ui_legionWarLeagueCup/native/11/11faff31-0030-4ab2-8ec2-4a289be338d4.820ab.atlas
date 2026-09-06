@@ -1,0 +1,104 @@
+
+hjls26_banner_baihu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls26_banner_bh_g2x
+  rotate: false
+  xy: 26, 2
+  size: 92, 11
+  orig: 92, 11
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_g2xx
+  rotate: false
+  xy: 2, 425
+  size: 117, 10
+  orig: 117, 10
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_hu
+  rotate: true
+  xy: 113, 15
+  size: 184, 169
+  orig: 185, 169
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_sd1
+  rotate: true
+  xy: 380, 14
+  size: 97, 112
+  orig: 97, 112
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_sd2
+  rotate: true
+  xy: 284, 5
+  size: 79, 94
+  orig: 79, 94
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_sd3
+  rotate: false
+  xy: 121, 201
+  size: 251, 234
+  orig: 251, 234
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_xing
+  rotate: true
+  xy: 2, 34
+  size: 362, 98
+  orig: 362, 98
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_yun
+  rotate: false
+  xy: 2, 437
+  size: 421, 71
+  orig: 421, 71
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_yun1
+  rotate: true
+  xy: 425, 398
+  size: 110, 85
+  orig: 110, 85
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_yun2
+  rotate: true
+  xy: 284, 86
+  size: 113, 83
+  orig: 113, 83
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_yun3
+  rotate: false
+  xy: 374, 113
+  size: 125, 137
+  orig: 125, 137
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_yun4
+  rotate: false
+  xy: 374, 252
+  size: 127, 144
+  orig: 127, 144
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_zz
+  rotate: true
+  xy: 26, 15
+  size: 17, 85
+  orig: 17, 85
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 10
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

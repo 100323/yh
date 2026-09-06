@@ -1,0 +1,41 @@
+
+llqj25_cj_btn.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_shejian
+  rotate: false
+  xy: 2, 2
+  size: 270, 121
+  orig: 270, 121
+  offset: 0, 0
+  index: -1
+choujiang_shejian1
+  rotate: true
+  xy: 274, 88
+  size: 35, 164
+  orig: 35, 165
+  offset: 0, 1
+  index: -1
+choujiang_shejian2
+  rotate: false
+  xy: 274, 80
+  size: 178, 6
+  orig: 178, 6
+  offset: 0, 0
+  index: -1
+choujiang_shejian4
+  rotate: false
+  xy: 319, 36
+  size: 44, 42
+  orig: 44, 46
+  offset: 0, 0
+  index: -1
+choujiang_shejian5
+  rotate: false
+  xy: 274, 34
+  size: 43, 44
+  orig: 44, 46
+  offset: 1, 0
+  index: -1

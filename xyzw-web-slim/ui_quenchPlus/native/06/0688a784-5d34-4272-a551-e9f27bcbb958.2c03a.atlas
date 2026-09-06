@@ -1,0 +1,90 @@
+
+effect_cljt_jingshi.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_cljt_hcg
+  rotate: false
+  xy: 2, 58
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+hcjtxz_1
+  rotate: false
+  xy: 55, 2
+  size: 50, 54
+  orig: 54, 54
+  offset: 2, 0
+  index: -1
+hcjtxz_10
+  rotate: false
+  xy: 173, 70
+  size: 47, 54
+  orig: 54, 54
+  offset: 3, 0
+  index: -1
+hcjtxz_11
+  rotate: false
+  xy: 122, 70
+  size: 49, 54
+  orig: 54, 54
+  offset: 2, 0
+  index: -1
+hcjtxz_2
+  rotate: false
+  xy: 2, 2
+  size: 51, 54
+  orig: 54, 54
+  offset: 1, 0
+  index: -1
+hcjtxz_3
+  rotate: false
+  xy: 70, 70
+  size: 50, 54
+  orig: 54, 54
+  offset: 2, 0
+  index: -1
+hcjtxz_4
+  rotate: false
+  xy: 107, 14
+  size: 49, 54
+  orig: 54, 54
+  offset: 2, 0
+  index: -1
+hcjtxz_5
+  rotate: false
+  xy: 158, 14
+  size: 47, 54
+  orig: 54, 54
+  offset: 3, 0
+  index: -1
+hcjtxz_6
+  rotate: false
+  xy: 207, 14
+  size: 42, 54
+  orig: 54, 54
+  offset: 5, 0
+  index: -1
+hcjtxz_7
+  rotate: false
+  xy: 266, 70
+  size: 39, 54
+  orig: 54, 54
+  offset: 7, 0
+  index: -1
+hcjtxz_8
+  rotate: false
+  xy: 251, 14
+  size: 40, 54
+  orig: 54, 54
+  offset: 7, 0
+  index: -1
+hcjtxz_9
+  rotate: false
+  xy: 222, 70
+  size: 42, 54
+  orig: 54, 54
+  offset: 6, 0
+  index: -1

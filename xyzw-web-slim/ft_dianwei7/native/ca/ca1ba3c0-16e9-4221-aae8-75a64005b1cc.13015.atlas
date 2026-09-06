@@ -1,0 +1,83 @@
+
+ft_dianwei7.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw9_h1
+  rotate: false
+  xy: 302, 13
+  size: 111, 95
+  orig: 111, 95
+  offset: 0, 0
+  index: -1
+dw9_h2
+  rotate: false
+  xy: 274, 223
+  size: 181, 127
+  orig: 181, 127
+  offset: 0, 0
+  index: -1
+dw9_hy1
+  rotate: true
+  xy: 274, 352
+  size: 156, 150
+  orig: 168, 167
+  offset: 3, 15
+  index: -1
+dw9_lz
+  rotate: false
+  xy: 415, 24
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+dw9_q1
+  rotate: true
+  xy: 410, 110
+  size: 111, 95
+  orig: 111, 95
+  offset: 0, 0
+  index: -1
+dw9_q2
+  rotate: true
+  xy: 171, 2
+  size: 187, 129
+  orig: 187, 129
+  offset: 0, 0
+  index: -1
+dw9_qy1
+  rotate: false
+  xy: 302, 110
+  size: 106, 111
+  orig: 107, 111
+  offset: 1, 0
+  index: -1
+dw9_qy2
+  rotate: true
+  xy: 2, 19
+  size: 170, 167
+  orig: 170, 167
+  offset: 0, 0
+  index: -1
+dw9_st
+  rotate: true
+  xy: 2, 191
+  size: 317, 270
+  orig: 317, 270
+  offset: 0, 0
+  index: -1
+dw9_t
+  rotate: false
+  xy: 426, 366
+  size: 118, 142
+  orig: 118, 142
+  offset: 0, 0
+  index: -1
+dw9_wb
+  rotate: true
+  xy: 501, 18
+  size: 90, 53
+  orig: 90, 53
+  offset: 0, 0
+  index: -1

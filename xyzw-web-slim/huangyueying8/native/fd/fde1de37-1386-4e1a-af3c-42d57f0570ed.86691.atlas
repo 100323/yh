@@ -1,0 +1,195 @@
+
+huangyueying8_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 208, 9
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom1
+  rotate: false
+  xy: 296, 304
+  size: 238, 206
+  orig: 238, 206
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom10
+  rotate: true
+  xy: 554, 4
+  size: 67, 73
+  orig: 67, 73
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom11
+  rotate: false
+  xy: 296, 152
+  size: 175, 150
+  orig: 189, 159
+  offset: 5, 4
+  index: -1
+jsyueying_tx_boom12
+  rotate: false
+  xy: 461, 72
+  size: 91, 74
+  orig: 110, 89
+  offset: 8, 6
+  index: -1
+jsyueying_tx_boom2
+  rotate: false
+  xy: 2, 4
+  size: 141, 121
+  orig: 141, 121
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom3
+  rotate: false
+  xy: 473, 148
+  size: 157, 154
+  orig: 163, 160
+  offset: 3, 3
+  index: -1
+jsyueying_tx_boom4
+  rotate: true
+  xy: 721, 63
+  size: 80, 49
+  orig: 86, 51
+  offset: 6, 2
+  index: -1
+jsyueying_tx_boom5
+  rotate: false
+  xy: 629, 78
+  size: 90, 65
+  orig: 90, 65
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom6
+  rotate: false
+  xy: 773, 207
+  size: 130, 116
+  orig: 130, 116
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom7
+  rotate: true
+  xy: 978, 446
+  size: 64, 33
+  orig: 64, 33
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom8
+  rotate: true
+  xy: 629, 2
+  size: 74, 56
+  orig: 74, 56
+  offset: 0, 0
+  index: -1
+jsyueying_tx_boom9
+  rotate: true
+  xy: 164, 66
+  size: 103, 105
+  orig: 103, 105
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill13
+  rotate: true
+  xy: 785, 325
+  size: 185, 191
+  orig: 185, 191
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill14
+  rotate: false
+  xy: 373, 55
+  size: 86, 95
+  orig: 87, 95
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_bi1
+  rotate: false
+  xy: 2, 127
+  size: 160, 383
+  orig: 160, 383
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_bi2
+  rotate: true
+  xy: 773, 157
+  size: 48, 138
+  orig: 48, 138
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_bi6
+  rotate: false
+  xy: 164, 171
+  size: 130, 339
+  orig: 130, 339
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_bi7
+  rotate: true
+  xy: 536, 309
+  size: 45, 200
+  orig: 45, 200
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_bi8
+  rotate: true
+  xy: 738, 329
+  size: 25, 42
+  orig: 25, 42
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_chi1
+  rotate: false
+  xy: 632, 145
+  size: 139, 162
+  orig: 139, 162
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_chi2
+  rotate: false
+  xy: 536, 356
+  size: 247, 154
+  orig: 247, 161
+  offset: 0, 7
+  index: -1
+jsyueying_tx_skill_chi3
+  rotate: false
+  xy: 145, 4
+  size: 61, 60
+  orig: 61, 60
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_chi4
+  rotate: false
+  xy: 905, 209
+  size: 106, 114
+  orig: 106, 114
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_chi5
+  rotate: false
+  xy: 554, 73
+  size: 73, 73
+  orig: 73, 73
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_chi6
+  rotate: false
+  xy: 271, 50
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+jsyueying_tx_skill_chi7
+  rotate: true
+  xy: 913, 141
+  size: 66, 84
+  orig: 67, 85
+  offset: 1, 1
+  index: -1

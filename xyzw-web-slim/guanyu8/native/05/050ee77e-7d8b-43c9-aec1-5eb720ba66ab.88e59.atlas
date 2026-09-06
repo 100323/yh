@@ -1,0 +1,13 @@
+
+guanyu8_skill_hit_3.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wuyun
+  rotate: false
+  xy: 2, 2
+  size: 302, 98
+  orig: 302, 98
+  offset: 0, 0
+  index: -1

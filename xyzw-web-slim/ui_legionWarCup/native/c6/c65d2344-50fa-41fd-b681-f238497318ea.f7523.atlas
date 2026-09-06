@@ -1,0 +1,286 @@
+
+zbz_hulian_pic.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pd_effect_light1
+  rotate: false
+  xy: 2, 283
+  size: 195, 74
+  orig: 195, 74
+  offset: 0, 0
+  index: -1
+pd_effect_light2
+  rotate: false
+  xy: 338, 71
+  size: 49, 45
+  orig: 55, 51
+  offset: 3, 3
+  index: -1
+pd_effect_light3
+  rotate: false
+  xy: 428, 137
+  size: 27, 41
+  orig: 32, 51
+  offset: 3, 5
+  index: -1
+pd_effect_light4
+  rotate: true
+  xy: 103, 124
+  size: 63, 89
+  orig: 68, 96
+  offset: 2, 3
+  index: -1
+pd_effect_light5
+  rotate: false
+  xy: 291, 128
+  size: 50, 40
+  orig: 55, 44
+  offset: 2, 2
+  index: -1
+pd_fish1_body
+  rotate: false
+  xy: 103, 41
+  size: 82, 81
+  orig: 82, 90
+  offset: 0, 9
+  index: -1
+pd_fish1_body2
+  rotate: true
+  xy: 112, 189
+  size: 92, 83
+  orig: 92, 83
+  offset: 0, 0
+  index: -1
+pd_fish1_eye
+  rotate: true
+  xy: 90, 118
+  size: 19, 11
+  orig: 19, 11
+  offset: 0, 0
+  index: -1
+pd_fish1_eyebrow
+  rotate: true
+  xy: 279, 154
+  size: 23, 10
+  orig: 23, 10
+  offset: 0, 0
+  index: -1
+pd_fish1_footl
+  rotate: false
+  xy: 187, 73
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+pd_fish1_footr
+  rotate: true
+  xy: 229, 77
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+pd_fish1_hair
+  rotate: false
+  xy: 457, 184
+  size: 52, 46
+  orig: 52, 46
+  offset: 0, 0
+  index: -1
+pd_fish1_handl
+  rotate: true
+  xy: 489, 325
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+pd_fish1_head
+  rotate: false
+  xy: 2, 2
+  size: 82, 69
+  orig: 82, 70
+  offset: 0, 0
+  index: -1
+pd_fish1_pifeng1
+  rotate: false
+  xy: 199, 265
+  size: 146, 92
+  orig: 146, 92
+  offset: 0, 0
+  index: -1
+pd_fish1_pifeng1_1
+  rotate: false
+  xy: 457, 158
+  size: 52, 24
+  orig: 52, 24
+  offset: 0, 0
+  index: -1
+pd_fish1_pifeng1_2
+  rotate: false
+  xy: 457, 137
+  size: 38, 19
+  orig: 38, 19
+  offset: 0, 0
+  index: -1
+pd_fish1_shoulderl
+  rotate: false
+  xy: 476, 28
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+pd_fish1_shoulderr
+  rotate: false
+  xy: 389, 51
+  size: 34, 30
+  orig: 34, 30
+  offset: 0, 0
+  index: -1
+pd_fish1_shoulderr2
+  rotate: false
+  xy: 425, 17
+  size: 49, 40
+  orig: 49, 40
+  offset: 0, 0
+  index: -1
+pd_fish1_tail
+  rotate: false
+  xy: 197, 219
+  size: 98, 44
+  orig: 98, 44
+  offset: 0, 0
+  index: -1
+pd_fish1_weapon
+  rotate: false
+  xy: 197, 179
+  size: 97, 38
+  orig: 97, 38
+  offset: 0, 0
+  index: -1
+pd_fish1_weapon2
+  rotate: false
+  xy: 2, 139
+  size: 99, 92
+  orig: 99, 92
+  offset: 0, 0
+  index: -1
+pd_fish2_body
+  rotate: true
+  xy: 428, 59
+  size: 76, 81
+  orig: 76, 81
+  offset: 0, 0
+  index: -1
+pd_fish2_body2
+  rotate: false
+  xy: 194, 99
+  size: 83, 78
+  orig: 83, 78
+  offset: 0, 0
+  index: -1
+pd_fish2_eye
+  rotate: false
+  xy: 457, 269
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+pd_fish2_eyebrow
+  rotate: true
+  xy: 489, 269
+  size: 24, 21
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+pd_fish2_footl
+  rotate: false
+  xy: 255, 76
+  size: 22, 21
+  orig: 22, 21
+  offset: 0, 0
+  index: -1
+pd_fish2_footr
+  rotate: true
+  xy: 476, 6
+  size: 20, 30
+  orig: 20, 30
+  offset: 0, 0
+  index: -1
+pd_fish2_hair
+  rotate: false
+  xy: 457, 232
+  size: 53, 35
+  orig: 53, 35
+  offset: 0, 0
+  index: -1
+pd_fish2_handl
+  rotate: true
+  xy: 489, 295
+  size: 28, 21
+  orig: 28, 21
+  offset: 0, 0
+  index: -1
+pd_fish2_hat
+  rotate: false
+  xy: 279, 88
+  size: 57, 38
+  orig: 57, 38
+  offset: 0, 0
+  index: -1
+pd_fish2_head
+  rotate: false
+  xy: 344, 118
+  size: 82, 60
+  orig: 82, 60
+  offset: 0, 0
+  index: -1
+pd_fish2_pifeng1
+  rotate: false
+  xy: 347, 180
+  size: 108, 107
+  orig: 108, 107
+  offset: 0, 0
+  index: -1
+pd_fish2_pifeng1_2
+  rotate: true
+  xy: 297, 223
+  size: 40, 46
+  orig: 40, 46
+  offset: 0, 0
+  index: -1
+pd_fish2_shoulderl
+  rotate: false
+  xy: 297, 170
+  size: 45, 51
+  orig: 45, 52
+  offset: 0, 1
+  index: -1
+pd_fish2_shoulderr
+  rotate: true
+  xy: 389, 83
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+pd_fish2_tail
+  rotate: false
+  xy: 2, 73
+  size: 86, 64
+  orig: 86, 64
+  offset: 0, 0
+  index: -1
+pd_fish2_weapon
+  rotate: false
+  xy: 2, 233
+  size: 108, 48
+  orig: 108, 48
+  offset: 0, 0
+  index: -1
+pd_fish2_weapon2
+  rotate: false
+  xy: 347, 289
+  size: 140, 68
+  orig: 140, 68
+  offset: 0, 0
+  index: -1

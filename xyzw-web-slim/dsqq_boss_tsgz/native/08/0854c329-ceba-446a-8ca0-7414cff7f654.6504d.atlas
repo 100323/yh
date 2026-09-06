@@ -1,0 +1,27 @@
+
+dsqq_boss_tsgz_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_boss_tsgz_pg_dao
+  rotate: false
+  xy: 2, 2
+  size: 96, 37
+  orig: 96, 38
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_pg_guang1
+  rotate: true
+  xy: 186, 24
+  size: 95, 62
+  orig: 95, 62
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_pg_guang2
+  rotate: false
+  xy: 2, 41
+  size: 182, 78
+  orig: 201, 78
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+cwxt26_wg_zhuzi.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_zhuzi_701
+  rotate: true
+  xy: 167, 4
+  size: 75, 76
+  orig: 77, 78
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_702
+  rotate: true
+  xy: 2, 2
+  size: 76, 75
+  orig: 78, 77
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_703
+  rotate: true
+  xy: 79, 2
+  size: 76, 75
+  orig: 78, 77
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_704
+  rotate: true
+  xy: 245, 4
+  size: 75, 76
+  orig: 77, 78
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_huan_701
+  rotate: false
+  xy: 2, 243
+  size: 162, 163
+  orig: 164, 165
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_huan_702
+  rotate: true
+  xy: 2, 80
+  size: 161, 163
+  orig: 163, 165
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_huan_703
+  rotate: false
+  xy: 167, 81
+  size: 161, 162
+  orig: 163, 164
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_huan_704
+  rotate: true
+  xy: 166, 245
+  size: 161, 163
+  orig: 163, 165
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_yjs_701
+  rotate: true
+  xy: 323, 4
+  size: 75, 76
+  orig: 77, 78
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_yjs_702
+  rotate: true
+  xy: 330, 168
+  size: 75, 76
+  orig: 77, 78
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_yjs_703
+  rotate: true
+  xy: 331, 331
+  size: 75, 76
+  orig: 77, 78
+  offset: 1, 1
+  index: -1
+cwxt26_zhuzi_yjs_704
+  rotate: true
+  xy: 331, 254
+  size: 75, 76
+  orig: 77, 78
+  offset: 1, 1
+  index: -1

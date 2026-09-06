@@ -1,0 +1,76 @@
+
+axwq_zyhls_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_zyhls_guang1
+  rotate: false
+  xy: 2, 302
+  size: 104, 102
+  orig: 104, 102
+  offset: 0, 0
+  index: -1
+axwq_zyhls_guang2
+  rotate: true
+  xy: 167, 382
+  size: 96, 101
+  orig: 96, 101
+  offset: 0, 0
+  index: -1
+axwq_zyhls_guang3
+  rotate: false
+  xy: 33, 431
+  size: 48, 47
+  orig: 48, 47
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_feng2
+  rotate: false
+  xy: 270, 381
+  size: 149, 97
+  orig: 149, 97
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_feng3
+  rotate: false
+  xy: 243, 189
+  size: 207, 190
+  orig: 207, 190
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_feng4
+  rotate: true
+  xy: 231, 2
+  size: 185, 269
+  orig: 185, 269
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_feng5
+  rotate: true
+  xy: 2, 54
+  size: 221, 227
+  orig: 221, 227
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_xing3
+  rotate: true
+  xy: 83, 406
+  size: 72, 82
+  orig: 72, 82
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_xing5
+  rotate: true
+  xy: 108, 277
+  size: 103, 133
+  orig: 103, 133
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 449
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

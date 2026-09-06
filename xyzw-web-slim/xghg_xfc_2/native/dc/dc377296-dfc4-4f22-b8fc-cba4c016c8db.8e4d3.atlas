@@ -1,0 +1,41 @@
+
+xghg_xfc_2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_xfc1
+  rotate: false
+  xy: 2, 2
+  size: 108, 104
+  orig: 110, 106
+  offset: 1, 1
+  index: -1
+xghg_xfc1x
+  rotate: true
+  xy: 112, 15
+  size: 54, 67
+  orig: 54, 67
+  offset: 0, 0
+  index: -1
+xghg_xfc_deng1
+  rotate: false
+  xy: 181, 36
+  size: 14, 33
+  orig: 14, 33
+  offset: 0, 0
+  index: -1
+xghg_xfc_guang1
+  rotate: false
+  xy: 206, 53
+  size: 25, 53
+  orig: 25, 53
+  offset: 0, 0
+  index: -1
+xghg_xfc_ying
+  rotate: false
+  xy: 112, 71
+  size: 92, 35
+  orig: 92, 35
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,34 @@
+
+sqhd25w2_juli_light.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 180, 4
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+jzjl_jmzh_xing
+  rotate: false
+  xy: 2, 184
+  size: 303, 304
+  orig: 303, 304
+  offset: 0, 0
+  index: -1
+jzjl_jmzh_xingqun
+  rotate: true
+  xy: 2, 2
+  size: 180, 176
+  orig: 180, 176
+  offset: 0, 0
+  index: -1
+jzjl_jmzh_yuan
+  rotate: false
+  xy: 180, 44
+  size: 138, 138
+  orig: 138, 138
+  offset: 0, 0
+  index: -1

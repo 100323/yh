@@ -1,0 +1,27 @@
+
+tbhdqx_boss_sez_attack_hit.png
+size: 180,121
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_sez_pg_zha1
+  rotate: true
+  xy: 110, 2
+  size: 49, 67
+  orig: 49, 67
+  offset: 0, 0
+  index: -1
+tbhdqx_sez_pg_zha2
+  rotate: false
+  xy: 2, 4
+  size: 106, 115
+  orig: 106, 115
+  offset: 0, 0
+  index: -1
+tbhdqx_sez_pg_zha3
+  rotate: true
+  xy: 110, 53
+  size: 66, 68
+  orig: 66, 68
+  offset: 0, 0
+  index: -1

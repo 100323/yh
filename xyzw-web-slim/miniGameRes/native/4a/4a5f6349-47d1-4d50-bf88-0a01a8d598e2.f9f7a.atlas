@@ -1,0 +1,13 @@
+
+kpyx5_light.png
+size: 64,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx5_dot
+  rotate: false
+  xy: 2, 2
+  size: 40, 40
+  orig: 47, 46
+  offset: 3, 3
+  index: -1

@@ -1,0 +1,13 @@
+
+caoren5_skill_line.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren5_skill_hit
+  rotate: false
+  xy: 2, 2
+  size: 279, 69
+  orig: 279, 69
+  offset: 0, 0
+  index: -1

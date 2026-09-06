@@ -1,0 +1,34 @@
+
+guojia7_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/pu_sj01
+  rotate: false
+  xy: 271, 109
+  size: 188, 111
+  orig: 188, 111
+  offset: 0, 0
+  index: -1
+images/pu_sj02
+  rotate: true
+  xy: 2, 2
+  size: 218, 143
+  orig: 218, 143
+  offset: 0, 0
+  index: -1
+images/pu_sj03
+  rotate: true
+  xy: 147, 3
+  size: 217, 122
+  orig: 217, 122
+  offset: 0, 0
+  index: -1
+images/pu_sj04
+  rotate: true
+  xy: 271, 12
+  size: 95, 85
+  orig: 95, 85
+  offset: 0, 0
+  index: -1

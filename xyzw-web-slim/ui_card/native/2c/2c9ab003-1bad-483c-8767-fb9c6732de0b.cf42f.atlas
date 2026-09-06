@@ -1,0 +1,55 @@
+
+zxc_cardbox.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dyhc_box1
+  rotate: false
+  xy: 2, 238
+  size: 223, 199
+  orig: 223, 199
+  offset: 0, 0
+  index: -1
+dyhc_box3
+  rotate: true
+  xy: 227, 115
+  size: 160, 155
+  orig: 160, 155
+  offset: 0, 0
+  index: -1
+dyhc_boxlight1
+  rotate: true
+  xy: 227, 277
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+dyhc_boxlight3
+  rotate: false
+  xy: 2, 90
+  size: 120, 146
+  orig: 120, 146
+  offset: 0, 0
+  index: -1
+dyhc_boxlight4
+  rotate: false
+  xy: 124, 2
+  size: 18, 206
+  orig: 18, 206
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 124, 210
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 65
+  size: 20, 23
+  orig: 26, 26
+  offset: 2, 2
+  index: -1

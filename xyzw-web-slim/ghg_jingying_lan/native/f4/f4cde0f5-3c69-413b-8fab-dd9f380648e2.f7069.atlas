@@ -1,0 +1,55 @@
+
+ghg_jingying_lan_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_jingying_lan_skill_hit1_dian
+  rotate: true
+  xy: 179, 8
+  size: 78, 75
+  orig: 78, 75
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit1_guangquan
+  rotate: true
+  xy: 2, 71
+  size: 177, 175
+  orig: 177, 175
+  offset: 0, 0
+  index: -1
+ghg_jingying_lan_skill_hit1_xing
+  rotate: false
+  xy: 179, 88
+  size: 136, 160
+  orig: 137, 162
+  offset: 0, 1
+  index: -1
+ghg_jingying_lan_skill_hit1_yinying
+  rotate: true
+  xy: 88, 21
+  size: 48, 47
+  orig: 54, 53
+  offset: 3, 3
+  index: -1
+ghg_jingying_lan_skill_hit1_yun
+  rotate: false
+  xy: 2, 2
+  size: 84, 67
+  orig: 85, 67
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 88, 3
+  size: 14, 16
+  orig: 32, 32
+  offset: 1, 5
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 137, 42
+  size: 27, 27
+  orig: 29, 29
+  offset: 1, 1
+  index: -1

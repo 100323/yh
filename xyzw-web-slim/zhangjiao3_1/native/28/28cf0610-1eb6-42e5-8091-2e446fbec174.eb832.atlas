@@ -1,0 +1,41 @@
+
+zhangjiao3_attack_hit.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+avatarshjls_xiaobing_xing
+  rotate: false
+  xy: 149, 34
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 110, 24
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+zj_pg_efsj02
+  rotate: false
+  xy: 110, 11
+  size: 46, 11
+  orig: 46, 12
+  offset: 0, 0
+  index: -1
+zj_pg_efsj03
+  rotate: true
+  xy: 72, 7
+  size: 54, 36
+  orig: 54, 36
+  offset: 0, 0
+  index: -1
+zj_pg_sj01
+  rotate: false
+  xy: 2, 2
+  size: 68, 59
+  orig: 68, 59
+  offset: 0, 0
+  index: -1

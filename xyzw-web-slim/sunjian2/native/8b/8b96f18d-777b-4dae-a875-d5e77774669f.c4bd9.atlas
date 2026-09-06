@@ -1,0 +1,90 @@
+
+sunjian2_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 336, 95
+  size: 77, 40
+  orig: 77, 77
+  offset: 0, 37
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 336, 53
+  size: 40, 40
+  orig: 44, 44
+  offset: 2, 2
+  index: -1
+sunjian2_skill1
+  rotate: false
+  xy: 334, 227
+  size: 75, 75
+  orig: 77, 77
+  offset: 1, 1
+  index: -1
+sunjian2_skill2
+  rotate: false
+  xy: 336, 174
+  size: 51, 51
+  orig: 53, 53
+  offset: 1, 1
+  index: -1
+sunjian2_skill3
+  rotate: false
+  xy: 2, 14
+  size: 197, 194
+  orig: 197, 194
+  offset: 0, 0
+  index: -1
+sunjian2_skill4
+  rotate: false
+  xy: 2, 210
+  size: 330, 271
+  orig: 341, 279
+  offset: 5, 4
+  index: -1
+sunjian2_skill8
+  rotate: false
+  xy: 334, 304
+  size: 93, 79
+  orig: 95, 80
+  offset: 1, 0
+  index: -1
+sunjian2_skill9
+  rotate: true
+  xy: 201, 77
+  size: 131, 133
+  orig: 135, 136
+  offset: 2, 1
+  index: -1
+xysg_hero_effect_attack3
+  rotate: false
+  xy: 249, 24
+  size: 29, 51
+  orig: 29, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_attack4
+  rotate: true
+  xy: 201, 2
+  size: 33, 29
+  orig: 33, 29
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_attack5
+  rotate: true
+  xy: 201, 37
+  size: 38, 46
+  orig: 38, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 334, 385
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+dzfj_mrt_hz1_dianwei.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei
+  rotate: false
+  xy: 406, 79
+  size: 348, 158
+  orig: 348, 158
+  offset: 0, 0
+  index: -1
+dianwei_1
+  rotate: false
+  xy: 772, 184
+  size: 235, 274
+  orig: 239, 274
+  offset: 4, 0
+  index: -1
+hg
+  rotate: false
+  xy: 2, 97
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+hz1_01
+  rotate: false
+  xy: 406, 239
+  size: 364, 219
+  orig: 364, 219
+  offset: 0, 0
+  index: -1
+hz1_03
+  rotate: false
+  xy: 756, 2
+  size: 246, 180
+  orig: 246, 182
+  offset: 0, 2
+  index: -1
+hz1_05
+  rotate: false
+  xy: 2, 133
+  size: 402, 325
+  orig: 402, 326
+  offset: 0, 0
+  index: -1
+xg_01
+  rotate: true
+  xy: 48, 99
+  size: 32, 39
+  orig: 38, 47
+  offset: 3, 4
+  index: -1
+xg_02
+  rotate: false
+  xy: 89, 108
+  size: 25, 23
+  orig: 32, 29
+  offset: 4, 3
+  index: -1

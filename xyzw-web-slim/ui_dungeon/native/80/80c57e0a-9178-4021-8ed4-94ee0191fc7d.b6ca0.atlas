@@ -1,0 +1,188 @@
+
+dilao_trader1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 138, 48
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+trader1_arml
+  rotate: false
+  xy: 261, 2
+  size: 47, 49
+  orig: 47, 49
+  offset: 0, 0
+  index: -1
+trader1_arml1
+  rotate: true
+  xy: 275, 93
+  size: 37, 28
+  orig: 37, 29
+  offset: 0, 1
+  index: -1
+trader1_arml2
+  rotate: true
+  xy: 310, 25
+  size: 40, 20
+  orig: 40, 20
+  offset: 0, 0
+  index: -1
+trader1_armr
+  rotate: true
+  xy: 192, 122
+  size: 48, 56
+  orig: 48, 56
+  offset: 0, 0
+  index: -1
+trader1_armr1
+  rotate: true
+  xy: 296, 210
+  size: 43, 31
+  orig: 43, 31
+  offset: 0, 0
+  index: -1
+trader1_armr2
+  rotate: false
+  xy: 296, 188
+  size: 50, 20
+  orig: 50, 20
+  offset: 0, 0
+  index: -1
+trader1_beard
+  rotate: true
+  xy: 100, 156
+  size: 97, 61
+  orig: 97, 61
+  offset: 0, 0
+  index: -1
+trader1_body
+  rotate: true
+  xy: 2, 115
+  size: 138, 96
+  orig: 138, 96
+  offset: 0, 0
+  index: -1
+trader1_box1
+  rotate: false
+  xy: 100, 120
+  size: 90, 34
+  orig: 90, 34
+  offset: 0, 0
+  index: -1
+trader1_box2
+  rotate: false
+  xy: 2, 17
+  size: 134, 96
+  orig: 134, 96
+  offset: 0, 0
+  index: -1
+trader1_eyel
+  rotate: false
+  xy: 10, 11
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+trader1_eyer
+  rotate: true
+  xy: 10, 5
+  size: 4, 3
+  orig: 4, 3
+  offset: 0, 0
+  index: -1
+trader1_eyewhitel
+  rotate: false
+  xy: 305, 132
+  size: 21, 24
+  orig: 21, 24
+  offset: 0, 0
+  index: -1
+trader1_eyewhiter
+  rotate: false
+  xy: 305, 108
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1
+trader1_fingerl1
+  rotate: false
+  xy: 250, 132
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+trader1_fingerl2
+  rotate: false
+  xy: 310, 2
+  size: 36, 21
+  orig: 36, 21
+  offset: 0, 0
+  index: -1
+trader1_fingerr1
+  rotate: false
+  xy: 163, 172
+  size: 72, 81
+  orig: 72, 81
+  offset: 0, 0
+  index: -1
+trader1_fingerr2
+  rotate: true
+  xy: 237, 187
+  size: 66, 57
+  orig: 66, 57
+  offset: 0, 0
+  index: -1
+trader1_footl
+  rotate: true
+  xy: 329, 218
+  size: 35, 30
+  orig: 35, 30
+  offset: 0, 0
+  index: -1
+trader1_footr
+  rotate: true
+  xy: 305, 158
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+trader1_handl
+  rotate: false
+  xy: 210, 53
+  size: 63, 67
+  orig: 63, 67
+  offset: 0, 0
+  index: -1
+trader1_handr
+  rotate: false
+  xy: 275, 67
+  size: 41, 24
+  orig: 41, 24
+  offset: 0, 0
+  index: -1
+trader1_legl
+  rotate: false
+  xy: 199, 16
+  size: 60, 30
+  orig: 60, 30
+  offset: 0, 0
+  index: -1
+trader1_legr
+  rotate: false
+  xy: 138, 15
+  size: 59, 31
+  orig: 59, 31
+  offset: 0, 0
+  index: -1
+trader1_mouth
+  rotate: true
+  xy: 2, 5
+  size: 10, 6
+  orig: 10, 6
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,104 @@
+
+gongsunzan4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan4_skillb
+  rotate: false
+  xy: 2, 4
+  size: 192, 148
+  orig: 192, 148
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld1
+  rotate: true
+  xy: 259, 321
+  size: 186, 248
+  orig: 186, 248
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld2
+  rotate: true
+  xy: 207, 159
+  size: 12, 24
+  orig: 12, 24
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld3
+  rotate: false
+  xy: 223, 209
+  size: 27, 39
+  orig: 27, 39
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld4
+  rotate: true
+  xy: 207, 250
+  size: 28, 41
+  orig: 28, 41
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld5
+  rotate: false
+  xy: 2, 154
+  size: 203, 170
+  orig: 203, 170
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld6
+  rotate: true
+  xy: 196, 2
+  size: 150, 61
+  orig: 150, 61
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld7
+  rotate: true
+  xy: 207, 173
+  size: 75, 14
+  orig: 75, 14
+  offset: 0, 0
+  index: -1
+gongsunzan4_skilld8
+  rotate: false
+  xy: 2, 326
+  size: 255, 181
+  orig: 255, 181
+  offset: 0, 0
+  index: -1
+gongsunzan4_skills
+  rotate: false
+  xy: 253, 164
+  size: 191, 155
+  orig: 191, 155
+  offset: 0, 0
+  index: -1
+gongsunzan4_skills1
+  rotate: true
+  xy: 338, 80
+  size: 82, 77
+  orig: 82, 77
+  offset: 0, 0
+  index: -1
+gongsunzan4_skills2
+  rotate: true
+  xy: 259, 76
+  size: 86, 77
+  orig: 86, 77
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 207, 280
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 223, 183
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

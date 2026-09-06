@@ -1,0 +1,13 @@
+
+dwj23_battlefires.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jjc_ui_light
+  rotate: true
+  xy: 2, 2
+  size: 46, 181
+  orig: 46, 181
+  offset: 0, 0
+  index: -1

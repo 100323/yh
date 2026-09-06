@@ -1,0 +1,55 @@
+
+tgcf_tgsd_hulu.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_hulu
+  rotate: false
+  xy: 172, 18
+  size: 150, 142
+  orig: 150, 142
+  offset: 0, 0
+  index: -1
+tgcf_pty_hulu_guang
+  rotate: false
+  xy: 0, 0
+  size: 170, 160
+  orig: 170, 160
+  offset: 0, 0
+  index: -1
+tgcf_pty_hulu_guang1
+  rotate: true
+  xy: 324, 36
+  size: 20, 34
+  orig: 20, 34
+  offset: 0, 0
+  index: -1
+tgcf_pty_hulu_yan1
+  rotate: true
+  xy: 324, 98
+  size: 62, 54
+  orig: 62, 55
+  offset: 0, 0
+  index: -1
+tgcf_pty_hulu_yan2
+  rotate: true
+  xy: 324, 58
+  size: 38, 33
+  orig: 38, 34
+  offset: 0, 1
+  index: -1
+tgcf_pty_hulu_yan3
+  rotate: false
+  xy: 359, 78
+  size: 22, 18
+  orig: 22, 18
+  offset: 0, 0
+  index: -1
+tgcf_pty_hulu_yan4
+  rotate: false
+  xy: 380, 145
+  size: 15, 15
+  orig: 16, 15
+  offset: 1, 0
+  index: -1

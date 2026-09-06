@@ -1,0 +1,76 @@
+
+ui_tower4_chest.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 269, 150
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+jjc_ui_light
+  rotate: false
+  xy: 2, 27
+  size: 58, 226
+  orig: 58, 226
+  offset: 0, 0
+  index: -1
+ui_effect_light_star
+  rotate: true
+  xy: 214, 4
+  size: 108, 107
+  orig: 108, 107
+  offset: 0, 0
+  index: -1
+ui_tower4_chest1
+  rotate: false
+  xy: 2, 2
+  size: 11, 23
+  orig: 11, 23
+  offset: 0, 0
+  index: -1
+ui_tower4_chest2
+  rotate: true
+  xy: 62, 90
+  size: 163, 105
+  orig: 163, 105
+  offset: 0, 0
+  index: -1
+ui_tower4_chest3
+  rotate: true
+  xy: 169, 114
+  size: 139, 98
+  orig: 139, 98
+  offset: 0, 0
+  index: -1
+ui_tower4_chest4
+  rotate: true
+  xy: 115, 31
+  size: 57, 41
+  orig: 57, 41
+  offset: 0, 0
+  index: -1
+ui_tower4_chest5
+  rotate: true
+  xy: 62, 28
+  size: 60, 51
+  orig: 60, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 269, 116
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 158, 34
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1

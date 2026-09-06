@@ -1,0 +1,69 @@
+
+ssxt_pfsd_jiesuo.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 479, 28
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+sssd_js_huan1
+  rotate: false
+  xy: 160, 21
+  size: 237, 149
+  orig: 237, 149
+  offset: 0, 0
+  index: -1
+sssd_js_huo
+  rotate: false
+  xy: 399, 82
+  size: 216, 94
+  orig: 216, 103
+  offset: 0, 0
+  index: -1
+sssd_js_pan1
+  rotate: false
+  xy: 289, 178
+  size: 323, 323
+  orig: 323, 323
+  offset: 0, 0
+  index: -1
+sssd_js_pan2
+  rotate: true
+  xy: 2, 172
+  size: 329, 285
+  orig: 329, 285
+  offset: 0, 0
+  index: -1
+sssd_js_qiu
+  rotate: false
+  xy: 617, 16
+  size: 189, 192
+  orig: 189, 192
+  offset: 0, 0
+  index: -1
+sssd_js_xian
+  rotate: true
+  xy: 614, 210
+  size: 291, 280
+  orig: 291, 280
+  offset: 0, 0
+  index: -1
+sssd_js_xian2
+  rotate: true
+  xy: 2, 3
+  size: 167, 156
+  orig: 167, 156
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle1
+  rotate: false
+  xy: 399, 2
+  size: 78, 78
+  orig: 78, 78
+  offset: 0, 0
+  index: -1

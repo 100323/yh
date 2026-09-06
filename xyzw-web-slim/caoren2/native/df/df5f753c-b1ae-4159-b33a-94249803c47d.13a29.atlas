@@ -1,0 +1,216 @@
+
+caoren2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren2_arml
+  rotate: false
+  xy: 263, 177
+  size: 110, 105
+  orig: 110, 105
+  offset: 0, 0
+  index: -1
+caoren2_armllight
+  rotate: true
+  xy: 236, 71
+  size: 17, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1
+caoren2_armr
+  rotate: true
+  xy: 2, 80
+  size: 137, 126
+  orig: 137, 126
+  offset: 0, 0
+  index: -1
+caoren2_armrlight
+  rotate: true
+  xy: 469, 175
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+caoren2_body
+  rotate: true
+  xy: 2, 219
+  size: 144, 126
+  orig: 144, 126
+  offset: 0, 0
+  index: -1
+caoren2_effect
+  rotate: true
+  xy: 236, 90
+  size: 61, 56
+  orig: 61, 56
+  offset: 0, 0
+  index: -1
+caoren2_footl
+  rotate: false
+  xy: 376, 351
+  size: 116, 85
+  orig: 116, 85
+  offset: 0, 0
+  index: -1
+caoren2_footr
+  rotate: false
+  xy: 376, 256
+  size: 107, 93
+  orig: 107, 93
+  offset: 0, 0
+  index: -1
+caoren2_handl
+  rotate: false
+  xy: 294, 122
+  size: 56, 53
+  orig: 56, 53
+  offset: 0, 0
+  index: -1
+caoren2_handr
+  rotate: true
+  xy: 294, 86
+  size: 34, 50
+  orig: 34, 50
+  offset: 0, 0
+  index: -1
+caoren2_head
+  rotate: true
+  xy: 143, 286
+  size: 122, 137
+  orig: 122, 137
+  offset: 0, 0
+  index: -1
+caoren2_headlight1
+  rotate: true
+  xy: 396, 73
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+caoren2_headlight2
+  rotate: false
+  xy: 352, 115
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+caoren2_hip
+  rotate: false
+  xy: 2, 7
+  size: 149, 71
+  orig: 149, 71
+  offset: 0, 0
+  index: -1
+caoren2_hiplight
+  rotate: true
+  xy: 469, 215
+  size: 39, 24
+  orig: 39, 24
+  offset: 0, 0
+  index: -1
+caoren2_pipe
+  rotate: false
+  xy: 130, 81
+  size: 104, 70
+  orig: 104, 70
+  offset: 0, 0
+  index: -1
+caoren2_shield3
+  rotate: true
+  xy: 314, 438
+  size: 67, 190
+  orig: 68, 192
+  offset: 1, 1
+  index: -1
+caoren2_shoulderl
+  rotate: false
+  xy: 282, 284
+  size: 92, 124
+  orig: 92, 124
+  offset: 0, 0
+  index: -1
+caoren2_shoulderllight1
+  rotate: false
+  xy: 262, 68
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+caoren2_shoulderllight2
+  rotate: true
+  xy: 314, 410
+  size: 26, 48
+  orig: 26, 48
+  offset: 0, 0
+  index: -1
+caoren2_shoulderr
+  rotate: false
+  xy: 2, 365
+  size: 139, 140
+  orig: 139, 140
+  offset: 0, 0
+  index: -1
+caoren2_shoulderrlight1
+  rotate: true
+  xy: 494, 412
+  size: 24, 13
+  orig: 24, 13
+  offset: 0, 0
+  index: -1
+caoren2_shoulderrlight2
+  rotate: true
+  xy: 346, 82
+  size: 31, 48
+  orig: 31, 48
+  offset: 0, 0
+  index: -1
+caoren2_skill1
+  rotate: true
+  xy: 263, 153
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+caoren2_tail
+  rotate: false
+  xy: 143, 410
+  size: 169, 95
+  orig: 169, 95
+  offset: 0, 0
+  index: -1
+effect_ensflare
+  rotate: false
+  xy: 375, 165
+  size: 92, 89
+  orig: 92, 89
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 153, 2
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 454, 119
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+lvbu3_skill_ring
+  rotate: false
+  xy: 404, 115
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 130, 153
+  size: 131, 131
+  orig: 131, 131
+  offset: 0, 0
+  index: -1

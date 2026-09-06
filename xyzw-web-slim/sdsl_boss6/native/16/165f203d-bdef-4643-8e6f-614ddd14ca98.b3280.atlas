@@ -1,0 +1,454 @@
+
+sdsl_boss6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 475, 161
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+sdsl_boss6_arml1
+  rotate: true
+  xy: 448, 280
+  size: 26, 48
+  orig: 26, 48
+  offset: 0, 0
+  index: -1
+sdsl_boss6_arml2
+  rotate: true
+  xy: 450, 111
+  size: 55, 23
+  orig: 55, 23
+  offset: 0, 0
+  index: -1
+sdsl_boss6_armr1
+  rotate: true
+  xy: 448, 308
+  size: 28, 55
+  orig: 28, 55
+  offset: 0, 0
+  index: -1
+sdsl_boss6_armr2
+  rotate: false
+  xy: 292, 171
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+sdsl_boss6_attack_effect1
+  rotate: false
+  xy: 466, 395
+  size: 19, 5
+  orig: 19, 5
+  offset: 0, 0
+  index: -1
+sdsl_boss6_body
+  rotate: false
+  xy: 214, 10
+  size: 44, 77
+  orig: 44, 77
+  offset: 0, 0
+  index: -1
+sdsl_boss6_cloth1
+  rotate: true
+  xy: 458, 30
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+sdsl_boss6_cloth2
+  rotate: false
+  xy: 458, 55
+  size: 18, 28
+  orig: 18, 28
+  offset: 0, 0
+  index: -1
+sdsl_boss6_eye1
+  rotate: true
+  xy: 292, 148
+  size: 21, 22
+  orig: 21, 22
+  offset: 0, 0
+  index: -1
+sdsl_boss6_eye2
+  rotate: false
+  xy: 498, 487
+  size: 11, 21
+  orig: 11, 21
+  offset: 0, 0
+  index: -1
+sdsl_boss6_eyebrow1
+  rotate: false
+  xy: 466, 402
+  size: 32, 26
+  orig: 32, 26
+  offset: 0, 0
+  index: -1
+sdsl_boss6_eyebrow2
+  rotate: false
+  xy: 493, 340
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: -1
+sdsl_boss6_glasses
+  rotate: false
+  xy: 442, 85
+  size: 46, 24
+  orig: 46, 24
+  offset: 0, 0
+  index: -1
+sdsl_boss6_hair1
+  rotate: true
+  xy: 491, 221
+  size: 24, 19
+  orig: 24, 19
+  offset: 0, 0
+  index: -1
+sdsl_boss6_hair2
+  rotate: true
+  xy: 361, 396
+  size: 32, 34
+  orig: 32, 34
+  offset: 0, 0
+  index: -1
+sdsl_boss6_handl
+  rotate: false
+  xy: 491, 189
+  size: 18, 30
+  orig: 18, 30
+  offset: 0, 0
+  index: -1
+sdsl_boss6_handr
+  rotate: false
+  xy: 472, 247
+  size: 24, 31
+  orig: 24, 31
+  offset: 0, 0
+  index: -1
+sdsl_boss6_head
+  rotate: true
+  xy: 23, 238
+  size: 92, 79
+  orig: 92, 79
+  offset: 0, 0
+  index: -1
+sdsl_boss6_hip
+  rotate: true
+  xy: 292, 202
+  size: 31, 22
+  orig: 31, 22
+  offset: 0, 0
+  index: -1
+sdsl_boss6_legl
+  rotate: true
+  xy: 292, 235
+  size: 35, 22
+  orig: 35, 22
+  offset: 0, 0
+  index: -1
+sdsl_boss6_legr
+  rotate: false
+  xy: 331, 35
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1
+sdsl_boss6_mask1
+  rotate: true
+  xy: 404, 22
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+sdsl_boss6_mask2
+  rotate: false
+  xy: 475, 112
+  size: 25, 21
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+sdsl_boss6_mask3
+  rotate: false
+  xy: 371, 68
+  size: 69, 81
+  orig: 69, 81
+  offset: 0, 0
+  index: -1
+sdsl_boss6_mask4
+  rotate: false
+  xy: 404, 42
+  size: 52, 24
+  orig: 52, 24
+  offset: 0, 0
+  index: -1
+sdsl_boss6_mouth
+  rotate: true
+  xy: 470, 187
+  size: 50, 19
+  orig: 50, 19
+  offset: 0, 0
+  index: -1
+sdsl_boss6_neck
+  rotate: true
+  xy: 402, 153
+  size: 13, 16
+  orig: 13, 16
+  offset: 0, 0
+  index: -1
+sdsl_boss6_rope1
+  rotate: false
+  xy: 2, 97
+  size: 19, 411
+  orig: 19, 411
+  offset: 0, 0
+  index: -1
+sdsl_boss6_rope2
+  rotate: true
+  xy: 23, 99
+  size: 9, 68
+  orig: 9, 68
+  offset: 0, 0
+  index: -1
+sdsl_boss6_rope3
+  rotate: true
+  xy: 498, 438
+  size: 14, 10
+  orig: 14, 10
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_arm
+  rotate: false
+  xy: 175, 49
+  size: 37, 76
+  orig: 37, 76
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_body
+  rotate: false
+  xy: 106, 7
+  size: 66, 88
+  orig: 66, 88
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_cloth1
+  rotate: true
+  xy: 361, 430
+  size: 78, 135
+  orig: 78, 135
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_cloth2
+  rotate: true
+  xy: 2, 2
+  size: 93, 102
+  orig: 93, 102
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_cloth3
+  rotate: true
+  xy: 106, 272
+  size: 58, 208
+  orig: 58, 208
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_e1
+  rotate: true
+  xy: 417, 230
+  size: 7, 51
+  orig: 7, 51
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_e2
+  rotate: false
+  xy: 498, 454
+  size: 10, 31
+  orig: 10, 31
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_eye1
+  rotate: false
+  xy: 420, 153
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_eye2
+  rotate: true
+  xy: 500, 426
+  size: 10, 9
+  orig: 10, 9
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_eye3
+  rotate: false
+  xy: 475, 135
+  size: 23, 24
+  orig: 23, 24
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_eyebrow
+  rotate: true
+  xy: 493, 366
+  size: 34, 16
+  orig: 34, 16
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_foot
+  rotate: false
+  xy: 214, 142
+  size: 47, 60
+  orig: 47, 60
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_fu1
+  rotate: false
+  xy: 371, 41
+  size: 31, 25
+  orig: 31, 25
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_fu2
+  rotate: false
+  xy: 266, 148
+  size: 24, 122
+  orig: 24, 122
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_fu3
+  rotate: true
+  xy: 260, 34
+  size: 44, 69
+  orig: 44, 69
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_glasses
+  rotate: false
+  xy: 102, 97
+  size: 71, 28
+  orig: 71, 28
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_hair1
+  rotate: false
+  xy: 23, 110
+  size: 77, 126
+  orig: 77, 126
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_hair2
+  rotate: true
+  xy: 104, 204
+  size: 66, 160
+  orig: 66, 160
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_hand1
+  rotate: false
+  xy: 402, 168
+  size: 55, 52
+  orig: 55, 52
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_hand2
+  rotate: false
+  xy: 174, 3
+  size: 38, 44
+  orig: 38, 44
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_head
+  rotate: true
+  xy: 316, 222
+  size: 109, 99
+  orig: 109, 99
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_hip
+  rotate: true
+  xy: 263, 80
+  size: 66, 106
+  orig: 66, 106
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_leg
+  rotate: false
+  xy: 417, 239
+  size: 53, 36
+  orig: 53, 36
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_mask
+  rotate: true
+  xy: 242, 393
+  size: 115, 117
+  orig: 115, 117
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_mh
+  rotate: true
+  xy: 318, 338
+  size: 53, 173
+  orig: 53, 173
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_mouth1
+  rotate: false
+  xy: 397, 397
+  size: 67, 31
+  orig: 67, 31
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_mouth2
+  rotate: true
+  xy: 417, 277
+  size: 59, 29
+  orig: 59, 29
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_s1
+  rotate: false
+  xy: 23, 332
+  size: 217, 176
+  orig: 217, 176
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_s2
+  rotate: false
+  xy: 316, 151
+  size: 84, 69
+  orig: 84, 69
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_s3
+  rotate: true
+  xy: 214, 89
+  size: 51, 47
+  orig: 51, 47
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_xiu1
+  rotate: true
+  xy: 102, 127
+  size: 75, 110
+  orig: 75, 110
+  offset: 0, 0
+  index: -1
+sdsl_boss6_skill_xiu2
+  rotate: true
+  xy: 242, 333
+  size: 58, 74
+  orig: 58, 74
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 435, 153
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1

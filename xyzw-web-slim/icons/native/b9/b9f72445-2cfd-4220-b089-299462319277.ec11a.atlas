@@ -1,0 +1,69 @@
+
+sqhd26_cardbox_3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dyhc_boxlight1
+  rotate: false
+  xy: 271, 58
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+dyhc_boxlight2
+  rotate: false
+  xy: 221, 306
+  size: 196, 195
+  orig: 200, 200
+  offset: 2, 3
+  index: -1
+dyhc_boxlight4
+  rotate: true
+  xy: 221, 219
+  size: 18, 206
+  orig: 18, 206
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 419, 475
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+sqhd26_chouka_guang
+  rotate: true
+  xy: 444, 131
+  size: 342, 44
+  orig: 342, 44
+  offset: 0, 0
+  index: -1
+sqhd26_chouka_ka2
+  rotate: false
+  xy: 2, 212
+  size: 217, 289
+  orig: 219, 290
+  offset: 0, 1
+  index: -1
+sqhd26_chouka_kaguang
+  rotate: true
+  xy: 2, 2
+  size: 208, 267
+  orig: 208, 267
+  offset: 0, 0
+  index: -1
+sqhd26_chouka_sd1
+  rotate: false
+  xy: 221, 239
+  size: 205, 65
+  orig: 205, 66
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 419, 454
+  size: 19, 23
+  orig: 26, 26
+  offset: 3, 2
+  index: -1

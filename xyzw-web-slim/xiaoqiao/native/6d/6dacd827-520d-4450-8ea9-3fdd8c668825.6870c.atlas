@@ -1,0 +1,41 @@
+
+xiaoqiao_skill_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 124, 5
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+xiaoqiao_skill1
+  rotate: false
+  xy: 124, 49
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+xiaoqiao_skill2
+  rotate: false
+  xy: 146, 115
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+xiaoqiao_skill3
+  rotate: false
+  xy: 2, 2
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+xiaoqiao_weapon
+  rotate: false
+  xy: 2, 124
+  size: 142, 81
+  orig: 142, 81
+  offset: 0, 0
+  index: -1

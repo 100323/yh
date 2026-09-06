@@ -1,0 +1,34 @@
+
+huangyueying6_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huangyueying6_attackb1
+  rotate: false
+  xy: 2, 84
+  size: 20, 18
+  orig: 24, 20
+  offset: 2, 1
+  index: -1
+huangyueying6_attackb2
+  rotate: false
+  xy: 2, 2
+  size: 230, 36
+  orig: 230, 36
+  offset: 0, 0
+  index: -1
+huangyueying6_attackb3
+  rotate: false
+  xy: 24, 72
+  size: 159, 30
+  orig: 159, 30
+  offset: 0, 0
+  index: -1
+huangyueying6_attackb4
+  rotate: false
+  xy: 2, 40
+  size: 217, 30
+  orig: 217, 30
+  offset: 0, 0
+  index: -1

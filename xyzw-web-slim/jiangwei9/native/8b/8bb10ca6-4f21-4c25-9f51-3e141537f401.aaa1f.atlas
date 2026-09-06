@@ -1,0 +1,160 @@
+
+jiangwei9_skill_hit2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 955, 186
+  size: 33, 33
+  orig: 35, 35
+  offset: 1, 1
+  index: -1
+sk1-cq
+  rotate: true
+  xy: 2, 6
+  size: 50, 269
+  orig: 50, 269
+  offset: 0, 0
+  index: -1
+sk1-ks
+  rotate: false
+  xy: 273, 10
+  size: 103, 46
+  orig: 103, 46
+  offset: 0, 0
+  index: -1
+sk1-sg
+  rotate: true
+  xy: 622, 3
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+sk1-tw1
+  rotate: false
+  xy: 955, 252
+  size: 37, 179
+  orig: 37, 179
+  offset: 0, 0
+  index: -1
+sk1-tw2
+  rotate: false
+  xy: 990, 38
+  size: 32, 181
+  orig: 32, 181
+  offset: 0, 0
+  index: -1
+sk1-y01
+  rotate: true
+  xy: 995, 479
+  size: 31, 27
+  orig: 31, 27
+  offset: 0, 0
+  index: -1
+sk1-y02
+  rotate: false
+  xy: 642, 7
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+sk1-y03
+  rotate: false
+  xy: 995, 427
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sk1-y04
+  rotate: true
+  xy: 661, 11
+  size: 13, 12
+  orig: 13, 12
+  offset: 0, 0
+  index: -1
+sk1_by01
+  rotate: true
+  xy: 995, 452
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1
+sk1_by02
+  rotate: false
+  xy: 955, 221
+  size: 34, 29
+  orig: 34, 29
+  offset: 0, 0
+  index: -1
+sk1_dc01
+  rotate: false
+  xy: 994, 402
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sk1_dc02
+  rotate: true
+  xy: 466, 12
+  size: 103, 124
+  orig: 103, 124
+  offset: 0, 0
+  index: -1
+sk1_dc03
+  rotate: false
+  xy: 378, 10
+  size: 86, 105
+  orig: 86, 105
+  offset: 0, 0
+  index: -1
+sk1_dc04
+  rotate: true
+  xy: 771, 32
+  size: 83, 137
+  orig: 83, 137
+  offset: 0, 0
+  index: -1
+sk1_gy
+  rotate: false
+  xy: 628, 26
+  size: 141, 89
+  orig: 141, 89
+  offset: 0, 0
+  index: -1
+sk1_ks02
+  rotate: true
+  xy: 955, 433
+  size: 77, 38
+  orig: 77, 38
+  offset: 0, 0
+  index: -1
+sk1_lt
+  rotate: true
+  xy: 2, 58
+  size: 452, 371
+  orig: 452, 371
+  offset: 0, 0
+  index: -1
+sk1_lw
+  rotate: true
+  xy: 375, 117
+  size: 393, 578
+  orig: 393, 578
+  offset: 0, 0
+  index: -1
+sk1_lx1
+  rotate: true
+  xy: 592, 24
+  size: 91, 34
+  orig: 91, 34
+  offset: 0, 0
+  index: -1
+sk1_lx2
+  rotate: true
+  xy: 592, 2
+  size: 20, 28
+  orig: 20, 28
+  offset: 0, 0
+  index: -1

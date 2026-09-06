@@ -1,0 +1,27 @@
+
+dntg26_cj_beijing.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj2
+  rotate: false
+  xy: 2, 2
+  size: 602, 432
+  orig: 602, 432
+  offset: 0, 0
+  index: -1
+bj3
+  rotate: true
+  xy: 2, 449
+  size: 144, 169
+  orig: 144, 169
+  offset: 0, 0
+  index: -1
+bj4
+  rotate: true
+  xy: 173, 436
+  size: 157, 761
+  orig: 157, 761
+  offset: 0, 0
+  index: -1

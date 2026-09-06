@@ -1,0 +1,132 @@
+
+yuling_1203.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 153, 14
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 295, 53
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+shine_01
+  rotate: true
+  xy: 153, 3
+  size: 9, 13
+  orig: 139, 69
+  offset: 0, 56
+  index: -1
+shine_02
+  rotate: true
+  xy: 82, 10
+  size: 32, 69
+  orig: 139, 69
+  offset: 0, 0
+  index: -1
+shine_03
+  rotate: false
+  xy: 228, 19
+  size: 65, 69
+  orig: 139, 69
+  offset: 0, 0
+  index: -1
+shine_04
+  rotate: true
+  xy: 210, 167
+  size: 85, 67
+  orig: 139, 69
+  offset: 0, 2
+  index: -1
+shine_05
+  rotate: false
+  xy: 279, 183
+  size: 67, 69
+  orig: 139, 69
+  offset: 32, 0
+  index: -1
+shine_06
+  rotate: false
+  xy: 283, 113
+  size: 54, 68
+  orig: 139, 69
+  offset: 59, 1
+  index: -1
+shine_07
+  rotate: false
+  xy: 47, 6
+  size: 33, 36
+  orig: 139, 69
+  offset: 90, 25
+  index: -1
+shine_08
+  rotate: true
+  xy: 187, 22
+  size: 24, 16
+  orig: 139, 69
+  offset: 114, 48
+  index: -1
+shine_09
+  rotate: true
+  xy: 82, 3
+  size: 5, 10
+  orig: 139, 69
+  offset: 134, 54
+  index: -1
+yuling_203_body
+  rotate: true
+  xy: 2, 44
+  size: 208, 123
+  orig: 208, 123
+  offset: 0, 0
+  index: -1
+yuling_203_eye
+  rotate: true
+  xy: 187, 6
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+yuling_203_eyewhite
+  rotate: true
+  xy: 2, 4
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1
+yuling_203_fin1
+  rotate: false
+  xy: 295, 2
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+yuling_203_fin2
+  rotate: true
+  xy: 228, 90
+  size: 75, 53
+  orig: 75, 53
+  offset: 0, 0
+  index: -1
+yuling_203_fin3
+  rotate: true
+  xy: 127, 140
+  size: 112, 81
+  orig: 112, 81
+  offset: 0, 0
+  index: -1
+yuling_203_tail
+  rotate: true
+  xy: 127, 48
+  size: 90, 99
+  orig: 90, 99
+  offset: 0, 0
+  index: -1

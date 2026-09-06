@@ -1,0 +1,34 @@
+
+yuling_1305.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 19, 181
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_305_body
+  rotate: false
+  xy: 2, 2
+  size: 240, 173
+  orig: 240, 173
+  offset: 0, 0
+  index: -1
+yuling_305_eye
+  rotate: false
+  xy: 2, 198
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+yuling_305_eyewhite
+  rotate: false
+  xy: 53, 177
+  size: 42, 36
+  orig: 42, 36
+  offset: 0, 0
+  index: -1

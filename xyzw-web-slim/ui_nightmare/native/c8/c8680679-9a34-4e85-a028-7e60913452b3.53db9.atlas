@@ -1,0 +1,20 @@
+
+sdyl_jdt.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_ui_circle5
+  rotate: false
+  xy: 2, 47
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+yuan
+  rotate: true
+  xy: 59, 2
+  size: 100, 101
+  orig: 100, 101
+  offset: 0, 0
+  index: -1

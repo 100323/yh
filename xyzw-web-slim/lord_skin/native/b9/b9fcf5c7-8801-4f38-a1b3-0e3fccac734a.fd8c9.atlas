@@ -1,0 +1,153 @@
+
+axian6112.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axgp_bh_dz2
+  rotate: true
+  xy: 239, 209
+  size: 161, 119
+  orig: 161, 119
+  offset: 0, 0
+  index: -1
+axgp_xw_dz1
+  rotate: true
+  xy: 372, 372
+  size: 171, 157
+  orig: 171, 167
+  offset: 0, 3
+  index: -1
+axgp_xw_dz2
+  rotate: false
+  xy: 640, 505
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+axgp_xw_dz4
+  rotate: false
+  xy: 698, 756
+  size: 227, 227
+  orig: 228, 228
+  offset: 1, 0
+  index: -1
+axgp_xw_yanwu
+  rotate: false
+  xy: 2, 545
+  size: 694, 438
+  orig: 694, 438
+  offset: 0, 0
+  index: -1
+bhjiaxu_gp_lh
+  rotate: true
+  xy: 872, 168
+  size: 586, 139
+  orig: 586, 139
+  offset: 0, 0
+  index: -1
+bhjiaxu_gp_sd1
+  rotate: false
+  xy: 78, 112
+  size: 110, 130
+  orig: 110, 130
+  offset: 0, 0
+  index: -1
+bhjiaxu_gp_sd2
+  rotate: false
+  xy: 190, 105
+  size: 161, 102
+  orig: 161, 102
+  offset: 0, 0
+  index: -1
+bhjiaxu_gp_sd3
+  rotate: false
+  xy: 743, 36
+  size: 259, 130
+  orig: 259, 130
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 946, 811
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: true
+  xy: 640, 471
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: true
+  xy: 946, 787
+  size: 22, 66
+  orig: 22, 66
+  offset: 0, 0
+  index: -1
+xingchen1
+  rotate: false
+  xy: 743, 180
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+xingchen2
+  rotate: false
+  xy: 927, 859
+  size: 70, 124
+  orig: 70, 124
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xu_g5
+  rotate: true
+  xy: 78, 244
+  size: 126, 159
+  orig: 126, 159
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xw_g1
+  rotate: false
+  xy: 2, 195
+  size: 74, 258
+  orig: 74, 258
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xw_g2
+  rotate: false
+  xy: 640, 2
+  size: 101, 276
+  orig: 101, 276
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xw_g3
+  rotate: true
+  xy: 2, 455
+  size: 88, 368
+  orig: 88, 368
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xw_g6
+  rotate: false
+  xy: 531, 201
+  size: 107, 342
+  orig: 107, 342
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xw_g7
+  rotate: false
+  xy: 927, 758
+  size: 17, 99
+  orig: 17, 99
+  offset: 0, 0
+  index: -1
+ygbh_axgl_pt_xw_g8
+  rotate: false
+  xy: 698, 280
+  size: 172, 474
+  orig: 172, 474
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+zglx25_cj_box1.png
+size: 216,107
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+putao1_1
+  rotate: true
+  xy: 161, 17
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+putao1_2
+  rotate: false
+  xy: 87, 6
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+putao1_3
+  rotate: true
+  xy: 118, 6
+  size: 28, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+putao1_4
+  rotate: true
+  xy: 2, 3
+  size: 25, 26
+  orig: 25, 26
+  offset: 0, 0
+  index: -1
+putao1_5
+  rotate: false
+  xy: 30, 3
+  size: 25, 25
+  orig: 26, 26
+  offset: 0, 1
+  index: -1
+putao1_6
+  rotate: true
+  xy: 193, 6
+  size: 17, 18
+  orig: 18, 19
+  offset: 1, 1
+  index: -1
+putao1_7
+  rotate: false
+  xy: 193, 25
+  size: 20, 20
+  orig: 20, 21
+  offset: 0, 1
+  index: -1
+putao1_8
+  rotate: false
+  xy: 161, 47
+  size: 53, 58
+  orig: 55, 64
+  offset: 1, 1
+  index: -1
+shanguang3
+  rotate: false
+  xy: 149, 24
+  size: 8, 10
+  orig: 10, 10
+  offset: 1, 0
+  index: -1
+shanguang4
+  rotate: true
+  xy: 149, 2
+  size: 13, 16
+  orig: 13, 17
+  offset: 0, 1
+  index: -1
+shoutao
+  rotate: false
+  xy: 2, 30
+  size: 83, 75
+  orig: 83, 75
+  offset: 0, 0
+  index: -1
+yingzi1
+  rotate: true
+  xy: 87, 36
+  size: 69, 72
+  orig: 69, 81
+  offset: 0, 6
+  index: -1

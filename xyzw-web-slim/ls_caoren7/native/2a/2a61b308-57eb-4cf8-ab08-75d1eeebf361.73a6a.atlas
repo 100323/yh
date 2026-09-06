@@ -1,0 +1,97 @@
+
+ls_caoren7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+230405ffd6j51s16s3m691
+  rotate: true
+  xy: 352, 145
+  size: 166, 130
+  orig: 166, 130
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 352, 97
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+lscaoren_1
+  rotate: true
+  xy: 399, 352
+  size: 152, 75
+  orig: 152, 106
+  offset: 0, 22
+  index: -1
+lscaoren_2
+  rotate: false
+  xy: 2, 2
+  size: 67, 57
+  orig: 67, 57
+  offset: 0, 0
+  index: -1
+lscaoren_dhxingx
+  rotate: true
+  xy: 279, 36
+  size: 78, 42
+  orig: 78, 42
+  offset: 0, 0
+  index: -1
+lscaoren_guangyun1
+  rotate: false
+  xy: 399, 318
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lscaoren_gy
+  rotate: false
+  xy: 399, 318
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lscaoren_guangyun2
+  rotate: false
+  xy: 206, 313
+  size: 191, 191
+  orig: 191, 191
+  offset: 0, 0
+  index: -1
+lscaoren_guangyun3
+  rotate: false
+  xy: 2, 302
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+lscaoren_tt
+  rotate: false
+  xy: 168, 8
+  size: 109, 106
+  orig: 109, 106
+  offset: 0, 0
+  index: -1
+lscaoren_tt1
+  rotate: false
+  xy: 168, 116
+  size: 182, 184
+  orig: 182, 185
+  offset: 0, 0
+  index: -1
+lscaoren_tt2
+  rotate: true
+  xy: 2, 61
+  size: 239, 164
+  orig: 239, 170
+  offset: 0, 5
+  index: -1
+lscaoren_xing1
+  rotate: false
+  xy: 71, 7
+  size: 53, 52
+  orig: 53, 52
+  offset: 0, 0
+  index: -1

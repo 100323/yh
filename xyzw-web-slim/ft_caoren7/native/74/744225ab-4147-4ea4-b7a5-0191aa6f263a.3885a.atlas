@@ -1,0 +1,111 @@
+
+ft_caoren7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_caoren_bei
+  rotate: false
+  xy: 2, 208
+  size: 334, 282
+  orig: 334, 282
+  offset: 0, 0
+  index: -1
+ft_caoren_bei1
+  rotate: true
+  xy: 2, 81
+  size: 125, 126
+  orig: 125, 126
+  offset: 0, 0
+  index: -1
+ft_caoren_bei2
+  rotate: true
+  xy: 130, 39
+  size: 59, 82
+  orig: 59, 82
+  offset: 0, 0
+  index: -1
+ft_caoren_bei3
+  rotate: false
+  xy: 393, 39
+  size: 66, 106
+  orig: 66, 106
+  offset: 0, 0
+  index: -1
+ft_caoren_deng1
+  rotate: true
+  xy: 130, 100
+  size: 106, 98
+  orig: 106, 98
+  offset: 0, 0
+  index: -1
+ft_caoren_di1
+  rotate: true
+  xy: 230, 100
+  size: 106, 78
+  orig: 106, 78
+  offset: 0, 0
+  index: -1
+ft_caoren_di2
+  rotate: true
+  xy: 310, 75
+  size: 70, 81
+  orig: 70, 81
+  offset: 0, 0
+  index: -1
+ft_caoren_dian
+  rotate: false
+  xy: 338, 147
+  size: 134, 135
+  orig: 134, 135
+  offset: 0, 0
+  index: -1
+ft_caoren_fang
+  rotate: true
+  xy: 474, 242
+  size: 40, 29
+  orig: 40, 29
+  offset: 0, 0
+  index: -1
+ft_caoren_sanjiao
+  rotate: false
+  xy: 488, 468
+  size: 17, 22
+  orig: 17, 22
+  offset: 0, 0
+  index: -1
+ft_caoren_tou
+  rotate: false
+  xy: 338, 284
+  size: 148, 206
+  orig: 150, 209
+  offset: 0, 3
+  index: -1
+ft_caoren_weiba
+  rotate: true
+  xy: 274, 15
+  size: 58, 64
+  orig: 59, 64
+  offset: 0, 0
+  index: -1
+ft_caoren_weiba1
+  rotate: true
+  xy: 214, 2
+  size: 96, 58
+  orig: 96, 58
+  offset: 0, 0
+  index: -1
+ft_caoren_yuan
+  rotate: false
+  xy: 488, 456
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 461, 99
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

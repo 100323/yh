@@ -1,0 +1,41 @@
+
+buff_boss7.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 135, 96
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+sdsl_boss7_skill_b1
+  rotate: false
+  xy: 112, 127
+  size: 96, 115
+  orig: 96, 116
+  offset: 0, 1
+  index: -1
+sdsl_boss7_skill_b2
+  rotate: true
+  xy: 2, 2
+  size: 96, 131
+  orig: 96, 131
+  offset: 0, 0
+  index: -1
+sdsl_boss7_skill_b3
+  rotate: false
+  xy: 2, 100
+  size: 108, 142
+  orig: 108, 142
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 112, 113
+  size: 12, 11
+  orig: 16, 16
+  offset: 3, 3
+  index: -1

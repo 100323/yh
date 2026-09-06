@@ -1,0 +1,55 @@
+
+huoche_bj2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huoche_cj_jiuping
+  rotate: false
+  xy: 242, 21
+  size: 52, 143
+  orig: 52, 143
+  offset: 0, 0
+  index: -1
+huoche_cj_luntai
+  rotate: false
+  xy: 222, 227
+  size: 152, 130
+  orig: 152, 130
+  offset: 0, 0
+  index: -1
+huoche_cj_tong
+  rotate: true
+  xy: 222, 166
+  size: 59, 193
+  orig: 59, 193
+  offset: 0, 0
+  index: -1
+huoche_cj_xiangzi
+  rotate: false
+  xy: 2, 164
+  size: 218, 193
+  orig: 218, 193
+  offset: 0, 0
+  index: -1
+huoche_cj_xiangzi2
+  rotate: true
+  xy: 2, 2
+  size: 160, 238
+  orig: 160, 238
+  offset: 0, 0
+  index: -1
+huoche_cj_zd
+  rotate: false
+  xy: 2, 359
+  size: 421, 129
+  orig: 421, 129
+  offset: 0, 0
+  index: -1
+huoche_cj_zz
+  rotate: false
+  xy: 425, 114
+  size: 26, 374
+  orig: 26, 374
+  offset: 0, 0
+  index: -1

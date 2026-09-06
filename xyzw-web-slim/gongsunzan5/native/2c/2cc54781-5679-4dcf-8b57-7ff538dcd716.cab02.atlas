@@ -1,0 +1,251 @@
+
+gongsunzan5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan5_attack1
+  rotate: false
+  xy: 256, 173
+  size: 71, 122
+  orig: 71, 122
+  offset: 0, 0
+  index: -1
+gongsunzan5_body
+  rotate: true
+  xy: 336, 378
+  size: 128, 104
+  orig: 128, 104
+  offset: 0, 0
+  index: -1
+gongsunzan5_dp
+  rotate: false
+  xy: 151, 252
+  size: 103, 89
+  orig: 103, 89
+  offset: 0, 0
+  index: -1
+gongsunzan5_effect1
+  rotate: true
+  xy: 442, 473
+  size: 33, 66
+  orig: 39, 73
+  offset: 2, 4
+  index: -1
+gongsunzan5_effect2
+  rotate: true
+  xy: 434, 209
+  size: 37, 60
+  orig: 43, 64
+  offset: 4, 2
+  index: -1
+gongsunzan5_effect3
+  rotate: true
+  xy: 477, 381
+  size: 35, 32
+  orig: 41, 37
+  offset: 2, 2
+  index: -1
+gongsunzan5_effect4
+  rotate: false
+  xy: 442, 378
+  size: 33, 38
+  orig: 38, 41
+  offset: 3, 3
+  index: -1
+gongsunzan5_effect5
+  rotate: true
+  xy: 387, 123
+  size: 56, 114
+  orig: 61, 119
+  offset: 3, 2
+  index: -1
+gongsunzan5_eyebrown
+  rotate: false
+  xy: 194, 2
+  size: 46, 24
+  orig: 46, 24
+  offset: 0, 0
+  index: -1
+gongsunzan5_footr
+  rotate: true
+  xy: 256, 148
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+gongsunzan5_hair1
+  rotate: true
+  xy: 256, 297
+  size: 50, 82
+  orig: 50, 82
+  offset: 0, 0
+  index: -1
+gongsunzan5_hair2
+  rotate: true
+  xy: 280, 149
+  size: 22, 56
+  orig: 22, 56
+  offset: 0, 0
+  index: -1
+gongsunzan5_hair3
+  rotate: true
+  xy: 329, 177
+  size: 39, 56
+  orig: 39, 56
+  offset: 0, 0
+  index: -1
+gongsunzan5_hair4
+  rotate: false
+  xy: 194, 28
+  size: 109, 118
+  orig: 109, 118
+  offset: 0, 0
+  index: -1
+gongsunzan5_handr2
+  rotate: false
+  xy: 338, 136
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+gongsunzan5_hat
+  rotate: false
+  xy: 305, 9
+  size: 110, 112
+  orig: 110, 112
+  offset: 0, 0
+  index: -1
+gongsunzan5_horse1
+  rotate: false
+  xy: 193, 365
+  size: 141, 141
+  orig: 141, 141
+  offset: 0, 0
+  index: -1
+gongsunzan5_horse2
+  rotate: false
+  xy: 329, 218
+  size: 103, 41
+  orig: 103, 41
+  offset: 0, 0
+  index: -1
+gongsunzan5_huizhang
+  rotate: false
+  xy: 417, 73
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+gongsunzan5_legl
+  rotate: false
+  xy: 437, 248
+  size: 73, 57
+  orig: 73, 57
+  offset: 0, 0
+  index: -1
+gongsunzan5_legr
+  rotate: true
+  xy: 103, 251
+  size: 90, 46
+  orig: 90, 46
+  offset: 0, 0
+  index: -1
+gongsunzan5_skilla1
+  rotate: false
+  xy: 2, 5
+  size: 190, 243
+  orig: 190, 243
+  offset: 0, 0
+  index: -1
+gongsunzan5_skilla2
+  rotate: true
+  xy: 212, 349
+  size: 14, 136
+  orig: 14, 136
+  offset: 0, 0
+  index: -1
+gongsunzan5_skilla3
+  rotate: true
+  xy: 336, 366
+  size: 10, 102
+  orig: 10, 102
+  offset: 0, 0
+  index: -1
+gongsunzan5_tie
+  rotate: true
+  xy: 103, 343
+  size: 163, 88
+  orig: 163, 88
+  offset: 0, 0
+  index: -1
+gongsunzan5_weapon
+  rotate: false
+  xy: 2, 250
+  size: 99, 256
+  orig: 99, 256
+  offset: 0, 0
+  index: -1
+gongsunzan_eye
+  rotate: false
+  xy: 340, 341
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+gongsunzan_eyewhite
+  rotate: true
+  xy: 242, 2
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+gongsunzan_head
+  rotate: false
+  xy: 350, 261
+  size: 85, 103
+  orig: 85, 103
+  offset: 0, 0
+  index: -1
+gongsunzan_jaw
+  rotate: true
+  xy: 442, 418
+  size: 53, 65
+  orig: 53, 65
+  offset: 0, 0
+  index: -1
+gongsunzan_tail
+  rotate: true
+  xy: 194, 148
+  size: 102, 60
+  orig: 102, 60
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 440, 307
+  size: 70, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 469, 82
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 387, 181
+  size: 35, 44
+  orig: 35, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 193, 343
+  size: 20, 17
+  orig: 22, 22
+  offset: 0, 2
+  index: -1

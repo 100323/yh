@@ -1,0 +1,41 @@
+
+zhangjiao6_guanghuan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bhzj_huan1
+  rotate: true
+  xy: 2, 19
+  size: 207, 172
+  orig: 207, 172
+  offset: 0, 0
+  index: -1
+bhzj_sd1
+  rotate: false
+  xy: 176, 137
+  size: 77, 89
+  orig: 77, 89
+  offset: 0, 0
+  index: -1
+bhzj_sd3
+  rotate: true
+  xy: 176, 78
+  size: 57, 37
+  orig: 57, 37
+  offset: 0, 0
+  index: -1
+bhzj_sdhuan2
+  rotate: false
+  xy: 2, 228
+  size: 267, 281
+  orig: 293, 282
+  offset: 0, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 15, 15
+  orig: 17, 17
+  offset: 1, 1
+  index: -1

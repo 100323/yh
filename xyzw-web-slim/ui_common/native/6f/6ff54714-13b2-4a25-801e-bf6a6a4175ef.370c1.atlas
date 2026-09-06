@@ -1,0 +1,27 @@
+
+hjls_chsd_zi_2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls_ch_sd1
+  rotate: false
+  xy: 2, 2
+  size: 95, 48
+  orig: 95, 48
+  offset: 0, 0
+  index: -1
+hjls_ch_sd2
+  rotate: false
+  xy: 143, 45
+  size: 97, 52
+  orig: 101, 57
+  offset: 2, 3
+  index: -1
+hjls_ch_sd3
+  rotate: false
+  xy: 2, 52
+  size: 139, 45
+  orig: 139, 45
+  offset: 0, 0
+  index: -1

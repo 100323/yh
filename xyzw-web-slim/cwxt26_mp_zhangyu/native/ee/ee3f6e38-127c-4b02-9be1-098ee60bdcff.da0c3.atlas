@@ -1,0 +1,69 @@
+
+cwxt26_mp_zhangyu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_zhangyu_jin_2
+  rotate: true
+  xy: 697, 110
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_tong_2
+  rotate: false
+  xy: 697, 22
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_yin_2
+  rotate: true
+  xy: 711, 344
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+zhangyu_jin_di
+  rotate: false
+  xy: 243, 10
+  size: 225, 232
+  orig: 225, 232
+  offset: 0, 0
+  index: -1
+zhangyu_jin_yu
+  rotate: false
+  xy: 2, 244
+  size: 239, 240
+  orig: 239, 240
+  offset: 0, 0
+  index: -1
+zhangyu_tong_di
+  rotate: false
+  xy: 470, 10
+  size: 225, 232
+  orig: 225, 232
+  offset: 0, 0
+  index: -1
+zhangyu_tong_yu
+  rotate: false
+  xy: 2, 2
+  size: 239, 240
+  orig: 239, 240
+  offset: 0, 0
+  index: -1
+zhangyu_yin_di
+  rotate: false
+  xy: 484, 252
+  size: 225, 232
+  orig: 225, 232
+  offset: 0, 0
+  index: -1
+zhangyu_yin_yu
+  rotate: false
+  xy: 243, 244
+  size: 239, 240
+  orig: 239, 240
+  offset: 0, 0
+  index: -1

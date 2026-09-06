@@ -1,0 +1,48 @@
+
+daqiao3_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao3_tx_ty1
+  rotate: false
+  xy: 127, 45
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+daqiao3_tx_ty4
+  rotate: false
+  xy: 78, 21
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+daqiao3_xtx_1
+  rotate: false
+  xy: 171, 16
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+daqiao3_xtx_12
+  rotate: true
+  xy: 2, 2
+  size: 85, 74
+  orig: 90, 78
+  offset: 3, 2
+  index: -1
+daqiao3_xtx_2
+  rotate: true
+  xy: 2, 89
+  size: 160, 148
+  orig: 160, 148
+  offset: 0, 0
+  index: -1
+daqiao3_xtx_4
+  rotate: true
+  xy: 152, 120
+  size: 129, 109
+  orig: 129, 110
+  offset: 0, 1
+  index: -1

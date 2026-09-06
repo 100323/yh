@@ -1,0 +1,97 @@
+
+tgcf_map_mark.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 195, 195
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+tgcf_map_mark1
+  rotate: false
+  xy: 73, 59
+  size: 67, 53
+  orig: 67, 53
+  offset: 0, 0
+  index: -1
+tgcf_map_mark10
+  rotate: false
+  xy: 208, 2
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+tgcf_map_mark11
+  rotate: false
+  xy: 2, 40
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+tgcf_map_mark2
+  rotate: false
+  xy: 126, 183
+  size: 67, 53
+  orig: 67, 53
+  offset: 0, 0
+  index: -1
+tgcf_map_mark3
+  rotate: false
+  xy: 2, 59
+  size: 69, 53
+  orig: 69, 53
+  offset: 0, 0
+  index: -1
+tgcf_map_mark4
+  rotate: true
+  xy: 142, 60
+  size: 67, 51
+  orig: 67, 51
+  offset: 0, 0
+  index: -1
+tgcf_map_mark5
+  rotate: false
+  xy: 126, 129
+  size: 64, 52
+  orig: 64, 52
+  offset: 0, 0
+  index: -1
+tgcf_map_mark6
+  rotate: true
+  xy: 195, 72
+  size: 64, 50
+  orig: 64, 50
+  offset: 0, 0
+  index: -1
+tgcf_map_mark7
+  rotate: false
+  xy: 142, 7
+  size: 64, 51
+  orig: 64, 51
+  offset: 0, 0
+  index: -1
+tgcf_map_mark8
+  rotate: false
+  xy: 192, 138
+  size: 52, 43
+  orig: 52, 43
+  offset: 0, 0
+  index: -1
+tgcf_map_mark9
+  rotate: true
+  xy: 208, 33
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 114
+  size: 122, 122
+  orig: 122, 122
+  offset: 0, 0
+  index: -1

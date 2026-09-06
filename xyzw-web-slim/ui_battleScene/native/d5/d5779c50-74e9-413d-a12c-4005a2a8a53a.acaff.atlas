@@ -1,0 +1,62 @@
+
+sdsl_bg6.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 293, 205
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg6_fire1
+  rotate: false
+  xy: 2, 81
+  size: 81, 170
+  orig: 81, 170
+  offset: 0, 0
+  index: -1
+sdsl_bg6_fire2
+  rotate: false
+  xy: 217, 109
+  size: 74, 142
+  orig: 74, 142
+  offset: 0, 0
+  index: -1
+sdsl_bg6_fire3
+  rotate: true
+  xy: 2, 3
+  size: 76, 161
+  orig: 76, 161
+  offset: 0, 0
+  index: -1
+sdsl_bg6_ghost1
+  rotate: false
+  xy: 286, 2
+  size: 65, 105
+  orig: 65, 105
+  offset: 0, 0
+  index: -1
+sdsl_bg6_ghost2
+  rotate: true
+  xy: 165, 17
+  size: 75, 119
+  orig: 75, 119
+  offset: 0, 0
+  index: -1
+sdsl_bg6_ghost3
+  rotate: false
+  xy: 85, 94
+  size: 130, 157
+  orig: 130, 157
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 293, 177
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

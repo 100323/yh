@@ -1,0 +1,34 @@
+
+qnwd26_cj_jiantou.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou_shang
+  rotate: false
+  xy: 236, 2
+  size: 76, 74
+  orig: 78, 76
+  offset: 1, 1
+  index: -1
+jiantou_xia
+  rotate: false
+  xy: 158, 2
+  size: 76, 74
+  orig: 78, 76
+  offset: 1, 1
+  index: -1
+jiantou_you
+  rotate: false
+  xy: 2, 2
+  size: 76, 74
+  orig: 78, 76
+  offset: 1, 1
+  index: -1
+jiantou_zuo
+  rotate: false
+  xy: 80, 2
+  size: 76, 74
+  orig: 78, 76
+  offset: 1, 1
+  index: -1

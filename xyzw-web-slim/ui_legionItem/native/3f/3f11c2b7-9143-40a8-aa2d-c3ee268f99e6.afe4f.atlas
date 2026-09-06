@@ -1,0 +1,34 @@
+
+zbz_effect_defense.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_effect_defense1
+  rotate: true
+  xy: 217, 238
+  size: 189, 200
+  orig: 191, 200
+  offset: 1, 0
+  index: -1
+zbz_effect_defense2
+  rotate: false
+  xy: 218, 191
+  size: 40, 45
+  orig: 40, 45
+  offset: 0, 0
+  index: -1
+zbz_effect_defense3
+  rotate: true
+  xy: 2, 2
+  size: 209, 214
+  orig: 212, 214
+  offset: 0, 0
+  index: -1
+zbz_effect_defense4
+  rotate: false
+  xy: 2, 213
+  size: 213, 214
+  orig: 213, 214
+  offset: 0, 0
+  index: -1

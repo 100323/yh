@@ -1,0 +1,48 @@
+
+ymj_boss_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 149, 47
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ymj_boss_attack1
+  rotate: false
+  xy: 2, 2
+  size: 111, 74
+  orig: 111, 74
+  offset: 0, 0
+  index: -1
+ymj_boss_attack2
+  rotate: false
+  xy: 115, 21
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+ymj_boss_attack3
+  rotate: true
+  xy: 115, 46
+  size: 30, 32
+  orig: 30, 32
+  offset: 0, 0
+  index: -1
+ymj_boss_attack4
+  rotate: false
+  xy: 180, 50
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+ymj_boss_attack5
+  rotate: true
+  xy: 149, 18
+  size: 27, 38
+  orig: 27, 38
+  offset: 0, 0
+  index: -1

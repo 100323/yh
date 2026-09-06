@@ -1,0 +1,300 @@
+
+caoren9.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren9_huzi
+  rotate: false
+  xy: 795, 412
+  size: 87, 98
+  orig: 87, 98
+  offset: 0, 0
+  index: -1
+caoren9_huzil
+  rotate: false
+  xy: 831, 322
+  size: 84, 88
+  orig: 84, 88
+  offset: 0, 0
+  index: -1
+caoren9_huzir1
+  rotate: true
+  xy: 801, 2
+  size: 53, 57
+  orig: 53, 58
+  offset: 0, 1
+  index: -1
+caoren9_huzir2
+  rotate: true
+  xy: 589, 63
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+caoren9_jiaol
+  rotate: false
+  xy: 552, 63
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+caoren9_jiaor
+  rotate: false
+  xy: 497, 346
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+caoren9_jjr
+  rotate: false
+  xy: 198, 54
+  size: 155, 160
+  orig: 155, 160
+  offset: 0, 0
+  index: -1
+caoren9_mm
+  rotate: false
+  xy: 433, 2
+  size: 60, 53
+  orig: 60, 53
+  offset: 0, 0
+  index: -1
+caoren9_pg_lz1
+  rotate: false
+  xy: 872, 263
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+caoren9_pg_lz2
+  rotate: true
+  xy: 865, 130
+  size: 70, 67
+  orig: 70, 67
+  offset: 0, 0
+  index: -1
+caoren9_pg_xlg1
+  rotate: false
+  xy: 410, 383
+  size: 101, 127
+  orig: 101, 127
+  offset: 0, 0
+  index: -1
+caoren9_pg_xlg2
+  rotate: true
+  xy: 276, 224
+  size: 107, 122
+  orig: 107, 122
+  offset: 0, 0
+  index: -1
+caoren9_qun
+  rotate: false
+  xy: 794, 130
+  size: 69, 70
+  orig: 70, 70
+  offset: 1, 0
+  index: -1
+caoren9_qunl
+  rotate: true
+  xy: 749, 296
+  size: 109, 80
+  orig: 109, 80
+  offset: 0, 0
+  index: -1
+caoren9_qunr
+  rotate: true
+  xy: 482, 63
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+caoren9_shen
+  rotate: true
+  xy: 276, 333
+  size: 177, 132
+  orig: 177, 132
+  offset: 0, 0
+  index: -1
+caoren9_shour
+  rotate: false
+  xy: 355, 57
+  size: 125, 165
+  orig: 125, 165
+  offset: 0, 0
+  index: -1
+caoren9_skill_bk
+  rotate: true
+  xy: 703, 157
+  size: 108, 82
+  orig: 108, 82
+  offset: 0, 0
+  index: -1
+caoren9_skill_wqg
+  rotate: false
+  xy: 482, 103
+  size: 116, 122
+  orig: 116, 122
+  offset: 0, 0
+  index: -1
+caoren9_skill_wqxl
+  rotate: false
+  xy: 2, 2
+  size: 194, 212
+  orig: 194, 212
+  offset: 0, 0
+  index: -1
+caoren9_skill_wqxllz1
+  rotate: true
+  xy: 801, 57
+  size: 71, 68
+  orig: 71, 68
+  offset: 0, 0
+  index: -1
+caoren9_skill_wqxllz2
+  rotate: false
+  xy: 581, 2
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+caoren9_skill_wqxllz3
+  rotate: false
+  xy: 884, 434
+  size: 67, 76
+  orig: 67, 76
+  offset: 0, 0
+  index: -1
+caoren9_tf1
+  rotate: true
+  xy: 526, 243
+  size: 101, 127
+  orig: 101, 127
+  offset: 0, 0
+  index: -1
+caoren9_tf2
+  rotate: true
+  xy: 787, 202
+  size: 92, 83
+  orig: 92, 83
+  offset: 0, 0
+  index: -1
+caoren9_tf3
+  rotate: true
+  xy: 400, 227
+  size: 104, 124
+  orig: 104, 124
+  offset: 0, 0
+  index: -1
+caoren9_tf4
+  rotate: true
+  xy: 705, 407
+  size: 103, 88
+  orig: 103, 88
+  offset: 0, 0
+  index: -1
+caoren9_tou
+  rotate: false
+  xy: 655, 267
+  size: 92, 113
+  orig: 92, 113
+  offset: 0, 0
+  index: -1
+caoren9_ts
+  rotate: false
+  xy: 333, 18
+  size: 98, 34
+  orig: 98, 34
+  offset: 0, 0
+  index: -1
+caoren9_wei
+  rotate: false
+  xy: 703, 95
+  size: 89, 60
+  orig: 89, 60
+  offset: 0, 0
+  index: -1
+caoren9_wqyanl
+  rotate: true
+  xy: 513, 385
+  size: 125, 99
+  orig: 125, 99
+  offset: 0, 0
+  index: -1
+caoren9_wqyanr
+  rotate: true
+  xy: 614, 382
+  size: 128, 89
+  orig: 128, 89
+  offset: 0, 0
+  index: -1
+caoren9_wuqi
+  rotate: true
+  xy: 2, 216
+  size: 294, 272
+  orig: 294, 272
+  offset: 0, 0
+  index: -1
+caoren9_yan
+  rotate: true
+  xy: 624, 79
+  size: 35, 23
+  orig: 35, 23
+  offset: 0, 0
+  index: -1
+caoren9_yaodai
+  rotate: false
+  xy: 642, 16
+  size: 157, 61
+  orig: 157, 61
+  offset: 0, 0
+  index: -1
+caoren9_yiful
+  rotate: false
+  xy: 600, 116
+  size: 101, 125
+  orig: 101, 125
+  offset: 0, 0
+  index: -1
+caoren9_yifur
+  rotate: true
+  xy: 198, 9
+  size: 43, 133
+  orig: 43, 133
+  offset: 0, 0
+  index: -1
+caoren9_yz
+  rotate: false
+  xy: 333, 8
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+caoren9_zui
+  rotate: true
+  xy: 495, 6
+  size: 55, 84
+  orig: 56, 84
+  offset: 1, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 410, 337
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 456, 333
+  size: 39, 48
+  orig: 39, 48
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 649, 91
+  size: 23, 22
+  orig: 24, 24
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,13 @@
+
+sqhd26_axgp.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axgp_sqhd26_dai
+  rotate: true
+  xy: 2, 2
+  size: 359, 822
+  orig: 359, 822
+  offset: 0, 0
+  index: -1

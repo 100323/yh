@@ -1,0 +1,90 @@
+
+jiangwei4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 464, 435
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+jiangwei4_skill1
+  rotate: false
+  xy: 2, 274
+  size: 111, 91
+  orig: 111, 91
+  offset: 0, 0
+  index: -1
+jiangwei4_skill2
+  rotate: true
+  xy: 183, 359
+  size: 81, 251
+  orig: 81, 251
+  offset: 0, 0
+  index: -1
+jiangwei4_skill3
+  rotate: true
+  xy: 2, 2
+  size: 126, 315
+  orig: 126, 315
+  offset: 0, 0
+  index: -1
+jiangwei4_skillf1
+  rotate: false
+  xy: 115, 251
+  size: 138, 106
+  orig: 138, 106
+  offset: 0, 0
+  index: -1
+jiangwei4_skillf2
+  rotate: false
+  xy: 76, 367
+  size: 105, 73
+  orig: 105, 73
+  offset: 0, 0
+  index: -1
+jiangwei4_skillf3
+  rotate: true
+  xy: 2, 395
+  size: 45, 72
+  orig: 45, 72
+  offset: 0, 0
+  index: -1
+jiangwei4_skillf4
+  rotate: false
+  xy: 255, 247
+  size: 135, 110
+  orig: 135, 110
+  offset: 0, 0
+  index: -1
+jiangwei4_skillf5
+  rotate: true
+  xy: 24, 442
+  size: 35, 48
+  orig: 35, 48
+  offset: 0, 0
+  index: -1
+jiangwei4_skillf6
+  rotate: false
+  xy: 2, 130
+  size: 361, 115
+  orig: 361, 115
+  offset: 0, 0
+  index: -1
+jiangwei4_skillh3
+  rotate: false
+  xy: 74, 442
+  size: 388, 35
+  orig: 395, 35
+  offset: 4, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 2, 459
+  size: 18, 20
+  orig: 26, 26
+  offset: 4, 3
+  index: -1

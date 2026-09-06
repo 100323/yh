@@ -1,0 +1,90 @@
+
+ssxt_mp_dianwei7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: false
+  xy: 317, 2
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: true
+  xy: 319, 187
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: true
+  xy: 198, 90
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_dianwei7_1
+  rotate: false
+  xy: 2, 295
+  size: 219, 194
+  orig: 223, 194
+  offset: 0, 0
+  index: -1
+mp_dianwei7_2
+  rotate: true
+  xy: 223, 270
+  size: 219, 194
+  orig: 223, 194
+  offset: 0, 0
+  index: -1
+mp_dianwei7_3
+  rotate: true
+  xy: 2, 74
+  size: 219, 194
+  orig: 223, 194
+  offset: 0, 0
+  index: -1
+mp_zuo_1
+  rotate: true
+  xy: 319, 68
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_2
+  rotate: false
+  xy: 198, 27
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 198, 173
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 198, 275
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: false
+  xy: 198, 236
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 213, 242
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

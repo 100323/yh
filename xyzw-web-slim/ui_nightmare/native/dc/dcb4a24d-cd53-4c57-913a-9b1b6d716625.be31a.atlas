@@ -1,0 +1,27 @@
+
+sdyl_hdlp_dajiang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_lpb_banlight
+  rotate: false
+  xy: 2, 2
+  size: 199, 199
+  orig: 199, 199
+  offset: 0, 0
+  index: -1
+sdyl_lpb_tc
+  rotate: true
+  xy: 203, 48
+  size: 153, 131
+  orig: 154, 132
+  offset: 1, 1
+  index: -1
+sdyl_lpb_tc1
+  rotate: true
+  xy: 336, 5
+  size: 196, 100
+  orig: 198, 102
+  offset: 1, 1
+  index: -1

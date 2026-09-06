@@ -1,0 +1,251 @@
+
+zpgf_xsdh_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+avatarshjls_xiaobing_lh_1l
+  rotate: false
+  xy: 914, 34
+  size: 105, 134
+  orig: 105, 134
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_2l
+  rotate: true
+  xy: 931, 184
+  size: 136, 84
+  orig: 137, 92
+  offset: 0, 7
+  index: -1
+avatarshjls_xiaobing_lh_3l
+  rotate: false
+  xy: 187, 15
+  size: 84, 68
+  orig: 84, 68
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_dian
+  rotate: false
+  xy: 1000, 345
+  size: 21, 41
+  orig: 21, 41
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_dian1
+  rotate: true
+  xy: 912, 322
+  size: 55, 86
+  orig: 55, 86
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_dian2
+  rotate: true
+  xy: 83, 15
+  size: 68, 102
+  orig: 68, 102
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_dian3
+  rotate: true
+  xy: 959, 388
+  size: 25, 52
+  orig: 25, 52
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_lang
+  rotate: false
+  xy: 806, 170
+  size: 123, 149
+  orig: 123, 149
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_lh3r
+  rotate: true
+  xy: 431, 3
+  size: 59, 62
+  orig: 59, 62
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_wen1
+  rotate: false
+  xy: 273, 24
+  size: 80, 59
+  orig: 80, 59
+  offset: 0, 0
+  index: -1
+avatarshjls_xiaobing_lh_wen2
+  rotate: true
+  xy: 740, 321
+  size: 56, 71
+  orig: 56, 71
+  offset: 0, 0
+  index: -1
+guangshu
+  rotate: false
+  xy: 567, 52
+  size: 37, 458
+  orig: 37, 458
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 567, 6
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+shuibowen
+  rotate: false
+  xy: 2, 85
+  size: 355, 103
+  orig: 355, 103
+  offset: 0, 0
+  index: -1
+xf_img_banner
+  rotate: false
+  xy: 2, 190
+  size: 563, 320
+  orig: 563, 320
+  offset: 0, 0
+  index: -1
+xf_img_banner6
+  rotate: true
+  xy: 799, 58
+  size: 110, 113
+  orig: 110, 113
+  offset: 0, 0
+  index: -1
+xf_img_banner8
+  rotate: true
+  xy: 2, 14
+  size: 69, 79
+  orig: 77, 89
+  offset: 4, 5
+  index: -1
+yuling_101_body
+  rotate: false
+  xy: 740, 379
+  size: 185, 131
+  orig: 185, 131
+  offset: 0, 0
+  index: -1
+yuling_101_eye
+  rotate: true
+  xy: 547, 13
+  size: 11, 10
+  orig: 11, 10
+  offset: 0, 0
+  index: -1
+yuling_101_eyewhite
+  rotate: false
+  xy: 927, 384
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+yuling_101_fin
+  rotate: false
+  xy: 495, 15
+  size: 50, 47
+  orig: 50, 47
+  offset: 0, 0
+  index: -1
+yuling_102_body
+  rotate: false
+  xy: 613, 182
+  size: 191, 132
+  orig: 191, 132
+  offset: 0, 0
+  index: -1
+yuling_102_eye
+  rotate: true
+  xy: 558, 172
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
+yuling_102_eyewhite
+  rotate: false
+  xy: 273, 4
+  size: 24, 18
+  orig: 24, 18
+  offset: 0, 0
+  index: -1
+yuling_103_body
+  rotate: true
+  xy: 606, 316
+  size: 194, 132
+  orig: 194, 132
+  offset: 0, 0
+  index: -1
+yuling_103_eye
+  rotate: false
+  xy: 558, 165
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+yuling_103_eyewhite
+  rotate: false
+  xy: 299, 4
+  size: 24, 18
+  orig: 24, 18
+  offset: 0, 0
+  index: -1
+yuling_103_fin
+  rotate: false
+  xy: 813, 326
+  size: 97, 51
+  orig: 97, 51
+  offset: 0, 0
+  index: -1
+yuling_104_body
+  rotate: false
+  xy: 359, 64
+  size: 197, 124
+  orig: 197, 124
+  offset: 0, 0
+  index: -1
+yuling_104_fin
+  rotate: true
+  xy: 613, 15
+  size: 68, 70
+  orig: 68, 70
+  offset: 0, 0
+  index: -1
+yuling_105_body
+  rotate: false
+  xy: 606, 85
+  size: 191, 95
+  orig: 191, 95
+  offset: 0, 0
+  index: -1
+yuling_105_eye
+  rotate: false
+  xy: 558, 181
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+yuling_105_eyewhite
+  rotate: true
+  xy: 547, 26
+  size: 36, 18
+  orig: 40, 18
+  offset: 0, 0
+  index: -1
+yuling_105_fin
+  rotate: true
+  xy: 927, 415
+  size: 95, 92
+  orig: 95, 92
+  offset: 0, 0
+  index: -1
+yuling_105_fin2
+  rotate: false
+  xy: 355, 2
+  size: 74, 60
+  orig: 74, 60
+  offset: 0, 0
+  index: -1

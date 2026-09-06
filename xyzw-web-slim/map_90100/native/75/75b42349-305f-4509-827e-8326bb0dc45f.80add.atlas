@@ -1,0 +1,62 @@
+
+dzfj_mrt_cj_hz3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: false
+  xy: 145, 73
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+hz3_03
+  rotate: false
+  xy: 78, 50
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+hz3_04
+  rotate: true
+  xy: 2, 2
+  size: 51, 65
+  orig: 57, 65
+  offset: 6, 0
+  index: -1
+hz3_05
+  rotate: true
+  xy: 2, 55
+  size: 60, 74
+  orig: 60, 82
+  offset: 0, 0
+  index: -1
+hz3_06
+  rotate: false
+  xy: 415, 60
+  size: 83, 58
+  orig: 84, 63
+  offset: 1, 5
+  index: -1
+hz3_07
+  rotate: true
+  xy: 291, 84
+  size: 248, 122
+  orig: 254, 131
+  offset: 3, 0
+  index: -1
+hz3_08
+  rotate: true
+  xy: 415, 120
+  size: 212, 67
+  orig: 212, 68
+  offset: 0, 1
+  index: -1
+hz3_09
+  rotate: false
+  xy: 2, 117
+  size: 287, 215
+  orig: 288, 217
+  offset: 0, 1
+  index: -1

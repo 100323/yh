@@ -1,0 +1,97 @@
+
+zxc_fish_cjqh.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_arm_l
+  rotate: false
+  xy: 68, 18
+  size: 72, 60
+  orig: 74, 63
+  offset: 2, 0
+  index: -1
+cjqh_arm_r
+  rotate: true
+  xy: 2, 67
+  size: 109, 64
+  orig: 109, 64
+  offset: 0, 0
+  index: -1
+cjqh_body
+  rotate: false
+  xy: 262, 218
+  size: 124, 179
+  orig: 125, 179
+  offset: 1, 0
+  index: -1
+cjqh_eye1
+  rotate: true
+  xy: 214, 74
+  size: 29, 26
+  orig: 29, 27
+  offset: 0, 0
+  index: -1
+cjqh_eye2
+  rotate: false
+  xy: 183, 59
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+cjqh_head
+  rotate: false
+  xy: 2, 178
+  size: 258, 219
+  orig: 258, 219
+  offset: 0, 0
+  index: -1
+cjqh_leg_l
+  rotate: false
+  xy: 141, 96
+  size: 68, 80
+  orig: 68, 80
+  offset: 0, 0
+  index: -1
+cjqh_leg_r
+  rotate: true
+  xy: 211, 105
+  size: 71, 47
+  orig: 71, 47
+  offset: 0, 0
+  index: -1
+cjqh_mouth
+  rotate: false
+  xy: 260, 66
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: -1
+cjqh_wifi
+  rotate: true
+  xy: 262, 132
+  size: 84, 79
+  orig: 86, 79
+  offset: 2, 0
+  index: -1
+effect_ter1
+  rotate: false
+  xy: 68, 80
+  size: 71, 96
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+yanjing2
+  rotate: true
+  xy: 2, 2
+  size: 63, 61
+  orig: 63, 61
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: false
+  xy: 142, 45
+  size: 39, 49
+  orig: 39, 49
+  offset: 0, 0
+  index: -1

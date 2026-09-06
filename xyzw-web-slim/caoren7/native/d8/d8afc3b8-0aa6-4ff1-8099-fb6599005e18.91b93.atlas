@@ -1,0 +1,111 @@
+
+caoren7_hand_shield.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren7_dun
+  rotate: false
+  xy: 192, 288
+  size: 177, 214
+  orig: 177, 214
+  offset: 0, 0
+  index: -1
+caoren7_dun_sjg1
+  rotate: true
+  xy: 378, 20
+  size: 86, 85
+  orig: 86, 85
+  offset: 0, 0
+  index: -1
+caoren7_dun_sjg2
+  rotate: false
+  xy: 213, 21
+  size: 163, 172
+  orig: 163, 172
+  offset: 0, 0
+  index: -1
+caoren7_dun_sjg3
+  rotate: true
+  xy: 366, 209
+  size: 66, 61
+  orig: 66, 61
+  offset: 0, 0
+  index: -1
+caoren7_dung
+  rotate: false
+  xy: 2, 5
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+caoren7_duns1
+  rotate: false
+  xy: 429, 217
+  size: 50, 58
+  orig: 50, 58
+  offset: 0, 0
+  index: -1
+caoren7_duns2
+  rotate: true
+  xy: 192, 263
+  size: 23, 47
+  orig: 23, 47
+  offset: 0, 0
+  index: -1
+caoren7_duns3
+  rotate: false
+  xy: 371, 277
+  size: 129, 100
+  orig: 129, 100
+  offset: 0, 0
+  index: -1
+caoren7_duns4
+  rotate: true
+  xy: 241, 195
+  size: 91, 123
+  orig: 91, 123
+  offset: 0, 0
+  index: -1
+caoren7_duns5
+  rotate: false
+  xy: 371, 379
+  size: 131, 123
+  orig: 131, 123
+  offset: 0, 0
+  index: -1
+caoren7_duns6
+  rotate: false
+  xy: 378, 108
+  size: 115, 99
+  orig: 115, 99
+  offset: 0, 0
+  index: -1
+caoren7_skill2_dg
+  rotate: false
+  xy: 2, 258
+  size: 188, 244
+  orig: 188, 244
+  offset: 0, 0
+  index: -1
+caoren7_skill_quan3
+  rotate: false
+  xy: 2, 38
+  size: 207, 218
+  orig: 207, 218
+  offset: 0, 0
+  index: -1
+fsg
+  rotate: true
+  xy: 35, 10
+  size: 26, 176
+  orig: 26, 176
+  offset: 0, 0
+  index: -1
+kong
+  rotate: false
+  xy: 2, 2
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1

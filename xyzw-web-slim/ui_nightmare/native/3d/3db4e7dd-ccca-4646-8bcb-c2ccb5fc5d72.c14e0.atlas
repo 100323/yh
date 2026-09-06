@@ -1,0 +1,27 @@
+
+sdyl_hdlp_xuanzhong.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_lpb_banlight
+  rotate: false
+  xy: 2, 53
+  size: 199, 199
+  orig: 199, 199
+  offset: 0, 0
+  index: -1
+sdyl_lpb_xz1
+  rotate: true
+  xy: 2, 2
+  size: 49, 48
+  orig: 49, 48
+  offset: 0, 0
+  index: -1
+sdyl_lpb_xz2
+  rotate: true
+  xy: 203, 91
+  size: 161, 104
+  orig: 161, 104
+  offset: 0, 0
+  index: -1

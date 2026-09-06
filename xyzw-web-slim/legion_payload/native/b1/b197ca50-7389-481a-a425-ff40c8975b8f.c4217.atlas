@@ -1,0 +1,13 @@
+
+tgcf_pty_dj_nizhenbang.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_dj_huo
+  rotate: false
+  xy: 2, 2
+  size: 124, 63
+  orig: 124, 63
+  offset: 0, 0
+  index: -1

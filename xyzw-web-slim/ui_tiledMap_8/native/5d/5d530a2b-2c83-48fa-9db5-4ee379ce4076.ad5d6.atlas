@@ -1,0 +1,20 @@
+
+zbz_dx1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_dx0_bg1
+  rotate: false
+  xy: 2, 2
+  size: 405, 489
+  orig: 405, 489
+  offset: 0, 0
+  index: -1
+zbz_dx0_star
+  rotate: false
+  xy: 409, 454
+  size: 27, 37
+  orig: 27, 37
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+sdsl_axian1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_axian_sleep1
+  rotate: false
+  xy: 2, 2
+  size: 492, 218
+  orig: 492, 218
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep2
+  rotate: true
+  xy: 145, 222
+  size: 93, 120
+  orig: 93, 120
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep3
+  rotate: true
+  xy: 2, 303
+  size: 12, 17
+  orig: 12, 17
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep4
+  rotate: false
+  xy: 21, 295
+  size: 26, 20
+  orig: 26, 20
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep5
+  rotate: false
+  xy: 75, 288
+  size: 31, 27
+  orig: 31, 27
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep6
+  rotate: false
+  xy: 49, 292
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep7
+  rotate: false
+  xy: 108, 280
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1

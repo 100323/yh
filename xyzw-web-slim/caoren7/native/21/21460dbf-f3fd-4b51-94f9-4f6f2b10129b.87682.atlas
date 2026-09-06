@@ -1,0 +1,83 @@
+
+caoren7_skill_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren7_skill_sj1
+  rotate: false
+  xy: 104, 33
+  size: 82, 91
+  orig: 82, 91
+  offset: 0, 0
+  index: -1
+caoren7_skill_sj2
+  rotate: true
+  xy: 2, 19
+  size: 105, 100
+  orig: 105, 100
+  offset: 0, 0
+  index: -1
+simayi9_pg_dian
+  rotate: false
+  xy: 275, 29
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+simayi9_pg_guang
+  rotate: true
+  xy: 188, 53
+  size: 71, 70
+  orig: 71, 70
+  offset: 0, 0
+  index: -1
+simayi9_pg_xian
+  rotate: false
+  xy: 260, 68
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan1
+  rotate: false
+  xy: 188, 3
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan2
+  rotate: false
+  xy: 238, 5
+  size: 35, 46
+  orig: 35, 46
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan3
+  rotate: true
+  xy: 104, 3
+  size: 28, 35
+  orig: 28, 35
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: true
+  xy: 141, 9
+  size: 22, 20
+  orig: 22, 20
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: true
+  xy: 18, 3
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: true
+  xy: 2, 2
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1

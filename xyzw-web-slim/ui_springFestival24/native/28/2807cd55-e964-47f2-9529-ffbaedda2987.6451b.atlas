@@ -1,0 +1,62 @@
+
+cjhd26_window_xiangzi.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+he_bei
+  rotate: false
+  xy: 2, 152
+  size: 454, 36
+  orig: 454, 36
+  offset: 0, 0
+  index: -1
+he_di
+  rotate: false
+  xy: 2, 245
+  size: 460, 220
+  orig: 460, 220
+  offset: 0, 0
+  index: -1
+he_erduo_r
+  rotate: true
+  xy: 198, 26
+  size: 50, 58
+  orig: 50, 58
+  offset: 0, 0
+  index: -1
+he_gaizi1
+  rotate: false
+  xy: 198, 78
+  size: 167, 72
+  orig: 167, 72
+  offset: 0, 0
+  index: -1
+he_gaizi2
+  rotate: false
+  xy: 2, 190
+  size: 462, 53
+  orig: 462, 53
+  offset: 0, 0
+  index: -1
+he_gaizi2zi1
+  rotate: false
+  xy: 2, 2
+  size: 90, 20
+  orig: 90, 20
+  offset: 0, 0
+  index: -1
+he_gaizi2zi2
+  rotate: true
+  xy: 464, 375
+  size: 90, 20
+  orig: 90, 20
+  offset: 0, 0
+  index: -1
+he_sui_r
+  rotate: true
+  xy: 2, 24
+  size: 126, 194
+  orig: 126, 194
+  offset: 0, 0
+  index: -1

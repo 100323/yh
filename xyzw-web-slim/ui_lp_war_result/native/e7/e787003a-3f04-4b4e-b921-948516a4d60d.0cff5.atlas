@@ -1,0 +1,27 @@
+
+tgcf_pty_sljs_bj.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pty_sljs_bj_g
+  rotate: true
+  xy: 621, 166
+  size: 138, 90
+  orig: 138, 90
+  offset: 0, 0
+  index: -1
+pty_sljs_bj_gs
+  rotate: false
+  xy: 0, 0
+  size: 619, 304
+  orig: 619, 304
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 621, 138
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

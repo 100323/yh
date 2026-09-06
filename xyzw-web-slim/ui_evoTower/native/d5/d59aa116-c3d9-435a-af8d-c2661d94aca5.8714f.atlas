@@ -1,0 +1,27 @@
+
+kandao.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dao
+  rotate: false
+  xy: 395, 41
+  size: 380, 419
+  orig: 380, 419
+  offset: 0, 0
+  index: -1
+dao 1
+  rotate: false
+  xy: 2, 2
+  size: 391, 458
+  orig: 391, 458
+  offset: 0, 0
+  index: -1
+guang
+  rotate: true
+  xy: 777, 79
+  size: 381, 241
+  orig: 381, 241
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+sdsl_xjlp_tong_dajiang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_xjlp_jin_jt
+  rotate: false
+  xy: 236, 158
+  size: 158, 154
+  orig: 158, 154
+  offset: 0, 0
+  index: -1
+sdsl_xjlp_tong_jt
+  rotate: true
+  xy: 363, 21
+  size: 135, 132
+  orig: 135, 132
+  offset: 0, 0
+  index: -1
+sdsl_xjlp_tong_zjk
+  rotate: false
+  xy: 236, 314
+  size: 186, 184
+  orig: 186, 184
+  offset: 0, 0
+  index: -1
+sdsl_xjlp_tong_zjkmh
+  rotate: false
+  xy: 2, 271
+  size: 232, 227
+  orig: 232, 227
+  offset: 0, 0
+  index: -1
+sdsl_xjlp_yin_jt
+  rotate: false
+  xy: 203, 2
+  size: 158, 154
+  orig: 158, 154
+  offset: 0, 0
+  index: -1
+sdyl_lpb_banlight
+  rotate: false
+  xy: 2, 70
+  size: 199, 199
+  orig: 199, 199
+  offset: 0, 0
+  index: -1

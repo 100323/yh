@@ -1,0 +1,97 @@
+
+ft_lusu4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 319, 4
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+ft_lusu_02
+  rotate: false
+  xy: 295, 292
+  size: 58, 69
+  orig: 63, 74
+  offset: 2, 3
+  index: -1
+ft_lusu_02_1
+  rotate: false
+  xy: 131, 34
+  size: 41, 68
+  orig: 44, 68
+  offset: 2, 0
+  index: -1
+ft_lusu_02_2
+  rotate: true
+  xy: 222, 302
+  size: 59, 71
+  orig: 63, 71
+  offset: 0, 0
+  index: -1
+ft_lusu_03
+  rotate: true
+  xy: 222, 363
+  size: 134, 154
+  orig: 134, 154
+  offset: 0, 0
+  index: -1
+ft_lusu_04
+  rotate: false
+  xy: 2, 270
+  size: 218, 227
+  orig: 223, 231
+  offset: 1, 2
+  index: -1
+ft_lusu_05
+  rotate: true
+  xy: 174, 7
+  size: 113, 143
+  orig: 113, 143
+  offset: 0, 0
+  index: -1
+ft_lusu_06
+  rotate: false
+  xy: 2, 104
+  size: 170, 164
+  orig: 170, 164
+  offset: 0, 0
+  index: -1
+ft_lusu_08
+  rotate: false
+  xy: 360, 268
+  size: 66, 93
+  orig: 66, 93
+  offset: 0, 0
+  index: -1
+ft_lusu_09
+  rotate: true
+  xy: 319, 24
+  size: 96, 126
+  orig: 98, 126
+  offset: 2, 0
+  index: -1
+ft_lusu_10
+  rotate: true
+  xy: 174, 122
+  size: 146, 184
+  orig: 150, 190
+  offset: 2, 4
+  index: -1
+ft_lusu_11
+  rotate: true
+  xy: 2, 2
+  size: 100, 127
+  orig: 104, 131
+  offset: 2, 2
+  index: -1
+ft_lusu_lizi
+  rotate: false
+  xy: 131, 4
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1

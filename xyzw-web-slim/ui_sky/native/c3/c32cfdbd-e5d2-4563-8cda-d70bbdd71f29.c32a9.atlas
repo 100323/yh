@@ -1,0 +1,55 @@
+
+tgcf_ky_dianliang2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 217, 208
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+tgcf_ky_dianliang2_quan
+  rotate: false
+  xy: 0, 11
+  size: 112, 109
+  orig: 112, 109
+  offset: 0, 0
+  index: -1
+tgcf_ky_dianliang2_quan1
+  rotate: false
+  xy: 195, 91
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+tgcf_ky_dianliang2_quan2
+  rotate: false
+  xy: 120, 70
+  size: 73, 73
+  orig: 73, 73
+  offset: 0, 0
+  index: -1
+tgcf_ky_dianliang2_quan3
+  rotate: false
+  xy: 0, 122
+  size: 118, 118
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+tgcf_ky_dianliang2_quan4
+  rotate: false
+  xy: 120, 145
+  size: 95, 95
+  orig: 95, 95
+  offset: 0, 0
+  index: -1
+tgcf_ky_dianliang2_xing
+  rotate: true
+  xy: 114, 0
+  size: 68, 71
+  orig: 78, 82
+  offset: 5, 5
+  index: -1

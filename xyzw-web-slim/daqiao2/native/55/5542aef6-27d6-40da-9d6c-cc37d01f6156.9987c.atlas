@@ -1,0 +1,111 @@
+
+daqiao2_skill_hit1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dtxd_1
+  rotate: false
+  xy: 2, 143
+  size: 221, 133
+  orig: 221, 133
+  offset: 0, 0
+  index: -1
+dtxd_2
+  rotate: true
+  xy: 183, 58
+  size: 41, 35
+  orig: 45, 39
+  offset: 2, 2
+  index: -1
+dtxd_3
+  rotate: false
+  xy: 2, 2
+  size: 179, 139
+  orig: 179, 139
+  offset: 0, 0
+  index: -1
+dtxd_4
+  rotate: true
+  xy: 480, 121
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+dtxd_5
+  rotate: true
+  xy: 433, 143
+  size: 36, 47
+  orig: 37, 47
+  offset: 0, 0
+  index: -1
+dtxz_13
+  rotate: true
+  xy: 433, 143
+  size: 36, 47
+  orig: 37, 47
+  offset: 0, 0
+  index: -1
+dtxz_11
+  rotate: false
+  xy: 482, 157
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+dtxz_12
+  rotate: false
+  xy: 482, 133
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+dtxz_14
+  rotate: true
+  xy: 433, 98
+  size: 43, 45
+  orig: 51, 53
+  offset: 4, 4
+  index: -1
+dtxz_16
+  rotate: true
+  xy: 225, 122
+  size: 154, 206
+  orig: 154, 206
+  offset: 0, 0
+  index: -1
+dtxz_6
+  rotate: false
+  xy: 183, 24
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+dtxz_7
+  rotate: true
+  xy: 433, 181
+  size: 95, 74
+  orig: 95, 74
+  offset: 0, 0
+  index: -1
+dtxz_8
+  rotate: false
+  xy: 225, 24
+  size: 124, 96
+  orig: 124, 96
+  offset: 0, 0
+  index: -1
+dtxz_9
+  rotate: false
+  xy: 351, 4
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 183, 101
+  size: 40, 40
+  orig: 44, 44
+  offset: 2, 2
+  index: -1

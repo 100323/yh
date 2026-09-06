@@ -1,0 +1,76 @@
+
+lusu2_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xinpf_pg_jb1
+  rotate: false
+  xy: 168, 106
+  size: 118, 122
+  orig: 118, 122
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb2
+  rotate: true
+  xy: 277, 2
+  size: 102, 138
+  orig: 102, 138
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb3
+  rotate: true
+  xy: 125, 9
+  size: 45, 116
+  orig: 45, 116
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb4
+  rotate: true
+  xy: 288, 126
+  size: 102, 138
+  orig: 102, 138
+  offset: 0, 0
+  index: -1
+xinpf_pg_jbtw
+  rotate: true
+  xy: 2, 56
+  size: 172, 164
+  orig: 172, 164
+  offset: 0, 0
+  index: -1
+xinpf_pg_x1
+  rotate: false
+  xy: 2, 8
+  size: 121, 46
+  orig: 121, 46
+  offset: 0, 0
+  index: -1
+xinpf_pg_x2
+  rotate: true
+  xy: 417, 19
+  size: 105, 42
+  orig: 105, 42
+  offset: 0, 0
+  index: -1
+xinpf_pg_x3
+  rotate: true
+  xy: 428, 130
+  size: 98, 42
+  orig: 98, 42
+  offset: 0, 0
+  index: -1
+xinpf_pg_x4
+  rotate: true
+  xy: 461, 54
+  size: 74, 42
+  orig: 74, 42
+  offset: 0, 0
+  index: -1
+xinpf_pg_x5
+  rotate: false
+  xy: 168, 58
+  size: 107, 46
+  orig: 107, 46
+  offset: 0, 0
+  index: -1

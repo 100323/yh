@@ -1,0 +1,62 @@
+
+yuling_1408.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 344, 23
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_408_body
+  rotate: false
+  xy: 2, 2
+  size: 165, 122
+  orig: 165, 122
+  offset: 0, 0
+  index: -1
+yuling_408_eye
+  rotate: false
+  xy: 169, 7
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+yuling_408_eyewhite
+  rotate: true
+  xy: 312, 6
+  size: 35, 30
+  orig: 35, 30
+  offset: 0, 0
+  index: -1
+yuling_408_fin1
+  rotate: true
+  xy: 169, 18
+  size: 106, 94
+  orig: 106, 94
+  offset: 0, 0
+  index: -1
+yuling_408_fin2
+  rotate: true
+  xy: 319, 57
+  size: 67, 62
+  orig: 67, 62
+  offset: 0, 0
+  index: -1
+yuling_408_fin3
+  rotate: true
+  xy: 265, 6
+  size: 35, 45
+  orig: 35, 46
+  offset: 0, 1
+  index: -1
+yuling_408_tail
+  rotate: false
+  xy: 265, 43
+  size: 52, 81
+  orig: 52, 81
+  offset: 0, 0
+  index: -1

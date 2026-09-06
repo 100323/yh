@@ -1,0 +1,97 @@
+
+aj_ds_anim.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 791, 12
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+zbz_dx5_bg
+  rotate: true
+  xy: 2, 3
+  size: 450, 543
+  orig: 450, 543
+  offset: 0, 0
+  index: -1
+zbz_dx5_d1
+  rotate: false
+  xy: 547, 135
+  size: 293, 318
+  orig: 293, 318
+  offset: 0, 0
+  index: -1
+zbz_dx5_d2
+  rotate: false
+  xy: 547, 23
+  size: 111, 110
+  orig: 111, 110
+  offset: 0, 0
+  index: -1
+zbz_dx5_d3
+  rotate: true
+  xy: 830, 110
+  size: 23, 83
+  orig: 23, 83
+  offset: 0, 0
+  index: -1
+zbz_dx5_wa1
+  rotate: false
+  xy: 907, 34
+  size: 58, 74
+  orig: 58, 74
+  offset: 0, 0
+  index: -1
+zbz_dx5_wa2
+  rotate: true
+  xy: 660, 67
+  size: 66, 83
+  orig: 66, 83
+  offset: 0, 0
+  index: -1
+zbz_dx5_wb1
+  rotate: true
+  xy: 830, 46
+  size: 62, 75
+  orig: 62, 75
+  offset: 0, 0
+  index: -1
+zbz_dx5_wb2
+  rotate: true
+  xy: 745, 67
+  size: 66, 83
+  orig: 66, 83
+  offset: 0, 0
+  index: -1
+zbz_dx5_wc1
+  rotate: true
+  xy: 755, 27
+  size: 38, 34
+  orig: 38, 34
+  offset: 0, 0
+  index: -1
+zbz_dx5_wc2
+  rotate: false
+  xy: 708, 26
+  size: 45, 39
+  orig: 45, 39
+  offset: 0, 0
+  index: -1
+zbz_dx5_wd1
+  rotate: true
+  xy: 755, 2
+  size: 23, 21
+  orig: 23, 21
+  offset: 0, 0
+  index: -1
+zbz_dx5_wd2
+  rotate: false
+  xy: 660, 26
+  size: 46, 39
+  orig: 46, 39
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+ui_click.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_click_circle
+  rotate: false
+  xy: 2, 2
+  size: 179, 179
+  orig: 179, 179
+  offset: 0, 0
+  index: -1

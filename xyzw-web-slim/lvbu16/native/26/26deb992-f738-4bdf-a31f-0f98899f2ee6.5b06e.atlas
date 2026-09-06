@@ -1,0 +1,27 @@
+
+lvbu16_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu16_pg_bd
+  rotate: false
+  xy: 2, 4
+  size: 168, 136
+  orig: 168, 136
+  offset: 0, 0
+  index: -1
+lvbu16_pg_bdlz1
+  rotate: true
+  xy: 172, 2
+  size: 46, 55
+  orig: 46, 55
+  offset: 0, 0
+  index: -1
+lvbu16_pg_bdlz2
+  rotate: true
+  xy: 172, 50
+  size: 90, 82
+  orig: 90, 82
+  offset: 0, 0
+  index: -1

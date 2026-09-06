@@ -1,0 +1,34 @@
+
+zhangjiao5_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/hero_effect_halo1
+  rotate: false
+  xy: 367, 77
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+images/zhangjiao5_at_01
+  rotate: false
+  xy: 2, 34
+  size: 219, 84
+  orig: 223, 88
+  offset: 2, 2
+  index: -1
+images/zhangjiao5_at_02
+  rotate: false
+  xy: 223, 2
+  size: 142, 116
+  orig: 146, 120
+  offset: 2, 2
+  index: -1
+images/zhangjiao5_at_03
+  rotate: false
+  xy: 2, 2
+  size: 32, 30
+  orig: 33, 30
+  offset: 0, 0
+  index: -1

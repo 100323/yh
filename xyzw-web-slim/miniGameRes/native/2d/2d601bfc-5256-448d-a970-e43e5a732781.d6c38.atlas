@@ -1,0 +1,13 @@
+
+kpyx_hxys_fly.png
+size: 32,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xyx_img_cangying
+  rotate: false
+  xy: 2, 2
+  size: 17, 14
+  orig: 17, 14
+  offset: 0, 0
+  index: -1

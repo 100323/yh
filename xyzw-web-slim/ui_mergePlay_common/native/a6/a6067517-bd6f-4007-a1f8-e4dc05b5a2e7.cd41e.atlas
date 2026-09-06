@@ -1,0 +1,27 @@
+
+xsxjt_gyxb_yijiesuo.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_yjs_yaoshi1
+  rotate: true
+  xy: 59, 203
+  size: 47, 61
+  orig: 49, 63
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_yjs_yaoshi2
+  rotate: true
+  xy: 2, 209
+  size: 41, 55
+  orig: 43, 57
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_yjs_yaoshi3
+  rotate: false
+  xy: 2, 2
+  size: 199, 199
+  orig: 201, 201
+  offset: 1, 1
+  index: -1

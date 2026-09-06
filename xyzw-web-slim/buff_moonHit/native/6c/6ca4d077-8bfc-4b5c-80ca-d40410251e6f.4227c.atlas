@@ -1,0 +1,83 @@
+
+buff_moonhit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_buff_moonb1
+  rotate: true
+  xy: 398, 171
+  size: 79, 80
+  orig: 79, 80
+  offset: 0, 0
+  index: -1
+effect_buff_moonb2
+  rotate: true
+  xy: 189, 2
+  size: 120, 108
+  orig: 120, 108
+  offset: 0, 0
+  index: -1
+effect_buff_moonb3
+  rotate: false
+  xy: 2, 45
+  size: 185, 205
+  orig: 185, 205
+  offset: 0, 0
+  index: -1
+effect_buff_moony1
+  rotate: false
+  xy: 411, 99
+  size: 71, 70
+  orig: 71, 70
+  offset: 0, 0
+  index: -1
+effect_buff_moony2
+  rotate: false
+  xy: 411, 26
+  size: 70, 71
+  orig: 70, 71
+  offset: 0, 0
+  index: -1
+effect_buff_moony3
+  rotate: false
+  xy: 299, 12
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: -1
+effect_buff_moony4
+  rotate: true
+  xy: 39, 32
+  size: 11, 61
+  orig: 11, 61
+  offset: 0, 0
+  index: -1
+effect_buff_moonz1
+  rotate: false
+  xy: 189, 124
+  size: 103, 126
+  orig: 103, 126
+  offset: 0, 0
+  index: -1
+effect_buff_moonz2
+  rotate: false
+  xy: 294, 124
+  size: 102, 126
+  orig: 102, 126
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 8
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 39, 11
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1

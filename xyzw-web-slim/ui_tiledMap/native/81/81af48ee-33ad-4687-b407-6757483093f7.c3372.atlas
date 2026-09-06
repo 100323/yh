@@ -1,0 +1,13 @@
+
+hjls_effect_side.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls_img9_jiasubian
+  rotate: false
+  xy: 2, 2
+  size: 61, 68
+  orig: 199, 199
+  offset: 0, 63
+  index: -1

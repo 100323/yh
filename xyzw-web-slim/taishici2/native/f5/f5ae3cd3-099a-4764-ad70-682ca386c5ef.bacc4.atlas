@@ -1,0 +1,146 @@
+
+taishici2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 85, 102
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_effect_ring
+  rotate: false
+  xy: 453, 13
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+taishici2_arml
+  rotate: true
+  xy: 332, 46
+  size: 86, 65
+  orig: 98, 65
+  offset: 0, 0
+  index: -1
+taishici2_body
+  rotate: false
+  xy: 275, 237
+  size: 162, 126
+  orig: 162, 126
+  offset: 0, 0
+  index: -1
+taishici2_effect1
+  rotate: true
+  xy: 439, 227
+  size: 136, 65
+  orig: 139, 68
+  offset: 1, 2
+  index: -1
+taishici2_effect2
+  rotate: true
+  xy: 399, 66
+  size: 44, 73
+  orig: 46, 74
+  offset: 1, 0
+  index: -1
+taishici2_effect3
+  rotate: false
+  xy: 474, 74
+  size: 36, 36
+  orig: 40, 40
+  offset: 2, 2
+  index: -1
+taishici2_effect4
+  rotate: false
+  xy: 2, 186
+  size: 170, 93
+  orig: 172, 95
+  offset: 0, 1
+  index: -1
+taishici2_effect5
+  rotate: false
+  xy: 399, 4
+  size: 52, 60
+  orig: 53, 62
+  offset: 0, 1
+  index: -1
+taishici2_fire
+  rotate: true
+  xy: 2, 97
+  size: 87, 81
+  orig: 90, 82
+  offset: 1, 1
+  index: -1
+taishici2_footl
+  rotate: true
+  xy: 419, 112
+  size: 113, 73
+  orig: 113, 73
+  offset: 0, 0
+  index: -1
+taishici2_footr
+  rotate: false
+  xy: 169, 102
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+taishici2_handl
+  rotate: false
+  xy: 2, 50
+  size: 57, 45
+  orig: 57, 45
+  offset: 0, 0
+  index: -1
+taishici2_head
+  rotate: false
+  xy: 2, 281
+  size: 271, 218
+  orig: 271, 218
+  offset: 0, 0
+  index: -1
+taishici2_shoulderl
+  rotate: false
+  xy: 274, 134
+  size: 143, 101
+  orig: 143, 102
+  offset: 0, 1
+  index: -1
+taishici2_shoulderr
+  rotate: true
+  xy: 174, 186
+  size: 93, 98
+  orig: 93, 98
+  offset: 0, 0
+  index: -1
+taishici2_thruster
+  rotate: false
+  xy: 253, 50
+  size: 77, 82
+  orig: 77, 82
+  offset: 0, 0
+  index: -1
+taishici2_weapon
+  rotate: false
+  xy: 275, 365
+  size: 205, 134
+  orig: 205, 134
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 85, 49
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+dzfj_mrt_hz1__cj_dianwei.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei_1
+  rotate: false
+  xy: 2, 43
+  size: 273, 313
+  orig: 273, 313
+  offset: 0, 0
+  index: -1
+hg
+  rotate: false
+  xy: 2, 2
+  size: 50, 39
+  orig: 50, 39
+  offset: 0, 0
+  index: -1

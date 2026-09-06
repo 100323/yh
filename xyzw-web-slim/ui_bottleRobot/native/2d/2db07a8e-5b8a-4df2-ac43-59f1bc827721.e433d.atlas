@@ -1,0 +1,41 @@
+
+ygjqr_souxun.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygjqr_sx_1
+  rotate: false
+  xy: 2, 13
+  size: 66, 65
+  orig: 66, 65
+  offset: 0, 0
+  index: -1
+ygjqr_sx_2
+  rotate: true
+  xy: 70, 15
+  size: 63, 26
+  orig: 63, 26
+  offset: 0, 0
+  index: -1
+ygjqr_sx_3
+  rotate: true
+  xy: 70, 2
+  size: 11, 10
+  orig: 11, 10
+  offset: 0, 0
+  index: -1
+ygjqr_sx_4
+  rotate: true
+  xy: 82, 2
+  size: 11, 10
+  orig: 11, 10
+  offset: 0, 0
+  index: -1
+ygjqr_sx_5
+  rotate: true
+  xy: 94, 2
+  size: 11, 10
+  orig: 11, 10
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+kpyx3_stonewave.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx3_wave1
+  rotate: false
+  xy: 2, 46
+  size: 199, 90
+  orig: 199, 90
+  offset: 0, 0
+  index: -1
+kpyx3_wave2
+  rotate: true
+  xy: 262, 2
+  size: 230, 83
+  orig: 230, 83
+  offset: 0, 0
+  index: -1
+kpyx3_wave3
+  rotate: false
+  xy: 2, 138
+  size: 258, 94
+  orig: 258, 94
+  offset: 0, 0
+  index: -1

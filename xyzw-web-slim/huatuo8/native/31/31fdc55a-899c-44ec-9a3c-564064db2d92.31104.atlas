@@ -1,0 +1,76 @@
+
+huatuo8_buff_liaodu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+buffks1
+  rotate: false
+  xy: 2, 2
+  size: 423, 98
+  orig: 423, 98
+  offset: 0, 0
+  index: -1
+buffks2
+  rotate: true
+  xy: 234, 130
+  size: 365, 104
+  orig: 365, 104
+  offset: 0, 0
+  index: -1
+buffqi1
+  rotate: true
+  xy: 340, 142
+  size: 161, 70
+  orig: 161, 70
+  offset: 0, 0
+  index: -1
+buffqi2
+  rotate: true
+  xy: 340, 305
+  size: 190, 71
+  orig: 190, 71
+  offset: 0, 0
+  index: -1
+huatuo8_buff_diliang
+  rotate: true
+  xy: 2, 102
+  size: 393, 230
+  orig: 393, 230
+  offset: 0, 0
+  index: -1
+huatuo8_buff_gq1
+  rotate: false
+  xy: 680, 277
+  size: 194, 218
+  orig: 194, 218
+  offset: 0, 0
+  index: -1
+huatuo8_buff_gq2
+  rotate: false
+  xy: 427, 156
+  size: 251, 339
+  orig: 251, 339
+  offset: 0, 0
+  index: -1
+huatuo8_buff_gy
+  rotate: true
+  xy: 578, 23
+  size: 131, 170
+  orig: 131, 170
+  offset: 0, 0
+  index: -1
+huatuo8_buff_paopao1
+  rotate: true
+  xy: 680, 179
+  size: 96, 94
+  orig: 96, 94
+  offset: 0, 0
+  index: -1
+huatuo8_buff_qiu
+  rotate: false
+  xy: 427, 3
+  size: 149, 151
+  orig: 149, 151
+  offset: 0, 0
+  index: -1

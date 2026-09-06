@@ -1,0 +1,167 @@
+
+zhouyu7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 436, 73
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 500, 496
+  size: 14, 10
+  orig: 14, 14
+  offset: 0, 2
+  index: -1
+zhouyu6_skill4
+  rotate: false
+  xy: 281, 339
+  size: 217, 171
+  orig: 217, 171
+  offset: 0, 0
+  index: -1
+zhouyu6_skills1
+  rotate: true
+  xy: 2, 4
+  size: 67, 84
+  orig: 67, 84
+  offset: 0, 0
+  index: -1
+zhouyu6_skills2
+  rotate: false
+  xy: 158, 11
+  size: 61, 60
+  orig: 61, 60
+  offset: 0, 0
+  index: -1
+zhouyu6_skills3
+  rotate: false
+  xy: 285, 18
+  size: 43, 50
+  orig: 43, 50
+  offset: 0, 0
+  index: -1
+zhouyu6_skills4
+  rotate: false
+  xy: 88, 11
+  size: 68, 60
+  orig: 68, 60
+  offset: 0, 0
+  index: -1
+zhouyu6_skills5
+  rotate: true
+  xy: 419, 138
+  size: 40, 32
+  orig: 40, 32
+  offset: 0, 0
+  index: -1
+zhouyu6_skills6
+  rotate: false
+  xy: 230, 181
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+zhouyu6_skills7
+  rotate: false
+  xy: 346, 57
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+zhouyu7_skillb1
+  rotate: false
+  xy: 2, 73
+  size: 226, 190
+  orig: 226, 190
+  offset: 0, 0
+  index: -1
+zhouyu7_skillb2
+  rotate: true
+  xy: 281, 180
+  size: 157, 171
+  orig: 157, 171
+  offset: 0, 0
+  index: -1
+zhouyu7_skillb3
+  rotate: false
+  xy: 2, 265
+  size: 277, 245
+  orig: 287, 254
+  offset: 6, 4
+  index: -1
+zhouyu7_skillc1
+  rotate: false
+  xy: 230, 70
+  size: 114, 108
+  orig: 114, 108
+  offset: 0, 0
+  index: -1
+zhouyu7_skillc2
+  rotate: true
+  xy: 330, 29
+  size: 39, 13
+  orig: 41, 14
+  offset: 2, 1
+  index: -1
+zhouyu7_skillc3
+  rotate: true
+  xy: 454, 182
+  size: 45, 27
+  orig: 45, 28
+  offset: 0, 0
+  index: -1
+zhouyu7_skillc4
+  rotate: false
+  xy: 221, 10
+  size: 62, 58
+  orig: 64, 60
+  offset: 1, 1
+  index: -1
+zhouyu7_skillc5
+  rotate: true
+  xy: 454, 229
+  size: 108, 34
+  orig: 110, 36
+  offset: 1, 1
+  index: -1
+zhouyu7_skills1
+  rotate: true
+  xy: 419, 79
+  size: 57, 15
+  orig: 57, 15
+  offset: 0, 0
+  index: -1
+zhouyu7_skills2
+  rotate: false
+  xy: 346, 81
+  size: 71, 97
+  orig: 71, 97
+  offset: 0, 0
+  index: -1
+zhouyu7_skills3
+  rotate: false
+  xy: 230, 215
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+zhouyu7_skills4
+  rotate: false
+  xy: 285, 2
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+zhouyu7_skills5
+  rotate: false
+  xy: 436, 101
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1

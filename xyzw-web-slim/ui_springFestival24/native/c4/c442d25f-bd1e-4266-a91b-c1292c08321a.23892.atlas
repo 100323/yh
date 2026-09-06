@@ -1,0 +1,279 @@
+
+htt_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 964, 162
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+htt_banner_bj
+  rotate: true
+  xy: 759, 151
+  size: 359, 203
+  orig: 359, 203
+  offset: 0, 0
+  index: -1
+htt_banner_bjyan1
+  rotate: false
+  xy: 439, 83
+  size: 45, 55
+  orig: 46, 55
+  offset: 0, 0
+  index: -1
+htt_banner_bjyan2
+  rotate: true
+  xy: 758, 49
+  size: 100, 103
+  orig: 102, 104
+  offset: 1, 0
+  index: -1
+htt_banner_bjyan3
+  rotate: true
+  xy: 436, 40
+  size: 41, 42
+  orig: 41, 44
+  offset: 0, 1
+  index: -1
+htt_banner_ht_dy
+  rotate: true
+  xy: 623, 156
+  size: 11, 17
+  orig: 13, 19
+  offset: 1, 1
+  index: -1
+htt_banner_ht_dz
+  rotate: false
+  xy: 964, 81
+  size: 48, 79
+  orig: 48, 79
+  offset: 0, 0
+  index: -1
+htt_banner_ht_hulu
+  rotate: false
+  xy: 863, 41
+  size: 88, 108
+  orig: 90, 109
+  offset: 1, 0
+  index: -1
+htt_banner_ht_hulu1
+  rotate: false
+  xy: 486, 114
+  size: 28, 24
+  orig: 28, 24
+  offset: 0, 0
+  index: -1
+htt_banner_ht_huzi
+  rotate: false
+  xy: 737, 119
+  size: 19, 33
+  orig: 21, 35
+  offset: 1, 1
+  index: -1
+htt_banner_ht_jiao1
+  rotate: false
+  xy: 920, 3
+  size: 26, 36
+  orig: 27, 37
+  offset: 1, 1
+  index: -1
+htt_banner_ht_jiao2
+  rotate: false
+  xy: 480, 56
+  size: 28, 25
+  orig: 29, 27
+  offset: 1, 1
+  index: -1
+htt_banner_ht_light
+  rotate: true
+  xy: 737, 4
+  size: 43, 104
+  orig: 43, 104
+  offset: 0, 0
+  index: -1
+htt_banner_ht_shen
+  rotate: true
+  xy: 572, 37
+  size: 115, 163
+  orig: 115, 163
+  offset: 0, 0
+  index: -1
+htt_banner_ht_shou1
+  rotate: false
+  xy: 360, 94
+  size: 47, 48
+  orig: 48, 50
+  offset: 1, 1
+  index: -1
+htt_banner_ht_shou2
+  rotate: true
+  xy: 964, 219
+  size: 87, 55
+  orig: 89, 56
+  offset: 1, 0
+  index: -1
+htt_banner_ht_tf
+  rotate: false
+  xy: 953, 11
+  size: 65, 68
+  orig: 67, 69
+  offset: 1, 0
+  index: -1
+htt_banner_ht_xiuzi
+  rotate: false
+  xy: 843, 2
+  size: 44, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+htt_banner_jz1
+  rotate: false
+  xy: 223, 144
+  size: 214, 166
+  orig: 215, 167
+  offset: 0, 1
+  index: -1
+htt_banner_jz2
+  rotate: true
+  xy: 2, 107
+  size: 203, 219
+  orig: 203, 219
+  offset: 0, 0
+  index: -1
+htt_banner_jz3
+  rotate: false
+  xy: 889, 10
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+htt_banner_jz4
+  rotate: true
+  xy: 658, 154
+  size: 156, 96
+  orig: 156, 96
+  offset: 0, 0
+  index: -1
+htt_banner_jz5
+  rotate: true
+  xy: 964, 368
+  size: 142, 57
+  orig: 142, 57
+  offset: 0, 0
+  index: -1
+htt_banner_jz6
+  rotate: true
+  xy: 313, 71
+  size: 71, 45
+  orig: 71, 45
+  offset: 0, 0
+  index: -1
+htt_banner_yan1
+  rotate: false
+  xy: 572, 204
+  size: 78, 87
+  orig: 78, 87
+  offset: 0, 0
+  index: -1
+htt_banner_yan2
+  rotate: true
+  xy: 409, 113
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+htt_banner_yan3
+  rotate: false
+  xy: 964, 308
+  size: 56, 58
+  orig: 56, 58
+  offset: 0, 0
+  index: -1
+htt_banner_yan4
+  rotate: false
+  xy: 623, 169
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1
+htt_banner_yan5
+  rotate: true
+  xy: 737, 67
+  size: 18, 17
+  orig: 18, 17
+  offset: 0, 0
+  index: -1
+htt_banner_yanwu
+  rotate: false
+  xy: 2, 312
+  size: 755, 198
+  orig: 755, 198
+  offset: 0, 0
+  index: -1
+htt_banner_yu_shen
+  rotate: false
+  xy: 439, 140
+  size: 131, 151
+  orig: 132, 152
+  offset: 0, 0
+  index: -1
+htt_banner_yu_shou1
+  rotate: false
+  xy: 572, 155
+  size: 49, 47
+  orig: 50, 48
+  offset: 1, 1
+  index: -1
+htt_banner_yu_shou2
+  rotate: false
+  xy: 360, 46
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+htt_banner_yu_tui1
+  rotate: false
+  xy: 408, 30
+  size: 25, 29
+  orig: 27, 29
+  offset: 1, 0
+  index: -1
+htt_banner_yu_tui2
+  rotate: false
+  xy: 408, 61
+  size: 26, 31
+  orig: 27, 32
+  offset: 1, 1
+  index: -1
+htt_banner_yu_wei
+  rotate: false
+  xy: 223, 75
+  size: 88, 67
+  orig: 88, 67
+  offset: 0, 0
+  index: -1
+htt_banner_yu_yan
+  rotate: false
+  xy: 737, 87
+  size: 19, 30
+  orig: 19, 30
+  offset: 0, 0
+  index: -1
+htt_banner_yu_yz
+  rotate: false
+  xy: 1014, 152
+  size: 7, 8
+  orig: 9, 10
+  offset: 1, 1
+  index: -1
+htt_banner_zz
+  rotate: true
+  xy: 439, 293
+  size: 17, 217
+  orig: 17, 217
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,83 @@
+
+gfjx_cz_lvyin.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gfjx26_cizhui1_cd
+  rotate: false
+  xy: 2, 3
+  size: 51, 11
+  orig: 53, 13
+  offset: 1, 1
+  index: -1
+gfjx26_cizhui1_g1
+  rotate: false
+  xy: 153, 25
+  size: 36, 21
+  orig: 38, 24
+  offset: 1, 2
+  index: -1
+gfjx26_cizhui1_g2
+  rotate: false
+  xy: 94, 28
+  size: 57, 18
+  orig: 59, 20
+  offset: 1, 1
+  index: -1
+gfjx26_cizhui1_g3
+  rotate: false
+  xy: 125, 3
+  size: 47, 20
+  orig: 50, 24
+  offset: 2, 3
+  index: -1
+gfjx26_cizhui2_cd
+  rotate: false
+  xy: 94, 48
+  size: 95, 14
+  orig: 97, 18
+  offset: 1, 1
+  index: -1
+gfjx26_cizhui2_g1
+  rotate: false
+  xy: 82, 2
+  size: 41, 24
+  orig: 41, 24
+  offset: 0, 0
+  index: -1
+gfjx26_cizhui2_g2
+  rotate: false
+  xy: 2, 16
+  size: 78, 16
+  orig: 78, 16
+  offset: 0, 0
+  index: -1
+gfjx26_cizhui2_qiu
+  rotate: false
+  xy: 174, 9
+  size: 14, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1
+gfjx26_cizhui2_yw
+  rotate: false
+  xy: 2, 34
+  size: 90, 28
+  orig: 90, 28
+  offset: 0, 0
+  index: -1
+gfjx26_cizhui2_ywd
+  rotate: false
+  xy: 55, 8
+  size: 11, 6
+  orig: 11, 6
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 191, 4
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1

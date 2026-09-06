@@ -1,0 +1,97 @@
+
+tgcf_ent_ghg.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 276, 324
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+lvbu3_effect_shine
+  rotate: false
+  xy: 228, 305
+  size: 46, 65
+  orig: 46, 65
+  offset: 0, 0
+  index: -1
+tgcf_entrance_box
+  rotate: false
+  xy: 2, 206
+  size: 224, 246
+  orig: 224, 246
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ghg_dl2
+  rotate: false
+  xy: 324, 335
+  size: 13, 35
+  orig: 13, 35
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ghg_fl1
+  rotate: false
+  xy: 283, 286
+  size: 11, 23
+  orig: 11, 23
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ghg_fl3
+  rotate: true
+  xy: 276, 311
+  size: 11, 26
+  orig: 11, 26
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ghg_light1
+  rotate: true
+  xy: 228, 278
+  size: 25, 28
+  orig: 25, 28
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ghg_light2
+  rotate: true
+  xy: 339, 299
+  size: 38, 46
+  orig: 38, 46
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ghg_tree
+  rotate: false
+  xy: 207, 49
+  size: 178, 155
+  orig: 178, 155
+  offset: 0, 0
+  index: -1
+tgcf_entrance_light
+  rotate: false
+  xy: 2, 2
+  size: 203, 202
+  orig: 205, 206
+  offset: 1, 2
+  index: -1
+tgcf_entrance_ymj_cloud3
+  rotate: false
+  xy: 228, 372
+  size: 114, 80
+  orig: 114, 80
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ymj_cloud4
+  rotate: true
+  xy: 344, 339
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 258, 279
+  size: 24, 23
+  orig: 26, 26
+  offset: 1, 2
+  index: -1

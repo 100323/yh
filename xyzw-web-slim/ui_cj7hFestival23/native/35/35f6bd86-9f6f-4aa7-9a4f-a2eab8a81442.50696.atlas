@@ -1,0 +1,83 @@
+
+sqhd26_w2_cj_changjing.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj1
+  rotate: false
+  xy: 2, 132
+  size: 140, 313
+  orig: 140, 313
+  offset: 0, 0
+  index: -1
+bj10
+  rotate: false
+  xy: 278, 289
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+bj11
+  rotate: true
+  xy: 2, 2
+  size: 128, 182
+  orig: 128, 182
+  offset: 0, 0
+  index: -1
+bj2
+  rotate: true
+  xy: 144, 377
+  size: 68, 275
+  orig: 68, 275
+  offset: 0, 0
+  index: -1
+bj3
+  rotate: true
+  xy: 421, 404
+  size: 41, 48
+  orig: 41, 49
+  offset: 0, 1
+  index: -1
+bj4
+  rotate: false
+  xy: 144, 179
+  size: 35, 41
+  orig: 35, 42
+  offset: 0, 1
+  index: -1
+bj5
+  rotate: false
+  xy: 144, 276
+  size: 132, 99
+  orig: 133, 100
+  offset: 0, 1
+  index: -1
+bj6
+  rotate: true
+  xy: 366, 292
+  size: 83, 105
+  orig: 83, 106
+  offset: 0, 0
+  index: -1
+bj7
+  rotate: true
+  xy: 278, 241
+  size: 46, 96
+  orig: 47, 96
+  offset: 1, 0
+  index: -1
+bj8
+  rotate: true
+  xy: 186, 124
+  size: 96, 121
+  orig: 96, 121
+  offset: 0, 0
+  index: -1
+bj9
+  rotate: true
+  xy: 144, 222
+  size: 52, 123
+  orig: 52, 123
+  offset: 0, 0
+  index: -1

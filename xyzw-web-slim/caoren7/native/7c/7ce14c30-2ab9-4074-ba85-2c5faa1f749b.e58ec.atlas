@@ -1,0 +1,55 @@
+
+caoren7_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren7_zd_bk
+  rotate: false
+  xy: 103, 140
+  size: 216, 98
+  orig: 220, 102
+  offset: 2, 2
+  index: -1
+caoren7_zd_tw
+  rotate: false
+  xy: 2, 26
+  size: 281, 112
+  orig: 281, 112
+  offset: 0, 0
+  index: -1
+caoren7_zd_xz
+  rotate: true
+  xy: 321, 2
+  size: 236, 155
+  orig: 240, 159
+  offset: 2, 2
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 59, 196
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: false
+  xy: 35, 218
+  size: 22, 20
+  orig: 22, 20
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 2, 225
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: false
+  xy: 18, 224
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1

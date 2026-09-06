@@ -1,0 +1,13 @@
+
+lvbu8_skill_hit3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu8_skilla1
+  rotate: false
+  xy: 2, 2
+  size: 369, 331
+  orig: 369, 331
+  offset: 0, 0
+  index: -1

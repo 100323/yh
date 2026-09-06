@@ -1,0 +1,41 @@
+
+zhouyu8_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 67, 50
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_cir
+  rotate: false
+  xy: 2, 2
+  size: 234, 46
+  orig: 235, 46
+  offset: 1, 0
+  index: -1
+zhouyu8_pg_yan4
+  rotate: false
+  xy: 39, 73
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan5
+  rotate: false
+  xy: 21, 80
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_yan6
+  rotate: false
+  xy: 2, 81
+  size: 17, 15
+  orig: 17, 15
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+txk_simayi9.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+txk_simayi9_jin
+  rotate: true
+  xy: 2, 17
+  size: 109, 79
+  orig: 114, 79
+  offset: 3, 0
+  index: -1
+txk_simayi9_kuang
+  rotate: false
+  xy: 83, 33
+  size: 90, 93
+  orig: 90, 93
+  offset: 0, 0
+  index: -1
+txk_simayi9_tou1
+  rotate: true
+  xy: 175, 24
+  size: 48, 42
+  orig: 48, 44
+  offset: 0, 2
+  index: -1
+txk_simayi9_tou2
+  rotate: true
+  xy: 219, 18
+  size: 54, 35
+  orig: 54, 35
+  offset: 0, 0
+  index: -1
+txk_simayi9_tou3
+  rotate: false
+  xy: 83, 2
+  size: 21, 29
+  orig: 21, 29
+  offset: 0, 0
+  index: -1
+txk_simayi9_xing
+  rotate: true
+  xy: 106, 6
+  size: 25, 22
+  orig: 25, 25
+  offset: 0, 2
+  index: -1
+txk_simayi9_you
+  rotate: true
+  xy: 175, 74
+  size: 52, 69
+  orig: 52, 69
+  offset: 0, 0
+  index: -1

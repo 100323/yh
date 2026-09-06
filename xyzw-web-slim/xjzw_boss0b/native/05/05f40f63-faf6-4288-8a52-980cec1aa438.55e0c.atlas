@@ -1,0 +1,125 @@
+
+xjzw_boss0b_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 68, 9
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+xjzw_boss0_attack
+  rotate: false
+  xy: 2, 29
+  size: 64, 45
+  orig: 68, 45
+  offset: 4, 0
+  index: -1
+xjzw_boss0_hit1
+  rotate: false
+  xy: 188, 226
+  size: 97, 96
+  orig: 97, 100
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit2
+  rotate: true
+  xy: 276, 111
+  size: 113, 116
+  orig: 113, 116
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit3
+  rotate: false
+  xy: 230, 324
+  size: 165, 178
+  orig: 165, 178
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit4
+  rotate: true
+  xy: 140, 140
+  size: 80, 134
+  orig: 80, 134
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit5
+  rotate: false
+  xy: 151, 222
+  size: 35, 195
+  orig: 35, 195
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit6
+  rotate: true
+  xy: 2, 107
+  size: 146, 136
+  orig: 146, 136
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit7
+  rotate: true
+  xy: 2, 255
+  size: 162, 147
+  orig: 162, 147
+  offset: 0, 0
+  index: -1
+xjzw_boss0_hit8
+  rotate: false
+  xy: 140, 31
+  size: 107, 107
+  orig: 109, 109
+  offset: 1, 1
+  index: -1
+xjzw_boss0_hit9
+  rotate: false
+  xy: 2, 419
+  size: 226, 83
+  orig: 226, 83
+  offset: 0, 0
+  index: -1
+xjzw_boss0_skill1
+  rotate: false
+  xy: 2, 76
+  size: 129, 29
+  orig: 129, 29
+  offset: 0, 0
+  index: -1
+xjzw_boss0_skill2
+  rotate: true
+  xy: 249, 2
+  size: 136, 24
+  orig: 136, 24
+  offset: 0, 0
+  index: -1
+xjzw_boss0_skill3
+  rotate: true
+  xy: 188, 376
+  size: 41, 40
+  orig: 41, 40
+  offset: 0, 0
+  index: -1
+xjzw_boss0_skill4
+  rotate: true
+  xy: 68, 34
+  size: 40, 30
+  orig: 40, 30
+  offset: 0, 0
+  index: -1
+xjzw_boss0_skill5
+  rotate: true
+  xy: 188, 339
+  size: 35, 31
+  orig: 35, 31
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 93, 18
+  size: 14, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1

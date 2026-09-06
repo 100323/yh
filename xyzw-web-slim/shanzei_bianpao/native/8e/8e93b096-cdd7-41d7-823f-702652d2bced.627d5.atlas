@@ -1,0 +1,69 @@
+
+shanzei_bianpao_attack_hit.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shanzei_bp_01
+  rotate: false
+  xy: 707, 30
+  size: 71, 84
+  orig: 127, 124
+  offset: 30, 24
+  index: -1
+shanzei_bp_02
+  rotate: true
+  xy: 518, 19
+  size: 95, 94
+  orig: 127, 124
+  offset: 20, 16
+  index: -1
+shanzei_bp_03
+  rotate: true
+  xy: 222, 7
+  size: 107, 104
+  orig: 127, 124
+  offset: 10, 8
+  index: -1
+shanzei_bp_04
+  rotate: true
+  xy: 2, 2
+  size: 112, 108
+  orig: 127, 124
+  offset: 8, 7
+  index: -1
+shanzei_bp_05
+  rotate: true
+  xy: 112, 5
+  size: 109, 108
+  orig: 127, 124
+  offset: 9, 7
+  index: -1
+shanzei_bp_06
+  rotate: true
+  xy: 328, 16
+  size: 98, 95
+  orig: 127, 124
+  offset: 13, 14
+  index: -1
+shanzei_bp_07
+  rotate: true
+  xy: 425, 13
+  size: 101, 91
+  orig: 127, 124
+  offset: 11, 16
+  index: -1
+shanzei_bp_08
+  rotate: true
+  xy: 614, 20
+  size: 94, 91
+  orig: 127, 124
+  offset: 10, 17
+  index: -1
+shanzei_bp_09
+  rotate: false
+  xy: 780, 29
+  size: 63, 85
+  orig: 127, 124
+  offset: 27, 21
+  index: -1

@@ -1,0 +1,55 @@
+
+kpyx6_hailang.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx6_hailang
+  rotate: false
+  xy: 2, 273
+  size: 898, 133
+  orig: 898, 133
+  offset: 0, 0
+  index: -1
+kpyx6_hailang1
+  rotate: false
+  xy: 2, 138
+  size: 898, 133
+  orig: 898, 133
+  offset: 0, 0
+  index: -1
+kpyx6_hailang2
+  rotate: false
+  xy: 2, 2
+  size: 898, 134
+  orig: 898, 134
+  offset: 0, 0
+  index: -1
+kpyx6_langhua1
+  rotate: false
+  xy: 2, 436
+  size: 136, 35
+  orig: 193, 87
+  offset: 30, 31
+  index: -1
+kpyx6_langhua2
+  rotate: false
+  xy: 307, 408
+  size: 161, 63
+  orig: 193, 87
+  offset: 22, 12
+  index: -1
+kpyx6_langhua3
+  rotate: false
+  xy: 470, 408
+  size: 182, 63
+  orig: 193, 87
+  offset: 11, 4
+  index: -1
+kpyx6_langhua4
+  rotate: false
+  xy: 140, 415
+  size: 165, 56
+  orig: 193, 87
+  offset: 6, 0
+  index: -1

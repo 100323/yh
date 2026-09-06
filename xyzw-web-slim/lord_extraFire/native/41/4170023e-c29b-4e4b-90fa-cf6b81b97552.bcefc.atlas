@@ -1,0 +1,55 @@
+
+huoyan_skill_hit2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guangyun
+  rotate: false
+  xy: 2, 57
+  size: 402, 366
+  orig: 402, 366
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 464, 109
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg8_f1
+  rotate: false
+  xy: 406, 34
+  size: 56, 121
+  orig: 56, 121
+  offset: 0, 0
+  index: -1
+sdsl_bg8_f2
+  rotate: false
+  xy: 406, 293
+  size: 58, 130
+  orig: 58, 130
+  offset: 0, 0
+  index: -1
+sdsl_bg8_f3
+  rotate: true
+  xy: 141, 3
+  size: 52, 146
+  orig: 52, 146
+  offset: 0, 0
+  index: -1
+sdsl_bg8_f4
+  rotate: false
+  xy: 406, 157
+  size: 57, 134
+  orig: 57, 134
+  offset: 0, 0
+  index: -1
+sdsl_bg8_f5
+  rotate: true
+  xy: 2, 2
+  size: 53, 137
+  orig: 53, 137
+  offset: 0, 0
+  index: -1

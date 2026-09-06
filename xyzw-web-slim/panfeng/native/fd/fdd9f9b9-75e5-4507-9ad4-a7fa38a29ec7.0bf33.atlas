@@ -1,0 +1,139 @@
+
+panfeng.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 268, 163
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 164, 141
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+panfeng_beard
+  rotate: true
+  xy: 261, 136
+  size: 25, 35
+  orig: 34, 35
+  offset: 4, 0
+  index: -1
+panfeng_body
+  rotate: false
+  xy: 2, 2
+  size: 140, 124
+  orig: 140, 124
+  offset: 0, 0
+  index: -1
+panfeng_eye
+  rotate: true
+  xy: 164, 131
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+panfeng_hair
+  rotate: true
+  xy: 350, 253
+  size: 68, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1
+panfeng_handl
+  rotate: true
+  xy: 352, 212
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+panfeng_handr
+  rotate: true
+  xy: 352, 175
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+panfeng_handr2
+  rotate: true
+  xy: 316, 88
+  size: 46, 41
+  orig: 46, 41
+  offset: 0, 0
+  index: -1
+panfeng_head
+  rotate: false
+  xy: 144, 20
+  size: 170, 106
+  orig: 170, 106
+  offset: 0, 0
+  index: -1
+panfeng_legr
+  rotate: true
+  xy: 352, 150
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+panfeng_mouth
+  rotate: false
+  xy: 350, 323
+  size: 78, 70
+  orig: 78, 70
+  offset: 0, 0
+  index: -1
+panfeng_ring1
+  rotate: true
+  xy: 316, 58
+  size: 28, 21
+  orig: 28, 21
+  offset: 0, 0
+  index: -1
+panfeng_ring2
+  rotate: false
+  xy: 298, 136
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+panfeng_shoulderl
+  rotate: false
+  xy: 217, 133
+  size: 42, 50
+  orig: 42, 50
+  offset: 0, 0
+  index: -1
+panfeng_tail
+  rotate: true
+  xy: 274, 247
+  size: 146, 74
+  orig: 146, 74
+  offset: 0, 0
+  index: -1
+panfeng_weaponr
+  rotate: false
+  xy: 2, 128
+  size: 160, 265
+  orig: 160, 265
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 164, 185
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: false
+  xy: 164, 289
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

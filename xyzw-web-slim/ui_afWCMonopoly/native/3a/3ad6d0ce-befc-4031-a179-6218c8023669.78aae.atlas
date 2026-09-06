@@ -1,0 +1,69 @@
+
+sjb2_box3.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjb2_ball1
+  rotate: false
+  xy: 188, 71
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+sjb2_ball2
+  rotate: true
+  xy: 214, 20
+  size: 49, 31
+  orig: 49, 31
+  offset: 0, 0
+  index: -1
+sjb2_box1_water
+  rotate: true
+  xy: 165, 51
+  size: 75, 21
+  orig: 75, 21
+  offset: 0, 0
+  index: -1
+sjb2_box2_borad1
+  rotate: false
+  xy: 139, 2
+  size: 73, 43
+  orig: 73, 43
+  offset: 0, 0
+  index: -1
+sjb2_box2_borad2
+  rotate: false
+  xy: 2, 6
+  size: 73, 33
+  orig: 73, 33
+  offset: 0, 0
+  index: -1
+sjb2_box2_ding1
+  rotate: true
+  xy: 98, 47
+  size: 79, 65
+  orig: 79, 65
+  offset: 0, 0
+  index: -1
+sjb2_box2_ding2
+  rotate: true
+  xy: 58, 46
+  size: 80, 38
+  orig: 80, 38
+  offset: 0, 0
+  index: -1
+sjb2_box2_tanhuang1
+  rotate: false
+  xy: 77, 2
+  size: 60, 42
+  orig: 60, 42
+  offset: 0, 0
+  index: -1
+sjb2_box2_tanhuang2
+  rotate: false
+  xy: 2, 41
+  size: 54, 85
+  orig: 54, 85
+  offset: 0, 0
+  index: -1

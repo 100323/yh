@@ -1,0 +1,48 @@
+
+sqhd26_toupiao.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd26_toupiao_anniu
+  rotate: false
+  xy: 245, 94
+  size: 135, 121
+  orig: 137, 123
+  offset: 1, 1
+  index: -1
+sqhd26_toupiao_jq
+  rotate: false
+  xy: 2, 178
+  size: 230, 292
+  orig: 230, 292
+  offset: 0, 0
+  index: -1
+sqhd26_toupiao_shou1
+  rotate: false
+  xy: 234, 271
+  size: 127, 199
+  orig: 127, 199
+  offset: 0, 0
+  index: -1
+sqhd26_toupiao_shou2
+  rotate: true
+  xy: 2, 2
+  size: 174, 241
+  orig: 176, 243
+  offset: 1, 1
+  index: -1
+sqhd26_toupiao_tb
+  rotate: true
+  xy: 234, 217
+  size: 52, 63
+  orig: 52, 64
+  offset: 0, 1
+  index: -1
+sqhd26_toupiao_toup
+  rotate: false
+  xy: 299, 226
+  size: 86, 43
+  orig: 88, 45
+  offset: 1, 1
+  index: -1

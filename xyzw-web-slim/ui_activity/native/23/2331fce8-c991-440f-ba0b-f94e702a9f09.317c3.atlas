@@ -1,0 +1,62 @@
+
+fljs_fish4.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fk_js_fbody
+  rotate: true
+  xy: 2, 12
+  size: 70, 88
+  orig: 70, 91
+  offset: 0, 3
+  index: -1
+fk_js_fhands
+  rotate: false
+  xy: 80, 84
+  size: 66, 36
+  orig: 66, 42
+  offset: 0, 5
+  index: -1
+fk_js_fknife
+  rotate: true
+  xy: 92, 2
+  size: 79, 110
+  orig: 79, 110
+  offset: 0, 0
+  index: -1
+svip_js_feye
+  rotate: false
+  xy: 2, 114
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+svip_js_feyewhite
+  rotate: true
+  xy: 10, 106
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+svip_js_fshoe1
+  rotate: false
+  xy: 30, 98
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+svip_js_fshoe2
+  rotate: true
+  xy: 55, 98
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+svip_js_ftail
+  rotate: false
+  xy: 148, 83
+  size: 56, 37
+  orig: 56, 37
+  offset: 0, 0
+  index: -1

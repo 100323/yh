@@ -1,0 +1,55 @@
+
+tgcf_rk_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_rk_banner1
+  rotate: false
+  xy: 641, 54
+  size: 140, 56
+  orig: 140, 56
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner2
+  rotate: false
+  xy: 359, 20
+  size: 280, 90
+  orig: 280, 90
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner3
+  rotate: true
+  xy: 2, 94
+  size: 388, 125
+  orig: 388, 125
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner4
+  rotate: false
+  xy: 2, 2
+  size: 355, 90
+  orig: 358, 90
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner5
+  rotate: false
+  xy: 744, 344
+  size: 260, 138
+  orig: 260, 138
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner6
+  rotate: false
+  xy: 129, 112
+  size: 613, 370
+  orig: 613, 370
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner7
+  rotate: true
+  xy: 783, 62
+  size: 280, 176
+  orig: 280, 176
+  offset: 0, 0
+  index: -1

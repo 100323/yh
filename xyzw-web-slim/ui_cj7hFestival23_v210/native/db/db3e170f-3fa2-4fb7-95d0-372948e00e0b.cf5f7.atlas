@@ -1,0 +1,111 @@
+
+rxzq26_cj_jiang.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiang_caidai1
+  rotate: true
+  xy: 200, 72
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+jiang_caidai2
+  rotate: true
+  xy: 204, 101
+  size: 9, 17
+  orig: 9, 17
+  offset: 0, 0
+  index: -1
+jiang_caidai3
+  rotate: true
+  xy: 209, 121
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+jiang_caidai4
+  rotate: true
+  xy: 204, 86
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+jiang_caidai5
+  rotate: false
+  xy: 185, 80
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1
+jiang_caidai6
+  rotate: true
+  xy: 185, 96
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+jiang_faguang1
+  rotate: true
+  xy: 90, 57
+  size: 82, 47
+  orig: 94, 59
+  offset: 6, 6
+  index: -1
+jiang_faguang2
+  rotate: false
+  xy: 2, 87
+  size: 86, 52
+  orig: 96, 61
+  offset: 4, 5
+  index: -1
+jiang_faguang3
+  rotate: false
+  xy: 2, 141
+  size: 167, 86
+  orig: 167, 86
+  offset: 0, 0
+  index: -1
+jiang_qiqiu1
+  rotate: false
+  xy: 171, 136
+  size: 58, 91
+  orig: 58, 91
+  offset: 0, 0
+  index: -1
+jiang_qiqiu2
+  rotate: false
+  xy: 48, 26
+  size: 33, 59
+  orig: 33, 59
+  offset: 0, 0
+  index: -1
+jiang_qiqiu3
+  rotate: true
+  xy: 139, 28
+  size: 32, 67
+  orig: 32, 67
+  offset: 0, 0
+  index: -1
+jiang_xiangzi1
+  rotate: true
+  xy: 139, 62
+  size: 72, 44
+  orig: 72, 44
+  offset: 0, 0
+  index: -1
+jiang_xiangzi2
+  rotate: true
+  xy: 2, 2
+  size: 83, 44
+  orig: 83, 44
+  offset: 0, 0
+  index: -1
+jiang_zi
+  rotate: false
+  xy: 185, 112
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

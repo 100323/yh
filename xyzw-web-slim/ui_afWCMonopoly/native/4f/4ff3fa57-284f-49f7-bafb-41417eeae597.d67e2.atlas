@@ -1,0 +1,41 @@
+
+sjb2_door.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjb2_boat1
+  rotate: false
+  xy: 2, 11
+  size: 216, 241
+  orig: 216, 241
+  offset: 0, 0
+  index: -1
+sjb2_boat2
+  rotate: true
+  xy: 220, 78
+  size: 174, 160
+  orig: 174, 160
+  offset: 0, 0
+  index: -1
+sjb2_boat3
+  rotate: true
+  xy: 235, 5
+  size: 18, 13
+  orig: 18, 13
+  offset: 0, 0
+  index: -1
+sjb2_boat4
+  rotate: true
+  xy: 220, 2
+  size: 21, 13
+  orig: 21, 13
+  offset: 0, 0
+  index: -1
+sjb2_boat5
+  rotate: false
+  xy: 220, 25
+  size: 140, 51
+  orig: 140, 51
+  offset: 0, 0
+  index: -1

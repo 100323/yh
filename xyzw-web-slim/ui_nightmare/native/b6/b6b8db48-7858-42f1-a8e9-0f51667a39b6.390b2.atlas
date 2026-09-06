@@ -1,0 +1,27 @@
+
+sdyl_hdlp_huoyan.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdyl_hm1
+  rotate: false
+  xy: 95, 29
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+sdyl_hm2
+  rotate: true
+  xy: 50, 3
+  size: 45, 43
+  orig: 45, 43
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+znq2024_boss_xn_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_boss_xn_hx1
+  rotate: false
+  xy: 87, 3
+  size: 72, 68
+  orig: 78, 75
+  offset: 3, 4
+  index: -1
+2024znq_boss_xn_hx2
+  rotate: false
+  xy: 161, 2
+  size: 70, 69
+  orig: 77, 76
+  offset: 4, 4
+  index: -1
+2024znq_boss_xn_zd
+  rotate: false
+  xy: 2, 11
+  size: 83, 60
+  orig: 83, 60
+  offset: 0, 0
+  index: -1

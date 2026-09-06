@@ -1,0 +1,34 @@
+
+axgp_guanzhu.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axgp_guanzhu_dian
+  rotate: false
+  xy: 124, 7
+  size: 19, 41
+  orig: 21, 43
+  offset: 1, 1
+  index: -1
+axgp_guanzhu_quan
+  rotate: false
+  xy: 2, 2
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+axgp_guanzhu_xin1
+  rotate: true
+  xy: 124, 50
+  size: 34, 29
+  orig: 36, 31
+  offset: 1, 1
+  index: -1
+axgp_guanzhu_xin2
+  rotate: true
+  xy: 124, 86
+  size: 36, 30
+  orig: 38, 33
+  offset: 1, 1
+  index: -1

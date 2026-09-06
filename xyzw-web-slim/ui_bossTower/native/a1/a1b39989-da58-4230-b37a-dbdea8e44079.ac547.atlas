@@ -1,0 +1,20 @@
+
+xxwky_guangqiu2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwtz_gql_1
+  rotate: true
+  xy: 2, 2
+  size: 56, 60
+  orig: 56, 60
+  offset: 0, 0
+  index: -1
+xxwtz_gql_2
+  rotate: false
+  xy: 2, 60
+  size: 138, 140
+  orig: 138, 140
+  offset: 0, 0
+  index: -1

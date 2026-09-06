@@ -1,0 +1,13 @@
+
+xjzw_boss4c_attack_loop.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjzw_boss4c_attack2
+  rotate: false
+  xy: 2, 2
+  size: 113, 36
+  orig: 113, 36
+  offset: 0, 0
+  index: -1

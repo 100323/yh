@@ -1,0 +1,41 @@
+
+caoren9_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren9_pg_bd1
+  rotate: true
+  xy: 2, 2
+  size: 218, 292
+  orig: 218, 292
+  offset: 0, 0
+  index: -1
+caoren9_pg_bd2
+  rotate: true
+  xy: 296, 134
+  size: 86, 136
+  orig: 86, 136
+  offset: 0, 0
+  index: -1
+caoren9_pg_bdlz1
+  rotate: true
+  xy: 434, 98
+  size: 122, 45
+  orig: 122, 45
+  offset: 0, 0
+  index: -1
+caoren9_pg_bdlz2
+  rotate: false
+  xy: 361, 97
+  size: 45, 35
+  orig: 45, 35
+  offset: 0, 0
+  index: -1
+caoren9_pg_bdlz3
+  rotate: true
+  xy: 296, 82
+  size: 50, 63
+  orig: 50, 63
+  offset: 0, 0
+  index: -1

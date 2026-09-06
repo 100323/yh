@@ -1,0 +1,76 @@
+
+20102.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiao1
+  rotate: true
+  xy: 263, 58
+  size: 48, 52
+  orig: 50, 55
+  offset: 1, 2
+  index: -1
+jiao2
+  rotate: true
+  xy: 263, 58
+  size: 48, 52
+  orig: 50, 55
+  offset: 1, 2
+  index: -1
+shadow1
+  rotate: false
+  xy: 197, 90
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 2, 45
+  size: 193, 180
+  orig: 193, 180
+  offset: 0, 0
+  index: -1
+shou1
+  rotate: true
+  xy: 2, 2
+  size: 41, 47
+  orig: 43, 49
+  offset: 1, 1
+  index: -1
+shou2
+  rotate: true
+  xy: 51, 6
+  size: 37, 52
+  orig: 39, 55
+  offset: 1, 2
+  index: -1
+toushi
+  rotate: false
+  xy: 197, 156
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+yanhei
+  rotate: false
+  xy: 263, 143
+  size: 8, 11
+  orig: 10, 13
+  offset: 1, 1
+  index: -1
+yanjing
+  rotate: false
+  xy: 197, 32
+  size: 42, 56
+  orig: 44, 58
+  offset: 1, 1
+  index: -1
+zui
+  rotate: true
+  xy: 277, 108
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1

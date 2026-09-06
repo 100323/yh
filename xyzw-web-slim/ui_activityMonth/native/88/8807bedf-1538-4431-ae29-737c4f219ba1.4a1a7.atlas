@@ -1,0 +1,55 @@
+
+dwhd25_zjd_qipao.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zjd_qp_by
+  rotate: true
+  xy: 180, 20
+  size: 83, 73
+  orig: 83, 73
+  offset: 0, 0
+  index: -1
+zjd_qp_jian
+  rotate: false
+  xy: 180, 105
+  size: 74, 91
+  orig: 82, 96
+  offset: 4, 2
+  index: -1
+zjd_qp_xian1
+  rotate: false
+  xy: 2, 13
+  size: 39, 39
+  orig: 48, 46
+  offset: 5, 2
+  index: -1
+zjd_qp_xian2
+  rotate: false
+  xy: 43, 2
+  size: 21, 30
+  orig: 28, 35
+  offset: 4, 2
+  index: -1
+zjd_qp_xian3
+  rotate: false
+  xy: 124, 7
+  size: 33, 45
+  orig: 41, 51
+  offset: 3, 3
+  index: -1
+zjd_qp_yuan
+  rotate: false
+  xy: 2, 54
+  size: 176, 142
+  orig: 181, 147
+  offset: 3, 2
+  index: -1
+zjd_qp_zi
+  rotate: false
+  xy: 43, 34
+  size: 79, 18
+  orig: 79, 18
+  offset: 0, 0
+  index: -1

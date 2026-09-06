@@ -1,0 +1,48 @@
+
+znq2024_szf_4.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_szf_yu4_sb1
+  rotate: false
+  xy: 316, 38
+  size: 60, 78
+  orig: 60, 78
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu4_sb2
+  rotate: true
+  xy: 241, 6
+  size: 110, 73
+  orig: 110, 74
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu4_shen
+  rotate: true
+  xy: 2, 12
+  size: 239, 237
+  orig: 254, 237
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu4_shou
+  rotate: false
+  xy: 356, 196
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu4_tf
+  rotate: true
+  xy: 241, 118
+  size: 133, 113
+  orig: 133, 113
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu4_yz
+  rotate: true
+  xy: 2, 2
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1

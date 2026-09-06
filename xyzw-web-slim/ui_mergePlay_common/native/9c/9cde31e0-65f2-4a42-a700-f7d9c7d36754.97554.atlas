@@ -1,0 +1,20 @@
+
+xsxjt_gyxb_qipao.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_bx1_qipao
+  rotate: false
+  xy: 2, 2
+  size: 100, 94
+  orig: 102, 96
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_bx1_ys
+  rotate: false
+  xy: 104, 41
+  size: 41, 55
+  orig: 43, 57
+  offset: 1, 1
+  index: -1

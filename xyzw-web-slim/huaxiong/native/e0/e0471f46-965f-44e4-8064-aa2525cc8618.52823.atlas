@@ -1,0 +1,153 @@
+
+huaxiong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 279, 324
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 279, 276
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 309, 125
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+huaxiong_body
+  rotate: true
+  xy: 2, 43
+  size: 171, 154
+  orig: 171, 154
+  offset: 0, 0
+  index: -1
+huaxiong_eye
+  rotate: true
+  xy: 113, 8
+  size: 9, 8
+  orig: 9, 8
+  offset: 0, 0
+  index: -1
+huaxiong_eyebrow
+  rotate: true
+  xy: 37, 4
+  size: 37, 18
+  orig: 38, 18
+  offset: 0, 0
+  index: -1
+huaxiong_eyewhite
+  rotate: true
+  xy: 57, 7
+  size: 34, 29
+  orig: 34, 29
+  offset: 0, 0
+  index: -1
+huaxiong_hair1
+  rotate: true
+  xy: 113, 19
+  size: 22, 53
+  orig: 22, 53
+  offset: 0, 0
+  index: -1
+huaxiong_hair2
+  rotate: true
+  xy: 158, 123
+  size: 113, 105
+  orig: 116, 110
+  offset: 0, 5
+  index: -1
+huaxiong_handl
+  rotate: false
+  xy: 306, 468
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+huaxiong_handr1
+  rotate: false
+  xy: 265, 124
+  size: 42, 43
+  orig: 43, 46
+  offset: 0, 3
+  index: -1
+huaxiong_handr2
+  rotate: false
+  xy: 2, 2
+  size: 33, 39
+  orig: 34, 42
+  offset: 0, 3
+  index: -1
+huaxiong_head
+  rotate: true
+  xy: 98, 238
+  size: 131, 115
+  orig: 131, 115
+  offset: 0, 0
+  index: -1
+huaxiong_jaw
+  rotate: false
+  xy: 274, 35
+  size: 86, 87
+  orig: 86, 87
+  offset: 0, 0
+  index: -1
+huaxiong_legr
+  rotate: false
+  xy: 88, 10
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+huaxiong_shoulderl
+  rotate: true
+  xy: 215, 266
+  size: 103, 62
+  orig: 103, 62
+  offset: 0, 0
+  index: -1
+huaxiong_skill
+  rotate: false
+  xy: 239, 408
+  size: 65, 102
+  orig: 65, 102
+  offset: 0, 0
+  index: -1
+huaxiong_tail
+  rotate: true
+  xy: 265, 169
+  size: 95, 58
+  orig: 95, 58
+  offset: 0, 0
+  index: -1
+huaxiong_weapon
+  rotate: false
+  xy: 2, 216
+  size: 94, 294
+  orig: 94, 294
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 98, 371
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 168, 13
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

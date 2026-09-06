@@ -1,0 +1,230 @@
+
+taishici6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 461, 84
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 227, 351
+  size: 36, 44
+  orig: 36, 44
+  offset: 0, 0
+  index: -1
+taishici6_jn_dian1
+  rotate: false
+  xy: 374, 126
+  size: 63, 63
+  orig: 77, 77
+  offset: 7, 7
+  index: -1
+taishici6_jn_dian2
+  rotate: false
+  xy: 439, 126
+  size: 63, 63
+  orig: 77, 77
+  offset: 7, 7
+  index: -1
+taishici6_jn_fuzhou1
+  rotate: true
+  xy: 309, 414
+  size: 92, 140
+  orig: 92, 140
+  offset: 0, 0
+  index: -1
+taishici6_jn_quan
+  rotate: true
+  xy: 273, 307
+  size: 86, 27
+  orig: 86, 27
+  offset: 0, 0
+  index: -1
+taishici6_js_daizi
+  rotate: true
+  xy: 309, 95
+  size: 96, 63
+  orig: 96, 63
+  offset: 0, 0
+  index: -1
+taishici6_js_daizi1
+  rotate: true
+  xy: 152, 278
+  size: 27, 45
+  orig: 27, 45
+  offset: 0, 0
+  index: -1
+taishici6_js_faqi
+  rotate: false
+  xy: 2, 192
+  size: 148, 314
+  orig: 149, 315
+  offset: 0, 1
+  index: -1
+taishici6_js_fuguang
+  rotate: true
+  xy: 387, 191
+  size: 81, 116
+  orig: 81, 116
+  offset: 0, 0
+  index: -1
+taishici6_js_fuzhou
+  rotate: true
+  xy: 152, 192
+  size: 84, 119
+  orig: 96, 131
+  offset: 6, 6
+  index: -1
+taishici6_js_jiaol
+  rotate: true
+  xy: 273, 420
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+taishici6_js_jiaor
+  rotate: true
+  xy: 273, 395
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+taishici6_js_mei
+  rotate: true
+  xy: 227, 307
+  size: 42, 21
+  orig: 44, 21
+  offset: 0, 0
+  index: -1
+taishici6_js_shen
+  rotate: true
+  xy: 148, 6
+  size: 184, 159
+  orig: 184, 159
+  offset: 0, 0
+  index: -1
+taishici6_js_shoul1
+  rotate: false
+  xy: 237, 280
+  size: 40, 25
+  orig: 40, 26
+  offset: 0, 1
+  index: -1
+taishici6_js_shoul2
+  rotate: true
+  xy: 273, 193
+  size: 79, 112
+  orig: 79, 117
+  offset: 0, 3
+  index: -1
+taishici6_js_shour
+  rotate: false
+  xy: 273, 475
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+taishici6_js_tou
+  rotate: true
+  xy: 2, 2
+  size: 188, 144
+  orig: 188, 144
+  offset: 0, 0
+  index: -1
+taishici6_js_wei
+  rotate: true
+  xy: 446, 274
+  size: 116, 63
+  orig: 116, 63
+  offset: 0, 0
+  index: -1
+taishici6_js_xiuzil1
+  rotate: false
+  xy: 152, 389
+  size: 119, 117
+  orig: 119, 117
+  offset: 0, 0
+  index: -1
+taishici6_js_xiuzil2
+  rotate: true
+  xy: 309, 278
+  size: 134, 135
+  orig: 134, 135
+  offset: 0, 0
+  index: -1
+taishici6_js_xiuzir
+  rotate: false
+  xy: 309, 5
+  size: 88, 88
+  orig: 89, 88
+  offset: 0, 0
+  index: -1
+taishici6_js_yan
+  rotate: true
+  xy: 273, 445
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1
+taishici6_js_yanzhu
+  rotate: false
+  xy: 279, 277
+  size: 9, 9
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+taishici6_js_zui
+  rotate: true
+  xy: 451, 392
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+taishici6_pg_guangi
+  rotate: false
+  xy: 152, 313
+  size: 73, 74
+  orig: 73, 74
+  offset: 0, 0
+  index: -1
+taishici6_pg_xian
+  rotate: true
+  xy: 451, 441
+  size: 65, 55
+  orig: 65, 55
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 279, 288
+  size: 22, 17
+  orig: 22, 22
+  offset: 0, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 399, 64
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+zhouyu6_eyebrow
+  rotate: true
+  xy: 250, 312
+  size: 37, 17
+  orig: 37, 17
+  offset: 0, 0
+  index: -1
+zhouyu7_skill04
+  rotate: false
+  xy: 199, 279
+  size: 36, 26
+  orig: 42, 30
+  offset: 3, 3
+  index: -1

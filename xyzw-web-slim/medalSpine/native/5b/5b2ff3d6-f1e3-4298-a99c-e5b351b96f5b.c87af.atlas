@@ -1,0 +1,90 @@
+
+zlys_medal_2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zlys_medal_jin_bs1
+  rotate: false
+  xy: 2, 2
+  size: 96, 66
+  orig: 107, 68
+  offset: 3, 1
+  index: -1
+zlys_medal_jin_bs2
+  rotate: true
+  xy: 144, 176
+  size: 41, 37
+  orig: 43, 39
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_g
+  rotate: false
+  xy: 100, 16
+  size: 63, 52
+  orig: 63, 52
+  offset: 0, 0
+  index: -1
+zlys_medal_jin_huo1
+  rotate: true
+  xy: 174, 119
+  size: 25, 26
+  orig: 27, 28
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_huo2
+  rotate: false
+  xy: 183, 164
+  size: 25, 23
+  orig: 27, 25
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_huo3
+  rotate: true
+  xy: 144, 146
+  size: 28, 29
+  orig: 31, 31
+  offset: 2, 1
+  index: -1
+zlys_medal_jin_huo4
+  rotate: false
+  xy: 183, 189
+  size: 23, 28
+  orig: 25, 30
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_huo5
+  rotate: true
+  xy: 144, 117
+  size: 27, 28
+  orig: 30, 30
+  offset: 2, 1
+  index: -1
+zlys_medal_jin_huo6
+  rotate: true
+  xy: 144, 89
+  size: 26, 29
+  orig: 28, 31
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_huo7
+  rotate: false
+  xy: 208, 204
+  size: 17, 13
+  orig: 19, 15
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_huo8
+  rotate: false
+  xy: 208, 190
+  size: 17, 12
+  orig: 19, 14
+  offset: 1, 1
+  index: -1
+zlys_medal_jin_ma
+  rotate: false
+  xy: 2, 70
+  size: 140, 147
+  orig: 142, 149
+  offset: 1, 1
+  index: -1

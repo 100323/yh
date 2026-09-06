@@ -1,0 +1,48 @@
+
+xkhj25_cj_box2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+heidong2
+  rotate: false
+  xy: 191, 55
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+heidong5
+  rotate: false
+  xy: 191, 64
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+heidong6
+  rotate: false
+  xy: 191, 46
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+heidong7
+  rotate: true
+  xy: 136, 16
+  size: 56, 53
+  orig: 56, 53
+  offset: 0, 0
+  index: -1
+heidong8
+  rotate: false
+  xy: 2, 2
+  size: 72, 70
+  orig: 74, 72
+  offset: 1, 1
+  index: -1
+huojian
+  rotate: true
+  xy: 76, 16
+  size: 56, 58
+  orig: 56, 58
+  offset: 0, 0
+  index: -1

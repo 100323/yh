@@ -1,0 +1,13 @@
+
+kyxb26_cj_box3.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shengsuo
+  rotate: false
+  xy: 2, 2
+  size: 63, 56
+  orig: 66, 58
+  offset: 2, 1
+  index: -1

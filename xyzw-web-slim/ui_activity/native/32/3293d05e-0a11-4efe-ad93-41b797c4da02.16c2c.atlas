@@ -1,0 +1,55 @@
+
+fljs_hands3.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zk_js_harm
+  rotate: false
+  xy: 2, 39
+  size: 116, 209
+  orig: 119, 211
+  offset: 3, 2
+  index: -1
+zk_js_hfinger1
+  rotate: true
+  xy: 2, 2
+  size: 35, 85
+  orig: 35, 85
+  offset: 0, 0
+  index: -1
+zk_js_hfinger2
+  rotate: false
+  xy: 182, 153
+  size: 48, 95
+  orig: 49, 96
+  offset: 0, 0
+  index: -1
+zk_js_hfinger3
+  rotate: false
+  xy: 120, 58
+  size: 55, 93
+  orig: 59, 93
+  offset: 0, 0
+  index: -1
+zk_js_hfinger4
+  rotate: false
+  xy: 177, 67
+  size: 47, 84
+  orig: 47, 84
+  offset: 0, 0
+  index: -1
+zk_js_hfinger5
+  rotate: true
+  xy: 120, 19
+  size: 37, 65
+  orig: 37, 65
+  offset: 0, 0
+  index: -1
+zk_js_hhand
+  rotate: false
+  xy: 120, 153
+  size: 60, 95
+  orig: 60, 102
+  offset: 0, 0
+  index: -1

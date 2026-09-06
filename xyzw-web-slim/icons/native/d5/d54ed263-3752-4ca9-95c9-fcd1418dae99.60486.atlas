@@ -1,0 +1,524 @@
+
+ydhd26_plt.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pailian_beijing
+  rotate: false
+  xy: 2, 656
+  size: 340, 366
+  orig: 340, 366
+  offset: 0, 0
+  index: -1
+pailian_beijing1
+  rotate: false
+  xy: 942, 373
+  size: 23, 37
+  orig: 23, 37
+  offset: 0, 0
+  index: -1
+pailian_beijing2
+  rotate: false
+  xy: 951, 454
+  size: 41, 35
+  orig: 41, 35
+  offset: 0, 0
+  index: -1
+pailian_beijing3
+  rotate: true
+  xy: 258, 94
+  size: 22, 67
+  orig: 22, 67
+  offset: 0, 0
+  index: -1
+pailian_beijing4
+  rotate: true
+  xy: 990, 491
+  size: 16, 25
+  orig: 16, 25
+  offset: 0, 0
+  index: -1
+pailian_beijing_q
+  rotate: false
+  xy: 726, 232
+  size: 102, 85
+  orig: 102, 85
+  offset: 0, 0
+  index: -1
+pailian_huodao1
+  rotate: false
+  xy: 258, 118
+  size: 108, 280
+  orig: 108, 280
+  offset: 0, 0
+  index: -1
+pailian_huodao2
+  rotate: false
+  xy: 2, 400
+  size: 328, 254
+  orig: 328, 254
+  offset: 0, 0
+  index: -1
+pailian_huodao3
+  rotate: false
+  xy: 368, 83
+  size: 202, 107
+  orig: 202, 107
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang1
+  rotate: false
+  xy: 942, 412
+  size: 31, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang10
+  rotate: false
+  xy: 888, 275
+  size: 31, 42
+  orig: 31, 44
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang11
+  rotate: false
+  xy: 629, 83
+  size: 33, 43
+  orig: 33, 43
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang12
+  rotate: false
+  xy: 990, 509
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang2
+  rotate: false
+  xy: 993, 728
+  size: 29, 36
+  orig: 29, 36
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang3
+  rotate: false
+  xy: 993, 625
+  size: 26, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang4
+  rotate: true
+  xy: 327, 91
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang5
+  rotate: false
+  xy: 324, 63
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang6
+  rotate: false
+  xy: 994, 462
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang7
+  rotate: false
+  xy: 993, 593
+  size: 26, 30
+  orig: 26, 30
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang8
+  rotate: false
+  xy: 993, 657
+  size: 26, 35
+  orig: 26, 35
+  offset: 0, 0
+  index: -1
+pailian_mtl_cang9
+  rotate: false
+  xy: 300, 2
+  size: 28, 38
+  orig: 28, 38
+  offset: 0, 0
+  index: -1
+pailian_mtl_lunpai
+  rotate: false
+  xy: 344, 722
+  size: 276, 300
+  orig: 276, 300
+  offset: 0, 0
+  index: -1
+pailian_mtl_quan1
+  rotate: false
+  xy: 2, 84
+  size: 254, 314
+  orig: 254, 314
+  offset: 0, 0
+  index: -1
+pailian_mtl_xuehua
+  rotate: false
+  xy: 368, 192
+  size: 200, 209
+  orig: 200, 209
+  offset: 0, 0
+  index: -1
+pailian_mtl_zhuzi1
+  rotate: false
+  xy: 848, 766
+  size: 169, 256
+  orig: 169, 256
+  offset: 0, 0
+  index: -1
+pailian_mtl_zhuzi2
+  rotate: true
+  xy: 606, 537
+  size: 158, 238
+  orig: 158, 238
+  offset: 0, 0
+  index: -1
+pailian_shanxing
+  rotate: false
+  xy: 330, 16
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+pailian_yu1_huaban1
+  rotate: false
+  xy: 344, 545
+  size: 260, 175
+  orig: 260, 175
+  offset: 0, 0
+  index: -1
+pailian_yu1_huaban2
+  rotate: false
+  xy: 332, 403
+  size: 227, 140
+  orig: 227, 140
+  offset: 0, 0
+  index: -1
+pailian_yu1_jiao_l
+  rotate: false
+  xy: 572, 75
+  size: 55, 51
+  orig: 55, 51
+  offset: 0, 0
+  index: -1
+pailian_yu1_jiao_r
+  rotate: false
+  xy: 657, 148
+  size: 51, 64
+  orig: 51, 66
+  offset: 0, 0
+  index: -1
+pailian_yu1_maozi
+  rotate: false
+  xy: 851, 463
+  size: 98, 88
+  orig: 98, 88
+  offset: 0, 0
+  index: -1
+pailian_yu1_maozi2
+  rotate: false
+  xy: 172, 22
+  size: 94, 60
+  orig: 94, 60
+  offset: 0, 0
+  index: -1
+pailian_yu1_shenti
+  rotate: false
+  xy: 622, 784
+  size: 224, 238
+  orig: 224, 238
+  offset: 0, 0
+  index: -1
+pailian_yu1_shou_l
+  rotate: false
+  xy: 830, 265
+  size: 56, 52
+  orig: 56, 52
+  offset: 0, 0
+  index: -1
+pailian_yu1_shou_r
+  rotate: false
+  xy: 851, 319
+  size: 60, 50
+  orig: 60, 50
+  offset: 0, 0
+  index: -1
+pailian_yu1_weijin1
+  rotate: true
+  xy: 846, 553
+  size: 211, 145
+  orig: 211, 145
+  offset: 0, 0
+  index: -1
+pailian_yu1_weijin2
+  rotate: true
+  xy: 622, 697
+  size: 85, 212
+  orig: 85, 224
+  offset: 0, 12
+  index: -1
+pailian_yu1_weijin3
+  rotate: false
+  xy: 2, 9
+  size: 168, 73
+  orig: 168, 73
+  offset: 0, 0
+  index: -1
+pailian_yu1_xuehua1
+  rotate: false
+  xy: 345, 2
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+pailian_yu1_xuehua2
+  rotate: false
+  xy: 967, 398
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+pailian_yu1_xuehua3
+  rotate: false
+  xy: 945, 320
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+pailian_yu1_xuehua4
+  rotate: false
+  xy: 975, 428
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+pailian_yu1_xuehua5
+  rotate: true
+  xy: 561, 404
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+pailian_yu1_xuehua6
+  rotate: true
+  xy: 199, 2
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+pailian_yu1_yanjing
+  rotate: true
+  xy: 606, 705
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+pailian_yu1_yankuang
+  rotate: false
+  xy: 268, 42
+  size: 54, 50
+  orig: 54, 50
+  offset: 0, 0
+  index: -1
+pailian_yu1_zuiba
+  rotate: false
+  xy: 726, 319
+  size: 123, 94
+  orig: 123, 94
+  offset: 0, 0
+  index: -1
+pailian_yu2_han
+  rotate: false
+  xy: 258, 85
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+pailian_yu2_jiao
+  rotate: false
+  xy: 726, 211
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+pailian_yu2_shenti
+  rotate: false
+  xy: 721, 415
+  size: 128, 120
+  orig: 128, 120
+  offset: 0, 0
+  index: -1
+pailian_yu2_shou_l
+  rotate: false
+  xy: 945, 345
+  size: 24, 26
+  orig: 24, 26
+  offset: 0, 0
+  index: -1
+pailian_yu2_shou_r
+  rotate: true
+  xy: 993, 694
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+pailian_yu2_weiba
+  rotate: false
+  xy: 951, 491
+  size: 37, 60
+  orig: 37, 60
+  offset: 0, 0
+  index: -1
+pailian_yu2_xue1
+  rotate: true
+  xy: 332, 645
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+pailian_yu2_xue2
+  rotate: true
+  xy: 268, 2
+  size: 38, 30
+  orig: 38, 30
+  offset: 0, 0
+  index: -1
+pailian_yu2_xue3
+  rotate: false
+  xy: 975, 412
+  size: 11, 14
+  orig: 11, 14
+  offset: 0, 0
+  index: -1
+pailian_yu2_xue4
+  rotate: true
+  xy: 913, 325
+  size: 44, 30
+  orig: 44, 30
+  offset: 0, 0
+  index: -1
+pailian_yu2_yankuang
+  rotate: true
+  xy: 993, 561
+  size: 30, 26
+  orig: 30, 26
+  offset: 0, 0
+  index: -1
+pailian_yu2_yanzhu
+  rotate: false
+  xy: 836, 773
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+pailian_yu2_zuiba
+  rotate: false
+  xy: 830, 223
+  size: 53, 40
+  orig: 53, 40
+  offset: 0, 0
+  index: -1
+pailian_yu3_maozi1
+  rotate: false
+  xy: 324, 42
+  size: 24, 19
+  orig: 24, 19
+  offset: 0, 0
+  index: -1
+pailian_yu3_maozi2
+  rotate: false
+  xy: 710, 198
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+pailian_yu3_shenti
+  rotate: false
+  xy: 572, 128
+  size: 83, 84
+  orig: 83, 84
+  offset: 0, 0
+  index: -1
+pailian_yu3_shou_l
+  rotate: true
+  xy: 225, 2
+  size: 18, 21
+  orig: 19, 21
+  offset: 1, 0
+  index: -1
+pailian_yu3_shou_r
+  rotate: false
+  xy: 1001, 444
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+pailian_yu3_yanjing
+  rotate: true
+  xy: 330, 2
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+pailian_yu4_shenti
+  rotate: false
+  xy: 851, 371
+  size: 89, 90
+  orig: 89, 90
+  offset: 0, 0
+  index: -1
+pailian_yu4_shou_l
+  rotate: false
+  xy: 657, 131
+  size: 19, 15
+  orig: 21, 17
+  offset: 2, 0
+  index: -1
+pailian_yu4_shou_r
+  rotate: true
+  xy: 172, 2
+  size: 18, 25
+  orig: 18, 25
+  offset: 0, 0
+  index: -1
+pailian_yu4_xue
+  rotate: false
+  xy: 248, 3
+  size: 18, 17
+  orig: 18, 17
+  offset: 0, 0
+  index: -1
+pailian_yu4_yanjing
+  rotate: false
+  xy: 942, 454
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+pailian_zi
+  rotate: true
+  xy: 570, 214
+  size: 198, 154
+  orig: 198, 154
+  offset: 0, 0
+  index: -1
+shaoguang
+  rotate: false
+  xy: 561, 414
+  size: 158, 121
+  orig: 158, 121
+  offset: 0, 0
+  index: -1

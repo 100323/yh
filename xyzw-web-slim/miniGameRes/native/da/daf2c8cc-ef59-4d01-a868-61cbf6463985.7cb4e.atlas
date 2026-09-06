@@ -1,0 +1,34 @@
+
+kpyx6_xiankang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xiankang0001
+  rotate: true
+  xy: 118, 2
+  size: 208, 113
+  orig: 210, 118
+  offset: 1, 2
+  index: -1
+xiankang0002
+  rotate: true
+  xy: 2, 2
+  size: 208, 114
+  orig: 210, 118
+  offset: 1, 2
+  index: -1
+xiankang0003
+  rotate: true
+  xy: 233, 2
+  size: 208, 113
+  orig: 210, 118
+  offset: 1, 2
+  index: -1
+xiankang0004
+  rotate: true
+  xy: 348, 2
+  size: 208, 113
+  orig: 210, 118
+  offset: 1, 2
+  index: -1

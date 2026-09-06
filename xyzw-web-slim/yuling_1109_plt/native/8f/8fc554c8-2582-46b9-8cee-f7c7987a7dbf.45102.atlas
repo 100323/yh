@@ -1,0 +1,286 @@
+
+yuling_1109_plt.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo2
+  rotate: false
+  xy: 706, 81
+  size: 95, 95
+  orig: 95, 95
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 25, 5
+  size: 15, 12
+  orig: 24, 24
+  offset: 4, 6
+  index: -1
+yuling1107_plt_arml
+  rotate: true
+  xy: 780, 343
+  size: 48, 66
+  orig: 48, 66
+  offset: 0, 0
+  index: -1
+yuling1107_plt_armr
+  rotate: false
+  xy: 785, 421
+  size: 116, 87
+  orig: 116, 87
+  offset: 0, 0
+  index: -1
+yuling1107_plt_body
+  rotate: true
+  xy: 681, 334
+  size: 57, 97
+  orig: 73, 97
+  offset: 16, 0
+  index: -1
+yuling1107_plt_fbody
+  rotate: false
+  xy: 366, 322
+  size: 173, 186
+  orig: 173, 186
+  offset: 0, 0
+  index: -1
+yuling1107_plt_feye
+  rotate: true
+  xy: 39, 11
+  size: 9, 8
+  orig: 11, 9
+  offset: 2, 0
+  index: -1
+yuling1107_plt_feyewhite
+  rotate: false
+  xy: 494, 144
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fhead
+  rotate: true
+  xy: 573, 13
+  size: 159, 131
+  orig: 159, 131
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fin1
+  rotate: false
+  xy: 882, 190
+  size: 58, 69
+  orig: 58, 69
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fin2
+  rotate: false
+  xy: 797, 255
+  size: 78, 86
+  orig: 78, 86
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fish1
+  rotate: true
+  xy: 797, 223
+  size: 30, 34
+  orig: 30, 34
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fish2
+  rotate: false
+  xy: 938, 352
+  size: 62, 71
+  orig: 62, 71
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fish3
+  rotate: true
+  xy: 877, 261
+  size: 81, 70
+  orig: 81, 70
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fish4
+  rotate: true
+  xy: 903, 425
+  size: 83, 80
+  orig: 83, 80
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fish5
+  rotate: true
+  xy: 833, 223
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+yuling1107_plt_fmouth
+  rotate: false
+  xy: 824, 178
+  size: 56, 43
+  orig: 56, 43
+  offset: 0, 0
+  index: -1
+yuling1107_plt_ftail
+  rotate: true
+  xy: 676, 393
+  size: 115, 107
+  orig: 115, 107
+  offset: 0, 0
+  index: -1
+yuling1107_plt_head
+  rotate: false
+  xy: 803, 86
+  size: 89, 90
+  orig: 89, 90
+  offset: 0, 0
+  index: -1
+yuling1107_plt_mouth
+  rotate: false
+  xy: 2, 6
+  size: 21, 14
+  orig: 21, 14
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b1
+  rotate: true
+  xy: 285, 11
+  size: 119, 116
+  orig: 119, 116
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b2
+  rotate: false
+  xy: 403, 3
+  size: 168, 139
+  orig: 168, 139
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b3
+  rotate: true
+  xy: 150, 16
+  size: 114, 133
+  orig: 114, 133
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b4
+  rotate: true
+  xy: 688, 222
+  size: 110, 107
+  orig: 110, 107
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b5
+  rotate: false
+  xy: 706, 3
+  size: 102, 76
+  orig: 103, 76
+  offset: 1, 0
+  index: -1
+yuling1109_plt_b6
+  rotate: false
+  xy: 541, 324
+  size: 69, 48
+  orig: 69, 48
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b7
+  rotate: true
+  xy: 612, 324
+  size: 48, 67
+  orig: 48, 67
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b8
+  rotate: true
+  xy: 810, 9
+  size: 75, 95
+  orig: 75, 95
+  offset: 0, 0
+  index: -1
+yuling1109_plt_b9
+  rotate: false
+  xy: 580, 200
+  size: 106, 122
+  orig: 106, 122
+  offset: 0, 0
+  index: -1
+yuling1109_plt_body
+  rotate: false
+  xy: 366, 174
+  size: 212, 146
+  orig: 212, 146
+  offset: 0, 0
+  index: -1
+yuling1109_plt_eye
+  rotate: true
+  xy: 39, 2
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+yuling1109_plt_eyewhite
+  rotate: false
+  xy: 530, 146
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+yuling1109_plt_fin1
+  rotate: false
+  xy: 688, 178
+  size: 68, 42
+  orig: 68, 42
+  offset: 0, 0
+  index: -1
+yuling1109_plt_fin2
+  rotate: false
+  xy: 425, 149
+  size: 67, 23
+  orig: 67, 23
+  offset: 0, 0
+  index: -1
+yuling1109_plt_fin3
+  rotate: true
+  xy: 366, 144
+  size: 28, 57
+  orig: 28, 57
+  offset: 0, 0
+  index: -1
+yuling1109_plt_head
+  rotate: false
+  xy: 2, 22
+  size: 146, 108
+  orig: 146, 108
+  offset: 0, 0
+  index: -1
+yuling1109_plt_mouth
+  rotate: false
+  xy: 758, 178
+  size: 64, 42
+  orig: 64, 42
+  offset: 0, 0
+  index: -1
+yuling1109_plt_s1
+  rotate: false
+  xy: 848, 344
+  size: 88, 75
+  orig: 88, 75
+  offset: 0, 0
+  index: -1
+yuling1109_plt_s2
+  rotate: true
+  xy: 541, 374
+  size: 134, 133
+  orig: 134, 133
+  offset: 0, 0
+  index: -1
+yuling1109_plt_ss
+  rotate: true
+  xy: 2, 132
+  size: 376, 362
+  orig: 376, 362
+  offset: 0, 0
+  index: -1

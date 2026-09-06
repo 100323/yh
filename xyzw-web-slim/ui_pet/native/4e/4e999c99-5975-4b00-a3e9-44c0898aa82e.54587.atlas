@@ -1,0 +1,27 @@
+
+cwxt26_tf_jiaobiao.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_tf_cg_bei
+  rotate: false
+  xy: 2, 2
+  size: 189, 208
+  orig: 198, 218
+  offset: 4, 5
+  index: -1
+cwxt26_tf_cg_bei10
+  rotate: false
+  xy: 193, 118
+  size: 122, 92
+  orig: 122, 92
+  offset: 0, 0
+  index: -1
+cwxt26_tf_cg_bei20
+  rotate: false
+  xy: 193, 24
+  size: 122, 92
+  orig: 122, 92
+  offset: 0, 0
+  index: -1

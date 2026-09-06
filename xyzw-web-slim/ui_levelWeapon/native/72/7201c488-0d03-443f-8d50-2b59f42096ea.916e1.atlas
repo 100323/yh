@@ -1,0 +1,41 @@
+
+xshd_ui_baozoupen150_card.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penboss_kai_10
+  rotate: true
+  xy: 2, 334
+  size: 176, 236
+  orig: 176, 236
+  offset: 0, 0
+  index: -1
+penboss_kai_5
+  rotate: false
+  xy: 240, 292
+  size: 223, 218
+  orig: 223, 218
+  offset: 0, 0
+  index: -1
+penboss_kai_6
+  rotate: true
+  xy: 465, 288
+  size: 222, 315
+  orig: 222, 315
+  offset: 0, 0
+  index: -1
+penboss_kai_7
+  rotate: true
+  xy: 372, 2
+  size: 284, 372
+  orig: 284, 372
+  offset: 0, 0
+  index: -1
+penboss_kai_8
+  rotate: true
+  xy: 2, 9
+  size: 281, 368
+  orig: 284, 372
+  offset: 1, 2
+  index: -1

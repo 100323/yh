@@ -1,0 +1,160 @@
+
+nndzz_ndj_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 2, 241
+  size: 92, 94
+  orig: 94, 94
+  offset: 1, 0
+  index: -1
+10
+  rotate: false
+  xy: 287, 197
+  size: 94, 92
+  orig: 94, 94
+  offset: 0, 1
+  index: -1
+11
+  rotate: true
+  xy: 383, 197
+  size: 92, 94
+  orig: 94, 94
+  offset: 1, 0
+  index: -1
+15
+  rotate: true
+  xy: 383, 197
+  size: 92, 94
+  orig: 94, 94
+  offset: 1, 0
+  index: -1
+12
+  rotate: true
+  xy: 385, 102
+  size: 93, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+13
+  rotate: false
+  xy: 290, 6
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+14
+  rotate: true
+  xy: 2, 51
+  size: 93, 94
+  orig: 94, 94
+  offset: 1, 0
+  index: -1
+2
+  rotate: true
+  xy: 98, 229
+  size: 92, 93
+  orig: 94, 94
+  offset: 1, 1
+  index: -1
+3
+  rotate: true
+  xy: 2, 146
+  size: 93, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 98, 134
+  size: 94, 93
+  orig: 94, 94
+  offset: 0, 1
+  index: -1
+5
+  rotate: false
+  xy: 194, 102
+  size: 93, 93
+  orig: 94, 94
+  offset: 0, 1
+  index: -1
+6
+  rotate: true
+  xy: 289, 102
+  size: 93, 94
+  orig: 94, 94
+  offset: 1, 0
+  index: -1
+7
+  rotate: false
+  xy: 98, 38
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 194, 6
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 193, 229
+  size: 92, 92
+  orig: 94, 94
+  offset: 1, 1
+  index: -1
+dy1
+  rotate: true
+  xy: 165, 323
+  size: 46, 174
+  orig: 46, 174
+  offset: 0, 0
+  index: -1
+dy2
+  rotate: true
+  xy: 341, 291
+  size: 78, 113
+  orig: 78, 113
+  offset: 0, 0
+  index: -1
+dy3
+  rotate: true
+  xy: 125, 332
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+dy4
+  rotate: true
+  xy: 2, 361
+  size: 8, 11
+  orig: 8, 11
+  offset: 0, 0
+  index: -1
+dy5
+  rotate: false
+  xy: 15, 338
+  size: 41, 31
+  orig: 41, 31
+  offset: 0, 0
+  index: -1
+dy6
+  rotate: true
+  xy: 386, 2
+  size: 98, 112
+  orig: 98, 112
+  offset: 0, 0
+  index: -1
+dy7
+  rotate: false
+  xy: 58, 335
+  size: 65, 34
+  orig: 65, 34
+  offset: 0, 0
+  index: -1

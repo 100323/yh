@@ -1,0 +1,97 @@
+
+zxc_fish_tbh.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: false
+  xy: 276, 35
+  size: 57, 77
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+tbhdqx_bian
+  rotate: true
+  xy: 318, 197
+  size: 55, 49
+  orig: 56, 50
+  offset: 1, 0
+  index: -1
+tbhdqx_mao
+  rotate: false
+  xy: 157, 32
+  size: 69, 80
+  orig: 70, 82
+  offset: 0, 1
+  index: -1
+tbhdqx_mei
+  rotate: true
+  xy: 321, 114
+  size: 40, 44
+  orig: 41, 44
+  offset: 0, 0
+  index: -1
+tbhdqx_shan
+  rotate: false
+  xy: 157, 114
+  size: 121, 138
+  orig: 121, 138
+  offset: 0, 0
+  index: -1
+tbhdqx_shen
+  rotate: false
+  xy: 2, 5
+  size: 153, 247
+  orig: 153, 247
+  offset: 0, 0
+  index: -1
+tbhdqx_yan
+  rotate: true
+  xy: 276, 2
+  size: 31, 50
+  orig: 32, 50
+  offset: 1, 0
+  index: -1
+tbhdqx_yiq1
+  rotate: true
+  xy: 318, 156
+  size: 39, 50
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+tbhdqx_yz
+  rotate: false
+  xy: 157, 19
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+yanjing2
+  rotate: true
+  xy: 328, 2
+  size: 31, 50
+  orig: 32, 50
+  offset: 1, 0
+  index: -1
+yanjing2_1
+  rotate: true
+  xy: 280, 117
+  size: 31, 39
+  orig: 31, 39
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tui
+  rotate: false
+  xy: 228, 10
+  size: 46, 102
+  orig: 46, 102
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tui1
+  rotate: false
+  xy: 280, 150
+  size: 36, 102
+  orig: 36, 102
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,34 @@
+
+hjls_hby_light.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjla_hby_guangnei
+  rotate: true
+  xy: 97, 2
+  size: 136, 65
+  orig: 136, 65
+  offset: 0, 0
+  index: -1
+hjla_hby_guangsu
+  rotate: true
+  xy: 97, 140
+  size: 74, 298
+  orig: 79, 317
+  offset: 2, 12
+  index: -1
+hjla_hby_guangwai
+  rotate: false
+  xy: 164, 17
+  size: 261, 121
+  orig: 261, 121
+  offset: 0, 0
+  index: -1
+hjla_hby_guangzhong
+  rotate: true
+  xy: 2, 17
+  size: 197, 93
+  orig: 197, 93
+  offset: 0, 0
+  index: -1

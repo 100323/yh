@@ -1,0 +1,20 @@
+
+dianwei6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei6_2_zha
+  rotate: false
+  xy: 48, 2
+  size: 371, 261
+  orig: 371, 261
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 219
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

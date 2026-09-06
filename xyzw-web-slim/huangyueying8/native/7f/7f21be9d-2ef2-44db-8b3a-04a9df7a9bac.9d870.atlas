@@ -1,0 +1,27 @@
+
+huangyueying8_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jsyueying_tx_attact5
+  rotate: false
+  xy: 131, 64
+  size: 78, 39
+  orig: 78, 39
+  offset: 0, 0
+  index: -1
+jsyueying_tx_attact6
+  rotate: false
+  xy: 2, 2
+  size: 127, 124
+  orig: 127, 124
+  offset: 0, 0
+  index: -1
+jsyueying_tx_attact7
+  rotate: false
+  xy: 131, 105
+  size: 152, 21
+  orig: 152, 21
+  offset: 0, 0
+  index: -1

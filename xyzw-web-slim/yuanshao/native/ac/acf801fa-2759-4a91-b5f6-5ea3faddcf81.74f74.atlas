@@ -1,0 +1,146 @@
+
+yuanshao.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 68, 16
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 140, 103
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 140, 156
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 179, 402
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: true
+  xy: 232, 8
+  size: 102, 80
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+yuanshao_body
+  rotate: true
+  xy: 61, 380
+  size: 130, 116
+  orig: 130, 116
+  offset: 0, 0
+  index: -1
+yuanshao_eye
+  rotate: false
+  xy: 68, 6
+  size: 5, 8
+  orig: 5, 8
+  offset: 0, 0
+  index: -1
+yuanshao_eyebrow
+  rotate: false
+  xy: 179, 385
+  size: 26, 15
+  orig: 26, 15
+  offset: 0, 0
+  index: -1
+yuanshao_eyewhite
+  rotate: false
+  xy: 216, 279
+  size: 24, 31
+  orig: 24, 31
+  offset: 0, 0
+  index: -1
+yuanshao_hair
+  rotate: false
+  xy: 61, 252
+  size: 70, 126
+  orig: 70, 126
+  offset: 0, 0
+  index: -1
+yuanshao_hair2
+  rotate: false
+  xy: 133, 260
+  size: 46, 118
+  orig: 46, 118
+  offset: 0, 0
+  index: -1
+yuanshao_handl
+  rotate: false
+  xy: 227, 112
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+yuanshao_handr
+  rotate: false
+  xy: 181, 272
+  size: 33, 38
+  orig: 33, 38
+  offset: 0, 0
+  index: -1
+yuanshao_handr2
+  rotate: false
+  xy: 184, 111
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+yuanshao_head
+  rotate: false
+  xy: 2, 100
+  size: 136, 142
+  orig: 136, 142
+  offset: 0, 0
+  index: -1
+yuanshao_legr
+  rotate: false
+  xy: 239, 369
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+yuanshao_mouth
+  rotate: false
+  xy: 2, 2
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+yuanshao_shoulderl
+  rotate: true
+  xy: 181, 312
+  size: 71, 56
+  orig: 71, 56
+  offset: 0, 0
+  index: -1
+yuanshao_tail
+  rotate: true
+  xy: 152, 3
+  size: 98, 78
+  orig: 98, 78
+  offset: 0, 0
+  index: -1
+yuanshao_weapon
+  rotate: false
+  xy: 2, 244
+  size: 57, 266
+  orig: 57, 266
+  offset: 0, 0
+  index: -1

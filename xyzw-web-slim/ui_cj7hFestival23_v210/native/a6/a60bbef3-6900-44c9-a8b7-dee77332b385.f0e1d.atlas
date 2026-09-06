@@ -1,0 +1,13 @@
+
+rxzq26_cj_box3.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xiangzi
+  rotate: false
+  xy: 2, 2
+  size: 68, 61
+  orig: 68, 62
+  offset: 0, 1
+  index: -1

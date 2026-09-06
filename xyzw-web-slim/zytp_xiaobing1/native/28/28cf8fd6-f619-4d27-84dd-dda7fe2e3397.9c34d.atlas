@@ -1,0 +1,20 @@
+
+zytp_xiaobing1_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: true
+  xy: 187, 114
+  size: 9, 7
+  orig: 16, 16
+  offset: 3, 5
+  index: -1
+zytp_boss4_attack5
+  rotate: true
+  xy: 2, 2
+  size: 121, 183
+  orig: 121, 183
+  offset: 0, 0
+  index: -1

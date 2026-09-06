@@ -1,0 +1,55 @@
+
+dzfj_mrt_cj_hz2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: true
+  xy: 467, 456
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+hz2_01
+  rotate: false
+  xy: 271, 205
+  size: 191, 141
+  orig: 191, 141
+  offset: 0, 0
+  index: -1
+hz2_02
+  rotate: false
+  xy: 271, 348
+  size: 194, 162
+  orig: 194, 163
+  offset: 0, 1
+  index: -1
+hz2_03
+  rotate: false
+  xy: 366, 82
+  size: 126, 121
+  orig: 126, 121
+  offset: 0, 0
+  index: -1
+hz2_04
+  rotate: true
+  xy: 196, 13
+  size: 190, 168
+  orig: 191, 168
+  offset: 0, 0
+  index: -1
+hz2_05
+  rotate: true
+  xy: 2, 2
+  size: 246, 192
+  orig: 247, 192
+  offset: 0, 0
+  index: -1
+hz2_07
+  rotate: false
+  xy: 2, 250
+  size: 267, 260
+  orig: 267, 268
+  offset: 0, 7
+  index: -1

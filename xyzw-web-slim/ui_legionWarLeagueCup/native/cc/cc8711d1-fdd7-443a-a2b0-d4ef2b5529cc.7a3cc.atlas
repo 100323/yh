@@ -1,0 +1,13 @@
+
+hjls_gc_smoke.png
+size: 32,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 15, 15
+  orig: 32, 32
+  offset: 8, 10
+  index: -1

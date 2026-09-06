@@ -1,0 +1,76 @@
+
+xghg_csm.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 15
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+xghg_csm_1
+  rotate: false
+  xy: 2, 75
+  size: 185, 183
+  orig: 185, 183
+  offset: 0, 0
+  index: -1
+xghg_csm_2
+  rotate: false
+  xy: 419, 359
+  size: 55, 52
+  orig: 55, 52
+  offset: 0, 0
+  index: -1
+xghg_csm_3
+  rotate: false
+  xy: 419, 413
+  size: 83, 83
+  orig: 83, 83
+  offset: 0, 0
+  index: -1
+xghg_csm_cs_1
+  rotate: false
+  xy: 2, 260
+  size: 238, 236
+  orig: 240, 238
+  offset: 1, 1
+  index: -1
+xghg_csm_cs_2
+  rotate: false
+  xy: 242, 319
+  size: 175, 177
+  orig: 181, 184
+  offset: 4, 1
+  index: -1
+xghg_csm_cs_3
+  rotate: true
+  xy: 189, 2
+  size: 147, 150
+  orig: 147, 150
+  offset: 0, 0
+  index: -1
+xghg_csm_cs_4
+  rotate: false
+  xy: 242, 151
+  size: 166, 166
+  orig: 166, 166
+  offset: 0, 0
+  index: -1
+xghg_csm_cs_5
+  rotate: false
+  xy: 341, 55
+  size: 92, 94
+  orig: 92, 94
+  offset: 0, 0
+  index: -1
+xghg_csm_cs_xing
+  rotate: true
+  xy: 476, 385
+  size: 26, 34
+  orig: 29, 37
+  offset: 2, 2
+  index: -1

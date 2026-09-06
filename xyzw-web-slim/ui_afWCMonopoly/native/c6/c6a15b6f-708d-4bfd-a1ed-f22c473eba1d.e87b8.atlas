@@ -1,0 +1,62 @@
+
+sjb2_shaizi.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjb2_shaizi1
+  rotate: true
+  xy: 241, 103
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi2
+  rotate: false
+  xy: 336, 102
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi3
+  rotate: false
+  xy: 241, 8
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi4
+  rotate: false
+  xy: 116, 7
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi5
+  rotate: false
+  xy: 2, 2
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi6
+  rotate: true
+  xy: 335, 8
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi7
+  rotate: false
+  xy: 116, 102
+  size: 123, 93
+  orig: 123, 93
+  offset: 0, 0
+  index: -1
+sjb2_shaizi8
+  rotate: true
+  xy: 2, 97
+  size: 98, 112
+  orig: 100, 112
+  offset: 1, 0
+  index: -1

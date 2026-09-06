@@ -1,0 +1,83 @@
+
+tgcf_jiesuan.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_jiesuan_guang
+  rotate: false
+  xy: 639, 6
+  size: 81, 81
+  orig: 81, 81
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_guang1
+  rotate: false
+  xy: 639, 89
+  size: 104, 166
+  orig: 104, 166
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_guang2
+  rotate: false
+  xy: 440, 257
+  size: 161, 252
+  orig: 161, 298
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_ruyi
+  rotate: false
+  xy: 759, 354
+  size: 162, 155
+  orig: 162, 156
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_yun1
+  rotate: false
+  xy: 603, 257
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_yun2
+  rotate: true
+  xy: 0, 217
+  size: 292, 177
+  orig: 292, 177
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_yun3
+  rotate: false
+  xy: 179, 230
+  size: 259, 279
+  orig: 259, 279
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_yun4
+  rotate: true
+  xy: 224, 14
+  size: 214, 234
+  orig: 214, 234
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_yun5
+  rotate: true
+  xy: 603, 305
+  size: 204, 154
+  orig: 204, 154
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_zhil
+  rotate: false
+  xy: 460, 44
+  size: 177, 211
+  orig: 177, 211
+  offset: 0, 0
+  index: -1
+tgcf_jiesuan_zhir
+  rotate: true
+  xy: 0, 0
+  size: 215, 222
+  orig: 215, 222
+  offset: 0, 0
+  index: -1

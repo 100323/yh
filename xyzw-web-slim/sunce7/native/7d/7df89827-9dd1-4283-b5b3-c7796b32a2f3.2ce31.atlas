@@ -1,0 +1,69 @@
+
+sunce7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 250, 460
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sunce7_tx_dbz10
+  rotate: true
+  xy: 250, 285
+  size: 62, 58
+  orig: 62, 58
+  offset: 0, 0
+  index: -1
+sunce7_tx_dbz11
+  rotate: true
+  xy: 303, 137
+  size: 146, 129
+  orig: 146, 129
+  offset: 0, 0
+  index: -1
+sunce7_tx_dbz2
+  rotate: false
+  xy: 217, 2
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+sunce7_tx_dbz3
+  rotate: false
+  xy: 217, 90
+  size: 84, 164
+  orig: 93, 177
+  offset: 5, 7
+  index: -1
+sunce7_tx_dbz5
+  rotate: false
+  xy: 305, 10
+  size: 138, 125
+  orig: 138, 126
+  offset: 0, 1
+  index: -1
+sunce7_tx_dbz7
+  rotate: true
+  xy: 2, 37
+  size: 217, 213
+  orig: 222, 218
+  offset: 3, 2
+  index: -1
+sunce7_tx_dbz8
+  rotate: true
+  xy: 305, 349
+  size: 157, 159
+  orig: 160, 162
+  offset: 1, 2
+  index: -1
+sunce7_tx_dbz9
+  rotate: false
+  xy: 2, 256
+  size: 246, 250
+  orig: 253, 254
+  offset: 3, 1
+  index: -1

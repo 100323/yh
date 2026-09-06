@@ -1,0 +1,97 @@
+
+10650.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: true
+  xy: 285, 2
+  size: 71, 96
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: true
+  xy: 2, 69
+  size: 181, 255
+  orig: 181, 263
+  offset: 0, 0
+  index: -1
+tui1
+  rotate: true
+  xy: 2, 19
+  size: 48, 143
+  orig: 48, 143
+  offset: 0, 0
+  index: -1
+tui2
+  rotate: true
+  xy: 2, 19
+  size: 48, 143
+  orig: 48, 143
+  offset: 0, 0
+  index: -1
+xu
+  rotate: true
+  xy: 368, 133
+  size: 117, 91
+  orig: 117, 91
+  offset: 0, 0
+  index: -1
+yanhei
+  rotate: false
+  xy: 2, 4
+  size: 10, 13
+  orig: 12, 15
+  offset: 1, 1
+  index: -1
+yanjing
+  rotate: false
+  xy: 328, 76
+  size: 50, 54
+  orig: 52, 57
+  offset: 1, 1
+  index: -1
+yanjing2
+  rotate: true
+  xy: 147, 4
+  size: 63, 61
+  orig: 63, 61
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: false
+  xy: 380, 82
+  size: 39, 49
+  orig: 39, 49
+  offset: 0, 0
+  index: -1
+yuqi1
+  rotate: true
+  xy: 383, 17
+  size: 63, 57
+  orig: 65, 59
+  offset: 1, 1
+  index: -1
+yuqi2
+  rotate: false
+  xy: 210, 15
+  size: 73, 52
+  orig: 73, 52
+  offset: 0, 0
+  index: -1
+yuwei
+  rotate: true
+  xy: 259, 75
+  size: 55, 67
+  orig: 57, 69
+  offset: 1, 1
+  index: -1
+zui
+  rotate: true
+  xy: 259, 132
+  size: 118, 107
+  orig: 118, 107
+  offset: 0, 0
+  index: -1

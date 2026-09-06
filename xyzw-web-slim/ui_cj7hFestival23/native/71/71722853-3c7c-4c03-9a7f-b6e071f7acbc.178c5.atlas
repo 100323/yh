@@ -1,0 +1,125 @@
+
+qnwd26_cj_beijing.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beijing1
+  rotate: true
+  xy: 216, 211
+  size: 26, 76
+  orig: 26, 80
+  offset: 0, 0
+  index: -1
+beijing10
+  rotate: true
+  xy: 301, 346
+  size: 72, 180
+  orig: 72, 180
+  offset: 0, 0
+  index: -1
+beijing11
+  rotate: true
+  xy: 301, 245
+  size: 99, 144
+  orig: 99, 144
+  offset: 0, 0
+  index: -1
+beijing12
+  rotate: false
+  xy: 216, 239
+  size: 83, 179
+  orig: 83, 179
+  offset: 0, 0
+  index: -1
+beijing13
+  rotate: true
+  xy: 381, 101
+  size: 78, 71
+  orig: 78, 74
+  offset: 0, 0
+  index: -1
+beijing14
+  rotate: true
+  xy: 95, 420
+  size: 86, 410
+  orig: 86, 410
+  offset: 0, 0
+  index: -1
+beijing15
+  rotate: false
+  xy: 2, 97
+  size: 91, 409
+  orig: 91, 409
+  offset: 0, 0
+  index: -1
+beijing16
+  rotate: true
+  xy: 95, 110
+  size: 98, 142
+  orig: 98, 142
+  offset: 0, 0
+  index: -1
+beijing17
+  rotate: true
+  xy: 301, 181
+  size: 62, 143
+  orig: 62, 143
+  offset: 0, 0
+  index: -1
+beijing2
+  rotate: false
+  xy: 483, 350
+  size: 21, 68
+  orig: 22, 69
+  offset: 1, 0
+  index: -1
+beijing3
+  rotate: false
+  xy: 447, 250
+  size: 34, 94
+  orig: 34, 94
+  offset: 0, 0
+  index: -1
+beijing4
+  rotate: false
+  xy: 239, 115
+  size: 30, 94
+  orig: 30, 94
+  offset: 0, 0
+  index: -1
+beijing5
+  rotate: false
+  xy: 297, 66
+  size: 82, 113
+  orig: 82, 113
+  offset: 0, 0
+  index: -1
+beijing6
+  rotate: false
+  xy: 95, 210
+  size: 119, 208
+  orig: 119, 208
+  offset: 0, 0
+  index: -1
+beijing7
+  rotate: true
+  xy: 147, 25
+  size: 83, 148
+  orig: 83, 148
+  offset: 0, 0
+  index: -1
+beijing8
+  rotate: false
+  xy: 297, 14
+  size: 78, 50
+  orig: 78, 50
+  offset: 0, 0
+  index: -1
+beijing9
+  rotate: true
+  xy: 2, 2
+  size: 93, 143
+  orig: 93, 146
+  offset: 0, 3
+  index: -1

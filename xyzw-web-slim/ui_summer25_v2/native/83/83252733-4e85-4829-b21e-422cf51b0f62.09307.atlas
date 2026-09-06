@@ -1,0 +1,62 @@
+
+cjhd26_bjt_tp_yanhua.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_boss_xn_jn_xing
+  rotate: true
+  xy: 329, 10
+  size: 248, 211
+  orig: 248, 211
+  offset: 0, 0
+  index: -1
+2024znq_boss_xn_jn_yh1
+  rotate: false
+  xy: 185, 57
+  size: 106, 122
+  orig: 106, 122
+  offset: 0, 0
+  index: -1
+2024znq_boss_xn_jn_yh2
+  rotate: false
+  xy: 561, 274
+  size: 210, 234
+  orig: 210, 234
+  offset: 0, 0
+  index: -1
+2024znq_boss_xn_jn_yh3
+  rotate: false
+  xy: 542, 23
+  size: 212, 235
+  orig: 212, 235
+  offset: 0, 0
+  index: -1
+2024znq_boss_xn_jn_yh4
+  rotate: false
+  xy: 329, 260
+  size: 230, 248
+  orig: 230, 248
+  offset: 0, 0
+  index: -1
+2024znq_boss_xn_jn_yh5
+  rotate: false
+  xy: 2, 181
+  size: 325, 327
+  orig: 325, 327
+  offset: 0, 0
+  index: -1
+2024znq_boss_xn_jn_yh6
+  rotate: false
+  xy: 2, 2
+  size: 181, 177
+  orig: 181, 177
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 185, 14
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

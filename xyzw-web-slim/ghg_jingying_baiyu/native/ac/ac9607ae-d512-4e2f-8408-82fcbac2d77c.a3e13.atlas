@@ -1,0 +1,223 @@
+
+ghg_jingying_baiyu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baiyu
+  rotate: true
+  xy: 365, 209
+  size: 48, 59
+  orig: 51, 60
+  offset: 3, 1
+  index: -1
+xghg_bytz_by
+  rotate: false
+  xy: 2, 68
+  size: 89, 104
+  orig: 102, 113
+  offset: 11, 8
+  index: -1
+xghg_bytz_byx
+  rotate: false
+  xy: 240, 184
+  size: 123, 135
+  orig: 123, 135
+  offset: 0, 0
+  index: -1
+xghg_bytz_byx1
+  rotate: true
+  xy: 448, 461
+  size: 46, 54
+  orig: 46, 54
+  offset: 0, 0
+  index: -1
+xghg_bytz_byx2
+  rotate: false
+  xy: 283, 59
+  size: 35, 41
+  orig: 39, 53
+  offset: 3, 2
+  index: -1
+xghg_bytz_dian
+  rotate: true
+  xy: 2, 174
+  size: 144, 118
+  orig: 144, 118
+  offset: 0, 0
+  index: -1
+xghg_bytz_er1
+  rotate: true
+  xy: 323, 124
+  size: 58, 70
+  orig: 58, 70
+  offset: 0, 0
+  index: -1
+xghg_bytz_er2
+  rotate: true
+  xy: 398, 331
+  size: 48, 50
+  orig: 48, 50
+  offset: 0, 0
+  index: -1
+xghg_bytz_guan1
+  rotate: false
+  xy: 2, 320
+  size: 236, 187
+  orig: 236, 187
+  offset: 0, 0
+  index: -1
+xghg_bytz_guan2
+  rotate: true
+  xy: 398, 448
+  size: 59, 48
+  orig: 59, 48
+  offset: 0, 0
+  index: -1
+xghg_bytz_jn_guan
+  rotate: true
+  xy: 122, 70
+  size: 126, 113
+  orig: 126, 113
+  offset: 0, 0
+  index: -1
+xghg_bytz_jn_guang1
+  rotate: true
+  xy: 2, 2
+  size: 64, 81
+  orig: 64, 81
+  offset: 0, 0
+  index: -1
+xghg_bytz_jn_guang2
+  rotate: true
+  xy: 365, 259
+  size: 60, 69
+  orig: 60, 69
+  offset: 0, 0
+  index: -1
+xghg_bytz_meim1
+  rotate: true
+  xy: 108, 44
+  size: 26, 12
+  orig: 26, 13
+  offset: 0, 0
+  index: -1
+xghg_bytz_meim2
+  rotate: true
+  xy: 111, 76
+  size: 35, 9
+  orig: 35, 9
+  offset: 0, 0
+  index: -1
+xghg_bytz_pg_g1
+  rotate: false
+  xy: 240, 321
+  size: 156, 186
+  orig: 156, 186
+  offset: 0, 0
+  index: -1
+xghg_bytz_pg_g2
+  rotate: true
+  xy: 122, 26
+  size: 42, 48
+  orig: 42, 48
+  offset: 0, 0
+  index: -1
+xghg_bytz_pg_g3
+  rotate: false
+  xy: 323, 76
+  size: 49, 46
+  orig: 49, 46
+  offset: 0, 0
+  index: -1
+xghg_bytz_shen
+  rotate: false
+  xy: 237, 54
+  size: 44, 46
+  orig: 44, 46
+  offset: 0, 0
+  index: -1
+xghg_bytz_shou
+  rotate: true
+  xy: 93, 113
+  size: 59, 25
+  orig: 59, 25
+  offset: 0, 0
+  index: -1
+xghg_bytz_tou
+  rotate: false
+  xy: 237, 102
+  size: 84, 80
+  orig: 84, 81
+  offset: 0, 1
+  index: -1
+xghg_bytz_tui1
+  rotate: false
+  xy: 172, 34
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+xghg_bytz_tui2
+  rotate: false
+  xy: 436, 413
+  size: 60, 33
+  orig: 60, 33
+  offset: 0, 0
+  index: -1
+xghg_bytz_wei
+  rotate: false
+  xy: 436, 382
+  size: 42, 29
+  orig: 42, 29
+  offset: 0, 0
+  index: -1
+xghg_bytz_wj
+  rotate: false
+  xy: 122, 198
+  size: 115, 120
+  orig: 115, 120
+  offset: 0, 0
+  index: -1
+xghg_bytz_yz1
+  rotate: false
+  xy: 365, 196
+  size: 31, 11
+  orig: 31, 12
+  offset: 0, 1
+  index: -1
+xghg_bytz_yz2
+  rotate: true
+  xy: 85, 19
+  size: 34, 11
+  orig: 34, 11
+  offset: 0, 0
+  index: -1
+xghg_bytz_zui
+  rotate: true
+  xy: 398, 381
+  size: 65, 36
+  orig: 65, 36
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 93, 55
+  size: 15, 13
+  orig: 16, 16
+  offset: 0, 1
+  index: -1
+ymj_effect_star1
+  rotate: false
+  xy: 93, 90
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 93, 72
+  size: 16, 15
+  orig: 16, 16
+  offset: 0, 1
+  index: -1

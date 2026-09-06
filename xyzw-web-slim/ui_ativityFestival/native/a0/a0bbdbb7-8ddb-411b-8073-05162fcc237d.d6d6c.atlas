@@ -1,0 +1,27 @@
+
+sqhd_dkxb_pickaxe.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd_dkxb_gaotou
+  rotate: false
+  xy: 114, 148
+  size: 84, 90
+  orig: 84, 90
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_gaotou2
+  rotate: false
+  xy: 2, 121
+  size: 110, 117
+  orig: 110, 117
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_gaotou3
+  rotate: false
+  xy: 2, 2
+  size: 110, 117
+  orig: 110, 117
+  offset: 0, 0
+  index: -1

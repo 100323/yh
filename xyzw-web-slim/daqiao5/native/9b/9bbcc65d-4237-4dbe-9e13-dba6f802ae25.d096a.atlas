@@ -1,0 +1,34 @@
+
+daqiao5_skill_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao5_txsk_zidan1
+  rotate: true
+  xy: 333, 2
+  size: 128, 120
+  orig: 129, 120
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zidan2
+  rotate: false
+  xy: 2, 282
+  size: 440, 101
+  orig: 451, 106
+  offset: 6, 3
+  index: -1
+daqiao5_txsk_zidan4
+  rotate: false
+  xy: 333, 132
+  size: 130, 148
+  orig: 143, 154
+  offset: 13, 0
+  index: -1
+daqiao5_txsk_zidan7
+  rotate: false
+  xy: 2, 50
+  size: 329, 230
+  orig: 330, 230
+  offset: 0, 0
+  index: -1

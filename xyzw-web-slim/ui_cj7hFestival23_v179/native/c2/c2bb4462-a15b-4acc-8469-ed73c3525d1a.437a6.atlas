@@ -1,0 +1,13 @@
+
+shhj25_box2.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_lianou
+  rotate: false
+  xy: 2, 2
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1

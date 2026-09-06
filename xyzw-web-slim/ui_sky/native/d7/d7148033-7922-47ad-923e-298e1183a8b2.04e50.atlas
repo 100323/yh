@@ -1,0 +1,90 @@
+
+tgcf_ky_star_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_ky_show_dian1
+  rotate: true
+  xy: 137, 141
+  size: 54, 69
+  orig: 54, 69
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_dian2
+  rotate: false
+  xy: 137, 197
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_dian3
+  rotate: true
+  xy: 372, 257
+  size: 40, 70
+  orig: 40, 70
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_dian4
+  rotate: false
+  xy: 194, 204
+  size: 59, 50
+  orig: 59, 50
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_dian5
+  rotate: false
+  xy: 256, 0
+  size: 63, 54
+  orig: 63, 54
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_dian6
+  rotate: true
+  xy: 444, 261
+  size: 47, 68
+  orig: 47, 68
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_guang1
+  rotate: false
+  xy: 256, 56
+  size: 194, 198
+  orig: 194, 198
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_tuowei1
+  rotate: false
+  xy: 0, 102
+  size: 135, 373
+  orig: 135, 373
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_tuowei2
+  rotate: true
+  xy: 0, 13
+  size: 87, 254
+  orig: 87, 254
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_xian1
+  rotate: true
+  xy: 442, 310
+  size: 165, 45
+  orig: 165, 45
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_xian2
+  rotate: true
+  xy: 372, 299
+  size: 176, 68
+  orig: 176, 68
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_xing
+  rotate: true
+  xy: 137, 256
+  size: 219, 233
+  orig: 231, 246
+  offset: 6, 6
+  index: -1

@@ -1,0 +1,20 @@
+
+ssxt_light.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wyfm_zbsj_gs
+  rotate: false
+  xy: 255, 45
+  size: 74, 209
+  orig: 81, 225
+  offset: 3, 15
+  index: -1
+wyfm_zbsj_qiu
+  rotate: false
+  xy: 2, 2
+  size: 251, 252
+  orig: 251, 252
+  offset: 0, 0
+  index: -1

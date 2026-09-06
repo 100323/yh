@@ -1,0 +1,118 @@
+
+effect_tip_signin.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_box_insidelight
+  rotate: false
+  xy: 2, 190
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+frame_liuguang_00
+  rotate: true
+  xy: 68, 128
+  size: 50, 56
+  orig: 50, 64
+  offset: 0, 4
+  index: -1
+frame_liuguang_01
+  rotate: true
+  xy: 126, 126
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_02
+  rotate: true
+  xy: 2, 82
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_03
+  rotate: true
+  xy: 36, 184
+  size: 38, 64
+  orig: 50, 64
+  offset: 6, 0
+  index: -1
+frame_liuguang_04
+  rotate: true
+  xy: 68, 74
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_05
+  rotate: false
+  xy: 134, 60
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_06
+  rotate: true
+  xy: 192, 106
+  size: 50, 58
+  orig: 50, 64
+  offset: 0, 3
+  index: -1
+frame_liuguang_07
+  rotate: false
+  xy: 102, 180
+  size: 50, 42
+  orig: 50, 64
+  offset: 0, 11
+  index: -1
+frame_liuguang_08
+  rotate: true
+  xy: 186, 54
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_09
+  rotate: true
+  xy: 2, 30
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_10
+  rotate: false
+  xy: 206, 158
+  size: 48, 64
+  orig: 50, 64
+  offset: 1, 0
+  index: -1
+frame_liuguang_11
+  rotate: true
+  xy: 2, 134
+  size: 48, 64
+  orig: 50, 64
+  offset: 1, 0
+  index: -1
+frame_liuguang_12
+  rotate: true
+  xy: 68, 22
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_13
+  rotate: true
+  xy: 134, 2
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
+frame_liuguang_14
+  rotate: false
+  xy: 154, 178
+  size: 50, 44
+  orig: 50, 64
+  offset: 0, 10
+  index: -1

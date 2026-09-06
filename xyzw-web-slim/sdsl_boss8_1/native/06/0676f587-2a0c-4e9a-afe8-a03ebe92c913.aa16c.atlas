@@ -1,0 +1,209 @@
+
+sdsl_boss8_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 483, 343
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sdsl_boss8_beard
+  rotate: false
+  xy: 493, 449
+  size: 17, 41
+  orig: 17, 41
+  offset: 0, 0
+  index: -1
+sdsl_boss8_chest
+  rotate: false
+  xy: 128, 131
+  size: 122, 100
+  orig: 122, 100
+  offset: 0, 0
+  index: -1
+sdsl_boss8_eybrow2
+  rotate: true
+  xy: 493, 417
+  size: 30, 15
+  orig: 32, 16
+  offset: 2, 0
+  index: -1
+sdsl_boss8_eye
+  rotate: true
+  xy: 483, 390
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+sdsl_boss8_eyebrow1
+  rotate: true
+  xy: 491, 368
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+sdsl_boss8_eyewhite1
+  rotate: true
+  xy: 493, 391
+  size: 24, 14
+  orig: 26, 14
+  offset: 2, 0
+  index: -1
+sdsl_boss8_eyewhite2
+  rotate: true
+  xy: 483, 327
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f1
+  rotate: true
+  xy: 352, 280
+  size: 115, 129
+  orig: 115, 129
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f2
+  rotate: true
+  xy: 180, 271
+  size: 117, 128
+  orig: 118, 128
+  offset: 1, 0
+  index: -1
+sdsl_boss8_f3
+  rotate: false
+  xy: 2, 2
+  size: 113, 124
+  orig: 113, 124
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f4
+  rotate: true
+  xy: 2, 244
+  size: 114, 126
+  orig: 114, 126
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f5
+  rotate: true
+  xy: 2, 128
+  size: 114, 124
+  orig: 114, 124
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f6
+  rotate: false
+  xy: 117, 2
+  size: 111, 124
+  orig: 111, 124
+  offset: 0, 0
+  index: -1
+sdsl_boss8_facefire
+  rotate: false
+  xy: 303, 165
+  size: 95, 104
+  orig: 95, 104
+  offset: 0, 0
+  index: -1
+sdsl_boss8_hand1
+  rotate: true
+  xy: 130, 311
+  size: 47, 48
+  orig: 47, 48
+  offset: 0, 0
+  index: -1
+sdsl_boss8_hand2
+  rotate: true
+  xy: 327, 26
+  size: 55, 41
+  orig: 55, 41
+  offset: 0, 0
+  index: -1
+sdsl_boss8_head
+  rotate: true
+  xy: 400, 108
+  size: 85, 92
+  orig: 85, 92
+  offset: 0, 0
+  index: -1
+sdsl_boss8_hs1
+  rotate: false
+  xy: 180, 390
+  size: 170, 100
+  orig: 170, 100
+  offset: 0, 0
+  index: -1
+sdsl_boss8_hs2
+  rotate: false
+  xy: 2, 360
+  size: 176, 130
+  orig: 176, 130
+  offset: 0, 0
+  index: -1
+sdsl_boss8_mask
+  rotate: false
+  xy: 230, 20
+  size: 95, 109
+  orig: 95, 109
+  offset: 0, 0
+  index: -1
+sdsl_boss8_mouth1
+  rotate: true
+  xy: 483, 284
+  size: 41, 13
+  orig: 41, 13
+  offset: 0, 0
+  index: -1
+sdsl_boss8_mouth2
+  rotate: true
+  xy: 310, 341
+  size: 47, 35
+  orig: 47, 35
+  offset: 0, 0
+  index: -1
+sdsl_boss8_shoulderl1
+  rotate: true
+  xy: 327, 83
+  size: 80, 68
+  orig: 80, 68
+  offset: 0, 0
+  index: -1
+sdsl_boss8_shoulderl2
+  rotate: false
+  xy: 252, 160
+  size: 49, 109
+  orig: 50, 109
+  offset: 1, 0
+  index: -1
+sdsl_boss8_shoulderl3
+  rotate: false
+  xy: 130, 233
+  size: 43, 76
+  orig: 43, 76
+  offset: 0, 0
+  index: -1
+sdsl_boss8_shoulderr1
+  rotate: false
+  xy: 400, 195
+  size: 96, 83
+  orig: 96, 90
+  offset: 0, 0
+  index: -1
+sdsl_boss8_shoulderr2
+  rotate: true
+  xy: 352, 397
+  size: 93, 139
+  orig: 100, 140
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 498, 315
+  size: 11, 10
+  orig: 13, 13
+  offset: 1, 1
+  index: -1

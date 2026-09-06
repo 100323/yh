@@ -1,0 +1,55 @@
+
+hjls25_angegaizi.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls25_gaizi_gq
+  rotate: false
+  xy: 198, 64
+  size: 80, 88
+  orig: 80, 88
+  offset: 0, 0
+  index: -1
+hjls25_gaizi_gs1
+  rotate: true
+  xy: 2, 2
+  size: 150, 194
+  orig: 150, 194
+  offset: 0, 0
+  index: -1
+hjls25_gaizi_tjs
+  rotate: false
+  xy: 636, 43
+  size: 310, 214
+  orig: 310, 214
+  offset: 0, 0
+  index: -1
+hjls25_gaizi_tjx
+  rotate: false
+  xy: 636, 259
+  size: 310, 215
+  orig: 310, 215
+  offset: 0, 0
+  index: -1
+hjls25_gaizi_yus
+  rotate: false
+  xy: 2, 154
+  size: 315, 320
+  orig: 315, 320
+  offset: 0, 0
+  index: -1
+hjls25_gaizi_yux
+  rotate: false
+  xy: 319, 154
+  size: 315, 320
+  orig: 315, 320
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 948, 460
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1

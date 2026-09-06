@@ -1,0 +1,69 @@
+
+zytp_boss3_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 186, 101
+  size: 21, 21
+  orig: 23, 23
+  offset: 1, 1
+  index: -1
+sdsl_boss1_skill_can1
+  rotate: false
+  xy: 154, 82
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_can2
+  rotate: true
+  xy: 154, 50
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_effect1
+  rotate: false
+  xy: 2, 48
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_effect2
+  rotate: false
+  xy: 78, 48
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec1
+  rotate: false
+  xy: 54, 10
+  size: 49, 36
+  orig: 49, 36
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec2
+  rotate: false
+  xy: 147, 6
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec3
+  rotate: true
+  xy: 105, 2
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec4
+  rotate: true
+  xy: 2, 7
+  size: 39, 50
+  orig: 39, 50
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+tgcf_ymj_zc_3.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_ymj_biaoti
+  rotate: true
+  xy: 876, 199
+  size: 198, 55
+  orig: 198, 56
+  offset: 0, 1
+  index: -1
+tgcf_ymj_light
+  rotate: false
+  xy: 722, 173
+  size: 152, 224
+  orig: 152, 224
+  offset: 0, 0
+  index: -1
+tgcf_ymj_light2
+  rotate: false
+  xy: 417, 102
+  size: 303, 295
+  orig: 310, 302
+  offset: 4, 3
+  index: -1
+tgcf_ymj_light3_wai
+  rotate: false
+  xy: 0, 17
+  size: 415, 380
+  orig: 415, 380
+  offset: 0, 0
+  index: -1
+tgcf_ymj_light3_xian
+  rotate: true
+  xy: 876, 177
+  size: 20, 45
+  orig: 20, 45
+  offset: 0, 0
+  index: -1
+tgcf_ymj_psyun1
+  rotate: false
+  xy: 950, 84
+  size: 38, 102
+  orig: 38, 102
+  offset: 0, 0
+  index: -1
+tgcf_ymj_psyun2
+  rotate: true
+  xy: 417, 0
+  size: 100, 175
+  orig: 100, 175
+  offset: 0, 0
+  index: -1
+tgcf_ymj_psyun3
+  rotate: false
+  xy: 933, 216
+  size: 91, 181
+  orig: 91, 181
+  offset: 0, 0
+  index: -1
+tgcf_ymj_xiangyun
+  rotate: true
+  xy: 722, 49
+  size: 122, 226
+  orig: 122, 226
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 933, 188
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

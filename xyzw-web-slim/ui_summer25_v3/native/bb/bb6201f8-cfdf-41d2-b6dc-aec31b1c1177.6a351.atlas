@@ -1,0 +1,118 @@
+
+sqhd25w3_zhenchaxiaoyu.png
+size: 446,449
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhenchaxiaoyu_hudiejie
+  rotate: true
+  xy: 380, 397
+  size: 50, 55
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_hulu1
+  rotate: true
+  xy: 274, 361
+  size: 86, 76
+  orig: 86, 76
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_hulu2
+  rotate: true
+  xy: 204, 4
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_maozi
+  rotate: true
+  xy: 326, 301
+  size: 58, 52
+  orig: 58, 52
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_meimao2
+  rotate: false
+  xy: 417, 314
+  size: 27, 35
+  orig: 27, 35
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_paopao
+  rotate: true
+  xy: 391, 351
+  size: 44, 49
+  orig: 44, 49
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_shenti1
+  rotate: true
+  xy: 2, 20
+  size: 266, 200
+  orig: 266, 200
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_shenti2
+  rotate: true
+  xy: 204, 100
+  size: 186, 238
+  orig: 186, 246
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_shou_r1
+  rotate: false
+  xy: 380, 314
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_shou_r2
+  rotate: false
+  xy: 352, 361
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_wangyuanjing1
+  rotate: true
+  xy: 296, 4
+  size: 94, 42
+  orig: 94, 42
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_wangyuanjing2
+  rotate: true
+  xy: 340, 15
+  size: 83, 98
+  orig: 83, 98
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_yanpi
+  rotate: false
+  xy: 352, 402
+  size: 26, 45
+  orig: 27, 45
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_yanqiu2
+  rotate: false
+  xy: 2, 2
+  size: 9, 16
+  orig: 9, 16
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_yezi
+  rotate: false
+  xy: 2, 288
+  size: 270, 159
+  orig: 270, 159
+  offset: 0, 0
+  index: -1
+zhenchaxiaoyu_zuiba
+  rotate: false
+  xy: 274, 300
+  size: 50, 59
+  orig: 50, 59
+  offset: 0, 0
+  index: -1

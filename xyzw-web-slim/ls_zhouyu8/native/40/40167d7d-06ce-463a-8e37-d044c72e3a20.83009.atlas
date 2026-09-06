@@ -1,0 +1,69 @@
+
+ls_zhouyu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ls_guangyun1
+  rotate: false
+  xy: 229, 442
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ls_guangyun2
+  rotate: false
+  xy: 2, 256
+  size: 191, 191
+  orig: 191, 191
+  offset: 0, 0
+  index: -1
+ls_guangyun3
+  rotate: false
+  xy: 195, 218
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+ls_yuci1
+  rotate: false
+  xy: 2, 453
+  size: 101, 21
+  orig: 101, 21
+  offset: 0, 0
+  index: -1
+ls_yuci2
+  rotate: false
+  xy: 105, 449
+  size: 122, 25
+  orig: 122, 25
+  offset: 0, 0
+  index: -1
+ssls_dhxingx
+  rotate: false
+  xy: 302, 432
+  size: 78, 42
+  orig: 78, 42
+  offset: 0, 0
+  index: -1
+ssls_gy
+  rotate: false
+  xy: 263, 437
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+ssls_tt
+  rotate: false
+  xy: 2, 2
+  size: 270, 214
+  orig: 270, 214
+  offset: 0, 0
+  index: -1
+ssls_xing1
+  rotate: false
+  xy: 382, 422
+  size: 53, 52
+  orig: 53, 52
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+wyhd25_jypp.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+text
+  rotate: false
+  xy: 2, 2
+  size: 184, 182
+  orig: 186, 182
+  offset: 0, 0
+  index: -1

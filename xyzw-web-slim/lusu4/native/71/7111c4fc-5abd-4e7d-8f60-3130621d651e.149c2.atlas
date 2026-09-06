@@ -1,0 +1,27 @@
+
+lusu4_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu3_pg_ljf01
+  rotate: false
+  xy: 266, 74
+  size: 193, 121
+  orig: 193, 121
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljf02
+  rotate: true
+  xy: 2, 2
+  size: 193, 135
+  orig: 193, 135
+  offset: 0, 0
+  index: -1
+lusu3_pg_ljf03
+  rotate: true
+  xy: 139, 2
+  size: 193, 125
+  orig: 193, 125
+  offset: 0, 0
+  index: -1

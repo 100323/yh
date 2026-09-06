@@ -1,0 +1,55 @@
+
+rxzq26_cj_fashe.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fashe_guang1
+  rotate: true
+  xy: 389, 2
+  size: 91, 51
+  orig: 91, 51
+  offset: 0, 0
+  index: -1
+fashe_guang2
+  rotate: true
+  xy: 113, 19
+  size: 74, 86
+  orig: 74, 86
+  offset: 0, 0
+  index: -1
+fashe_guang3
+  rotate: true
+  xy: 442, 19
+  size: 10, 30
+  orig: 10, 30
+  offset: 0, 0
+  index: -1
+fashe_guang4
+  rotate: true
+  xy: 2, 16
+  size: 77, 109
+  orig: 77, 109
+  offset: 0, 0
+  index: -1
+fashe_guang5
+  rotate: true
+  xy: 201, 23
+  size: 70, 186
+  orig: 70, 186
+  offset: 0, 0
+  index: -1
+fashe_guang6
+  rotate: false
+  xy: 474, 9
+  size: 7, 20
+  orig: 7, 20
+  offset: 0, 0
+  index: -1
+fashe_zuqiu
+  rotate: false
+  xy: 442, 31
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1

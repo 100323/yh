@@ -1,0 +1,139 @@
+
+sdsl_xiaobing4.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 350, 14
+  size: 21, 26
+  orig: 21, 26
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h13
+  rotate: false
+  xy: 167, 3
+  size: 51, 19
+  orig: 51, 19
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h15
+  rotate: true
+  xy: 331, 42
+  size: 19, 33
+  orig: 19, 33
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h16
+  rotate: true
+  xy: 72, 3
+  size: 10, 14
+  orig: 10, 14
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h2
+  rotate: true
+  xy: 80, 15
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h3
+  rotate: true
+  xy: 159, 19
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h4
+  rotate: true
+  xy: 2, 4
+  size: 9, 49
+  orig: 9, 49
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h5
+  rotate: false
+  xy: 319, 5
+  size: 29, 30
+  orig: 29, 30
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w1
+  rotate: false
+  xy: 159, 24
+  size: 58, 37
+  orig: 58, 37
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w10
+  rotate: false
+  xy: 373, 11
+  size: 48, 50
+  orig: 48, 50
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w12
+  rotate: true
+  xy: 220, 2
+  size: 20, 48
+  orig: 20, 48
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w13
+  rotate: true
+  xy: 80, 19
+  size: 42, 77
+  orig: 42, 77
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w14
+  rotate: true
+  xy: 270, 10
+  size: 25, 47
+  orig: 25, 47
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w15
+  rotate: false
+  xy: 266, 37
+  size: 63, 24
+  orig: 63, 24
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w19
+  rotate: true
+  xy: 219, 24
+  size: 37, 45
+  orig: 37, 45
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w6
+  rotate: true
+  xy: 2, 15
+  size: 46, 76
+  orig: 46, 76
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w7
+  rotate: true
+  xy: 53, 2
+  size: 11, 17
+  orig: 11, 17
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w8
+  rotate: true
+  xy: 146, 3
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing4_w9
+  rotate: true
+  xy: 88, 4
+  size: 13, 56
+  orig: 13, 56
+  offset: 0, 0
+  index: -1

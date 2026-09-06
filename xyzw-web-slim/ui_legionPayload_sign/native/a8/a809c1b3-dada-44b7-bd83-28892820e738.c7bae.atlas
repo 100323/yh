@@ -1,0 +1,27 @@
+
+tgcf_pty_cj_yun2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yunxia_01
+  rotate: false
+  xy: 2, 2
+  size: 603, 166
+  orig: 603, 166
+  offset: 0, 0
+  index: -1
+yunxia_02
+  rotate: false
+  xy: 2, 170
+  size: 603, 200
+  orig: 603, 200
+  offset: 0, 0
+  index: -1
+yunxia_03
+  rotate: false
+  xy: 2, 372
+  size: 603, 311
+  orig: 603, 311
+  offset: 0, 0
+  index: -1

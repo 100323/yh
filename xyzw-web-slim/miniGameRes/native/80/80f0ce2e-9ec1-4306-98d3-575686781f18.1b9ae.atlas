@@ -1,0 +1,83 @@
+
+sf.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Helmet-1
+  rotate: false
+  xy: 2, 222
+  size: 259, 150
+  orig: 259, 150
+  offset: 0, 0
+  index: -1
+Helmet-2
+  rotate: false
+  xy: 263, 286
+  size: 236, 86
+  orig: 236, 86
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 140, 89
+  size: 121, 131
+  orig: 121, 131
+  offset: 0, 0
+  index: -1
+hand-1
+  rotate: false
+  xy: 2, 14
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+hand-2
+  rotate: true
+  xy: 374, 101
+  size: 79, 69
+  orig: 79, 69
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 263, 182
+  size: 183, 102
+  orig: 183, 104
+  offset: 0, 0
+  index: -1
+leg-1
+  rotate: false
+  xy: 140, 2
+  size: 92, 85
+  orig: 92, 85
+  offset: 0, 0
+  index: -1
+leg2
+  rotate: true
+  xy: 263, 84
+  size: 96, 109
+  orig: 109, 109
+  offset: 0, 0
+  index: -1
+shoulder-1
+  rotate: true
+  xy: 448, 199
+  size: 85, 62
+  orig: 85, 83
+  offset: 0, 21
+  index: -1
+shoulder-2
+  rotate: false
+  xy: 448, 122
+  size: 50, 75
+  orig: 87, 75
+  offset: 37, 0
+  index: -1
+tail
+  rotate: true
+  xy: 2, 88
+  size: 132, 136
+  orig: 132, 136
+  offset: 0, 0
+  index: -1

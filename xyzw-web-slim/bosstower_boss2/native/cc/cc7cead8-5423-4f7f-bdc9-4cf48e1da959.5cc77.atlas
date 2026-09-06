@@ -1,0 +1,167 @@
+
+bosstower_boss2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bosstower_boss2_chui1
+  rotate: false
+  xy: 104, 131
+  size: 47, 101
+  orig: 47, 101
+  offset: 0, 0
+  index: -1
+bosstower_boss2_chuig1
+  rotate: false
+  xy: 310, 158
+  size: 79, 127
+  orig: 79, 127
+  offset: 0, 0
+  index: -1
+bosstower_boss2_chuig2
+  rotate: false
+  xy: 153, 31
+  size: 75, 129
+  orig: 75, 129
+  offset: 0, 0
+  index: -1
+bosstower_boss2_gu
+  rotate: false
+  xy: 2, 294
+  size: 311, 215
+  orig: 311, 215
+  offset: 0, 0
+  index: -1
+bosstower_boss2_hua
+  rotate: false
+  xy: 315, 287
+  size: 104, 106
+  orig: 104, 106
+  offset: 0, 0
+  index: -1
+bosstower_boss2_huan1
+  rotate: false
+  xy: 230, 67
+  size: 24, 47
+  orig: 24, 47
+  offset: 0, 0
+  index: -1
+bosstower_boss2_huan2
+  rotate: false
+  xy: 304, 69
+  size: 24, 47
+  orig: 24, 47
+  offset: 0, 0
+  index: -1
+bosstower_boss2_huan3
+  rotate: false
+  xy: 62, 29
+  size: 70, 44
+  orig: 70, 44
+  offset: 0, 0
+  index: -1
+bosstower_boss2_jinbi
+  rotate: true
+  xy: 310, 119
+  size: 37, 43
+  orig: 37, 43
+  offset: 0, 0
+  index: -1
+bosstower_boss2_mao
+  rotate: false
+  xy: 2, 126
+  size: 100, 106
+  orig: 100, 106
+  offset: 0, 0
+  index: -1
+bosstower_boss2_shangshen
+  rotate: true
+  xy: 315, 395
+  size: 114, 104
+  orig: 114, 104
+  offset: 0, 0
+  index: -1
+bosstower_boss2_tou
+  rotate: false
+  xy: 153, 162
+  size: 103, 130
+  orig: 103, 130
+  offset: 0, 0
+  index: -1
+bosstower_boss2_tui1
+  rotate: false
+  xy: 270, 78
+  size: 32, 38
+  orig: 32, 38
+  offset: 0, 0
+  index: -1
+bosstower_boss2_tui2
+  rotate: false
+  xy: 270, 118
+  size: 38, 42
+  orig: 38, 42
+  offset: 0, 0
+  index: -1
+bosstower_boss2_tx1
+  rotate: true
+  xy: 62, 76
+  size: 48, 40
+  orig: 48, 41
+  offset: 0, 1
+  index: -1
+bosstower_boss2_ty
+  rotate: true
+  xy: 258, 162
+  size: 130, 50
+  orig: 130, 50
+  offset: 0, 0
+  index: -1
+bosstower_boss2_xing
+  rotate: false
+  xy: 355, 109
+  size: 36, 47
+  orig: 46, 59
+  offset: 5, 6
+  index: -1
+bosstower_boss2_yan
+  rotate: false
+  xy: 230, 116
+  size: 38, 44
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+bosstower_boss2_yanzhu
+  rotate: false
+  xy: 48, 26
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+bosstower_boss2_yinlang
+  rotate: false
+  xy: 2, 234
+  size: 149, 58
+  orig: 149, 58
+  offset: 0, 0
+  index: -1
+bosstower_boss2_zhu2
+  rotate: false
+  xy: 104, 75
+  size: 45, 54
+  orig: 45, 54
+  offset: 0, 0
+  index: -1
+bosstower_boss2_zhuzi
+  rotate: true
+  xy: 2, 34
+  size: 90, 58
+  orig: 90, 58
+  offset: 0, 0
+  index: -1
+bosstower_boss2_zui
+  rotate: false
+  xy: 2, 2
+  size: 44, 30
+  orig: 44, 30
+  offset: 0, 0
+  index: -1

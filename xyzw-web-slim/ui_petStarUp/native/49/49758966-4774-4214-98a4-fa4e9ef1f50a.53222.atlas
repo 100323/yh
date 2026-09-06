@@ -1,0 +1,146 @@
+
+cwxt26_sx_xing.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_sx_cheng_chengdl_ci
+  rotate: false
+  xy: 2, 98
+  size: 116, 112
+  orig: 116, 112
+  offset: 0, 0
+  index: -1
+cwxt26_sx_cheng_chengdl_dg
+  rotate: false
+  xy: 2, 330
+  size: 116, 117
+  orig: 116, 117
+  offset: 0, 0
+  index: -1
+cwxt26_sx_cheng_chengdl_guang
+  rotate: false
+  xy: 239, 236
+  size: 98, 97
+  orig: 98, 97
+  offset: 0, 0
+  index: -1
+cwxt26_sx_cheng_chengdl_xian
+  rotate: true
+  xy: 356, 53
+  size: 81, 78
+  orig: 83, 80
+  offset: 1, 1
+  index: -1
+cwxt26_sx_cheng_chengdl_xing
+  rotate: false
+  xy: 439, 283
+  size: 65, 65
+  orig: 70, 71
+  offset: 2, 3
+  index: -1
+cwxt26_sx_dl_ci
+  rotate: false
+  xy: 120, 98
+  size: 116, 112
+  orig: 116, 112
+  offset: 0, 0
+  index: -1
+cwxt26_sx_dl_dg
+  rotate: true
+  xy: 2, 212
+  size: 116, 117
+  orig: 116, 117
+  offset: 0, 0
+  index: -1
+cwxt26_sx_dl_guang
+  rotate: false
+  xy: 339, 236
+  size: 98, 97
+  orig: 98, 97
+  offset: 0, 0
+  index: -1
+cwxt26_sx_dl_xian
+  rotate: false
+  xy: 2, 18
+  size: 81, 78
+  orig: 83, 80
+  offset: 1, 1
+  index: -1
+cwxt26_sx_dl_xing
+  rotate: false
+  xy: 436, 69
+  size: 65, 65
+  orig: 70, 71
+  offset: 2, 3
+  index: -1
+cwxt26_sx_hong_dl_ci
+  rotate: false
+  xy: 238, 98
+  size: 116, 112
+  orig: 116, 112
+  offset: 0, 0
+  index: -1
+cwxt26_sx_hong_dl_dg
+  rotate: true
+  xy: 120, 331
+  size: 116, 117
+  orig: 116, 117
+  offset: 0, 0
+  index: -1
+cwxt26_sx_hong_dl_guang
+  rotate: false
+  xy: 357, 350
+  size: 98, 97
+  orig: 98, 97
+  offset: 0, 0
+  index: -1
+cwxt26_sx_hong_dl_xian
+  rotate: false
+  xy: 85, 18
+  size: 81, 78
+  orig: 83, 80
+  offset: 1, 1
+  index: -1
+cwxt26_sx_hong_dl_xing
+  rotate: false
+  xy: 436, 2
+  size: 65, 65
+  orig: 70, 71
+  offset: 2, 3
+  index: -1
+cwxt26_sx_zi_dl_ci
+  rotate: false
+  xy: 239, 335
+  size: 116, 112
+  orig: 116, 112
+  offset: 0, 0
+  index: -1
+cwxt26_sx_zi_dl_dg
+  rotate: false
+  xy: 121, 212
+  size: 116, 117
+  orig: 116, 117
+  offset: 0, 0
+  index: -1
+cwxt26_sx_zi_dl_guang
+  rotate: true
+  xy: 356, 136
+  size: 98, 97
+  orig: 98, 97
+  offset: 0, 0
+  index: -1
+cwxt26_sx_zi_dl_xian
+  rotate: false
+  xy: 168, 18
+  size: 81, 78
+  orig: 83, 80
+  offset: 1, 1
+  index: -1
+cwxt26_sx_zi_dl_xing
+  rotate: false
+  xy: 251, 31
+  size: 65, 65
+  orig: 70, 71
+  offset: 2, 3
+  index: -1

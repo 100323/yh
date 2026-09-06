@@ -1,0 +1,34 @@
+
+sqhd25w2_hjsh1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 463, 138
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+sqhd25_hj_sh2_dong
+  rotate: false
+  xy: 2, 156
+  size: 268, 319
+  orig: 268, 319
+  offset: 0, 0
+  index: -1
+sqhd25_hj_sh2_xin
+  rotate: false
+  xy: 272, 166
+  size: 220, 309
+  orig: 220, 309
+  offset: 0, 0
+  index: -1
+sqhd25_hj_sh2_ying
+  rotate: true
+  xy: 272, 2
+  size: 162, 189
+  orig: 162, 189
+  offset: 0, 0
+  index: -1

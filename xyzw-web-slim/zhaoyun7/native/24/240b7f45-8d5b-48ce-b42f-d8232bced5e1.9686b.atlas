@@ -1,0 +1,69 @@
+
+zhaoyun7_skill_line.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhaoyun7_jn_baig
+  rotate: false
+  xy: 1438, 148
+  size: 404, 412
+  orig: 404, 412
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_dian1
+  rotate: false
+  xy: 678, 302
+  size: 350, 258
+  orig: 350, 258
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_hg
+  rotate: true
+  xy: 1030, 85
+  size: 475, 406
+  orig: 475, 406
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_hgy
+  rotate: true
+  xy: 430, 2
+  size: 277, 292
+  orig: 277, 292
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_long
+  rotate: false
+  xy: 724, 562
+  size: 1233, 446
+  orig: 1233, 446
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_sd
+  rotate: false
+  xy: 2, 85
+  size: 312, 70
+  orig: 312, 70
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_sd2
+  rotate: false
+  xy: 2, 14
+  size: 426, 69
+  orig: 426, 69
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_yanh
+  rotate: true
+  xy: 2, 157
+  size: 851, 414
+  orig: 851, 414
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_yanq
+  rotate: true
+  xy: 418, 281
+  size: 727, 258
+  orig: 727, 258
+  offset: 0, 0
+  index: -1

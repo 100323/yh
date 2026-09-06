@@ -1,0 +1,34 @@
+
+xiaobing2_qingtongniao.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: true
+  xy: 164, 2
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+sc2_monster2_body
+  rotate: false
+  xy: 106, 46
+  size: 118, 78
+  orig: 118, 78
+  offset: 0, 0
+  index: -1
+sc2_monster2_head
+  rotate: false
+  xy: 2, 6
+  size: 102, 118
+  orig: 102, 118
+  offset: 0, 0
+  index: -1
+sc2_monster2_wing
+  rotate: false
+  xy: 106, 2
+  size: 56, 42
+  orig: 56, 42
+  offset: 0, 0
+  index: -1

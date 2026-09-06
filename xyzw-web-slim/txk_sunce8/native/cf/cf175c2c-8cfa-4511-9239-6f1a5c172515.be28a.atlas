@@ -1,0 +1,76 @@
+
+txk_sunce8.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+txk_h1
+  rotate: false
+  xy: 283, 5
+  size: 33, 43
+  orig: 33, 43
+  offset: 0, 0
+  index: -1
+txk_h2
+  rotate: true
+  xy: 2, 2
+  size: 10, 26
+  orig: 10, 26
+  offset: 0, 0
+  index: -1
+txk_h3
+  rotate: true
+  xy: 392, 65
+  size: 60, 83
+  orig: 60, 83
+  offset: 0, 0
+  index: -1
+txk_h4
+  rotate: true
+  xy: 230, 7
+  size: 41, 51
+  orig: 41, 51
+  offset: 0, 0
+  index: -1
+txk_h5
+  rotate: true
+  xy: 156, 50
+  size: 75, 128
+  orig: 75, 128
+  offset: 0, 0
+  index: -1
+txk_h6
+  rotate: true
+  xy: 2, 14
+  size: 111, 152
+  orig: 121, 165
+  offset: 5, 5
+  index: -1
+txk_suncex_1
+  rotate: true
+  xy: 318, 5
+  size: 49, 74
+  orig: 49, 74
+  offset: 0, 0
+  index: -1
+txk_suncex_2
+  rotate: true
+  xy: 394, 14
+  size: 49, 74
+  orig: 49, 74
+  offset: 0, 0
+  index: -1
+txk_suncex_5
+  rotate: false
+  xy: 286, 56
+  size: 104, 69
+  orig: 104, 69
+  offset: 0, 0
+  index: -1
+txk_suncex_6
+  rotate: false
+  xy: 156, 11
+  size: 72, 37
+  orig: 72, 37
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+weiyan_skill_line.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+weiyan_skill1
+  rotate: false
+  xy: 2, 2
+  size: 102, 47
+  orig: 102, 47
+  offset: 0, 0
+  index: -1

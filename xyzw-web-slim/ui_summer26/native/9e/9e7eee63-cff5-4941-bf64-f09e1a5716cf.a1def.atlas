@@ -1,0 +1,48 @@
+
+sqhd26_yu_weiba.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd26_yu1_wei
+  rotate: true
+  xy: 217, 133
+  size: 119, 117
+  orig: 119, 117
+  offset: 0, 0
+  index: -1
+sqhd26_yu2_wei
+  rotate: false
+  xy: 114, 4
+  size: 115, 121
+  orig: 115, 121
+  offset: 0, 0
+  index: -1
+sqhd26_yu3_wei
+  rotate: true
+  xy: 2, 2
+  size: 122, 110
+  orig: 122, 110
+  offset: 0, 0
+  index: -1
+sqhd26_yu4_wei
+  rotate: true
+  xy: 231, 16
+  size: 115, 95
+  orig: 115, 95
+  offset: 0, 0
+  index: -1
+sqhd26_yu5_wei
+  rotate: true
+  xy: 2, 126
+  size: 126, 110
+  orig: 126, 110
+  offset: 0, 0
+  index: -1
+sqhd26_yu6_wei
+  rotate: false
+  xy: 114, 127
+  size: 101, 125
+  orig: 101, 125
+  offset: 0, 0
+  index: -1

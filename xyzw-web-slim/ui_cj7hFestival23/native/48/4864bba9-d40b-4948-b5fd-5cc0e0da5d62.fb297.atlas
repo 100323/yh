@@ -1,0 +1,13 @@
+
+sqhd26_w8_cj_box1.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xrz
+  rotate: false
+  xy: 2, 2
+  size: 69, 70
+  orig: 69, 70
+  offset: 0, 0
+  index: -1

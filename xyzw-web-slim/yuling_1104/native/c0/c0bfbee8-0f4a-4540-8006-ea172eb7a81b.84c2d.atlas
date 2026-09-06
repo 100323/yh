@@ -1,0 +1,34 @@
+
+yuling_1104.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 267, 40
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 301, 40
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_104_body
+  rotate: false
+  xy: 2, 2
+  size: 263, 165
+  orig: 263, 165
+  offset: 0, 0
+  index: -1
+yuling_104_fin
+  rotate: false
+  xy: 267, 74
+  size: 90, 93
+  orig: 90, 93
+  offset: 0, 0
+  index: -1

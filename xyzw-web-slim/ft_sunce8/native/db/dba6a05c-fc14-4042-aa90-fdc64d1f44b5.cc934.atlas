@@ -1,0 +1,174 @@
+
+ft_sunce8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_suncefeiting_10
+  rotate: false
+  xy: 237, 319
+  size: 101, 188
+  orig: 108, 196
+  offset: 4, 4
+  index: -1
+ft_suncefeiting_11
+  rotate: false
+  xy: 243, 74
+  size: 104, 180
+  orig: 117, 198
+  offset: 7, 10
+  index: -1
+ft_suncefeiting_12
+  rotate: false
+  xy: 92, 55
+  size: 149, 199
+  orig: 172, 226
+  offset: 12, 15
+  index: -1
+ft_suncefeiting_13
+  rotate: true
+  xy: 340, 410
+  size: 97, 165
+  orig: 100, 165
+  offset: 3, 0
+  index: -1
+ft_suncefeiting_14
+  rotate: false
+  xy: 349, 214
+  size: 55, 41
+  orig: 55, 41
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_15
+  rotate: false
+  xy: 2, 11
+  size: 88, 243
+  orig: 89, 243
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_16
+  rotate: false
+  xy: 240, 5
+  size: 16, 48
+  orig: 16, 48
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_17
+  rotate: false
+  xy: 258, 14
+  size: 26, 58
+  orig: 26, 58
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_18
+  rotate: false
+  xy: 467, 88
+  size: 43, 86
+  orig: 45, 88
+  offset: 1, 1
+  index: -1
+ft_suncefeiting_19
+  rotate: true
+  xy: 138, 5
+  size: 48, 100
+  orig: 48, 100
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_21
+  rotate: true
+  xy: 136, 256
+  size: 60, 162
+  orig: 90, 162
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_22
+  rotate: false
+  xy: 136, 318
+  size: 99, 189
+  orig: 110, 199
+  offset: 3, 5
+  index: -1
+ft_suncefeiting_23
+  rotate: true
+  xy: 340, 325
+  size: 83, 154
+  orig: 93, 166
+  offset: 5, 6
+  index: -1
+ft_suncefeiting_24
+  rotate: false
+  xy: 407, 176
+  size: 93, 147
+  orig: 104, 160
+  offset: 6, 7
+  index: -1
+ft_suncefeiting_6
+  rotate: true
+  xy: 92, 2
+  size: 51, 44
+  orig: 51, 44
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_7
+  rotate: false
+  xy: 349, 3
+  size: 116, 171
+  orig: 116, 171
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_8
+  rotate: true
+  xy: 286, 46
+  size: 26, 47
+  orig: 26, 47
+  offset: 0, 0
+  index: -1
+ft_suncefeiting_9
+  rotate: false
+  xy: 2, 256
+  size: 132, 251
+  orig: 148, 262
+  offset: 6, 5
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 349, 183
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+huan_1
+  rotate: false
+  xy: 300, 263
+  size: 33, 33
+  orig: 35, 36
+  offset: 1, 2
+  index: -1
+huan_2
+  rotate: false
+  xy: 380, 186
+  size: 21, 26
+  orig: 23, 28
+  offset: 1, 1
+  index: -1
+huan_3
+  rotate: false
+  xy: 300, 298
+  size: 36, 19
+  orig: 38, 21
+  offset: 1, 1
+  index: -1
+huan_4
+  rotate: false
+  xy: 340, 257
+  size: 65, 66
+  orig: 73, 69
+  offset: 4, 1
+  index: -1
+suipian1
+  rotate: false
+  xy: 467, 39
+  size: 39, 47
+  orig: 39, 47
+  offset: 0, 0
+  index: -1

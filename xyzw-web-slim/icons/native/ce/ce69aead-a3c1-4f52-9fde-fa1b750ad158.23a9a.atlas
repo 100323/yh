@@ -1,0 +1,153 @@
+
+zxc_cjqh_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 362, 169
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banner1
+  rotate: false
+  xy: 437, 76
+  size: 61, 79
+  orig: 61, 79
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banner2
+  rotate: false
+  xy: 362, 217
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banner3
+  rotate: false
+  xy: 491, 242
+  size: 14, 27
+  orig: 14, 27
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banner4
+  rotate: true
+  xy: 308, 30
+  size: 42, 39
+  orig: 42, 39
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banner6
+  rotate: false
+  xy: 491, 214
+  size: 13, 26
+  orig: 13, 26
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banner7
+  rotate: false
+  xy: 500, 366
+  size: 10, 22
+  orig: 10, 22
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerbg
+  rotate: false
+  xy: 2, 266
+  size: 410, 243
+  orig: 410, 243
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerg1
+  rotate: false
+  xy: 437, 11
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerg2
+  rotate: false
+  xy: 2, 69
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerg3
+  rotate: true
+  xy: 349, 2
+  size: 34, 43
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq1
+  rotate: false
+  xy: 437, 51
+  size: 51, 23
+  orig: 51, 23
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq2
+  rotate: true
+  xy: 414, 271
+  size: 117, 84
+  orig: 117, 84
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq3
+  rotate: true
+  xy: 414, 390
+  size: 119, 96
+  orig: 119, 96
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq4
+  rotate: false
+  xy: 242, 125
+  size: 118, 139
+  orig: 118, 139
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq5
+  rotate: false
+  xy: 308, 74
+  size: 44, 49
+  orig: 44, 49
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq6
+  rotate: true
+  xy: 491, 186
+  size: 26, 13
+  orig: 26, 13
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerq7
+  rotate: false
+  xy: 242, 41
+  size: 64, 82
+  orig: 64, 82
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banners1
+  rotate: true
+  xy: 414, 157
+  size: 112, 75
+  orig: 112, 75
+  offset: 0, 0
+  index: -1
+zxc_cjqh_banners2
+  rotate: true
+  xy: 362, 38
+  size: 117, 73
+  orig: 117, 73
+  offset: 0, 0
+  index: -1
+zxc_cjqh_bannerzhe
+  rotate: false
+  xy: 2, 108
+  size: 238, 156
+  orig: 238, 156
+  offset: 0, 0
+  index: -1

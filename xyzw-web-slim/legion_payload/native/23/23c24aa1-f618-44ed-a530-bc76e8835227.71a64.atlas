@@ -1,0 +1,279 @@
+
+tgcf_pty_cyan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+biyan
+  rotate: false
+  xy: 380, 55
+  size: 57, 55
+  orig: 57, 55
+  offset: 0, 0
+  index: -1
+bozi
+  rotate: false
+  xy: 487, 246
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+deng
+  rotate: false
+  xy: 2, 31
+  size: 178, 188
+  orig: 184, 192
+  offset: 3, 2
+  index: -1
+deng2
+  rotate: false
+  xy: 285, 46
+  size: 93, 94
+  orig: 97, 100
+  offset: 2, 3
+  index: -1
+dengsuizi
+  rotate: false
+  xy: 291, 142
+  size: 23, 29
+  orig: 23, 29
+  offset: 0, 0
+  index: -1
+dengzhu
+  rotate: false
+  xy: 2, 221
+  size: 171, 289
+  orig: 171, 289
+  offset: 0, 0
+  index: -1
+dengzhui1
+  rotate: false
+  xy: 480, 423
+  size: 30, 87
+  orig: 30, 87
+  offset: 0, 0
+  index: -1
+dengzhui2
+  rotate: true
+  xy: 2, 8
+  size: 21, 90
+  orig: 21, 90
+  offset: 0, 0
+  index: -1
+dengzhuixia1
+  rotate: false
+  xy: 165, 5
+  size: 17, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1
+dengzhuixia2
+  rotate: true
+  xy: 363, 161
+  size: 12, 15
+  orig: 12, 16
+  offset: 0, 1
+  index: -1
+faji
+  rotate: false
+  xy: 415, 3
+  size: 43, 50
+  orig: 43, 50
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 182, 36
+  size: 101, 104
+  orig: 102, 104
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 184, 10
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+mei_l
+  rotate: true
+  xy: 363, 142
+  size: 17, 7
+  orig: 18, 7
+  offset: 1, 0
+  index: -1
+mei_r
+  rotate: true
+  xy: 497, 170
+  size: 7, 13
+  orig: 9, 15
+  offset: 2, 0
+  index: -1
+piaodai1
+  rotate: true
+  xy: 358, 340
+  size: 170, 120
+  orig: 170, 120
+  offset: 0, 0
+  index: -1
+piaodai2
+  rotate: false
+  xy: 175, 250
+  size: 181, 260
+  orig: 181, 260
+  offset: 0, 0
+  index: -1
+piaodai3
+  rotate: false
+  xy: 351, 175
+  size: 116, 66
+  orig: 116, 66
+  offset: 0, 0
+  index: -1
+qunzi
+  rotate: true
+  xy: 358, 243
+  size: 95, 127
+  orig: 95, 127
+  offset: 0, 0
+  index: -1
+shangyi_l
+  rotate: false
+  xy: 442, 116
+  size: 53, 57
+  orig: 54, 57
+  offset: 1, 0
+  index: -1
+shou_l
+  rotate: true
+  xy: 469, 175
+  size: 12, 26
+  orig: 20, 26
+  offset: 0, 0
+  index: -1
+shou_r
+  rotate: false
+  xy: 210, 10
+  size: 19, 24
+  orig: 19, 24
+  offset: 0, 0
+  index: -1
+tgcf_dj_mingdeng1
+  rotate: false
+  xy: 182, 142
+  size: 107, 106
+  orig: 107, 106
+  offset: 0, 0
+  index: -1
+tgcf_dj_mingdeng2
+  rotate: false
+  xy: 380, 112
+  size: 60, 61
+  orig: 62, 62
+  offset: 1, 1
+  index: -1
+touashi2
+  rotate: true
+  xy: 380, 2
+  size: 51, 33
+  orig: 51, 33
+  offset: 0, 0
+  index: -1
+toushi1
+  rotate: true
+  xy: 480, 371
+  size: 50, 23
+  orig: 50, 23
+  offset: 0, 0
+  index: -1
+toushi3
+  rotate: false
+  xy: 291, 173
+  size: 58, 75
+  orig: 58, 75
+  offset: 0, 0
+  index: -1
+weiba
+  rotate: true
+  xy: 469, 189
+  size: 52, 40
+  orig: 52, 40
+  offset: 0, 0
+  index: -1
+xiaobi_l
+  rotate: false
+  xy: 487, 319
+  size: 23, 50
+  orig: 23, 64
+  offset: 0, 0
+  index: -1
+xiaobi_r
+  rotate: true
+  xy: 94, 3
+  size: 26, 34
+  orig: 26, 34
+  offset: 0, 0
+  index: -1
+xiong
+  rotate: true
+  xy: 460, 31
+  size: 34, 31
+  orig: 34, 31
+  offset: 0, 0
+  index: -1
+xiu_l
+  rotate: true
+  xy: 130, 4
+  size: 25, 33
+  orig: 25, 36
+  offset: 0, 3
+  index: -1
+xiu_r_s
+  rotate: true
+  xy: 442, 67
+  size: 47, 48
+  orig: 47, 48
+  offset: 0, 0
+  index: -1
+xiu_r_x
+  rotate: false
+  xy: 487, 267
+  size: 23, 50
+  orig: 23, 50
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 497, 179
+  size: 13, 8
+  orig: 13, 13
+  offset: 0, 4
+  index: -1
+yan_l
+  rotate: false
+  xy: 316, 142
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+yan_r
+  rotate: true
+  xy: 340, 142
+  size: 29, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1
+yaodai
+  rotate: true
+  xy: 460, 7
+  size: 22, 33
+  orig: 22, 33
+  offset: 0, 0
+  index: -1
+zui
+  rotate: true
+  xy: 439, 55
+  size: 10, 9
+  orig: 10, 9
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,125 @@
+
+zhangjiao3_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zj_jn_jx
+  rotate: false
+  xy: 2, 135
+  size: 137, 72
+  orig: 137, 72
+  offset: 0, 0
+  index: -1
+zj_jn_sh
+  rotate: false
+  xy: 237, 237
+  size: 181, 103
+  orig: 181, 103
+  offset: 0, 0
+  index: -1
+zj_jn_sh2
+  rotate: true
+  xy: 141, 84
+  size: 123, 69
+  orig: 130, 82
+  offset: 7, 13
+  index: -1
+zj_jn_sq1
+  rotate: false
+  xy: 2, 2
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+zj_jn_sq2
+  rotate: true
+  xy: 232, 108
+  size: 23, 24
+  orig: 23, 24
+  offset: 0, 0
+  index: -1
+zj_jn_sw
+  rotate: true
+  xy: 391, 136
+  size: 99, 17
+  orig: 99, 17
+  offset: 0, 0
+  index: -1
+zj_jn_sz1
+  rotate: false
+  xy: 2, 209
+  size: 233, 131
+  orig: 233, 131
+  offset: 0, 0
+  index: -1
+zj_jn_sz2
+  rotate: false
+  xy: 55, 23
+  size: 27, 48
+  orig: 27, 48
+  offset: 0, 0
+  index: -1
+zj_jn_sz3
+  rotate: false
+  xy: 391, 101
+  size: 17, 33
+  orig: 17, 33
+  offset: 0, 0
+  index: -1
+zj_jn_sz4
+  rotate: true
+  xy: 212, 124
+  size: 83, 18
+  orig: 83, 18
+  offset: 0, 0
+  index: -1
+zj_jn_sz5
+  rotate: false
+  xy: 237, 133
+  size: 152, 102
+  orig: 152, 102
+  offset: 0, 0
+  index: -1
+zj_jn_sz6
+  rotate: true
+  xy: 92, 35
+  size: 58, 30
+  orig: 58, 30
+  offset: 0, 0
+  index: -1
+zj_jn_sz7
+  rotate: true
+  xy: 410, 71
+  size: 115, 88
+  orig: 115, 88
+  offset: 0, 0
+  index: -1
+zj_jn_sz8
+  rotate: false
+  xy: 2, 73
+  size: 88, 60
+  orig: 88, 60
+  offset: 0, 0
+  index: -1
+zj_jn_sz9
+  rotate: true
+  xy: 92, 95
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+zj_jn_wy
+  rotate: true
+  xy: 2, 40
+  size: 31, 51
+  orig: 31, 51
+  offset: 0, 0
+  index: -1
+zj_sd_ljz
+  rotate: false
+  xy: 420, 188
+  size: 85, 152
+  orig: 85, 152
+  offset: 0, 0
+  index: -1

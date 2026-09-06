@@ -1,0 +1,342 @@
+
+zhangjiao5.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei5_yunyan
+  rotate: false
+  xy: 760, 17
+  size: 56, 47
+  orig: 56, 47
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 283, 333
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 273, 4
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 866, 25
+  size: 21, 11
+  orig: 22, 22
+  offset: 0, 8
+  index: -1
+zhangjiao5_at1
+  rotate: false
+  xy: 919, 405
+  size: 101, 105
+  orig: 101, 105
+  offset: 0, 0
+  index: -1
+zhangjiao5_beard
+  rotate: true
+  xy: 447, 23
+  size: 41, 28
+  orig: 41, 28
+  offset: 0, 0
+  index: -1
+zhangjiao5_fc
+  rotate: false
+  xy: 2, 29
+  size: 177, 108
+  orig: 177, 108
+  offset: 0, 0
+  index: -1
+zhangjiao5_fc01
+  rotate: true
+  xy: 768, 200
+  size: 108, 134
+  orig: 108, 134
+  offset: 0, 0
+  index: -1
+zhangjiao5_hua
+  rotate: false
+  xy: 678, 19
+  size: 80, 68
+  orig: 80, 68
+  offset: 0, 0
+  index: -1
+zhangjiao5_hz1
+  rotate: true
+  xy: 380, 7
+  size: 43, 65
+  orig: 43, 65
+  offset: 0, 0
+  index: -1
+zhangjiao5_hz2
+  rotate: false
+  xy: 322, 2
+  size: 56, 48
+  orig: 56, 48
+  offset: 0, 0
+  index: -1
+zhangjiao5_jaw
+  rotate: true
+  xy: 326, 93
+  size: 109, 149
+  orig: 109, 149
+  offset: 0, 0
+  index: -1
+zhangjiao5_jiaol
+  rotate: false
+  xy: 995, 23
+  size: 26, 35
+  orig: 26, 35
+  offset: 0, 0
+  index: -1
+zhangjiao5_jiaor
+  rotate: true
+  xy: 444, 66
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
+zhangjiao5_jj1
+  rotate: false
+  xy: 733, 418
+  size: 184, 92
+  orig: 184, 92
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_fc
+  rotate: true
+  xy: 283, 376
+  size: 134, 211
+  orig: 134, 211
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_fc01
+  rotate: true
+  xy: 879, 8
+  size: 64, 67
+  orig: 64, 67
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_fc02
+  rotate: true
+  xy: 183, 142
+  size: 183, 141
+  orig: 183, 141
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_hulu
+  rotate: false
+  xy: 948, 22
+  size: 45, 50
+  orig: 45, 50
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_jj1
+  rotate: false
+  xy: 496, 331
+  size: 184, 92
+  orig: 184, 92
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_jzh
+  rotate: false
+  xy: 477, 65
+  size: 158, 109
+  orig: 158, 109
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_mei
+  rotate: false
+  xy: 818, 16
+  size: 46, 30
+  orig: 46, 31
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanbg2
+  rotate: false
+  xy: 919, 279
+  size: 100, 124
+  orig: 100, 124
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanguang
+  rotate: true
+  xy: 821, 310
+  size: 106, 96
+  orig: 106, 96
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanxian
+  rotate: false
+  xy: 2, 139
+  size: 179, 186
+  orig: 179, 186
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanxian-1
+  rotate: true
+  xy: 678, 89
+  size: 92, 81
+  orig: 92, 81
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shen
+  rotate: true
+  xy: 326, 204
+  size: 170, 153
+  orig: 170, 153
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shoul
+  rotate: true
+  xy: 831, 48
+  size: 53, 46
+  orig: 53, 47
+  offset: 0, 1
+  index: -1
+zhangjiao5_jn_xiul
+  rotate: true
+  xy: 904, 170
+  size: 107, 109
+  orig: 107, 109
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun
+  rotate: true
+  xy: 989, 86
+  size: 82, 30
+  orig: 82, 30
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun01
+  rotate: false
+  xy: 181, 4
+  size: 90, 36
+  orig: 90, 36
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_zhui
+  rotate: true
+  xy: 94, 4
+  size: 23, 53
+  orig: 23, 53
+  offset: 0, 0
+  index: -1
+zhangjiao5_lh
+  rotate: true
+  xy: 2, 11
+  size: 16, 90
+  orig: 16, 90
+  offset: 0, 0
+  index: -1
+zhangjiao5_sbr
+  rotate: false
+  xy: 653, 183
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: -1
+zhangjiao5_shen
+  rotate: false
+  xy: 481, 176
+  size: 170, 153
+  orig: 170, 153
+  offset: 0, 0
+  index: -1
+zhangjiao5_shoul
+  rotate: false
+  xy: 477, 29
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+zhangjiao5_shour
+  rotate: false
+  xy: 761, 66
+  size: 68, 35
+  orig: 68, 35
+  offset: 0, 0
+  index: -1
+zhangjiao5_shshhua
+  rotate: false
+  xy: 2, 327
+  size: 279, 183
+  orig: 279, 183
+  offset: 0, 0
+  index: -1
+zhangjiao5_tf1
+  rotate: true
+  xy: 637, 78
+  size: 96, 39
+  orig: 96, 39
+  offset: 0, 0
+  index: -1
+zhangjiao5_ts
+  rotate: false
+  xy: 682, 315
+  size: 137, 101
+  orig: 140, 102
+  offset: 1, 1
+  index: -1
+zhangjiao5_xiul
+  rotate: true
+  xy: 183, 42
+  size: 98, 137
+  orig: 98, 137
+  offset: 0, 0
+  index: -1
+zhangjiao5_yun_01
+  rotate: false
+  xy: 322, 52
+  size: 120, 39
+  orig: 120, 39
+  offset: 0, 0
+  index: -1
+zhangjiao5_yun_02
+  rotate: false
+  xy: 496, 425
+  size: 235, 85
+  orig: 235, 85
+  offset: 0, 0
+  index: -1
+zhangjiao5_zd
+  rotate: false
+  xy: 879, 74
+  size: 108, 94
+  orig: 108, 94
+  offset: 0, 0
+  index: -1
+zhangjiao5_zd01
+  rotate: false
+  xy: 768, 103
+  size: 109, 95
+  orig: 118, 99
+  offset: 5, 2
+  index: -1
+zhangjiao_eye
+  rotate: false
+  xy: 653, 323
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+zhangjiao_guangdian
+  rotate: false
+  xy: 481, 361
+  size: 13, 13
+  orig: 15, 15
+  offset: 1, 1
+  index: -1
+zhangjiao_yan
+  rotate: false
+  xy: 995, 60
+  size: 27, 24
+  orig: 27, 24
+  offset: 0, 0
+  index: -1

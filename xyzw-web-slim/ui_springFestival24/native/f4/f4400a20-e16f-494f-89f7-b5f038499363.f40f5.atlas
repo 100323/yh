@@ -1,0 +1,132 @@
+
+sqhd25w1_banner.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taiyi_bi_1
+  rotate: false
+  xy: 397, 912
+  size: 62, 42
+  orig: 62, 42
+  offset: 0, 0
+  index: -1
+taiyi_bi_2
+  rotate: false
+  xy: 280, 919
+  size: 41, 35
+  orig: 44, 35
+  offset: 3, 0
+  index: -1
+taiyi_bi_3
+  rotate: true
+  xy: 2, 928
+  size: 26, 31
+  orig: 26, 31
+  offset: 0, 0
+  index: -1
+taiyi_bi_4
+  rotate: false
+  xy: 35, 926
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+taiyi_bi_5
+  rotate: true
+  xy: 2, 752
+  size: 172, 270
+  orig: 172, 270
+  offset: 0, 0
+  index: -1
+taiyi_bi_6
+  rotate: true
+  xy: 752, 823
+  size: 131, 136
+  orig: 131, 136
+  offset: 0, 0
+  index: -1
+taiyi_bi_7
+  rotate: false
+  xy: 461, 902
+  size: 61, 52
+  orig: 61, 52
+  offset: 0, 0
+  index: -1
+taiyi_bi_8
+  rotate: true
+  xy: 323, 914
+  size: 40, 72
+  orig: 41, 72
+  offset: 1, 0
+  index: -1
+taiyi_bi_9
+  rotate: false
+  xy: 524, 897
+  size: 75, 57
+  orig: 75, 57
+  offset: 0, 0
+  index: -1
+taiyi_toutu_ditu
+  rotate: true
+  xy: 606, 2
+  size: 602, 344
+  orig: 602, 344
+  offset: 0, 0
+  index: -1
+taiyi_toutu_shan1
+  rotate: true
+  xy: 601, 867
+  size: 87, 149
+  orig: 88, 149
+  offset: 0, 0
+  index: -1
+taiyi_toutu_shan2
+  rotate: true
+  xy: 483, 680
+  size: 185, 195
+  orig: 186, 195
+  offset: 0, 0
+  index: -1
+taiyi_toutu_yun1
+  rotate: false
+  xy: 680, 606
+  size: 339, 215
+  orig: 339, 215
+  offset: 0, 0
+  index: -1
+taiyi_toutu_yun1_1
+  rotate: false
+  xy: 274, 724
+  size: 207, 176
+  orig: 207, 176
+  offset: 0, 0
+  index: -1
+taiyi_toutu_yun2
+  rotate: false
+  xy: 2, 15
+  size: 602, 270
+  orig: 602, 270
+  offset: 0, 0
+  index: -1
+taiyi_toutu_yun3
+  rotate: false
+  xy: 2, 491
+  size: 505, 187
+  orig: 505, 187
+  offset: 0, 0
+  index: -1
+taiyi_toutu_yun4
+  rotate: false
+  xy: 2, 287
+  size: 601, 202
+  orig: 601, 202
+  offset: 0, 0
+  index: -1
+yd_an
+  rotate: true
+  xy: 71, 926
+  size: 28, 207
+  orig: 28, 207
+  offset: 0, 0
+  index: -1

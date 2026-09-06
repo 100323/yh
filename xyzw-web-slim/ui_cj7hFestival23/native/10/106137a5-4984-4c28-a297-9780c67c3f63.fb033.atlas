@@ -1,0 +1,69 @@
+
+sqhd26_w6_cj_fashe.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hunzhu1
+  rotate: false
+  xy: 2, 2
+  size: 15, 26
+  orig: 15, 26
+  offset: 0, 0
+  index: -1
+hunzhu2
+  rotate: false
+  xy: 19, 8
+  size: 14, 20
+  orig: 14, 20
+  offset: 0, 0
+  index: -1
+hunzhu3
+  rotate: false
+  xy: 227, 111
+  size: 60, 140
+  orig: 60, 140
+  offset: 0, 0
+  index: -1
+hunzhu4
+  rotate: false
+  xy: 289, 174
+  size: 73, 77
+  orig: 73, 77
+  offset: 0, 0
+  index: -1
+hunzhu5
+  rotate: false
+  xy: 227, 26
+  size: 77, 83
+  orig: 77, 83
+  offset: 0, 0
+  index: -1
+hunzhu6
+  rotate: false
+  xy: 2, 30
+  size: 131, 221
+  orig: 131, 221
+  offset: 0, 0
+  index: -1
+hunzhu7
+  rotate: false
+  xy: 135, 43
+  size: 90, 208
+  orig: 90, 208
+  offset: 0, 0
+  index: -1
+hunzhu8
+  rotate: false
+  xy: 306, 55
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+hunzhu9
+  rotate: false
+  xy: 289, 127
+  size: 62, 45
+  orig: 62, 45
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,83 @@
+
+xsxjt_gyxb_daoju_12.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_lz_bi1
+  rotate: true
+  xy: 138, 88
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_lz_bi2
+  rotate: false
+  xy: 111, 6
+  size: 29, 34
+  orig: 29, 34
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_lz_bi3
+  rotate: true
+  xy: 107, 85
+  size: 33, 29
+  orig: 34, 30
+  offset: 1, 0
+  index: -1
+xsxjt_gyxb_lz_bi4
+  rotate: false
+  xy: 142, 53
+  size: 24, 33
+  orig: 24, 34
+  offset: 0, 1
+  index: -1
+xsxjt_gyxb_lz_huo1
+  rotate: false
+  xy: 58, 2
+  size: 51, 36
+  orig: 51, 36
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_lz_huo2
+  rotate: false
+  xy: 2, 4
+  size: 54, 34
+  orig: 54, 34
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_lz_shen
+  rotate: true
+  xy: 2, 40
+  size: 78, 76
+  orig: 78, 78
+  offset: 0, 1
+  index: -1
+xsxjt_gyxb_lz_tan
+  rotate: false
+  xy: 80, 42
+  size: 49, 16
+  orig: 49, 17
+  offset: 0, 1
+  index: -1
+xsxjt_gyxb_lz_yanw1
+  rotate: true
+  xy: 107, 63
+  size: 20, 18
+  orig: 21, 18
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_lz_yanw2
+  rotate: true
+  xy: 127, 67
+  size: 16, 13
+  orig: 16, 13
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_lz_yt
+  rotate: false
+  xy: 80, 60
+  size: 25, 58
+  orig: 26, 58
+  offset: 1, 0
+  index: -1

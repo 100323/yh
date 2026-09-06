@@ -1,0 +1,20 @@
+
+buff_sishengshou.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhouyu8_buff_1
+  rotate: false
+  xy: 114, 48
+  size: 58, 57
+  orig: 58, 57
+  offset: 0, 0
+  index: -1
+zhouyu8_buff_2
+  rotate: false
+  xy: 2, 2
+  size: 110, 103
+  orig: 110, 103
+  offset: 0, 0
+  index: -1

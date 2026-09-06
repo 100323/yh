@@ -1,0 +1,27 @@
+
+kpyx4_citie.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx4_citie1
+  rotate: false
+  xy: 2, 211
+  size: 295, 295
+  orig: 295, 295
+  offset: 0, 0
+  index: -1
+kpyx4_citie2
+  rotate: true
+  xy: 2, 2
+  size: 207, 219
+  orig: 207, 219
+  offset: 0, 0
+  index: -1
+kpyx4_citie3
+  rotate: false
+  xy: 223, 89
+  size: 78, 120
+  orig: 78, 120
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+jlb_chengjiu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls_dz_jiao
+  rotate: true
+  xy: 567, 2
+  size: 65, 168
+  orig: 65, 168
+  offset: 0, 0
+  index: -1
+hjls_dz_pi
+  rotate: true
+  xy: 2, 384
+  size: 104, 891
+  orig: 104, 891
+  offset: 0, 0
+  index: -1
+hjls_dz_sheng
+  rotate: false
+  xy: 895, 350
+  size: 81, 138
+  orig: 81, 138
+  offset: 0, 0
+  index: -1
+hjls_dz_ye1
+  rotate: true
+  xy: 828, 40
+  size: 73, 172
+  orig: 73, 172
+  offset: 0, 0
+  index: -1
+hjls_dz_ye2
+  rotate: false
+  xy: 2, 50
+  size: 563, 332
+  orig: 563, 332
+  offset: 0, 0
+  index: -1
+jlb_cjbook_di1
+  rotate: false
+  xy: 828, 115
+  size: 193, 225
+  orig: 193, 225
+  offset: 0, 0
+  index: -1
+jlb_cjbook_feng1
+  rotate: false
+  xy: 567, 69
+  size: 259, 313
+  orig: 259, 313
+  offset: 0, 0
+  index: -1
+jlb_cjbook_kou
+  rotate: false
+  xy: 978, 446
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+jlb_cjbook_line1
+  rotate: false
+  xy: 828, 347
+  size: 44, 35
+  orig: 44, 35
+  offset: 0, 0
+  index: -1
+jlb_cjbook_line2
+  rotate: true
+  xy: 978, 342
+  size: 50, 36
+  orig: 50, 36
+  offset: 0, 0
+  index: -1
+jlb_cjbook_line3
+  rotate: true
+  xy: 978, 394
+  size: 50, 37
+  orig: 50, 37
+  offset: 0, 0
+  index: -1
+jlb_cjbook_line4
+  rotate: true
+  xy: 737, 32
+  size: 35, 42
+  orig: 35, 42
+  offset: 0, 0
+  index: -1

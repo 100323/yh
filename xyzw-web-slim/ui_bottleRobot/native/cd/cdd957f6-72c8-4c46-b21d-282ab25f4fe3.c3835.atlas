@@ -1,0 +1,34 @@
+
+ygjqr_yan_1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygjqr_dl_yan1
+  rotate: false
+  xy: 2, 7
+  size: 137, 93
+  orig: 137, 93
+  offset: 0, 0
+  index: -1
+ygjqr_dl_yan2
+  rotate: false
+  xy: 141, 2
+  size: 110, 91
+  orig: 110, 91
+  offset: 0, 0
+  index: -1
+ygjqr_dl_yan3
+  rotate: true
+  xy: 143, 95
+  size: 125, 94
+  orig: 125, 94
+  offset: 0, 0
+  index: -1
+ygjqr_dl_yan4
+  rotate: false
+  xy: 2, 102
+  size: 139, 118
+  orig: 139, 118
+  offset: 0, 0
+  index: -1

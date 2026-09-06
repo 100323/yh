@@ -1,0 +1,118 @@
+
+ls_dianwei7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw9_dhxingx
+  rotate: true
+  xy: 143, 49
+  size: 62, 41
+  orig: 62, 41
+  offset: 0, 0
+  index: -1
+dw9_guangyun1
+  rotate: true
+  xy: 162, 187
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+dw9_guangyun2
+  rotate: false
+  xy: 2, 113
+  size: 158, 159
+  orig: 158, 159
+  offset: 0, 0
+  index: -1
+dw9_guangyun3
+  rotate: false
+  xy: 221, 251
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+dw9_sui
+  rotate: true
+  xy: 2, 2
+  size: 109, 139
+  orig: 118, 139
+  offset: 9, 0
+  index: -1
+dw9_sui1
+  rotate: false
+  xy: 213, 92
+  size: 108, 157
+  orig: 110, 158
+  offset: 2, 0
+  index: -1
+dw9_tt
+  rotate: false
+  xy: 2, 274
+  size: 217, 179
+  orig: 217, 179
+  offset: 0, 0
+  index: -1
+dw9_xing1
+  rotate: false
+  xy: 162, 223
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+shui_000
+  rotate: false
+  xy: 198, 135
+  size: 7, 12
+  orig: 46, 46
+  offset: 23, 4
+  index: -1
+shui_002
+  rotate: false
+  xy: 192, 149
+  size: 17, 36
+  orig: 46, 46
+  offset: 13, 3
+  index: -1
+shui_004
+  rotate: true
+  xy: 208, 64
+  size: 26, 40
+  orig: 46, 46
+  offset: 8, 3
+  index: -1
+shui_006
+  rotate: false
+  xy: 162, 147
+  size: 28, 38
+  orig: 46, 46
+  offset: 7, 7
+  index: -1
+shui_008
+  rotate: true
+  xy: 162, 117
+  size: 28, 34
+  orig: 46, 46
+  offset: 7, 11
+  index: -1
+shui_010
+  rotate: true
+  xy: 250, 64
+  size: 26, 29
+  orig: 46, 46
+  offset: 9, 14
+  index: -1
+shui_012
+  rotate: false
+  xy: 186, 87
+  size: 20, 28
+  orig: 46, 46
+  offset: 11, 14
+  index: -1
+shui_014
+  rotate: true
+  xy: 213, 265
+  size: 7, 4
+  orig: 46, 46
+  offset: 12, 27
+  index: -1

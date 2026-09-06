@@ -1,0 +1,111 @@
+
+jjcdw_flag.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 443, 287
+  size: 64, 63
+  orig: 64, 63
+  offset: 0, 0
+  index: -1
+jjcdw_flag1
+  rotate: false
+  xy: 186, 221
+  size: 127, 167
+  orig: 127, 167
+  offset: 0, 0
+  index: -1
+jjcdw_flag2
+  rotate: false
+  xy: 315, 226
+  size: 126, 165
+  orig: 126, 165
+  offset: 0, 0
+  index: -1
+jjcdw_flag3
+  rotate: false
+  xy: 51, 57
+  size: 133, 165
+  orig: 133, 165
+  offset: 0, 0
+  index: -1
+jjcdw_flag4
+  rotate: false
+  xy: 186, 55
+  size: 136, 164
+  orig: 136, 164
+  offset: 0, 0
+  index: -1
+jjcdw_flag5
+  rotate: false
+  xy: 324, 60
+  size: 136, 164
+  orig: 136, 164
+  offset: 0, 0
+  index: -1
+jjcdw_flag6
+  rotate: false
+  xy: 2, 224
+  size: 182, 164
+  orig: 182, 164
+  offset: 0, 0
+  index: -1
+jjcdw_gan
+  rotate: false
+  xy: 51, 11
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+jjcdw_sword1
+  rotate: true
+  xy: 2, 2
+  size: 220, 47
+  orig: 220, 47
+  offset: 0, 0
+  index: -1
+jjcdw_sword2
+  rotate: true
+  xy: 443, 353
+  size: 101, 55
+  orig: 101, 55
+  offset: 0, 0
+  index: -1
+jjcdw_sword3
+  rotate: false
+  xy: 324, 15
+  size: 157, 43
+  orig: 157, 43
+  offset: 0, 0
+  index: -1
+jjcdw_sword4
+  rotate: false
+  xy: 240, 456
+  size: 257, 54
+  orig: 257, 54
+  offset: 0, 0
+  index: -1
+jjcdw_sword5
+  rotate: false
+  xy: 240, 393
+  size: 198, 61
+  orig: 198, 61
+  offset: 0, 0
+  index: -1
+jjcdw_sword6
+  rotate: false
+  xy: 2, 390
+  size: 236, 120
+  orig: 236, 120
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 443, 265
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1

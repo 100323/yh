@@ -1,0 +1,153 @@
+
+jiangwei9_skill_hit1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 282, 28
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+sk2_cq01
+  rotate: false
+  xy: 2, 25
+  size: 110, 18
+  orig: 110, 18
+  offset: 0, 0
+  index: -1
+sk2_cq02
+  rotate: false
+  xy: 2, 5
+  size: 20, 18
+  orig: 20, 18
+  offset: 0, 0
+  index: -1
+sk2_cq03
+  rotate: true
+  xy: 275, 288
+  size: 27, 20
+  orig: 27, 20
+  offset: 0, 0
+  index: -1
+sk2_cq04
+  rotate: true
+  xy: 470, 368
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+sk2_cq08
+  rotate: false
+  xy: 413, 232
+  size: 95, 83
+  orig: 95, 83
+  offset: 0, 0
+  index: -1
+sk2_dibo
+  rotate: false
+  xy: 298, 71
+  size: 107, 74
+  orig: 107, 74
+  offset: 0, 0
+  index: -1
+sk2_gy
+  rotate: false
+  xy: 148, 2
+  size: 132, 89
+  orig: 132, 89
+  offset: 0, 0
+  index: -1
+sk2_ks
+  rotate: false
+  xy: 298, 237
+  size: 113, 78
+  orig: 113, 78
+  offset: 0, 0
+  index: -1
+sk2_lz
+  rotate: false
+  xy: 470, 389
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+sk2_lz2
+  rotate: false
+  xy: 275, 368
+  size: 193, 138
+  orig: 193, 138
+  offset: 0, 0
+  index: -1
+sk2_sd01
+  rotate: true
+  xy: 450, 71
+  size: 78, 34
+  orig: 78, 34
+  offset: 0, 0
+  index: -1
+sk2_sd02
+  rotate: true
+  xy: 470, 418
+  size: 88, 40
+  orig: 88, 40
+  offset: 0, 0
+  index: -1
+sk2_sd03
+  rotate: true
+  xy: 407, 73
+  size: 76, 41
+  orig: 76, 41
+  offset: 0, 0
+  index: -1
+sk2_sg
+  rotate: false
+  xy: 298, 147
+  size: 100, 88
+  orig: 100, 88
+  offset: 0, 0
+  index: -1
+sk2_tw01
+  rotate: false
+  xy: 275, 317
+  size: 211, 49
+  orig: 211, 49
+  offset: 0, 0
+  index: -1
+sk2_tw02
+  rotate: true
+  xy: 148, 93
+  size: 172, 148
+  orig: 172, 148
+  offset: 0, 0
+  index: -1
+sk2_tw03
+  rotate: false
+  xy: 2, 45
+  size: 144, 222
+  orig: 144, 222
+  offset: 0, 0
+  index: -1
+sk2_tw04
+  rotate: false
+  xy: 148, 267
+  size: 125, 239
+  orig: 125, 239
+  offset: 0, 0
+  index: -1
+sk2_tw05
+  rotate: false
+  xy: 2, 269
+  size: 144, 237
+  orig: 144, 237
+  offset: 0, 0
+  index: -1
+sk2_xw
+  rotate: false
+  xy: 400, 151
+  size: 82, 79
+  orig: 82, 79
+  offset: 0, 0
+  index: -1

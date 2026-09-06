@@ -1,0 +1,174 @@
+
+zhangfei.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_circle_ring
+  rotate: false
+  xy: 245, 259
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 2, 187
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halfcircle1
+  rotate: false
+  xy: 413, 305
+  size: 86, 40
+  orig: 86, 40
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 47, 271
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 48, 319
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 197, 264
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zhangfei_beard1
+  rotate: false
+  xy: 86, 156
+  size: 140, 106
+  orig: 140, 106
+  offset: 0, 0
+  index: -1
+zhangfei_beard2
+  rotate: false
+  xy: 112, 313
+  size: 58, 32
+  orig: 58, 34
+  offset: 0, 1
+  index: -1
+zhangfei_body
+  rotate: true
+  xy: 228, 124
+  size: 130, 123
+  orig: 130, 123
+  offset: 0, 0
+  index: -1
+zhangfei_eye
+  rotate: true
+  xy: 2, 337
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+zhangfei_eyebrow
+  rotate: true
+  xy: 366, 309
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+zhangfei_eyewhite
+  rotate: true
+  xy: 76, 315
+  size: 30, 34
+  orig: 30, 34
+  offset: 0, 0
+  index: -1
+zhangfei_hair1
+  rotate: false
+  xy: 172, 312
+  size: 55, 33
+  orig: 56, 35
+  offset: 0, 1
+  index: -1
+zhangfei_hair2
+  rotate: true
+  xy: 229, 312
+  size: 33, 47
+  orig: 33, 47
+  offset: 0, 0
+  index: -1
+zhangfei_hair3
+  rotate: true
+  xy: 317, 310
+  size: 35, 47
+  orig: 36, 48
+  offset: 0, 0
+  index: -1
+zhangfei_handl
+  rotate: true
+  xy: 2, 277
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+zhangfei_handr1
+  rotate: false
+  xy: 100, 269
+  size: 43, 42
+  orig: 44, 42
+  offset: 1, 0
+  index: -1
+zhangfei_handr2
+  rotate: true
+  xy: 278, 312
+  size: 33, 37
+  orig: 34, 38
+  offset: 0, 1
+  index: -1
+zhangfei_head
+  rotate: true
+  xy: 353, 109
+  size: 126, 131
+  orig: 126, 131
+  offset: 0, 0
+  index: -1
+zhangfei_legr
+  rotate: true
+  xy: 13, 320
+  size: 25, 33
+  orig: 25, 33
+  offset: 0, 0
+  index: -1
+zhangfei_mouth
+  rotate: false
+  xy: 145, 265
+  size: 50, 45
+  orig: 51, 46
+  offset: 1, 1
+  index: -1
+zhangfei_shoulderl
+  rotate: true
+  xy: 298, 256
+  size: 52, 57
+  orig: 52, 57
+  offset: 0, 0
+  index: -1
+zhangfei_tail
+  rotate: false
+  xy: 357, 237
+  size: 107, 66
+  orig: 107, 66
+  offset: 0, 0
+  index: -1
+zhangfei_weaponr
+  rotate: true
+  xy: 2, 2
+  size: 120, 321
+  orig: 120, 321
+  offset: 0, 0
+  index: -1

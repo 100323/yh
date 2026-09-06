@@ -1,0 +1,27 @@
+
+simayi3_attack_line.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 154, 41
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+simayi3_attack1
+  rotate: false
+  xy: 2, 2
+  size: 125, 18
+  orig: 134, 18
+  offset: 6, 0
+  index: -1
+simayi3_attack2
+  rotate: false
+  xy: 2, 22
+  size: 150, 61
+  orig: 164, 62
+  offset: 12, 1
+  index: -1

@@ -1,0 +1,48 @@
+
+xsxjt_gyxb_zydj.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_dj
+  rotate: false
+  xy: 58, 63
+  size: 47, 54
+  orig: 49, 60
+  offset: 1, 6
+  index: -1
+xsxjt_gyxb_dj2
+  rotate: false
+  xy: 102, 9
+  size: 48, 52
+  orig: 54, 64
+  offset: 3, 10
+  index: -1
+xsxjt_gyxb_dj3
+  rotate: false
+  xy: 55, 2
+  size: 45, 59
+  orig: 45, 59
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_dj4
+  rotate: true
+  xy: 2, 7
+  size: 54, 51
+  orig: 54, 51
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_dj5
+  rotate: false
+  xy: 2, 63
+  size: 54, 54
+  orig: 59, 60
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_xing
+  rotate: false
+  xy: 107, 74
+  size: 34, 43
+  orig: 35, 46
+  offset: 0, 2
+  index: -1

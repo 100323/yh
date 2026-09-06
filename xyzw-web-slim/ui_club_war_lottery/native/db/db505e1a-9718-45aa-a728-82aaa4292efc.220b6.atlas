@@ -1,0 +1,55 @@
+
+jlbghz_ydcj_guangquan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 314, 150
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+jlbghz_yingdi_ui_gs
+  rotate: false
+  xy: 2, 158
+  size: 199, 199
+  orig: 201, 201
+  offset: 1, 1
+  index: -1
+jlbghz_yingdi_ui_paozha
+  rotate: true
+  xy: 203, 170
+  size: 34, 39
+  orig: 34, 47
+  offset: 0, 4
+  index: -1
+jlbghz_yingdi_ui_paozha2
+  rotate: true
+  xy: 203, 206
+  size: 151, 196
+  orig: 151, 196
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_ui_quanl
+  rotate: false
+  xy: 2, 2
+  size: 154, 154
+  orig: 158, 158
+  offset: 2, 2
+  index: -1
+jlbghz_yingdi_ui_quanr
+  rotate: false
+  xy: 158, 2
+  size: 154, 154
+  orig: 158, 158
+  offset: 2, 2
+  index: -1
+paopao
+  rotate: true
+  xy: 244, 180
+  size: 24, 25
+  orig: 24, 28
+  offset: 0, 3
+  index: -1

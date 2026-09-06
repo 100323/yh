@@ -1,0 +1,104 @@
+
+ft2_zhangjiao6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baihu1_htuil
+  rotate: false
+  xy: 359, 86
+  size: 64, 74
+  orig: 64, 74
+  offset: 0, 0
+  index: -1
+baihu1_htuir
+  rotate: false
+  xy: 237, 149
+  size: 98, 163
+  orig: 98, 163
+  offset: 0, 0
+  index: -1
+baihu1_lizi1
+  rotate: false
+  xy: 107, 10
+  size: 65, 68
+  orig: 65, 68
+  offset: 0, 0
+  index: -1
+baihu1_lizix1
+  rotate: false
+  xy: 425, 82
+  size: 59, 78
+  orig: 59, 78
+  offset: 0, 0
+  index: -1
+baihu1_qtuil
+  rotate: true
+  xy: 2, 2
+  size: 76, 103
+  orig: 76, 103
+  offset: 0, 0
+  index: -1
+baihu1_qtuir
+  rotate: false
+  xy: 2, 80
+  size: 134, 232
+  orig: 134, 232
+  offset: 0, 0
+  index: -1
+baihu1_shen
+  rotate: false
+  xy: 2, 314
+  size: 275, 196
+  orig: 275, 198
+  offset: 0, 2
+  index: -1
+baihu1_tjl
+  rotate: false
+  xy: 433, 336
+  size: 49, 91
+  orig: 56, 93
+  offset: 0, 0
+  index: -1
+baihu1_tjr
+  rotate: true
+  xy: 237, 57
+  size: 90, 120
+  orig: 95, 131
+  offset: 5, 0
+  index: -1
+baihu1_tou
+  rotate: false
+  xy: 279, 318
+  size: 152, 192
+  orig: 152, 192
+  offset: 0, 0
+  index: -1
+baihu1_zhuzi
+  rotate: true
+  xy: 433, 429
+  size: 81, 62
+  orig: 81, 62
+  offset: 0, 0
+  index: -1
+baihu1_zsl
+  rotate: false
+  xy: 138, 91
+  size: 97, 221
+  orig: 107, 236
+  offset: 0, 15
+  index: -1
+baihu1_zsr
+  rotate: false
+  xy: 337, 162
+  size: 119, 154
+  orig: 119, 154
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 359, 55
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1

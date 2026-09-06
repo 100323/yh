@@ -1,0 +1,13 @@
+
+poyou2_skill_hit2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+youtong_youti
+  rotate: false
+  xy: 2, 2
+  size: 285, 292
+  orig: 285, 292
+  offset: 0, 0
+  index: -1

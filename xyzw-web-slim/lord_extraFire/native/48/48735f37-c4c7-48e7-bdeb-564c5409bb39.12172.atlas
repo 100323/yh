@@ -1,0 +1,195 @@
+
+penqianglv5_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1_dy01
+  rotate: true
+  xy: 395, 282
+  size: 397, 118
+  orig: 397, 118
+  offset: 0, 0
+  index: -1
+1_dy02
+  rotate: true
+  xy: 63, 259
+  size: 397, 127
+  orig: 397, 127
+  offset: 0, 0
+  index: -1
+1_guangzhu
+  rotate: true
+  xy: 173, 681
+  size: 164, 214
+  orig: 164, 214
+  offset: 0, 0
+  index: -1
+1_yan1
+  rotate: true
+  xy: 2, 2
+  size: 229, 146
+  orig: 229, 146
+  offset: 0, 0
+  index: -1
+1_yan2
+  rotate: true
+  xy: 534, 533
+  size: 481, 306
+  orig: 481, 306
+  offset: 0, 0
+  index: -1
+5_huo01
+  rotate: true
+  xy: 150, 85
+  size: 138, 28
+  orig: 138, 28
+  offset: 0, 0
+  index: -1
+5_huo02
+  rotate: false
+  xy: 575, 319
+  size: 138, 28
+  orig: 138, 28
+  offset: 0, 0
+  index: -1
+5_huo03
+  rotate: false
+  xy: 678, 404
+  size: 217, 42
+  orig: 217, 42
+  offset: 0, 0
+  index: -1
+5_huo04
+  rotate: false
+  xy: 395, 222
+  size: 241, 58
+  orig: 241, 58
+  offset: 0, 0
+  index: -1
+5_huo05
+  rotate: true
+  xy: 734, 185
+  size: 217, 42
+  orig: 217, 42
+  offset: 0, 0
+  index: -1
+5_huo06
+  rotate: false
+  xy: 515, 349
+  size: 217, 46
+  orig: 217, 46
+  offset: 0, 0
+  index: -1
+5_huo07
+  rotate: true
+  xy: 243, 221
+  size: 169, 150
+  orig: 169, 150
+  offset: 0, 0
+  index: -1
+5_huo08
+  rotate: true
+  xy: 243, 392
+  size: 287, 150
+  orig: 287, 150
+  offset: 0, 0
+  index: -1
+5_huo09
+  rotate: false
+  xy: 515, 397
+  size: 161, 134
+  orig: 161, 134
+  offset: 0, 0
+  index: -1
+5_huo10
+  rotate: true
+  xy: 389, 681
+  size: 164, 61
+  orig: 164, 61
+  offset: 0, 0
+  index: -1
+5_huo11
+  rotate: true
+  xy: 452, 688
+  size: 157, 74
+  orig: 157, 74
+  offset: 0, 0
+  index: -1
+5_huo12
+  rotate: false
+  xy: 2, 898
+  size: 530, 116
+  orig: 530, 116
+  offset: 0, 0
+  index: -1
+5_huo13
+  rotate: false
+  xy: 395, 148
+  size: 112, 72
+  orig: 112, 72
+  offset: 0, 0
+  index: -1
+5_huo14
+  rotate: true
+  xy: 192, 149
+  size: 530, 49
+  orig: 530, 49
+  offset: 0, 0
+  index: -1
+5_huo15
+  rotate: false
+  xy: 173, 847
+  size: 314, 49
+  orig: 314, 49
+  offset: 0, 0
+  index: -1
+5_huo16
+  rotate: true
+  xy: 638, 204
+  size: 113, 72
+  orig: 113, 72
+  offset: 0, 0
+  index: -1
+5_huo17
+  rotate: true
+  xy: 768, 450
+  size: 81, 90
+  orig: 81, 90
+  offset: 0, 0
+  index: -1
+5_penhuokong
+  rotate: false
+  xy: 2, 233
+  size: 59, 423
+  orig: 59, 423
+  offset: 0, 0
+  index: -1
+5_xing01
+  rotate: false
+  xy: 515, 294
+  size: 58, 53
+  orig: 58, 53
+  offset: 0, 0
+  index: -1
+5_xing02
+  rotate: true
+  xy: 678, 448
+  size: 83, 88
+  orig: 83, 88
+  offset: 0, 0
+  index: -1
+5_yan01
+  rotate: false
+  xy: 2, 658
+  size: 169, 238
+  orig: 169, 238
+  offset: 0, 0
+  index: -1
+bawanglong_guang
+  rotate: false
+  xy: 150, 225
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

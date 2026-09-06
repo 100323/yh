@@ -1,0 +1,55 @@
+
+wyhd26_fk_xiangzi.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lanzi_cao1
+  rotate: true
+  xy: 225, 300
+  size: 101, 125
+  orig: 101, 125
+  offset: 0, 0
+  index: -1
+lanzi_cao2
+  rotate: false
+  xy: 153, 347
+  size: 70, 54
+  orig: 70, 54
+  offset: 0, 0
+  index: -1
+lanzi_cao3
+  rotate: true
+  xy: 2, 371
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1
+lanzi_cao4
+  rotate: true
+  xy: 49, 367
+  size: 34, 39
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
+lanzi_jiazi1
+  rotate: false
+  xy: 90, 354
+  size: 61, 47
+  orig: 61, 47
+  offset: 0, 0
+  index: -1
+lanzi_lanzi
+  rotate: false
+  xy: 2, 2
+  size: 505, 275
+  orig: 505, 275
+  offset: 0, 0
+  index: -1
+lanzi_piaodai2
+  rotate: true
+  xy: 352, 279
+  size: 122, 138
+  orig: 122, 138
+  offset: 0, 0
+  index: -1

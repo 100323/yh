@@ -1,0 +1,27 @@
+
+jiaxu8_buff_hmfw.png
+size: 256,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaxu8_hufu1
+  rotate: false
+  xy: 2, 339
+  size: 171, 161
+  orig: 171, 161
+  offset: 0, 0
+  index: -1
+jiaxu8_hufu2
+  rotate: false
+  xy: 2, 174
+  size: 171, 163
+  orig: 171, 163
+  offset: 0, 0
+  index: -1
+jiaxu8_hufu3
+  rotate: true
+  xy: 2, 2
+  size: 170, 175
+  orig: 170, 175
+  offset: 0, 0
+  index: -1

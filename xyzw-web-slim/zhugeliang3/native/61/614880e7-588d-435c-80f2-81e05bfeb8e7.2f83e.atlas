@@ -1,0 +1,34 @@
+
+zhugeliang3_skill_hit.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_skill_circle
+  rotate: false
+  xy: 45, 13
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 41, 41
+  orig: 45, 45
+  offset: 2, 2
+  index: -1
+simayi3_attack1
+  rotate: false
+  xy: 2, 45
+  size: 130, 17
+  orig: 130, 17
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 77, 19
+  size: 20, 24
+  orig: 25, 25
+  offset: 3, 0
+  index: -1

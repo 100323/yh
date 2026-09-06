@@ -1,0 +1,69 @@
+
+daqiao7_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao7_pg_bd1
+  rotate: false
+  xy: 112, 3
+  size: 88, 101
+  orig: 88, 101
+  offset: 0, 0
+  index: -1
+daqiao7_pg_bd2
+  rotate: true
+  xy: 2, 2
+  size: 102, 108
+  orig: 102, 108
+  offset: 0, 0
+  index: -1
+daqiao7_pg_bd3
+  rotate: false
+  xy: 2, 106
+  size: 125, 148
+  orig: 125, 148
+  offset: 0, 0
+  index: -1
+daqiao7_pg_bd4
+  rotate: true
+  xy: 129, 128
+  size: 126, 119
+  orig: 126, 119
+  offset: 0, 0
+  index: -1
+daqiao7_pg_lz1
+  rotate: true
+  xy: 202, 59
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+daqiao7_pg_lz2
+  rotate: true
+  xy: 270, 65
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+daqiao7_pg_lz3
+  rotate: true
+  xy: 250, 188
+  size: 66, 65
+  orig: 66, 65
+  offset: 0, 0
+  index: -1
+daqiao7_pg_lz4
+  rotate: false
+  xy: 250, 129
+  size: 56, 57
+  orig: 56, 57
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 202, 16
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

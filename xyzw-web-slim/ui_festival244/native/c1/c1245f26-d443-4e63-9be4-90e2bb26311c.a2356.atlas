@@ -1,0 +1,27 @@
+
+cjhd26_bingo_maobi.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjhd26_bingo_bi1
+  rotate: false
+  xy: 2, 78
+  size: 132, 160
+  orig: 134, 163
+  offset: 1, 2
+  index: -1
+cjhd26_bingo_bi2
+  rotate: false
+  xy: 2, 2
+  size: 89, 74
+  orig: 89, 74
+  offset: 0, 0
+  index: -1
+cjhd26_bingo_bi3
+  rotate: false
+  xy: 136, 73
+  size: 80, 165
+  orig: 80, 165
+  offset: 0, 0
+  index: -1

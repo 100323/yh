@@ -1,0 +1,83 @@
+
+zxc_xjzw_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zxc_xjzw_banner1
+  rotate: false
+  xy: 323, 2
+  size: 22, 102
+  orig: 22, 102
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner10
+  rotate: false
+  xy: 2, 241
+  size: 410, 242
+  orig: 410, 242
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner2
+  rotate: true
+  xy: 2, 52
+  size: 187, 221
+  orig: 187, 221
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner3
+  rotate: true
+  xy: 359, 180
+  size: 11, 14
+  orig: 11, 14
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner4
+  rotate: false
+  xy: 359, 217
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner5
+  rotate: true
+  xy: 375, 185
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner5_1
+  rotate: false
+  xy: 359, 193
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner6
+  rotate: false
+  xy: 225, 106
+  size: 132, 133
+  orig: 132, 133
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner7
+  rotate: true
+  xy: 414, 162
+  size: 321, 90
+  orig: 321, 90
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner8
+  rotate: false
+  xy: 359, 78
+  size: 78, 82
+  orig: 78, 82
+  offset: 0, 0
+  index: -1
+zxc_xjzw_banner9
+  rotate: true
+  xy: 225, 47
+  size: 57, 96
+  orig: 57, 96
+  offset: 0, 0
+  index: -1

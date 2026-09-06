@@ -1,0 +1,27 @@
+
+zhaoyun3_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zy_sj01
+  rotate: true
+  xy: 2, 2
+  size: 116, 102
+  orig: 116, 103
+  offset: 0, 0
+  index: -1
+zy_sj02
+  rotate: false
+  xy: 106, 4
+  size: 64, 31
+  orig: 67, 32
+  offset: 2, 0
+  index: -1
+zy_sj03
+  rotate: true
+  xy: 106, 37
+  size: 81, 73
+  orig: 86, 75
+  offset: 4, 1
+  index: -1

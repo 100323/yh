@@ -1,0 +1,27 @@
+
+sunce5_attack_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce5_attack1
+  rotate: true
+  xy: 354, 261
+  size: 121, 42
+  orig: 121, 42
+  offset: 0, 0
+  index: -1
+sunce5_attack2
+  rotate: false
+  xy: 2, 2
+  size: 284, 189
+  orig: 284, 189
+  offset: 0, 0
+  index: -1
+sunce5_attack3
+  rotate: false
+  xy: 2, 193
+  size: 350, 189
+  orig: 350, 189
+  offset: 0, 0
+  index: -1

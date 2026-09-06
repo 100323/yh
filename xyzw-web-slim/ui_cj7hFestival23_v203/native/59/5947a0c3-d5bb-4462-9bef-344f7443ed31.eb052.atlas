@@ -1,0 +1,62 @@
+
+llqj25_cj_bj.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_anbian1
+  rotate: false
+  xy: 2, 417
+  size: 114, 600
+  orig: 114, 600
+  offset: 0, 0
+  index: -1
+choujiang_anbian2
+  rotate: true
+  xy: 306, 2
+  size: 120, 574
+  orig: 120, 574
+  offset: 0, 0
+  index: -1
+choujiang_cheng
+  rotate: true
+  xy: 602, 535
+  size: 482, 218
+  orig: 482, 218
+  offset: 0, 0
+  index: -1
+choujiang_chishui
+  rotate: false
+  xy: 118, 439
+  size: 482, 578
+  orig: 482, 578
+  offset: 0, 0
+  index: -1
+choujiang_wuqi1
+  rotate: false
+  xy: 484, 172
+  size: 482, 265
+  orig: 482, 265
+  offset: 0, 0
+  index: -1
+choujiang_wuqi2
+  rotate: false
+  xy: 2, 73
+  size: 198, 342
+  orig: 198, 342
+  offset: 0, 0
+  index: -1
+choujiang_wuqi3
+  rotate: false
+  xy: 202, 124
+  size: 280, 313
+  orig: 280, 313
+  offset: 0, 0
+  index: -1
+choujiang_yanan
+  rotate: true
+  xy: 2, 37
+  size: 34, 302
+  orig: 34, 302
+  offset: 0, 0
+  index: -1

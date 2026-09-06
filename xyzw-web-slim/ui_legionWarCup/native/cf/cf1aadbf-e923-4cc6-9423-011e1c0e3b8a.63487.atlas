@@ -1,0 +1,83 @@
+
+zbz_dx1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_dx1_bg
+  rotate: true
+  xy: 2, 2
+  size: 450, 543
+  orig: 450, 543
+  offset: 0, 0
+  index: -1
+zbz_dx1_fg
+  rotate: true
+  xy: 547, 269
+  size: 183, 161
+  orig: 183, 161
+  offset: 0, 0
+  index: -1
+zbz_dx1_fg2
+  rotate: true
+  xy: 547, 199
+  size: 68, 161
+  orig: 68, 161
+  offset: 0, 0
+  index: -1
+zbz_my_bgs1
+  rotate: false
+  xy: 612, 167
+  size: 56, 30
+  orig: 56, 30
+  offset: 0, 0
+  index: -1
+zbz_my_bgs2
+  rotate: false
+  xy: 710, 426
+  size: 54, 26
+  orig: 54, 26
+  offset: 0, 0
+  index: -1
+zbz_my_bgs3
+  rotate: false
+  xy: 670, 170
+  size: 50, 27
+  orig: 50, 27
+  offset: 0, 0
+  index: -1
+zbz_my_bgw1
+  rotate: false
+  xy: 710, 406
+  size: 62, 18
+  orig: 62, 18
+  offset: 0, 0
+  index: -1
+zbz_my_bgw2
+  rotate: false
+  xy: 710, 388
+  size: 66, 16
+  orig: 66, 16
+  offset: 0, 0
+  index: -1
+zbz_my_bgw3
+  rotate: false
+  xy: 766, 435
+  size: 66, 17
+  orig: 66, 17
+  offset: 0, 0
+  index: -1
+zbz_my_fish1
+  rotate: false
+  xy: 547, 159
+  size: 63, 38
+  orig: 63, 38
+  offset: 0, 0
+  index: -1
+zbz_my_fish2
+  rotate: false
+  xy: 774, 417
+  size: 29, 16
+  orig: 29, 16
+  offset: 0, 0
+  index: -1

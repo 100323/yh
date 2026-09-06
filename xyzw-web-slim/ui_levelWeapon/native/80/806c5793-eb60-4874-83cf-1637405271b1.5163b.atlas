@@ -1,0 +1,97 @@
+
+xshd_ui_baozoupen150.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 308, 922
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+penboss_kai_1
+  rotate: false
+  xy: 2, 138
+  size: 440, 324
+  orig: 440, 324
+  offset: 0, 0
+  index: -1
+penboss_kai_10
+  rotate: true
+  xy: 2, 770
+  size: 176, 236
+  orig: 176, 236
+  offset: 0, 0
+  index: -1
+penboss_kai_11
+  rotate: true
+  xy: 810, 634
+  size: 185, 187
+  orig: 187, 188
+  offset: 1, 1
+  index: -1
+penboss_kai_12
+  rotate: false
+  xy: 732, 821
+  size: 186, 155
+  orig: 187, 155
+  offset: 0, 0
+  index: -1
+penboss_kai_13
+  rotate: false
+  xy: 543, 864
+  size: 187, 112
+  orig: 187, 112
+  offset: 0, 0
+  index: -1
+penboss_kai_14
+  rotate: false
+  xy: 364, 886
+  size: 177, 90
+  orig: 178, 90
+  offset: 1, 0
+  index: -1
+penboss_kai_2
+  rotate: false
+  xy: 444, 2
+  size: 462, 355
+  orig: 462, 355
+  offset: 0, 0
+  index: -1
+penboss_kai_3
+  rotate: false
+  xy: 486, 359
+  size: 450, 273
+  orig: 450, 273
+  offset: 0, 0
+  index: -1
+penboss_kai_4
+  rotate: true
+  xy: 240, 725
+  size: 94, 568
+  orig: 94, 568
+  offset: 0, 0
+  index: -1
+penboss_kai_8huan
+  rotate: false
+  xy: 2, 547
+  size: 221, 221
+  orig: 221, 221
+  offset: 0, 0
+  index: -1
+penboss_kai_8yuan
+  rotate: false
+  xy: 225, 464
+  size: 259, 259
+  orig: 259, 259
+  offset: 0, 0
+  index: -1
+penboss_kai_9
+  rotate: true
+  xy: 2, 948
+  size: 28, 304
+  orig: 29, 306
+  offset: 1, 1
+  index: -1

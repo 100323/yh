@@ -1,0 +1,41 @@
+
+sayan1_skill_hit2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+nles_skill_yanguan1
+  rotate: false
+  xy: 2, 181
+  size: 176, 323
+  orig: 179, 326
+  offset: 2, 1
+  index: -1
+nles_skill_yanguan2
+  rotate: true
+  xy: 2, 2
+  size: 177, 278
+  orig: 179, 280
+  offset: 1, 1
+  index: -1
+nles_skill_yanguan3
+  rotate: true
+  xy: 282, 115
+  size: 198, 154
+  orig: 198, 154
+  offset: 0, 0
+  index: -1
+nles_skill_yanguan4
+  rotate: true
+  xy: 180, 315
+  size: 189, 253
+  orig: 189, 253
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 180, 286
+  size: 25, 27
+  orig: 32, 32
+  offset: 2, 3
+  index: -1

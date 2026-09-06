@@ -1,0 +1,62 @@
+
+tgcf_pty_ljgx4.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_ljgx_biao4
+  rotate: true
+  xy: 2, 37
+  size: 120, 89
+  orig: 120, 89
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_biao5
+  rotate: false
+  xy: 2, 159
+  size: 120, 89
+  orig: 120, 89
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_yun1
+  rotate: true
+  xy: 2, 4
+  size: 31, 33
+  orig: 31, 33
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_yun2
+  rotate: true
+  xy: 177, 60
+  size: 80, 75
+  orig: 80, 75
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_yun3
+  rotate: false
+  xy: 93, 2
+  size: 61, 58
+  orig: 61, 58
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_yun4
+  rotate: false
+  xy: 93, 62
+  size: 82, 78
+  orig: 82, 78
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_yun5
+  rotate: false
+  xy: 156, 6
+  size: 54, 52
+  orig: 54, 52
+  offset: 0, 0
+  index: -1
+tgcf_pty_ljgx_yun6
+  rotate: false
+  xy: 124, 142
+  size: 102, 106
+  orig: 102, 106
+  offset: 0, 0
+  index: -1

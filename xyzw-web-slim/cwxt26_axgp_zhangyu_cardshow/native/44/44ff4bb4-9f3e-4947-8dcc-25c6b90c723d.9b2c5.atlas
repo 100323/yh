@@ -1,0 +1,41 @@
+
+cwxt26_axgp_zhangyu_cardshow.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 695
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zy_choushou02
+  rotate: false
+  xy: 2, 7
+  size: 404, 386
+  orig: 404, 386
+  offset: 0, 0
+  index: -1
+zy_chushou01
+  rotate: true
+  xy: 408, 2
+  size: 391, 482
+  orig: 391, 482
+  offset: 0, 0
+  index: -1
+zy_chushou03
+  rotate: false
+  xy: 30, 403
+  size: 338, 318
+  orig: 338, 318
+  offset: 0, 0
+  index: -1
+zy_chushou04
+  rotate: true
+  xy: 370, 395
+  size: 326, 416
+  orig: 326, 416
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,111 @@
+
+simayi4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 449, 308
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+simayi4_skill_l1
+  rotate: false
+  xy: 2, 137
+  size: 158, 367
+  orig: 158, 367
+  offset: 0, 0
+  index: -1
+simayi4_skill_l2
+  rotate: false
+  xy: 162, 279
+  size: 177, 225
+  orig: 177, 225
+  offset: 0, 0
+  index: -1
+simayi4_skill_l3
+  rotate: true
+  xy: 341, 279
+  size: 225, 106
+  orig: 225, 106
+  offset: 0, 0
+  index: -1
+simayi4_skill_l4
+  rotate: true
+  xy: 162, 138
+  size: 68, 150
+  orig: 68, 150
+  offset: 0, 0
+  index: -1
+simayi4_skill_l5
+  rotate: true
+  xy: 162, 208
+  size: 69, 150
+  orig: 71, 150
+  offset: 1, 0
+  index: -1
+simayi4_skill_l6
+  rotate: true
+  xy: 2, 65
+  size: 70, 150
+  orig: 71, 150
+  offset: 0, 0
+  index: -1
+simayi4_skill_l8
+  rotate: false
+  xy: 427, 198
+  size: 14, 79
+  orig: 14, 79
+  offset: 0, 0
+  index: -1
+simayi4_skill_w1
+  rotate: false
+  xy: 314, 94
+  size: 112, 88
+  orig: 113, 88
+  offset: 0, 0
+  index: -1
+simayi4_skill_w2
+  rotate: false
+  xy: 162, 68
+  size: 113, 68
+  orig: 113, 68
+  offset: 0, 0
+  index: -1
+simayi4_skill_w3
+  rotate: true
+  xy: 449, 354
+  size: 150, 47
+  orig: 150, 47
+  offset: 0, 0
+  index: -1
+simayi4_skill_w4
+  rotate: false
+  xy: 2, 8
+  size: 71, 55
+  orig: 75, 59
+  offset: 4, 4
+  index: -1
+simayi4_skill_w5
+  rotate: false
+  xy: 314, 184
+  size: 111, 93
+  orig: 111, 93
+  offset: 0, 0
+  index: -1
+simayi4_skill_w6
+  rotate: false
+  xy: 277, 2
+  size: 105, 90
+  orig: 105, 90
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 75, 44
+  size: 23, 19
+  orig: 24, 24
+  offset: 1, 4
+  index: -1

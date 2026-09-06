@@ -1,0 +1,62 @@
+
+effect_txz_get.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ensflare
+  rotate: false
+  xy: 2, 13
+  size: 98, 94
+  orig: 98, 94
+  offset: 0, 0
+  index: -1
+effect_rainbow_circle
+  rotate: false
+  xy: 152, 106
+  size: 78, 78
+  orig: 78, 78
+  offset: 0, 0
+  index: -1
+effect_spark_scrap1
+  rotate: false
+  xy: 2, 191
+  size: 65, 50
+  orig: 65, 50
+  offset: 0, 0
+  index: -1
+effect_spark_scrap2
+  rotate: false
+  xy: 69, 189
+  size: 66, 52
+  orig: 66, 52
+  offset: 0, 0
+  index: -1
+effect_spark_scrap3
+  rotate: false
+  xy: 137, 186
+  size: 69, 55
+  orig: 69, 55
+  offset: 0, 0
+  index: -1
+effect_spark_scrap4
+  rotate: false
+  xy: 2, 130
+  size: 71, 57
+  orig: 71, 57
+  offset: 0, 0
+  index: -1
+ui_effect_light_box2
+  rotate: false
+  xy: 75, 109
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 102, 2
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1

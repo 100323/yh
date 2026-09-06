@@ -1,0 +1,76 @@
+
+sdlb_cyjc.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdlb_cyjc_bg1
+  rotate: false
+  xy: 2, 49
+  size: 296, 218
+  orig: 296, 218
+  offset: 0, 0
+  index: -1
+sdlb_cyjc_bg2
+  rotate: false
+  xy: 2, 269
+  size: 431, 218
+  orig: 431, 218
+  offset: 0, 0
+  index: -1
+sdlb_cyjc_cy
+  rotate: false
+  xy: 435, 328
+  size: 58, 53
+  orig: 60, 55
+  offset: 1, 1
+  index: -1
+sdlb_cyjc_dbx
+  rotate: false
+  xy: 435, 254
+  size: 33, 32
+  orig: 35, 33
+  offset: 1, 0
+  index: -1
+sdlb_cyjc_dbx2
+  rotate: false
+  xy: 486, 307
+  size: 20, 19
+  orig: 22, 21
+  offset: 1, 1
+  index: -1
+sdlb_cyjc_g
+  rotate: false
+  xy: 435, 288
+  size: 49, 38
+  orig: 49, 38
+  offset: 0, 0
+  index: -1
+sdlb_cyjc_kuai1
+  rotate: false
+  xy: 435, 383
+  size: 58, 54
+  orig: 58, 56
+  offset: 0, 1
+  index: -1
+sdlb_cyjc_kuai2
+  rotate: false
+  xy: 300, 161
+  size: 108, 106
+  orig: 119, 114
+  offset: 5, 4
+  index: -1
+sdlb_cyjc_xiang
+  rotate: false
+  xy: 300, 2
+  size: 181, 157
+  orig: 181, 157
+  offset: 0, 0
+  index: -1
+sdlb_cyjc_xing
+  rotate: true
+  xy: 435, 439
+  size: 48, 71
+  orig: 52, 75
+  offset: 2, 2
+  index: -1

@@ -1,0 +1,398 @@
+
+caoren7.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00001
+  rotate: true
+  xy: 422, 139
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00025
+  rotate: true
+  xy: 422, 139
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00003
+  rotate: false
+  xy: 2, 2
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00005
+  rotate: false
+  xy: 691, 205
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00007
+  rotate: false
+  xy: 715, 253
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00009
+  rotate: true
+  xy: 813, 131
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00011
+  rotate: false
+  xy: 837, 253
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00013
+  rotate: false
+  xy: 846, 389
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00015
+  rotate: false
+  xy: 846, 342
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00017
+  rotate: false
+  xy: 847, 500
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00019
+  rotate: false
+  xy: 847, 453
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00021
+  rotate: false
+  xy: 872, 648
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00023
+  rotate: false
+  xy: 872, 601
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+caoren7_bk
+  rotate: true
+  xy: 719, 547
+  size: 125, 151
+  orig: 125, 151
+  offset: 0, 0
+  index: -1
+caoren7_bkl
+  rotate: false
+  xy: 2, 49
+  size: 132, 242
+  orig: 132, 242
+  offset: 0, 0
+  index: -1
+caoren7_bkr
+  rotate: true
+  xy: 512, 320
+  size: 114, 203
+  orig: 114, 203
+  offset: 0, 0
+  index: -1
+caoren7_dbl
+  rotate: false
+  xy: 617, 674
+  size: 102, 97
+  orig: 102, 97
+  offset: 0, 0
+  index: -1
+caoren7_dun
+  rotate: false
+  xy: 523, 436
+  size: 194, 234
+  orig: 194, 234
+  offset: 0, 0
+  index: -1
+caoren7_dun_sjg1
+  rotate: false
+  xy: 313, 668
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1
+caoren7_dun_sjg2
+  rotate: false
+  xy: 242, 254
+  size: 178, 188
+  orig: 178, 188
+  offset: 0, 0
+  index: -1
+caoren7_dun_sjg3
+  rotate: true
+  xy: 623, 246
+  size: 72, 66
+  orig: 72, 66
+  offset: 0, 0
+  index: -1
+caoren7_dung
+  rotate: false
+  xy: 455, 103
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+caoren7_duns1
+  rotate: false
+  xy: 497, 123
+  size: 54, 64
+  orig: 54, 64
+  offset: 0, 0
+  index: -1
+caoren7_duns2
+  rotate: false
+  xy: 469, 173
+  size: 26, 52
+  orig: 26, 52
+  offset: 0, 0
+  index: -1
+caoren7_duns3
+  rotate: true
+  xy: 287, 33
+  size: 142, 110
+  orig: 142, 110
+  offset: 0, 0
+  index: -1
+caoren7_duns4
+  rotate: false
+  xy: 139, 303
+  size: 100, 134
+  orig: 100, 134
+  offset: 0, 0
+  index: -1
+caoren7_duns5
+  rotate: true
+  xy: 2, 293
+  size: 144, 135
+  orig: 144, 135
+  offset: 0, 0
+  index: -1
+caoren7_duns6
+  rotate: false
+  xy: 719, 436
+  size: 126, 109
+  orig: 126, 109
+  offset: 0, 0
+  index: -1
+caoren7_hz
+  rotate: false
+  xy: 136, 58
+  size: 149, 116
+  orig: 149, 116
+  offset: 0, 0
+  index: -1
+caoren7_jiaol
+  rotate: false
+  xy: 409, 669
+  size: 110, 93
+  orig: 110, 93
+  offset: 0, 0
+  index: -1
+caoren7_jiaor
+  rotate: false
+  xy: 802, 695
+  size: 103, 76
+  orig: 103, 76
+  offset: 0, 0
+  index: -1
+caoren7_sbl
+  rotate: false
+  xy: 502, 189
+  size: 119, 129
+  orig: 119, 129
+  offset: 0, 0
+  index: -1
+caoren7_sbr
+  rotate: false
+  xy: 422, 344
+  size: 88, 98
+  orig: 88, 98
+  offset: 0, 0
+  index: -1
+caoren7_shen
+  rotate: false
+  xy: 313, 764
+  size: 232, 215
+  orig: 232, 215
+  offset: 0, 0
+  index: -1
+caoren7_shoul
+  rotate: true
+  xy: 721, 693
+  size: 78, 79
+  orig: 78, 79
+  offset: 0, 0
+  index: -1
+caoren7_shour
+  rotate: false
+  xy: 399, 81
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+caoren7_skill2_dg
+  rotate: true
+  xy: 547, 773
+  size: 206, 267
+  orig: 206, 267
+  offset: 0, 0
+  index: -1
+caoren7_skill_quan3
+  rotate: true
+  xy: 2, 439
+  size: 226, 238
+  orig: 226, 238
+  offset: 0, 0
+  index: -1
+caoren7_tjl
+  rotate: true
+  xy: 422, 261
+  size: 81, 78
+  orig: 81, 78
+  offset: 0, 0
+  index: -1
+caoren7_tjr
+  rotate: false
+  xy: 623, 183
+  size: 60, 61
+  orig: 60, 61
+  offset: 0, 0
+  index: -1
+caoren7_tk
+  rotate: false
+  xy: 717, 300
+  size: 127, 134
+  orig: 127, 134
+  offset: 0, 0
+  index: -1
+caoren7_tou
+  rotate: false
+  xy: 2, 667
+  size: 309, 312
+  orig: 309, 312
+  offset: 0, 0
+  index: -1
+caoren7_tuil
+  rotate: true
+  xy: 521, 672
+  size: 90, 94
+  orig: 90, 94
+  offset: 0, 0
+  index: -1
+caoren7_tuir
+  rotate: false
+  xy: 240, 177
+  size: 82, 75
+  orig: 82, 75
+  offset: 0, 0
+  index: -1
+fsg
+  rotate: false
+  xy: 816, 786
+  size: 28, 193
+  orig: 28, 193
+  offset: 0, 0
+  index: -1
+guanyu8_yz_guang
+  rotate: false
+  xy: 242, 444
+  size: 279, 221
+  orig: 279, 221
+  offset: 0, 0
+  index: -1
+guanyu8_yz_xing
+  rotate: true
+  xy: 890, 817
+  size: 162, 50
+  orig: 162, 50
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 553, 141
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+kong
+  rotate: false
+  xy: 139, 293
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+simayi9_beiguang1
+  rotate: true
+  xy: 324, 181
+  size: 71, 90
+  orig: 71, 90
+  offset: 0, 0
+  index: -1
+simayi9_beiguang2
+  rotate: false
+  xy: 136, 176
+  size: 102, 115
+  orig: 102, 115
+  offset: 0, 0
+  index: -1
+simayi9_bs_yanwu
+  rotate: false
+  xy: 846, 774
+  size: 66, 37
+  orig: 66, 37
+  offset: 0, 0
+  index: -1
+simayi9_yz_dong
+  rotate: true
+  xy: 846, 813
+  size: 166, 42
+  orig: 166, 42
+  offset: 0, 0
+  index: -1
+simayi9_yz_xing
+  rotate: false
+  xy: 136, 13
+  size: 137, 43
+  orig: 137, 43
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: true
+  xy: 469, 227
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: false
+  xy: 691, 252
+  size: 22, 66
+  orig: 22, 66
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+cwxt26_sx_light_2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_sx_light1_gy
+  rotate: true
+  xy: 2, 89
+  size: 163, 162
+  orig: 163, 162
+  offset: 0, 0
+  index: -1
+cwxt26_sx_light1_quan
+  rotate: false
+  xy: 2, 2
+  size: 85, 85
+  orig: 87, 87
+  offset: 1, 1
+  index: -1
+cwxt26_sx_light1_xian
+  rotate: false
+  xy: 166, 12
+  size: 98, 102
+  orig: 98, 102
+  offset: 0, 0
+  index: -1
+cwxt26_sx_light1_yan
+  rotate: false
+  xy: 166, 116
+  size: 125, 136
+  orig: 128, 138
+  offset: 2, 1
+  index: -1
+cwxt26_sx_light_xing
+  rotate: false
+  xy: 89, 49
+  size: 38, 38
+  orig: 44, 43
+  offset: 2, 3
+  index: -1

@@ -1,0 +1,48 @@
+
+jiangwei5_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 149, 14
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+jiangwei5_attack2
+  rotate: false
+  xy: 254, 2
+  size: 146, 79
+  orig: 154, 87
+  offset: 4, 4
+  index: -1
+jiangwei5_attack3
+  rotate: true
+  xy: 254, 83
+  size: 171, 144
+  orig: 180, 156
+  offset: 5, 7
+  index: -1
+jiangwei5_attack4
+  rotate: true
+  xy: 149, 57
+  size: 197, 103
+  orig: 203, 113
+  offset: 3, 8
+  index: -1
+jiangwei5_attack5
+  rotate: true
+  xy: 2, 36
+  size: 218, 145
+  orig: 237, 167
+  offset: 13, 12
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 20
+  size: 14, 14
+  orig: 22, 22
+  offset: 7, 5
+  index: -1

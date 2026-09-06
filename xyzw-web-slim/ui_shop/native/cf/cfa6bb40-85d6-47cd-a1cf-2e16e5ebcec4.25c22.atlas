@@ -1,0 +1,153 @@
+
+hssd_trader_head.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hssd_trader_arml
+  rotate: false
+  xy: 366, 124
+  size: 126, 137
+  orig: 126, 137
+  offset: 0, 0
+  index: -1
+hssd_trader_beard1
+  rotate: false
+  xy: 390, 444
+  size: 103, 63
+  orig: 103, 63
+  offset: 0, 0
+  index: -1
+hssd_trader_beard2
+  rotate: false
+  xy: 449, 2
+  size: 44, 61
+  orig: 44, 61
+  offset: 0, 0
+  index: -1
+hssd_trader_beard3
+  rotate: true
+  xy: 222, 56
+  size: 187, 100
+  orig: 187, 100
+  offset: 0, 0
+  index: -1
+hssd_trader_body
+  rotate: true
+  xy: 183, 245
+  size: 7, 181
+  orig: 7, 181
+  offset: 0, 0
+  index: -1
+hssd_trader_cloth1
+  rotate: false
+  xy: 2, 239
+  size: 179, 268
+  orig: 179, 268
+  offset: 0, 0
+  index: -1
+hssd_trader_cloth2
+  rotate: true
+  xy: 2, 57
+  size: 180, 218
+  orig: 200, 218
+  offset: 20, 0
+  index: -1
+hssd_trader_eye
+  rotate: true
+  xy: 460, 401
+  size: 6, 9
+  orig: 6, 9
+  offset: 0, 0
+  index: -1
+hssd_trader_eyebrow
+  rotate: false
+  xy: 407, 266
+  size: 64, 27
+  orig: 64, 27
+  offset: 0, 0
+  index: -1
+hssd_trader_eyewhite
+  rotate: true
+  xy: 185, 13
+  size: 42, 27
+  orig: 42, 27
+  offset: 0, 0
+  index: -1
+hssd_trader_face
+  rotate: false
+  xy: 183, 254
+  size: 161, 143
+  orig: 161, 143
+  offset: 0, 0
+  index: -1
+hssd_trader_handl1
+  rotate: false
+  xy: 346, 263
+  size: 59, 30
+  orig: 59, 30
+  offset: 0, 0
+  index: -1
+hssd_trader_handl2
+  rotate: true
+  xy: 390, 399
+  size: 43, 68
+  orig: 43, 68
+  offset: 0, 0
+  index: -1
+hssd_trader_handl3
+  rotate: true
+  xy: 214, 8
+  size: 46, 78
+  orig: 46, 78
+  offset: 0, 0
+  index: -1
+hssd_trader_handl4
+  rotate: false
+  xy: 324, 182
+  size: 40, 61
+  orig: 40, 61
+  offset: 0, 0
+  index: -1
+hssd_trader_handl5
+  rotate: true
+  xy: 460, 409
+  size: 33, 43
+  orig: 33, 43
+  offset: 0, 0
+  index: -1
+hssd_trader_handle
+  rotate: false
+  xy: 183, 399
+  size: 205, 108
+  orig: 205, 108
+  offset: 0, 0
+  index: -1
+hssd_trader_handr5
+  rotate: true
+  xy: 346, 295
+  size: 102, 151
+  orig: 102, 151
+  offset: 0, 0
+  index: -1
+hssd_trader_hat1
+  rotate: false
+  xy: 324, 32
+  size: 123, 90
+  orig: 123, 90
+  offset: 0, 0
+  index: -1
+hssd_trader_hat2
+  rotate: false
+  xy: 2, 20
+  size: 181, 35
+  orig: 181, 35
+  offset: 0, 0
+  index: -1
+hssd_trader_nose
+  rotate: false
+  xy: 449, 65
+  size: 45, 57
+  orig: 45, 57
+  offset: 0, 0
+  index: -1

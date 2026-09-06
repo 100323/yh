@@ -1,0 +1,41 @@
+
+bosstower_boss3_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+boss3_gd01
+  rotate: false
+  xy: 164, 16
+  size: 85, 86
+  orig: 87, 87
+  offset: 1, 0
+  index: -1
+boss3_jinb1
+  rotate: false
+  xy: 294, 52
+  size: 48, 50
+  orig: 49, 50
+  offset: 0, 0
+  index: -1
+boss3_p_g
+  rotate: true
+  xy: 251, 23
+  size: 79, 41
+  orig: 81, 42
+  offset: 1, 1
+  index: -1
+boss3_p_tw1
+  rotate: true
+  xy: 83, 4
+  size: 98, 79
+  orig: 100, 79
+  offset: 1, 0
+  index: -1
+boss3_p_tw2
+  rotate: true
+  xy: 2, 2
+  size: 100, 79
+  orig: 102, 79
+  offset: 1, 0
+  index: -1

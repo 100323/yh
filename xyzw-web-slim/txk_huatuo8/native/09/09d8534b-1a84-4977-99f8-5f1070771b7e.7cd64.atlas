@@ -1,0 +1,118 @@
+
+txk_huatuo8.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 124, 72
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+txk_ht01
+  rotate: false
+  xy: 2, 15
+  size: 120, 111
+  orig: 122, 113
+  offset: 1, 1
+  index: -1
+txk_htr01
+  rotate: false
+  xy: 208, 12
+  size: 16, 16
+  orig: 20, 20
+  offset: 2, 2
+  index: -1
+txk_htr02
+  rotate: true
+  xy: 155, 12
+  size: 26, 23
+  orig: 29, 27
+  offset: 2, 2
+  index: -1
+txk_htr03
+  rotate: true
+  xy: 180, 79
+  size: 47, 45
+  orig: 51, 49
+  offset: 2, 2
+  index: -1
+txk_htz01
+  rotate: true
+  xy: 156, 52
+  size: 18, 16
+  orig: 22, 20
+  offset: 2, 2
+  index: -1
+txk_htz02
+  rotate: false
+  xy: 180, 2
+  size: 26, 26
+  orig: 30, 29
+  offset: 2, 2
+  index: -1
+txk_htz03
+  rotate: true
+  xy: 180, 30
+  size: 47, 40
+  orig: 51, 43
+  offset: 2, 1
+  index: -1
+txk_y01
+  rotate: false
+  xy: 163, 46
+  size: 5, 4
+  orig: 7, 6
+  offset: 1, 1
+  index: -1
+txk_y02
+  rotate: true
+  xy: 155, 3
+  size: 7, 9
+  orig: 9, 11
+  offset: 1, 1
+  index: -1
+txk_yqiu
+  rotate: true
+  xy: 124, 11
+  size: 27, 29
+  orig: 30, 32
+  offset: 1, 2
+  index: -1
+txk_zqiu
+  rotate: true
+  xy: 124, 11
+  size: 27, 29
+  orig: 30, 32
+  offset: 1, 2
+  index: -1
+txk_yqiuguang
+  rotate: false
+  xy: 124, 40
+  size: 30, 30
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+txk_zqiuguang
+  rotate: false
+  xy: 124, 40
+  size: 30, 30
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+txk_z01
+  rotate: false
+  xy: 156, 46
+  size: 5, 4
+  orig: 7, 6
+  offset: 1, 1
+  index: -1
+txk_z02
+  rotate: true
+  xy: 166, 3
+  size: 7, 9
+  orig: 9, 11
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,90 @@
+
+ssxt_mp_zhouyu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: false
+  xy: 329, 51
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: false
+  xy: 246, 54
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: false
+  xy: 365, 117
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_zhouyu8_1
+  rotate: false
+  xy: 2, 254
+  size: 242, 222
+  orig: 242, 224
+  offset: 0, 2
+  index: -1
+mp_zhouyu8_2
+  rotate: false
+  xy: 2, 30
+  size: 242, 222
+  orig: 242, 224
+  offset: 0, 2
+  index: -1
+mp_zhouyu8_3
+  rotate: false
+  xy: 246, 254
+  size: 242, 222
+  orig: 242, 224
+  offset: 0, 2
+  index: -1
+mp_zuo_1
+  rotate: false
+  xy: 246, 128
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_2
+  rotate: false
+  xy: 367, 191
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 246, 191
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 448, 171
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: false
+  xy: 490, 439
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 2, 2
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

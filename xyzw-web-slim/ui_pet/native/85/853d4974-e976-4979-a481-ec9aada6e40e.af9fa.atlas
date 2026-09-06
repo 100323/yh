@@ -1,0 +1,20 @@
+
+cwxt26_hecheng_shibai.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_hecheng_shibai1
+  rotate: true
+  xy: 2, 2
+  size: 80, 89
+  orig: 80, 89
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_shibai2
+  rotate: false
+  xy: 2, 84
+  size: 162, 162
+  orig: 162, 162
+  offset: 0, 0
+  index: -1

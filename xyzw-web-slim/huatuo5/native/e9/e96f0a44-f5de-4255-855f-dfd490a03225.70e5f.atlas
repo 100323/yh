@@ -1,0 +1,55 @@
+
+huatuo5_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 52, 34
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+huatuo5_attack3
+  rotate: false
+  xy: 143, 115
+  size: 131, 134
+  orig: 131, 134
+  offset: 0, 0
+  index: -1
+huatuo5_attack4
+  rotate: true
+  xy: 143, 2
+  size: 111, 139
+  orig: 111, 139
+  offset: 0, 0
+  index: -1
+huatuo5_attack5
+  rotate: true
+  xy: 276, 158
+  size: 91, 87
+  orig: 91, 88
+  offset: 0, 0
+  index: -1
+huatuo5_attack6
+  rotate: false
+  xy: 2, 77
+  size: 139, 172
+  orig: 139, 172
+  offset: 0, 0
+  index: -1
+huatuo5_whl1
+  rotate: false
+  xy: 2, 24
+  size: 48, 51
+  orig: 48, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 5
+  size: 12, 17
+  orig: 22, 22
+  offset: 6, 2
+  index: -1

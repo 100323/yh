@@ -1,0 +1,132 @@
+
+wbhj_boss5a.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_rainbow_circle
+  rotate: false
+  xy: 391, 50
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 205, 8
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_arml
+  rotate: false
+  xy: 247, 52
+  size: 49, 19
+  orig: 49, 19
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_armr
+  rotate: true
+  xy: 328, 48
+  size: 51, 61
+  orig: 51, 61
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_beard1
+  rotate: true
+  xy: 51, 3
+  size: 26, 46
+  orig: 28, 48
+  offset: 1, 2
+  index: -1
+wbhj_boss5a_beard2
+  rotate: true
+  xy: 2, 2
+  size: 27, 47
+  orig: 28, 48
+  offset: 0, 1
+  index: -1
+wbhj_boss5a_body
+  rotate: false
+  xy: 328, 101
+  size: 92, 108
+  orig: 92, 108
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_eyes
+  rotate: false
+  xy: 132, 11
+  size: 43, 14
+  orig: 43, 14
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_guan
+  rotate: false
+  xy: 317, 211
+  size: 105, 43
+  orig: 105, 43
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_hair
+  rotate: false
+  xy: 136, 61
+  size: 109, 130
+  orig: 109, 130
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_hair2
+  rotate: false
+  xy: 2, 31
+  size: 132, 223
+  orig: 148, 256
+  offset: 16, 0
+  index: -1
+wbhj_boss5a_handl1
+  rotate: true
+  xy: 99, 7
+  size: 22, 31
+  orig: 43, 33
+  offset: 21, 1
+  index: -1
+wbhj_boss5a_handl2
+  rotate: false
+  xy: 136, 27
+  size: 67, 32
+  orig: 67, 32
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_handr1
+  rotate: true
+  xy: 205, 39
+  size: 20, 40
+  orig: 21, 40
+  offset: 1, 0
+  index: -1
+wbhj_boss5a_handr2
+  rotate: false
+  xy: 424, 214
+  size: 73, 40
+  orig: 73, 41
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_head
+  rotate: false
+  xy: 247, 73
+  size: 79, 118
+  orig: 79, 119
+  offset: 0, 1
+  index: -1
+wbhj_boss5a_jp
+  rotate: false
+  xy: 136, 193
+  size: 179, 61
+  orig: 179, 62
+  offset: 0, 1
+  index: -1
+wbhj_boss5a_nose
+  rotate: true
+  xy: 247, 31
+  size: 19, 45
+  orig: 19, 47
+  offset: 0, 1
+  index: -1

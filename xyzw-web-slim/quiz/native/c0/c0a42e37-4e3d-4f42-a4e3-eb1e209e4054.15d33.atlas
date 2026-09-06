@@ -1,0 +1,83 @@
+
+11860.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: true
+  xy: 368, 104
+  size: 71, 96
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+huangguan
+  rotate: false
+  xy: 157, 8
+  size: 55, 55
+  orig: 57, 57
+  offset: 1, 1
+  index: -1
+shenti
+  rotate: true
+  xy: 2, 65
+  size: 172, 305
+  orig: 172, 305
+  offset: 0, 0
+  index: -1
+tui1
+  rotate: true
+  xy: 368, 177
+  size: 60, 134
+  orig: 60, 134
+  offset: 0, 0
+  index: -1
+tui2
+  rotate: false
+  xy: 309, 102
+  size: 57, 135
+  orig: 57, 135
+  offset: 0, 0
+  index: -1
+yanjing
+  rotate: false
+  xy: 214, 15
+  size: 49, 48
+  orig: 54, 50
+  offset: 1, 1
+  index: -1
+yanjing2
+  rotate: false
+  xy: 2, 2
+  size: 63, 61
+  orig: 63, 61
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: false
+  xy: 466, 126
+  size: 39, 49
+  orig: 39, 49
+  offset: 0, 0
+  index: -1
+yuqi1
+  rotate: true
+  xy: 67, 7
+  size: 56, 88
+  orig: 58, 91
+  offset: 1, 2
+  index: -1
+yuqi2
+  rotate: true
+  xy: 418, 7
+  size: 95, 48
+  orig: 95, 48
+  offset: 0, 0
+  index: -1
+yuwei
+  rotate: true
+  xy: 309, 21
+  size: 79, 107
+  orig: 81, 109
+  offset: 1, 1
+  index: -1

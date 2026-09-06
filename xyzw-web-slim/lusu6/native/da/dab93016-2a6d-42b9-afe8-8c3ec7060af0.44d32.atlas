@@ -1,0 +1,48 @@
+
+lusu6_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu6_pg_sdx1
+  rotate: false
+  xy: 258, 9
+  size: 86, 34
+  orig: 86, 34
+  offset: 0, 0
+  index: -1
+lusu6_pg_sdx2
+  rotate: true
+  xy: 346, 2
+  size: 47, 30
+  orig: 47, 30
+  offset: 0, 0
+  index: -1
+lusu6_pg_sdx3
+  rotate: false
+  xy: 149, 12
+  size: 107, 31
+  orig: 107, 31
+  offset: 0, 0
+  index: -1
+lusu6_pg_xu
+  rotate: true
+  xy: 284, 51
+  size: 75, 70
+  orig: 75, 70
+  offset: 0, 0
+  index: -1
+lusu6_pg_zi
+  rotate: true
+  xy: 2, 28
+  size: 98, 145
+  orig: 98, 145
+  offset: 0, 0
+  index: -1
+lusu6_pg_zi2
+  rotate: true
+  xy: 149, 45
+  size: 81, 133
+  orig: 81, 133
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+sdsl_bg2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 146, 30
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg2_fire1
+  rotate: true
+  xy: 206, 115
+  size: 81, 170
+  orig: 81, 170
+  offset: 0, 0
+  index: -1
+sdsl_bg2_fire2
+  rotate: true
+  xy: 2, 2
+  size: 74, 142
+  orig: 74, 142
+  offset: 0, 0
+  index: -1
+sdsl_bg2_fire3
+  rotate: true
+  xy: 206, 37
+  size: 76, 161
+  orig: 76, 161
+  offset: 0, 0
+  index: -1
+sdsl_bg2_fish1
+  rotate: true
+  xy: 2, 78
+  size: 118, 202
+  orig: 118, 202
+  offset: 0, 0
+  index: -1
+sdsl_bg2_fish2
+  rotate: false
+  xy: 378, 71
+  size: 97, 125
+  orig: 97, 125
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 369, 43
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

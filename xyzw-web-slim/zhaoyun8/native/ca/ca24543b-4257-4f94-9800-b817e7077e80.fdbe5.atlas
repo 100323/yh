@@ -1,0 +1,83 @@
+
+zhaoyun8_attack_hit.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 113, 18
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit1
+  rotate: false
+  xy: 303, 28
+  size: 29, 34
+  orig: 29, 34
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit10
+  rotate: true
+  xy: 272, 2
+  size: 22, 42
+  orig: 23, 42
+  offset: 1, 0
+  index: -1
+zhaoyun8_attack_hit2
+  rotate: false
+  xy: 113, 2
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit3
+  rotate: false
+  xy: 272, 26
+  size: 29, 36
+  orig: 29, 36
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit4
+  rotate: false
+  xy: 159, 14
+  size: 37, 48
+  orig: 37, 48
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit5
+  rotate: false
+  xy: 61, 12
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit6
+  rotate: true
+  xy: 316, 2
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit7
+  rotate: false
+  xy: 231, 23
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit8
+  rotate: false
+  xy: 2, 3
+  size: 57, 59
+  orig: 57, 59
+  offset: 0, 0
+  index: -1
+zhaoyun8_attack_hit9
+  rotate: false
+  xy: 198, 12
+  size: 31, 50
+  orig: 31, 50
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,34 @@
+
+hssd_trader_hand.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hssd_trader_handr1
+  rotate: true
+  xy: 39, 18
+  size: 51, 32
+  orig: 51, 32
+  offset: 0, 0
+  index: -1
+hssd_trader_handr2
+  rotate: true
+  xy: 74, 42
+  size: 64, 38
+  orig: 64, 38
+  offset: 0, 0
+  index: -1
+hssd_trader_handr3
+  rotate: false
+  xy: 2, 71
+  size: 70, 35
+  orig: 70, 35
+  offset: 0, 0
+  index: -1
+hssd_trader_handr4
+  rotate: true
+  xy: 2, 2
+  size: 67, 35
+  orig: 67, 35
+  offset: 0, 0
+  index: -1

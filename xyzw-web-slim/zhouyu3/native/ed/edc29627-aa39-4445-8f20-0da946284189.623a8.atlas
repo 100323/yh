@@ -1,0 +1,153 @@
+
+zhouyu3_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu3_skill10
+  rotate: false
+  xy: 262, 221
+  size: 18, 70
+  orig: 18, 70
+  offset: 0, 0
+  index: -1
+guanyu3_skill11
+  rotate: false
+  xy: 177, 127
+  size: 201, 80
+  orig: 276, 110
+  offset: 22, 8
+  index: -1
+guanyu3_skill12
+  rotate: true
+  xy: 309, 294
+  size: 181, 173
+  orig: 181, 173
+  offset: 0, 0
+  index: -1
+guanyu3_skill13
+  rotate: true
+  xy: 2, 194
+  size: 181, 173
+  orig: 181, 173
+  offset: 0, 0
+  index: -1
+guanyu3_skill8
+  rotate: true
+  xy: 282, 263
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+guanyu3_skill9
+  rotate: false
+  xy: 484, 421
+  size: 18, 54
+  orig: 18, 54
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: true
+  xy: 262, 293
+  size: 82, 44
+  orig: 82, 82
+  offset: 0, 38
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 462, 39
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 282, 210
+  size: 26, 17
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zhouyu2_skill1
+  rotate: true
+  xy: 2, 11
+  size: 181, 72
+  orig: 181, 72
+  offset: 0, 0
+  index: -1
+zhouyu2_skill10
+  rotate: true
+  xy: 76, 2
+  size: 72, 50
+  orig: 72, 50
+  offset: 0, 0
+  index: -1
+zhouyu2_skill11
+  rotate: false
+  xy: 2, 377
+  size: 305, 98
+  orig: 305, 98
+  offset: 0, 0
+  index: -1
+zhouyu2_skill12
+  rotate: true
+  xy: 262, 213
+  size: 6, 11
+  orig: 6, 11
+  offset: 0, 0
+  index: -1
+zhouyu2_skill2
+  rotate: false
+  xy: 308, 212
+  size: 181, 80
+  orig: 181, 80
+  offset: 0, 0
+  index: -1
+zhouyu2_skill3
+  rotate: true
+  xy: 380, 36
+  size: 174, 80
+  orig: 174, 80
+  offset: 0, 0
+  index: -1
+zhouyu2_skill4
+  rotate: true
+  xy: 177, 209
+  size: 166, 83
+  orig: 166, 83
+  offset: 0, 0
+  index: -1
+zhouyu2_skill5
+  rotate: true
+  xy: 462, 87
+  size: 123, 47
+  orig: 124, 47
+  offset: 0, 0
+  index: -1
+zhouyu2_skill6
+  rotate: true
+  xy: 76, 76
+  size: 116, 66
+  orig: 116, 66
+  offset: 0, 0
+  index: -1
+zhouyu2_skill7
+  rotate: true
+  xy: 282, 238
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+zhouyu2_skill8
+  rotate: true
+  xy: 144, 95
+  size: 97, 27
+  orig: 97, 27
+  offset: 0, 0
+  index: -1
+zhouyu2_skill9
+  rotate: false
+  xy: 173, 69
+  size: 57, 56
+  orig: 57, 56
+  offset: 0, 0
+  index: -1

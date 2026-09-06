@@ -1,0 +1,83 @@
+
+tgcf_pty_ksdjs.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_djs_hong1
+  rotate: true
+  xy: 759, 37
+  size: 176, 121
+  orig: 176, 121
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_hong2
+  rotate: false
+  xy: 546, 178
+  size: 211, 182
+  orig: 211, 193
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_hong3
+  rotate: true
+  xy: 281, 107
+  size: 393, 263
+  orig: 393, 278
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_hong4
+  rotate: false
+  xy: 546, 362
+  size: 228, 138
+  orig: 228, 161
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_lv1
+  rotate: false
+  xy: 776, 342
+  size: 214, 158
+  orig: 214, 158
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_lv2
+  rotate: true
+  xy: 0, 107
+  size: 393, 279
+  orig: 393, 279
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_lv3
+  rotate: false
+  xy: 759, 215
+  size: 176, 125
+  orig: 176, 125
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_lv4
+  rotate: false
+  xy: 546, 0
+  size: 211, 176
+  orig: 211, 192
+  offset: 0, 16
+  index: -1
+tgcf_pty_djs_vs
+  rotate: true
+  xy: 882, 67
+  size: 146, 130
+  orig: 159, 143
+  offset: 6, 6
+  index: -1
+tgcf_pty_djs_ying
+  rotate: false
+  xy: 0, 56
+  size: 120, 49
+  orig: 120, 49
+  offset: 0, 0
+  index: -1
+tgcf_pty_djs_zz
+  rotate: true
+  xy: 0, 39
+  size: 15, 274
+  orig: 15, 274
+  offset: 0, 0
+  index: -1

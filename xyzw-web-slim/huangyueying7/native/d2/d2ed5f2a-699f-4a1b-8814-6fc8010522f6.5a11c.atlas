@@ -1,0 +1,76 @@
+
+huangyueying7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 331, 20
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hyy7_jn_huoqiu
+  rotate: false
+  xy: 147, 54
+  size: 182, 97
+  orig: 197, 104
+  offset: 8, 3
+  index: -1
+hyy7_jn_huoqiu1
+  rotate: false
+  xy: 2, 2
+  size: 108, 65
+  orig: 131, 77
+  offset: 11, 6
+  index: -1
+hyy7_jn_lian3
+  rotate: false
+  xy: 2, 316
+  size: 377, 153
+  orig: 377, 153
+  offset: 0, 0
+  index: -1
+hyy7_jn_xian
+  rotate: true
+  xy: 381, 118
+  size: 351, 123
+  orig: 351, 123
+  offset: 0, 0
+  index: -1
+hyy7_jn_zha1
+  rotate: true
+  xy: 189, 153
+  size: 161, 158
+  orig: 161, 158
+  offset: 0, 0
+  index: -1
+hyy7_jn_zha2
+  rotate: true
+  xy: 2, 69
+  size: 159, 143
+  orig: 159, 143
+  offset: 0, 0
+  index: -1
+hyy7_jn_zhuzi
+  rotate: true
+  xy: 2, 230
+  size: 84, 185
+  orig: 91, 188
+  offset: 3, 2
+  index: -1
+hyy7_jn_zhuzi_guang
+  rotate: false
+  xy: 331, 63
+  size: 102, 53
+  orig: 102, 53
+  offset: 0, 0
+  index: -1
+hyy7_jn_zhuzi_yan
+  rotate: true
+  xy: 435, 18
+  size: 98, 56
+  orig: 98, 56
+  offset: 0, 0
+  index: -1

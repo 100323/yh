@@ -1,0 +1,69 @@
+
+zhangjiao7_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangjiao7_jn_bo1
+  rotate: false
+  xy: 234, 2
+  size: 210, 43
+  orig: 210, 43
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_bo2
+  rotate: false
+  xy: 650, 101
+  size: 266, 193
+  orig: 266, 193
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_bo3
+  rotate: false
+  xy: 573, 12
+  size: 267, 87
+  orig: 267, 87
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_jq1
+  rotate: false
+  xy: 650, 296
+  size: 291, 214
+  orig: 292, 214
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_jq2
+  rotate: false
+  xy: 462, 153
+  size: 186, 357
+  orig: 186, 357
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_qiu
+  rotate: false
+  xy: 462, 52
+  size: 109, 99
+  orig: 109, 99
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_sd1
+  rotate: false
+  xy: 234, 47
+  size: 226, 463
+  orig: 226, 463
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_sd2
+  rotate: false
+  xy: 2, 15
+  size: 230, 495
+  orig: 230, 495
+  offset: 0, 0
+  index: -1
+zhangjiao7_jn_xian
+  rotate: false
+  xy: 943, 114
+  size: 62, 396
+  orig: 62, 396
+  offset: 0, 0
+  index: -1

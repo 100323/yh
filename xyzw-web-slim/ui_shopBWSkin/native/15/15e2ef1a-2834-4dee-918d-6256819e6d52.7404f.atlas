@@ -1,0 +1,20 @@
+
+hjls25_pfsd_huo.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls25_pfsd_huomiao
+  rotate: true
+  xy: 2, 2
+  size: 79, 191
+  orig: 79, 191
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 195, 52
+  size: 8, 29
+  orig: 32, 32
+  offset: 12, 1
+  index: -1

@@ -1,0 +1,111 @@
+
+pvpmap_ljld_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pvpmap_ljld_dian1
+  rotate: false
+  xy: 177, 240
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+pvpmap_ljld_dian2
+  rotate: false
+  xy: 156, 260
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+pvpmap_ljld_dian3
+  rotate: true
+  xy: 156, 238
+  size: 16, 15
+  orig: 17, 15
+  offset: 1, 0
+  index: -1
+pvpmap_ljld_guangyun2
+  rotate: true
+  xy: 94, 239
+  size: 42, 56
+  orig: 42, 56
+  offset: 0, 0
+  index: -1
+pvpmap_ljld_yan1
+  rotate: false
+  xy: 317, 6
+  size: 102, 115
+  orig: 105, 126
+  offset: 3, 3
+  index: -1
+pvpmap_ljld_yan2
+  rotate: false
+  xy: 570, 61
+  size: 92, 94
+  orig: 93, 94
+  offset: 0, 0
+  index: -1
+pvpmap_ljld_yan3
+  rotate: true
+  xy: 465, 161
+  size: 152, 132
+  orig: 154, 134
+  offset: 1, 1
+  index: -1
+pvpmap_ljld_yan4
+  rotate: true
+  xy: 94, 287
+  size: 209, 163
+  orig: 212, 167
+  offset: 3, 4
+  index: -1
+pvpmap_ljld_yan5
+  rotate: true
+  xy: 405, 319
+  size: 177, 161
+  orig: 178, 162
+  offset: 1, 1
+  index: -1
+pvpmap_ljld_yan6
+  rotate: true
+  xy: 6, 6
+  size: 215, 187
+  orig: 216, 188
+  offset: 1, 1
+  index: -1
+pvpmap_ljld_yan7
+  rotate: false
+  xy: 425, 19
+  size: 139, 102
+  orig: 140, 102
+  offset: 1, 0
+  index: -1
+pvpmap_ljld_yun1
+  rotate: true
+  xy: 317, 127
+  size: 181, 142
+  orig: 182, 151
+  offset: 0, 8
+  index: -1
+pvpmap_ljld_yun2
+  rotate: true
+  xy: 6, 227
+  size: 269, 82
+  orig: 270, 83
+  offset: 1, 0
+  index: -1
+pvpmap_ljld_yun4
+  rotate: true
+  xy: 263, 314
+  size: 182, 136
+  orig: 211, 139
+  offset: 28, 3
+  index: -1
+pvpmap_ljld_yun5
+  rotate: true
+  xy: 199, 92
+  size: 189, 112
+  orig: 189, 112
+  offset: 0, 0
+  index: -1

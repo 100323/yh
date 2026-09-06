@@ -1,0 +1,286 @@
+
+zhugeliang4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_rotation1
+  rotate: true
+  xy: 402, 179
+  size: 97, 44
+  orig: 97, 48
+  offset: 0, 2
+  index: -1
+effect_rotation2
+  rotate: false
+  xy: 94, 17
+  size: 95, 48
+  orig: 97, 48
+  offset: 1, 0
+  index: -1
+effect_rotation3
+  rotate: true
+  xy: 456, 413
+  size: 97, 48
+  orig: 97, 48
+  offset: 0, 0
+  index: -1
+effect_rotation4
+  rotate: true
+  xy: 256, 164
+  size: 97, 46
+  orig: 97, 48
+  offset: 0, 1
+  index: -1
+effect_rotation5
+  rotate: true
+  xy: 456, 314
+  size: 97, 45
+  orig: 97, 48
+  offset: 0, 1
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 224, 2
+  size: 72, 71
+  orig: 72, 71
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 430, 138
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 456, 276
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 121, 207
+  size: 21, 17
+  orig: 22, 22
+  offset: 0, 2
+  index: -1
+zhugeliang3_beard1
+  rotate: false
+  xy: 304, 295
+  size: 15, 55
+  orig: 15, 55
+  offset: 0, 0
+  index: -1
+zhugeliang3_beard2
+  rotate: true
+  xy: 339, 16
+  size: 40, 33
+  orig: 40, 33
+  offset: 0, 0
+  index: -1
+zhugeliang3_eye
+  rotate: false
+  xy: 298, 67
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+zhugeliang3_mouth
+  rotate: false
+  xy: 388, 107
+  size: 40, 70
+  orig: 40, 70
+  offset: 0, 0
+  index: -1
+zhugeliang3_tail
+  rotate: false
+  xy: 2, 5
+  size: 90, 60
+  orig: 90, 60
+  offset: 0, 0
+  index: -1
+zhugeliang4_body
+  rotate: true
+  xy: 2, 67
+  size: 157, 117
+  orig: 157, 117
+  offset: 0, 0
+  index: -1
+zhugeliang4_effect1
+  rotate: false
+  xy: 144, 352
+  size: 90, 158
+  orig: 90, 158
+  offset: 0, 0
+  index: -1
+zhugeliang4_effect2
+  rotate: true
+  xy: 144, 263
+  size: 87, 158
+  orig: 87, 158
+  offset: 0, 0
+  index: -1
+zhugeliang4_effect3
+  rotate: false
+  xy: 236, 352
+  size: 90, 158
+  orig: 90, 158
+  offset: 0, 0
+  index: -1
+zhugeliang4_eye
+  rotate: true
+  xy: 374, 32
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+zhugeliang4_eye2
+  rotate: false
+  xy: 456, 257
+  size: 32, 17
+  orig: 32, 17
+  offset: 0, 0
+  index: -1
+zhugeliang4_eyebrow
+  rotate: true
+  xy: 448, 177
+  size: 36, 48
+  orig: 36, 48
+  offset: 0, 0
+  index: -1
+zhugeliang4_handr
+  rotate: true
+  xy: 448, 215
+  size: 40, 62
+  orig: 40, 62
+  offset: 0, 0
+  index: -1
+zhugeliang4_hat
+  rotate: false
+  xy: 328, 396
+  size: 126, 114
+  orig: 126, 114
+  offset: 0, 0
+  index: -1
+zhugeliang4_head
+  rotate: true
+  xy: 144, 175
+  size: 86, 110
+  orig: 86, 114
+  offset: 0, 0
+  index: -1
+zhugeliang4_skill1
+  rotate: true
+  xy: 469, 141
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+zhugeliang4_skill2
+  rotate: false
+  xy: 305, 98
+  size: 81, 81
+  orig: 83, 83
+  offset: 1, 1
+  index: -1
+zhugeliang4_skill3
+  rotate: false
+  xy: 304, 181
+  size: 96, 95
+  orig: 96, 95
+  offset: 0, 0
+  index: -1
+zhugeliang4_skill4
+  rotate: true
+  xy: 94, 9
+  size: 6, 99
+  orig: 6, 104
+  offset: 0, 5
+  index: -1
+zhugeliang4_skill5
+  rotate: false
+  xy: 448, 257
+  size: 6, 137
+  orig: 6, 139
+  offset: 0, 0
+  index: -1
+zhugeliang4_skill6
+  rotate: false
+  xy: 503, 275
+  size: 6, 136
+  orig: 6, 139
+  offset: 0, 0
+  index: -1
+zhugeliang4_skill7
+  rotate: false
+  xy: 305, 58
+  size: 67, 38
+  orig: 67, 38
+  offset: 0, 0
+  index: -1
+zhugeliang4_skill8
+  rotate: false
+  xy: 224, 75
+  size: 79, 87
+  orig: 79, 87
+  offset: 0, 0
+  index: -1
+zhugeliang4_tie
+  rotate: true
+  xy: 328, 278
+  size: 116, 118
+  orig: 116, 118
+  offset: 0, 0
+  index: -1
+zhugeliang4_tie2
+  rotate: false
+  xy: 121, 67
+  size: 101, 106
+  orig: 101, 106
+  offset: 0, 0
+  index: -1
+zhugeliang4_weapon1
+  rotate: false
+  xy: 2, 226
+  size: 140, 284
+  orig: 140, 284
+  offset: 0, 0
+  index: -1
+zhugeliang4_weapon2
+  rotate: false
+  xy: 298, 13
+  size: 39, 43
+  orig: 39, 43
+  offset: 0, 0
+  index: -1
+zhugeliang4_weapon3
+  rotate: true
+  xy: 191, 17
+  size: 48, 25
+  orig: 48, 25
+  offset: 0, 0
+  index: -1
+zhugeliang4_zhu
+  rotate: true
+  xy: 469, 105
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+zhugeliang_hand1
+  rotate: false
+  xy: 430, 101
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+zhugeliang_hand2
+  rotate: false
+  xy: 374, 64
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1

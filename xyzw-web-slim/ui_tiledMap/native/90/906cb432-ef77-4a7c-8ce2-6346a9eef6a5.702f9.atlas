@@ -1,0 +1,20 @@
+
+zbz_beacon_jin.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_beacon_home2
+  rotate: false
+  xy: 2, 2
+  size: 98, 98
+  orig: 102, 102
+  offset: 2, 2
+  index: -1
+zbz_beacon_jin
+  rotate: false
+  xy: 102, 32
+  size: 67, 68
+  orig: 67, 68
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,202 @@
+
+qiuyuanboss.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 200, 193
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 200, 237
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+sjb_fish_body1
+  rotate: false
+  xy: 122, 290
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body10
+  rotate: false
+  xy: 80, 80
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body11
+  rotate: false
+  xy: 212, 80
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body12
+  rotate: false
+  xy: 76, 2
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body2
+  rotate: true
+  xy: 254, 236
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body3
+  rotate: false
+  xy: 339, 427
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body4
+  rotate: true
+  xy: 122, 158
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body5
+  rotate: true
+  xy: 2, 121
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body6
+  rotate: false
+  xy: 244, 158
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body7
+  rotate: false
+  xy: 332, 301
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body8
+  rotate: true
+  xy: 376, 169
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_body9
+  rotate: true
+  xy: 376, 37
+  size: 130, 76
+  orig: 130, 76
+  offset: 0, 0
+  index: -1
+sjb_fish_eye
+  rotate: true
+  xy: 223, 392
+  size: 11, 10
+  orig: 11, 10
+  offset: 0, 0
+  index: -1
+sjb_fish_eyewhite
+  rotate: true
+  xy: 186, 369
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
+sjb_fish_eyewhite2
+  rotate: true
+  xy: 239, 368
+  size: 36, 46
+  orig: 36, 46
+  offset: 0, 0
+  index: -1
+sjb_fish_footl
+  rotate: true
+  xy: 80, 220
+  size: 31, 21
+  orig: 31, 21
+  offset: 0, 0
+  index: -1
+sjb_fish_footr
+  rotate: true
+  xy: 80, 220
+  size: 31, 21
+  orig: 31, 21
+  offset: 0, 0
+  index: -1
+sjb_fish_handl
+  rotate: false
+  xy: 287, 377
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: -1
+sjb_fish_handr
+  rotate: false
+  xy: 287, 377
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: -1
+sjb_fish_head
+  rotate: true
+  xy: 2, 253
+  size: 113, 118
+  orig: 113, 118
+  offset: 0, 0
+  index: -1
+sjb_fish_mouth
+  rotate: false
+  xy: 139, 368
+  size: 45, 35
+  orig: 47, 35
+  offset: 2, 0
+  index: -1
+sjb_fish_tail
+  rotate: true
+  xy: 2, 28
+  size: 91, 72
+  orig: 91, 72
+  offset: 0, 0
+  index: -1
+taishici4_ball1
+  rotate: false
+  xy: 139, 405
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit4
+  rotate: true
+  xy: 239, 406
+  size: 97, 98
+  orig: 97, 98
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit5
+  rotate: false
+  xy: 2, 368
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 319, 379
+  size: 26, 25
+  orig: 26, 26
+  offset: 0, 1
+  index: -1

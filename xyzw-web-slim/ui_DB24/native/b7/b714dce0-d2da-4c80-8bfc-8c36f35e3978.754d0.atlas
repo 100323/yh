@@ -1,0 +1,20 @@
+
+dwhd26_bowen3.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dwhd25_bowen5
+  rotate: false
+  xy: 2, 2
+  size: 125, 74
+  orig: 125, 74
+  offset: 0, 0
+  index: -1
+dwhd25_bowen6
+  rotate: false
+  xy: 129, 2
+  size: 118, 74
+  orig: 118, 74
+  offset: 0, 0
+  index: -1

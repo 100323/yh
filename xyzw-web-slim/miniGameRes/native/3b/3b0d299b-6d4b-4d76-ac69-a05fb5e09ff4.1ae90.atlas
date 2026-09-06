@@ -1,0 +1,48 @@
+
+kpyx3_fish.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx_fish1
+  rotate: true
+  xy: 209, 159
+  size: 135, 63
+  orig: 135, 64
+  offset: 0, 0
+  index: -1
+kpyx_fish2
+  rotate: true
+  xy: 209, 17
+  size: 140, 137
+  orig: 140, 137
+  offset: 0, 0
+  index: -1
+kpyx_fish3
+  rotate: true
+  xy: 2, 2
+  size: 249, 205
+  orig: 249, 205
+  offset: 0, 0
+  index: -1
+kpyx_fish4
+  rotate: false
+  xy: 2, 296
+  size: 286, 206
+  orig: 300, 206
+  offset: 0, 0
+  index: -1
+kpyx_fish5
+  rotate: true
+  xy: 290, 253
+  size: 249, 211
+  orig: 249, 211
+  offset: 0, 0
+  index: -1
+kpyx_fish6
+  rotate: true
+  xy: 348, 85
+  size: 166, 128
+  orig: 166, 128
+  offset: 0, 0
+  index: -1

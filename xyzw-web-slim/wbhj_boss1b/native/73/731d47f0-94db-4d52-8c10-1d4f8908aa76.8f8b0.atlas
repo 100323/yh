@@ -1,0 +1,27 @@
+
+wbhj_boss1b_skill_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 146, 2
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_skill5
+  rotate: true
+  xy: 146, 33
+  size: 82, 94
+  orig: 84, 96
+  offset: 1, 1
+  index: -1
+wbhj_boss1a_skill6
+  rotate: true
+  xy: 2, 4
+  size: 111, 142
+  orig: 114, 146
+  offset: 2, 2
+  index: -1

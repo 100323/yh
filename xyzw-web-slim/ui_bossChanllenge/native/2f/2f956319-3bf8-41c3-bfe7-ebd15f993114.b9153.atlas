@@ -1,0 +1,139 @@
+
+xxwky_zhuanchang.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwky_zc_hui
+  rotate: true
+  xy: 1317, 397
+  size: 76, 559
+  orig: 326, 559
+  offset: 0, 0
+  index: -1
+xxwky_zc_qiangl
+  rotate: true
+  xy: 2, 2
+  size: 471, 1313
+  orig: 471, 1313
+  offset: 0, 0
+  index: -1
+xxwky_zc_qiangr
+  rotate: true
+  xy: 2, 475
+  size: 483, 1318
+  orig: 483, 1318
+  offset: 0, 0
+  index: -1
+xxwky_zc_qt
+  rotate: true
+  xy: 1526, 838
+  size: 120, 274
+  orig: 120, 274
+  offset: 0, 0
+  index: -1
+xxwky_zc_suishi1
+  rotate: false
+  xy: 1475, 493
+  size: 86, 81
+  orig: 87, 83
+  offset: 0, 1
+  index: -1
+xxwky_zc_suishi4
+  rotate: false
+  xy: 1743, 503
+  size: 76, 74
+  orig: 76, 75
+  offset: 0, 0
+  index: -1
+xxwky_zc_suishi5
+  rotate: true
+  xy: 1821, 510
+  size: 67, 88
+  orig: 67, 90
+  offset: 0, 1
+  index: -1
+xxwky_zc_yan1
+  rotate: false
+  xy: 1840, 659
+  size: 133, 125
+  orig: 133, 125
+  offset: 0, 0
+  index: -1
+xxwky_zc_yan2
+  rotate: false
+  xy: 1802, 786
+  size: 159, 172
+  orig: 159, 172
+  offset: 0, 0
+  index: -1
+xxwky_zc_yan3
+  rotate: false
+  xy: 1911, 539
+  size: 106, 118
+  orig: 106, 118
+  offset: 0, 0
+  index: -1
+xxwky_zc_yan4
+  rotate: false
+  xy: 1963, 891
+  size: 66, 67
+  orig: 66, 67
+  offset: 0, 0
+  index: -1
+xxwky_zc_zha1
+  rotate: false
+  xy: 1322, 761
+  size: 202, 197
+  orig: 202, 199
+  offset: 0, 1
+  index: -1
+xxwky_zc_zha2
+  rotate: true
+  xy: 1563, 518
+  size: 56, 52
+  orig: 56, 53
+  offset: 0, 0
+  index: -1
+xxwky_zc_zhuan1
+  rotate: true
+  xy: 1628, 645
+  size: 191, 129
+  orig: 191, 129
+  offset: 0, 0
+  index: -1
+xxwky_zc_zhuan2
+  rotate: true
+  xy: 1322, 512
+  size: 247, 151
+  orig: 247, 151
+  offset: 0, 0
+  index: -1
+xxwky_zc_zhuan3
+  rotate: true
+  xy: 1759, 579
+  size: 205, 79
+  orig: 205, 79
+  offset: 0, 0
+  index: -1
+xxwky_zc_zhuan4
+  rotate: true
+  xy: 1878, 386
+  size: 122, 115
+  orig: 122, 116
+  offset: 0, 0
+  index: -1
+xxwky_zc_zhuan5
+  rotate: true
+  xy: 1526, 576
+  size: 260, 100
+  orig: 260, 101
+  offset: 0, 1
+  index: -1
+xxwky_zc_zhuan6
+  rotate: true
+  xy: 1628, 475
+  size: 168, 113
+  orig: 168, 114
+  offset: 0, 1
+  index: -1

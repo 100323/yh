@@ -1,0 +1,48 @@
+
+zytp_boss1_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 14
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+zytp_boss1_skill6
+  rotate: true
+  xy: 144, 30
+  size: 111, 91
+  orig: 112, 91
+  offset: 1, 0
+  index: -1
+zytp_boss1_skill7
+  rotate: false
+  xy: 237, 54
+  size: 82, 87
+  orig: 83, 88
+  offset: 0, 0
+  index: -1
+zytp_boss1_skill8
+  rotate: false
+  xy: 2, 33
+  size: 140, 218
+  orig: 140, 219
+  offset: 0, 1
+  index: -1
+zytp_boss1_skill9
+  rotate: false
+  xy: 144, 143
+  size: 103, 108
+  orig: 103, 108
+  offset: 0, 0
+  index: -1

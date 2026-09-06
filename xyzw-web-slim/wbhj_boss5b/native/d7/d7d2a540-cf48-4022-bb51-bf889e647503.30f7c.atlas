@@ -1,0 +1,132 @@
+
+wbhj_boss5b.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_rainbow_circle
+  rotate: false
+  xy: 426, 163
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 245, 2
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_arml
+  rotate: true
+  xy: 477, 163
+  size: 49, 19
+  orig: 49, 19
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_armr
+  rotate: false
+  xy: 366, 130
+  size: 51, 61
+  orig: 51, 61
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_eyes
+  rotate: false
+  xy: 131, 14
+  size: 43, 14
+  orig: 43, 14
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_handl1
+  rotate: true
+  xy: 98, 7
+  size: 22, 31
+  orig: 43, 33
+  offset: 21, 1
+  index: -1
+wbhj_boss5a_handl2
+  rotate: false
+  xy: 245, 33
+  size: 67, 32
+  orig: 67, 32
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_handr1
+  rotate: true
+  xy: 314, 45
+  size: 20, 40
+  orig: 21, 40
+  offset: 1, 0
+  index: -1
+wbhj_boss5a_handr2
+  rotate: false
+  xy: 426, 214
+  size: 73, 40
+  orig: 73, 41
+  offset: 0, 0
+  index: -1
+wbhj_boss5a_head
+  rotate: true
+  xy: 246, 112
+  size: 79, 118
+  orig: 79, 119
+  offset: 0, 1
+  index: -1
+wbhj_boss5a_nose
+  rotate: true
+  xy: 366, 109
+  size: 19, 45
+  orig: 19, 47
+  offset: 0, 1
+  index: -1
+wbhj_boss5b_beard1
+  rotate: true
+  xy: 51, 2
+  size: 27, 45
+  orig: 27, 47
+  offset: 0, 2
+  index: -1
+wbhj_boss5b_beard2
+  rotate: true
+  xy: 2, 2
+  size: 27, 47
+  orig: 27, 47
+  offset: 0, 0
+  index: -1
+wbhj_boss5b_body
+  rotate: true
+  xy: 135, 30
+  size: 92, 108
+  orig: 92, 108
+  offset: 0, 0
+  index: -1
+wbhj_boss5b_guan
+  rotate: false
+  xy: 245, 67
+  size: 105, 43
+  orig: 105, 43
+  offset: 0, 0
+  index: -1
+wbhj_boss5b_hair
+  rotate: false
+  xy: 135, 124
+  size: 109, 130
+  orig: 109, 130
+  offset: 0, 0
+  index: -1
+wbhj_boss5b_hair2
+  rotate: false
+  xy: 2, 31
+  size: 131, 223
+  orig: 147, 255
+  offset: 16, 0
+  index: -1
+wbhj_boss5b_jp
+  rotate: false
+  xy: 246, 193
+  size: 178, 61
+  orig: 178, 61
+  offset: 0, 0
+  index: -1

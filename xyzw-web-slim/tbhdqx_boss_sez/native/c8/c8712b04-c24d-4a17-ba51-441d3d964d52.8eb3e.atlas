@@ -1,0 +1,27 @@
+
+tbhdqx_boss_sez_attack_loop.png
+size: 202,219
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_sez_pg_tuowei1
+  rotate: false
+  xy: 2, 2
+  size: 198, 134
+  orig: 198, 134
+  offset: 0, 0
+  index: -1
+tbhdqx_sez_pg_tw2
+  rotate: true
+  xy: 80, 138
+  size: 79, 119
+  orig: 79, 119
+  offset: 0, 0
+  index: -1
+tbhdqx_sez_pg_yb
+  rotate: true
+  xy: 2, 152
+  size: 65, 76
+  orig: 65, 77
+  offset: 0, 1
+  index: -1

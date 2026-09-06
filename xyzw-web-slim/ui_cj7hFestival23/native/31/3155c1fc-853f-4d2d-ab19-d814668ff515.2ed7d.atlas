@@ -1,0 +1,13 @@
+
+dntg26_cj_box1.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+feidao
+  rotate: false
+  xy: 2, 2
+  size: 69, 74
+  orig: 71, 76
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,76 @@
+
+sdsl_bg1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 30, 262
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg1_effect1
+  rotate: false
+  xy: 208, 235
+  size: 232, 73
+  orig: 232, 73
+  offset: 0, 0
+  index: -1
+sdsl_bg1_effect2
+  rotate: false
+  xy: 146, 160
+  size: 232, 73
+  orig: 232, 73
+  offset: 0, 0
+  index: -1
+sdsl_bg1_effect3
+  rotate: false
+  xy: 2, 85
+  size: 232, 73
+  orig: 232, 73
+  offset: 0, 0
+  index: -1
+sdsl_bg1_effect4
+  rotate: false
+  xy: 236, 85
+  size: 232, 73
+  orig: 232, 73
+  offset: 0, 0
+  index: -1
+sdsl_bg1_fire1
+  rotate: true
+  xy: 165, 2
+  size: 81, 170
+  orig: 81, 170
+  offset: 0, 0
+  index: -1
+sdsl_bg1_fire2
+  rotate: true
+  xy: 2, 178
+  size: 74, 142
+  orig: 74, 142
+  offset: 0, 0
+  index: -1
+sdsl_bg1_fire3
+  rotate: true
+  xy: 2, 7
+  size: 76, 161
+  orig: 76, 161
+  offset: 0, 0
+  index: -1
+sdsl_bg1_fish
+  rotate: false
+  xy: 78, 254
+  size: 128, 54
+  orig: 128, 54
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 282
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

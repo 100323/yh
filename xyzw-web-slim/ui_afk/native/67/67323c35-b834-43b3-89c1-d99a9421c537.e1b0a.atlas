@@ -1,0 +1,27 @@
+
+ghyd_role2.png
+size: 128,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghyd_role_tuil
+  rotate: true
+  xy: 42, 15
+  size: 12, 32
+  orig: 12, 32
+  offset: 0, 0
+  index: -1
+ghyd_role_tuir
+  rotate: true
+  xy: 42, 2
+  size: 11, 30
+  orig: 11, 30
+  offset: 0, 0
+  index: -1
+ghyd_role_ying
+  rotate: false
+  xy: 2, 3
+  size: 38, 24
+  orig: 38, 24
+  offset: 0, 0
+  index: -1

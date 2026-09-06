@@ -1,0 +1,132 @@
+
+sdsl_xiaobing3.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 435, 36
+  size: 21, 26
+  orig: 21, 26
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h1
+  rotate: false
+  xy: 2, 2
+  size: 87, 60
+  orig: 87, 60
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h10
+  rotate: false
+  xy: 345, 22
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h11
+  rotate: false
+  xy: 273, 8
+  size: 34, 54
+  orig: 34, 54
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h12
+  rotate: true
+  xy: 91, 15
+  size: 47, 68
+  orig: 47, 68
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h13
+  rotate: true
+  xy: 383, 11
+  size: 51, 19
+  orig: 51, 19
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h14
+  rotate: false
+  xy: 309, 12
+  size: 34, 50
+  orig: 34, 50
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h15
+  rotate: true
+  xy: 404, 11
+  size: 19, 33
+  orig: 19, 33
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h16
+  rotate: true
+  xy: 185, 4
+  size: 10, 14
+  orig: 10, 14
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h17
+  rotate: true
+  xy: 142, 2
+  size: 11, 22
+  orig: 11, 22
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h2
+  rotate: false
+  xy: 201, 4
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h3
+  rotate: false
+  xy: 201, 10
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h4
+  rotate: true
+  xy: 91, 4
+  size: 9, 49
+  orig: 9, 49
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h5
+  rotate: false
+  xy: 404, 32
+  size: 29, 30
+  orig: 29, 30
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h6
+  rotate: true
+  xy: 161, 16
+  size: 46, 67
+  orig: 46, 67
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h7
+  rotate: true
+  xy: 166, 3
+  size: 11, 17
+  orig: 11, 17
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h8
+  rotate: true
+  xy: 345, 6
+  size: 14, 20
+  orig: 14, 20
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing3_h9
+  rotate: false
+  xy: 230, 12
+  size: 41, 50
+  orig: 41, 50
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+hjls_pve_zk.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 302, 126
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+hjls_pve_zk1
+  rotate: false
+  xy: 302, 2
+  size: 128, 122
+  orig: 139, 130
+  offset: 6, 3
+  index: -1
+hjls_pve_zk2
+  rotate: true
+  xy: 2, 81
+  size: 173, 148
+  orig: 175, 150
+  offset: 1, 1
+  index: -1
+hjls_pve_zk3
+  rotate: true
+  xy: 152, 81
+  size: 173, 148
+  orig: 175, 150
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 47
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

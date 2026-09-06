@@ -1,0 +1,153 @@
+
+zhangjiao3_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zj_sd_body
+  rotate: false
+  xy: 2, 64
+  size: 139, 179
+  orig: 139, 179
+  offset: 0, 0
+  index: -1
+zj_sd_head
+  rotate: false
+  xy: 2, 245
+  size: 256, 263
+  orig: 256, 263
+  offset: 0, 0
+  index: -1
+zj_sd_hg
+  rotate: false
+  xy: 343, 100
+  size: 45, 55
+  orig: 57, 74
+  offset: 6, 13
+  index: -1
+zj_sd_ljz
+  rotate: true
+  xy: 209, 2
+  size: 85, 152
+  orig: 85, 152
+  offset: 0, 0
+  index: -1
+zj_sd_yj01
+  rotate: false
+  xy: 259, 92
+  size: 82, 151
+  orig: 83, 151
+  offset: 1, 0
+  index: -1
+zj_sd_yj02
+  rotate: true
+  xy: 381, 417
+  size: 91, 80
+  orig: 91, 80
+  offset: 0, 0
+  index: -1
+zj_sd_ys
+  rotate: true
+  xy: 358, 311
+  size: 102, 75
+  orig: 102, 75
+  offset: 0, 0
+  index: -1
+zj_sd_yt
+  rotate: false
+  xy: 2, 4
+  size: 89, 58
+  orig: 89, 60
+  offset: 0, 1
+  index: -1
+zj_sd_zjj01
+  rotate: false
+  xy: 143, 89
+  size: 114, 154
+  orig: 114, 155
+  offset: 0, 0
+  index: -1
+zj_sd_zjj02
+  rotate: false
+  xy: 260, 415
+  size: 119, 93
+  orig: 120, 94
+  offset: 0, 0
+  index: -1
+zj_sd_zs
+  rotate: true
+  xy: 260, 303
+  size: 110, 96
+  orig: 110, 101
+  offset: 0, 5
+  index: -1
+zj_sd_zt
+  rotate: true
+  xy: 435, 337
+  size: 78, 74
+  orig: 80, 75
+  offset: 1, 0
+  index: -1
+zj_sq1_01
+  rotate: true
+  xy: 343, 157
+  size: 90, 70
+  orig: 90, 70
+  offset: 0, 0
+  index: -1
+zj_sq1_02
+  rotate: false
+  xy: 326, 249
+  size: 60, 52
+  orig: 60, 52
+  offset: 0, 0
+  index: -1
+zj_sq1_03
+  rotate: true
+  xy: 463, 442
+  size: 66, 39
+  orig: 66, 39
+  offset: 0, 0
+  index: -1
+zj_sq1_04
+  rotate: false
+  xy: 93, 7
+  size: 69, 55
+  orig: 69, 55
+  offset: 0, 0
+  index: -1
+zj_sq1_05
+  rotate: true
+  xy: 260, 249
+  size: 52, 64
+  orig: 52, 64
+  offset: 0, 0
+  index: -1
+zj_sq1_06
+  rotate: true
+  xy: 164, 14
+  size: 50, 39
+  orig: 50, 39
+  offset: 0, 0
+  index: -1
+zj_sq1_07
+  rotate: true
+  xy: 388, 278
+  size: 31, 87
+  orig: 31, 87
+  offset: 0, 0
+  index: -1
+zj_sq1_09
+  rotate: true
+  xy: 143, 66
+  size: 21, 64
+  orig: 21, 64
+  offset: 0, 0
+  index: -1
+zj_sq1_10
+  rotate: false
+  xy: 363, 20
+  size: 78, 78
+  orig: 78, 78
+  offset: 0, 0
+  index: -1

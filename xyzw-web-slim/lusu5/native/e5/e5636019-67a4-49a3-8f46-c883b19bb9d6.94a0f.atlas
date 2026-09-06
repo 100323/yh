@@ -1,0 +1,41 @@
+
+lusu5_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu5_pg_sj1
+  rotate: false
+  xy: 151, 30
+  size: 89, 83
+  orig: 89, 83
+  offset: 0, 0
+  index: -1
+lusu5_pg_sj2
+  rotate: true
+  xy: 62, 45
+  size: 68, 87
+  orig: 68, 87
+  offset: 0, 0
+  index: -1
+lusu5_pg_sj3
+  rotate: false
+  xy: 242, 9
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+lusu5_pg_sj4
+  rotate: true
+  xy: 348, 2
+  size: 111, 124
+  orig: 111, 124
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 2, 55
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,202 @@
+
+dzxt_rk_banner_ma.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dzxt_rk_banner_bj
+  rotate: true
+  xy: 2, 3
+  size: 507, 167
+  orig: 507, 167
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_hui
+  rotate: false
+  xy: 653, 418
+  size: 92, 92
+  orig: 92, 92
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_jing
+  rotate: false
+  xy: 602, 8
+  size: 130, 114
+  orig: 130, 114
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_tz1
+  rotate: false
+  xy: 591, 124
+  size: 126, 79
+  orig: 126, 79
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_xt
+  rotate: true
+  xy: 171, 36
+  size: 241, 171
+  orig: 241, 171
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunh
+  rotate: false
+  xy: 529, 343
+  size: 122, 167
+  orig: 122, 167
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunh1
+  rotate: false
+  xy: 543, 79
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunh2
+  rotate: true
+  xy: 535, 2
+  size: 15, 37
+  orig: 15, 37
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunq
+  rotate: false
+  xy: 344, 49
+  size: 144, 63
+  orig: 144, 63
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunz
+  rotate: false
+  xy: 344, 114
+  size: 245, 163
+  orig: 245, 163
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunz1
+  rotate: false
+  xy: 171, 2
+  size: 240, 32
+  orig: 240, 32
+  offset: 0, 0
+  index: -1
+ymj_effect_star1
+  rotate: false
+  xy: 571, 80
+  size: 24, 32
+  orig: 24, 32
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 563, 29
+  size: 25, 23
+  orig: 25, 24
+  offset: 0, 1
+  index: -1
+ymj_jingying2_hbody
+  rotate: true
+  xy: 171, 279
+  size: 231, 213
+  orig: 231, 213
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hear
+  rotate: true
+  xy: 486, 12
+  size: 35, 47
+  orig: 35, 47
+  offset: 0, 0
+  index: -1
+ymj_jingying2_heye1
+  rotate: false
+  xy: 373, 39
+  size: 13, 8
+  orig: 13, 8
+  offset: 0, 0
+  index: -1
+ymj_jingying2_heye2
+  rotate: false
+  xy: 388, 38
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+ymj_jingying2_heyebrow
+  rotate: true
+  xy: 574, 5
+  size: 22, 12
+  orig: 22, 12
+  offset: 0, 0
+  index: -1
+ymj_jingying2_heyebrow2
+  rotate: true
+  xy: 344, 40
+  size: 7, 27
+  orig: 7, 27
+  offset: 0, 0
+  index: -1
+ymj_jingying2_heyewhite1
+  rotate: true
+  xy: 535, 19
+  size: 34, 26
+  orig: 34, 26
+  offset: 0, 0
+  index: -1
+ymj_jingying2_heyewhite2
+  rotate: true
+  xy: 543, 56
+  size: 21, 28
+  orig: 21, 28
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hhair1
+  rotate: false
+  xy: 490, 55
+  size: 51, 57
+  orig: 51, 57
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hhair2
+  rotate: true
+  xy: 386, 316
+  size: 194, 141
+  orig: 194, 144
+  offset: 0, 3
+  index: -1
+ymj_jingying2_hhead
+  rotate: true
+  xy: 591, 205
+  size: 136, 116
+  orig: 136, 116
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hlips
+  rotate: false
+  xy: 413, 10
+  size: 71, 37
+  orig: 71, 37
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hmouth
+  rotate: true
+  xy: 709, 324
+  size: 92, 77
+  orig: 92, 77
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hnose1
+  rotate: false
+  xy: 588, 44
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1
+ymj_jingying2_hnose2
+  rotate: true
+  xy: 573, 61
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1

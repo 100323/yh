@@ -1,0 +1,55 @@
+
+ui_jiangli_cardlightbox_2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dan
+  rotate: false
+  xy: 327, 72
+  size: 125, 133
+  orig: 125, 133
+  offset: 0, 0
+  index: -1
+dang
+  rotate: true
+  xy: 178, 66
+  size: 139, 147
+  orig: 139, 147
+  offset: 0, 0
+  index: -1
+ui_chest_light4
+  rotate: false
+  xy: 327, 9
+  size: 168, 61
+  orig: 168, 61
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 454, 104
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1
+ui_jiangli_saoguangline
+  rotate: false
+  xy: 178, 2
+  size: 69, 62
+  orig: 69, 62
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 454, 151
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 31
+  size: 174, 174
+  orig: 174, 174
+  offset: 0, 0
+  index: -1

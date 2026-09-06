@@ -1,0 +1,48 @@
+
+sqhd26_yu_toushi_1.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd26_yu_toufa2_1
+  rotate: false
+  xy: 148, 23
+  size: 174, 101
+  orig: 174, 101
+  offset: 0, 0
+  index: -1
+sqhd26_yu_toufa3_1
+  rotate: false
+  xy: 324, 55
+  size: 76, 69
+  orig: 76, 69
+  offset: 0, 0
+  index: -1
+sqhd26_yu_toufa3_2
+  rotate: true
+  xy: 402, 2
+  size: 122, 62
+  orig: 122, 62
+  offset: 0, 0
+  index: -1
+sqhd26_yu_toufa4_1
+  rotate: true
+  xy: 2, 16
+  size: 108, 144
+  orig: 108, 144
+  offset: 0, 0
+  index: -1
+sqhd26_yu_toufa6_1
+  rotate: false
+  xy: 324, 16
+  size: 54, 37
+  orig: 54, 39
+  offset: 0, 1
+  index: -1
+sqhd26_yu_toufa6_3
+  rotate: true
+  xy: 466, 92
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1

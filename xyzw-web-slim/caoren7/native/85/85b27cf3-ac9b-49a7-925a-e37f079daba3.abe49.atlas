@@ -1,0 +1,188 @@
+
+caoren7_skill_hit2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren7_skill2_bd1
+  rotate: false
+  xy: 476, 739
+  size: 269, 281
+  orig: 269, 281
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bd2
+  rotate: true
+  xy: 954, 611
+  size: 210, 66
+  orig: 210, 66
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bd3
+  rotate: false
+  xy: 2, 537
+  size: 472, 483
+  orig: 472, 483
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bdd1
+  rotate: false
+  xy: 595, 198
+  size: 190, 54
+  orig: 190, 54
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bk1
+  rotate: true
+  xy: 791, 666
+  size: 80, 72
+  orig: 80, 72
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bk2
+  rotate: true
+  xy: 791, 614
+  size: 50, 71
+  orig: 50, 71
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bklz1
+  rotate: false
+  xy: 434, 3
+  size: 233, 169
+  orig: 233, 169
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bklz2
+  rotate: true
+  xy: 2, 10
+  size: 155, 224
+  orig: 155, 224
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bklz3
+  rotate: false
+  xy: 590, 254
+  size: 70, 37
+  orig: 70, 37
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bklz4
+  rotate: false
+  xy: 791, 300
+  size: 118, 167
+  orig: 118, 167
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bky5
+  rotate: true
+  xy: 669, 51
+  size: 145, 91
+  orig: 145, 91
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bkyw1
+  rotate: false
+  xy: 228, 20
+  size: 204, 145
+  orig: 204, 145
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bkyw2
+  rotate: true
+  xy: 762, 51
+  size: 55, 74
+  orig: 55, 74
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bkyw3
+  rotate: false
+  xy: 791, 469
+  size: 159, 140
+  orig: 159, 140
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bkyw4
+  rotate: false
+  xy: 787, 108
+  size: 194, 183
+  orig: 194, 183
+  offset: 0, 0
+  index: -1
+caoren7_skill2_bzd
+  rotate: false
+  xy: 2, 167
+  size: 301, 368
+  orig: 301, 368
+  offset: 0, 0
+  index: -1
+caoren7_skill2_dun
+  rotate: false
+  xy: 747, 823
+  size: 261, 197
+  orig: 261, 197
+  offset: 0, 0
+  index: -1
+caoren7_skill2_ksg
+  rotate: false
+  xy: 305, 174
+  size: 288, 69
+  orig: 288, 69
+  offset: 0, 0
+  index: -1
+caoren7_skill2_ksyw3
+  rotate: false
+  xy: 747, 748
+  size: 205, 73
+  orig: 205, 73
+  offset: 0, 0
+  index: -1
+caoren7_skill2_ksyw4
+  rotate: false
+  xy: 669, 2
+  size: 205, 47
+  orig: 205, 47
+  offset: 0, 0
+  index: -1
+caoren7_skill2_ksyw5
+  rotate: false
+  xy: 864, 613
+  size: 48, 51
+  orig: 57, 61
+  offset: 6, 4
+  index: -1
+caoren7_skill2_lizi
+  rotate: true
+  xy: 865, 690
+  size: 56, 55
+  orig: 56, 55
+  offset: 0, 0
+  index: -1
+caoren7_skill2_yan1
+  rotate: true
+  xy: 590, 293
+  size: 254, 199
+  orig: 254, 199
+  offset: 0, 0
+  index: -1
+caoren7_skill2_yan2
+  rotate: false
+  xy: 476, 549
+  size: 313, 188
+  orig: 313, 188
+  offset: 0, 0
+  index: -1
+caoren7_skill2_zhg
+  rotate: true
+  xy: 305, 245
+  size: 290, 283
+  orig: 290, 283
+  offset: 0, 0
+  index: -1
+wu_00000
+  rotate: false
+  xy: 876, 3
+  size: 110, 103
+  orig: 111, 110
+  offset: 0, 1
+  index: -1

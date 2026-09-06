@@ -1,0 +1,62 @@
+
+zhaoyun5_skill_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhaoyun5_jn_daoguang
+  rotate: false
+  xy: 2, 2
+  size: 283, 128
+  orig: 283, 128
+  offset: 0, 0
+  index: -1
+zhaoyun5_jn_xian
+  rotate: false
+  xy: 34, 285
+  size: 259, 33
+  orig: 259, 33
+  offset: 0, 0
+  index: -1
+zhaoyun5_jn_xing
+  rotate: true
+  xy: 2, 296
+  size: 22, 30
+  orig: 22, 31
+  offset: 0, 0
+  index: -1
+zhaoyun5_jn_yan1
+  rotate: false
+  xy: 2, 229
+  size: 252, 54
+  orig: 252, 54
+  offset: 0, 0
+  index: -1
+zhaoyun5_jn_zy2
+  rotate: false
+  xy: 2, 132
+  size: 293, 95
+  orig: 293, 95
+  offset: 0, 0
+  index: -1
+zhaoyun5_qilang01
+  rotate: false
+  xy: 382, 230
+  size: 109, 88
+  orig: 109, 88
+  offset: 0, 0
+  index: -1
+zhaoyun5_qilang02
+  rotate: false
+  xy: 295, 253
+  size: 85, 65
+  orig: 85, 65
+  offset: 0, 0
+  index: -1
+zhaoyun5_xuying
+  rotate: true
+  xy: 297, 100
+  size: 128, 133
+  orig: 128, 133
+  offset: 0, 0
+  index: -1

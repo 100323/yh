@@ -1,0 +1,41 @@
+
+cangpin_shu.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cangpin_shu_1
+  rotate: false
+  xy: 155, 52
+  size: 61, 109
+  orig: 63, 111
+  offset: 1, 1
+  index: -1
+cangpin_shu_2
+  rotate: true
+  xy: 155, 13
+  size: 37, 54
+  orig: 39, 56
+  offset: 1, 1
+  index: -1
+cangpin_shu_3
+  rotate: true
+  xy: 155, 163
+  size: 91, 90
+  orig: 93, 92
+  offset: 1, 1
+  index: -1
+cangpin_shu_4
+  rotate: false
+  xy: 218, 56
+  size: 61, 105
+  orig: 63, 107
+  offset: 1, 1
+  index: -1
+cangpin_shu_men
+  rotate: false
+  xy: 2, 2
+  size: 151, 252
+  orig: 152, 253
+  offset: 1, 1
+  index: -1

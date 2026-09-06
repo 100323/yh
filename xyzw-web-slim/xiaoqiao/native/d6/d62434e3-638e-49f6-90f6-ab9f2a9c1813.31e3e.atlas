@@ -1,0 +1,167 @@
+
+xiaoqiao.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 362, 37
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 126, 14
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xiaoqiao_body
+  rotate: true
+  xy: 186, 73
+  size: 76, 86
+  orig: 76, 87
+  offset: 0, 1
+  index: -1
+xiaoqiao_eye1
+  rotate: false
+  xy: 491, 147
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+xiaoqiao_eye2
+  rotate: false
+  xy: 491, 128
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+xiaoqiao_eyebrow1
+  rotate: false
+  xy: 491, 118
+  size: 17, 8
+  orig: 17, 8
+  offset: 0, 0
+  index: -1
+xiaoqiao_eyebrow2
+  rotate: true
+  xy: 490, 94
+  size: 22, 9
+  orig: 22, 9
+  offset: 0, 0
+  index: -1
+xiaoqiao_eyelid1
+  rotate: false
+  xy: 79, 101
+  size: 73, 29
+  orig: 73, 29
+  offset: 0, 0
+  index: -1
+xiaoqiao_eyelid2
+  rotate: false
+  xy: 2, 105
+  size: 75, 25
+  orig: 75, 25
+  offset: 0, 0
+  index: -1
+xiaoqiao_eyewhite
+  rotate: true
+  xy: 154, 62
+  size: 68, 23
+  orig: 68, 23
+  offset: 0, 0
+  index: -1
+xiaoqiao_hair1
+  rotate: true
+  xy: 274, 105
+  size: 44, 86
+  orig: 45, 86
+  offset: 1, 0
+  index: -1
+xiaoqiao_hair2
+  rotate: true
+  xy: 274, 55
+  size: 48, 81
+  orig: 48, 81
+  offset: 0, 0
+  index: -1
+xiaoqiao_hair3
+  rotate: true
+  xy: 179, 25
+  size: 46, 58
+  orig: 46, 58
+  offset: 0, 0
+  index: -1
+xiaoqiao_hair4
+  rotate: true
+  xy: 2, 51
+  size: 52, 60
+  orig: 52, 60
+  offset: 0, 0
+  index: -1
+xiaoqiao_hair5
+  rotate: true
+  xy: 64, 47
+  size: 52, 60
+  orig: 52, 60
+  offset: 0, 0
+  index: -1
+xiaoqiao_handl
+  rotate: false
+  xy: 2, 18
+  size: 59, 31
+  orig: 59, 32
+  offset: 0, 0
+  index: -1
+xiaoqiao_head
+  rotate: false
+  xy: 186, 151
+  size: 178, 139
+  orig: 178, 139
+  offset: 0, 0
+  index: -1
+xiaoqiao_hip
+  rotate: true
+  xy: 446, 64
+  size: 55, 42
+  orig: 55, 42
+  offset: 0, 0
+  index: -1
+xiaoqiao_shoulderl
+  rotate: true
+  xy: 446, 2
+  size: 60, 62
+  orig: 60, 62
+  offset: 0, 0
+  index: -1
+xiaoqiao_shoulderr
+  rotate: false
+  xy: 491, 169
+  size: 19, 38
+  orig: 19, 38
+  offset: 0, 0
+  index: -1
+xiaoqiao_tail1
+  rotate: false
+  xy: 2, 132
+  size: 182, 158
+  orig: 182, 158
+  offset: 0, 0
+  index: -1
+xiaoqiao_tail2
+  rotate: true
+  xy: 366, 121
+  size: 86, 123
+  orig: 86, 123
+  offset: 0, 0
+  index: -1
+xiaoqiao_weapon
+  rotate: false
+  xy: 366, 209
+  size: 142, 81
+  orig: 142, 81
+  offset: 0, 0
+  index: -1

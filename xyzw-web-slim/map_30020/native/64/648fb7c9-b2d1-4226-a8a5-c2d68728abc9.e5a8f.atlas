@@ -1,0 +1,83 @@
+
+xsxjt_gu1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gyxjt_dagu_erl
+  rotate: true
+  xy: 444, 41
+  size: 55, 50
+  orig: 59, 50
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_err
+  rotate: false
+  xy: 2, 4
+  size: 53, 50
+  orig: 58, 50
+  offset: 5, 0
+  index: -1
+gyxjt_dagu_shen1
+  rotate: true
+  xy: 2, 56
+  size: 182, 219
+  orig: 182, 219
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_shen2
+  rotate: true
+  xy: 223, 56
+  size: 182, 219
+  orig: 182, 219
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_yps
+  rotate: true
+  xy: 444, 98
+  size: 140, 64
+  orig: 140, 64
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_ypx
+  rotate: false
+  xy: 291, 9
+  size: 124, 45
+  orig: 128, 45
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_yz
+  rotate: false
+  xy: 417, 2
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_zu1
+  rotate: false
+  xy: 163, 6
+  size: 65, 48
+  orig: 65, 48
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_zu2
+  rotate: false
+  xy: 57, 4
+  size: 52, 50
+  orig: 52, 50
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_zu3
+  rotate: false
+  xy: 230, 6
+  size: 59, 48
+  orig: 59, 48
+  offset: 0, 0
+  index: -1
+gyxjt_dagu_zu4
+  rotate: false
+  xy: 111, 5
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1

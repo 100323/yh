@@ -1,0 +1,237 @@
+
+sunce5_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 707, 192
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 959, 197
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+sunce5_attackb1
+  rotate: true
+  xy: 754, 380
+  size: 130, 107
+  orig: 130, 107
+  offset: 0, 0
+  index: -1
+sunce5_attackb2
+  rotate: false
+  xy: 653, 77
+  size: 130, 112
+  orig: 130, 112
+  offset: 0, 0
+  index: -1
+sunce5_skillc1
+  rotate: false
+  xy: 521, 64
+  size: 130, 125
+  orig: 130, 125
+  offset: 0, 0
+  index: -1
+sunce5_skillc2
+  rotate: false
+  xy: 243, 63
+  size: 276, 112
+  orig: 277, 112
+  offset: 0, 0
+  index: -1
+sunce5_skillc3
+  rotate: true
+  xy: 2, 177
+  size: 333, 316
+  orig: 333, 316
+  offset: 0, 0
+  index: -1
+sunce5_skillc4
+  rotate: true
+  xy: 863, 400
+  size: 110, 104
+  orig: 110, 104
+  offset: 0, 0
+  index: -1
+sunce5_skillc5
+  rotate: true
+  xy: 452, 190
+  size: 163, 48
+  orig: 171, 49
+  offset: 1, 1
+  index: -1
+sunce5_skillh1
+  rotate: true
+  xy: 754, 280
+  size: 98, 130
+  orig: 98, 130
+  offset: 0, 0
+  index: -1
+sunce5_skillh2
+  rotate: false
+  xy: 320, 212
+  size: 130, 141
+  orig: 130, 141
+  offset: 0, 0
+  index: -1
+sunce5_skillh3
+  rotate: true
+  xy: 320, 355
+  size: 155, 195
+  orig: 155, 195
+  offset: 0, 0
+  index: -1
+sunce5_skilll1
+  rotate: false
+  xy: 869, 237
+  size: 91, 41
+  orig: 91, 41
+  offset: 0, 0
+  index: -1
+sunce5_skilll2
+  rotate: true
+  xy: 644, 16
+  size: 46, 87
+  orig: 46, 87
+  offset: 0, 0
+  index: -1
+sunce5_skilll3
+  rotate: false
+  xy: 243, 7
+  size: 17, 20
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+sunce5_skilll4
+  rotate: false
+  xy: 278, 11
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+sunce5_skilll5
+  rotate: false
+  xy: 243, 29
+  size: 325, 32
+  orig: 325, 32
+  offset: 0, 0
+  index: -1
+sunce5_skillm1
+  rotate: true
+  xy: 869, 195
+  size: 40, 50
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
+sunce5_skillm10
+  rotate: false
+  xy: 864, 119
+  size: 55, 71
+  orig: 55, 71
+  offset: 0, 0
+  index: -1
+sunce5_skillm11
+  rotate: false
+  xy: 899, 55
+  size: 58, 62
+  orig: 58, 63
+  offset: 0, 1
+  index: -1
+sunce5_skillm12
+  rotate: false
+  xy: 626, 191
+  size: 79, 68
+  orig: 79, 68
+  offset: 0, 0
+  index: -1
+sunce5_skillm2
+  rotate: false
+  xy: 947, 4
+  size: 40, 49
+  orig: 40, 49
+  offset: 0, 0
+  index: -1
+sunce5_skillm3
+  rotate: true
+  xy: 899, 5
+  size: 48, 46
+  orig: 49, 46
+  offset: 1, 0
+  index: -1
+sunce5_skillm4
+  rotate: false
+  xy: 320, 177
+  size: 40, 33
+  orig: 40, 34
+  offset: 0, 1
+  index: -1
+sunce5_skillm5
+  rotate: false
+  xy: 502, 191
+  size: 122, 68
+  orig: 122, 69
+  offset: 0, 1
+  index: -1
+sunce5_skillm6
+  rotate: false
+  xy: 521, 261
+  size: 231, 249
+  orig: 234, 251
+  offset: 0, 1
+  index: -1
+sunce5_skillm7
+  rotate: false
+  xy: 814, 6
+  size: 83, 86
+  orig: 84, 86
+  offset: 1, 0
+  index: -1
+sunce5_skillm8
+  rotate: false
+  xy: 785, 94
+  size: 77, 96
+  orig: 77, 96
+  offset: 0, 0
+  index: -1
+sunce5_skillm9
+  rotate: false
+  xy: 2, 17
+  size: 239, 158
+  orig: 240, 159
+  offset: 1, 1
+  index: -1
+sunce5_skills2
+  rotate: false
+  xy: 570, 2
+  size: 72, 60
+  orig: 72, 60
+  offset: 0, 0
+  index: -1
+sunce5_skills3
+  rotate: false
+  xy: 733, 5
+  size: 79, 70
+  orig: 79, 70
+  offset: 0, 0
+  index: -1
+sunce5_skills4
+  rotate: false
+  xy: 775, 192
+  size: 92, 86
+  orig: 92, 86
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 262, 8
+  size: 19, 14
+  orig: 21, 21
+  offset: 0, 5
+  index: -1

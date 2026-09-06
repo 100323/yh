@@ -1,0 +1,41 @@
+
+yuling_1412.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 46, 206
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_412_body
+  rotate: false
+  xy: 2, 2
+  size: 209, 187
+  orig: 209, 187
+  offset: 0, 0
+  index: -1
+yuling_412_eye
+  rotate: true
+  xy: 2, 228
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+yuling_412_eyewhite
+  rotate: false
+  xy: 15, 212
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
+yuling_412_fin
+  rotate: false
+  xy: 80, 191
+  size: 58, 47
+  orig: 58, 47
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+xsxjt_kandao.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_kandao_dao
+  rotate: false
+  xy: 610, 146
+  size: 201, 332
+  orig: 201, 332
+  offset: 0, 0
+  index: -1
+xsxjt_kandao_dao1
+  rotate: true
+  xy: 2, 250
+  size: 228, 378
+  orig: 228, 378
+  offset: 0, 0
+  index: -1
+xsxjt_kandao_g1
+  rotate: true
+  xy: 168, 38
+  size: 210, 97
+  orig: 210, 97
+  offset: 0, 0
+  index: -1
+xsxjt_kandao_g2
+  rotate: true
+  xy: 2, 95
+  size: 153, 164
+  orig: 153, 164
+  offset: 0, 0
+  index: -1
+xsxjt_kandao_g3
+  rotate: true
+  xy: 588, 2
+  size: 142, 190
+  orig: 142, 190
+  offset: 0, 0
+  index: -1
+xsxjt_kandao_shou
+  rotate: true
+  xy: 382, 37
+  size: 218, 204
+  orig: 218, 204
+  offset: 0, 0
+  index: -1
+xsxjt_kandao_shou1
+  rotate: false
+  xy: 382, 257
+  size: 226, 221
+  orig: 226, 221
+  offset: 0, 0
+  index: -1

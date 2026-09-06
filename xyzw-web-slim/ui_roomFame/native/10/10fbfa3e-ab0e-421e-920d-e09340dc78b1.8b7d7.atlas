@@ -1,0 +1,62 @@
+
+dzfj_mrt_hz1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: true
+  xy: 954, 204
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+hz1_01
+  rotate: false
+  xy: 406, 247
+  size: 364, 219
+  orig: 364, 219
+  offset: 0, 0
+  index: -1
+hz1_02
+  rotate: false
+  xy: 772, 250
+  size: 196, 216
+  orig: 197, 218
+  offset: 1, 2
+  index: -1
+hz1_03
+  rotate: true
+  xy: 772, 2
+  size: 246, 180
+  orig: 246, 182
+  offset: 0, 2
+  index: -1
+hz1_04
+  rotate: true
+  xy: 406, 105
+  size: 140, 144
+  orig: 140, 145
+  offset: 0, 1
+  index: -1
+hz1_05
+  rotate: false
+  xy: 2, 141
+  size: 402, 325
+  orig: 402, 326
+  offset: 0, 0
+  index: -1
+xg_01
+  rotate: false
+  xy: 970, 427
+  size: 32, 39
+  orig: 38, 47
+  offset: 3, 4
+  index: -1
+xg_02
+  rotate: true
+  xy: 970, 400
+  size: 25, 23
+  orig: 32, 29
+  offset: 4, 3
+  index: -1

@@ -1,0 +1,55 @@
+
+guanyu8_skill_position.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/guanyu8_skill_dg1
+  rotate: false
+  xy: 2, 131
+  size: 564, 376
+  orig: 564, 376
+  offset: 0, 0
+  index: -1
+images/guanyu8_skill_dg2
+  rotate: false
+  xy: 568, 287
+  size: 368, 220
+  orig: 368, 220
+  offset: 0, 0
+  index: -1
+images/guanyu8_skill_dl1
+  rotate: false
+  xy: 135, 47
+  size: 161, 82
+  orig: 161, 82
+  offset: 0, 0
+  index: -1
+images/guanyu8_skill_dl2
+  rotate: false
+  xy: 722, 122
+  size: 135, 163
+  orig: 135, 163
+  offset: 0, 0
+  index: -1
+images/guanyu8_skill_dl3
+  rotate: false
+  xy: 2, 2
+  size: 131, 127
+  orig: 131, 127
+  offset: 0, 0
+  index: -1
+images/guanyu8_skill_dl5
+  rotate: false
+  xy: 298, 59
+  size: 179, 70
+  orig: 179, 70
+  offset: 0, 0
+  index: -1
+images/guanyu8_skill_dl6
+  rotate: true
+  xy: 568, 31
+  size: 254, 152
+  orig: 254, 152
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,125 @@
+
+zhouyu5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo2
+  rotate: false
+  xy: 321, 357
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_effect1
+  rotate: false
+  xy: 2, 276
+  size: 173, 234
+  orig: 195, 302
+  offset: 5, 30
+  index: -1
+zhouyu5_skill_effect2
+  rotate: false
+  xy: 2, 39
+  size: 150, 235
+  orig: 151, 235
+  offset: 1, 0
+  index: -1
+zhouyu5_skill_h1
+  rotate: true
+  xy: 219, 29
+  size: 25, 104
+  orig: 25, 104
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_h2
+  rotate: true
+  xy: 177, 333
+  size: 177, 142
+  orig: 177, 142
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq1
+  rotate: false
+  xy: 2, 2
+  size: 127, 35
+  orig: 127, 35
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq2
+  rotate: true
+  xy: 258, 301
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq3
+  rotate: true
+  xy: 273, 202
+  size: 97, 195
+  orig: 105, 195
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq4
+  rotate: false
+  xy: 131, 2
+  size: 86, 35
+  orig: 86, 35
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_yun1
+  rotate: false
+  xy: 412, 364
+  size: 91, 82
+  orig: 91, 82
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_yun2
+  rotate: false
+  xy: 412, 303
+  size: 78, 59
+  orig: 78, 59
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_yun3
+  rotate: false
+  xy: 177, 279
+  size: 48, 52
+  orig: 48, 52
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_yun4
+  rotate: false
+  xy: 227, 301
+  size: 29, 30
+  orig: 29, 30
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_za1
+  rotate: false
+  xy: 154, 56
+  size: 117, 218
+  orig: 117, 218
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_za2
+  rotate: true
+  xy: 325, 24
+  size: 80, 172
+  orig: 80, 172
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_za3
+  rotate: true
+  xy: 273, 106
+  size: 94, 190
+  orig: 94, 190
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_za4
+  rotate: true
+  xy: 321, 448
+  size: 62, 144
+  orig: 62, 144
+  offset: 0, 0
+  index: -1

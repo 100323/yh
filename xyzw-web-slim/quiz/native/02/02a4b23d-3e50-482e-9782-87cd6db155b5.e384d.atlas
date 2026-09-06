@@ -1,0 +1,90 @@
+
+zxc_fish_ss.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: true
+  xy: 294, 381
+  size: 71, 96
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+ss_body
+  rotate: true
+  xy: 2, 2
+  size: 190, 270
+  orig: 190, 270
+  offset: 0, 0
+  index: -1
+ss_eye
+  rotate: true
+  xy: 328, 322
+  size: 57, 76
+  orig: 57, 76
+  offset: 0, 0
+  index: -1
+ss_eyeball
+  rotate: true
+  xy: 294, 369
+  size: 10, 13
+  orig: 10, 13
+  offset: 0, 0
+  index: -1
+ss_fin1
+  rotate: false
+  xy: 274, 150
+  size: 103, 50
+  orig: 103, 50
+  offset: 0, 0
+  index: -1
+ss_fin2
+  rotate: false
+  xy: 307, 210
+  size: 83, 53
+  orig: 83, 53
+  offset: 0, 0
+  index: -1
+ss_leg1
+  rotate: false
+  xy: 242, 349
+  size: 50, 146
+  orig: 50, 146
+  offset: 0, 0
+  index: -1
+ss_leg2
+  rotate: true
+  xy: 294, 454
+  size: 41, 141
+  orig: 41, 141
+  offset: 0, 0
+  index: -1
+ss_pan
+  rotate: false
+  xy: 2, 194
+  size: 238, 301
+  orig: 238, 301
+  offset: 0, 0
+  index: -1
+ss_tail
+  rotate: true
+  xy: 242, 265
+  size: 82, 84
+  orig: 82, 84
+  offset: 0, 0
+  index: -1
+yanjing2
+  rotate: false
+  xy: 242, 202
+  size: 63, 61
+  orig: 63, 61
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: true
+  xy: 392, 413
+  size: 39, 49
+  orig: 39, 49
+  offset: 0, 0
+  index: -1

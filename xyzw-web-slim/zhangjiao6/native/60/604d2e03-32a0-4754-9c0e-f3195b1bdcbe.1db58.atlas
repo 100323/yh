@@ -1,0 +1,76 @@
+
+zhangjiao6_skill_line.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: false
+  xy: 258, 7
+  size: 22, 19
+  orig: 22, 22
+  offset: 0, 1
+  index: -1
+zhangjiao6_skill_1
+  rotate: false
+  xy: 2, 37
+  size: 125, 47
+  orig: 125, 47
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_2
+  rotate: true
+  xy: 258, 28
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_3
+  rotate: false
+  xy: 164, 92
+  size: 154, 71
+  orig: 154, 71
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_4
+  rotate: true
+  xy: 406, 4
+  size: 237, 75
+  orig: 237, 75
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_5
+  rotate: true
+  xy: 2, 86
+  size: 155, 160
+  orig: 155, 160
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_6
+  rotate: false
+  xy: 320, 20
+  size: 51, 47
+  orig: 51, 47
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_7
+  rotate: false
+  xy: 164, 165
+  size: 240, 76
+  orig: 240, 76
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_8
+  rotate: true
+  xy: 320, 69
+  size: 94, 81
+  orig: 94, 81
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_9
+  rotate: true
+  xy: 164, 2
+  size: 88, 92
+  orig: 88, 92
+  offset: 0, 0
+  index: -1

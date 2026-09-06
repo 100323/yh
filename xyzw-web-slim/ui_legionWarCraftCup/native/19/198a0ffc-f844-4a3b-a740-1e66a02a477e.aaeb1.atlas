@@ -1,0 +1,97 @@
+
+zbz_ft_yijiyanchang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_fish_body
+  rotate: true
+  xy: 2, 110
+  size: 142, 139
+  orig: 142, 139
+  offset: 0, 0
+  index: -1
+zbz_fish_body2
+  rotate: false
+  xy: 94, 6
+  size: 83, 102
+  orig: 93, 102
+  offset: 0, 0
+  index: -1
+zbz_fish_box
+  rotate: true
+  xy: 143, 132
+  size: 120, 118
+  orig: 120, 118
+  offset: 0, 0
+  index: -1
+zbz_fish_eye
+  rotate: false
+  xy: 175, 120
+  size: 6, 10
+  orig: 6, 10
+  offset: 0, 0
+  index: -1
+zbz_fish_eyewhite
+  rotate: true
+  xy: 143, 113
+  size: 17, 30
+  orig: 17, 30
+  offset: 0, 0
+  index: -1
+zbz_fish_fish
+  rotate: true
+  xy: 322, 183
+  size: 69, 45
+  orig: 69, 45
+  offset: 0, 0
+  index: -1
+zbz_fish_handl
+  rotate: true
+  xy: 243, 12
+  size: 32, 56
+  orig: 36, 58
+  offset: 4, 2
+  index: -1
+zbz_fish_handr
+  rotate: false
+  xy: 301, 2
+  size: 34, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+zbz_fish_mouth
+  rotate: true
+  xy: 2, 2
+  size: 106, 90
+  orig: 106, 90
+  offset: 0, 0
+  index: -1
+zbz_fish_ring
+  rotate: false
+  xy: 263, 180
+  size: 57, 72
+  orig: 58, 72
+  offset: 0, 0
+  index: -1
+zbz_fish_tail
+  rotate: true
+  xy: 243, 46
+  size: 84, 67
+  orig: 84, 67
+  offset: 0, 0
+  index: -1
+zbz_fish_wingl
+  rotate: true
+  xy: 179, 11
+  size: 107, 62
+  orig: 107, 62
+  offset: 0, 0
+  index: -1
+zbz_fish_wingr
+  rotate: true
+  xy: 263, 133
+  size: 45, 82
+  orig: 45, 82
+  offset: 0, 0
+  index: -1

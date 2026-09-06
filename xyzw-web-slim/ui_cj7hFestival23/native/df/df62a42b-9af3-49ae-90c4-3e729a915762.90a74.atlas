@@ -1,0 +1,41 @@
+
+dntg26_cj_fashe.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fashe1
+  rotate: true
+  xy: 339, 18
+  size: 53, 77
+  orig: 55, 79
+  offset: 1, 1
+  index: -1
+fashe2
+  rotate: true
+  xy: 245, 6
+  size: 65, 92
+  orig: 71, 97
+  offset: 3, 3
+  index: -1
+fashe3
+  rotate: true
+  xy: 2, 2
+  size: 38, 203
+  orig: 38, 203
+  offset: 0, 0
+  index: -1
+fashe4
+  rotate: true
+  xy: 245, 73
+  size: 28, 201
+  orig: 28, 201
+  offset: 0, 0
+  index: -1
+fashe5
+  rotate: true
+  xy: 2, 42
+  size: 59, 241
+  orig: 59, 241
+  offset: 0, 0
+  index: -1

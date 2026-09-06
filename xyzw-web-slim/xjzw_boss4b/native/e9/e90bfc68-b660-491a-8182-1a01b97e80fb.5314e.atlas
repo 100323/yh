@@ -1,0 +1,195 @@
+
+xjzw_boss4b.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 37, 2
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1arml
+  rotate: false
+  xy: 320, 16
+  size: 57, 42
+  orig: 57, 42
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1armr1
+  rotate: true
+  xy: 430, 70
+  size: 48, 41
+  orig: 48, 41
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1armr2
+  rotate: true
+  xy: 385, 60
+  size: 53, 43
+  orig: 53, 43
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1bag
+  rotate: false
+  xy: 209, 212
+  size: 139, 50
+  orig: 139, 50
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1eyebrow1
+  rotate: false
+  xy: 61, 5
+  size: 31, 19
+  orig: 31, 21
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1eyebrow2
+  rotate: false
+  xy: 251, 6
+  size: 12, 28
+  orig: 13, 30
+  offset: 1, 0
+  index: -1
+xjzw_boss4_1handr1
+  rotate: true
+  xy: 470, 132
+  size: 35, 34
+  orig: 43, 34
+  offset: 8, 0
+  index: -1
+xjzw_boss4_1handr2
+  rotate: true
+  xy: 470, 169
+  size: 44, 30
+  orig: 44, 30
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1hip
+  rotate: false
+  xy: 350, 219
+  size: 117, 40
+  orig: 117, 40
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1jaw
+  rotate: true
+  xy: 470, 215
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1legl
+  rotate: false
+  xy: 379, 15
+  size: 54, 43
+  orig: 54, 43
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1legr
+  rotate: false
+  xy: 320, 60
+  size: 63, 53
+  orig: 63, 53
+  offset: 0, 0
+  index: -1
+xjzw_boss4_1tie
+  rotate: true
+  xy: 2, 2
+  size: 22, 33
+  orig: 22, 33
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2attack
+  rotate: false
+  xy: 367, 261
+  size: 121, 25
+  orig: 121, 25
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2body
+  rotate: true
+  xy: 395, 386
+  size: 124, 103
+  orig: 125, 107
+  offset: 0, 2
+  index: -1
+xjzw_boss4_2eyewhite1
+  rotate: true
+  xy: 198, 2
+  size: 32, 26
+  orig: 32, 26
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2eyewhite2
+  rotate: false
+  xy: 226, 6
+  size: 23, 28
+  orig: 23, 28
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2head
+  rotate: true
+  xy: 209, 264
+  size: 128, 156
+  orig: 128, 156
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2skill
+  rotate: true
+  xy: 394, 120
+  size: 97, 74
+  orig: 97, 74
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2weapon1
+  rotate: true
+  xy: 312, 115
+  size: 95, 80
+  orig: 95, 80
+  offset: 0, 0
+  index: -1
+xjzw_boss4_2weapon2
+  rotate: false
+  xy: 209, 394
+  size: 184, 116
+  orig: 184, 116
+  offset: 0, 0
+  index: -1
+xjzw_boss4_biandang1
+  rotate: false
+  xy: 2, 237
+  size: 205, 273
+  orig: 205, 273
+  offset: 0, 0
+  index: -1
+xjzw_boss4_biandang2
+  rotate: true
+  xy: 367, 288
+  size: 96, 130
+  orig: 96, 130
+  offset: 0, 0
+  index: -1
+xjzw_boss4_biandang3
+  rotate: true
+  xy: 198, 36
+  size: 77, 120
+  orig: 77, 120
+  offset: 0, 0
+  index: -1
+xjzw_boss4_biandang4
+  rotate: false
+  xy: 198, 115
+  size: 112, 95
+  orig: 112, 95
+  offset: 0, 0
+  index: -1
+xjzw_boss4_skill2
+  rotate: false
+  xy: 2, 26
+  size: 194, 209
+  orig: 194, 209
+  offset: 0, 0
+  index: -1

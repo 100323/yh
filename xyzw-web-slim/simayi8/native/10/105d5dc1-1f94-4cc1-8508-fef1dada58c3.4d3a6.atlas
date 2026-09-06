@@ -1,0 +1,13 @@
+
+simayi8_attack_line.png
+size: 128,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+simayi8_attack1
+  rotate: false
+  xy: 2, 2
+  size: 96, 19
+  orig: 96, 19
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+ygjqr_jinguan.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 376, 127
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 457, 89
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+ygjqr_gz_jg_gai
+  rotate: true
+  xy: 376, 2
+  size: 123, 79
+  orig: 125, 79
+  offset: 1, 0
+  index: -1
+ygjqr_gz_jg_guang
+  rotate: false
+  xy: 198, 103
+  size: 176, 106
+  orig: 176, 106
+  offset: 0, 0
+  index: -1
+ygjqr_gz_jg_shen
+  rotate: false
+  xy: 2, 44
+  size: 194, 165
+  orig: 194, 166
+  offset: 0, 1
+  index: -1

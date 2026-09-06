@@ -1,0 +1,97 @@
+
+ft_gongsunzan8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_guanyu_10
+  rotate: false
+  xy: 356, 190
+  size: 60, 59
+  orig: 60, 59
+  offset: 0, 0
+  index: -1
+ft_guanyu_11
+  rotate: false
+  xy: 418, 199
+  size: 51, 50
+  orig: 63, 64
+  offset: 6, 7
+  index: -1
+ft_jiaxu_hy
+  rotate: true
+  xy: 333, 75
+  size: 84, 114
+  orig: 84, 114
+  offset: 0, 0
+  index: -1
+ft_jiaxu_hz
+  rotate: false
+  xy: 203, 36
+  size: 128, 123
+  orig: 128, 123
+  offset: 0, 0
+  index: -1
+ft_jiaxu_hzwb
+  rotate: false
+  xy: 2, 297
+  size: 165, 200
+  orig: 165, 200
+  offset: 0, 0
+  index: -1
+ft_jiaxu_st
+  rotate: false
+  xy: 203, 161
+  size: 151, 169
+  orig: 151, 169
+  offset: 0, 0
+  index: -1
+ft_jiaxu_tou
+  rotate: false
+  xy: 169, 332
+  size: 188, 165
+  orig: 188, 165
+  offset: 0, 0
+  index: -1
+ft_jiaxu_tou1
+  rotate: false
+  xy: 356, 251
+  size: 65, 79
+  orig: 65, 79
+  offset: 0, 0
+  index: -1
+ft_jiaxu_tou2
+  rotate: false
+  xy: 359, 448
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+ft_jiaxu_tou3
+  rotate: false
+  xy: 359, 403
+  size: 43, 43
+  orig: 43, 43
+  offset: 0, 0
+  index: -1
+ft_jiaxu_zy
+  rotate: true
+  xy: 2, 2
+  size: 119, 165
+  orig: 130, 184
+  offset: 6, 9
+  index: -1
+ft_jiaxu_zz
+  rotate: false
+  xy: 2, 123
+  size: 199, 172
+  orig: 213, 188
+  offset: 5, 6
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 169, 304
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

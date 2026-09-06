@@ -1,0 +1,111 @@
+
+cwxt26_huan6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt_huan6_skill_cao1
+  rotate: false
+  xy: 2, 29
+  size: 131, 163
+  orig: 131, 163
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_cao2
+  rotate: true
+  xy: 220, 99
+  size: 203, 117
+  orig: 203, 117
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_cao3
+  rotate: false
+  xy: 2, 304
+  size: 345, 179
+  orig: 345, 179
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_mao
+  rotate: true
+  xy: 274, 42
+  size: 55, 45
+  orig: 57, 50
+  offset: 0, 5
+  index: -1
+cwxt_huan6_skill_mei1
+  rotate: true
+  xy: 135, 32
+  size: 59, 56
+  orig: 59, 56
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_mei2
+  rotate: true
+  xy: 135, 3
+  size: 27, 53
+  orig: 27, 56
+  offset: 0, 3
+  index: -1
+cwxt_huan6_skill_she1
+  rotate: false
+  xy: 339, 17
+  size: 127, 98
+  orig: 127, 98
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_she2
+  rotate: true
+  xy: 349, 270
+  size: 213, 158
+  orig: 213, 158
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_xing
+  rotate: true
+  xy: 199, 42
+  size: 55, 73
+  orig: 55, 73
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_yanzhu
+  rotate: false
+  xy: 199, 182
+  size: 7, 10
+  orig: 7, 10
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_ying1
+  rotate: true
+  xy: 339, 117
+  size: 151, 104
+  orig: 151, 104
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_ying2
+  rotate: false
+  xy: 2, 194
+  size: 216, 108
+  orig: 225, 108
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_zhua
+  rotate: false
+  xy: 193, 2
+  size: 51, 38
+  orig: 51, 38
+  offset: 0, 0
+  index: -1
+cwxt_huan6_skill_zhua2
+  rotate: false
+  xy: 135, 93
+  size: 62, 99
+  orig: 65, 99
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 246, 11
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

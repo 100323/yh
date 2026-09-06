@@ -1,0 +1,20 @@
+
+cangpin_boli.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cangpin_boliguang
+  rotate: false
+  xy: 2, 2
+  size: 181, 227
+  orig: 181, 227
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 185, 197
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

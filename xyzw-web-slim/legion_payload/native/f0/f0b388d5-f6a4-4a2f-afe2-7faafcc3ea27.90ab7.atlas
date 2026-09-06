@@ -1,0 +1,20 @@
+
+tgcf_pty_dj_wuyue.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_dj_wy_4
+  rotate: false
+  xy: 120, 215
+  size: 32, 33
+  orig: 34, 35
+  offset: 1, 1
+  index: -1
+tgcf_dj_wy_6
+  rotate: false
+  xy: 2, 2
+  size: 116, 246
+  orig: 116, 246
+  offset: 0, 0
+  index: -1

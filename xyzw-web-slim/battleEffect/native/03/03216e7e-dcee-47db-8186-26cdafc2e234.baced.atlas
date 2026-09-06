@@ -1,0 +1,188 @@
+
+axwq_pixie.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_xie_bomb1
+  rotate: true
+  xy: 439, 202
+  size: 96, 49
+  orig: 96, 49
+  offset: 0, 0
+  index: -1
+axwq_xie_bomb2
+  rotate: true
+  xy: 478, 383
+  size: 39, 25
+  orig: 39, 25
+  offset: 0, 0
+  index: -1
+axwq_xie_bomb3
+  rotate: false
+  xy: 302, 63
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+axwq_xie_boom1
+  rotate: false
+  xy: 412, 34
+  size: 80, 77
+  orig: 80, 77
+  offset: 0, 0
+  index: -1
+axwq_xie_boom2
+  rotate: false
+  xy: 324, 285
+  size: 113, 112
+  orig: 113, 113
+  offset: 0, 1
+  index: -1
+axwq_xie_boom3
+  rotate: false
+  xy: 2, 39
+  size: 169, 170
+  orig: 169, 170
+  offset: 0, 0
+  index: -1
+axwq_xie_dian
+  rotate: true
+  xy: 37, 4
+  size: 33, 73
+  orig: 33, 73
+  offset: 0, 0
+  index: -1
+axwq_xie_fjbody
+  rotate: false
+  xy: 232, 399
+  size: 244, 110
+  orig: 244, 110
+  offset: 0, 0
+  index: -1
+axwq_xie_fjeye
+  rotate: true
+  xy: 132, 28
+  size: 9, 7
+  orig: 9, 7
+  offset: 0, 0
+  index: -1
+axwq_xie_fjjiashi
+  rotate: false
+  xy: 439, 300
+  size: 70, 81
+  orig: 70, 81
+  offset: 0, 0
+  index: -1
+axwq_xie_fjjiyis
+  rotate: true
+  xy: 478, 424
+  size: 46, 29
+  orig: 46, 29
+  offset: 0, 0
+  index: -1
+axwq_xie_fjline
+  rotate: true
+  xy: 112, 2
+  size: 14, 43
+  orig: 14, 43
+  offset: 0, 0
+  index: -1
+axwq_xie_fjspray1
+  rotate: false
+  xy: 324, 19
+  size: 86, 42
+  orig: 86, 42
+  offset: 0, 0
+  index: -1
+axwq_xie_fjspray2
+  rotate: false
+  xy: 222, 10
+  size: 100, 49
+  orig: 100, 49
+  offset: 0, 0
+  index: -1
+axwq_xie_fjspray3
+  rotate: true
+  xy: 173, 61
+  size: 148, 127
+  orig: 148, 127
+  offset: 0, 0
+  index: -1
+axwq_xie_fjwheel1
+  rotate: false
+  xy: 352, 72
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+axwq_xie_fjwingl
+  rotate: false
+  xy: 324, 124
+  size: 90, 83
+  orig: 90, 83
+  offset: 0, 0
+  index: -1
+axwq_xie_fjwingr
+  rotate: false
+  xy: 324, 209
+  size: 111, 74
+  orig: 111, 74
+  offset: 0, 0
+  index: -1
+axwq_xie_shoe1
+  rotate: false
+  xy: 2, 211
+  size: 228, 298
+  orig: 228, 298
+  offset: 0, 0
+  index: -1
+axwq_xie_shoe2
+  rotate: true
+  xy: 2, 3
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+axwq_xie_shoe3
+  rotate: true
+  xy: 173, 3
+  size: 56, 47
+  orig: 56, 47
+  offset: 0, 0
+  index: -1
+axwq_xie_shoe4
+  rotate: true
+  xy: 232, 217
+  size: 88, 90
+  orig: 88, 90
+  offset: 0, 0
+  index: -1
+axwq_xie_star
+  rotate: false
+  xy: 478, 472
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 232, 307
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 416, 113
+  size: 87, 87
+  orig: 89, 89
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 112, 18
+  size: 19, 18
+  orig: 22, 22
+  offset: 2, 2
+  index: -1

@@ -1,0 +1,41 @@
+
+lvbu5_skill_hit2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu5_hit2_1
+  rotate: true
+  xy: 571, 231
+  size: 271, 328
+  orig: 271, 328
+  offset: 0, 0
+  index: -1
+lvbu5_hit2_2
+  rotate: true
+  xy: 571, 2
+  size: 227, 295
+  orig: 227, 304
+  offset: 0, 9
+  index: -1
+lvbu5_hit2_3
+  rotate: false
+  xy: 308, 133
+  size: 261, 369
+  orig: 261, 372
+  offset: 0, 0
+  index: -1
+lvbu5_hit2_qt
+  rotate: true
+  xy: 2, 27
+  size: 90, 88
+  orig: 90, 88
+  offset: 0, 0
+  index: -1
+lvbu5_hit2_sz
+  rotate: false
+  xy: 2, 119
+  size: 304, 383
+  orig: 304, 383
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,174 @@
+
+tgcf_pty_cj_chitang.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hehua_01
+  rotate: true
+  xy: 23, 3
+  size: 17, 21
+  orig: 17, 21
+  offset: 0, 0
+  index: -1
+hehua_02
+  rotate: true
+  xy: 322, 9
+  size: 36, 30
+  orig: 36, 30
+  offset: 0, 0
+  index: -1
+hehua_03
+  rotate: true
+  xy: 2, 2
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+hehua_04
+  rotate: true
+  xy: 354, 51
+  size: 35, 26
+  orig: 35, 26
+  offset: 0, 0
+  index: -1
+hehua_05
+  rotate: true
+  xy: 46, 3
+  size: 17, 20
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+hehua_06
+  rotate: true
+  xy: 322, 47
+  size: 38, 30
+  orig: 38, 30
+  offset: 0, 0
+  index: -1
+heye_01
+  rotate: true
+  xy: 65, 22
+  size: 14, 43
+  orig: 15, 43
+  offset: 1, 0
+  index: -1
+heye_010
+  rotate: false
+  xy: 110, 3
+  size: 56, 33
+  orig: 56, 33
+  offset: 0, 0
+  index: -1
+heye_011
+  rotate: true
+  xy: 68, 7
+  size: 13, 39
+  orig: 14, 39
+  offset: 1, 0
+  index: -1
+heye_02
+  rotate: true
+  xy: 345, 88
+  size: 38, 27
+  orig: 38, 27
+  offset: 0, 0
+  index: -1
+heye_03
+  rotate: true
+  xy: 119, 42
+  size: 84, 50
+  orig: 84, 50
+  offset: 0, 0
+  index: -1
+heye_04
+  rotate: true
+  xy: 251, 8
+  size: 13, 43
+  orig: 13, 43
+  offset: 0, 0
+  index: -1
+heye_05
+  rotate: false
+  xy: 168, 2
+  size: 53, 38
+  orig: 53, 38
+  offset: 0, 0
+  index: -1
+heye_06
+  rotate: true
+  xy: 171, 45
+  size: 15, 48
+  orig: 15, 48
+  offset: 0, 0
+  index: -1
+heye_07
+  rotate: true
+  xy: 65, 38
+  size: 88, 52
+  orig: 88, 52
+  offset: 0, 0
+  index: -1
+heye_08
+  rotate: true
+  xy: 316, 87
+  size: 39, 27
+  orig: 39, 27
+  offset: 0, 0
+  index: -1
+heye_09
+  rotate: true
+  xy: 2, 22
+  size: 104, 61
+  orig: 104, 61
+  offset: 0, 0
+  index: -1
+jinyu
+  rotate: true
+  xy: 171, 62
+  size: 64, 44
+  orig: 65, 44
+  offset: 1, 0
+  index: -1
+shui_01
+  rotate: true
+  xy: 290, 77
+  size: 49, 24
+  orig: 49, 24
+  offset: 0, 0
+  index: -1
+shui_02
+  rotate: true
+  xy: 223, 4
+  size: 56, 26
+  orig: 56, 26
+  offset: 0, 0
+  index: -1
+shui_03
+  rotate: true
+  xy: 217, 62
+  size: 64, 29
+  orig: 64, 29
+  offset: 0, 0
+  index: -1
+shuibo_01
+  rotate: false
+  xy: 300, 29
+  size: 20, 46
+  orig: 20, 46
+  offset: 0, 0
+  index: -1
+shuibo_02
+  rotate: false
+  xy: 248, 75
+  size: 40, 51
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
+shuibo_03
+  rotate: false
+  xy: 251, 23
+  size: 47, 50
+  orig: 47, 50
+  offset: 0, 0
+  index: -1

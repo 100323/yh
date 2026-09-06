@@ -1,0 +1,62 @@
+
+wbhj_boss3c_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 454, 236
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss3a_skill3
+  rotate: false
+  xy: 145, 47
+  size: 93, 109
+  orig: 93, 109
+  offset: 0, 0
+  index: -1
+wbhj_boss3a_skill4
+  rotate: true
+  xy: 454, 267
+  size: 73, 44
+  orig: 73, 44
+  offset: 0, 0
+  index: -1
+wbhj_boss3a_skill9
+  rotate: false
+  xy: 428, 99
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+wbhj_boss3a_skillb1
+  rotate: false
+  xy: 2, 15
+  size: 141, 141
+  orig: 147, 149
+  offset: 3, 4
+  index: -1
+wbhj_boss3a_skillb2
+  rotate: true
+  xy: 248, 2
+  size: 163, 178
+  orig: 167, 184
+  offset: 2, 3
+  index: -1
+wbhj_boss3a_skillb3
+  rotate: false
+  xy: 2, 158
+  size: 244, 182
+  orig: 244, 182
+  offset: 0, 0
+  index: -1
+wbhj_boss3a_skillb4
+  rotate: false
+  xy: 248, 167
+  size: 204, 173
+  orig: 204, 173
+  offset: 0, 0
+  index: -1

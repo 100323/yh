@@ -1,0 +1,181 @@
+
+jiangwei3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 424, 96
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 235, 35
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 114, 127
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+jiangwei3_body
+  rotate: false
+  xy: 169, 148
+  size: 154, 151
+  orig: 154, 151
+  offset: 0, 0
+  index: -1
+jiangwei3_card1
+  rotate: true
+  xy: 235, 83
+  size: 63, 66
+  orig: 63, 66
+  offset: 0, 0
+  index: -1
+jiangwei3_card2
+  rotate: false
+  xy: 2, 30
+  size: 66, 62
+  orig: 66, 62
+  offset: 0, 0
+  index: -1
+jiangwei3_head
+  rotate: false
+  xy: 2, 171
+  size: 165, 128
+  orig: 165, 128
+  offset: 0, 0
+  index: -1
+jiangwei3_mc
+  rotate: false
+  xy: 325, 153
+  size: 97, 40
+  orig: 97, 40
+  offset: 0, 0
+  index: -1
+jiangwei3_shao1
+  rotate: false
+  xy: 114, 60
+  size: 48, 65
+  orig: 48, 65
+  offset: 0, 0
+  index: -1
+jiangwei3_shao2
+  rotate: true
+  xy: 435, 180
+  size: 35, 69
+  orig: 35, 69
+  offset: 0, 0
+  index: -1
+jiangwei3_shoulderl
+  rotate: true
+  xy: 363, 76
+  size: 28, 47
+  orig: 28, 47
+  offset: 0, 0
+  index: -1
+jiangwei3_shoulderr
+  rotate: false
+  xy: 167, 81
+  size: 66, 65
+  orig: 66, 65
+  offset: 0, 0
+  index: -1
+jiangwei3_skill1
+  rotate: false
+  xy: 303, 48
+  size: 58, 56
+  orig: 58, 56
+  offset: 0, 0
+  index: -1
+jiangwei_beard
+  rotate: false
+  xy: 2, 2
+  size: 34, 26
+  orig: 34, 26
+  offset: 0, 0
+  index: -1
+jiangwei_eye
+  rotate: false
+  xy: 424, 186
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+jiangwei_eyebrow
+  rotate: true
+  xy: 404, 117
+  size: 34, 15
+  orig: 34, 15
+  offset: 0, 0
+  index: -1
+jiangwei_eyewhite
+  rotate: false
+  xy: 70, 18
+  size: 37, 30
+  orig: 37, 30
+  offset: 0, 0
+  index: -1
+jiangwei_hair1
+  rotate: false
+  xy: 435, 217
+  size: 72, 82
+  orig: 72, 82
+  offset: 0, 0
+  index: -1
+jiangwei_hair2
+  rotate: false
+  xy: 325, 106
+  size: 77, 45
+  orig: 77, 45
+  offset: 0, 0
+  index: -1
+jiangwei_handl1
+  rotate: false
+  xy: 70, 50
+  size: 42, 42
+  orig: 43, 45
+  offset: 0, 3
+  index: -1
+jiangwei_handl2
+  rotate: true
+  xy: 114, 25
+  size: 33, 39
+  orig: 34, 42
+  offset: 0, 3
+  index: -1
+jiangwei_handr
+  rotate: true
+  xy: 164, 39
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+jiangwei_legr
+  rotate: false
+  xy: 208, 48
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+jiangwei_tail
+  rotate: false
+  xy: 2, 94
+  size: 110, 75
+  orig: 110, 75
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: false
+  xy: 325, 195
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

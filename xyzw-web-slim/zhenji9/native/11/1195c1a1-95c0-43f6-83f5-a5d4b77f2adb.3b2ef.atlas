@@ -1,0 +1,41 @@
+
+zhenji9_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhenji9_zd_qiu
+  rotate: false
+  xy: 2, 38
+  size: 158, 82
+  orig: 158, 82
+  offset: 0, 0
+  index: -1
+zhenji9_zd_tw1
+  rotate: false
+  xy: 2, 20
+  size: 91, 16
+  orig: 91, 16
+  offset: 0, 0
+  index: -1
+zhenji9_zd_tw2
+  rotate: false
+  xy: 2, 2
+  size: 74, 16
+  orig: 74, 16
+  offset: 0, 0
+  index: -1
+zhenji9_zd_tw3
+  rotate: false
+  xy: 95, 20
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+zhenji9_zd_x1
+  rotate: false
+  xy: 78, 4
+  size: 44, 14
+  orig: 44, 14
+  offset: 0, 0
+  index: -1

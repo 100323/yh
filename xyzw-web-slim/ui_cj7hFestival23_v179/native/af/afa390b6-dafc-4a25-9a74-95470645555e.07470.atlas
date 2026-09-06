@@ -1,0 +1,34 @@
+
+shhj25_fashe.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_texiao1
+  rotate: true
+  xy: 449, 58
+  size: 30, 31
+  orig: 38, 39
+  offset: 4, 4
+  index: -1
+huajuan_choujiang_texiao2
+  rotate: true
+  xy: 410, 52
+  size: 36, 37
+  orig: 44, 44
+  offset: 4, 4
+  index: -1
+huajuan_choujiang_texiao3
+  rotate: true
+  xy: 410, 90
+  size: 106, 81
+  orig: 106, 85
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_texiao4
+  rotate: true
+  xy: 2, 2
+  size: 194, 406
+  orig: 194, 406
+  offset: 0, 0
+  index: -1

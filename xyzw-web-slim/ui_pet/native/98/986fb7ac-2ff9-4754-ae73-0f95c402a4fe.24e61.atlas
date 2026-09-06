@@ -1,0 +1,83 @@
+
+cwxt26_huode.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_huode_bo
+  rotate: true
+  xy: 203, 230
+  size: 130, 199
+  orig: 130, 199
+  offset: 0, 0
+  index: -1
+cwxt26_huode_g
+  rotate: false
+  xy: 2, 193
+  size: 199, 263
+  orig: 201, 263
+  offset: 1, 0
+  index: -1
+cwxt26_huode_xian
+  rotate: false
+  xy: 2, 2
+  size: 204, 189
+  orig: 204, 189
+  offset: 0, 0
+  index: -1
+cwxt26_huode_xing_cheng
+  rotate: false
+  xy: 445, 305
+  size: 43, 55
+  orig: 45, 57
+  offset: 1, 1
+  index: -1
+cwxt26_huode_xing_hong
+  rotate: false
+  xy: 445, 248
+  size: 43, 55
+  orig: 45, 57
+  offset: 1, 1
+  index: -1
+cwxt26_huode_xing_jin
+  rotate: false
+  xy: 453, 401
+  size: 43, 55
+  orig: 45, 57
+  offset: 1, 1
+  index: -1
+cwxt26_huode_xing_zi
+  rotate: false
+  xy: 208, 85
+  size: 43, 55
+  orig: 45, 57
+  offset: 1, 1
+  index: -1
+cwxt26_huode_yuan
+  rotate: false
+  xy: 203, 362
+  size: 248, 94
+  orig: 248, 94
+  offset: 0, 0
+  index: -1
+cwxt26_huode_yun1
+  rotate: false
+  xy: 367, 98
+  size: 78, 130
+  orig: 78, 130
+  offset: 0, 0
+  index: -1
+cwxt26_huode_yun2
+  rotate: true
+  xy: 208, 142
+  size: 86, 157
+  orig: 86, 158
+  offset: 0, 0
+  index: -1
+cwxt26_huode_yun3
+  rotate: true
+  xy: 404, 254
+  size: 106, 39
+  orig: 107, 40
+  offset: 0, 1
+  index: -1

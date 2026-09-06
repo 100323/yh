@@ -1,0 +1,48 @@
+
+sdsl_btn.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 141, 96
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sdsl_btn_bo1
+  rotate: true
+  xy: 2, 25
+  size: 92, 105
+  orig: 92, 105
+  offset: 0, 0
+  index: -1
+sdsl_btn_bo2
+  rotate: true
+  xy: 109, 2
+  size: 92, 105
+  orig: 92, 105
+  offset: 0, 0
+  index: -1
+sdsl_btn_effect
+  rotate: false
+  xy: 15, 131
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+sdsl_btn_fu
+  rotate: true
+  xy: 41, 119
+  size: 35, 98
+  orig: 35, 98
+  offset: 0, 0
+  index: -1
+sdsl_btn_light
+  rotate: true
+  xy: 2, 149
+  size: 5, 11
+  orig: 5, 11
+  offset: 0, 0
+  index: -1

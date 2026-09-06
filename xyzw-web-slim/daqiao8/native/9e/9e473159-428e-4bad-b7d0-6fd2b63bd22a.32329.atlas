@@ -1,0 +1,160 @@
+
+daqiao8_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao8_skill_baoci1
+  rotate: true
+  xy: 320, 233
+  size: 351, 71
+  orig: 351, 71
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci2
+  rotate: true
+  xy: 835, 771
+  size: 251, 184
+  orig: 251, 184
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci3
+  rotate: true
+  xy: 758, 304
+  size: 186, 121
+  orig: 186, 121
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci4
+  rotate: false
+  xy: 2, 32
+  size: 274, 73
+  orig: 274, 73
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci5
+  rotate: false
+  xy: 941, 168
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci6
+  rotate: true
+  xy: 320, 115
+  size: 116, 246
+  orig: 116, 246
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci7
+  rotate: false
+  xy: 850, 502
+  size: 105, 75
+  orig: 105, 75
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoci8
+  rotate: true
+  xy: 788, 2
+  size: 105, 102
+  orig: 105, 102
+  offset: 0, 0
+  index: -1
+daqiao8_skill_baoz
+  rotate: false
+  xy: 2, 586
+  size: 413, 436
+  orig: 413, 436
+  offset: 0, 0
+  index: -1
+daqiao8_skill_blgy
+  rotate: true
+  xy: 711, 492
+  size: 201, 137
+  orig: 201, 137
+  offset: 0, 0
+  index: -1
+daqiao8_skill_blxian
+  rotate: true
+  xy: 2, 107
+  size: 477, 316
+  orig: 477, 316
+  offset: 0, 0
+  index: -1
+daqiao8_skill_digy
+  rotate: false
+  xy: 604, 79
+  size: 182, 179
+  orig: 182, 179
+  offset: 0, 0
+  index: -1
+daqiao8_skill_fklz3
+  rotate: false
+  xy: 788, 109
+  size: 151, 152
+  orig: 151, 152
+  offset: 0, 0
+  index: -1
+daqiao8_skill_gquan
+  rotate: false
+  xy: 417, 695
+  size: 416, 327
+  orig: 416, 327
+  offset: 0, 0
+  index: -1
+daqiao8_skill_lizidian
+  rotate: false
+  xy: 881, 362
+  size: 135, 138
+  orig: 135, 138
+  offset: 0, 0
+  index: -1
+daqiao8_skill_msk1
+  rotate: false
+  xy: 850, 579
+  size: 148, 190
+  orig: 148, 190
+  offset: 0, 0
+  index: -1
+daqiao8_skill_msk2
+  rotate: false
+  xy: 892, 21
+  size: 113, 86
+  orig: 113, 86
+  offset: 0, 0
+  index: -1
+daqiao8_skill_msk3
+  rotate: false
+  xy: 881, 263
+  size: 127, 97
+  orig: 127, 97
+  offset: 0, 0
+  index: -1
+daqiao8_skill_xin
+  rotate: false
+  xy: 417, 463
+  size: 292, 230
+  orig: 292, 230
+  offset: 0, 0
+  index: -1
+daqiao8_skill_xindi
+  rotate: true
+  xy: 604, 260
+  size: 201, 152
+  orig: 201, 152
+  offset: 0, 0
+  index: -1
+daqiao8_skill_xingg
+  rotate: false
+  xy: 393, 233
+  size: 209, 228
+  orig: 209, 228
+  offset: 0, 0
+  index: -1
+daqiao8_skill_zdxx
+  rotate: false
+  xy: 941, 111
+  size: 44, 55
+  orig: 44, 55
+  offset: 0, 0
+  index: -1

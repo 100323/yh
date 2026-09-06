@@ -1,0 +1,90 @@
+
+lvbu6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 254, 6
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 349, 221
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+lvbu3_effect_shine
+  rotate: true
+  xy: 290, 218
+  size: 40, 57
+  orig: 40, 57
+  offset: 0, 0
+  index: -1
+lvbu6_skill_fire1
+  rotate: true
+  xy: 254, 98
+  size: 111, 96
+  orig: 112, 98
+  offset: 1, 1
+  index: -1
+lvbu6_skill_fire2
+  rotate: true
+  xy: 2, 92
+  size: 129, 120
+  orig: 130, 122
+  offset: 1, 1
+  index: -1
+lvbu6_skill_fire3
+  rotate: false
+  xy: 2, 223
+  size: 151, 127
+  orig: 152, 129
+  offset: 1, 1
+  index: -1
+lvbu6_skill_fire4
+  rotate: true
+  xy: 155, 211
+  size: 139, 133
+  orig: 139, 134
+  offset: 0, 1
+  index: -1
+lvbu6_skill_fire5
+  rotate: false
+  xy: 124, 95
+  size: 128, 104
+  orig: 130, 106
+  offset: 1, 1
+  index: -1
+lvbu6_skill_fire6
+  rotate: false
+  xy: 290, 260
+  size: 108, 90
+  orig: 109, 92
+  offset: 0, 1
+  index: -1
+lvbu6_skill_fire7
+  rotate: true
+  xy: 2, 2
+  size: 88, 84
+  orig: 92, 84
+  offset: 2, 0
+  index: -1
+weiyan_skill2
+  rotate: false
+  xy: 124, 3
+  size: 86, 90
+  orig: 86, 90
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 124, 201
+  size: 20, 17
+  orig: 22, 22
+  offset: 1, 2
+  index: -1

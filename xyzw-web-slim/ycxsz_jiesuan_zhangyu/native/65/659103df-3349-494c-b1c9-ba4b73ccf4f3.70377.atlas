@@ -1,0 +1,335 @@
+
+ycxsz_jiesuan_zhangyu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyer2
+  rotate: false
+  xy: 536, 2
+  size: 14, 7
+  orig: 18, 9
+  offset: 2, 1
+  index: -1
+axian_mouth2
+  rotate: true
+  xy: 961, 43
+  size: 47, 25
+  orig: 47, 25
+  offset: 0, 0
+  index: -1
+axian_mouth4
+  rotate: true
+  xy: 220, 4
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_er
+  rotate: false
+  xy: 645, 4
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_kuzi
+  rotate: false
+  xy: 373, 48
+  size: 155, 100
+  orig: 155, 100
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_kuzih
+  rotate: true
+  xy: 914, 92
+  size: 57, 82
+  orig: 57, 82
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_lian
+  rotate: false
+  xy: 779, 87
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_maozi
+  rotate: true
+  xy: 669, 167
+  size: 169, 99
+  orig: 169, 99
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_mojing
+  rotate: true
+  xy: 652, 58
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_mojingtui
+  rotate: true
+  xy: 906, 2
+  size: 29, 43
+  orig: 29, 43
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_shour
+  rotate: false
+  xy: 915, 151
+  size: 101, 113
+  orig: 101, 113
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_tf1
+  rotate: true
+  xy: 652, 31
+  size: 25, 32
+  orig: 25, 32
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_tf2
+  rotate: true
+  xy: 998, 114
+  size: 35, 24
+  orig: 35, 24
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_tf3
+  rotate: true
+  xy: 620, 11
+  size: 36, 23
+  orig: 36, 23
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_tuil
+  rotate: false
+  xy: 816, 375
+  size: 125, 135
+  orig: 125, 135
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_tuir
+  rotate: false
+  xy: 669, 338
+  size: 145, 172
+  orig: 145, 172
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_xiuzils
+  rotate: true
+  xy: 704, 2
+  size: 80, 66
+  orig: 80, 66
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_xiuzilx
+  rotate: false
+  xy: 146, 2
+  size: 72, 20
+  orig: 72, 20
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_yidai
+  rotate: true
+  xy: 995, 26
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_yuxiang
+  rotate: true
+  xy: 816, 266
+  size: 107, 118
+  orig: 107, 118
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_yzl
+  rotate: true
+  xy: 772, 2
+  size: 5, 7
+  orig: 5, 7
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_yzr
+  rotate: false
+  xy: 988, 46
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_zui
+  rotate: false
+  xy: 868, 2
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sbl
+  rotate: true
+  xy: 943, 379
+  size: 34, 70
+  orig: 34, 70
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sd1
+  rotate: true
+  xy: 318, 22
+  size: 72, 53
+  orig: 72, 53
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sd2
+  rotate: false
+  xy: 859, 93
+  size: 53, 63
+  orig: 53, 63
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sd3
+  rotate: true
+  xy: 460, 6
+  size: 40, 74
+  orig: 40, 74
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sd4
+  rotate: false
+  xy: 835, 17
+  size: 31, 68
+  orig: 31, 68
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sd5
+  rotate: false
+  xy: 373, 9
+  size: 85, 37
+  orig: 85, 37
+  offset: 0, 0
+  index: -1
+axian_zhangyu_shoul
+  rotate: false
+  xy: 906, 33
+  size: 53, 57
+  orig: 53, 57
+  offset: 0, 0
+  index: -1
+axian_zhangyu_shour
+  rotate: false
+  xy: 704, 84
+  size: 73, 81
+  orig: 73, 81
+  offset: 0, 0
+  index: -1
+axian_zhangyu_sy
+  rotate: false
+  xy: 373, 150
+  size: 294, 360
+  orig: 297, 360
+  offset: 3, 0
+  index: -1
+axian_zhangyu_syyz
+  rotate: false
+  xy: 961, 2
+  size: 32, 39
+  orig: 32, 39
+  offset: 0, 0
+  index: -1
+axian_zhangyu_xiuzir
+  rotate: true
+  xy: 772, 9
+  size: 73, 61
+  orig: 73, 61
+  offset: 0, 0
+  index: -1
+axian_zhangyu_yugan
+  rotate: false
+  xy: 770, 180
+  size: 26, 156
+  orig: 26, 156
+  offset: 0, 0
+  index: -1
+axian_zhangyu_yugou
+  rotate: false
+  xy: 868, 25
+  size: 36, 66
+  orig: 36, 66
+  offset: 0, 0
+  index: -1
+axian_zhangyu_yuxian2
+  rotate: false
+  xy: 146, 24
+  size: 170, 70
+  orig: 170, 70
+  offset: 0, 0
+  index: -1
+axjx_bh_mouth
+  rotate: true
+  xy: 798, 305
+  size: 31, 16
+  orig: 31, 16
+  offset: 0, 0
+  index: -1
+bs
+  rotate: false
+  xy: 770, 167
+  size: 12, 11
+  orig: 15, 15
+  offset: 0, 2
+  index: -1
+waitao2l
+  rotate: true
+  xy: 936, 269
+  size: 104, 86
+  orig: 104, 86
+  offset: 0, 0
+  index: -1
+waitao2r
+  rotate: true
+  xy: 536, 11
+  size: 36, 82
+  orig: 36, 82
+  offset: 0, 0
+  index: -1
+waitaol
+  rotate: true
+  xy: 530, 49
+  size: 99, 120
+  orig: 99, 120
+  offset: 0, 0
+  index: -1
+waitaol2
+  rotate: false
+  xy: 988, 54
+  size: 23, 36
+  orig: 23, 36
+  offset: 0, 0
+  index: -1
+waitaor
+  rotate: false
+  xy: 943, 415
+  size: 68, 95
+  orig: 68, 95
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_qljw3
+  rotate: false
+  xy: 2, 96
+  size: 369, 414
+  orig: 369, 414
+  offset: 0, 0
+  index: -1
+yifu
+  rotate: true
+  xy: 2, 2
+  size: 92, 142
+  orig: 92, 142
+  offset: 0, 0
+  index: -1
+yifu2
+  rotate: true
+  xy: 798, 158
+  size: 106, 115
+  orig: 107, 115
+  offset: 0, 0
+  index: -1

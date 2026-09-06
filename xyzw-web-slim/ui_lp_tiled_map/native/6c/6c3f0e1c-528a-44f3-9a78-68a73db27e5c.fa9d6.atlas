@@ -1,0 +1,41 @@
+
+tgcf_pty_jnk_bye3_2.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_jnk_bye_hit_hy111
+  rotate: false
+  xy: 266, 2
+  size: 43, 43
+  orig: 43, 43
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_bye_hit_hy2
+  rotate: false
+  xy: 2, 5
+  size: 93, 102
+  orig: 94, 102
+  offset: 1, 0
+  index: -1
+tgcf_pty_jnk_bye_hit_hy233
+  rotate: false
+  xy: 97, 13
+  size: 94, 94
+  orig: 95, 94
+  offset: 1, 0
+  index: -1
+tgcf_pty_jnk_bye_hit_jy3
+  rotate: true
+  xy: 266, 47
+  size: 60, 57
+  orig: 60, 57
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_bye_hit_ying
+  rotate: true
+  xy: 193, 7
+  size: 100, 71
+  orig: 100, 71
+  offset: 0, 0
+  index: -1

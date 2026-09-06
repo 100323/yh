@@ -1,0 +1,209 @@
+
+goldshop_man.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+vipshop_man_arm
+  rotate: false
+  xy: 417, 27
+  size: 218, 168
+  orig: 218, 168
+  offset: 0, 0
+  index: -1
+vipshop_man_body
+  rotate: false
+  xy: 2, 165
+  size: 300, 345
+  orig: 300, 345
+  offset: 0, 0
+  index: -1
+vipshop_man_chain1
+  rotate: true
+  xy: 204, 3
+  size: 160, 165
+  orig: 160, 165
+  offset: 0, 0
+  index: -1
+vipshop_man_chain2
+  rotate: false
+  xy: 2, 22
+  size: 200, 141
+  orig: 200, 141
+  offset: 0, 0
+  index: -1
+vipshop_man_chain3
+  rotate: false
+  xy: 304, 281
+  size: 200, 229
+  orig: 200, 229
+  offset: 0, 0
+  index: -1
+vipshop_man_ear1
+  rotate: false
+  xy: 720, 18
+  size: 38, 54
+  orig: 38, 54
+  offset: 0, 0
+  index: -1
+vipshop_man_ear2
+  rotate: false
+  xy: 760, 18
+  size: 38, 54
+  orig: 38, 54
+  offset: 0, 0
+  index: -1
+vipshop_man_eye1
+  rotate: false
+  xy: 13, 10
+  size: 8, 10
+  orig: 8, 10
+  offset: 0, 0
+  index: -1
+vipshop_man_eye2
+  rotate: false
+  xy: 2, 10
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+vipshop_man_eyebrow1
+  rotate: false
+  xy: 371, 18
+  size: 42, 33
+  orig: 42, 33
+  offset: 0, 0
+  index: -1
+vipshop_man_eyebrow2
+  rotate: false
+  xy: 753, 364
+  size: 50, 26
+  orig: 50, 26
+  offset: 0, 0
+  index: -1
+vipshop_man_eyewhite1
+  rotate: false
+  xy: 790, 279
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+vipshop_man_eyewhite2
+  rotate: true
+  xy: 558, 197
+  size: 25, 29
+  orig: 25, 29
+  offset: 0, 0
+  index: -1
+vipshop_man_fingher1
+  rotate: false
+  xy: 654, 360
+  size: 97, 30
+  orig: 97, 30
+  offset: 0, 0
+  index: -1
+vipshop_man_fingher2
+  rotate: false
+  xy: 666, 249
+  size: 122, 49
+  orig: 122, 49
+  offset: 0, 0
+  index: -1
+vipshop_man_fingher3
+  rotate: false
+  xy: 674, 313
+  size: 115, 45
+  orig: 115, 45
+  offset: 0, 0
+  index: -1
+vipshop_man_fingher4
+  rotate: false
+  xy: 304, 165
+  size: 111, 30
+  orig: 111, 30
+  offset: 0, 0
+  index: -1
+vipshop_man_fingher5
+  rotate: false
+  xy: 432, 204
+  size: 124, 75
+  orig: 124, 75
+  offset: 0, 0
+  index: -1
+vipshop_man_glass
+  rotate: false
+  xy: 506, 300
+  size: 166, 53
+  orig: 166, 53
+  offset: 0, 0
+  index: -1
+vipshop_man_hair1
+  rotate: false
+  xy: 637, 74
+  size: 134, 148
+  orig: 134, 148
+  offset: 0, 0
+  index: -1
+vipshop_man_hair2
+  rotate: false
+  xy: 773, 100
+  size: 125, 147
+  orig: 125, 147
+  offset: 0, 0
+  index: -1
+vipshop_man_hand
+  rotate: false
+  xy: 558, 224
+  size: 106, 74
+  orig: 106, 74
+  offset: 0, 0
+  index: -1
+vipshop_man_hat
+  rotate: false
+  xy: 654, 392
+  size: 185, 118
+  orig: 185, 118
+  offset: 0, 0
+  index: -1
+vipshop_man_head
+  rotate: true
+  xy: 506, 355
+  size: 155, 146
+  orig: 155, 146
+  offset: 0, 0
+  index: -1
+vipshop_man_jaw
+  rotate: false
+  xy: 304, 197
+  size: 126, 82
+  orig: 126, 82
+  offset: 0, 0
+  index: -1
+vipshop_man_nose
+  rotate: true
+  xy: 637, 15
+  size: 57, 81
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+vipshop_man_ring1
+  rotate: false
+  xy: 415, 2
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+vipshop_man_ring2
+  rotate: false
+  xy: 439, 2
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+vipshop_man_teeth
+  rotate: true
+  xy: 371, 53
+  size: 110, 39
+  orig: 110, 39
+  offset: 0, 0
+  index: -1

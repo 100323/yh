@@ -1,0 +1,41 @@
+
+yzxt_jn_dl.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wyfm_dz_jd_yuan
+  rotate: true
+  xy: 2, 21
+  size: 221, 218
+  orig: 221, 218
+  offset: 0, 0
+  index: -1
+yzxt_jn_guang
+  rotate: false
+  xy: 393, 101
+  size: 58, 53
+  orig: 58, 53
+  offset: 0, 0
+  index: -1
+yzxt_jn_guangshu
+  rotate: true
+  xy: 222, 2
+  size: 240, 169
+  orig: 280, 183
+  offset: 25, 13
+  index: -1
+yzxt_jnbz_3
+  rotate: false
+  xy: 393, 156
+  size: 88, 86
+  orig: 88, 86
+  offset: 0, 0
+  index: -1
+yzxt_xing
+  rotate: false
+  xy: 453, 103
+  size: 51, 51
+  orig: 56, 55
+  offset: 3, 2
+  index: -1

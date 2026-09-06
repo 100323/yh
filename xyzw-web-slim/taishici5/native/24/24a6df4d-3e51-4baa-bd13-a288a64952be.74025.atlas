@@ -1,0 +1,300 @@
+
+taishici5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 478, 282
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+taishici5_skillh1
+  rotate: true
+  xy: 424, 46
+  size: 46, 30
+  orig: 46, 30
+  offset: 0, 0
+  index: -1
+taishici5_skillh10
+  rotate: false
+  xy: 260, 199
+  size: 100, 59
+  orig: 100, 59
+  offset: 0, 0
+  index: -1
+taishici5_skillh2
+  rotate: false
+  xy: 474, 186
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+taishici5_skillh3
+  rotate: false
+  xy: 478, 310
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+taishici5_skillh4
+  rotate: true
+  xy: 359, 8
+  size: 25, 48
+  orig: 25, 48
+  offset: 0, 0
+  index: -1
+taishici5_skillh5
+  rotate: false
+  xy: 412, 94
+  size: 40, 48
+  orig: 40, 48
+  offset: 0, 0
+  index: -1
+taishici5_skillh6
+  rotate: false
+  xy: 474, 228
+  size: 36, 41
+  orig: 36, 41
+  offset: 0, 0
+  index: -1
+taishici5_skillh7
+  rotate: true
+  xy: 473, 141
+  size: 43, 34
+  orig: 43, 34
+  offset: 0, 0
+  index: -1
+taishici5_skillh8
+  rotate: false
+  xy: 157, 273
+  size: 102, 96
+  orig: 102, 96
+  offset: 0, 0
+  index: -1
+taishici5_skillh9
+  rotate: false
+  xy: 405, 356
+  size: 104, 72
+  orig: 104, 72
+  offset: 0, 0
+  index: -1
+taishici5_skillp1
+  rotate: false
+  xy: 161, 371
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+taishici5_skillp2
+  rotate: false
+  xy: 2, 110
+  size: 135, 122
+  orig: 135, 122
+  offset: 0, 0
+  index: -1
+taishici5_skillp3
+  rotate: false
+  xy: 2, 234
+  size: 153, 135
+  orig: 153, 135
+  offset: 0, 0
+  index: -1
+taishici5_skillp4
+  rotate: false
+  xy: 2, 371
+  size: 157, 135
+  orig: 157, 135
+  offset: 0, 0
+  index: -1
+taishici5_skills1
+  rotate: false
+  xy: 139, 110
+  size: 95, 88
+  orig: 95, 88
+  offset: 0, 0
+  index: -1
+taishici5_skills2
+  rotate: false
+  xy: 423, 271
+  size: 53, 83
+  orig: 53, 83
+  offset: 0, 0
+  index: -1
+taishici5_skills4
+  rotate: false
+  xy: 298, 430
+  size: 116, 76
+  orig: 116, 76
+  offset: 0, 0
+  index: -1
+taishici5_skills5
+  rotate: false
+  xy: 97, 24
+  size: 89, 84
+  orig: 89, 84
+  offset: 0, 0
+  index: -1
+taishici5_skills6
+  rotate: true
+  xy: 298, 352
+  size: 76, 105
+  orig: 78, 105
+  offset: 0, 0
+  index: -1
+taishici5_skills7
+  rotate: false
+  xy: 2, 12
+  size: 93, 96
+  orig: 93, 96
+  offset: 0, 0
+  index: -1
+taishici5_skills8
+  rotate: true
+  xy: 261, 260
+  size: 90, 99
+  orig: 90, 99
+  offset: 0, 0
+  index: -1
+taishici5_skillz1
+  rotate: true
+  xy: 360, 35
+  size: 46, 62
+  orig: 46, 62
+  offset: 0, 0
+  index: -1
+taishici5_skillz10
+  rotate: false
+  xy: 362, 196
+  size: 67, 61
+  orig: 67, 61
+  offset: 0, 0
+  index: -1
+taishici5_skillz11
+  rotate: false
+  xy: 188, 39
+  size: 65, 69
+  orig: 65, 69
+  offset: 0, 0
+  index: -1
+taishici5_skillz12
+  rotate: false
+  xy: 431, 199
+  size: 41, 70
+  orig: 41, 70
+  offset: 0, 0
+  index: -1
+taishici5_skillz13
+  rotate: false
+  xy: 454, 101
+  size: 44, 38
+  orig: 44, 38
+  offset: 0, 0
+  index: -1
+taishici5_skillz14
+  rotate: true
+  xy: 456, 55
+  size: 44, 38
+  orig: 44, 38
+  offset: 0, 0
+  index: -1
+taishici5_skillz15
+  rotate: false
+  xy: 361, 144
+  size: 64, 50
+  orig: 64, 50
+  offset: 0, 0
+  index: -1
+taishici5_skillz16
+  rotate: true
+  xy: 416, 430
+  size: 76, 92
+  orig: 76, 92
+  offset: 0, 0
+  index: -1
+taishici5_skillz17
+  rotate: true
+  xy: 255, 2
+  size: 53, 54
+  orig: 53, 54
+  offset: 0, 0
+  index: -1
+taishici5_skillz18
+  rotate: true
+  xy: 362, 259
+  size: 91, 59
+  orig: 91, 59
+  offset: 0, 0
+  index: -1
+taishici5_skillz19
+  rotate: true
+  xy: 236, 122
+  size: 75, 90
+  orig: 75, 90
+  offset: 0, 0
+  index: -1
+taishici5_skillz2
+  rotate: false
+  xy: 188, 3
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+taishici5_skillz3
+  rotate: false
+  xy: 360, 83
+  size: 50, 59
+  orig: 50, 59
+  offset: 0, 0
+  index: -1
+taishici5_skillz4
+  rotate: false
+  xy: 427, 144
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: -1
+taishici5_skillz5
+  rotate: false
+  xy: 313, 56
+  size: 45, 64
+  orig: 45, 67
+  offset: 0, 3
+  index: -1
+taishici5_skillz6
+  rotate: false
+  xy: 311, 9
+  size: 46, 45
+  orig: 46, 45
+  offset: 0, 0
+  index: -1
+taishici5_skillz7
+  rotate: false
+  xy: 255, 57
+  size: 56, 63
+  orig: 56, 63
+  offset: 0, 0
+  index: -1
+taishici5_skillz8
+  rotate: true
+  xy: 328, 148
+  size: 49, 31
+  orig: 49, 31
+  offset: 0, 0
+  index: -1
+taishici5_skillz9
+  rotate: true
+  xy: 157, 200
+  size: 71, 101
+  orig: 76, 101
+  offset: 5, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 423, 263
+  size: 6, 6
+  orig: 14, 14
+  offset: 4, 5
+  index: -1

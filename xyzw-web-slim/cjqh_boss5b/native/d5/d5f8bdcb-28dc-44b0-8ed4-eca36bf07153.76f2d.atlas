@@ -1,0 +1,55 @@
+
+cjqh_boss5b_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_boss5_skill2
+  rotate: true
+  xy: 163, 70
+  size: 50, 77
+  orig: 52, 78
+  offset: 1, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 242, 91
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx1
+  rotate: false
+  xy: 318, 81
+  size: 117, 159
+  orig: 117, 159
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx2
+  rotate: true
+  xy: 2, 120
+  size: 120, 156
+  orig: 120, 156
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx3
+  rotate: true
+  xy: 160, 122
+  size: 118, 156
+  orig: 118, 156
+  offset: 0, 0
+  index: -1
+sdsl_boss9_skill_jx4
+  rotate: true
+  xy: 2, 2
+  size: 116, 159
+  orig: 116, 159
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 242, 73
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

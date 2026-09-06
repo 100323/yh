@@ -1,0 +1,20 @@
+
+ui_tower_fireworks.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_sc_firework
+  rotate: true
+  xy: 2, 2
+  size: 25, 71
+  orig: 25, 73
+  offset: 0, 2
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 2, 29
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1

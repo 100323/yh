@@ -1,0 +1,111 @@
+
+simayi7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 258, 6
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+simayi7_skilla1
+  rotate: true
+  xy: 334, 139
+  size: 133, 53
+  orig: 135, 55
+  offset: 1, 1
+  index: -1
+simayi7_skilla2
+  rotate: false
+  xy: 66, 272
+  size: 209, 209
+  orig: 209, 209
+  offset: 0, 0
+  index: -1
+simayi7_skilla3
+  rotate: false
+  xy: 300, 20
+  size: 133, 35
+  orig: 135, 37
+  offset: 1, 1
+  index: -1
+simayi7_skilla4
+  rotate: false
+  xy: 277, 274
+  size: 154, 146
+  orig: 156, 148
+  offset: 1, 1
+  index: -1
+simayi7_skillb1
+  rotate: true
+  xy: 66, 199
+  size: 71, 266
+  orig: 71, 266
+  offset: 0, 0
+  index: -1
+simayi7_skillb2
+  rotate: true
+  xy: 277, 422
+  size: 59, 228
+  orig: 59, 228
+  offset: 0, 0
+  index: -1
+simayi7_skillb3
+  rotate: false
+  xy: 306, 57
+  size: 22, 140
+  orig: 22, 140
+  offset: 0, 0
+  index: -1
+simayi7_skillb4
+  rotate: false
+  xy: 2, 178
+  size: 62, 303
+  orig: 62, 303
+  offset: 0, 0
+  index: -1
+simayi7_skillb5
+  rotate: true
+  xy: 66, 184
+  size: 13, 118
+  orig: 13, 118
+  offset: 0, 0
+  index: -1
+simayi7_skillc1
+  rotate: true
+  xy: 214, 17
+  size: 65, 42
+  orig: 65, 42
+  offset: 0, 0
+  index: -1
+simayi7_skillc2
+  rotate: true
+  xy: 258, 34
+  size: 48, 40
+  orig: 48, 40
+  offset: 0, 0
+  index: -1
+simayi7_skillc3
+  rotate: true
+  xy: 214, 84
+  size: 113, 90
+  orig: 117, 95
+  offset: 2, 2
+  index: -1
+simayi7_skillc4
+  rotate: true
+  xy: 2, 2
+  size: 174, 210
+  orig: 174, 210
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 186, 183
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1

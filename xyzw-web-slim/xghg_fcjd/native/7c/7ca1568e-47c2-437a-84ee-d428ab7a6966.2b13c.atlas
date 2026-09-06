@@ -1,0 +1,83 @@
+
+xghg_fcjd.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 184, 71
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+xghg_jd
+  rotate: false
+  xy: 2, 55
+  size: 111, 199
+  orig: 113, 202
+  offset: 1, 2
+  index: -1
+xghg_jd_hg1
+  rotate: false
+  xy: 164, 25
+  size: 27, 34
+  orig: 27, 34
+  offset: 0, 0
+  index: -1
+xghg_jd_hg2
+  rotate: false
+  xy: 196, 5
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+xghg_jd_hg3
+  rotate: false
+  xy: 193, 36
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+xghg_jd_hg4
+  rotate: true
+  xy: 164, 3
+  size: 20, 30
+  orig: 20, 30
+  offset: 0, 0
+  index: -1
+xghg_jd_men1
+  rotate: true
+  xy: 109, 12
+  size: 41, 53
+  orig: 43, 55
+  offset: 1, 1
+  index: -1
+xghg_jd_men2
+  rotate: true
+  xy: 2, 5
+  size: 48, 56
+  orig: 50, 58
+  offset: 1, 1
+  index: -1
+xghg_jd_qi
+  rotate: true
+  xy: 60, 2
+  size: 51, 47
+  orig: 51, 47
+  offset: 0, 0
+  index: -1
+xghg_jd_ti
+  rotate: true
+  xy: 115, 61
+  size: 68, 67
+  orig: 70, 69
+  offset: 1, 1
+  index: -1
+xghg_jd_ying
+  rotate: true
+  xy: 164, 131
+  size: 123, 59
+  orig: 123, 59
+  offset: 0, 0
+  index: -1

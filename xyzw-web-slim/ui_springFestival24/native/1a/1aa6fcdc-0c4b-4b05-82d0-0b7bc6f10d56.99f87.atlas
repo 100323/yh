@@ -1,0 +1,279 @@
+
+ydhd25_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yd_an
+  rotate: true
+  xy: 150, 197
+  size: 28, 207
+  orig: 28, 207
+  offset: 0, 0
+  index: -1
+yd_bj
+  rotate: false
+  xy: 2, 227
+  size: 480, 279
+  orig: 480, 279
+  offset: 0, 0
+  index: -1
+yd_guang
+  rotate: true
+  xy: 484, 472
+  size: 34, 300
+  orig: 34, 300
+  offset: 0, 0
+  index: -1
+yd_h_dengzi
+  rotate: true
+  xy: 2, 112
+  size: 113, 146
+  orig: 113, 146
+  offset: 0, 0
+  index: -1
+yd_h_maozi
+  rotate: false
+  xy: 2, 78
+  size: 37, 32
+  orig: 37, 32
+  offset: 0, 0
+  index: -1
+yd_h_shenti
+  rotate: false
+  xy: 359, 125
+  size: 89, 100
+  orig: 89, 100
+  offset: 0, 0
+  index: -1
+yd_h_shoutao
+  rotate: false
+  xy: 681, 226
+  size: 26, 25
+  orig: 26, 27
+  offset: 0, 2
+  index: -1
+yd_h_tui
+  rotate: false
+  xy: 802, 3
+  size: 58, 38
+  orig: 58, 38
+  offset: 0, 0
+  index: -1
+yd_h_weiba
+  rotate: true
+  xy: 288, 161
+  size: 34, 33
+  orig: 72, 45
+  offset: 0, 12
+  index: -1
+yd_h_weijin
+  rotate: false
+  xy: 802, 43
+  size: 88, 34
+  orig: 88, 34
+  offset: 0, 0
+  index: -1
+yd_h_xiuzi
+  rotate: true
+  xy: 75, 40
+  size: 33, 27
+  orig: 34, 28
+  offset: 0, 1
+  index: -1
+yd_h_yan
+  rotate: false
+  xy: 709, 227
+  size: 26, 24
+  orig: 26, 24
+  offset: 0, 0
+  index: -1
+yd_hq1
+  rotate: false
+  xy: 737, 228
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+yd_hq2
+  rotate: false
+  xy: 892, 28
+  size: 20, 23
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+yd_q_jio
+  rotate: true
+  xy: 450, 159
+  size: 66, 30
+  orig: 66, 30
+  offset: 0, 0
+  index: -1
+yd_q_maozi
+  rotate: true
+  xy: 41, 74
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+yd_q_shenti
+  rotate: true
+  xy: 633, 2
+  size: 75, 106
+  orig: 75, 106
+  offset: 0, 0
+  index: -1
+yd_q_shoutao1
+  rotate: true
+  xy: 2, 40
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+yd_q_shoutao2
+  rotate: false
+  xy: 36, 40
+  size: 29, 32
+  orig: 29, 49
+  offset: 0, 17
+  index: -1
+yd_q_weiba
+  rotate: true
+  xy: 594, 84
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+yd_q_weijin
+  rotate: false
+  xy: 482, 169
+  size: 89, 45
+  orig: 89, 45
+  offset: 0, 0
+  index: -1
+yd_q_xiuzi
+  rotate: false
+  xy: 644, 225
+  size: 35, 26
+  orig: 35, 26
+  offset: 0, 0
+  index: -1
+yd_q_yan
+  rotate: false
+  xy: 104, 45
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1
+yd_shu1
+  rotate: false
+  xy: 644, 253
+  size: 119, 217
+  orig: 119, 218
+  offset: 0, 0
+  index: -1
+yd_shu2
+  rotate: false
+  xy: 150, 125
+  size: 136, 70
+  orig: 136, 70
+  offset: 0, 0
+  index: -1
+yd_x1
+  rotate: false
+  xy: 644, 79
+  size: 272, 144
+  orig: 272, 144
+  offset: 0, 0
+  index: -1
+yd_x2
+  rotate: true
+  xy: 484, 216
+  size: 254, 158
+  orig: 254, 158
+  offset: 0, 0
+  index: -1
+yd_xr_bizi
+  rotate: true
+  xy: 862, 11
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+yd_xr_lian
+  rotate: false
+  xy: 573, 180
+  size: 65, 34
+  orig: 65, 34
+  offset: 0, 0
+  index: -1
+yd_xr_shenti
+  rotate: false
+  xy: 786, 225
+  size: 219, 281
+  orig: 219, 281
+  offset: 0, 0
+  index: -1
+yd_xr_shoutao
+  rotate: false
+  xy: 741, 21
+  size: 59, 56
+  orig: 59, 56
+  offset: 0, 0
+  index: -1
+yd_xr_shouzhang
+  rotate: true
+  xy: 594, 128
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+yd_xr_weijin
+  rotate: false
+  xy: 450, 83
+  size: 142, 74
+  orig: 142, 74
+  offset: 0, 0
+  index: -1
+yd_xue1
+  rotate: true
+  xy: 762, 226
+  size: 25, 22
+  orig: 26, 23
+  offset: 0, 1
+  index: -1
+yd_xue2
+  rotate: true
+  xy: 75, 75
+  size: 35, 32
+  orig: 37, 32
+  offset: 1, 0
+  index: -1
+yd_xue3
+  rotate: true
+  xy: 892, 53
+  size: 24, 22
+  orig: 26, 23
+  offset: 1, 1
+  index: -1
+yd_yun1
+  rotate: true
+  xy: 918, 24
+  size: 199, 102
+  orig: 199, 102
+  offset: 0, 0
+  index: -1
+yd_yun2
+  rotate: true
+  xy: 594, 3
+  size: 79, 37
+  orig: 79, 37
+  offset: 0, 0
+  index: -1
+yd_yun3
+  rotate: true
+  xy: 150, 34
+  size: 89, 94
+  orig: 89, 94
+  offset: 0, 0
+  index: -1

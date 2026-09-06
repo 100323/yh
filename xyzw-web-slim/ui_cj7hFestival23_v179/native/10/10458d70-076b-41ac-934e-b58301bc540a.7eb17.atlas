@@ -1,0 +1,13 @@
+
+shhj25_box1.png
+size: 64,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_huabao
+  rotate: false
+  xy: 2, 2
+  size: 60, 67
+  orig: 60, 67
+  offset: 0, 0
+  index: -1

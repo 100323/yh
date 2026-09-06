@@ -1,0 +1,111 @@
+
+pfsd_trader.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pfsd_trader_beard
+  rotate: false
+  xy: 2, 333
+  size: 87, 53
+  orig: 87, 53
+  offset: 0, 0
+  index: -1
+pfsd_trader_body
+  rotate: true
+  xy: 2, 388
+  size: 9, 112
+  orig: 9, 115
+  offset: 0, 3
+  index: -1
+pfsd_trader_cloth
+  rotate: true
+  xy: 2, 36
+  size: 130, 290
+  orig: 130, 290
+  offset: 0, 0
+  index: -1
+pfsd_trader_comb
+  rotate: false
+  xy: 118, 168
+  size: 167, 117
+  orig: 167, 117
+  offset: 0, 0
+  index: -1
+pfsd_trader_ear
+  rotate: true
+  xy: 150, 368
+  size: 29, 57
+  orig: 29, 57
+  offset: 0, 0
+  index: -1
+pfsd_trader_eyebrow
+  rotate: false
+  xy: 209, 356
+  size: 69, 41
+  orig: 69, 41
+  offset: 0, 0
+  index: -1
+pfsd_trader_finger
+  rotate: true
+  xy: 91, 296
+  size: 70, 81
+  orig: 70, 81
+  offset: 0, 0
+  index: -1
+pfsd_trader_glasses
+  rotate: false
+  xy: 174, 287
+  size: 130, 66
+  orig: 130, 66
+  offset: 0, 0
+  index: -1
+pfsd_trader_handle1
+  rotate: true
+  xy: 434, 344
+  size: 53, 73
+  orig: 53, 73
+  offset: 0, 0
+  index: -1
+pfsd_trader_handle2
+  rotate: false
+  xy: 306, 255
+  size: 95, 90
+  orig: 95, 90
+  offset: 0, 0
+  index: -1
+pfsd_trader_handr
+  rotate: true
+  xy: 2, 185
+  size: 109, 114
+  orig: 109, 114
+  offset: 0, 0
+  index: -1
+pfsd_trader_head
+  rotate: false
+  xy: 294, 2
+  size: 207, 251
+  orig: 207, 251
+  offset: 0, 0
+  index: -1
+pfsd_trader_mouth
+  rotate: false
+  xy: 280, 355
+  size: 69, 42
+  orig: 69, 42
+  offset: 0, 0
+  index: -1
+pfsd_trader_nose
+  rotate: true
+  xy: 351, 347
+  size: 50, 81
+  orig: 50, 81
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: true
+  xy: 116, 376
+  size: 21, 32
+  orig: 21, 32
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,132 @@
+
+sqhd25_xinfeng.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 539, 2
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sqhd25_xf_bi
+  rotate: true
+  xy: 640, 279
+  size: 93, 58
+  orig: 93, 58
+  offset: 0, 0
+  index: -1
+sqhd25_xf_bih
+  rotate: true
+  xy: 632, 374
+  size: 110, 63
+  orig: 110, 63
+  offset: 0, 0
+  index: -1
+sqhd25_xf_hx
+  rotate: true
+  xy: 2, 18
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+sqhd25_xf_mao
+  rotate: true
+  xy: 697, 406
+  size: 78, 58
+  orig: 78, 58
+  offset: 0, 0
+  index: -1
+sqhd25_xf_mb
+  rotate: false
+  xy: 226, 38
+  size: 311, 154
+  orig: 311, 154
+  offset: 0, 0
+  index: -1
+sqhd25_xf_sheng
+  rotate: true
+  xy: 539, 50
+  size: 142, 240
+  orig: 142, 240
+  offset: 0, 0
+  index: -1
+sqhd25_xf_sheng2
+  rotate: true
+  xy: 781, 309
+  size: 175, 70
+  orig: 175, 70
+  offset: 0, 0
+  index: -1
+sqhd25_xf_t
+  rotate: false
+  xy: 2, 34
+  size: 222, 158
+  orig: 222, 158
+  offset: 0, 0
+  index: -1
+sqhd25_xf_xin
+  rotate: false
+  xy: 587, 3
+  size: 56, 45
+  orig: 56, 45
+  offset: 0, 0
+  index: -1
+sqhd25_xf_yan1
+  rotate: false
+  xy: 562, 264
+  size: 76, 64
+  orig: 76, 64
+  offset: 0, 0
+  index: -1
+sqhd25_xf_yan2
+  rotate: false
+  xy: 645, 6
+  size: 77, 42
+  orig: 77, 42
+  offset: 0, 0
+  index: -1
+sqhd25_xf_yan3
+  rotate: true
+  xy: 700, 326
+  size: 78, 56
+  orig: 78, 56
+  offset: 0, 0
+  index: -1
+sqhd25_xf_yun1
+  rotate: false
+  xy: 724, 11
+  size: 78, 37
+  orig: 78, 37
+  offset: 0, 0
+  index: -1
+sqhd25_xf_yun2
+  rotate: true
+  xy: 562, 330
+  size: 154, 68
+  orig: 154, 68
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 226, 10
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zqhd24_jlyj_xz
+  rotate: false
+  xy: 2, 194
+  size: 558, 828
+  orig: 558, 828
+  offset: 0, 0
+  index: -1
+zqhd24_jlyj_xzs
+  rotate: true
+  xy: 562, 486
+  size: 536, 267
+  orig: 536, 267
+  offset: 0, 0
+  index: -1

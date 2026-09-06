@@ -1,0 +1,13 @@
+
+xiaobing5_zhentong_loop.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xiaobing5_zhenguan_zhentl
+  rotate: false
+  xy: 2, 2
+  size: 158, 217
+  orig: 158, 217
+  offset: 0, 0
+  index: -1

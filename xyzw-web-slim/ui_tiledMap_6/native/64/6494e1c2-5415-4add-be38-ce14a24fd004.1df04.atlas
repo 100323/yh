@@ -1,0 +1,48 @@
+
+yg_ta_anim.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 157, 46
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+yg_effect_fire1
+  rotate: true
+  xy: 157, 154
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+yg_effect_fire2
+  rotate: true
+  xy: 157, 204
+  size: 48, 65
+  orig: 48, 65
+  offset: 0, 0
+  index: -1
+yg_effect_fire3
+  rotate: true
+  xy: 157, 2
+  size: 42, 57
+  orig: 42, 57
+  offset: 0, 0
+  index: -1
+yq_ta_1
+  rotate: false
+  xy: 2, 31
+  size: 153, 221
+  orig: 153, 221
+  offset: 0, 0
+  index: -1
+yq_ta_2
+  rotate: false
+  xy: 157, 97
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1

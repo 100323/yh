@@ -1,0 +1,76 @@
+
+zpgf_srrw.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 973, 234
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xf_img_rw5
+  rotate: false
+  xy: 242, 328
+  size: 602, 170
+  orig: 602, 170
+  offset: 0, 0
+  index: -1
+zpgf_guang1
+  rotate: false
+  xy: 846, 343
+  size: 39, 155
+  orig: 42, 197
+  offset: 2, 26
+  index: -1
+zpgf_jinbi
+  rotate: false
+  xy: 973, 202
+  size: 38, 30
+  orig: 38, 30
+  offset: 0, 0
+  index: -1
+zpgf_lian
+  rotate: true
+  xy: 2, 3
+  size: 495, 238
+  orig: 495, 238
+  offset: 0, 0
+  index: -1
+zpgf_mian
+  rotate: false
+  xy: 242, 2
+  size: 521, 324
+  orig: 521, 324
+  offset: 0, 0
+  index: -1
+zpgf_sheng1
+  rotate: false
+  xy: 765, 162
+  size: 206, 118
+  orig: 206, 118
+  offset: 0, 0
+  index: -1
+zpgf_xing
+  rotate: true
+  xy: 887, 447
+  size: 51, 73
+  orig: 55, 79
+  offset: 2, 3
+  index: -1
+zpgf_yzhu
+  rotate: false
+  xy: 973, 127
+  size: 30, 73
+  orig: 30, 73
+  offset: 0, 0
+  index: -1
+zpgf_zi
+  rotate: false
+  xy: 765, 282
+  size: 236, 44
+  orig: 236, 46
+  offset: 0, 2
+  index: -1

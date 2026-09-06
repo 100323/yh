@@ -1,0 +1,90 @@
+
+huatuo_skill_hit2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+?_00000
+  rotate: false
+  xy: 257, 628
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00003
+  rotate: false
+  xy: 572, 628
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00005
+  rotate: false
+  xy: 2, 315
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00008
+  rotate: false
+  xy: 317, 315
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00010
+  rotate: false
+  xy: 632, 315
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00013
+  rotate: false
+  xy: 2, 2
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00017
+  rotate: false
+  xy: 317, 2
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+?_00019
+  rotate: false
+  xy: 632, 2
+  size: 313, 311
+  orig: 313, 311
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 127, 811
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 67, 881
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+huatuo_effect1
+  rotate: true
+  xy: 2, 919
+  size: 20, 29
+  orig: 20, 30
+  offset: 0, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 33, 907
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

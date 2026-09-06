@@ -1,0 +1,69 @@
+
+cwxt26_axgp_chituma.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axgp_ctm_daizi
+  rotate: false
+  xy: 462, 187
+  size: 158, 290
+  orig: 158, 290
+  offset: 0, 0
+  index: -1
+axgp_ctm_dian
+  rotate: false
+  xy: 2, 4
+  size: 30, 31
+  orig: 34, 37
+  offset: 2, 3
+  index: -1
+axgp_ctm_g
+  rotate: true
+  xy: 2, 37
+  size: 440, 242
+  orig: 440, 242
+  offset: 0, 0
+  index: -1
+axgp_ctm_huo1
+  rotate: false
+  xy: 462, 2
+  size: 114, 183
+  orig: 114, 183
+  offset: 0, 0
+  index: -1
+axgp_ctm_huo2
+  rotate: true
+  xy: 246, 243
+  size: 234, 214
+  orig: 234, 214
+  offset: 0, 0
+  index: -1
+axgp_ctm_huo3
+  rotate: true
+  xy: 246, 23
+  size: 218, 214
+  orig: 218, 214
+  offset: 0, 0
+  index: -1
+axgp_ctm_huo4
+  rotate: false
+  xy: 578, 38
+  size: 139, 147
+  orig: 139, 147
+  offset: 0, 0
+  index: -1
+axgp_ctm_qiu
+  rotate: false
+  xy: 622, 371
+  size: 90, 106
+  orig: 90, 106
+  offset: 0, 0
+  index: -1
+axgp_ctm_qiu2
+  rotate: true
+  xy: 622, 282
+  size: 87, 84
+  orig: 88, 86
+  offset: 1, 1
+  index: -1

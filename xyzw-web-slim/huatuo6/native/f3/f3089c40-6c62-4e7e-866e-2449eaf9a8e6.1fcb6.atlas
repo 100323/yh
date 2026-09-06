@@ -1,0 +1,83 @@
+
+huatuo6_skill_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo6_jn_guangban
+  rotate: true
+  xy: 67, 5
+  size: 57, 68
+  orig: 57, 68
+  offset: 0, 0
+  index: -1
+huatuo6_jn_guanghsu
+  rotate: false
+  xy: 294, 139
+  size: 146, 148
+  orig: 146, 148
+  offset: 0, 0
+  index: -1
+huatuo6_jn_qianzi
+  rotate: false
+  xy: 294, 289
+  size: 175, 220
+  orig: 175, 220
+  offset: 0, 0
+  index: -1
+huatuo6_jn_sg
+  rotate: true
+  xy: 2, 2
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+huatuo6_jn_xin2
+  rotate: false
+  xy: 318, 4
+  size: 146, 133
+  orig: 150, 137
+  offset: 2, 2
+  index: -1
+huatuo6_jn_xing
+  rotate: false
+  xy: 2, 64
+  size: 290, 445
+  orig: 290, 445
+  offset: 0, 0
+  index: -1
+huatuo6_jn_yan1
+  rotate: true
+  xy: 442, 221
+  size: 66, 34
+  orig: 66, 34
+  offset: 0, 0
+  index: -1
+huatuo6_jn_yan2
+  rotate: true
+  xy: 466, 107
+  size: 50, 32
+  orig: 50, 32
+  offset: 0, 0
+  index: -1
+huatuo6_jn_yan3
+  rotate: false
+  xy: 137, 9
+  size: 94, 53
+  orig: 94, 53
+  offset: 0, 0
+  index: -1
+huatuo6_jn_zq1
+  rotate: false
+  xy: 442, 159
+  size: 24, 60
+  orig: 24, 60
+  offset: 0, 0
+  index: -1
+huatuo6_jn_zq2
+  rotate: true
+  xy: 233, 24
+  size: 38, 83
+  orig: 38, 83
+  offset: 0, 0
+  index: -1

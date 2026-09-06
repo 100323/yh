@@ -1,0 +1,153 @@
+
+dzfj_mrt_hz_qinglong.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 961, 424
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+mre_hz_bh_dian
+  rotate: true
+  xy: 562, 81
+  size: 145, 136
+  orig: 145, 136
+  offset: 0, 0
+  index: -1
+mre_hz_bh_hu
+  rotate: true
+  xy: 2, 139
+  size: 300, 278
+  orig: 300, 278
+  offset: 0, 0
+  index: -1
+mre_hz_bh_wei
+  rotate: true
+  xy: 562, 228
+  size: 211, 140
+  orig: 211, 140
+  offset: 0, 0
+  index: -1
+mre_hz_bh_xc1
+  rotate: false
+  xy: 961, 679
+  size: 59, 71
+  orig: 62, 75
+  offset: 1, 2
+  index: -1
+mre_hz_bh_xc2
+  rotate: false
+  xy: 952, 235
+  size: 67, 87
+  orig: 70, 91
+  offset: 1, 2
+  index: -1
+mre_hz_bh_xc3
+  rotate: true
+  xy: 961, 472
+  size: 51, 54
+  orig: 54, 57
+  offset: 1, 2
+  index: -1
+mre_hz_bh_xc4
+  rotate: true
+  xy: 2, 58
+  size: 79, 89
+  orig: 82, 92
+  offset: 2, 2
+  index: -1
+mre_hz_bh_xc6
+  rotate: false
+  xy: 961, 525
+  size: 57, 63
+  orig: 60, 66
+  offset: 1, 1
+  index: -1
+mre_hz_bh_xing
+  rotate: true
+  xy: 961, 324
+  size: 34, 43
+  orig: 42, 51
+  offset: 4, 4
+  index: -1
+mre_hz_bh_yan1
+  rotate: false
+  xy: 961, 392
+  size: 53, 30
+  orig: 53, 30
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan2
+  rotate: true
+  xy: 961, 360
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan3
+  rotate: false
+  xy: 282, 55
+  size: 162, 121
+  orig: 162, 121
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan4
+  rotate: true
+  xy: 961, 590
+  size: 87, 44
+  orig: 87, 44
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan5
+  rotate: false
+  xy: 952, 208
+  size: 38, 25
+  orig: 38, 25
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan6
+  rotate: true
+  xy: 446, 2
+  size: 174, 90
+  orig: 174, 90
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo1
+  rotate: false
+  xy: 282, 178
+  size: 278, 261
+  orig: 278, 262
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo2
+  rotate: false
+  xy: 704, 151
+  size: 246, 203
+  orig: 246, 203
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo3
+  rotate: true
+  xy: 367, 441
+  size: 309, 348
+  orig: 309, 348
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo4
+  rotate: false
+  xy: 2, 441
+  size: 363, 309
+  orig: 363, 309
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo5
+  rotate: true
+  xy: 717, 356
+  size: 394, 242
+  orig: 395, 250
+  offset: 0, 8
+  index: -1

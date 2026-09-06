@@ -1,0 +1,13 @@
+
+zhugeliang5_attack_loop.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhugeliang5_weapon2
+  rotate: false
+  xy: 2, 2
+  size: 103, 97
+  orig: 108, 107
+  offset: 0, 5
+  index: -1

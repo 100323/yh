@@ -1,0 +1,258 @@
+
+sunjian5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 475, 401
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+sunjian5_effect0
+  rotate: true
+  xy: 2, 2
+  size: 9, 44
+  orig: 9, 44
+  offset: 0, 0
+  index: -1
+sunjian5_effect1
+  rotate: true
+  xy: 471, 263
+  size: 4, 9
+  orig: 4, 9
+  offset: 0, 0
+  index: -1
+sunjian5_effect2
+  rotate: true
+  xy: 383, 371
+  size: 6, 12
+  orig: 6, 12
+  offset: 0, 0
+  index: -1
+sunjian5_effect3
+  rotate: true
+  xy: 482, 208
+  size: 5, 8
+  orig: 5, 8
+  offset: 0, 0
+  index: -1
+sunjian5_effect4
+  rotate: false
+  xy: 419, 98
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+sunjian5_effect_mh
+  rotate: false
+  xy: 257, 356
+  size: 22, 21
+  orig: 23, 21
+  offset: 0, 0
+  index: -1
+sunjian5_eyelight
+  rotate: false
+  xy: 219, 356
+  size: 36, 21
+  orig: 38, 23
+  offset: 1, 1
+  index: -1
+sunjian5_skill_b_a1
+  rotate: false
+  xy: 291, 77
+  size: 65, 59
+  orig: 65, 59
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_a2
+  rotate: true
+  xy: 358, 26
+  size: 43, 45
+  orig: 43, 45
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_a3
+  rotate: false
+  xy: 291, 27
+  size: 65, 48
+  orig: 65, 48
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_a4
+  rotate: true
+  xy: 374, 141
+  size: 65, 76
+  orig: 65, 76
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_a5
+  rotate: true
+  xy: 358, 71
+  size: 65, 59
+  orig: 65, 59
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_a6
+  rotate: false
+  xy: 292, 208
+  size: 86, 59
+  orig: 86, 59
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_b1
+  rotate: true
+  xy: 176, 225
+  size: 129, 114
+  orig: 129, 114
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_b2
+  rotate: true
+  xy: 383, 263
+  size: 102, 86
+  orig: 102, 86
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_c1
+  rotate: true
+  xy: 452, 141
+  size: 65, 58
+  orig: 65, 58
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_c2
+  rotate: true
+  xy: 292, 269
+  size: 108, 89
+  orig: 108, 89
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_d1
+  rotate: false
+  xy: 2, 96
+  size: 152, 118
+  orig: 152, 118
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_d2
+  rotate: true
+  xy: 399, 367
+  size: 141, 74
+  orig: 141, 74
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_d3
+  rotate: true
+  xy: 471, 269
+  size: 96, 39
+  orig: 96, 39
+  offset: 0, 0
+  index: -1
+sunjian5_skill_b_d4
+  rotate: true
+  xy: 475, 428
+  size: 80, 26
+  orig: 80, 26
+  offset: 0, 0
+  index: -1
+sunjian5_skill_bc1
+  rotate: true
+  xy: 482, 215
+  size: 10, 25
+  orig: 10, 25
+  offset: 0, 0
+  index: -1
+sunjian5_skill_bc2
+  rotate: true
+  xy: 380, 208
+  size: 53, 100
+  orig: 55, 102
+  offset: 1, 1
+  index: -1
+sunjian5_skill_e1
+  rotate: true
+  xy: 236, 108
+  size: 37, 43
+  orig: 37, 43
+  offset: 0, 0
+  index: -1
+sunjian5_skill_e2
+  rotate: true
+  xy: 290, 138
+  size: 68, 82
+  orig: 68, 82
+  offset: 0, 0
+  index: -1
+sunjian5_skill_f1
+  rotate: false
+  xy: 2, 216
+  size: 172, 138
+  orig: 172, 139
+  offset: 0, 0
+  index: -1
+sunjian5_skill_f2
+  rotate: false
+  xy: 2, 356
+  size: 215, 152
+  orig: 215, 152
+  offset: 0, 0
+  index: -1
+sunjian5_skill_f3
+  rotate: true
+  xy: 246, 33
+  size: 73, 43
+  orig: 73, 43
+  offset: 0, 0
+  index: -1
+sunjian5_skill_g1
+  rotate: false
+  xy: 179, 18
+  size: 65, 86
+  orig: 65, 86
+  offset: 0, 0
+  index: -1
+sunjian5_skill_g2
+  rotate: true
+  xy: 219, 379
+  size: 129, 178
+  orig: 129, 178
+  offset: 0, 0
+  index: -1
+sunjian5_skill_g3
+  rotate: false
+  xy: 156, 106
+  size: 78, 108
+  orig: 78, 108
+  offset: 0, 0
+  index: -1
+sunjian5_skill_g4
+  rotate: true
+  xy: 236, 147
+  size: 76, 52
+  orig: 76, 52
+  offset: 0, 0
+  index: -1
+sunjian5_weapon
+  rotate: true
+  xy: 2, 13
+  size: 81, 175
+  orig: 81, 175
+  offset: 0, 0
+  index: -1
+sunjian5_weapon1
+  rotate: false
+  xy: 482, 227
+  size: 28, 40
+  orig: 28, 40
+  offset: 0, 0
+  index: -1
+sunjian5_weapon2
+  rotate: false
+  xy: 464, 99
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1

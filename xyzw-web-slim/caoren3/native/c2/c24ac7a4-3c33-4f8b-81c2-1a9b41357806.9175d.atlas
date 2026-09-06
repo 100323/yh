@@ -1,0 +1,258 @@
+
+caoren3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren3_ball1
+  rotate: false
+  xy: 267, 46
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+caoren3_ball2
+  rotate: false
+  xy: 264, 107
+  size: 51, 60
+  orig: 55, 64
+  offset: 1, 2
+  index: -1
+caoren3_ball3
+  rotate: false
+  xy: 207, 2
+  size: 58, 76
+  orig: 60, 78
+  offset: 1, 1
+  index: -1
+caoren3_ball4
+  rotate: false
+  xy: 427, 116
+  size: 67, 63
+  orig: 69, 65
+  offset: 1, 1
+  index: -1
+caoren3_ball5
+  rotate: true
+  xy: 81, 2
+  size: 77, 49
+  orig: 79, 51
+  offset: 0, 2
+  index: -1
+caoren3_ball6
+  rotate: false
+  xy: 284, 274
+  size: 73, 79
+  orig: 75, 81
+  offset: 1, 1
+  index: -1
+caoren3_ball7
+  rotate: false
+  xy: 132, 2
+  size: 73, 76
+  orig: 75, 81
+  offset: 1, 1
+  index: -1
+caoren3_ball8
+  rotate: false
+  xy: 357, 196
+  size: 70, 69
+  orig: 71, 70
+  offset: 1, 0
+  index: -1
+caoren3_body
+  rotate: false
+  xy: 132, 355
+  size: 220, 155
+  orig: 233, 155
+  offset: 13, 0
+  index: -1
+caoren3_eye
+  rotate: false
+  xy: 317, 107
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+caoren3_eyebrow
+  rotate: true
+  xy: 463, 181
+  size: 53, 36
+  orig: 53, 36
+  offset: 0, 0
+  index: -1
+caoren3_eyewhite
+  rotate: false
+  xy: 317, 145
+  size: 34, 26
+  orig: 34, 26
+  offset: 0, 0
+  index: -1
+caoren3_hair
+  rotate: true
+  xy: 463, 236
+  size: 44, 47
+  orig: 44, 47
+  offset: 0, 0
+  index: -1
+caoren3_handl1
+  rotate: true
+  xy: 308, 5
+  size: 39, 44
+  orig: 41, 47
+  offset: 0, 3
+  index: -1
+caoren3_handl2
+  rotate: true
+  xy: 449, 331
+  size: 67, 61
+  orig: 67, 61
+  offset: 0, 0
+  index: -1
+caoren3_handr
+  rotate: true
+  xy: 359, 267
+  size: 89, 68
+  orig: 89, 68
+  offset: 0, 0
+  index: -1
+caoren3_head
+  rotate: true
+  xy: 2, 81
+  size: 176, 165
+  orig: 176, 165
+  offset: 0, 0
+  index: -1
+caoren3_idle1
+  rotate: true
+  xy: 328, 61
+  size: 52, 50
+  orig: 52, 50
+  offset: 0, 0
+  index: -1
+caoren3_idle2
+  rotate: false
+  xy: 449, 400
+  size: 61, 110
+  orig: 61, 110
+  offset: 0, 0
+  index: -1
+caoren3_idle3
+  rotate: false
+  xy: 267, 2
+  size: 39, 42
+  orig: 41, 44
+  offset: 1, 1
+  index: -1
+caoren3_idle4
+  rotate: false
+  xy: 463, 282
+  size: 47, 47
+  orig: 47, 48
+  offset: 0, 1
+  index: -1
+caoren3_jaw
+  rotate: true
+  xy: 357, 132
+  size: 62, 68
+  orig: 62, 68
+  offset: 0, 0
+  index: -1
+caoren3_legl
+  rotate: false
+  xy: 317, 115
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+caoren3_legr
+  rotate: true
+  xy: 380, 62
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+caoren3_shoulderl
+  rotate: true
+  xy: 169, 80
+  size: 87, 93
+  orig: 87, 93
+  offset: 0, 0
+  index: -1
+caoren3_shoulderr
+  rotate: false
+  xy: 169, 169
+  size: 110, 108
+  orig: 110, 108
+  offset: 0, 0
+  index: -1
+caoren3_skill4
+  rotate: false
+  xy: 354, 358
+  size: 93, 152
+  orig: 93, 152
+  offset: 0, 0
+  index: -1
+caoren3_skill5
+  rotate: false
+  xy: 429, 181
+  size: 32, 148
+  orig: 32, 148
+  offset: 0, 0
+  index: -1
+caoren3_skill6
+  rotate: true
+  xy: 132, 279
+  size: 74, 150
+  orig: 74, 150
+  offset: 0, 0
+  index: -1
+caoren3_tail
+  rotate: true
+  xy: 281, 173
+  size: 99, 74
+  orig: 99, 74
+  offset: 0, 0
+  index: -1
+caoren3_weapon
+  rotate: false
+  xy: 2, 259
+  size: 128, 251
+  orig: 128, 251
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 2, 2
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 380, 86
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 426, 75
+  size: 39, 48
+  orig: 39, 48
+  offset: 0, 0
+  index: -1
+lvbu3_skill_ring
+  rotate: false
+  xy: 354, 11
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 476, 92
+  size: 22, 19
+  orig: 24, 24
+  offset: 0, 2
+  index: -1

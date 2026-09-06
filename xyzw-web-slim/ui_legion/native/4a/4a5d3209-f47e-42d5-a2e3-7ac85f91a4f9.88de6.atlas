@@ -1,0 +1,27 @@
+
+jlbcjq_effect.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_refresh_01
+  rotate: false
+  xy: 78, 2
+  size: 205, 205
+  orig: 205, 205
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 30, 161
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+ui_skillup_star
+  rotate: false
+  xy: 2, 181
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

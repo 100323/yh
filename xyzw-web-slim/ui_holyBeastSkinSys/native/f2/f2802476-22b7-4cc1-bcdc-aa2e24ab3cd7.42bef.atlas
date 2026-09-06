@@ -1,0 +1,118 @@
+
+ssxt_pfsd_gm.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ssxt_pfsd_gm_bo1
+  rotate: false
+  xy: 804, 2
+  size: 155, 127
+  orig: 155, 127
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_dian1
+  rotate: false
+  xy: 454, 16
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_dian2
+  rotate: false
+  xy: 517, 16
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_dian3
+  rotate: false
+  xy: 580, 16
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_dian4
+  rotate: false
+  xy: 643, 16
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_dian5
+  rotate: false
+  xy: 706, 16
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_qiu1
+  rotate: false
+  xy: 2, 274
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_qiu2
+  rotate: false
+  xy: 2, 48
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_qiu3
+  rotate: false
+  xy: 228, 274
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_qiu4
+  rotate: false
+  xy: 228, 48
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_qiu5
+  rotate: false
+  xy: 454, 274
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_quan1
+  rotate: true
+  xy: 454, 80
+  size: 192, 173
+  orig: 192, 173
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_quan2
+  rotate: true
+  xy: 629, 80
+  size: 192, 173
+  orig: 192, 173
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_quan3
+  rotate: true
+  xy: 680, 306
+  size: 192, 173
+  orig: 192, 173
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_quan4
+  rotate: false
+  xy: 804, 131
+  size: 192, 173
+  orig: 192, 173
+  offset: 0, 0
+  index: -1
+ssxt_pfsd_gm_quan5
+  rotate: false
+  xy: 2, 45
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,34 @@
+
+smsd_trader_hand.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+smsd_trader_fingerr1
+  rotate: true
+  xy: 99, 7
+  size: 55, 84
+  orig: 55, 84
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerr2
+  rotate: true
+  xy: 2, 5
+  size: 57, 95
+  orig: 57, 95
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerr3
+  rotate: true
+  xy: 185, 2
+  size: 60, 82
+  orig: 60, 82
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerr4
+  rotate: false
+  xy: 269, 8
+  size: 45, 54
+  orig: 45, 54
+  offset: 0, 0
+  index: -1

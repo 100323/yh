@@ -1,0 +1,13 @@
+
+zhangjiao7_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangjiao7_pg_1
+  rotate: false
+  xy: 2, 2
+  size: 422, 153
+  orig: 422, 153
+  offset: 0, 0
+  index: -1

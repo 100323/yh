@@ -1,0 +1,167 @@
+
+dwhd24_yqzw.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dwhd24_xxy_jiaol
+  rotate: true
+  xy: 381, 101
+  size: 29, 27
+  orig: 29, 27
+  offset: 0, 0
+  index: -1
+dwhd24_xxy_jiaor
+  rotate: false
+  xy: 410, 104
+  size: 25, 26
+  orig: 25, 26
+  offset: 0, 0
+  index: -1
+dwhd24_xxy_shen
+  rotate: false
+  xy: 325, 367
+  size: 134, 141
+  orig: 140, 141
+  offset: 0, 0
+  index: -1
+dwhd24_xxy_shoul
+  rotate: true
+  xy: 325, 283
+  size: 82, 96
+  orig: 82, 96
+  offset: 0, 0
+  index: -1
+dwhd24_xxy_shour
+  rotate: true
+  xy: 335, 2
+  size: 94, 98
+  orig: 94, 98
+  offset: 0, 0
+  index: -1
+dwhd24_xxy_yanzhu
+  rotate: false
+  xy: 178, 2
+  size: 5, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+dwhd24_xxy_ying
+  rotate: false
+  xy: 423, 318
+  size: 83, 47
+  orig: 83, 47
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_guang1
+  rotate: true
+  xy: 567, 135
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_guang2
+  rotate: false
+  xy: 178, 10
+  size: 155, 81
+  orig: 155, 81
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_guang3
+  rotate: true
+  xy: 622, 136
+  size: 53, 52
+  orig: 53, 52
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_hg
+  rotate: true
+  xy: 505, 191
+  size: 125, 118
+  orig: 125, 118
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_pf
+  rotate: false
+  xy: 2, 93
+  size: 258, 155
+  orig: 258, 155
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_qi
+  rotate: true
+  xy: 381, 132
+  size: 149, 122
+  orig: 149, 122
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_qi1
+  rotate: true
+  xy: 461, 388
+  size: 120, 145
+  orig: 120, 145
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_qi2
+  rotate: true
+  xy: 2, 5
+  size: 86, 174
+  orig: 86, 174
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_qi3
+  rotate: false
+  xy: 488, 12
+  size: 150, 118
+  orig: 150, 118
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_qigun
+  rotate: false
+  xy: 262, 98
+  size: 117, 172
+  orig: 118, 173
+  offset: 1, 0
+  index: -1
+dwhd24_xyw_s
+  rotate: false
+  xy: 2, 250
+  size: 199, 258
+  orig: 199, 258
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_shoul
+  rotate: true
+  xy: 505, 139
+  size: 50, 60
+  orig: 51, 61
+  offset: 1, 1
+  index: -1
+dwhd24_xyw_shour
+  rotate: false
+  xy: 435, 43
+  size: 51, 59
+  orig: 51, 59
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_xian
+  rotate: false
+  xy: 203, 272
+  size: 120, 236
+  orig: 120, 236
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_yan
+  rotate: false
+  xy: 508, 329
+  size: 43, 57
+  orig: 43, 59
+  offset: 0, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 423, 290
+  size: 25, 26
+  orig: 26, 26
+  offset: 1, 0
+  index: -1

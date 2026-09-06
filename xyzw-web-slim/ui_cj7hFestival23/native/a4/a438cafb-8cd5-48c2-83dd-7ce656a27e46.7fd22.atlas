@@ -1,0 +1,132 @@
+
+lzjs25_bg1_btn.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+btn1
+  rotate: false
+  xy: 189, 2
+  size: 132, 72
+  orig: 132, 72
+  offset: 0, 0
+  index: -1
+btn11
+  rotate: false
+  xy: 231, 93
+  size: 235, 118
+  orig: 235, 118
+  offset: 0, 0
+  index: -1
+btn12
+  rotate: false
+  xy: 231, 84
+  size: 202, 7
+  orig: 202, 7
+  offset: 0, 0
+  index: -1
+btn13
+  rotate: false
+  xy: 323, 7
+  size: 86, 75
+  orig: 86, 75
+  offset: 0, 0
+  index: -1
+btn14
+  rotate: false
+  xy: 332, 219
+  size: 82, 66
+  orig: 82, 69
+  offset: 0, 3
+  index: -1
+btn15
+  rotate: false
+  xy: 377, 292
+  size: 58, 37
+  orig: 58, 37
+  offset: 0, 0
+  index: -1
+btn16
+  rotate: true
+  xy: 416, 220
+  size: 70, 46
+  orig: 70, 46
+  offset: 0, 0
+  index: -1
+btn17
+  rotate: true
+  xy: 468, 104
+  size: 196, 116
+  orig: 196, 116
+  offset: 0, 0
+  index: -1
+btn18
+  rotate: false
+  xy: 2, 76
+  size: 227, 135
+  orig: 227, 135
+  offset: 0, 0
+  index: -1
+btn2
+  rotate: false
+  xy: 437, 302
+  size: 52, 27
+  orig: 52, 27
+  offset: 0, 0
+  index: -1
+btn3
+  rotate: true
+  xy: 252, 215
+  size: 70, 78
+  orig: 70, 78
+  offset: 0, 0
+  index: -1
+btn4
+  rotate: true
+  xy: 2, 2
+  size: 72, 185
+  orig: 72, 185
+  offset: 0, 0
+  index: -1
+btn5
+  rotate: true
+  xy: 377, 331
+  size: 178, 150
+  orig: 178, 150
+  offset: 0, 0
+  index: -1
+btn6
+  rotate: false
+  xy: 435, 17
+  size: 135, 74
+  orig: 135, 74
+  offset: 0, 0
+  index: -1
+btn7
+  rotate: true
+  xy: 2, 213
+  size: 296, 248
+  orig: 296, 248
+  offset: 0, 0
+  index: -1
+btn8
+  rotate: true
+  xy: 252, 287
+  size: 222, 123
+  orig: 222, 123
+  offset: 0, 0
+  index: -1
+btn9
+  rotate: false
+  xy: 411, 73
+  size: 19, 9
+  orig: 19, 9
+  offset: 0, 0
+  index: -1
+btn10
+  rotate: false
+  xy: 411, 73
+  size: 19, 9
+  orig: 19, 9
+  offset: 0, 0
+  index: -1

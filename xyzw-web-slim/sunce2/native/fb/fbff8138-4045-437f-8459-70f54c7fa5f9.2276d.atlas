@@ -1,0 +1,62 @@
+
+sunce2_skill_loop.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce2_ring2
+  rotate: false
+  xy: 372, 9
+  size: 49, 49
+  orig: 51, 51
+  offset: 1, 1
+  index: -1
+sunce2_skill1
+  rotate: false
+  xy: 270, 18
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+sunce2_skill10
+  rotate: false
+  xy: 133, 7
+  size: 122, 23
+  orig: 122, 36
+  offset: 0, 0
+  index: -1
+sunce2_skill2
+  rotate: true
+  xy: 257, 21
+  size: 12, 11
+  orig: 12, 11
+  offset: 0, 0
+  index: -1
+sunce2_skill3
+  rotate: false
+  xy: 2, 22
+  size: 123, 36
+  orig: 128, 36
+  offset: 5, 0
+  index: -1
+sunce2_skill7
+  rotate: true
+  xy: 247, 35
+  size: 23, 15
+  orig: 23, 15
+  offset: 0, 0
+  index: -1
+sunce2_skill8
+  rotate: false
+  xy: 127, 32
+  size: 118, 26
+  orig: 118, 26
+  offset: 0, 0
+  index: -1
+sunce2_skill9
+  rotate: false
+  xy: 2, 2
+  size: 129, 18
+  orig: 130, 18
+  offset: 0, 0
+  index: -1

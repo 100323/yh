@@ -1,0 +1,62 @@
+
+sqhd_dkxb_brick.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 196, 12
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+sqhd_dkxb_boom1
+  rotate: false
+  xy: 192, 68
+  size: 58, 64
+  orig: 58, 64
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_boom2
+  rotate: true
+  xy: 130, 7
+  size: 59, 64
+  orig: 59, 64
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_smoke
+  rotate: false
+  xy: 130, 68
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_splash
+  rotate: false
+  xy: 111, 134
+  size: 107, 103
+  orig: 111, 108
+  offset: 2, 3
+  index: -1
+sqhd_dkxb_stone1
+  rotate: false
+  xy: 2, 111
+  size: 107, 126
+  orig: 107, 126
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_stone2
+  rotate: true
+  xy: 2, 2
+  size: 107, 126
+  orig: 107, 126
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 220, 205
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

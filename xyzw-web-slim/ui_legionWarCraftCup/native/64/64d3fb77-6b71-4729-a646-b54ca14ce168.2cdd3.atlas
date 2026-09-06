@@ -1,0 +1,62 @@
+
+zbz_ycbanner2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_newbanner0_bg
+  rotate: false
+  xy: 326, 80
+  size: 174, 195
+  orig: 174, 195
+  offset: 0, 0
+  index: -1
+zbz_newbanner0_fg2
+  rotate: false
+  xy: 138, 2
+  size: 108, 76
+  orig: 108, 76
+  offset: 0, 0
+  index: -1
+zbz_newbanner0_fg3
+  rotate: false
+  xy: 2, 2
+  size: 134, 76
+  orig: 134, 76
+  offset: 0, 0
+  index: -1
+zbz_newbanner0_light
+  rotate: false
+  xy: 2, 80
+  size: 322, 195
+  orig: 322, 195
+  offset: 0, 0
+  index: -1
+zbz_newbanner0_volcano1
+  rotate: true
+  xy: 248, 8
+  size: 70, 74
+  orig: 70, 74
+  offset: 0, 0
+  index: -1
+zbz_newbanner0_volcano2
+  rotate: false
+  xy: 491, 439
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+zbz_newbanner0_volcano3
+  rotate: true
+  xy: 491, 451
+  size: 21, 12
+  orig: 21, 12
+  offset: 0, 0
+  index: -1
+zbz_newbanner_fg2
+  rotate: false
+  xy: 2, 277
+  size: 487, 195
+  orig: 487, 195
+  offset: 0, 0
+  index: -1

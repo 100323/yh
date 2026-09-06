@@ -1,0 +1,20 @@
+
+zhaoyun7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 318, 460
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhaoyun7_jn_hit
+  rotate: false
+  xy: 2, 2
+  size: 314, 499
+  orig: 314, 499
+  offset: 0, 0
+  index: -1

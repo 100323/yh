@@ -1,0 +1,41 @@
+
+jiangwei3_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 313, 31
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+jiangwei3_card2
+  rotate: true
+  xy: 313, 75
+  size: 66, 62
+  orig: 66, 62
+  offset: 0, 0
+  index: -1
+jiangwei3_skill2
+  rotate: true
+  xy: 143, 24
+  size: 117, 168
+  orig: 135, 182
+  offset: 6, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 357, 53
+  size: 20, 9
+  orig: 26, 26
+  offset: 3, 10
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 2
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

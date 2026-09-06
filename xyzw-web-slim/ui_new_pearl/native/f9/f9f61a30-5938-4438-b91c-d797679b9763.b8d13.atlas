@@ -1,0 +1,76 @@
+
+wyfm_dz_jianding_2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wyfm_dz_jd_dian1
+  rotate: false
+  xy: 207, 55
+  size: 42, 40
+  orig: 48, 46
+  offset: 3, 3
+  index: -1
+wyfm_dz_jd_dian2
+  rotate: true
+  xy: 207, 17
+  size: 36, 38
+  orig: 42, 44
+  offset: 3, 3
+  index: -1
+wyfm_dz_jd_g1
+  rotate: false
+  xy: 2, 2
+  size: 113, 93
+  orig: 113, 93
+  offset: 0, 0
+  index: -1
+wyfm_dz_jd_g2
+  rotate: false
+  xy: 251, 22
+  size: 92, 66
+  orig: 102, 74
+  offset: 10, 8
+  index: -1
+wyfm_dz_jd_g3
+  rotate: true
+  xy: 478, 282
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+wyfm_dz_jd_g4
+  rotate: false
+  xy: 345, 32
+  size: 61, 56
+  orig: 61, 56
+  offset: 0, 0
+  index: -1
+wyfm_dz_jd_g5
+  rotate: false
+  xy: 408, 35
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+wyfm_dz_jd_gq
+  rotate: false
+  xy: 2, 97
+  size: 250, 212
+  orig: 250, 212
+  offset: 0, 0
+  index: -1
+wyfm_dz_jd_gy
+  rotate: true
+  xy: 117, 8
+  size: 87, 88
+  orig: 87, 88
+  offset: 0, 0
+  index: -1
+wyfm_dz_jd_yuan
+  rotate: false
+  xy: 254, 90
+  size: 222, 219
+  orig: 226, 221
+  offset: 2, 1
+  index: -1

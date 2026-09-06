@@ -1,0 +1,41 @@
+
+cwxt26_jinglian.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_cwjl_sg
+  rotate: true
+  xy: 2, 36
+  size: 71, 118
+  orig: 78, 120
+  offset: 4, 1
+  index: -1
+cwxt26_cwjl_xing
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 34, 34
+  offset: 1, 1
+  index: -1
+cwxt26_cwjl_xingguang
+  rotate: false
+  xy: 2, 109
+  size: 143, 143
+  orig: 143, 143
+  offset: 0, 0
+  index: -1
+effect_ensflare
+  rotate: false
+  xy: 147, 10
+  size: 124, 120
+  orig: 124, 120
+  offset: 0, 0
+  index: -1
+ui_jiangli_saoguangline
+  rotate: false
+  xy: 147, 132
+  size: 256, 120
+  orig: 256, 120
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,328 @@
+
+yzxt_dengshen.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dengshen_arm02
+  rotate: false
+  xy: 331, 291
+  size: 68, 80
+  orig: 68, 80
+  offset: 0, 0
+  index: -1
+dengshen_effect01
+  rotate: true
+  xy: 440, 285
+  size: 63, 66
+  orig: 63, 66
+  offset: 0, 0
+  index: -1
+dengshen_effect03_2
+  rotate: true
+  xy: 302, 56
+  size: 53, 58
+  orig: 56, 61
+  offset: 1, 1
+  index: -1
+dengshen_effect_circle1
+  rotate: false
+  xy: 128, 71
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle2
+  rotate: true
+  xy: 230, 117
+  size: 66, 72
+  orig: 67, 72
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle3
+  rotate: false
+  xy: 304, 111
+  size: 69, 72
+  orig: 71, 73
+  offset: 1, 1
+  index: -1
+dengshen_effect_circle6
+  rotate: false
+  xy: 303, 185
+  size: 70, 75
+  orig: 71, 75
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle7
+  rotate: false
+  xy: 375, 97
+  size: 66, 75
+  orig: 67, 75
+  offset: 0, 0
+  index: -1
+dengshen_effect_ring1
+  rotate: true
+  xy: 206, 21
+  size: 49, 36
+  orig: 51, 37
+  offset: 1, 1
+  index: -1
+dengshen_effect_ring2
+  rotate: false
+  xy: 230, 185
+  size: 71, 75
+  orig: 73, 79
+  offset: 1, 2
+  index: -1
+dengshen_effect_ring3
+  rotate: true
+  xy: 128, 2
+  size: 67, 76
+  orig: 69, 79
+  offset: 1, 2
+  index: -1
+dengshen_effect_smoke1
+  rotate: true
+  xy: 244, 33
+  size: 31, 50
+  orig: 31, 50
+  offset: 0, 0
+  index: -1
+dengshen_effect_smoke2
+  rotate: true
+  xy: 445, 75
+  size: 27, 50
+  orig: 27, 50
+  offset: 0, 0
+  index: -1
+dengshen_hand01
+  rotate: false
+  xy: 488, 185
+  size: 22, 32
+  orig: 22, 32
+  offset: 0, 0
+  index: -1
+dengshen_hand02
+  rotate: true
+  xy: 387, 262
+  size: 27, 33
+  orig: 27, 33
+  offset: 0, 0
+  index: -1
+dengshen_mieba01
+  rotate: false
+  xy: 324, 373
+  size: 120, 137
+  orig: 120, 137
+  offset: 0, 0
+  index: -1
+dengshen_mieba02
+  rotate: false
+  xy: 193, 365
+  size: 129, 145
+  orig: 129, 145
+  offset: 0, 0
+  index: -1
+dengshen_mouth
+  rotate: false
+  xy: 331, 262
+  size: 54, 27
+  orig: 54, 27
+  offset: 0, 0
+  index: -1
+dengshen_star
+  rotate: false
+  xy: 229, 262
+  size: 100, 101
+  orig: 114, 114
+  offset: 7, 6
+  index: -1
+dengshen_stars01
+  rotate: false
+  xy: 206, 2
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+dengshen_stars02
+  rotate: true
+  xy: 351, 38
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 408, 60
+  size: 35, 35
+  orig: 39, 39
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 362, 60
+  size: 35, 44
+  orig: 35, 44
+  offset: 0, 0
+  index: -1
+monster_dengshen_arml
+  rotate: true
+  xy: 401, 308
+  size: 63, 37
+  orig: 63, 37
+  offset: 0, 0
+  index: -1
+monster_dengshen_armr
+  rotate: true
+  xy: 443, 104
+  size: 78, 50
+  orig: 78, 50
+  offset: 0, 0
+  index: -1
+monster_dengshen_body
+  rotate: false
+  xy: 2, 153
+  size: 132, 188
+  orig: 132, 188
+  offset: 0, 0
+  index: -1
+monster_dengshen_hairline
+  rotate: true
+  xy: 296, 29
+  size: 25, 53
+  orig: 25, 53
+  offset: 0, 0
+  index: -1
+monster_dengshen_handl
+  rotate: true
+  xy: 204, 115
+  size: 30, 24
+  orig: 30, 24
+  offset: 0, 0
+  index: -1
+monster_dengshen_handr
+  rotate: false
+  xy: 295, 4
+  size: 27, 23
+  orig: 27, 23
+  offset: 0, 0
+  index: -1
+monster_dengshen_mouth
+  rotate: false
+  xy: 245, 66
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+monster_dengshen_tail
+  rotate: false
+  xy: 2, 13
+  size: 124, 138
+  orig: 124, 138
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_hzi
+  rotate: false
+  xy: 425, 219
+  size: 75, 64
+  orig: 75, 64
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_jijiao1
+  rotate: true
+  xy: 446, 429
+  size: 81, 64
+  orig: 81, 65
+  offset: 0, 1
+  index: -1
+ygbh_shendeng_jijiao2
+  rotate: true
+  xy: 425, 184
+  size: 33, 61
+  orig: 33, 61
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_jj1
+  rotate: true
+  xy: 446, 350
+  size: 77, 64
+  orig: 79, 65
+  offset: 1, 1
+  index: -1
+ygbh_shendeng_jj2
+  rotate: true
+  xy: 204, 72
+  size: 41, 39
+  orig: 41, 39
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_jj3
+  rotate: false
+  xy: 426, 7
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_kuzi
+  rotate: false
+  xy: 2, 343
+  size: 189, 167
+  orig: 189, 167
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_meimao
+  rotate: false
+  xy: 244, 2
+  size: 49, 29
+  orig: 50, 29
+  offset: 1, 0
+  index: -1
+ygbh_shendeng_tf
+  rotate: true
+  xy: 136, 216
+  size: 125, 91
+  orig: 125, 91
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_xl
+  rotate: true
+  xy: 351, 2
+  size: 34, 36
+  orig: 34, 37
+  offset: 0, 1
+  index: -1
+ygbh_shendeng_xr
+  rotate: false
+  xy: 389, 25
+  size: 35, 33
+  orig: 37, 34
+  offset: 1, 0
+  index: -1
+ygbh_shendeng_xz1
+  rotate: false
+  xy: 375, 174
+  size: 48, 86
+  orig: 48, 86
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_xz2
+  rotate: true
+  xy: 136, 147
+  size: 67, 92
+  orig: 67, 92
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_yan
+  rotate: true
+  xy: 445, 38
+  size: 35, 39
+  orig: 35, 39
+  offset: 0, 0
+  index: -1
+ygbh_shendeng_yz
+  rotate: false
+  xy: 193, 357
+  size: 6, 6
+  orig: 6, 7
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+cwxt26_axgp_mengmo.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axgp_mengmo_dai
+  rotate: true
+  xy: 619, 94
+  size: 159, 289
+  orig: 160, 290
+  offset: 0, 1
+  index: -1
+axgp_mengmo_qiu
+  rotate: true
+  xy: 619, 4
+  size: 88, 104
+  orig: 89, 104
+  offset: 0, 0
+  index: -1
+axgp_mengmo_qiu2
+  rotate: true
+  xy: 725, 5
+  size: 87, 84
+  orig: 88, 86
+  offset: 1, 1
+  index: -1
+axgp_mengmo_xing1
+  rotate: false
+  xy: 118, 2
+  size: 32, 39
+  orig: 38, 43
+  offset: 3, 2
+  index: -1
+axgp_mengmo_xing2
+  rotate: true
+  xy: 152, 5
+  size: 36, 41
+  orig: 42, 47
+  offset: 3, 3
+  index: -1
+axgp_mengmo_yan1
+  rotate: true
+  xy: 118, 43
+  size: 210, 163
+  orig: 210, 163
+  offset: 0, 0
+  index: -1
+axgp_mengmo_yan2
+  rotate: true
+  xy: 283, 51
+  size: 202, 174
+  orig: 202, 174
+  offset: 0, 0
+  index: -1
+axgp_mengmo_yan3
+  rotate: true
+  xy: 459, 76
+  size: 177, 158
+  orig: 177, 158
+  offset: 0, 0
+  index: -1
+axgp_mengmo_yan4
+  rotate: false
+  xy: 2, 32
+  size: 114, 221
+  orig: 114, 221
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 283, 3
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+guanyu11_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu11_bd
+  rotate: false
+  xy: 2, 2
+  size: 197, 118
+  orig: 197, 118
+  offset: 0, 0
+  index: -1
+guanyu11_bddaog
+  rotate: false
+  xy: 2, 122
+  size: 312, 60
+  orig: 312, 60
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 316, 138
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

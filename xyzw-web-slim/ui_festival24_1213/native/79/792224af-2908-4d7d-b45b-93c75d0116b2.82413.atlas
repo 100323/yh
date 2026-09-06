@@ -1,0 +1,146 @@
+
+bcwrm_mnls.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bcwrm_kuang_gy
+  rotate: false
+  xy: 273, 24
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_bj
+  rotate: false
+  xy: 339, 189
+  size: 290, 321
+  orig: 291, 321
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_by
+  rotate: false
+  xy: 339, 143
+  size: 65, 44
+  orig: 65, 44
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_jiao1
+  rotate: true
+  xy: 892, 272
+  size: 76, 53
+  orig: 77, 54
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_jiao2
+  rotate: false
+  xy: 631, 191
+  size: 77, 53
+  orig: 78, 54
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_kuang
+  rotate: false
+  xy: 2, 136
+  size: 335, 374
+  orig: 335, 374
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_sb1
+  rotate: true
+  xy: 385, 36
+  size: 105, 99
+  orig: 106, 100
+  offset: 1, 0
+  index: -1
+bcwrm_mnls_sb2
+  rotate: true
+  xy: 892, 427
+  size: 83, 91
+  orig: 83, 91
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_shen
+  rotate: true
+  xy: 745, 24
+  size: 220, 254
+  orig: 220, 254
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_shou1
+  rotate: true
+  xy: 494, 151
+  size: 36, 33
+  orig: 36, 33
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_shou2
+  rotate: true
+  xy: 456, 150
+  size: 37, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_tf
+  rotate: false
+  xy: 580, 15
+  size: 163, 172
+  orig: 163, 172
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_tf1
+  rotate: true
+  xy: 2, 22
+  size: 112, 149
+  orig: 112, 149
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_wei
+  rotate: true
+  xy: 892, 350
+  size: 75, 77
+  orig: 77, 77
+  offset: 1, 0
+  index: -1
+bcwrm_mnls_xian
+  rotate: false
+  xy: 631, 246
+  size: 259, 264
+  orig: 259, 264
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_xiul
+  rotate: false
+  xy: 486, 44
+  size: 92, 104
+  orig: 92, 104
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_xiur
+  rotate: true
+  xy: 153, 11
+  size: 123, 118
+  orig: 124, 118
+  offset: 1, 0
+  index: -1
+bcwrm_mnls_yb
+  rotate: false
+  xy: 406, 152
+  size: 48, 35
+  orig: 48, 35
+  offset: 0, 0
+  index: -1
+bcwrm_mnls_yp1
+  rotate: false
+  xy: 385, 7
+  size: 62, 27
+  orig: 63, 27
+  offset: 1, 0
+  index: -1
+bcwrm_mnls_yz
+  rotate: true
+  xy: 2, 2
+  size: 18, 17
+  orig: 18, 17
+  offset: 0, 0
+  index: -1

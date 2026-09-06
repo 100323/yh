@@ -1,0 +1,153 @@
+
+tbhdqx_boss_sez.png
+size: 485,245
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 437, 122
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_mai1
+  rotate: false
+  xy: 73, 3
+  size: 66, 56
+  orig: 66, 56
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_mai2
+  rotate: false
+  xy: 365, 107
+  size: 70, 61
+  orig: 70, 62
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_mei
+  rotate: false
+  xy: 210, 2
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_shen
+  rotate: true
+  xy: 269, 7
+  size: 85, 145
+  orig: 85, 145
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_shou
+  rotate: false
+  xy: 438, 219
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_tou
+  rotate: false
+  xy: 141, 137
+  size: 127, 106
+  orig: 127, 106
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_xiu
+  rotate: false
+  xy: 2, 61
+  size: 80, 73
+  orig: 81, 75
+  offset: 0, 1
+  index: -1
+tbhdqx_sez1_xiu1
+  rotate: false
+  xy: 210, 38
+  size: 57, 97
+  orig: 57, 97
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_yz1
+  rotate: true
+  xy: 256, 26
+  size: 10, 9
+  orig: 10, 9
+  offset: 0, 0
+  index: -1
+tbhdqx_sez1_yz2
+  rotate: true
+  xy: 256, 26
+  size: 10, 9
+  orig: 10, 9
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_mai1
+  rotate: true
+  xy: 416, 30
+  size: 75, 42
+  orig: 77, 43
+  offset: 1, 0
+  index: -1
+tbhdqx_sez2_mai2
+  rotate: true
+  xy: 84, 70
+  size: 64, 51
+  orig: 64, 51
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_mei
+  rotate: false
+  xy: 438, 199
+  size: 22, 18
+  orig: 44, 18
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_shen
+  rotate: false
+  xy: 270, 94
+  size: 93, 149
+  orig: 93, 149
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_shoul
+  rotate: false
+  xy: 365, 170
+  size: 71, 73
+  orig: 71, 73
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_tou
+  rotate: true
+  xy: 2, 136
+  size: 107, 137
+  orig: 107, 137
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_yzl
+  rotate: false
+  xy: 256, 15
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+tbhdqx_sez2_yzr
+  rotate: false
+  xy: 256, 15
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+tbhdqx_sez_pg_shoubi
+  rotate: false
+  xy: 141, 6
+  size: 67, 129
+  orig: 67, 129
+  offset: 0, 0
+  index: -1
+tbhdqx_sez_pg_yanbao
+  rotate: false
+  xy: 2, 2
+  size: 69, 57
+  orig: 69, 58
+  offset: 0, 0
+  index: -1

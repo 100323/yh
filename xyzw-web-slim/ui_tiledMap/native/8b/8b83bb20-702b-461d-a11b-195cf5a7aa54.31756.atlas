@@ -1,0 +1,27 @@
+
+zbz_beacon_home.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_beacon_home2
+  rotate: false
+  xy: 2, 2
+  size: 98, 98
+  orig: 102, 102
+  offset: 2, 2
+  index: -1
+zbz_beacon_home3
+  rotate: false
+  xy: 156, 48
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+zbz_beacon_home4
+  rotate: true
+  xy: 2, 102
+  size: 4, 152
+  orig: 4, 152
+  offset: 0, 0
+  index: -1

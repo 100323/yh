@@ -1,0 +1,223 @@
+
+simayi2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 172, 98
+  size: 72, 71
+  orig: 72, 71
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 361, 32
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+hero_effect_ring
+  rotate: false
+  xy: 2, 263
+  size: 97, 97
+  orig: 97, 97
+  offset: 0, 0
+  index: -1
+hero_effect_ring2
+  rotate: false
+  xy: 101, 268
+  size: 88, 92
+  orig: 88, 92
+  offset: 0, 0
+  index: -1
+simayi2_body
+  rotate: true
+  xy: 381, 215
+  size: 132, 79
+  orig: 132, 80
+  offset: 0, 0
+  index: -1
+simayi2_effect1
+  rotate: false
+  xy: 2, 232
+  size: 29, 29
+  orig: 30, 31
+  offset: 0, 1
+  index: -1
+simayi2_effect2
+  rotate: false
+  xy: 462, 197
+  size: 45, 63
+  orig: 48, 65
+  offset: 2, 1
+  index: -1
+simayi2_effect3
+  rotate: true
+  xy: 342, 162
+  size: 67, 35
+  orig: 69, 37
+  offset: 1, 1
+  index: -1
+simayi2_effect4
+  rotate: true
+  xy: 432, 34
+  size: 92, 50
+  orig: 92, 50
+  offset: 0, 0
+  index: -1
+simayi2_effect5
+  rotate: true
+  xy: 462, 262
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+simayi2_effect6
+  rotate: false
+  xy: 322, 66
+  size: 37, 45
+  orig: 38, 46
+  offset: 1, 0
+  index: -1
+simayi2_effect7
+  rotate: false
+  xy: 368, 71
+  size: 43, 43
+  orig: 43, 43
+  offset: 0, 0
+  index: -1
+simayi2_effect8
+  rotate: true
+  xy: 491, 447
+  size: 38, 11
+  orig: 38, 11
+  offset: 0, 0
+  index: -1
+simayi2_effect9
+  rotate: false
+  xy: 182, 171
+  size: 78, 95
+  orig: 82, 99
+  offset: 2, 2
+  index: -1
+simayi2_finger1
+  rotate: false
+  xy: 359, 334
+  size: 20, 27
+  orig: 20, 27
+  offset: 0, 0
+  index: -1
+simayi2_finger2
+  rotate: true
+  xy: 491, 423
+  size: 22, 19
+  orig: 22, 19
+  offset: 0, 0
+  index: -1
+simayi2_finger3
+  rotate: false
+  xy: 491, 394
+  size: 15, 27
+  orig: 15, 27
+  offset: 0, 0
+  index: -1
+simayi2_footl
+  rotate: true
+  xy: 191, 268
+  size: 92, 67
+  orig: 92, 67
+  offset: 0, 0
+  index: -1
+simayi2_footr
+  rotate: false
+  xy: 432, 128
+  size: 70, 67
+  orig: 70, 67
+  offset: 0, 0
+  index: -1
+simayi2_handr
+  rotate: false
+  xy: 262, 158
+  size: 78, 71
+  orig: 78, 71
+  offset: 0, 0
+  index: -1
+simayi2_head
+  rotate: false
+  xy: 2, 362
+  size: 258, 123
+  orig: 258, 123
+  offset: 0, 0
+  index: -1
+simayi2_head1
+  rotate: true
+  xy: 379, 116
+  size: 97, 51
+  orig: 97, 51
+  offset: 0, 0
+  index: -1
+simayi2_head2
+  rotate: true
+  xy: 2, 2
+  size: 99, 62
+  orig: 99, 62
+  offset: 0, 0
+  index: -1
+simayi2_head3
+  rotate: false
+  xy: 246, 104
+  size: 74, 52
+  orig: 74, 52
+  offset: 0, 0
+  index: -1
+simayi2_hip
+  rotate: true
+  xy: 2, 103
+  size: 126, 76
+  orig: 126, 76
+  offset: 0, 0
+  index: -1
+simayi2_shoulder
+  rotate: true
+  xy: 386, 349
+  size: 136, 103
+  orig: 140, 103
+  offset: 4, 0
+  index: -1
+simayi2_shoulderl
+  rotate: false
+  xy: 80, 93
+  size: 90, 78
+  orig: 90, 78
+  offset: 0, 0
+  index: -1
+simayi2_weapon1
+  rotate: false
+  xy: 80, 173
+  size: 100, 88
+  orig: 100, 88
+  offset: 0, 0
+  index: -1
+simayi2_weapon2
+  rotate: false
+  xy: 322, 113
+  size: 44, 43
+  orig: 44, 43
+  offset: 0, 0
+  index: -1
+simayi2_weapon3
+  rotate: false
+  xy: 262, 231
+  size: 95, 130
+  orig: 97, 130
+  offset: 2, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 262, 363
+  size: 122, 122
+  orig: 122, 122
+  offset: 0, 0
+  index: -1

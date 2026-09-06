@@ -1,0 +1,27 @@
+
+zhugeliang5_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 190, 53
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 190, 29
+  size: 22, 22
+  orig: 26, 26
+  offset: 3, 2
+  index: -1
+zhugeliang5_weapon
+  rotate: true
+  xy: 2, 2
+  size: 97, 186
+  orig: 97, 186
+  offset: 0, 0
+  index: -1

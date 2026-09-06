@@ -1,0 +1,20 @@
+
+sdsl_fz3.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_fz_effect
+  rotate: false
+  xy: 110, 98
+  size: 78, 134
+  orig: 78, 134
+  offset: 0, 0
+  index: -1
+sdsl_fz_effect3
+  rotate: false
+  xy: 2, 2
+  size: 106, 230
+  orig: 106, 230
+  offset: 0, 0
+  index: -1

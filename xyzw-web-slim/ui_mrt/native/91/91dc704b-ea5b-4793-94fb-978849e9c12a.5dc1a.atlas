@@ -1,0 +1,62 @@
+
+mrt_cj_daqiao7.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lizi
+  rotate: false
+  xy: 1004, 458
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+long
+  rotate: true
+  xy: 574, 478
+  size: 429, 431
+  orig: 429, 431
+  offset: 0, 0
+  index: -1
+xfw3
+  rotate: false
+  xy: 476, 335
+  size: 88, 111
+  orig: 88, 111
+  offset: 0, 0
+  index: -1
+yun_1
+  rotate: false
+  xy: 574, 204
+  size: 428, 272
+  orig: 428, 272
+  offset: 0, 0
+  index: -1
+yun_2
+  rotate: true
+  xy: 2, 141
+  size: 305, 277
+  orig: 305, 277
+  offset: 0, 0
+  index: -1
+yun_3
+  rotate: true
+  xy: 281, 110
+  size: 336, 193
+  orig: 336, 193
+  offset: 0, 0
+  index: -1
+yun_4
+  rotate: false
+  xy: 2, 2
+  size: 255, 137
+  orig: 255, 137
+  offset: 0, 0
+  index: -1
+yun_5
+  rotate: false
+  xy: 2, 448
+  size: 570, 459
+  orig: 570, 459
+  offset: 0, 0
+  index: -1

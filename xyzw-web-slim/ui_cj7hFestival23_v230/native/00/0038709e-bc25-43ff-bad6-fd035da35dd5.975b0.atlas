@@ -1,0 +1,13 @@
+
+qnwd26_cj_box2.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hulu
+  rotate: false
+  xy: 2, 2
+  size: 67, 71
+  orig: 70, 73
+  offset: 2, 1
+  index: -1

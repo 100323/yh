@@ -1,0 +1,48 @@
+
+xsxjt_biaoti.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjt_img_biaoti1
+  rotate: false
+  xy: 112, 130
+  size: 107, 112
+  orig: 107, 112
+  offset: 0, 0
+  index: -1
+xjt_img_biaoti11
+  rotate: false
+  xy: 112, 16
+  size: 107, 112
+  orig: 107, 112
+  offset: 0, 0
+  index: -1
+xjt_img_biaoti2
+  rotate: true
+  xy: 221, 134
+  size: 108, 101
+  orig: 108, 101
+  offset: 0, 0
+  index: -1
+xjt_img_biaoti22
+  rotate: true
+  xy: 221, 24
+  size: 108, 101
+  orig: 108, 101
+  offset: 0, 0
+  index: -1
+xjt_img_biaoti3
+  rotate: true
+  xy: 2, 123
+  size: 119, 108
+  orig: 119, 108
+  offset: 0, 0
+  index: -1
+xjt_img_biaoti33
+  rotate: true
+  xy: 2, 2
+  size: 119, 108
+  orig: 119, 108
+  offset: 0, 0
+  index: -1

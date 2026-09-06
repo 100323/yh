@@ -1,0 +1,27 @@
+
+kpyx_wbdy.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hxhj_img_dayv1
+  rotate: true
+  xy: 235, 2
+  size: 208, 98
+  orig: 208, 98
+  offset: 0, 0
+  index: -1
+hxhj_img_dayv2
+  rotate: true
+  xy: 2, 13
+  size: 197, 122
+  orig: 197, 122
+  offset: 0, 0
+  index: -1
+hxhj_img_dayv3
+  rotate: true
+  xy: 126, 10
+  size: 200, 107
+  orig: 200, 107
+  offset: 0, 0
+  index: -1

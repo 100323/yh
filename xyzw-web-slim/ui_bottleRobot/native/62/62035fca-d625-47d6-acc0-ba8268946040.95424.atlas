@@ -1,0 +1,27 @@
+
+ygjqr_gui_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygjqr_gz_gui
+  rotate: false
+  xy: 2, 155
+  size: 463, 200
+  orig: 463, 458
+  offset: 0, 0
+  index: -1
+ygjqr_gz_shoul
+  rotate: false
+  xy: 191, 7
+  size: 189, 146
+  orig: 190, 146
+  offset: 0, 0
+  index: -1
+ygjqr_gz_shour
+  rotate: false
+  xy: 2, 2
+  size: 187, 151
+  orig: 187, 152
+  offset: 0, 0
+  index: -1

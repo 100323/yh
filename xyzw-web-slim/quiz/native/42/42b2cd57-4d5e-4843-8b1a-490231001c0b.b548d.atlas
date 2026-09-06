@@ -1,0 +1,90 @@
+
+zxc_fish_sengren.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: false
+  xy: 277, 45
+  size: 57, 77
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+yanjing1
+  rotate: false
+  xy: 403, 98
+  size: 65, 73
+  orig: 65, 73
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: false
+  xy: 470, 162
+  size: 31, 39
+  orig: 31, 39
+  offset: 0, 0
+  index: -1
+yanjing3
+  rotate: false
+  xy: 403, 173
+  size: 65, 73
+  orig: 65, 73
+  offset: 0, 0
+  index: -1
+zxc_fish_sr_dai
+  rotate: false
+  xy: 342, 158
+  size: 59, 88
+  orig: 59, 102
+  offset: 0, 5
+  index: -1
+zxc_fish_sr_mao
+  rotate: false
+  xy: 189, 124
+  size: 100, 122
+  orig: 100, 122
+  offset: 0, 0
+  index: -1
+zxc_fish_sr_shen
+  rotate: false
+  xy: 2, 11
+  size: 185, 235
+  orig: 193, 235
+  offset: 8, 0
+  index: -1
+zxc_fish_sr_shou
+  rotate: false
+  xy: 189, 41
+  size: 86, 81
+  orig: 87, 82
+  offset: 1, 1
+  index: -1
+zxc_fish_sr_tuil
+  rotate: true
+  xy: 189, 2
+  size: 37, 109
+  orig: 37, 109
+  offset: 0, 0
+  index: -1
+zxc_fish_sr_tuir
+  rotate: false
+  xy: 291, 138
+  size: 49, 108
+  orig: 49, 108
+  offset: 0, 0
+  index: -1
+zxc_fish_sr_yp
+  rotate: false
+  xy: 470, 203
+  size: 34, 43
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+zxc_fish_sr_yz
+  rotate: false
+  xy: 291, 124
+  size: 10, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1

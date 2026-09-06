@@ -1,0 +1,118 @@
+
+znq23_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+znq23_banner_bg
+  rotate: false
+  xy: 2, 259
+  size: 410, 242
+  orig: 410, 242
+  offset: 0, 0
+  index: -1
+znq23_banner_body
+  rotate: true
+  xy: 172, 2
+  size: 119, 157
+  orig: 119, 157
+  offset: 0, 0
+  index: -1
+znq23_banner_dl
+  rotate: true
+  xy: 172, 123
+  size: 128, 273
+  orig: 128, 275
+  offset: 0, 2
+  index: -1
+znq23_banner_eye
+  rotate: false
+  xy: 494, 247
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+znq23_banner_eyewhite
+  rotate: true
+  xy: 466, 258
+  size: 23, 35
+  orig: 30, 35
+  offset: 0, 0
+  index: -1
+znq23_banner_gu1
+  rotate: false
+  xy: 462, 237
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+znq23_banner_gu2
+  rotate: true
+  xy: 2, 238
+  size: 19, 28
+  orig: 19, 28
+  offset: 0, 0
+  index: -1
+znq23_banner_gu3
+  rotate: true
+  xy: 414, 381
+  size: 54, 90
+  orig: 58, 90
+  offset: 4, 0
+  index: -1
+znq23_banner_hand
+  rotate: false
+  xy: 414, 437
+  size: 95, 64
+  orig: 107, 70
+  offset: 12, 6
+  index: -1
+znq23_banner_legl
+  rotate: true
+  xy: 470, 283
+  size: 52, 35
+  orig: 53, 36
+  offset: 1, 0
+  index: -1
+znq23_banner_legr
+  rotate: false
+  xy: 470, 337
+  size: 38, 42
+  orig: 38, 42
+  offset: 0, 0
+  index: -1
+znq23_banner_light
+  rotate: true
+  xy: 2, 47
+  size: 188, 168
+  orig: 190, 168
+  offset: 1, 0
+  index: -1
+znq23_banner_lock
+  rotate: false
+  xy: 414, 334
+  size: 54, 45
+  orig: 54, 45
+  offset: 0, 0
+  index: -1
+znq23_banner_mask
+  rotate: false
+  xy: 331, 9
+  size: 149, 112
+  orig: 149, 112
+  offset: 0, 0
+  index: -1
+znq23_banner_sui
+  rotate: false
+  xy: 414, 253
+  size: 46, 27
+  orig: 46, 27
+  offset: 0, 0
+  index: -1
+znq23_banner_tail
+  rotate: false
+  xy: 414, 282
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

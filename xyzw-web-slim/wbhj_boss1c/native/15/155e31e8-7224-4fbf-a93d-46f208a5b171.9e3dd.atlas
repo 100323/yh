@@ -1,0 +1,188 @@
+
+wbhj_boss1c.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 281, 3
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_attack1
+  rotate: false
+  xy: 88, 2
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_body
+  rotate: false
+  xy: 318, 87
+  size: 58, 167
+  orig: 58, 167
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_eyebrow1
+  rotate: false
+  xy: 433, 149
+  size: 31, 18
+  orig: 31, 18
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_eyebrow2
+  rotate: false
+  xy: 300, 91
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_glasses
+  rotate: false
+  xy: 2, 7
+  size: 84, 27
+  orig: 86, 31
+  offset: 2, 0
+  index: -1
+wbhj_boss1a_hair
+  rotate: true
+  xy: 429, 210
+  size: 44, 45
+  orig: 44, 46
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_handl
+  rotate: false
+  xy: 378, 99
+  size: 44, 33
+  orig: 44, 33
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_handl2
+  rotate: true
+  xy: 383, 67
+  size: 30, 41
+  orig: 30, 41
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_handl3
+  rotate: false
+  xy: 378, 134
+  size: 53, 33
+  orig: 53, 33
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_handl4
+  rotate: false
+  xy: 378, 204
+  size: 49, 50
+  orig: 49, 50
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_handr
+  rotate: false
+  xy: 288, 45
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_head
+  rotate: false
+  xy: 2, 36
+  size: 117, 90
+  orig: 118, 91
+  offset: 0, 1
+  index: -1
+wbhj_boss1a_kou
+  rotate: true
+  xy: 300, 73
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_nose
+  rotate: true
+  xy: 300, 110
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_skill1
+  rotate: false
+  xy: 424, 103
+  size: 58, 29
+  orig: 58, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_skill2
+  rotate: false
+  xy: 217, 2
+  size: 62, 30
+  orig: 62, 30
+  offset: 0, 0
+  index: -1
+wbhj_boss1a_skill3
+  rotate: false
+  xy: 378, 169
+  size: 63, 33
+  orig: 63, 33
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_arml
+  rotate: false
+  xy: 318, 28
+  size: 63, 57
+  orig: 63, 59
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_coat
+  rotate: true
+  xy: 162, 76
+  size: 64, 136
+  orig: 64, 136
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_coat2
+  rotate: true
+  xy: 162, 142
+  size: 112, 154
+  orig: 112, 154
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_hat1
+  rotate: false
+  xy: 217, 34
+  size: 69, 40
+  orig: 69, 40
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_hat2
+  rotate: false
+  xy: 121, 5
+  size: 94, 69
+  orig: 94, 69
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_hat3
+  rotate: true
+  xy: 121, 81
+  size: 45, 35
+  orig: 45, 35
+  offset: 0, 0
+  index: -1
+wbhj_boss1c_skill4
+  rotate: false
+  xy: 2, 128
+  size: 158, 126
+  orig: 159, 126
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 311, 73
+  size: 16, 5
+  orig: 16, 16
+  offset: 0, 5
+  index: -1

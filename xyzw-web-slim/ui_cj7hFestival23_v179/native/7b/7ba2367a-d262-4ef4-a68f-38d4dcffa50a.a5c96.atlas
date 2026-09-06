@@ -1,0 +1,34 @@
+
+shhj25_jiantou.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_jiantou1
+  rotate: false
+  xy: 2, 70
+  size: 64, 70
+  orig: 64, 70
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_jiantou2
+  rotate: false
+  xy: 68, 74
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_jiantou3
+  rotate: true
+  xy: 2, 2
+  size: 66, 67
+  orig: 66, 67
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_jiantou4
+  rotate: false
+  xy: 71, 2
+  size: 64, 70
+  orig: 64, 70
+  offset: 0, 0
+  index: -1

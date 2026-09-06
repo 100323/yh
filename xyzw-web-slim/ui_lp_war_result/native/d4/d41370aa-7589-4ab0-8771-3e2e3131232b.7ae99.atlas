@@ -1,0 +1,111 @@
+
+tgcf_pty_sbjs1.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ptyjs_juese_dabil
+  rotate: false
+  xy: 699, 27
+  size: 75, 96
+  orig: 75, 96
+  offset: 0, 0
+  index: -1
+ptyjs_juese_dabir
+  rotate: true
+  xy: 108, 10
+  size: 61, 50
+  orig: 61, 50
+  offset: 0, 0
+  index: -1
+ptyjs_juese_jy
+  rotate: true
+  xy: 160, 34
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+ptyjs_juese_maozi
+  rotate: false
+  xy: 537, 114
+  size: 138, 142
+  orig: 138, 142
+  offset: 0, 0
+  index: -1
+ptyjs_juese_miao
+  rotate: false
+  xy: 197, 37
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+ptyjs_juese_qunzi
+  rotate: true
+  xy: 413, 87
+  size: 169, 122
+  orig: 169, 122
+  offset: 0, 0
+  index: -1
+ptyjs_juese_shour
+  rotate: false
+  xy: 160, 0
+  size: 27, 32
+  orig: 27, 32
+  offset: 0, 0
+  index: -1
+ptyjs_juese_tou
+  rotate: false
+  xy: 677, 125
+  size: 118, 131
+  orig: 118, 131
+  offset: 0, 0
+  index: -1
+ptyjs_juese_weiba
+  rotate: false
+  xy: 776, 37
+  size: 83, 86
+  orig: 83, 86
+  offset: 0, 0
+  index: -1
+ptyjs_juese_xiuzil
+  rotate: false
+  xy: 616, 9
+  size: 81, 103
+  orig: 81, 103
+  offset: 0, 0
+  index: -1
+ptyjs_juese_xiuzir
+  rotate: true
+  xy: 0, 9
+  size: 62, 106
+  orig: 62, 106
+  offset: 0, 0
+  index: -1
+ptyjs_juese_yan
+  rotate: false
+  xy: 189, 5
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+ptyjs_juese_yanlei
+  rotate: true
+  xy: 217, 22
+  size: 13, 12
+  orig: 13, 12
+  offset: 0, 0
+  index: -1
+ptyjs_juese_yun
+  rotate: false
+  xy: 0, 73
+  size: 411, 183
+  orig: 411, 183
+  offset: 0, 0
+  index: -1
+ptyjs_juese_zhang
+  rotate: true
+  xy: 413, 1
+  size: 84, 201
+  orig: 84, 201
+  offset: 0, 0
+  index: -1

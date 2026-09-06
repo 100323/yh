@@ -1,0 +1,167 @@
+
+cwxt26_cw_kong_4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beizi
+  rotate: false
+  xy: 6, 6
+  size: 248, 179
+  orig: 248, 179
+  offset: 0, 0
+  index: -1
+beizi2
+  rotate: false
+  xy: 371, 419
+  size: 39, 38
+  orig: 41, 40
+  offset: 1, 1
+  index: -1
+bi
+  rotate: false
+  xy: 292, 359
+  size: 59, 55
+  orig: 59, 55
+  offset: 0, 0
+  index: -1
+duzi
+  rotate: false
+  xy: 6, 294
+  size: 141, 66
+  orig: 143, 68
+  offset: 1, 1
+  index: -1
+er1
+  rotate: true
+  xy: 6, 379
+  size: 44, 61
+  orig: 46, 63
+  offset: 1, 1
+  index: -1
+er2
+  rotate: true
+  xy: 416, 417
+  size: 40, 60
+  orig: 42, 62
+  offset: 1, 1
+  index: -1
+z_07
+  rotate: true
+  xy: 416, 417
+  size: 40, 60
+  orig: 42, 62
+  offset: 1, 1
+  index: -1
+lian
+  rotate: false
+  xy: 297, 250
+  size: 141, 83
+  orig: 143, 86
+  offset: 1, 1
+  index: -1
+tui1
+  rotate: false
+  xy: 205, 361
+  size: 81, 53
+  orig: 83, 55
+  offset: 1, 1
+  index: -1
+tui2
+  rotate: false
+  xy: 205, 420
+  size: 51, 37
+  orig: 54, 45
+  offset: 2, 1
+  index: -1
+z_01
+  rotate: true
+  xy: 428, 339
+  size: 72, 75
+  orig: 72, 80
+  offset: 0, 0
+  index: -1
+z_02
+  rotate: false
+  xy: 262, 420
+  size: 103, 37
+  orig: 103, 37
+  offset: 0, 0
+  index: -1
+z_03
+  rotate: true
+  xy: 73, 373
+  size: 45, 61
+  orig: 47, 63
+  offset: 1, 1
+  index: -1
+z_04
+  rotate: false
+  xy: 140, 366
+  size: 59, 51
+  orig: 59, 55
+  offset: 0, 4
+  index: -1
+z_05
+  rotate: false
+  xy: 6, 204
+  size: 128, 84
+  orig: 128, 84
+  offset: 0, 0
+  index: -1
+z_06
+  rotate: false
+  xy: 140, 191
+  size: 139, 86
+  orig: 139, 86
+  offset: 0, 0
+  index: -1
+z_08
+  rotate: false
+  xy: 153, 283
+  size: 138, 70
+  orig: 138, 70
+  offset: 0, 0
+  index: -1
+z_09
+  rotate: false
+  xy: 42, 429
+  size: 70, 28
+  orig: 70, 28
+  offset: 0, 0
+  index: -1
+z_10
+  rotate: false
+  xy: 285, 55
+  size: 205, 189
+  orig: 205, 196
+  offset: 0, 0
+  index: -1
+z_11
+  rotate: true
+  xy: 164, 423
+  size: 34, 35
+  orig: 37, 37
+  offset: 1, 1
+  index: -1
+z_12
+  rotate: false
+  xy: 118, 424
+  size: 40, 33
+  orig: 42, 36
+  offset: 1, 1
+  index: -1
+z_13
+  rotate: false
+  xy: 6, 436
+  size: 30, 21
+  orig: 34, 24
+  offset: 2, 1
+  index: -1
+z_14
+  rotate: true
+  xy: 357, 349
+  size: 62, 65
+  orig: 62, 65
+  offset: 0, 0
+  index: -1

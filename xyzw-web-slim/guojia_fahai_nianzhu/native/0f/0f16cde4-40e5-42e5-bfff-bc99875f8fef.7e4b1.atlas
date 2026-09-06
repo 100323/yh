@@ -1,0 +1,97 @@
+
+guojia_fahai_nianzhu_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojiafh_skilla1
+  rotate: true
+  xy: 2, 48
+  size: 225, 171
+  orig: 225, 171
+  offset: 0, 0
+  index: -1
+guojiafh_skilla2
+  rotate: true
+  xy: 2, 8
+  size: 38, 63
+  orig: 38, 63
+  offset: 0, 0
+  index: -1
+guojiafh_skilla3
+  rotate: true
+  xy: 275, 16
+  size: 75, 98
+  orig: 75, 98
+  offset: 0, 0
+  index: -1
+guojiafh_skilla4
+  rotate: true
+  xy: 390, 84
+  size: 75, 107
+  orig: 75, 107
+  offset: 0, 0
+  index: -1
+guojiafh_skillb1
+  rotate: true
+  xy: 275, 93
+  size: 185, 113
+  orig: 185, 113
+  offset: 0, 0
+  index: -1
+guojiafh_skillb2
+  rotate: false
+  xy: 375, 7
+  size: 131, 75
+  orig: 131, 75
+  offset: 0, 0
+  index: -1
+guojiafh_skillb3
+  rotate: true
+  xy: 175, 76
+  size: 197, 98
+  orig: 197, 98
+  offset: 0, 0
+  index: -1
+guojiafh_skillc1
+  rotate: true
+  xy: 390, 161
+  size: 145, 113
+  orig: 145, 113
+  offset: 0, 0
+  index: -1
+guojiafh_skillc2
+  rotate: false
+  xy: 344, 308
+  size: 150, 200
+  orig: 150, 200
+  offset: 0, 0
+  index: -1
+guojiafh_skillc3
+  rotate: false
+  xy: 192, 280
+  size: 150, 228
+  orig: 150, 228
+  offset: 0, 0
+  index: -1
+guojiafh_skillc4
+  rotate: false
+  xy: 2, 275
+  size: 188, 233
+  orig: 188, 233
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 344, 288
+  size: 19, 18
+  orig: 24, 24
+  offset: 3, 6
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 67, 2
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,265 @@
+
+xshd_penboss.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cd
+  rotate: false
+  xy: 2, 264
+  size: 247, 245
+  orig: 328, 295
+  offset: 56, 28
+  index: -1
+penboss2_daiji_baijiebu
+  rotate: false
+  xy: 2, 22
+  size: 57, 50
+  orig: 57, 50
+  offset: 0, 0
+  index: -1
+penboss2_daiji_guang
+  rotate: false
+  xy: 436, 85
+  size: 30, 111
+  orig: 30, 111
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi10
+  rotate: true
+  xy: 441, 244
+  size: 37, 22
+  orig: 37, 22
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi11
+  rotate: false
+  xy: 465, 260
+  size: 37, 21
+  orig: 37, 21
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi2
+  rotate: false
+  xy: 441, 425
+  size: 40, 30
+  orig: 40, 30
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi3
+  rotate: false
+  xy: 222, 9
+  size: 38, 25
+  orig: 38, 25
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi4
+  rotate: true
+  xy: 61, 2
+  size: 29, 27
+  orig: 29, 27
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi5
+  rotate: true
+  xy: 227, 131
+  size: 41, 22
+  orig: 41, 22
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi6
+  rotate: false
+  xy: 425, 357
+  size: 37, 20
+  orig: 37, 20
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi7
+  rotate: true
+  xy: 441, 283
+  size: 33, 23
+  orig: 33, 23
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi8
+  rotate: false
+  xy: 399, 85
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbi9
+  rotate: false
+  xy: 441, 220
+  size: 36, 22
+  orig: 36, 22
+  offset: 0, 0
+  index: -1
+penboss2_daiji_jinbidui
+  rotate: true
+  xy: 180, 40
+  size: 132, 45
+  orig: 132, 45
+  offset: 0, 0
+  index: -1
+penboss2_daiji_maohou
+  rotate: false
+  xy: 251, 119
+  size: 183, 65
+  orig: 183, 67
+  offset: 0, 2
+  index: -1
+penboss2_daiji_maoqian
+  rotate: true
+  xy: 2, 74
+  size: 188, 88
+  orig: 188, 93
+  offset: 0, 5
+  index: -1
+penboss2_daiji_penhou
+  rotate: true
+  xy: 92, 105
+  size: 157, 86
+  orig: 157, 86
+  offset: 0, 0
+  index: -1
+penboss2_daiji_penqian
+  rotate: true
+  xy: 364, 198
+  size: 157, 75
+  orig: 157, 88
+  offset: 0, 0
+  index: -1
+penboss2_daiji_shan
+  rotate: false
+  xy: 61, 33
+  size: 29, 39
+  orig: 29, 39
+  offset: 0, 0
+  index: -1
+penboss2_daiji_shenti
+  rotate: false
+  xy: 251, 357
+  size: 112, 152
+  orig: 112, 152
+  offset: 0, 0
+  index: -1
+penboss2_daiji_yan1
+  rotate: false
+  xy: 475, 470
+  size: 26, 39
+  orig: 26, 39
+  offset: 0, 0
+  index: -1
+penboss2_daiji_yan2
+  rotate: true
+  xy: 179, 11
+  size: 27, 41
+  orig: 27, 41
+  offset: 0, 0
+  index: -1
+penboss2_daiji_youbi
+  rotate: false
+  xy: 365, 376
+  size: 58, 37
+  orig: 58, 37
+  offset: 0, 0
+  index: -1
+penboss2_daiji_youshou
+  rotate: true
+  xy: 322, 33
+  size: 84, 75
+  orig: 84, 75
+  offset: 0, 0
+  index: -1
+penboss2_daiji_yshouzh1
+  rotate: true
+  xy: 299, 12
+  size: 22, 21
+  orig: 22, 21
+  offset: 0, 0
+  index: -1
+penboss2_daiji_yshouzhi2
+  rotate: false
+  xy: 322, 8
+  size: 41, 23
+  orig: 41, 23
+  offset: 0, 0
+  index: -1
+penboss2_daiji_zshouzhi
+  rotate: false
+  xy: 425, 379
+  size: 42, 34
+  orig: 42, 34
+  offset: 0, 0
+  index: -1
+penboss2_daiji_zuobi
+  rotate: true
+  xy: 441, 457
+  size: 52, 32
+  orig: 52, 32
+  offset: 0, 0
+  index: -1
+penboss2_daiji_zuoshou
+  rotate: false
+  xy: 180, 174
+  size: 69, 88
+  orig: 69, 88
+  offset: 0, 0
+  index: -1
+penboss2_die_baijiebu
+  rotate: true
+  xy: 399, 5
+  size: 78, 81
+  orig: 78, 83
+  offset: 0, 2
+  index: -1
+penboss2_die_hei
+  rotate: false
+  xy: 2, 9
+  size: 24, 11
+  orig: 24, 11
+  offset: 0, 0
+  index: -1
+penboss2_die_hei2
+  rotate: true
+  xy: 262, 9
+  size: 25, 35
+  orig: 25, 35
+  offset: 0, 0
+  index: -1
+penboss2_die_huang
+  rotate: false
+  xy: 441, 318
+  size: 23, 37
+  orig: 23, 37
+  offset: 0, 0
+  index: -1
+penboss2_die_lian
+  rotate: true
+  xy: 92, 15
+  size: 88, 85
+  orig: 88, 85
+  offset: 0, 0
+  index: -1
+penboss2_die_mao
+  rotate: true
+  xy: 251, 186
+  size: 169, 111
+  orig: 169, 111
+  offset: 0, 0
+  index: -1
+penboss2_die_youshou
+  rotate: false
+  xy: 227, 36
+  size: 93, 81
+  orig: 97, 81
+  offset: 4, 0
+  index: -1
+penboss2_die_zuoshou
+  rotate: true
+  xy: 365, 415
+  size: 94, 74
+  orig: 97, 74
+  offset: 0, 0
+  index: -1

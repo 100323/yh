@@ -1,0 +1,13 @@
+
+ycxsz_banner_diaoxiang3.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_banner_diaoxiang1
+  rotate: false
+  xy: 2, 2
+  size: 147, 139
+  orig: 147, 139
+  offset: 0, 0
+  index: -1

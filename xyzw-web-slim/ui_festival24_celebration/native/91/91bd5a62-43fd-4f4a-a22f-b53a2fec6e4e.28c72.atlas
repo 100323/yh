@@ -1,0 +1,160 @@
+
+znq25_qdy_ddh.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ddh_hl
+  rotate: false
+  xy: 212, 299
+  size: 107, 102
+  orig: 107, 102
+  offset: 0, 0
+  index: -1
+ddh_hr
+  rotate: false
+  xy: 2, 190
+  size: 144, 125
+  orig: 144, 125
+  offset: 0, 0
+  index: -1
+ddh_huzi
+  rotate: true
+  xy: 321, 279
+  size: 107, 132
+  orig: 107, 137
+  offset: 0, 5
+  index: -1
+ddh_jiaol
+  rotate: false
+  xy: 91, 462
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+ddh_jiaor
+  rotate: true
+  xy: 63, 410
+  size: 49, 70
+  orig: 49, 70
+  offset: 0, 0
+  index: -1
+ddh_mei
+  rotate: false
+  xy: 13, 472
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+ddh_qi2
+  rotate: true
+  xy: 148, 165
+  size: 112, 238
+  orig: 112, 245
+  offset: 0, 0
+  index: -1
+ddh_qi4
+  rotate: true
+  xy: 2, 317
+  size: 90, 208
+  orig: 91, 218
+  offset: 0, 1
+  index: -1
+ddh_qiu1
+  rotate: false
+  xy: 135, 410
+  size: 74, 49
+  orig: 74, 49
+  offset: 0, 0
+  index: -1
+ddh_qiu2
+  rotate: false
+  xy: 2, 414
+  size: 59, 47
+  orig: 59, 47
+  offset: 0, 0
+  index: -1
+ddh_qiu3
+  rotate: false
+  xy: 427, 450
+  size: 48, 43
+  orig: 48, 43
+  offset: 0, 0
+  index: -1
+ddh_qiu4
+  rotate: true
+  xy: 326, 458
+  size: 35, 53
+  orig: 35, 53
+  offset: 0, 0
+  index: -1
+ddh_qiu5
+  rotate: true
+  xy: 47, 463
+  size: 30, 42
+  orig: 30, 42
+  offset: 0, 0
+  index: -1
+ddh_sbl
+  rotate: false
+  xy: 270, 403
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+ddh_shen
+  rotate: true
+  xy: 2, 3
+  size: 160, 228
+  orig: 160, 228
+  offset: 0, 0
+  index: -1
+ddh_shoul
+  rotate: false
+  xy: 381, 456
+  size: 44, 37
+  orig: 44, 37
+  offset: 0, 0
+  index: -1
+ddh_shour
+  rotate: true
+  xy: 211, 409
+  size: 50, 57
+  orig: 50, 57
+  offset: 0, 0
+  index: -1
+ddh_weiba
+  rotate: false
+  xy: 336, 388
+  size: 74, 66
+  orig: 74, 66
+  offset: 0, 0
+  index: -1
+ddh_wq
+  rotate: false
+  xy: 232, 2
+  size: 275, 161
+  orig: 275, 161
+  offset: 0, 0
+  index: -1
+ddh_yan
+  rotate: false
+  xy: 286, 460
+  size: 38, 33
+  orig: 44, 39
+  offset: 4, 0
+  index: -1
+ddh_yy
+  rotate: false
+  xy: 129, 461
+  size: 155, 32
+  orig: 155, 32
+  offset: 0, 0
+  index: -1
+yz
+  rotate: true
+  xy: 2, 485
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,398 @@
+
+huatuo5.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 731, 297
+  size: 72, 71
+  orig: 72, 71
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 654, 372
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+huatuo5_arml1
+  rotate: false
+  xy: 350, 2
+  size: 68, 104
+  orig: 68, 104
+  offset: 0, 0
+  index: -1
+huatuo5_arml2
+  rotate: false
+  xy: 579, 415
+  size: 91, 95
+  orig: 91, 95
+  offset: 0, 0
+  index: -1
+huatuo5_armr
+  rotate: false
+  xy: 567, 5
+  size: 90, 124
+  orig: 90, 124
+  offset: 0, 0
+  index: -1
+huatuo5_attack1
+  rotate: false
+  xy: 705, 6
+  size: 29, 41
+  orig: 29, 41
+  offset: 0, 0
+  index: -1
+huatuo5_beard
+  rotate: false
+  xy: 430, 371
+  size: 99, 139
+  orig: 99, 139
+  offset: 0, 0
+  index: -1
+huatuo5_body
+  rotate: true
+  xy: 721, 53
+  size: 81, 70
+  orig: 81, 70
+  offset: 0, 0
+  index: -1
+huatuo5_eyebrow
+  rotate: true
+  xy: 736, 21
+  size: 30, 67
+  orig: 30, 67
+  offset: 0, 0
+  index: -1
+huatuo5_eyewhite
+  rotate: false
+  xy: 142, 2
+  size: 21, 28
+  orig: 21, 28
+  offset: 0, 0
+  index: -1
+huatuo5_footl
+  rotate: false
+  xy: 70, 8
+  size: 34, 21
+  orig: 34, 21
+  offset: 0, 0
+  index: -1
+huatuo5_footr
+  rotate: false
+  xy: 106, 8
+  size: 34, 21
+  orig: 34, 21
+  offset: 0, 0
+  index: -1
+huatuo5_hair
+  rotate: false
+  xy: 479, 5
+  size: 86, 113
+  orig: 86, 113
+  offset: 0, 0
+  index: -1
+huatuo5_handl1
+  rotate: false
+  xy: 574, 371
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+huatuo5_handl2
+  rotate: false
+  xy: 659, 2
+  size: 44, 45
+  orig: 44, 45
+  offset: 0, 0
+  index: -1
+huatuo5_handr
+  rotate: false
+  xy: 531, 371
+  size: 41, 35
+  orig: 41, 35
+  offset: 0, 0
+  index: -1
+huatuo5_hat
+  rotate: false
+  xy: 138, 32
+  size: 43, 56
+  orig: 43, 56
+  offset: 0, 0
+  index: -1
+huatuo5_head
+  rotate: false
+  xy: 522, 131
+  size: 99, 124
+  orig: 99, 124
+  offset: 0, 0
+  index: -1
+huatuo5_skilla1
+  rotate: true
+  xy: 641, 279
+  size: 90, 88
+  orig: 90, 88
+  offset: 0, 0
+  index: -1
+huatuo5_skillb1
+  rotate: false
+  xy: 138, 186
+  size: 52, 42
+  orig: 55, 44
+  offset: 1, 1
+  index: -1
+huatuo5_skillb2
+  rotate: false
+  xy: 138, 90
+  size: 51, 41
+  orig: 55, 44
+  offset: 2, 2
+  index: -1
+huatuo5_skillc
+  rotate: false
+  xy: 131, 247
+  size: 67, 263
+  orig: 67, 263
+  offset: 0, 0
+  index: -1
+huatuo5_skilll1
+  rotate: true
+  xy: 200, 341
+  size: 169, 109
+  orig: 169, 109
+  offset: 0, 0
+  index: -1
+huatuo5_skilll10
+  rotate: true
+  xy: 131, 230
+  size: 15, 60
+  orig: 15, 60
+  offset: 0, 0
+  index: -1
+huatuo5_skilll2
+  rotate: true
+  xy: 697, 371
+  size: 47, 45
+  orig: 47, 45
+  offset: 0, 0
+  index: -1
+huatuo5_skilll3
+  rotate: true
+  xy: 666, 136
+  size: 30, 76
+  orig: 30, 76
+  offset: 0, 0
+  index: -1
+huatuo5_skilll4
+  rotate: true
+  xy: 583, 258
+  size: 18, 58
+  orig: 18, 58
+  offset: 0, 0
+  index: -1
+huatuo5_skilll5
+  rotate: false
+  xy: 609, 371
+  size: 43, 42
+  orig: 43, 42
+  offset: 0, 0
+  index: -1
+huatuo5_skilll6
+  rotate: false
+  xy: 341, 249
+  size: 126, 117
+  orig: 126, 117
+  offset: 0, 0
+  index: -1
+huatuo5_skilll7
+  rotate: false
+  xy: 26, 4
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+huatuo5_skilll8
+  rotate: false
+  xy: 531, 408
+  size: 46, 102
+  orig: 46, 102
+  offset: 0, 0
+  index: -1
+huatuo5_skilll9
+  rotate: true
+  xy: 623, 134
+  size: 32, 41
+  orig: 32, 41
+  offset: 0, 0
+  index: -1
+huatuo5_skills1
+  rotate: true
+  xy: 193, 6
+  size: 239, 155
+  orig: 239, 155
+  offset: 0, 0
+  index: -1
+huatuo5_skills2
+  rotate: false
+  xy: 200, 247
+  size: 139, 92
+  orig: 139, 92
+  offset: 0, 0
+  index: -1
+huatuo5_skills3
+  rotate: true
+  xy: 2, 31
+  size: 197, 134
+  orig: 197, 134
+  offset: 0, 0
+  index: -1
+huatuo5_skills4
+  rotate: true
+  xy: 350, 108
+  size: 139, 74
+  orig: 142, 76
+  offset: 2, 1
+  index: -1
+huatuo5_skills5
+  rotate: true
+  xy: 311, 368
+  size: 142, 117
+  orig: 145, 120
+  offset: 1, 1
+  index: -1
+huatuo5_skills6
+  rotate: true
+  xy: 659, 49
+  size: 83, 60
+  orig: 86, 62
+  offset: 2, 1
+  index: -1
+huatuo5_tao
+  rotate: true
+  xy: 672, 420
+  size: 90, 88
+  orig: 90, 88
+  offset: 0, 0
+  index: -1
+huatuo5_taolight1
+  rotate: false
+  xy: 762, 440
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+huatuo5_taolight2
+  rotate: false
+  xy: 469, 257
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+huatuo5_wbody
+  rotate: false
+  xy: 2, 230
+  size: 127, 280
+  orig: 127, 280
+  offset: 0, 0
+  index: -1
+huatuo5_weye1
+  rotate: false
+  xy: 183, 26
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+huatuo5_whl1
+  rotate: false
+  xy: 142, 133
+  size: 48, 51
+  orig: 48, 51
+  offset: 0, 0
+  index: -1
+huatuo5_whl2
+  rotate: false
+  xy: 623, 168
+  size: 88, 88
+  orig: 88, 88
+  offset: 0, 0
+  index: -1
+huatuo5_wline1
+  rotate: false
+  xy: 184, 6
+  size: 5, 18
+  orig: 5, 18
+  offset: 0, 0
+  index: -1
+huatuo5_wline2
+  rotate: false
+  xy: 183, 34
+  size: 6, 43
+  orig: 6, 43
+  offset: 0, 0
+  index: -1
+huatuo5_wline3
+  rotate: false
+  xy: 2, 2
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+huatuo5_wline4
+  rotate: false
+  xy: 48, 6
+  size: 20, 23
+  orig: 20, 23
+  offset: 0, 0
+  index: -1
+huatuo5_ws3
+  rotate: true
+  xy: 426, 120
+  size: 127, 94
+  orig: 127, 94
+  offset: 0, 0
+  index: -1
+huatuo5_xy1
+  rotate: true
+  xy: 762, 373
+  size: 65, 62
+  orig: 70, 68
+  offset: 3, 3
+  index: -1
+huatuo5_xy2
+  rotate: true
+  xy: 583, 278
+  size: 91, 56
+  orig: 99, 62
+  offset: 4, 3
+  index: -1
+huatuo5_xy3
+  rotate: true
+  xy: 713, 197
+  size: 80, 64
+  orig: 89, 69
+  offset: 6, 2
+  index: -1
+huatuo_eye
+  rotate: false
+  xy: 183, 79
+  size: 7, 9
+  orig: 7, 11
+  offset: 0, 0
+  index: -1
+huatuo_tail
+  rotate: true
+  xy: 420, 4
+  size: 102, 57
+  orig: 102, 57
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 165, 3
+  size: 21, 17
+  orig: 22, 22
+  offset: 0, 2
+  index: -1

@@ -1,0 +1,20 @@
+
+ycxsz_jlb_fire.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 42
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ycxsz_jlb_huo2
+  rotate: false
+  xy: 36, 2
+  size: 368, 72
+  orig: 368, 72
+  offset: 0, 0
+  index: -1

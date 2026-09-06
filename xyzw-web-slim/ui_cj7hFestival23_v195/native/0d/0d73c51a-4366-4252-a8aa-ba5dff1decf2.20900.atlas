@@ -1,0 +1,20 @@
+
+zglx25_cj_guangbiao.png
+size: 209,110
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_zhunxing1
+  rotate: true
+  xy: 111, 6
+  size: 102, 96
+  orig: 103, 98
+  offset: 0, 1
+  index: -1
+choujiang_zhunxing2
+  rotate: false
+  xy: 2, 2
+  size: 107, 106
+  orig: 109, 107
+  offset: 1, 0
+  index: -1

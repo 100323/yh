@@ -1,0 +1,104 @@
+
+yjxt_postman.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yjxt_dot
+  rotate: false
+  xy: 492, 247
+  size: 15, 14
+  orig: 26, 26
+  offset: 6, 6
+  index: -1
+yjxt_img_mask
+  rotate: false
+  xy: 480, 126
+  size: 10, 157
+  orig: 10, 157
+  offset: 0, 0
+  index: -1
+yjxt_light
+  rotate: false
+  xy: 171, 162
+  size: 171, 121
+  orig: 171, 128
+  offset: 0, 7
+  index: -1
+yjxt_postman_arml
+  rotate: true
+  xy: 344, 153
+  size: 130, 134
+  orig: 130, 134
+  offset: 0, 0
+  index: -1
+yjxt_postman_arml2
+  rotate: true
+  xy: 461, 26
+  size: 98, 42
+  orig: 98, 42
+  offset: 0, 0
+  index: -1
+yjxt_postman_armr
+  rotate: true
+  xy: 2, 46
+  size: 72, 126
+  orig: 72, 126
+  offset: 0, 0
+  index: -1
+yjxt_postman_body
+  rotate: false
+  xy: 171, 42
+  size: 140, 118
+  orig: 140, 118
+  offset: 0, 0
+  index: -1
+yjxt_postman_box
+  rotate: false
+  xy: 2, 120
+  size: 167, 163
+  orig: 167, 163
+  offset: 0, 0
+  index: -1
+yjxt_postman_fish
+  rotate: false
+  xy: 130, 33
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+yjxt_postman_fish2
+  rotate: true
+  xy: 492, 263
+  size: 20, 16
+  orig: 20, 16
+  offset: 0, 0
+  index: -1
+yjxt_postman_fish3
+  rotate: false
+  xy: 130, 75
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1
+yjxt_postman_head
+  rotate: false
+  xy: 337, 41
+  size: 122, 110
+  orig: 122, 110
+  offset: 0, 0
+  index: -1
+yjxt_postman_neck
+  rotate: true
+  xy: 2, 2
+  size: 42, 52
+  orig: 42, 52
+  offset: 0, 0
+  index: -1
+yjxt_postman_tie
+  rotate: true
+  xy: 313, 139
+  size: 21, 22
+  orig: 21, 22
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,132 @@
+
+xswj_changjing.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 939, 742
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xswj_cj_dian
+  rotate: true
+  xy: 939, 788
+  size: 69, 34
+  orig: 69, 34
+  offset: 0, 0
+  index: -1
+xswj_cj_guoh
+  rotate: false
+  xy: 2, 480
+  size: 564, 533
+  orig: 564, 533
+  offset: 0, 0
+  index: -1
+xswj_cj_guoq
+  rotate: false
+  xy: 2, 187
+  size: 564, 291
+  orig: 564, 293
+  offset: 0, 1
+  index: -1
+xswj_cj_gy1
+  rotate: false
+  xy: 2, 24
+  size: 533, 161
+  orig: 533, 161
+  offset: 0, 0
+  index: -1
+xswj_cj_gy2
+  rotate: true
+  xy: 568, 449
+  size: 564, 150
+  orig: 564, 150
+  offset: 0, 0
+  index: -1
+xswj_cj_huoxing
+  rotate: false
+  xy: 939, 698
+  size: 33, 42
+  orig: 33, 42
+  offset: 0, 0
+  index: -1
+xswj_cj_pao1
+  rotate: false
+  xy: 939, 859
+  size: 60, 50
+  orig: 60, 50
+  offset: 0, 0
+  index: -1
+xswj_cj_pao2
+  rotate: true
+  xy: 939, 911
+  size: 102, 80
+  orig: 102, 80
+  offset: 0, 0
+  index: -1
+xswj_cj_qi1
+  rotate: false
+  xy: 836, 234
+  size: 66, 66
+  orig: 67, 68
+  offset: 0, 1
+  index: -1
+xswj_cj_xiaopao
+  rotate: true
+  xy: 927, 239
+  size: 377, 92
+  orig: 377, 92
+  offset: 0, 0
+  index: -1
+xswj_cj_you1
+  rotate: true
+  xy: 845, 618
+  size: 395, 92
+  orig: 395, 92
+  offset: 0, 0
+  index: -1
+xswj_cj_you2
+  rotate: true
+  xy: 720, 618
+  size: 395, 123
+  orig: 395, 123
+  offset: 0, 0
+  index: -1
+xswj_cj_you3
+  rotate: true
+  xy: 568, 187
+  size: 260, 168
+  orig: 260, 168
+  offset: 0, 0
+  index: -1
+xswj_cj_you4
+  rotate: false
+  xy: 537, 2
+  size: 241, 183
+  orig: 241, 183
+  offset: 0, 0
+  index: -1
+xswj_cj_you5
+  rotate: true
+  xy: 738, 302
+  size: 314, 187
+  orig: 314, 187
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 738, 187
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 738, 204
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1

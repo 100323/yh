@@ -1,0 +1,27 @@
+
+taishici6_attack_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taishici6_pg_guang2
+  rotate: false
+  xy: 2, 2
+  size: 338, 185
+  orig: 338, 185
+  offset: 0, 0
+  index: -1
+taishici6_pg_guang3
+  rotate: false
+  xy: 105, 189
+  size: 202, 132
+  orig: 202, 132
+  offset: 0, 0
+  index: -1
+taishici6_pg_xing1
+  rotate: false
+  xy: 2, 232
+  size: 101, 89
+  orig: 101, 89
+  offset: 0, 0
+  index: -1

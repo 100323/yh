@@ -1,0 +1,76 @@
+
+zhugeliang6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 166, 60
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+zhugeliang6_skilla3
+  rotate: true
+  xy: 2, 4
+  size: 85, 37
+  orig: 85, 37
+  offset: 0, 0
+  index: -1
+zhugeliang6_skillb1
+  rotate: false
+  xy: 2, 91
+  size: 184, 202
+  orig: 187, 206
+  offset: 2, 1
+  index: -1
+zhugeliang6_skillb2
+  rotate: false
+  xy: 197, 2
+  size: 110, 117
+  orig: 112, 119
+  offset: 1, 1
+  index: -1
+zhugeliang6_skillb3
+  rotate: true
+  xy: 88, 307
+  size: 197, 138
+  orig: 201, 142
+  offset: 2, 2
+  index: -1
+zhugeliang6_skillf1
+  rotate: true
+  xy: 41, 16
+  size: 73, 123
+  orig: 73, 123
+  offset: 0, 0
+  index: -1
+zhugeliang6_skillf2
+  rotate: true
+  xy: 228, 363
+  size: 141, 95
+  orig: 148, 95
+  offset: 0, 0
+  index: -1
+zhugeliang6_skillf3
+  rotate: false
+  xy: 188, 121
+  size: 114, 184
+  orig: 114, 184
+  offset: 0, 0
+  index: -1
+zhugeliang6_skills1
+  rotate: true
+  xy: 88, 298
+  size: 7, 45
+  orig: 7, 45
+  offset: 0, 0
+  index: -1
+zhugeliang6_skills2
+  rotate: false
+  xy: 2, 295
+  size: 84, 209
+  orig: 85, 209
+  offset: 0, 0
+  index: -1

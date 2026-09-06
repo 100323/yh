@@ -1,0 +1,111 @@
+
+simayi9_skill_hit2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 435, 240
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+simayi9_skill2_bz
+  rotate: false
+  xy: 338, 80
+  size: 114, 61
+  orig: 114, 61
+  offset: 0, 0
+  index: -1
+simayi9_skill2_ks1
+  rotate: true
+  xy: 338, 143
+  size: 110, 95
+  orig: 110, 95
+  offset: 0, 0
+  index: -1
+simayi9_skill2_ksb
+  rotate: true
+  xy: 250, 80
+  size: 161, 86
+  orig: 161, 86
+  offset: 0, 0
+  index: -1
+simayi9_skill2_lizi
+  rotate: true
+  xy: 429, 288
+  size: 75, 62
+  orig: 75, 62
+  offset: 0, 0
+  index: -1
+simayi9_skill2_ql1
+  rotate: false
+  xy: 270, 255
+  size: 102, 106
+  orig: 102, 106
+  offset: 0, 0
+  index: -1
+simayi9_skill2_ql2
+  rotate: true
+  xy: 358, 439
+  size: 70, 152
+  orig: 70, 152
+  offset: 0, 0
+  index: -1
+simayi9_skill2_qx
+  rotate: false
+  xy: 396, 5
+  size: 79, 73
+  orig: 79, 73
+  offset: 0, 0
+  index: -1
+simayi9_skill2_she
+  rotate: true
+  xy: 2, 14
+  size: 227, 246
+  orig: 230, 246
+  offset: 3, 0
+  index: -1
+simayi9_skill2_te1
+  rotate: true
+  xy: 250, 2
+  size: 76, 144
+  orig: 76, 144
+  offset: 0, 0
+  index: -1
+simayi9_skill2_twx
+  rotate: true
+  xy: 358, 365
+  size: 12, 89
+  orig: 12, 89
+  offset: 0, 0
+  index: -1
+simayi9_skill2_xq
+  rotate: false
+  xy: 2, 243
+  size: 266, 266
+  orig: 266, 266
+  offset: 0, 0
+  index: -1
+simayi9_skill2_yan
+  rotate: true
+  xy: 374, 261
+  size: 102, 53
+  orig: 102, 53
+  offset: 0, 0
+  index: -1
+simayi9_skill2_yan2
+  rotate: false
+  xy: 358, 379
+  size: 148, 58
+  orig: 148, 58
+  offset: 0, 0
+  index: -1
+simayi9_skill2_yantw
+  rotate: true
+  xy: 270, 363
+  size: 146, 86
+  orig: 146, 86
+  offset: 0, 0
+  index: -1

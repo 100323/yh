@@ -1,0 +1,48 @@
+
+daqiao5_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TX_10
+  rotate: false
+  xy: 309, 71
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+TX_11
+  rotate: false
+  xy: 205, 139
+  size: 104, 114
+  orig: 104, 114
+  offset: 0, 0
+  index: -1
+TX_7
+  rotate: true
+  xy: 2, 17
+  size: 236, 201
+  orig: 236, 201
+  offset: 0, 0
+  index: -1
+daqiao5_tx_attact1
+  rotate: false
+  xy: 2, 5
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+daqiao5_tx_attact3
+  rotate: true
+  xy: 205, 2
+  size: 31, 23
+  orig: 31, 23
+  offset: 0, 0
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 205, 35
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1

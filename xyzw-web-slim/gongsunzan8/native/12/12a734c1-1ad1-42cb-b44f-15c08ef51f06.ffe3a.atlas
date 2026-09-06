@@ -1,0 +1,48 @@
+
+gongsunzan8_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan8_skill_bdzhua1
+  rotate: true
+  xy: 283, 0
+  size: 75, 218
+  orig: 75, 218
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill_bdzhua2
+  rotate: true
+  xy: 0, 24
+  size: 74, 281
+  orig: 74, 281
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill_bdzhua3
+  rotate: true
+  xy: 119, 100
+  size: 71, 206
+  orig: 71, 206
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill_qi1
+  rotate: false
+  xy: 46, 109
+  size: 71, 62
+  orig: 71, 62
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill_qi2
+  rotate: false
+  xy: 327, 77
+  size: 162, 94
+  orig: 162, 94
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 0, 127
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

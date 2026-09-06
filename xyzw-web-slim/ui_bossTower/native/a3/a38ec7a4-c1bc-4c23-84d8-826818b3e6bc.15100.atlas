@@ -1,0 +1,55 @@
+
+xxwky_quantao2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xxwky_quantao_g1
+  rotate: false
+  xy: 393, 421
+  size: 54, 57
+  orig: 54, 57
+  offset: 0, 0
+  index: -1
+xxwky_quantao_g2
+  rotate: true
+  xy: 386, 218
+  size: 120, 81
+  orig: 120, 81
+  offset: 0, 0
+  index: -1
+xxwky_quantao_g3
+  rotate: true
+  xy: 2, 2
+  size: 194, 246
+  orig: 194, 246
+  offset: 0, 0
+  index: -1
+xxwky_quantao_quan1
+  rotate: false
+  xy: 265, 340
+  size: 126, 138
+  orig: 126, 138
+  offset: 0, 0
+  index: -1
+xxwky_quantao_zha1
+  rotate: false
+  xy: 250, 6
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+xxwky_quantao_zha2
+  rotate: false
+  xy: 2, 198
+  size: 261, 280
+  orig: 261, 280
+  offset: 0, 0
+  index: -1
+xxwky_quantao_zha3
+  rotate: false
+  xy: 265, 227
+  size: 119, 111
+  orig: 119, 111
+  offset: 0, 0
+  index: -1

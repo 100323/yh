@@ -1,0 +1,13 @@
+
+bosstower_boss2_attack_loop.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zidan
+  rotate: false
+  xy: 2, 2
+  size: 115, 121
+  orig: 116, 127
+  offset: 1, 5
+  index: -1

@@ -1,0 +1,76 @@
+
+axwq_xyht_hit.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_huatong_effectb1
+  rotate: true
+  xy: 445, 80
+  size: 69, 97
+  orig: 74, 97
+  offset: 3, 0
+  index: -1
+axwq_huatong_effectb2
+  rotate: true
+  xy: 262, 2
+  size: 67, 97
+  orig: 67, 97
+  offset: 0, 0
+  index: -1
+axwq_huatong_effectb3
+  rotate: true
+  xy: 361, 2
+  size: 67, 95
+  orig: 67, 95
+  offset: 0, 0
+  index: -1
+axwq_huatong_effectb4
+  rotate: false
+  xy: 445, 151
+  size: 75, 102
+  orig: 75, 102
+  offset: 0, 0
+  index: -1
+axwq_huatong_effectb5
+  rotate: true
+  xy: 2, 2
+  size: 10, 19
+  orig: 12, 22
+  offset: 2, 0
+  index: -1
+axwq_huatong_effectc1
+  rotate: true
+  xy: 524, 26
+  size: 52, 50
+  orig: 52, 50
+  offset: 0, 0
+  index: -1
+axwq_huatong_effectc2
+  rotate: false
+  xy: 262, 71
+  size: 181, 182
+  orig: 181, 182
+  offset: 0, 0
+  index: -1
+axwq_huatong_effectc3
+  rotate: false
+  xy: 2, 14
+  size: 258, 239
+  orig: 258, 239
+  offset: 0, 0
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 458, 14
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 524, 8
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

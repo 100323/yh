@@ -1,0 +1,118 @@
+
+zhaoyun8_skill_line2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 505, 704
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 505, 656
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 553, 686
+  size: 16, 11
+  orig: 26, 26
+  offset: 8, 4
+  index: -1
+zhaoyun8_skill2_effectlong1
+  rotate: true
+  xy: 898, 727
+  size: 283, 84
+  orig: 283, 84
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectlong2
+  rotate: true
+  xy: 619, 611
+  size: 399, 277
+  orig: 399, 277
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectq
+  rotate: true
+  xy: 2, 473
+  size: 313, 271
+  orig: 313, 271
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectr1
+  rotate: true
+  xy: 2, 144
+  size: 327, 266
+  orig: 327, 266
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectr2
+  rotate: true
+  xy: 505, 313
+  size: 296, 266
+  orig: 296, 266
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects1
+  rotate: true
+  xy: 347, 52
+  size: 282, 62
+  orig: 282, 62
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects2
+  rotate: true
+  xy: 773, 321
+  size: 288, 249
+  orig: 288, 249
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects3
+  rotate: true
+  xy: 123, 2
+  size: 140, 34
+  orig: 144, 36
+  offset: 2, 1
+  index: -1
+zhaoyun8_skill2_effects4
+  rotate: false
+  xy: 2, 788
+  size: 615, 222
+  orig: 615, 222
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects5
+  rotate: true
+  xy: 275, 336
+  size: 450, 228
+  orig: 450, 228
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectsd1
+  rotate: true
+  xy: 2, 25
+  size: 117, 119
+  orig: 117, 119
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectsd2
+  rotate: true
+  xy: 411, 118
+  size: 216, 85
+  orig: 216, 85
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectsd3
+  rotate: true
+  xy: 270, 52
+  size: 282, 75
+  orig: 282, 75
+  offset: 0, 0
+  index: -1

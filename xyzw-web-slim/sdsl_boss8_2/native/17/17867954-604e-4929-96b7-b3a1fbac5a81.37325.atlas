@@ -1,0 +1,48 @@
+
+sdsl_boss8_2_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 53
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_1
+  rotate: false
+  xy: 144, 2
+  size: 112, 77
+  orig: 112, 77
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_2
+  rotate: true
+  xy: 302, 36
+  size: 153, 107
+  orig: 153, 107
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_3
+  rotate: false
+  xy: 144, 81
+  size: 156, 108
+  orig: 156, 108
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_4
+  rotate: false
+  xy: 2, 78
+  size: 140, 111
+  orig: 140, 111
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 27, 65
+  size: 11, 10
+  orig: 13, 13
+  offset: 1, 1
+  index: -1

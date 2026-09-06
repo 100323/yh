@@ -1,0 +1,83 @@
+
+sqhd26_toupiao2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 74, 67
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sqhd26_tp_dz1
+  rotate: false
+  xy: 2, 40
+  size: 70, 85
+  orig: 72, 88
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua1
+  rotate: true
+  xy: 91, 3
+  size: 36, 30
+  orig: 38, 32
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua2
+  rotate: false
+  xy: 2, 3
+  size: 42, 35
+  orig: 44, 37
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua3
+  rotate: false
+  xy: 104, 42
+  size: 20, 23
+  orig: 22, 25
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua4
+  rotate: true
+  xy: 126, 49
+  size: 16, 14
+  orig: 18, 17
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua5
+  rotate: true
+  xy: 46, 12
+  size: 26, 43
+  orig: 28, 45
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua6
+  rotate: false
+  xy: 123, 21
+  size: 18, 19
+  orig: 20, 21
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua7
+  rotate: true
+  xy: 123, 2
+  size: 17, 19
+  orig: 19, 21
+  offset: 1, 1
+  index: -1
+sqhd26_tp_hua8
+  rotate: false
+  xy: 74, 41
+  size: 28, 24
+  orig: 30, 26
+  offset: 1, 1
+  index: -1
+sqhd26_tp_xing1
+  rotate: false
+  xy: 134, 69
+  size: 44, 56
+  orig: 47, 59
+  offset: 2, 2
+  index: -1

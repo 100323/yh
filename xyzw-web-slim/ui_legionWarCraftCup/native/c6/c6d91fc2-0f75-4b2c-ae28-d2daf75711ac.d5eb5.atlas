@@ -1,0 +1,97 @@
+
+ycxsz_banner4.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+banner4_tg_guang1
+  rotate: true
+  xy: 2, 478
+  size: 10, 93
+  orig: 10, 93
+  offset: 0, 0
+  index: -1
+banner4_tg_guang2
+  rotate: true
+  xy: 285, 433
+  size: 55, 172
+  orig: 55, 172
+  offset: 0, 0
+  index: -1
+banner4_tg_guang3
+  rotate: true
+  xy: 97, 476
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1
+banner4_tg_guang4
+  rotate: true
+  xy: 776, 402
+  size: 86, 218
+  orig: 86, 218
+  offset: 0, 0
+  index: -1
+banner4_tg_guang5
+  rotate: true
+  xy: 459, 419
+  size: 69, 193
+  orig: 69, 193
+  offset: 0, 0
+  index: -1
+banner4_tg_guang6
+  rotate: true
+  xy: 2, 342
+  size: 113, 244
+  orig: 113, 244
+  offset: 0, 0
+  index: -1
+banner4_tg_guang7
+  rotate: true
+  xy: 114, 473
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
+banner4_tg_hg1
+  rotate: false
+  xy: 248, 281
+  size: 314, 136
+  orig: 314, 136
+  offset: 0, 0
+  index: -1
+banner4_tg_hg2
+  rotate: false
+  xy: 564, 246
+  size: 350, 154
+  orig: 350, 154
+  offset: 0, 0
+  index: -1
+banner4_tg_yun
+  rotate: false
+  xy: 2, 2
+  size: 691, 242
+  orig: 691, 242
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 134, 462
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+ycxsz_banner_zz
+  rotate: false
+  xy: 654, 419
+  size: 120, 69
+  orig: 120, 69
+  offset: 0, 0
+  index: -1
+ycxsz_yg_zz1
+  rotate: true
+  xy: 162, 457
+  size: 31, 121
+  orig: 31, 121
+  offset: 0, 0
+  index: -1

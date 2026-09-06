@@ -1,0 +1,20 @@
+
+zxc_dialogue_bubble.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zxc_dialogue_bubble1
+  rotate: false
+  xy: 107, 2
+  size: 103, 37
+  orig: 103, 37
+  offset: 0, 0
+  index: -1
+zxc_dialogue_bubble2
+  rotate: false
+  xy: 2, 2
+  size: 103, 37
+  orig: 103, 37
+  offset: 0, 0
+  index: -1

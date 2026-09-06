@@ -1,0 +1,20 @@
+
+sdyl_hdlp_huoqiu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_lpb_hq1
+  rotate: false
+  xy: 2, 72
+  size: 119, 118
+  orig: 119, 118
+  offset: 0, 0
+  index: -1
+sdyl_lpb_hq2
+  rotate: true
+  xy: 2, 2
+  size: 68, 158
+  orig: 68, 158
+  offset: 0, 0
+  index: -1

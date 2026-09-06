@@ -1,0 +1,62 @@
+
+wyhd25_xcjhd_bj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xcjhd_bj
+  rotate: false
+  xy: 2, 9
+  size: 316, 443
+  orig: 316, 443
+  offset: 0, 0
+  index: -1
+xcjhd_ls1
+  rotate: true
+  xy: 320, 381
+  size: 71, 182
+  orig: 71, 182
+  offset: 0, 0
+  index: -1
+xcjhd_shui1
+  rotate: false
+  xy: 320, 98
+  size: 139, 64
+  orig: 140, 65
+  offset: 0, 1
+  index: -1
+xcjhd_shui2
+  rotate: false
+  xy: 407, 15
+  size: 83, 81
+  orig: 83, 83
+  offset: 0, 1
+  index: -1
+xcjhd_shui3
+  rotate: true
+  xy: 320, 267
+  size: 112, 176
+  orig: 112, 176
+  offset: 0, 0
+  index: -1
+xcjhd_shui4
+  rotate: true
+  xy: 320, 2
+  size: 94, 85
+  orig: 95, 85
+  offset: 1, 0
+  index: -1
+xcjhd_shui5
+  rotate: true
+  xy: 320, 164
+  size: 101, 145
+  orig: 101, 146
+  offset: 0, 1
+  index: -1
+zz
+  rotate: false
+  xy: 467, 158
+  size: 16, 107
+  orig: 16, 107
+  offset: 0, 0
+  index: -1

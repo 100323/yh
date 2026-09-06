@@ -1,0 +1,118 @@
+
+sqhd25w1_bosszhan.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taiyi_bi_1
+  rotate: true
+  xy: 251, 15
+  size: 62, 42
+  orig: 62, 42
+  offset: 0, 0
+  index: -1
+taiyi_bi_2
+  rotate: true
+  xy: 334, 36
+  size: 41, 35
+  orig: 44, 35
+  offset: 3, 0
+  index: -1
+taiyi_bi_3
+  rotate: false
+  xy: 324, 2
+  size: 26, 31
+  orig: 26, 31
+  offset: 0, 0
+  index: -1
+taiyi_bi_4
+  rotate: true
+  xy: 324, 79
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+taiyi_bi_5
+  rotate: true
+  xy: 2, 79
+  size: 172, 270
+  orig: 172, 270
+  offset: 0, 0
+  index: -1
+taiyi_bi_6
+  rotate: false
+  xy: 274, 115
+  size: 131, 136
+  orig: 131, 136
+  offset: 0, 0
+  index: -1
+taiyi_bi_7
+  rotate: true
+  xy: 118, 16
+  size: 61, 52
+  orig: 61, 52
+  offset: 0, 0
+  index: -1
+taiyi_bi_8
+  rotate: false
+  xy: 172, 5
+  size: 40, 72
+  orig: 41, 72
+  offset: 1, 0
+  index: -1
+taiyi_bi_9
+  rotate: true
+  xy: 2, 2
+  size: 75, 57
+  orig: 75, 57
+  offset: 0, 0
+  index: -1
+taiyi_moshui
+  rotate: false
+  xy: 61, 2
+  size: 10, 11
+  orig: 11, 12
+  offset: 0, 1
+  index: -1
+taiyi_yu_1
+  rotate: true
+  xy: 61, 15
+  size: 62, 55
+  orig: 62, 55
+  offset: 0, 0
+  index: -1
+taiyi_yu_2
+  rotate: true
+  xy: 354, 79
+  size: 34, 23
+  orig: 34, 23
+  offset: 0, 0
+  index: -1
+taiyi_yu_3
+  rotate: true
+  xy: 214, 2
+  size: 75, 35
+  orig: 75, 35
+  offset: 0, 0
+  index: -1
+taiyi_yu_5
+  rotate: false
+  xy: 295, 35
+  size: 37, 42
+  orig: 39, 42
+  offset: 2, 0
+  index: -1
+taiyi_yu_7
+  rotate: true
+  xy: 274, 79
+  size: 34, 48
+  orig: 34, 48
+  offset: 0, 0
+  index: -1
+taiyi_yu_8
+  rotate: false
+  xy: 295, 3
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1

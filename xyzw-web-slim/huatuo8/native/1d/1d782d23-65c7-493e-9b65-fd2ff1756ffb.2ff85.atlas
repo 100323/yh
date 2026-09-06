@@ -1,0 +1,34 @@
+
+huatuo8_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo8_pg_zidan1
+  rotate: false
+  xy: 309, 21
+  size: 143, 65
+  orig: 143, 65
+  offset: 0, 0
+  index: -1
+huatuo8_pg_zidan2
+  rotate: false
+  xy: 2, 11
+  size: 305, 75
+  orig: 305, 75
+  offset: 0, 0
+  index: -1
+pglz1
+  rotate: true
+  xy: 454, 13
+  size: 73, 50
+  orig: 73, 50
+  offset: 0, 0
+  index: -1
+pglz2
+  rotate: false
+  xy: 309, 2
+  size: 24, 17
+  orig: 24, 17
+  offset: 0, 0
+  index: -1

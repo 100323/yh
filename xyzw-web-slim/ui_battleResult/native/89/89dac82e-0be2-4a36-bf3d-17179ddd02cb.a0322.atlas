@@ -1,0 +1,90 @@
+
+js_ty_lost.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_ty_lose_bg
+  rotate: true
+  xy: 264, 115
+  size: 384, 191
+  orig: 384, 191
+  offset: 0, 0
+  index: -1
+js_ty_lose_cb
+  rotate: false
+  xy: 2, 170
+  size: 260, 329
+  orig: 260, 338
+  offset: 0, 9
+  index: -1
+js_ty_lose_fish1
+  rotate: false
+  xy: 360, 52
+  size: 61, 61
+  orig: 61, 65
+  offset: 0, 2
+  index: -1
+js_ty_lose_fish2
+  rotate: true
+  xy: 457, 186
+  size: 42, 52
+  orig: 43, 54
+  offset: 0, 1
+  index: -1
+js_ty_lose_fish3
+  rotate: false
+  xy: 457, 230
+  size: 48, 55
+  orig: 52, 62
+  offset: 3, 7
+  index: -1
+js_ty_lose_fish4
+  rotate: false
+  xy: 457, 125
+  size: 35, 59
+  orig: 41, 60
+  offset: 0, 1
+  index: -1
+js_ty_lose_fish5
+  rotate: true
+  xy: 457, 287
+  size: 96, 41
+  orig: 102, 53
+  offset: 0, 9
+  index: -1
+js_ty_lose_fish6
+  rotate: false
+  xy: 2, 8
+  size: 137, 160
+  orig: 139, 160
+  offset: 2, 0
+  index: -1
+js_ty_lose_t1
+  rotate: false
+  xy: 263, 2
+  size: 95, 111
+  orig: 95, 111
+  offset: 0, 0
+  index: -1
+js_ty_lose_t2
+  rotate: true
+  xy: 141, 79
+  size: 89, 120
+  orig: 89, 120
+  offset: 0, 0
+  index: -1
+js_ty_lose_t3
+  rotate: false
+  xy: 457, 385
+  size: 53, 114
+  orig: 53, 114
+  offset: 0, 0
+  index: -1
+js_ty_lose_t4
+  rotate: true
+  xy: 141, 22
+  size: 55, 94
+  orig: 55, 94
+  offset: 0, 0
+  index: -1

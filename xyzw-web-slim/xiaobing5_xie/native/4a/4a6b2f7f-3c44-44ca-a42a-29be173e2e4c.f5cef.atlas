@@ -1,0 +1,104 @@
+
+xiaobing5_xie.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: true
+  xy: 302, 6
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+sc3_monster4_arml1
+  rotate: true
+  xy: 123, 5
+  size: 28, 39
+  orig: 28, 39
+  offset: 0, 0
+  index: -1
+sc3_monster4_arml2
+  rotate: false
+  xy: 193, 7
+  size: 15, 26
+  orig: 15, 26
+  offset: 0, 0
+  index: -1
+sc3_monster4_armr1
+  rotate: true
+  xy: 251, 7
+  size: 31, 40
+  orig: 31, 40
+  offset: 0, 0
+  index: -1
+sc3_monster4_armr2
+  rotate: true
+  xy: 421, 23
+  size: 15, 26
+  orig: 15, 26
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_ke
+  rotate: false
+  xy: 2, 5
+  size: 119, 116
+  orig: 119, 116
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_tou
+  rotate: true
+  xy: 123, 35
+  size: 86, 87
+  orig: 86, 87
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_tuil1
+  rotate: true
+  xy: 302, 50
+  size: 71, 90
+  orig: 71, 90
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_tuil2
+  rotate: false
+  xy: 212, 2
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_tuir1
+  rotate: false
+  xy: 394, 40
+  size: 70, 81
+  orig: 70, 81
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_tuir2
+  rotate: false
+  xy: 355, 2
+  size: 37, 46
+  orig: 37, 46
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_wei
+  rotate: true
+  xy: 212, 40
+  size: 81, 88
+  orig: 81, 88
+  offset: 0, 0
+  index: -1
+xiaobing5_xie_yan
+  rotate: false
+  xy: 164, 8
+  size: 27, 25
+  orig: 27, 25
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 394, 15
+  size: 25, 23
+  orig: 26, 26
+  offset: 0, 1
+  index: -1

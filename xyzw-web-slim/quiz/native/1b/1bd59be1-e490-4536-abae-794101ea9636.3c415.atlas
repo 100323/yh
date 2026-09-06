@@ -1,0 +1,41 @@
+
+can.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 203, 275
+  size: 189, 119
+  orig: 191, 121
+  offset: 1, 1
+  index: -1
+gai1
+  rotate: false
+  xy: 203, 165
+  size: 179, 108
+  orig: 179, 108
+  offset: 0, 0
+  index: -1
+gai2
+  rotate: false
+  xy: 2, 2
+  size: 154, 180
+  orig: 154, 183
+  offset: 0, 0
+  index: -1
+guanti
+  rotate: false
+  xy: 2, 184
+  size: 199, 210
+  orig: 201, 212
+  offset: 1, 1
+  index: -1
+yu_die
+  rotate: false
+  xy: 158, 42
+  size: 137, 121
+  orig: 260, 314
+  offset: 50, 32
+  index: -1

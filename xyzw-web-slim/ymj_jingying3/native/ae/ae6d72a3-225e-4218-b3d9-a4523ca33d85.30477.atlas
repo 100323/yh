@@ -1,0 +1,272 @@
+
+ymj_jingying3.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: true
+  xy: 35, 2
+  size: 18, 16
+  orig: 19, 19
+  offset: 0, 1
+  index: -1
+ymj_effect_star1
+  rotate: true
+  xy: 88, 11
+  size: 19, 25
+  orig: 19, 25
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 492, 235
+  size: 19, 18
+  orig: 19, 19
+  offset: 0, 1
+  index: -1
+ymj_jingying1_meyes2
+  rotate: false
+  xy: 53, 7
+  size: 32, 13
+  orig: 32, 13
+  offset: 0, 0
+  index: -1
+ymj_jingying2_meye1
+  rotate: false
+  xy: 310, 142
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+ymj_jingying2_meyewhite1
+  rotate: true
+  xy: 310, 148
+  size: 26, 16
+  orig: 26, 16
+  offset: 0, 0
+  index: -1
+ymj_jingying2_mleg
+  rotate: false
+  xy: 484, 161
+  size: 26, 21
+  orig: 26, 21
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hbody
+  rotate: false
+  xy: 2, 101
+  size: 141, 153
+  orig: 141, 164
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hear1
+  rotate: false
+  xy: 484, 121
+  size: 24, 38
+  orig: 24, 38
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hear2
+  rotate: true
+  xy: 2, 2
+  size: 18, 31
+  orig: 18, 31
+  offset: 0, 0
+  index: -1
+ymj_jingying3_heye1
+  rotate: true
+  xy: 115, 11
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+ymj_jingying3_heye2
+  rotate: false
+  xy: 492, 212
+  size: 17, 21
+  orig: 17, 21
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhair1
+  rotate: true
+  xy: 392, 53
+  size: 52, 45
+  orig: 52, 45
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhair2
+  rotate: true
+  xy: 439, 66
+  size: 40, 33
+  orig: 43, 37
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhair3
+  rotate: true
+  xy: 263, 59
+  size: 81, 63
+  orig: 81, 63
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhair4
+  rotate: true
+  xy: 145, 2
+  size: 138, 116
+  orig: 138, 116
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhair5
+  rotate: false
+  xy: 145, 142
+  size: 163, 112
+  orig: 163, 112
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhair6
+  rotate: true
+  xy: 328, 94
+  size: 80, 61
+  orig: 80, 63
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hhead
+  rotate: false
+  xy: 310, 176
+  size: 92, 78
+  orig: 92, 78
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hleg1
+  rotate: true
+  xy: 328, 58
+  size: 34, 62
+  orig: 34, 62
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hleg2
+  rotate: true
+  xy: 404, 184
+  size: 70, 86
+  orig: 70, 86
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hleg3
+  rotate: false
+  xy: 263, 4
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hleg4
+  rotate: false
+  xy: 436, 129
+  size: 46, 53
+  orig: 46, 53
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hmouth
+  rotate: false
+  xy: 319, 2
+  size: 49, 54
+  orig: 49, 54
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hnose1
+  rotate: false
+  xy: 493, 103
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hnose2
+  rotate: false
+  xy: 478, 11
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+ymj_jingying3_htail
+  rotate: true
+  xy: 391, 107
+  size: 67, 43
+  orig: 67, 43
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hzs1
+  rotate: false
+  xy: 474, 85
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hzs2
+  rotate: false
+  xy: 474, 67
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+ymj_jingying3_hzs3
+  rotate: false
+  xy: 412, 9
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+ymj_jingying3_marm
+  rotate: false
+  xy: 492, 190
+  size: 14, 20
+  orig: 14, 20
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mbody
+  rotate: false
+  xy: 370, 7
+  size: 40, 44
+  orig: 40, 44
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mbottle
+  rotate: false
+  xy: 88, 32
+  size: 50, 67
+  orig: 50, 67
+  offset: 0, 0
+  index: -1
+ymj_jingying3_meyebrow
+  rotate: false
+  xy: 451, 8
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mhand
+  rotate: true
+  xy: 451, 32
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mhead
+  rotate: false
+  xy: 2, 22
+  size: 84, 77
+  orig: 84, 77
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mmouth
+  rotate: false
+  xy: 492, 88
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mtail
+  rotate: false
+  xy: 436, 108
+  size: 34, 19
+  orig: 34, 19
+  offset: 0, 0
+  index: -1

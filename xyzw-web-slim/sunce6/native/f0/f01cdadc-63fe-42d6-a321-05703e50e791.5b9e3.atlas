@@ -1,0 +1,20 @@
+
+sunce6_skill_hit2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+sunce6_jn_zhax
+  rotate: false
+  xy: 2, 45
+  size: 127, 158
+  orig: 127, 158
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,188 @@
+
+dianwei3_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw_body
+  rotate: false
+  xy: 329, 387
+  size: 124, 122
+  orig: 124, 122
+  offset: 0, 0
+  index: -1
+dw_dyb
+  rotate: true
+  xy: 275, 168
+  size: 106, 90
+  orig: 106, 90
+  offset: 0, 0
+  index: -1
+dw_dzb
+  rotate: true
+  xy: 328, 283
+  size: 102, 85
+  orig: 102, 85
+  offset: 0, 0
+  index: -1
+dw_ef_bf01
+  rotate: true
+  xy: 50, 5
+  size: 27, 41
+  orig: 27, 41
+  offset: 0, 0
+  index: -1
+dw_ef_bf04
+  rotate: true
+  xy: 455, 399
+  size: 62, 20
+  orig: 62, 20
+  offset: 0, 0
+  index: -1
+dw_ef_bf07
+  rotate: true
+  xy: 110, 10
+  size: 22, 55
+  orig: 22, 55
+  offset: 0, 0
+  index: -1
+dw_ef_dzb01
+  rotate: false
+  xy: 145, 34
+  size: 79, 75
+  orig: 79, 75
+  offset: 0, 0
+  index: -1
+dw_ef_dzb02
+  rotate: false
+  xy: 387, 75
+  size: 68, 66
+  orig: 68, 66
+  offset: 0, 0
+  index: -1
+dw_ef_pg
+  rotate: true
+  xy: 232, 276
+  size: 68, 85
+  orig: 68, 85
+  offset: 0, 0
+  index: -1
+dw_ef_y01
+  rotate: false
+  xy: 28, 2
+  size: 20, 30
+  orig: 20, 30
+  offset: 0, 0
+  index: -1
+dw_ef_y02
+  rotate: true
+  xy: 2, 2
+  size: 30, 24
+  orig: 32, 24
+  offset: 2, 0
+  index: -1
+dw_ef_yg
+  rotate: false
+  xy: 275, 355
+  size: 51, 32
+  orig: 54, 35
+  offset: 1, 2
+  index: -1
+dw_head
+  rotate: false
+  xy: 2, 272
+  size: 228, 237
+  orig: 228, 237
+  offset: 0, 0
+  index: -1
+dw_nj02
+  rotate: true
+  xy: 145, 111
+  size: 159, 68
+  orig: 159, 68
+  offset: 0, 0
+  index: -1
+dw_wq02
+  rotate: true
+  xy: 2, 34
+  size: 236, 141
+  orig: 236, 141
+  offset: 0, 0
+  index: -1
+dw_xj
+  rotate: true
+  xy: 215, 116
+  size: 154, 58
+  orig: 155, 62
+  offset: 0, 4
+  index: -1
+dw_xjg
+  rotate: false
+  xy: 93, 7
+  size: 15, 25
+  orig: 17, 25
+  offset: 1, 0
+  index: -1
+dw_yb
+  rotate: false
+  xy: 415, 298
+  size: 89, 87
+  orig: 90, 87
+  offset: 0, 0
+  index: -1
+dw_yjj
+  rotate: true
+  xy: 232, 389
+  size: 120, 95
+  orig: 120, 97
+  offset: 0, 1
+  index: -1
+dw_ys_s01
+  rotate: true
+  xy: 387, 8
+  size: 65, 63
+  orig: 65, 64
+  offset: 0, 1
+  index: -1
+dw_yt
+  rotate: true
+  xy: 329, 60
+  size: 81, 56
+  orig: 85, 58
+  offset: 2, 1
+  index: -1
+dw_zb
+  rotate: true
+  xy: 367, 143
+  size: 87, 100
+  orig: 97, 103
+  offset: 1, 3
+  index: -1
+dw_zjj
+  rotate: true
+  xy: 226, 7
+  size: 107, 101
+  orig: 109, 102
+  offset: 0, 1
+  index: -1
+dw_zs_s01
+  rotate: false
+  xy: 455, 463
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+dw_zt
+  rotate: false
+  xy: 415, 232
+  size: 88, 64
+  orig: 90, 64
+  offset: 2, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 232, 346
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

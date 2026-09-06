@@ -1,0 +1,41 @@
+
+lvbu12_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 322, 103
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+lvbu12_pg_yan4
+  rotate: true
+  xy: 322, 77
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+lvbu12_pg_yan5
+  rotate: false
+  xy: 322, 60
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+lvbu12_pg_yan6
+  rotate: true
+  xy: 339, 59
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+lvbu12_pg_zd
+  rotate: false
+  xy: 2, 2
+  size: 318, 145
+  orig: 323, 151
+  offset: 2, 3
+  index: -1

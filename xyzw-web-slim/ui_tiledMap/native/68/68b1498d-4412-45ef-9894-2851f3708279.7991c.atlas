@@ -1,0 +1,97 @@
+
+zbz_flyfish.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_fish_body
+  rotate: false
+  xy: 2, 58
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+zbz_fish_body2
+  rotate: false
+  xy: 47, 6
+  size: 40, 50
+  orig: 45, 50
+  offset: 0, 0
+  index: -1
+zbz_fish_box
+  rotate: true
+  xy: 72, 68
+  size: 58, 56
+  orig: 58, 56
+  offset: 0, 0
+  index: -1
+zbz_fish_eye
+  rotate: false
+  xy: 89, 9
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+zbz_fish_eyewhite
+  rotate: true
+  xy: 72, 58
+  size: 8, 15
+  orig: 8, 15
+  offset: 0, 0
+  index: -1
+zbz_fish_fish
+  rotate: false
+  xy: 130, 68
+  size: 33, 21
+  orig: 33, 21
+  offset: 0, 0
+  index: -1
+zbz_fish_handl
+  rotate: false
+  xy: 163, 100
+  size: 15, 26
+  orig: 17, 27
+  offset: 2, 1
+  index: -1
+zbz_fish_handr
+  rotate: false
+  xy: 156, 46
+  size: 16, 20
+  orig: 16, 20
+  offset: 0, 0
+  index: -1
+zbz_fish_mouth
+  rotate: true
+  xy: 2, 5
+  size: 51, 43
+  orig: 51, 43
+  offset: 0, 0
+  index: -1
+zbz_fish_ring
+  rotate: false
+  xy: 130, 91
+  size: 31, 35
+  orig: 33, 35
+  offset: 2, 0
+  index: -1
+zbz_fish_tail
+  rotate: true
+  xy: 121, 25
+  size: 41, 33
+  orig: 41, 33
+  offset: 0, 0
+  index: -1
+zbz_fish_wingl
+  rotate: true
+  xy: 89, 15
+  size: 51, 30
+  orig: 51, 30
+  offset: 0, 0
+  index: -1
+zbz_fish_wingr
+  rotate: true
+  xy: 121, 2
+  size: 21, 40
+  orig: 21, 40
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+jiangwei8_attack_line.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei8_attack
+  rotate: true
+  xy: 64, 2
+  size: 49, 66
+  orig: 51, 68
+  offset: 2, 1
+  index: -1
+jiangwei8_attack1
+  rotate: false
+  xy: 233, 107
+  size: 15, 15
+  orig: 16, 17
+  offset: 1, 1
+  index: -1
+jiangwei8_attack2
+  rotate: false
+  xy: 233, 90
+  size: 15, 15
+  orig: 17, 17
+  offset: 1, 1
+  index: -1
+jiangwei8_attack3
+  rotate: true
+  xy: 132, 10
+  size: 41, 58
+  orig: 41, 58
+  offset: 0, 0
+  index: -1
+jiangwei8_attack5
+  rotate: false
+  xy: 64, 53
+  size: 185, 22
+  orig: 185, 22
+  offset: 0, 0
+  index: -1
+jiangwei8_attack6
+  rotate: false
+  xy: 2, 84
+  size: 212, 38
+  orig: 212, 38
+  offset: 0, 0
+  index: -1
+jiangwei8_attack7
+  rotate: true
+  xy: 216, 77
+  size: 45, 15
+  orig: 45, 15
+  offset: 0, 0
+  index: -1
+jiangwei8_gxx
+  rotate: false
+  xy: 2, 22
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1

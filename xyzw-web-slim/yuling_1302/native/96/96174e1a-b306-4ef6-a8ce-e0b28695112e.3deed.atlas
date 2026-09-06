@@ -1,0 +1,55 @@
+
+yuling_1302.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 342, 30
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_302_body
+  rotate: false
+  xy: 2, 5
+  size: 238, 144
+  orig: 238, 144
+  offset: 0, 0
+  index: -1
+yuling_302_eye
+  rotate: false
+  xy: 376, 38
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+yuling_302_eyewhite
+  rotate: false
+  xy: 304, 26
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+yuling_302_fin1
+  rotate: false
+  xy: 242, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+yuling_302_fin2
+  rotate: false
+  xy: 242, 64
+  size: 185, 85
+  orig: 185, 85
+  offset: 0, 0
+  index: -1
+yuling_302_fin3
+  rotate: true
+  xy: 429, 52
+  size: 97, 77
+  orig: 97, 77
+  offset: 0, 0
+  index: -1

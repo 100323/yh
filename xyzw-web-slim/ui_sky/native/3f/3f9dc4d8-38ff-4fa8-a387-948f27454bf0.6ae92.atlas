@@ -1,0 +1,27 @@
+
+tgcf_ymj_zc_2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_ymj_mcyun1
+  rotate: false
+  xy: 104, 117
+  size: 114, 112
+  orig: 114, 112
+  offset: 0, 0
+  index: -1
+tgcf_ymj_mcyun2
+  rotate: false
+  xy: 0, 0
+  size: 166, 115
+  orig: 166, 115
+  offset: 0, 0
+  index: -1
+tgcf_ymj_mcyun3
+  rotate: false
+  xy: 0, 159
+  size: 102, 70
+  orig: 102, 70
+  offset: 0, 0
+  index: -1

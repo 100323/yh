@@ -1,0 +1,27 @@
+
+yzxt_xing.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yzxt_xing_guang
+  rotate: false
+  xy: 317, 53
+  size: 43, 42
+  orig: 43, 42
+  offset: 0, 0
+  index: -1
+yzxt_xing_tuowei
+  rotate: false
+  xy: 2, 2
+  size: 242, 93
+  orig: 242, 93
+  offset: 0, 0
+  index: -1
+yzxt_xing_xing
+  rotate: false
+  xy: 246, 26
+  size: 69, 69
+  orig: 71, 71
+  offset: 1, 1
+  index: -1

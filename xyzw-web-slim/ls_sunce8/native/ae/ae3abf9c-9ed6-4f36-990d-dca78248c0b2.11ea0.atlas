@@ -1,0 +1,146 @@
+
+ls_sunce8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huohuo_000
+  rotate: false
+  xy: 352, 222
+  size: 29, 25
+  orig: 46, 46
+  offset: 9, 0
+  index: -1
+huohuo_001
+  rotate: false
+  xy: 355, 249
+  size: 34, 28
+  orig: 46, 46
+  offset: 7, 0
+  index: -1
+huohuo_002
+  rotate: true
+  xy: 407, 394
+  size: 34, 40
+  orig: 46, 46
+  offset: 7, 0
+  index: -1
+huohuo_003
+  rotate: true
+  xy: 392, 358
+  size: 34, 39
+  orig: 46, 46
+  offset: 7, 2
+  index: -1
+huohuo_004
+  rotate: true
+  xy: 371, 312
+  size: 37, 43
+  orig: 46, 46
+  offset: 5, 3
+  index: -1
+huohuo_005
+  rotate: true
+  xy: 312, 268
+  size: 38, 41
+  orig: 46, 46
+  offset: 4, 5
+  index: -1
+huohuo_006
+  rotate: false
+  xy: 312, 228
+  size: 38, 38
+  orig: 46, 46
+  offset: 4, 8
+  index: -1
+huohuo_007
+  rotate: false
+  xy: 428, 448
+  size: 40, 34
+  orig: 46, 46
+  offset: 3, 9
+  index: -1
+ls_suncex_10
+  rotate: true
+  xy: 312, 395
+  size: 87, 59
+  orig: 87, 59
+  offset: 0, 0
+  index: -1
+ls_suncex_11
+  rotate: false
+  xy: 206, 100
+  size: 126, 104
+  orig: 126, 104
+  offset: 0, 0
+  index: -1
+ls_suncex_6
+  rotate: true
+  xy: 312, 211
+  size: 15, 27
+  orig: 15, 27
+  offset: 0, 0
+  index: -1
+ls_suncex_7
+  rotate: false
+  xy: 428, 432
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+ls_suncex_8
+  rotate: false
+  xy: 312, 308
+  size: 57, 41
+  orig: 57, 41
+  offset: 0, 0
+  index: -1
+ls_suncex_9
+  rotate: true
+  xy: 334, 147
+  size: 62, 37
+  orig: 62, 37
+  offset: 0, 0
+  index: -1
+lssunce_dhxingx
+  rotate: false
+  xy: 312, 351
+  size: 78, 42
+  orig: 78, 42
+  offset: 0, 0
+  index: -1
+lssunce_guangyun1
+  rotate: false
+  xy: 371, 279
+  size: 31, 31
+  orig: 32, 32
+  offset: 0, 1
+  index: -1
+lssunce_guangyun3
+  rotate: false
+  xy: 2, 2
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+lssunce_gy
+  rotate: false
+  xy: 373, 396
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lssunce_tt1
+  rotate: false
+  xy: 2, 206
+  size: 308, 276
+  orig: 315, 284
+  offset: 4, 4
+  index: -1
+lssunce_xing1
+  rotate: false
+  xy: 373, 430
+  size: 53, 52
+  orig: 53, 52
+  offset: 0, 0
+  index: -1

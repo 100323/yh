@@ -1,0 +1,83 @@
+
+ghg_jingying_baiyu_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 151, 151
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+xghg_bytz_jnz_xian
+  rotate: true
+  xy: 419, 215
+  size: 106, 67
+  orig: 106, 67
+  offset: 0, 0
+  index: -1
+xghg_bytz_jnz_zha1
+  rotate: true
+  xy: 341, 72
+  size: 113, 126
+  orig: 113, 126
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_guang
+  rotate: false
+  xy: 2, 2
+  size: 113, 116
+  orig: 113, 116
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_yan1
+  rotate: true
+  xy: 117, 2
+  size: 116, 100
+  orig: 116, 100
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_yan2
+  rotate: true
+  xy: 151, 180
+  size: 141, 133
+  orig: 141, 133
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_yan3
+  rotate: true
+  xy: 286, 187
+  size: 134, 131
+  orig: 134, 131
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_yan4
+  rotate: false
+  xy: 219, 43
+  size: 120, 135
+  orig: 120, 135
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_yu1
+  rotate: false
+  xy: 2, 323
+  size: 243, 185
+  orig: 249, 185
+  offset: 0, 0
+  index: -1
+ymj_jingying8_jn_yu2
+  rotate: false
+  xy: 247, 323
+  size: 241, 185
+  orig: 250, 187
+  offset: 3, 2
+  index: -1
+ymj_jingying8_jn_zha
+  rotate: true
+  xy: 2, 120
+  size: 201, 147
+  orig: 201, 147
+  offset: 0, 0
+  index: -1

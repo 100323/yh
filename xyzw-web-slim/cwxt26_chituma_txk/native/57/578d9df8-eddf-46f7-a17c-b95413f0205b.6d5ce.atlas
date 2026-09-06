@@ -1,0 +1,97 @@
+
+cwxt26_chituma_txk.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ctm_lian
+  rotate: true
+  xy: 79, 36
+  size: 90, 68
+  orig: 91, 68
+  offset: 0, 0
+  index: -1
+ctm_maozi
+  rotate: true
+  xy: 2, 24
+  size: 102, 75
+  orig: 102, 78
+  offset: 0, 3
+  index: -1
+ctm_maozih01
+  rotate: true
+  xy: 197, 5
+  size: 33, 42
+  orig: 33, 43
+  offset: 0, 1
+  index: -1
+ctm_maozih02
+  rotate: true
+  xy: 2, 2
+  size: 20, 33
+  orig: 20, 33
+  offset: 0, 0
+  index: -1
+ctm_shou
+  rotate: false
+  xy: 159, 3
+  size: 36, 31
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+ctm_tf01
+  rotate: false
+  xy: 112, 3
+  size: 45, 31
+  orig: 45, 31
+  offset: 0, 0
+  index: -1
+ctm_tf02
+  rotate: false
+  xy: 241, 32
+  size: 21, 28
+  orig: 21, 28
+  offset: 0, 0
+  index: -1
+ctm_tf03
+  rotate: false
+  xy: 37, 2
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+ctm_tf04
+  rotate: true
+  xy: 241, 5
+  size: 25, 21
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+ctm_tf05
+  rotate: false
+  xy: 239, 62
+  size: 22, 64
+  orig: 22, 64
+  offset: 0, 0
+  index: -1
+ctm_yanjing
+  rotate: true
+  xy: 193, 40
+  size: 86, 44
+  orig: 86, 44
+  offset: 0, 0
+  index: -1
+ctm_yl
+  rotate: false
+  xy: 58, 4
+  size: 52, 18
+  orig: 52, 18
+  offset: 0, 0
+  index: -1
+hg
+  rotate: true
+  xy: 149, 36
+  size: 90, 42
+  orig: 90, 42
+  offset: 0, 0
+  index: -1

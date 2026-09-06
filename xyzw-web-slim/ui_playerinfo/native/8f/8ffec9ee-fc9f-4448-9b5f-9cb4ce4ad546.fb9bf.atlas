@@ -1,0 +1,27 @@
+
+btn_edit.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+btn_bianji_btn
+  rotate: false
+  xy: 2, 49
+  size: 54, 61
+  orig: 54, 61
+  offset: 0, 0
+  index: -1
+btn_bianji_light
+  rotate: true
+  xy: 2, 2
+  size: 45, 33
+  orig: 45, 33
+  offset: 0, 0
+  index: -1
+effect_star
+  rotate: false
+  xy: 37, 2
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1

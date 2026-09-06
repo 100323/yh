@@ -1,0 +1,111 @@
+
+sjhd_chest.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_chest2_eye
+  rotate: true
+  xy: 103, 28
+  size: 15, 47
+  orig: 15, 47
+  offset: 0, 0
+  index: -1
+ui_chest4_down
+  rotate: true
+  xy: 251, 285
+  size: 224, 172
+  orig: 255, 173
+  offset: 19, 1
+  index: -1
+ui_chest4_eyewhite
+  rotate: false
+  xy: 344, 4
+  size: 66, 53
+  orig: 66, 75
+  offset: 0, 11
+  index: -1
+ui_chest_eyewhite
+  rotate: false
+  xy: 344, 4
+  size: 66, 53
+  orig: 66, 75
+  offset: 0, 11
+  index: -1
+ui_chest4_eyewhite2
+  rotate: false
+  xy: 46, 9
+  size: 55, 34
+  orig: 65, 59
+  offset: 6, 19
+  index: -1
+ui_chest4_up
+  rotate: true
+  xy: 234, 49
+  size: 228, 108
+  orig: 234, 118
+  offset: 6, 5
+  index: -1
+ui_chest4_up2
+  rotate: true
+  xy: 425, 291
+  size: 218, 113
+  orig: 225, 118
+  offset: 5, 5
+  index: -1
+ui_chest_down
+  rotate: true
+  xy: 344, 59
+  size: 224, 167
+  orig: 240, 167
+  offset: 7, 0
+  index: -1
+ui_chest_eye
+  rotate: false
+  xy: 31, 3
+  size: 13, 40
+  orig: 13, 40
+  offset: 0, 0
+  index: -1
+ui_chest_eyewhite2
+  rotate: true
+  xy: 513, 11
+  size: 65, 59
+  orig: 65, 59
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 2, 2
+  size: 27, 41
+  orig: 27, 41
+  offset: 0, 0
+  index: -1
+ui_chest_up
+  rotate: true
+  xy: 2, 277
+  size: 232, 130
+  orig: 238, 148
+  offset: 3, 0
+  index: -1
+ui_chest_up2
+  rotate: true
+  xy: 513, 78
+  size: 211, 120
+  orig: 224, 131
+  offset: 11, 8
+  index: -1
+ui_effectlight_bigbox01
+  rotate: false
+  xy: 134, 279
+  size: 115, 230
+  orig: 115, 230
+  offset: 0, 0
+  index: -1
+ui_effectlight_bigcircle01
+  rotate: false
+  xy: 2, 45
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: -1

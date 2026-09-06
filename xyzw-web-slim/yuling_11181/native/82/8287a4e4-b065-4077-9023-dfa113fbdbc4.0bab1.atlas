@@ -1,0 +1,69 @@
+
+yuling_11181_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle1
+  rotate: false
+  xy: 399, 235
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 452, 240
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 264, 196
+  size: 19, 10
+  orig: 26, 26
+  offset: 3, 2
+  index: -1
+yuling_moyan_gy
+  rotate: false
+  xy: 399, 288
+  size: 79, 79
+  orig: 79, 79
+  offset: 0, 0
+  index: -1
+yuling_moyan_syp
+  rotate: true
+  xy: 264, 217
+  size: 278, 133
+  orig: 296, 144
+  offset: 8, 7
+  index: -1
+yuling_moyan_xing1
+  rotate: false
+  xy: 2, 168
+  size: 260, 327
+  orig: 280, 349
+  offset: 10, 11
+  index: -1
+yuling_moyan_xing2
+  rotate: false
+  xy: 399, 369
+  size: 93, 126
+  orig: 94, 129
+  offset: 0, 1
+  index: -1
+yuling_moyan_xyp
+  rotate: false
+  xy: 2, 2
+  size: 304, 164
+  orig: 316, 174
+  offset: 6, 4
+  index: -1
+yuling_moyan_yz
+  rotate: false
+  xy: 308, 16
+  size: 187, 199
+  orig: 187, 199
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,153 @@
+
+sqhd26_banner2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rqib_1
+  rotate: false
+  xy: 342, 45
+  size: 311, 65
+  orig: 311, 65
+  offset: 0, 0
+  index: -1
+rqib_2
+  rotate: true
+  xy: 747, 2
+  size: 51, 56
+  orig: 51, 58
+  offset: 0, 1
+  index: -1
+rqib_3
+  rotate: false
+  xy: 686, 152
+  size: 50, 56
+  orig: 50, 58
+  offset: 0, 1
+  index: -1
+rqib_4
+  rotate: false
+  xy: 686, 210
+  size: 58, 58
+  orig: 61, 60
+  offset: 0, 1
+  index: -1
+rqib_5
+  rotate: false
+  xy: 607, 270
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+rqib_6
+  rotate: false
+  xy: 2, 172
+  size: 603, 338
+  orig: 603, 338
+  offset: 0, 0
+  index: -1
+rqib_7
+  rotate: true
+  xy: 2, 30
+  size: 80, 338
+  orig: 80, 338
+  offset: 0, 0
+  index: -1
+rqib_sg
+  rotate: false
+  xy: 655, 6
+  size: 90, 47
+  orig: 90, 47
+  offset: 0, 0
+  index: -1
+ty_3
+  rotate: false
+  xy: 607, 134
+  size: 77, 134
+  orig: 77, 134
+  offset: 0, 0
+  index: -1
+ty_4
+  rotate: true
+  xy: 655, 55
+  size: 77, 134
+  orig: 77, 134
+  offset: 0, 0
+  index: -1
+ty_5
+  rotate: false
+  xy: 2, 112
+  size: 603, 58
+  orig: 603, 58
+  offset: 0, 0
+  index: -1
+ty_y
+  rotate: false
+  xy: 2, 6
+  size: 78, 22
+  orig: 78, 22
+  offset: 0, 0
+  index: -1
+yu1
+  rotate: false
+  xy: 82, 2
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+yu2
+  rotate: false
+  xy: 738, 154
+  size: 47, 54
+  orig: 49, 54
+  offset: 0, 0
+  index: -1
+yu3
+  rotate: true
+  xy: 459, 9
+  size: 34, 29
+  orig: 34, 29
+  offset: 0, 0
+  index: -1
+yu4
+  rotate: false
+  xy: 388, 2
+  size: 36, 41
+  orig: 37, 42
+  offset: 1, 1
+  index: -1
+yu5
+  rotate: false
+  xy: 607, 384
+  size: 121, 126
+  orig: 121, 126
+  offset: 0, 0
+  index: -1
+yu6
+  rotate: true
+  xy: 721, 333
+  size: 49, 46
+  orig: 49, 46
+  offset: 0, 0
+  index: -1
+yu7
+  rotate: true
+  xy: 103, 6
+  size: 22, 19
+  orig: 22, 19
+  offset: 0, 0
+  index: -1
+yu8
+  rotate: true
+  xy: 426, 10
+  size: 33, 31
+  orig: 33, 31
+  offset: 0, 0
+  index: -1
+yu9
+  rotate: true
+  xy: 342, 3
+  size: 40, 44
+  orig: 42, 44
+  offset: 0, 0
+  index: -1

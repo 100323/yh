@@ -1,0 +1,314 @@
+
+tgcf_pty_red.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_flower_body
+  rotate: true
+  xy: 2, 2
+  size: 26, 60
+  orig: 26, 60
+  offset: 0, 0
+  index: -1
+axwq_flower_eye1
+  rotate: true
+  xy: 239, 261
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+axwq_flower_eye2
+  rotate: true
+  xy: 247, 261
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+axwq_flower_eyewhite1
+  rotate: false
+  xy: 312, 362
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+axwq_flower_eyewhite2
+  rotate: false
+  xy: 102, 5
+  size: 19, 23
+  orig: 19, 24
+  offset: 0, 1
+  index: -1
+axwq_flower_face1
+  rotate: true
+  xy: 222, 371
+  size: 68, 57
+  orig: 68, 57
+  offset: 0, 0
+  index: -1
+axwq_flower_face2
+  rotate: false
+  xy: 156, 324
+  size: 71, 39
+  orig: 71, 39
+  offset: 0, 0
+  index: -1
+axwq_flower_leaf1
+  rotate: true
+  xy: 265, 447
+  size: 63, 36
+  orig: 63, 36
+  offset: 0, 0
+  index: -1
+axwq_flower_leaf2
+  rotate: false
+  xy: 266, 228
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+axwq_flower_nose
+  rotate: true
+  xy: 322, 325
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+axwq_flower_petal1
+  rotate: false
+  xy: 206, 441
+  size: 57, 69
+  orig: 57, 69
+  offset: 0, 0
+  index: -1
+axwq_flower_petal2
+  rotate: false
+  xy: 239, 270
+  size: 49, 53
+  orig: 49, 53
+  offset: 0, 0
+  index: -1
+axwq_flower_petal3
+  rotate: true
+  xy: 189, 261
+  size: 61, 48
+  orig: 61, 48
+  offset: 0, 0
+  index: -1
+axwq_flower_petal4
+  rotate: true
+  xy: 228, 167
+  size: 55, 52
+  orig: 55, 52
+  offset: 0, 0
+  index: -1
+axwq_flower_petal5
+  rotate: true
+  xy: 241, 3
+  size: 46, 59
+  orig: 46, 59
+  offset: 0, 0
+  index: -1
+axwq_flower_petal6
+  rotate: false
+  xy: 229, 325
+  size: 60, 44
+  orig: 60, 44
+  offset: 0, 0
+  index: -1
+biyan
+  rotate: true
+  xy: 281, 384
+  size: 61, 33
+  orig: 61, 33
+  offset: 0, 0
+  index: -1
+h_lian
+  rotate: true
+  xy: 156, 365
+  size: 71, 64
+  orig: 71, 64
+  offset: 0, 0
+  index: -1
+h_yj
+  rotate: false
+  xy: 123, 2
+  size: 61, 42
+  orig: 61, 42
+  offset: 0, 0
+  index: -1
+h_zuiba
+  rotate: false
+  xy: 281, 371
+  size: 16, 11
+  orig: 16, 11
+  offset: 0, 0
+  index: -1
+huapen
+  rotate: false
+  xy: 2, 324
+  size: 152, 186
+  orig: 158, 192
+  offset: 3, 3
+  index: -1
+lian
+  rotate: true
+  xy: 187, 51
+  size: 89, 65
+  orig: 89, 65
+  offset: 0, 0
+  index: -1
+liuhai
+  rotate: false
+  xy: 291, 340
+  size: 19, 29
+  orig: 19, 29
+  offset: 0, 0
+  index: -1
+piaodai01
+  rotate: false
+  xy: 2, 142
+  size: 86, 180
+  orig: 86, 180
+  offset: 0, 0
+  index: -1
+piaodai02
+  rotate: true
+  xy: 90, 142
+  size: 78, 88
+  orig: 78, 88
+  offset: 0, 0
+  index: -1
+piaodai03
+  rotate: true
+  xy: 90, 222
+  size: 100, 97
+  orig: 106, 97
+  offset: 0, 0
+  index: -1
+shangshen
+  rotate: true
+  xy: 290, 284
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+toufa01
+  rotate: false
+  xy: 2, 30
+  size: 104, 110
+  orig: 104, 110
+  offset: 0, 0
+  index: -1
+toufa02
+  rotate: false
+  xy: 237, 228
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1
+toufa03
+  rotate: false
+  xy: 228, 143
+  size: 18, 22
+  orig: 18, 22
+  offset: 0, 0
+  index: -1
+toufa04
+  rotate: true
+  xy: 291, 325
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1
+toushi01
+  rotate: true
+  xy: 180, 142
+  size: 78, 46
+  orig: 78, 46
+  offset: 0, 0
+  index: -1
+toushi02
+  rotate: true
+  xy: 156, 438
+  size: 72, 48
+  orig: 72, 56
+  offset: 0, 8
+  index: -1
+weiba
+  rotate: false
+  xy: 189, 224
+  size: 46, 35
+  orig: 46, 35
+  offset: 0, 0
+  index: -1
+xiashen
+  rotate: false
+  xy: 108, 46
+  size: 77, 94
+  orig: 77, 94
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 108, 36
+  size: 13, 8
+  orig: 13, 13
+  offset: 0, 4
+  index: -1
+yougebo
+  rotate: false
+  xy: 64, 2
+  size: 36, 26
+  orig: 36, 26
+  offset: 0, 0
+  index: -1
+youmeimao
+  rotate: true
+  xy: 248, 144
+  size: 21, 13
+  orig: 21, 13
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: true
+  xy: 312, 340
+  size: 20, 18
+  orig: 20, 18
+  offset: 0, 0
+  index: -1
+zhengyan
+  rotate: true
+  xy: 303, 450
+  size: 60, 29
+  orig: 60, 29
+  offset: 0, 0
+  index: -1
+zuiba
+  rotate: false
+  xy: 255, 261
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+zuogebo
+  rotate: false
+  xy: 186, 2
+  size: 53, 42
+  orig: 53, 42
+  offset: 0, 0
+  index: -1
+zuomeimao
+  rotate: false
+  xy: 290, 270
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: true
+  xy: 332, 342
+  size: 18, 14
+  orig: 18, 14
+  offset: 0, 0
+  index: -1

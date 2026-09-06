@@ -1,0 +1,83 @@
+
+cjhd26_bjt_tp_cyj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjhd26_bjt_tp_cyj_dian
+  rotate: false
+  xy: 2, 306
+  size: 144, 64
+  orig: 144, 64
+  offset: 0, 0
+  index: -1
+cjhd26_bjt_tp_cyj_huo1
+  rotate: false
+  xy: 134, 372
+  size: 56, 53
+  orig: 58, 55
+  offset: 1, 1
+  index: -1
+cjhd26_bjt_tp_cyj_huo2
+  rotate: true
+  xy: 2, 187
+  size: 88, 205
+  orig: 88, 205
+  offset: 0, 0
+  index: -1
+cjhd26_bjt_tp_cyj_jian1
+  rotate: true
+  xy: 323, 270
+  size: 91, 170
+  orig: 93, 172
+  offset: 1, 1
+  index: -1
+cjhd26_bjt_tp_cyj_jian2
+  rotate: true
+  xy: 148, 277
+  size: 84, 173
+  orig: 86, 175
+  offset: 1, 1
+  index: -1
+cjhd26_bjt_tp_cyj_jian3
+  rotate: true
+  xy: 192, 363
+  size: 62, 128
+  orig: 64, 130
+  offset: 1, 1
+  index: -1
+cjhd26_bjt_tp_cyj_tong
+  rotate: false
+  xy: 2, 397
+  size: 82, 28
+  orig: 82, 28
+  offset: 0, 0
+  index: -1
+cjhd26_bjt_tp_cyj_tong1
+  rotate: true
+  xy: 209, 105
+  size: 163, 194
+  orig: 165, 196
+  offset: 1, 1
+  index: -1
+cjhd26_bjt_tp_cyj_tong2
+  rotate: true
+  xy: 2, 2
+  size: 183, 194
+  orig: 183, 194
+  offset: 0, 0
+  index: -1
+cjhd26_bjt_tp_cyj_tong2ying
+  rotate: false
+  xy: 322, 363
+  size: 164, 62
+  orig: 164, 62
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 86, 379
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

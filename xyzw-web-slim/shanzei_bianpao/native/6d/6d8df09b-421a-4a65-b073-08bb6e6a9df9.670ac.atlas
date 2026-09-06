@@ -1,0 +1,83 @@
+
+loop.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bianpao01
+  rotate: false
+  xy: 96, 4
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+bianpao02
+  rotate: true
+  xy: 2, 2
+  size: 8, 14
+  orig: 8, 14
+  offset: 0, 0
+  index: -1
+bianpao03
+  rotate: true
+  xy: 63, 3
+  size: 10, 15
+  orig: 10, 15
+  offset: 0, 0
+  index: -1
+bianpao04
+  rotate: true
+  xy: 46, 2
+  size: 11, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+bianpao05
+  rotate: false
+  xy: 33, 2
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+bianpao06
+  rotate: false
+  xy: 80, 4
+  size: 14, 9
+  orig: 14, 9
+  offset: 0, 0
+  index: -1
+bianpao07
+  rotate: false
+  xy: 18, 2
+  size: 13, 8
+  orig: 13, 8
+  offset: 0, 0
+  index: -1
+bianpaosheng
+  rotate: false
+  xy: 121, 6
+  size: 29, 56
+  orig: 29, 56
+  offset: 0, 0
+  index: -1
+effect/xb_sz_bpa0001
+  rotate: false
+  xy: 2, 12
+  size: 39, 50
+  orig: 98, 107
+  offset: 26, 26
+  index: -1
+effect/xb_sz_bpa0004
+  rotate: false
+  xy: 43, 15
+  size: 37, 47
+  orig: 98, 107
+  offset: 30, 29
+  index: -1
+effect/xb_sz_bpa0007
+  rotate: false
+  xy: 82, 17
+  size: 37, 45
+  orig: 98, 107
+  offset: 30, 31
+  index: -1

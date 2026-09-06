@@ -1,0 +1,125 @@
+
+zhugeliang8_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: false
+  xy: 32, 992
+  size: 22, 22
+  orig: 24, 24
+  offset: 1, 1
+  index: -1
+zhugeliang8_skill_bgbai
+  rotate: false
+  xy: 198, 788
+  size: 294, 148
+  orig: 294, 148
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgbai1
+  rotate: false
+  xy: 2, 997
+  size: 28, 17
+  orig: 28, 17
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgbai2
+  rotate: false
+  xy: 178, 968
+  size: 68, 46
+  orig: 68, 46
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgbaitw
+  rotate: true
+  xy: 2, 71
+  size: 363, 404
+  orig: 363, 404
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgdi
+  rotate: false
+  xy: 408, 2
+  size: 444, 432
+  orig: 444, 432
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bghei
+  rotate: false
+  xy: 494, 767
+  size: 330, 167
+  orig: 330, 167
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bghei1
+  rotate: true
+  xy: 914, 935
+  size: 79, 87
+  orig: 79, 87
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bghei2
+  rotate: false
+  xy: 56, 973
+  size: 120, 41
+  orig: 120, 41
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bghei3
+  rotate: false
+  xy: 248, 967
+  size: 116, 47
+  orig: 116, 47
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgheitw
+  rotate: true
+  xy: 322, 436
+  size: 329, 444
+  orig: 329, 444
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgtw1
+  rotate: false
+  xy: 2, 562
+  size: 318, 224
+  orig: 329, 277
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_bgtw2
+  rotate: true
+  xy: 826, 668
+  size: 265, 170
+  orig: 265, 170
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_ks1
+  rotate: true
+  xy: 2, 829
+  size: 137, 194
+  orig: 137, 194
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_ks2
+  rotate: false
+  xy: 432, 938
+  size: 293, 76
+  orig: 293, 76
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_ks3
+  rotate: true
+  xy: 366, 966
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+zhugeliang8_skill_ks4
+  rotate: false
+  xy: 727, 936
+  size: 185, 78
+  orig: 185, 78
+  offset: 0, 0
+  index: -1

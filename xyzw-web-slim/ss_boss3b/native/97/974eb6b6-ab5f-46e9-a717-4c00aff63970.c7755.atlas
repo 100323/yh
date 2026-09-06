@@ -1,0 +1,146 @@
+
+ss_boss3b_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_chuanyunjian_shadow
+  rotate: false
+  xy: 243, 6
+  size: 90, 18
+  orig: 90, 18
+  offset: 0, 0
+  index: -1
+axwq_chuanyunjian_smoke2
+  rotate: true
+  xy: 335, 25
+  size: 100, 59
+  orig: 100, 61
+  offset: 0, 0
+  index: -1
+axwq_chuanyunjian_smoke3
+  rotate: true
+  xy: 132, 104
+  size: 150, 81
+  orig: 150, 81
+  offset: 0, 0
+  index: -1
+axwq_chuanyunjian_smoke4
+  rotate: true
+  xy: 2, 54
+  size: 200, 128
+  orig: 200, 132
+  offset: 0, 4
+  index: -1
+ss_boss3_skilla1
+  rotate: true
+  xy: 247, 73
+  size: 52, 54
+  orig: 52, 54
+  offset: 0, 0
+  index: -1
+ss_boss3_skilla2
+  rotate: true
+  xy: 146, 4
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+ss_boss3_skilla4
+  rotate: true
+  xy: 90, 15
+  size: 37, 28
+  orig: 37, 28
+  offset: 0, 0
+  index: -1
+ss_boss3_skilla5
+  rotate: false
+  xy: 123, 2
+  size: 21, 22
+  orig: 21, 22
+  offset: 0, 0
+  index: -1
+ss_boss3_skilla6
+  rotate: false
+  xy: 2, 2
+  size: 48, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ss_boss3_skillae
+  rotate: false
+  xy: 90, 3
+  size: 19, 10
+  orig: 19, 10
+  offset: 0, 0
+  index: -1
+ss_boss3_skillb1
+  rotate: true
+  xy: 120, 26
+  size: 26, 18
+  orig: 26, 18
+  offset: 0, 0
+  index: -1
+ss_boss3_skillb4
+  rotate: true
+  xy: 52, 13
+  size: 39, 36
+  orig: 39, 36
+  offset: 0, 0
+  index: -1
+ss_boss3_skillb6
+  rotate: true
+  xy: 396, 202
+  size: 52, 53
+  orig: 52, 53
+  offset: 0, 0
+  index: -1
+ss_boss3_skillc1
+  rotate: true
+  xy: 140, 26
+  size: 76, 105
+  orig: 76, 105
+  offset: 0, 0
+  index: -1
+ss_boss3_skillc2
+  rotate: false
+  xy: 226, 5
+  size: 15, 19
+  orig: 18, 19
+  offset: 3, 0
+  index: -1
+ss_boss3_skillc3
+  rotate: true
+  xy: 172, 4
+  size: 20, 16
+  orig: 20, 16
+  offset: 0, 0
+  index: -1
+ss_boss3_skillc4
+  rotate: false
+  xy: 190, 5
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+ss_boss3_skillc5
+  rotate: true
+  xy: 208, 5
+  size: 19, 16
+  orig: 19, 16
+  offset: 0, 0
+  index: -1
+ss_boss3_skills
+  rotate: true
+  xy: 215, 127
+  size: 127, 122
+  orig: 127, 122
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 111, 3
+  size: 10, 10
+  orig: 16, 16
+  offset: 2, 3
+  index: -1

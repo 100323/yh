@@ -1,0 +1,76 @@
+
+tgcf_effect_cardlight.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_lightring
+  rotate: false
+  xy: 2, 2
+  size: 202, 187
+  orig: 205, 205
+  offset: 3, 8
+  index: -1
+ui_chest_light4
+  rotate: false
+  xy: 227, 205
+  size: 134, 49
+  orig: 134, 49
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: true
+  xy: 355, 259
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+ui_jiangli_saoguangline
+  rotate: false
+  xy: 170, 204
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 355, 285
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 311, 269
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 170, 256
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1
+zxc_card_bian
+  rotate: false
+  xy: 2, 191
+  size: 166, 204
+  orig: 166, 204
+  offset: 0, 0
+  index: -1
+zxc_card_box1
+  rotate: true
+  xy: 311, 313
+  size: 82, 102
+  orig: 82, 102
+  offset: 0, 0
+  index: -1
+zxc_card_light1
+  rotate: false
+  xy: 206, 82
+  size: 99, 120
+  orig: 99, 120
+  offset: 0, 0
+  index: -1

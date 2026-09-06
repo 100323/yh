@@ -1,0 +1,55 @@
+
+tgcf_pty_zhq.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 85, 26
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+tgcf_pty_zhq
+  rotate: true
+  xy: 2, 86
+  size: 138, 149
+  orig: 140, 151
+  offset: 1, 1
+  index: -1
+tgcf_pty_zhq_dz
+  rotate: false
+  xy: 153, 2
+  size: 126, 99
+  orig: 128, 102
+  offset: 1, 1
+  index: -1
+tgcf_pty_zhq_g1
+  rotate: false
+  xy: 281, 78
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1
+tgcf_pty_zhq_g2
+  rotate: true
+  xy: 2, 5
+  size: 79, 81
+  orig: 79, 81
+  offset: 0, 0
+  index: -1
+zhq_1
+  rotate: true
+  xy: 302, 86
+  size: 138, 111
+  orig: 138, 111
+  offset: 0, 0
+  index: -1
+zhq_2
+  rotate: false
+  xy: 153, 103
+  size: 147, 121
+  orig: 147, 121
+  offset: 0, 0
+  index: -1

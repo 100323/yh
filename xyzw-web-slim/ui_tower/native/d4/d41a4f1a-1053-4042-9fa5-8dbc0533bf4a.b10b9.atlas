@@ -1,0 +1,76 @@
+
+ui_tower6_chest.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 310, 148
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+jjc_ui_light
+  rotate: false
+  xy: 2, 25
+  size: 58, 226
+  orig: 58, 226
+  offset: 0, 0
+  index: -1
+ui_effect_light_star
+  rotate: true
+  xy: 219, 3
+  size: 108, 107
+  orig: 108, 107
+  offset: 0, 0
+  index: -1
+ui_tower6_chest1
+  rotate: false
+  xy: 2, 6
+  size: 10, 17
+  orig: 14, 21
+  offset: 1, 2
+  index: -1
+ui_tower6_chest2
+  rotate: true
+  xy: 62, 92
+  size: 159, 123
+  orig: 159, 123
+  offset: 0, 0
+  index: -1
+ui_tower6_chest3
+  rotate: true
+  xy: 187, 113
+  size: 138, 121
+  orig: 138, 121
+  offset: 0, 0
+  index: -1
+ui_tower6_chest4
+  rotate: true
+  xy: 116, 12
+  size: 78, 45
+  orig: 84, 48
+  offset: 3, 0
+  index: -1
+ui_tower6_chest5
+  rotate: true
+  xy: 62, 12
+  size: 78, 52
+  orig: 82, 55
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 163, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 163, 36
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1

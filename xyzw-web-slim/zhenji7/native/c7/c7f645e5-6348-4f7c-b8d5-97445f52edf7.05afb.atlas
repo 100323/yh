@@ -1,0 +1,62 @@
+
+zhenji7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 431, 159
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhenji7_attack1
+  rotate: false
+  xy: 368, 139
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1
+zhenji7_skill1
+  rotate: false
+  xy: 2, 2
+  size: 214, 215
+  orig: 214, 215
+  offset: 0, 0
+  index: -1
+zhenji7_skill2
+  rotate: false
+  xy: 218, 31
+  size: 148, 169
+  orig: 148, 169
+  offset: 0, 0
+  index: -1
+zhenji7_skill4
+  rotate: false
+  xy: 368, 57
+  size: 40, 80
+  orig: 41, 82
+  offset: 1, 1
+  index: -1
+zhenji7_skill5
+  rotate: true
+  xy: 284, 202
+  size: 115, 188
+  orig: 117, 190
+  offset: 1, 1
+  index: -1
+zhenji7_skill7
+  rotate: false
+  xy: 284, 319
+  size: 197, 179
+  orig: 205, 187
+  offset: 4, 4
+  index: -1
+zhenji7_skill8
+  rotate: false
+  xy: 2, 219
+  size: 280, 279
+  orig: 280, 279
+  offset: 0, 0
+  index: -1

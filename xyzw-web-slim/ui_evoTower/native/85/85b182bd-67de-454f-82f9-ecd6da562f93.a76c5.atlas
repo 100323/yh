@@ -1,0 +1,111 @@
+
+xsxjt_diaopai.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_dp_ban
+  rotate: false
+  xy: 2, 286
+  size: 412, 188
+  orig: 414, 190
+  offset: 1, 1
+  index: -1
+xsxjt_dp_cbl
+  rotate: false
+  xy: 2, 2
+  size: 125, 86
+  orig: 125, 86
+  offset: 0, 0
+  index: -1
+xsxjt_dp_dianliu
+  rotate: false
+  xy: 327, 22
+  size: 42, 28
+  orig: 44, 30
+  offset: 1, 1
+  index: -1
+xsxjt_dp_guai
+  rotate: false
+  xy: 352, 52
+  size: 112, 123
+  orig: 114, 125
+  offset: 1, 1
+  index: -1
+xsxjt_dp_mei1
+  rotate: true
+  xy: 466, 106
+  size: 69, 43
+  orig: 71, 45
+  offset: 1, 1
+  index: -1
+xsxjt_dp_mei2
+  rotate: true
+  xy: 466, 35
+  size: 69, 43
+  orig: 71, 45
+  offset: 1, 1
+  index: -1
+xsxjt_dp_yan
+  rotate: true
+  xy: 252, 13
+  size: 37, 35
+  orig: 40, 37
+  offset: 1, 1
+  index: -1
+xsxjt_dp_yanl
+  rotate: false
+  xy: 290, 48
+  size: 35, 40
+  orig: 37, 42
+  offset: 1, 1
+  index: -1
+xsxjt_dp_yanr
+  rotate: false
+  xy: 252, 52
+  size: 36, 36
+  orig: 38, 39
+  offset: 1, 2
+  index: -1
+xsxjt_dp_yi
+  rotate: true
+  xy: 129, 5
+  size: 83, 121
+  orig: 85, 123
+  offset: 1, 1
+  index: -1
+xsxjt_dp_yz
+  rotate: true
+  xy: 327, 69
+  size: 19, 17
+  orig: 21, 19
+  offset: 1, 1
+  index: -1
+xsxjt_dp_yzl
+  rotate: false
+  xy: 327, 52
+  size: 15, 15
+  orig: 17, 17
+  offset: 1, 1
+  index: -1
+xsxjt_dp_yzr
+  rotate: false
+  xy: 327, 52
+  size: 15, 15
+  orig: 17, 17
+  offset: 1, 1
+  index: -1
+xsxjt_dp_zui
+  rotate: false
+  xy: 2, 90
+  size: 348, 85
+  orig: 351, 87
+  offset: 2, 1
+  index: -1
+xsxjt_dp_zui2
+  rotate: true
+  xy: 416, 177
+  size: 297, 87
+  orig: 299, 89
+  offset: 1, 1
+  index: -1

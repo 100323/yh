@@ -1,0 +1,41 @@
+
+effect_clcf.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_clcf_g1
+  rotate: false
+  xy: 312, 216
+  size: 176, 176
+  orig: 176, 176
+  offset: 0, 0
+  index: -1
+effect_clcf_g2
+  rotate: false
+  xy: 2, 249
+  size: 143, 143
+  orig: 143, 143
+  offset: 0, 0
+  index: -1
+effect_clcf_g3
+  rotate: false
+  xy: 147, 239
+  size: 163, 153
+  orig: 163, 153
+  offset: 0, 0
+  index: -1
+effect_clcf_g4
+  rotate: false
+  xy: 242, 2
+  size: 212, 212
+  orig: 212, 212
+  offset: 0, 0
+  index: -1
+effect_clcf_g5
+  rotate: false
+  xy: 2, 76
+  size: 238, 161
+  orig: 238, 161
+  offset: 0, 0
+  index: -1

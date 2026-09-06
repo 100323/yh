@@ -1,0 +1,90 @@
+
+cwxt26_he_txk.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gn_lian
+  rotate: true
+  xy: 2, 29
+  size: 96, 64
+  orig: 100, 64
+  offset: 4, 0
+  index: -1
+gn_maoyan01
+  rotate: true
+  xy: 68, 36
+  size: 89, 56
+  orig: 89, 56
+  offset: 0, 0
+  index: -1
+gn_maoyan02
+  rotate: false
+  xy: 126, 44
+  size: 69, 81
+  orig: 69, 81
+  offset: 0, 0
+  index: -1
+gn_maozi_hou
+  rotate: true
+  xy: 70, 3
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1
+gn_shou
+  rotate: false
+  xy: 162, 2
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+gn_toufa01
+  rotate: true
+  xy: 26, 3
+  size: 24, 18
+  orig: 24, 18
+  offset: 0, 0
+  index: -1
+gn_toufa02
+  rotate: false
+  xy: 102, 7
+  size: 58, 27
+  orig: 58, 27
+  offset: 0, 0
+  index: -1
+gn_toufa03
+  rotate: false
+  xy: 2, 3
+  size: 22, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+gn_wangyuanjing
+  rotate: true
+  xy: 201, 2
+  size: 47, 43
+  orig: 47, 43
+  offset: 0, 0
+  index: -1
+gn_yanjing
+  rotate: true
+  xy: 197, 51
+  size: 74, 57
+  orig: 75, 57
+  offset: 1, 0
+  index: -1
+gn_yanzhu
+  rotate: false
+  xy: 63, 21
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+gn_yanzhubi
+  rotate: false
+  xy: 46, 6
+  size: 15, 21
+  orig: 15, 21
+  offset: 0, 0
+  index: -1

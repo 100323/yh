@@ -1,0 +1,41 @@
+
+jiaxu4_skill_line.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaxu4_skill_line1
+  rotate: false
+  xy: 252, 168
+  size: 143, 149
+  orig: 143, 149
+  offset: 0, 0
+  index: -1
+jiaxu4_skill_line2
+  rotate: false
+  xy: 110, 2
+  size: 105, 107
+  orig: 105, 107
+  offset: 0, 0
+  index: -1
+jiaxu4_skill_line3
+  rotate: false
+  xy: 2, 2
+  size: 106, 107
+  orig: 106, 107
+  offset: 0, 0
+  index: -1
+jiaxu4_weapon
+  rotate: false
+  xy: 2, 111
+  size: 248, 206
+  orig: 248, 206
+  offset: 0, 0
+  index: -1
+jiaxu4_weapon_fire
+  rotate: false
+  xy: 252, 14
+  size: 137, 152
+  orig: 137, 152
+  offset: 0, 0
+  index: -1

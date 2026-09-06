@@ -1,0 +1,20 @@
+
+sdyl_hdlp_xunbaocishu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_lpb_qlight1
+  rotate: false
+  xy: 2, 64
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+sdyl_lpb_qlight2
+  rotate: false
+  xy: 69, 2
+  size: 129, 127
+  orig: 129, 127
+  offset: 0, 0
+  index: -1

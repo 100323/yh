@@ -1,0 +1,27 @@
+
+2024znq_dtwf_sizhi.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_dtwf_zhi1
+  rotate: false
+  xy: 2, 182
+  size: 192, 178
+  orig: 192, 178
+  offset: 0, 0
+  index: -1
+2024znq_dtwf_zhi2
+  rotate: false
+  xy: 196, 185
+  size: 188, 175
+  orig: 188, 175
+  offset: 0, 0
+  index: -1
+2024znq_dtwf_zhi3
+  rotate: false
+  xy: 2, 2
+  size: 192, 178
+  orig: 192, 178
+  offset: 0, 0
+  index: -1

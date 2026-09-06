@@ -1,0 +1,118 @@
+
+ui_axian_btn_livingroom_zhangyu.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: true
+  xy: 71, 11
+  size: 12, 6
+  orig: 16, 6
+  offset: 2, 0
+  index: -1
+axian_eyer2
+  rotate: true
+  xy: 216, 19
+  size: 11, 5
+  orig: 15, 7
+  offset: 2, 1
+  index: -1
+ktrk_zy_er
+  rotate: false
+  xy: 85, 4
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+ktrk_zy_lian
+  rotate: true
+  xy: 355, 55
+  size: 71, 62
+  orig: 71, 62
+  offset: 0, 0
+  index: -1
+ktrk_zy_mao
+  rotate: false
+  xy: 147, 32
+  size: 158, 94
+  orig: 158, 94
+  offset: 0, 0
+  index: -1
+ktrk_zy_shen
+  rotate: true
+  xy: 2, 25
+  size: 101, 74
+  orig: 101, 74
+  offset: 0, 0
+  index: -1
+ktrk_zy_tf1
+  rotate: true
+  xy: 143, 5
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+ktrk_zy_tf2
+  rotate: false
+  xy: 109, 5
+  size: 32, 22
+  orig: 32, 22
+  offset: 0, 0
+  index: -1
+ktrk_zy_tf3
+  rotate: false
+  xy: 2, 2
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+ktrk_zy_yan1
+  rotate: true
+  xy: 53, 6
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+ktrk_zy_yan2
+  rotate: true
+  xy: 36, 5
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+ktrk_zy_ying
+  rotate: true
+  xy: 78, 29
+  size: 97, 67
+  orig: 97, 67
+  offset: 0, 0
+  index: -1
+ktrk_zy_yj
+  rotate: true
+  xy: 307, 44
+  size: 82, 46
+  orig: 82, 46
+  offset: 0, 0
+  index: -1
+ktrk_zy_yj2
+  rotate: true
+  xy: 174, 3
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1
+ktrk_zy_yz1
+  rotate: false
+  xy: 71, 2
+  size: 5, 7
+  orig: 5, 7
+  offset: 0, 0
+  index: -1
+ktrk_zy_yz2
+  rotate: false
+  xy: 78, 3
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1

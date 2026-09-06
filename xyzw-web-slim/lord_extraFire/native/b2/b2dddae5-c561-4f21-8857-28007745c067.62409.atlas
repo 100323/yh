@@ -1,0 +1,20 @@
+
+caidao1_skill_loop.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caidao11
+  rotate: false
+  xy: 2, 2
+  size: 97, 158
+  orig: 97, 158
+  offset: 0, 0
+  index: -1
+caodao1
+  rotate: false
+  xy: 101, 17
+  size: 78, 143
+  orig: 82, 149
+  offset: 2, 3
+  index: -1

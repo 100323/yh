@@ -1,0 +1,13 @@
+
+zhangjiao4_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangjiao4_zidan
+  rotate: false
+  xy: 2, 2
+  size: 352, 88
+  orig: 357, 92
+  offset: 2, 2
+  index: -1

@@ -1,0 +1,13 @@
+
+daqiao3_attack_loop.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao3_xin_1
+  rotate: false
+  xy: 2, 2
+  size: 67, 59
+  orig: 67, 59
+  offset: 0, 0
+  index: -1

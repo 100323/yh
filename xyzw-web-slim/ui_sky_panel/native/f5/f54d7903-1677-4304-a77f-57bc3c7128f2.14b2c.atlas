@@ -1,0 +1,244 @@
+
+tgcf_pty_rk_banner2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 178, 261
+  size: 88, 139
+  orig: 88, 139
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_bj
+  rotate: false
+  xy: 2, 402
+  size: 321, 106
+  orig: 321, 106
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_xt
+  rotate: false
+  xy: 318, 9
+  size: 153, 108
+  orig: 153, 108
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunh
+  rotate: false
+  xy: 431, 218
+  size: 78, 106
+  orig: 78, 106
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunq
+  rotate: true
+  xy: 107, 95
+  size: 91, 40
+  orig: 91, 40
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunz
+  rotate: true
+  xy: 2, 31
+  size: 155, 103
+  orig: 155, 103
+  offset: 0, 0
+  index: -1
+dzxt_rk_banner_yunz1
+  rotate: true
+  xy: 155, 248
+  size: 152, 21
+  orig: 152, 21
+  offset: 0, 0
+  index: -1
+fs01
+  rotate: false
+  xy: 107, 46
+  size: 40, 47
+  orig: 41, 49
+  offset: 0, 2
+  index: -1
+fs02
+  rotate: true
+  xy: 387, 273
+  size: 51, 32
+  orig: 51, 32
+  offset: 0, 0
+  index: -1
+fs03
+  rotate: true
+  xy: 259, 66
+  size: 50, 31
+  orig: 51, 32
+  offset: 0, 1
+  index: -1
+fs04
+  rotate: true
+  xy: 473, 74
+  size: 46, 30
+  orig: 46, 30
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 149, 26
+  size: 108, 90
+  orig: 110, 91
+  offset: 2, 1
+  index: -1
+jz
+  rotate: false
+  xy: 325, 326
+  size: 154, 182
+  orig: 154, 182
+  offset: 0, 0
+  index: -1
+pd01
+  rotate: true
+  xy: 431, 122
+  size: 94, 73
+  orig: 94, 73
+  offset: 0, 0
+  index: -1
+pd02
+  rotate: true
+  xy: 318, 119
+  size: 135, 111
+  orig: 135, 111
+  offset: 0, 0
+  index: -1
+pd03
+  rotate: true
+  xy: 2, 188
+  size: 212, 151
+  orig: 212, 151
+  offset: 0, 0
+  index: -1
+qunzi
+  rotate: false
+  xy: 107, 3
+  size: 37, 41
+  orig: 37, 41
+  offset: 0, 0
+  index: -1
+tf01
+  rotate: false
+  xy: 155, 118
+  size: 161, 128
+  orig: 161, 128
+  offset: 0, 0
+  index: -1
+wb
+  rotate: true
+  xy: 268, 315
+  size: 85, 52
+  orig: 85, 52
+  offset: 0, 0
+  index: -1
+xingxing
+  rotate: false
+  xy: 292, 100
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+yj02
+  rotate: false
+  xy: 268, 256
+  size: 68, 57
+  orig: 68, 57
+  offset: 0, 0
+  index: -1
+ymei
+  rotate: true
+  xy: 149, 177
+  size: 9, 4
+  orig: 9, 5
+  offset: 0, 0
+  index: -1
+ys
+  rotate: true
+  xy: 338, 286
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+yyb
+  rotate: false
+  xy: 35, 5
+  size: 28, 24
+  orig: 28, 24
+  offset: 0, 0
+  index: -1
+yyk
+  rotate: false
+  xy: 2, 2
+  size: 31, 27
+  orig: 31, 27
+  offset: 0, 0
+  index: -1
+yyz
+  rotate: true
+  xy: 65, 8
+  size: 21, 24
+  orig: 21, 24
+  offset: 0, 0
+  index: -1
+zb
+  rotate: true
+  xy: 198, 250
+  size: 9, 11
+  orig: 11, 11
+  offset: 1, 0
+  index: -1
+zb02
+  rotate: true
+  xy: 178, 248
+  size: 11, 18
+  orig: 13, 18
+  offset: 1, 0
+  index: -1
+zmei
+  rotate: false
+  xy: 211, 253
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+zsb
+  rotate: false
+  xy: 259, 7
+  size: 30, 57
+  orig: 30, 57
+  offset: 0, 0
+  index: -1
+zuodabi
+  rotate: true
+  xy: 338, 256
+  size: 28, 34
+  orig: 29, 39
+  offset: 1, 4
+  index: -1
+zyb
+  rotate: false
+  xy: 291, 14
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+zyk
+  rotate: false
+  xy: 291, 39
+  size: 18, 25
+  orig: 18, 25
+  offset: 0, 0
+  index: -1
+zyz
+  rotate: true
+  xy: 374, 258
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,251 @@
+
+axian.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_apron
+  rotate: true
+  xy: 2, 117
+  size: 137, 272
+  orig: 137, 272
+  offset: 0, 0
+  index: -1
+axian_armr
+  rotate: true
+  xy: 340, 61
+  size: 64, 207
+  orig: 64, 207
+  offset: 0, 0
+  index: -1
+axian_body
+  rotate: true
+  xy: 727, 9
+  size: 141, 188
+  orig: 141, 188
+  offset: 0, 0
+  index: -1
+axian_eyel
+  rotate: false
+  xy: 196, 10
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+axian_eyel2
+  rotate: false
+  xy: 163, 3
+  size: 15, 5
+  orig: 19, 7
+  offset: 2, 1
+  index: -1
+axian_eyer
+  rotate: false
+  xy: 187, 3
+  size: 4, 5
+  orig: 4, 5
+  offset: 0, 0
+  index: -1
+axian_eyer2
+  rotate: false
+  xy: 148, 2
+  size: 13, 6
+  orig: 18, 8
+  offset: 2, 1
+  index: -1
+axian_eyewhitel
+  rotate: false
+  xy: 334, 9
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+axian_eyewhiter
+  rotate: true
+  xy: 237, 18
+  size: 16, 25
+  orig: 16, 25
+  offset: 0, 0
+  index: -1
+axian_face
+  rotate: false
+  xy: 564, 138
+  size: 132, 116
+  orig: 132, 116
+  offset: 0, 0
+  index: -1
+axian_hair
+  rotate: false
+  xy: 698, 152
+  size: 128, 102
+  orig: 128, 102
+  offset: 0, 0
+  index: -1
+axian_handl
+  rotate: true
+  xy: 148, 36
+  size: 79, 190
+  orig: 79, 190
+  offset: 0, 0
+  index: -1
+axian_hat
+  rotate: false
+  xy: 276, 127
+  size: 286, 127
+  orig: 286, 127
+  offset: 0, 0
+  index: -1
+axian_hip
+  rotate: false
+  xy: 2, 2
+  size: 144, 113
+  orig: 144, 113
+  offset: 0, 0
+  index: -1
+axian_legl
+  rotate: true
+  xy: 549, 75
+  size: 50, 176
+  orig: 50, 176
+  offset: 0, 0
+  index: -1
+axian_legr
+  rotate: true
+  xy: 463, 6
+  size: 53, 188
+  orig: 53, 188
+  offset: 0, 0
+  index: -1
+axian_mouth1
+  rotate: false
+  xy: 196, 15
+  size: 39, 19
+  orig: 39, 19
+  offset: 0, 0
+  index: -1
+axian_mouth2
+  rotate: false
+  xy: 148, 10
+  size: 46, 24
+  orig: 46, 24
+  offset: 0, 0
+  index: -1
+axian_mouth3
+  rotate: false
+  xy: 201, 2
+  size: 37, 11
+  orig: 37, 11
+  offset: 0, 0
+  index: -1
+axian_mouth4
+  rotate: true
+  xy: 384, 41
+  size: 18, 22
+  orig: 18, 22
+  offset: 0, 0
+  index: -1
+axian_neck
+  rotate: true
+  xy: 356, 2
+  size: 34, 43
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+axian_nose
+  rotate: true
+  xy: 431, 42
+  size: 17, 21
+  orig: 17, 21
+  offset: 0, 0
+  index: -1
+axian_redl
+  rotate: true
+  xy: 258, 3
+  size: 13, 11
+  orig: 13, 11
+  offset: 0, 0
+  index: -1
+axian_redr
+  rotate: false
+  xy: 240, 5
+  size: 16, 11
+  orig: 16, 11
+  offset: 0, 0
+  index: -1
+axian_spot
+  rotate: false
+  xy: 264, 19
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+chicken_body
+  rotate: false
+  xy: 828, 163
+  size: 111, 91
+  orig: 111, 91
+  offset: 0, 0
+  index: -1
+chicken_eyel
+  rotate: false
+  xy: 180, 3
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+chicken_eyer
+  rotate: true
+  xy: 193, 3
+  size: 5, 4
+  orig: 5, 4
+  offset: 0, 0
+  index: -1
+chicken_eyewhitel
+  rotate: false
+  xy: 340, 38
+  size: 20, 21
+  orig: 20, 21
+  offset: 0, 0
+  index: -1
+chicken_eyewhiter
+  rotate: false
+  xy: 445, 23
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+chicken_hair
+  rotate: false
+  xy: 286, 5
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+chicken_legl
+  rotate: true
+  xy: 310, 9
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+chicken_legr
+  rotate: false
+  xy: 362, 39
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+chicken_mouth
+  rotate: true
+  xy: 401, 3
+  size: 36, 42
+  orig: 36, 42
+  offset: 0, 0
+  index: -1
+chicken_wing
+  rotate: true
+  xy: 408, 41
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1

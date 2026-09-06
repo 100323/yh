@@ -1,0 +1,48 @@
+
+caoren3_attack_line.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren3_attack1
+  rotate: false
+  xy: 2, 2
+  size: 171, 55
+  orig: 174, 58
+  offset: 1, 2
+  index: -1
+caoren3_attack2
+  rotate: false
+  xy: 2, 59
+  size: 204, 67
+  orig: 212, 68
+  offset: 5, 0
+  index: -1
+caoren3_ball2
+  rotate: true
+  xy: 175, 6
+  size: 51, 60
+  orig: 55, 64
+  offset: 1, 2
+  index: -1
+caoren3_ball3
+  rotate: true
+  xy: 208, 68
+  size: 58, 76
+  orig: 60, 78
+  offset: 1, 1
+  index: -1
+caoren3_ball4
+  rotate: false
+  xy: 237, 3
+  size: 67, 63
+  orig: 69, 65
+  offset: 1, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 286, 82
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

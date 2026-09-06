@@ -1,0 +1,34 @@
+
+monster_die.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+monster1_effect_scary
+  rotate: true
+  xy: 208, 2
+  size: 58, 59
+  orig: 58, 59
+  offset: 0, 0
+  index: -1
+monster_die_jar1
+  rotate: false
+  xy: 2, 4
+  size: 204, 214
+  orig: 204, 214
+  offset: 0, 0
+  index: -1
+monster_die_jar2
+  rotate: true
+  xy: 348, 37
+  size: 181, 108
+  orig: 181, 108
+  offset: 0, 0
+  index: -1
+monster_die_jar3
+  rotate: false
+  xy: 208, 62
+  size: 138, 156
+  orig: 138, 156
+  offset: 0, 0
+  index: -1

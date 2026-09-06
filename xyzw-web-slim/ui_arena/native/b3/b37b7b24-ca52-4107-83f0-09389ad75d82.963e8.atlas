@@ -1,0 +1,27 @@
+
+ui_arena_fire.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jjc_ui_firelight
+  rotate: false
+  xy: 36, 81
+  size: 710, 176
+  orig: 710, 176
+  offset: 0, 0
+  index: -1
+ui_effectlight_bigcircle01
+  rotate: false
+  xy: 748, 2
+  size: 255, 255
+  orig: 255, 255
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 225
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

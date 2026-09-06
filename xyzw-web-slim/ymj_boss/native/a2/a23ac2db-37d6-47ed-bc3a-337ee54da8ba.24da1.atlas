@@ -1,0 +1,342 @@
+
+ymj_boss.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 336, 2
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 343, 112
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+ymj_boss_harm
+  rotate: true
+  xy: 297, 128
+  size: 47, 68
+  orig: 47, 68
+  offset: 0, 0
+  index: -1
+ymj_boss_hbody
+  rotate: false
+  xy: 2, 255
+  size: 205, 255
+  orig: 205, 255
+  offset: 0, 0
+  index: -1
+ymj_boss_hear1
+  rotate: true
+  xy: 349, 36
+  size: 35, 54
+  orig: 35, 54
+  offset: 0, 0
+  index: -1
+ymj_boss_hear2
+  rotate: true
+  xy: 304, 30
+  size: 32, 43
+  orig: 32, 43
+  offset: 0, 0
+  index: -1
+ymj_boss_heye1
+  rotate: true
+  xy: 134, 21
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+ymj_boss_heye2
+  rotate: true
+  xy: 144, 22
+  size: 5, 8
+  orig: 5, 8
+  offset: 0, 0
+  index: -1
+ymj_boss_heyebrow1
+  rotate: true
+  xy: 364, 4
+  size: 30, 41
+  orig: 30, 41
+  offset: 0, 0
+  index: -1
+ymj_boss_heyebrow2
+  rotate: true
+  xy: 178, 6
+  size: 21, 36
+  orig: 21, 36
+  offset: 0, 0
+  index: -1
+ymj_boss_heyewhite1
+  rotate: true
+  xy: 216, 3
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+ymj_boss_heyewhite2
+  rotate: true
+  xy: 39, 3
+  size: 16, 35
+  orig: 16, 35
+  offset: 0, 0
+  index: -1
+ymj_boss_hhair1
+  rotate: false
+  xy: 245, 6
+  size: 29, 21
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+ymj_boss_hhair2
+  rotate: false
+  xy: 387, 334
+  size: 55, 83
+  orig: 55, 83
+  offset: 0, 0
+  index: -1
+ymj_boss_hhair3
+  rotate: true
+  xy: 2, 21
+  size: 87, 130
+  orig: 87, 130
+  offset: 0, 0
+  index: -1
+ymj_boss_hhead
+  rotate: true
+  xy: 134, 29
+  size: 80, 122
+  orig: 80, 122
+  offset: 0, 0
+  index: -1
+ymj_boss_hlegl
+  rotate: true
+  xy: 258, 30
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+ymj_boss_hlegr
+  rotate: false
+  xy: 209, 297
+  size: 84, 109
+  orig: 84, 109
+  offset: 0, 0
+  index: -1
+ymj_boss_hneck
+  rotate: false
+  xy: 311, 419
+  size: 91, 91
+  orig: 91, 91
+  offset: 0, 0
+  index: -1
+ymj_boss_htail
+  rotate: false
+  xy: 129, 123
+  size: 79, 130
+  orig: 79, 130
+  offset: 0, 0
+  index: -1
+ymj_boss_hwing
+  rotate: true
+  xy: 2, 110
+  size: 143, 125
+  orig: 150, 125
+  offset: 7, 0
+  index: -1
+ymj_boss_marml1
+  rotate: true
+  xy: 290, 207
+  size: 47, 101
+  orig: 47, 101
+  offset: 0, 0
+  index: -1
+ymj_boss_marml2
+  rotate: false
+  xy: 209, 256
+  size: 85, 39
+  orig: 85, 39
+  offset: 0, 0
+  index: -1
+ymj_boss_marmr1
+  rotate: false
+  xy: 296, 258
+  size: 95, 49
+  orig: 95, 49
+  offset: 0, 0
+  index: -1
+ymj_boss_marmr2
+  rotate: true
+  xy: 345, 73
+  size: 37, 75
+  orig: 37, 75
+  offset: 0, 0
+  index: -1
+ymj_boss_mbody
+  rotate: true
+  xy: 209, 408
+  size: 102, 100
+  orig: 102, 100
+  offset: 0, 0
+  index: -1
+ymj_boss_mbook
+  rotate: false
+  xy: 404, 428
+  size: 54, 82
+  orig: 54, 82
+  offset: 0, 0
+  index: -1
+ymj_boss_mcloth
+  rotate: false
+  xy: 210, 172
+  size: 78, 82
+  orig: 78, 82
+  offset: 0, 0
+  index: -1
+ymj_boss_meye1
+  rotate: false
+  xy: 129, 111
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+ymj_boss_meye2
+  rotate: false
+  xy: 140, 112
+  size: 7, 9
+  orig: 7, 9
+  offset: 0, 0
+  index: -1
+ymj_boss_meyebrow1
+  rotate: true
+  xy: 127, 3
+  size: 16, 20
+  orig: 16, 20
+  offset: 0, 0
+  index: -1
+ymj_boss_meyebrow2
+  rotate: false
+  xy: 359, 181
+  size: 24, 24
+  orig: 26, 24
+  offset: 0, 0
+  index: -1
+ymj_boss_meyelid1
+  rotate: false
+  xy: 276, 2
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+ymj_boss_meyelid2
+  rotate: true
+  xy: 149, 2
+  size: 18, 27
+  orig: 18, 27
+  offset: 0, 0
+  index: -1
+ymj_boss_meyewhite1
+  rotate: false
+  xy: 306, 2
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+ymj_boss_meyewhite2
+  rotate: true
+  xy: 387, 314
+  size: 18, 27
+  orig: 18, 27
+  offset: 0, 0
+  index: -1
+ymj_boss_mfinl1
+  rotate: false
+  xy: 297, 114
+  size: 22, 12
+  orig: 22, 12
+  offset: 0, 0
+  index: -1
+ymj_boss_mfinl2
+  rotate: false
+  xy: 76, 4
+  size: 24, 15
+  orig: 24, 15
+  offset: 0, 0
+  index: -1
+ymj_boss_mfinr1
+  rotate: true
+  xy: 321, 113
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+ymj_boss_mfinr2
+  rotate: true
+  xy: 102, 5
+  size: 14, 23
+  orig: 14, 23
+  offset: 0, 0
+  index: -1
+ymj_boss_mhat
+  rotate: true
+  xy: 367, 118
+  size: 61, 45
+  orig: 61, 45
+  offset: 0, 0
+  index: -1
+ymj_boss_mhat1
+  rotate: false
+  xy: 407, 17
+  size: 52, 54
+  orig: 52, 54
+  offset: 0, 0
+  index: -1
+ymj_boss_mhat2
+  rotate: true
+  xy: 290, 177
+  size: 28, 67
+  orig: 28, 67
+  offset: 0, 0
+  index: -1
+ymj_boss_mhead
+  rotate: true
+  xy: 295, 309
+  size: 97, 90
+  orig: 97, 90
+  offset: 0, 0
+  index: -1
+ymj_boss_mlegl
+  rotate: false
+  xy: 258, 64
+  size: 85, 45
+  orig: 85, 45
+  offset: 0, 0
+  index: -1
+ymj_boss_mlegr1
+  rotate: false
+  xy: 393, 271
+  size: 45, 41
+  orig: 45, 41
+  offset: 0, 0
+  index: -1
+ymj_boss_mlegr2
+  rotate: false
+  xy: 210, 111
+  size: 85, 59
+  orig: 85, 59
+  offset: 0, 0
+  index: -1
+ymj_boss_mmouth
+  rotate: false
+  xy: 2, 2
+  size: 35, 17
+  orig: 35, 17
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+sdyl_hdlp_kelingqu.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_klq_1
+  rotate: false
+  xy: 2, 2
+  size: 83, 57
+  orig: 83, 57
+  offset: 0, 0
+  index: -1
+sdyl_klq_2
+  rotate: false
+  xy: 87, 37
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1

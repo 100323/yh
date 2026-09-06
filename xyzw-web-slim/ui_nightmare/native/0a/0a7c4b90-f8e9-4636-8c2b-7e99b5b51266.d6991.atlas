@@ -1,0 +1,139 @@
+
+sdsl_xjsl_changjing.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 822, 66
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+sd_xjsl_bj_hun1
+  rotate: false
+  xy: 594, 2
+  size: 106, 74
+  orig: 106, 75
+  offset: 0, 1
+  index: -1
+sd_xjsl_bj_hun2
+  rotate: true
+  xy: 712, 175
+  size: 65, 164
+  orig: 68, 166
+  offset: 1, 2
+  index: -1
+sd_xjsl_bj_hun3
+  rotate: false
+  xy: 779, 13
+  size: 41, 65
+  orig: 41, 65
+  offset: 0, 0
+  index: -1
+sd_xjsl_bj_hun4
+  rotate: false
+  xy: 856, 61
+  size: 52, 112
+  orig: 53, 113
+  offset: 0, 1
+  index: -1
+sd_xjsl_bj_hun5
+  rotate: true
+  xy: 712, 111
+  size: 62, 54
+  orig: 62, 54
+  offset: 0, 0
+  index: -1
+sd_xjsl_bj_zao
+  rotate: true
+  xy: 2, 78
+  size: 421, 708
+  orig: 421, 755
+  offset: 0, 0
+  index: -1
+sd_xjsl_bj_zz
+  rotate: true
+  xy: 2, 61
+  size: 15, 590
+  orig: 15, 590
+  offset: 0, 0
+  index: -1
+sdsl_xjsl_bj_kuang2_dian1
+  rotate: false
+  xy: 822, 36
+  size: 28, 28
+  orig: 32, 31
+  offset: 2, 1
+  index: -1
+sdsl_xjsl_bj_kuang2_dian2
+  rotate: false
+  xy: 779, 100
+  size: 75, 73
+  orig: 79, 77
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_dian3
+  rotate: false
+  xy: 744, 81
+  size: 29, 28
+  orig: 33, 32
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_dian4
+  rotate: true
+  xy: 878, 176
+  size: 23, 24
+  orig: 27, 28
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_dian5
+  rotate: false
+  xy: 822, 8
+  size: 26, 26
+  orig: 30, 30
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_dian6
+  rotate: false
+  xy: 712, 79
+  size: 30, 30
+  orig: 34, 33
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_dian7
+  rotate: false
+  xy: 878, 201
+  size: 47, 39
+  orig: 51, 43
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_dian8
+  rotate: true
+  xy: 852, 22
+  size: 37, 58
+  orig: 39, 62
+  offset: 1, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_hd1
+  rotate: false
+  xy: 702, 2
+  size: 75, 74
+  orig: 78, 78
+  offset: 2, 2
+  index: -1
+sdsl_xjsl_bj_kuang2_kuang
+  rotate: false
+  xy: 712, 242
+  size: 206, 257
+  orig: 206, 257
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 775, 80
+  size: 18, 21
+  orig: 26, 26
+  offset: 4, 3
+  index: -1

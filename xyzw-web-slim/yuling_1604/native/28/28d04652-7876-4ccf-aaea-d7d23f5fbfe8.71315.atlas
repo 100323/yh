@@ -1,0 +1,55 @@
+
+yuling_1604.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 15, 159
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_604_body
+  rotate: false
+  xy: 2, 2
+  size: 245, 130
+  orig: 245, 134
+  offset: 0, 0
+  index: -1
+yuling_604_eye
+  rotate: true
+  xy: 2, 182
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+yuling_604_eyewhite
+  rotate: false
+  xy: 134, 151
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: -1
+yuling_604_fin1
+  rotate: true
+  xy: 178, 134
+  size: 57, 65
+  orig: 58, 67
+  offset: 1, 0
+  index: -1
+yuling_604_fin2
+  rotate: false
+  xy: 88, 156
+  size: 44, 35
+  orig: 44, 36
+  offset: 0, 1
+  index: -1
+yuling_604_fin3
+  rotate: true
+  xy: 49, 158
+  size: 33, 37
+  orig: 33, 38
+  offset: 0, 1
+  index: -1

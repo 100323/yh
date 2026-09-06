@@ -1,0 +1,83 @@
+
+ls_simayi9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lssima_1
+  rotate: true
+  xy: 400, 111
+  size: 132, 93
+  orig: 132, 106
+  offset: 0, 13
+  index: -1
+lssima_2
+  rotate: true
+  xy: 400, 15
+  size: 94, 58
+  orig: 94, 58
+  offset: 0, 0
+  index: -1
+lssima_dhxingx
+  rotate: true
+  xy: 139, 31
+  size: 78, 42
+  orig: 78, 42
+  offset: 0, 0
+  index: -1
+lssima_guangyun1
+  rotate: false
+  xy: 460, 77
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lssima_gy
+  rotate: false
+  xy: 460, 77
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lssima_guangyun2
+  rotate: false
+  xy: 2, 111
+  size: 191, 191
+  orig: 191, 191
+  offset: 0, 0
+  index: -1
+lssima_guangyun3
+  rotate: false
+  xy: 258, 245
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+lssima_tt
+  rotate: false
+  xy: 2, 2
+  size: 135, 107
+  orig: 135, 107
+  offset: 0, 0
+  index: -1
+lssima_tt1
+  rotate: true
+  xy: 195, 70
+  size: 173, 203
+  orig: 182, 207
+  offset: 2, 3
+  index: -1
+lssima_tt2
+  rotate: false
+  xy: 2, 304
+  size: 254, 143
+  orig: 260, 148
+  offset: 3, 2
+  index: -1
+lssima_xing1
+  rotate: false
+  xy: 195, 250
+  size: 53, 52
+  orig: 53, 52
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+zbz_beacon_arrow.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_beacon_my01
+  rotate: true
+  xy: 8, 75
+  size: 41, 65
+  orig: 44, 67
+  offset: 1, 1
+  index: -1
+zbz_beacon_my02
+  rotate: false
+  xy: 8, 186
+  size: 38, 67
+  orig: 40, 69
+  offset: 1, 2
+  index: -1
+zbz_beacon_my03
+  rotate: false
+  xy: 2, 2
+  size: 38, 68
+  orig: 41, 69
+  offset: 2, 1
+  index: -1
+zbz_beacon_my04
+  rotate: false
+  xy: 48, 187
+  size: 38, 66
+  orig: 40, 67
+  offset: 1, 1
+  index: -1
+zbz_beacon_my05
+  rotate: false
+  xy: 88, 188
+  size: 45, 65
+  orig: 47, 68
+  offset: 1, 1
+  index: -1
+zbz_beacon_my06
+  rotate: false
+  xy: 67, 120
+  size: 55, 65
+  orig: 57, 66
+  offset: 1, 0
+  index: -1
+zbz_beacon_my07
+  rotate: false
+  xy: 42, 9
+  size: 62, 64
+  orig: 65, 67
+  offset: 2, 1
+  index: -1
+zbz_beacon_my08
+  rotate: true
+  xy: 106, 55
+  size: 63, 58
+  orig: 66, 61
+  offset: 2, 1
+  index: -1
+zbz_beacon_my09
+  rotate: true
+  xy: 8, 118
+  size: 66, 57
+  orig: 67, 59
+  offset: 0, 1
+  index: -1
+zbz_beacon_my10
+  rotate: false
+  xy: 124, 126
+  size: 56, 60
+  orig: 58, 62
+  offset: 1, 1
+  index: -1
+zbz_beacon_mycircle
+  rotate: true
+  xy: 75, 93
+  size: 25, 20
+  orig: 25, 20
+  offset: 0, 0
+  index: -1
+zbz_beacon_myline
+  rotate: false
+  xy: 2, 72
+  size: 4, 181
+  orig: 4, 181
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+zbz_minimap_home.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_beacon_home2
+  rotate: false
+  xy: 2, 2
+  size: 98, 98
+  orig: 102, 102
+  offset: 2, 2
+  index: -1
+zbz_minimap_home
+  rotate: false
+  xy: 102, 42
+  size: 50, 58
+  orig: 50, 58
+  offset: 0, 0
+  index: -1

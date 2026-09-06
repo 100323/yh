@@ -1,0 +1,34 @@
+
+taishici7_attack_line.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taishici7_pg_tw
+  rotate: false
+  xy: 158, 36
+  size: 349, 20
+  orig: 349, 20
+  offset: 0, 0
+  index: -1
+taishici7_pg_yw1
+  rotate: false
+  xy: 231, 58
+  size: 188, 68
+  orig: 188, 68
+  offset: 0, 0
+  index: -1
+taishici7_pg_yw2
+  rotate: false
+  xy: 2, 2
+  size: 154, 63
+  orig: 154, 63
+  offset: 0, 0
+  index: -1
+taishici7_pg_zd1
+  rotate: false
+  xy: 2, 67
+  size: 227, 59
+  orig: 227, 59
+  offset: 0, 0
+  index: -1

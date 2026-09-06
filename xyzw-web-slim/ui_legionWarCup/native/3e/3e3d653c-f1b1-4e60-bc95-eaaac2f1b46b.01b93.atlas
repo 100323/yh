@@ -1,0 +1,55 @@
+
+zbz_yjbanner5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 33, 426
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 449
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+zbz_newbanner5_bg
+  rotate: false
+  xy: 2, 2
+  size: 461, 176
+  orig: 461, 176
+  offset: 0, 0
+  index: -1
+zbz_newbanner5_tree1
+  rotate: true
+  xy: 87, 398
+  size: 80, 279
+  orig: 80, 279
+  offset: 0, 0
+  index: -1
+zbz_newbanner5_tree2
+  rotate: true
+  xy: 227, 180
+  size: 212, 262
+  orig: 212, 262
+  offset: 0, 0
+  index: -1
+zbz_newbanner5_tree3
+  rotate: true
+  xy: 368, 394
+  size: 84, 97
+  orig: 84, 97
+  offset: 0, 0
+  index: -1
+zbz_newbanner_light2
+  rotate: false
+  xy: 2, 261
+  size: 223, 135
+  orig: 223, 135
+  offset: 0, 0
+  index: -1

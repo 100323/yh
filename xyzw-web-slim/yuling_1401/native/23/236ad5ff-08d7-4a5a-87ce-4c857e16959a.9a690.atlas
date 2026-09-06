@@ -1,0 +1,41 @@
+
+yuling_1401.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 70, 78
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_401_body
+  rotate: false
+  xy: 2, 2
+  size: 109, 74
+  orig: 109, 74
+  offset: 0, 0
+  index: -1
+yuling_401_eye
+  rotate: false
+  xy: 2, 103
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+yuling_401_eyewhite
+  rotate: false
+  xy: 40, 84
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+yuling_401_fin
+  rotate: false
+  xy: 11, 86
+  size: 27, 24
+  orig: 27, 24
+  offset: 0, 0
+  index: -1

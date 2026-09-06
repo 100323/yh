@@ -1,0 +1,20 @@
+
+zhenji3_attack_loop.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 16
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhenji3_skill7
+  rotate: false
+  xy: 45, 2
+  size: 23, 55
+  orig: 23, 55
+  offset: 0, 0
+  index: -1

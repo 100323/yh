@@ -1,0 +1,237 @@
+
+simayi7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 257, 2
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 394, 170
+  size: 44, 54
+  orig: 44, 54
+  offset: 0, 0
+  index: -1
+simayi4_eye
+  rotate: false
+  xy: 186, 387
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+simayi7_attack_effect1
+  rotate: false
+  xy: 283, 192
+  size: 109, 127
+  orig: 109, 127
+  offset: 0, 0
+  index: -1
+simayi7_beard1
+  rotate: false
+  xy: 394, 275
+  size: 47, 50
+  orig: 47, 50
+  offset: 0, 0
+  index: -1
+simayi7_beard2
+  rotate: false
+  xy: 388, 4
+  size: 32, 28
+  orig: 32, 28
+  offset: 0, 0
+  index: -1
+simayi7_body
+  rotate: false
+  xy: 126, 208
+  size: 155, 111
+  orig: 155, 111
+  offset: 0, 0
+  index: -1
+simayi7_effect1
+  rotate: false
+  xy: 394, 125
+  size: 61, 43
+  orig: 61, 43
+  offset: 0, 0
+  index: -1
+simayi7_effect2
+  rotate: false
+  xy: 102, 4
+  size: 53, 52
+  orig: 62, 62
+  offset: 5, 5
+  index: -1
+simayi7_eyebrow
+  rotate: false
+  xy: 441, 236
+  size: 43, 37
+  orig: 43, 37
+  offset: 0, 0
+  index: -1
+simayi7_eyewhite
+  rotate: true
+  xy: 440, 185
+  size: 39, 46
+  orig: 39, 46
+  offset: 0, 0
+  index: -1
+simayi7_footl
+  rotate: true
+  xy: 308, 4
+  size: 27, 63
+  orig: 27, 63
+  offset: 0, 0
+  index: -1
+simayi7_footr
+  rotate: true
+  xy: 368, 327
+  size: 30, 60
+  orig: 30, 60
+  offset: 0, 0
+  index: -1
+simayi7_hair1
+  rotate: false
+  xy: 157, 7
+  size: 43, 49
+  orig: 43, 49
+  offset: 0, 0
+  index: -1
+simayi7_hair2
+  rotate: true
+  xy: 2, 266
+  size: 128, 122
+  orig: 128, 122
+  offset: 0, 0
+  index: -1
+simayi7_handl
+  rotate: false
+  xy: 202, 103
+  size: 70, 103
+  orig: 70, 103
+  offset: 0, 0
+  index: -1
+simayi7_handl2
+  rotate: true
+  xy: 2, 4
+  size: 62, 98
+  orig: 62, 98
+  offset: 0, 0
+  index: -1
+simayi7_handr
+  rotate: true
+  xy: 394, 226
+  size: 47, 45
+  orig: 47, 45
+  offset: 0, 0
+  index: -1
+simayi7_handr2
+  rotate: true
+  xy: 332, 33
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+simayi7_head
+  rotate: false
+  xy: 195, 321
+  size: 171, 188
+  orig: 171, 188
+  offset: 0, 0
+  index: -1
+simayi7_jt
+  rotate: false
+  xy: 2, 151
+  size: 111, 113
+  orig: 111, 113
+  offset: 0, 0
+  index: -1
+simayi7_jteffect
+  rotate: true
+  xy: 274, 53
+  size: 65, 56
+  orig: 65, 56
+  offset: 0, 0
+  index: -1
+simayi7_legl
+  rotate: false
+  xy: 274, 120
+  size: 71, 70
+  orig: 71, 70
+  offset: 0, 0
+  index: -1
+simayi7_legr
+  rotate: true
+  xy: 126, 329
+  size: 65, 58
+  orig: 65, 58
+  offset: 0, 0
+  index: -1
+simayi7_mouth1
+  rotate: true
+  xy: 388, 34
+  size: 50, 77
+  orig: 50, 77
+  offset: 0, 0
+  index: -1
+simayi7_mouth2
+  rotate: false
+  xy: 347, 86
+  size: 45, 104
+  orig: 45, 104
+  offset: 0, 0
+  index: -1
+simayi7_skill_effect1
+  rotate: false
+  xy: 2, 396
+  size: 191, 113
+  orig: 191, 113
+  offset: 0, 0
+  index: -1
+simayi7_skill_effect5
+  rotate: false
+  xy: 202, 25
+  size: 53, 76
+  orig: 53, 76
+  offset: 0, 0
+  index: -1
+simayi7_sword
+  rotate: false
+  xy: 2, 68
+  size: 75, 81
+  orig: 88, 95
+  offset: 7, 8
+  index: -1
+simayi7_tail1
+  rotate: true
+  xy: 115, 58
+  size: 148, 85
+  orig: 148, 85
+  offset: 0, 0
+  index: -1
+simayi7_tail2
+  rotate: false
+  xy: 79, 95
+  size: 28, 54
+  orig: 28, 54
+  offset: 0, 0
+  index: -1
+simayi7_tie
+  rotate: true
+  xy: 368, 359
+  size: 150, 82
+  orig: 150, 82
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 79, 82
+  size: 19, 11
+  orig: 27, 27
+  offset: 3, 9
+  index: -1

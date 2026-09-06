@@ -1,0 +1,181 @@
+
+wbhj_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wbhj_banner_arml1
+  rotate: false
+  xy: 373, 2
+  size: 45, 26
+  orig: 45, 27
+  offset: 0, 1
+  index: -1
+wbhj_banner_arml2
+  rotate: true
+  xy: 429, 45
+  size: 33, 55
+  orig: 33, 55
+  offset: 0, 0
+  index: -1
+wbhj_banner_armr1
+  rotate: true
+  xy: 373, 30
+  size: 49, 54
+  orig: 49, 54
+  offset: 0, 0
+  index: -1
+wbhj_banner_armr2
+  rotate: true
+  xy: 367, 267
+  size: 35, 55
+  orig: 35, 55
+  offset: 0, 0
+  index: -1
+wbhj_banner_bg2
+  rotate: false
+  xy: 2, 255
+  size: 363, 255
+  orig: 363, 255
+  offset: 0, 0
+  index: -1
+wbhj_banner_body
+  rotate: false
+  xy: 429, 80
+  size: 78, 82
+  orig: 78, 82
+  offset: 0, 0
+  index: -1
+wbhj_banner_cola
+  rotate: true
+  xy: 420, 2
+  size: 26, 40
+  orig: 26, 40
+  offset: 0, 0
+  index: -1
+wbhj_banner_eye1
+  rotate: false
+  xy: 462, 2
+  size: 6, 6
+  orig: 7, 8
+  offset: 1, 1
+  index: -1
+wbhj_banner_eye2
+  rotate: false
+  xy: 470, 2
+  size: 6, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+wbhj_banner_eyebrow1
+  rotate: false
+  xy: 429, 30
+  size: 9, 13
+  orig: 9, 13
+  offset: 0, 0
+  index: -1
+wbhj_banner_eyebrow2
+  rotate: false
+  xy: 272, 2
+  size: 19, 11
+  orig: 19, 12
+  offset: 0, 0
+  index: -1
+wbhj_banner_eyewhite1
+  rotate: false
+  xy: 486, 60
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+wbhj_banner_eyewhite2
+  rotate: false
+  xy: 478, 23
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+wbhj_banner_fg1
+  rotate: false
+  xy: 373, 81
+  size: 54, 92
+  orig: 70, 92
+  offset: 16, 0
+  index: -1
+wbhj_banner_fg2
+  rotate: true
+  xy: 367, 304
+  size: 206, 138
+  orig: 206, 138
+  offset: 0, 0
+  index: -1
+wbhj_banner_fin1
+  rotate: true
+  xy: 486, 42
+  size: 16, 20
+  orig: 16, 20
+  offset: 0, 0
+  index: -1
+wbhj_banner_fin2
+  rotate: false
+  xy: 462, 10
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: -1
+wbhj_banner_fin3
+  rotate: true
+  xy: 440, 31
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1
+wbhj_banner_fin4
+  rotate: false
+  xy: 494, 25
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1
+wbhj_banner_head
+  rotate: true
+  xy: 272, 15
+  size: 158, 99
+  orig: 158, 99
+  offset: 0, 0
+  index: -1
+wbhj_banner_light
+  rotate: false
+  xy: 2, 3
+  size: 268, 170
+  orig: 276, 174
+  offset: 4, 0
+  index: -1
+wbhj_banner_mouth
+  rotate: false
+  xy: 293, 2
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+wbhj_banner_nose
+  rotate: false
+  xy: 457, 31
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+wbhj_banner_pm
+  rotate: false
+  xy: 429, 164
+  size: 81, 138
+  orig: 81, 138
+  offset: 0, 0
+  index: -1
+wbhj_banner_table
+  rotate: false
+  xy: 2, 175
+  size: 425, 78
+  orig: 425, 78
+  offset: 0, 0
+  index: -1

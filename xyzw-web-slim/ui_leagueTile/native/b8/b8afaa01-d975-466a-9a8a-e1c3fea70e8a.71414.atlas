@@ -1,0 +1,111 @@
+
+hjls_effect_defense2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 352, 104
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hjls_map_covera1
+  rotate: true
+  xy: 111, 3
+  size: 54, 62
+  orig: 54, 62
+  offset: 0, 0
+  index: -1
+hjls_map_covera2
+  rotate: true
+  xy: 175, 3
+  size: 54, 52
+  orig: 54, 52
+  offset: 0, 0
+  index: -1
+hjls_map_covera3
+  rotate: true
+  xy: 229, 5
+  size: 54, 50
+  orig: 54, 50
+  offset: 0, 0
+  index: -1
+hjls_map_covera4
+  rotate: true
+  xy: 184, 61
+  size: 84, 76
+  orig: 84, 76
+  offset: 0, 0
+  index: -1
+hjls_map_covera5
+  rotate: true
+  xy: 2, 37
+  size: 108, 103
+  orig: 108, 103
+  offset: 0, 0
+  index: -1
+hjls_map_coverb1
+  rotate: false
+  xy: 644, 260
+  size: 275, 245
+  orig: 275, 245
+  offset: 0, 0
+  index: -1
+hjls_map_coverb2
+  rotate: true
+  xy: 644, 12
+  size: 246, 245
+  orig: 246, 245
+  offset: 0, 0
+  index: -1
+hjls_map_coverb3
+  rotate: false
+  xy: 2, 147
+  size: 358, 358
+  orig: 358, 358
+  offset: 0, 0
+  index: -1
+hjls_map_coverb4
+  rotate: false
+  xy: 362, 225
+  size: 280, 280
+  orig: 280, 280
+  offset: 0, 0
+  index: -1
+hjls_map_coverc1
+  rotate: true
+  xy: 2, 12
+  size: 23, 83
+  orig: 23, 83
+  offset: 0, 0
+  index: -1
+hjls_map_coverc2
+  rotate: true
+  xy: 262, 75
+  size: 70, 88
+  orig: 70, 88
+  offset: 0, 0
+  index: -1
+hjls_map_coverc3
+  rotate: false
+  xy: 107, 59
+  size: 75, 86
+  orig: 75, 86
+  offset: 0, 0
+  index: -1
+hjls_map_coverc4
+  rotate: true
+  xy: 281, 2
+  size: 71, 77
+  orig: 71, 77
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 87, 13
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

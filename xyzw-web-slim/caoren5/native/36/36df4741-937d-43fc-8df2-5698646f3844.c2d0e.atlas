@@ -1,0 +1,48 @@
+
+caoren5_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren5_attack_hit1
+  rotate: false
+  xy: 342, 272
+  size: 70, 85
+  orig: 70, 85
+  offset: 0, 0
+  index: -1
+caoren5_attack_hit2
+  rotate: true
+  xy: 342, 200
+  size: 70, 85
+  orig: 70, 85
+  offset: 0, 0
+  index: -1
+caoren5_attack_hit3
+  rotate: false
+  xy: 2, 174
+  size: 180, 183
+  orig: 190, 193
+  offset: 5, 5
+  index: -1
+caoren5_attack_hit4
+  rotate: false
+  xy: 2, 2
+  size: 178, 170
+  orig: 186, 178
+  offset: 3, 4
+  index: -1
+caoren5_attack_hit5
+  rotate: false
+  xy: 182, 10
+  size: 162, 162
+  orig: 162, 162
+  offset: 0, 0
+  index: -1
+caoren5_attack_hit6
+  rotate: false
+  xy: 184, 211
+  size: 156, 146
+  orig: 156, 146
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,174 @@
+
+xghg_rk_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_banner_bb
+  rotate: true
+  xy: 211, 171
+  size: 95, 87
+  orig: 95, 87
+  offset: 0, 0
+  index: -1
+xghg_banner_bi
+  rotate: true
+  xy: 92, 76
+  size: 9, 15
+  orig: 11, 17
+  offset: 1, 1
+  index: -1
+xghg_banner_er1
+  rotate: true
+  xy: 181, 107
+  size: 41, 28
+  orig: 43, 30
+  offset: 1, 1
+  index: -1
+xghg_banner_er2
+  rotate: true
+  xy: 92, 128
+  size: 36, 24
+  orig: 38, 26
+  offset: 1, 1
+  index: -1
+xghg_banner_gebo1
+  rotate: true
+  xy: 300, 101
+  size: 119, 84
+  orig: 121, 86
+  offset: 1, 1
+  index: -1
+xghg_banner_liuhai
+  rotate: false
+  xy: 287, 39
+  size: 70, 60
+  orig: 70, 60
+  offset: 0, 0
+  index: -1
+xghg_banner_mei1
+  rotate: true
+  xy: 109, 76
+  size: 12, 7
+  orig: 14, 9
+  offset: 1, 1
+  index: -1
+xghg_banner_mei2
+  rotate: true
+  xy: 92, 87
+  size: 15, 10
+  orig: 17, 12
+  offset: 1, 1
+  index: -1
+xghg_banner_sb2
+  rotate: true
+  xy: 118, 150
+  size: 116, 91
+  orig: 118, 93
+  offset: 1, 1
+  index: -1
+xghg_banner_shen
+  rotate: true
+  xy: 343, 222
+  size: 126, 105
+  orig: 126, 105
+  offset: 0, 0
+  index: -1
+xghg_banner_shou
+  rotate: false
+  xy: 2, 75
+  size: 88, 89
+  orig: 90, 91
+  offset: 1, 1
+  index: -1
+xghg_banner_shu
+  rotate: true
+  xy: 118, 48
+  size: 100, 61
+  orig: 102, 63
+  offset: 1, 1
+  index: -1
+xghg_banner_tkh
+  rotate: false
+  xy: 2, 166
+  size: 114, 100
+  orig: 116, 102
+  offset: 1, 1
+  index: -1
+xghg_banner_tou
+  rotate: false
+  xy: 2, 2
+  size: 95, 71
+  orig: 97, 73
+  offset: 1, 1
+  index: -1
+xghg_banner_toukui
+  rotate: false
+  xy: 343, 350
+  size: 135, 153
+  orig: 137, 155
+  offset: 1, 1
+  index: -1
+xghg_banner_tt2
+  rotate: true
+  xy: 220, 18
+  size: 30, 48
+  orig: 32, 50
+  offset: 1, 1
+  index: -1
+xghg_banner_tutou
+  rotate: true
+  xy: 211, 86
+  size: 83, 74
+  orig: 85, 76
+  offset: 1, 1
+  index: -1
+xghg_banner_tutui1
+  rotate: false
+  xy: 300, 226
+  size: 40, 40
+  orig: 42, 42
+  offset: 1, 1
+  index: -1
+xghg_banner_yan1
+  rotate: true
+  xy: 220, 50
+  size: 34, 31
+  orig: 36, 33
+  offset: 1, 1
+  index: -1
+xghg_banner_yan2
+  rotate: true
+  xy: 92, 104
+  size: 22, 21
+  orig: 24, 23
+  offset: 1, 1
+  index: -1
+xghg_banner_yun
+  rotate: false
+  xy: 2, 268
+  size: 339, 235
+  orig: 339, 235
+  offset: 0, 0
+  index: -1
+xghg_banner_yz1
+  rotate: false
+  xy: 104, 90
+  size: 12, 12
+  orig: 14, 14
+  offset: 1, 1
+  index: -1
+xghg_banner_yz2
+  rotate: true
+  xy: 99, 62
+  size: 12, 9
+  orig: 14, 13
+  offset: 1, 2
+  index: -1
+xghg_banner_zui
+  rotate: true
+  xy: 181, 48
+  size: 36, 37
+  orig: 38, 38
+  offset: 1, 0
+  index: -1

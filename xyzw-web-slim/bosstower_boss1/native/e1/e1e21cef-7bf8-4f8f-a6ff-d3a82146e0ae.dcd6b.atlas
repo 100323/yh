@@ -1,0 +1,125 @@
+
+bosstower_boss1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bosstower_boss1_dun
+  rotate: false
+  xy: 2, 265
+  size: 243, 239
+  orig: 243, 239
+  offset: 0, 0
+  index: -1
+bosstower_boss1_faguang1
+  rotate: true
+  xy: 198, 10
+  size: 48, 126
+  orig: 48, 126
+  offset: 0, 0
+  index: -1
+bosstower_boss1_faguang2
+  rotate: true
+  xy: 2, 36
+  size: 48, 127
+  orig: 48, 127
+  offset: 0, 0
+  index: -1
+bosstower_boss1_fazhang
+  rotate: false
+  xy: 247, 109
+  size: 118, 395
+  orig: 118, 395
+  offset: 0, 0
+  index: -1
+bosstower_boss1_jiezhi
+  rotate: true
+  xy: 367, 283
+  size: 221, 137
+  orig: 221, 137
+  offset: 0, 0
+  index: -1
+bosstower_boss1_mao1
+  rotate: true
+  xy: 131, 2
+  size: 82, 65
+  orig: 82, 66
+  offset: 0, 0
+  index: -1
+bosstower_boss1_mao2
+  rotate: true
+  xy: 443, 202
+  size: 79, 52
+  orig: 79, 52
+  offset: 0, 0
+  index: -1
+bosstower_boss1_shenti
+  rotate: false
+  xy: 2, 86
+  size: 199, 177
+  orig: 199, 177
+  offset: 0, 0
+  index: -1
+bosstower_boss1_shou
+  rotate: true
+  xy: 367, 226
+  size: 55, 62
+  orig: 55, 62
+  offset: 0, 0
+  index: -1
+bosstower_boss1_touguan
+  rotate: false
+  xy: 326, 10
+  size: 115, 97
+  orig: 115, 97
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tui1
+  rotate: true
+  xy: 2, 8
+  size: 26, 50
+  orig: 26, 50
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tui2
+  rotate: false
+  xy: 203, 60
+  size: 28, 50
+  orig: 28, 50
+  offset: 0, 0
+  index: -1
+bosstower_boss1_xing
+  rotate: false
+  xy: 203, 212
+  size: 40, 51
+  orig: 46, 59
+  offset: 3, 4
+  index: -1
+bosstower_boss1_yan
+  rotate: false
+  xy: 233, 64
+  size: 49, 43
+  orig: 49, 43
+  offset: 0, 0
+  index: -1
+bosstower_boss1_yanqiu
+  rotate: false
+  xy: 231, 160
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+bosstower_boss1_zui
+  rotate: true
+  xy: 203, 112
+  size: 54, 26
+  orig: 54, 26
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 203, 168
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1

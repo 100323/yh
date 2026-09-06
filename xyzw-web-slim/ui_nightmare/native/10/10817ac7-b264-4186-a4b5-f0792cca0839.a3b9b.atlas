@@ -1,0 +1,62 @@
+
+sdsl_axian3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axsj2_ks
+  rotate: true
+  xy: 2, 451
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+axsj2_pao
+  rotate: true
+  xy: 21, 440
+  size: 25, 30
+  orig: 25, 30
+  offset: 0, 0
+  index: -1
+axsj2_shen
+  rotate: false
+  xy: 2, 222
+  size: 407, 137
+  orig: 407, 137
+  offset: 0, 0
+  index: -1
+axsj2_shoubi
+  rotate: false
+  xy: 130, 381
+  size: 114, 84
+  orig: 114, 84
+  offset: 0, 0
+  index: -1
+axsj2_tou
+  rotate: true
+  xy: 246, 361
+  size: 104, 110
+  orig: 104, 110
+  offset: 0, 0
+  index: -1
+axsj2_zui
+  rotate: false
+  xy: 53, 436
+  size: 38, 29
+  orig: 38, 29
+  offset: 0, 0
+  index: -1
+chaung
+  rotate: false
+  xy: 2, 2
+  size: 485, 218
+  orig: 485, 218
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep7
+  rotate: false
+  xy: 93, 430
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1

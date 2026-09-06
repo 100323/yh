@@ -1,0 +1,237 @@
+
+zhouyu5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: true
+  xy: 281, 260
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 207, 264
+  size: 15, 17
+  orig: 22, 22
+  offset: 3, 3
+  index: -1
+zhouyu3_eye
+  rotate: true
+  xy: 436, 408
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+zhouyu3_tail
+  rotate: false
+  xy: 288, 88
+  size: 118, 70
+  orig: 118, 70
+  offset: 0, 0
+  index: -1
+zhouyu5_arml
+  rotate: false
+  xy: 436, 416
+  size: 72, 72
+  orig: 72, 72
+  offset: 0, 0
+  index: -1
+zhouyu5_armr
+  rotate: true
+  xy: 351, 407
+  size: 81, 83
+  orig: 81, 83
+  offset: 0, 0
+  index: -1
+zhouyu5_body
+  rotate: false
+  xy: 2, 111
+  size: 145, 140
+  orig: 158, 140
+  offset: 0, 0
+  index: -1
+zhouyu5_eyebrow
+  rotate: false
+  xy: 351, 383
+  size: 41, 22
+  orig: 41, 22
+  offset: 0, 0
+  index: -1
+zhouyu5_eyewhite
+  rotate: false
+  xy: 457, 267
+  size: 34, 30
+  orig: 34, 31
+  offset: 0, 1
+  index: -1
+zhouyu5_fire1
+  rotate: false
+  xy: 459, 12
+  size: 49, 85
+  orig: 49, 85
+  offset: 0, 0
+  index: -1
+zhouyu5_fire2
+  rotate: false
+  xy: 408, 99
+  size: 53, 88
+  orig: 53, 88
+  offset: 0, 0
+  index: -1
+zhouyu5_fire3
+  rotate: false
+  xy: 408, 2
+  size: 49, 95
+  orig: 49, 95
+  offset: 0, 0
+  index: -1
+zhouyu5_fire4
+  rotate: true
+  xy: 2, 59
+  size: 50, 100
+  orig: 67, 119
+  offset: 0, 18
+  index: -1
+zhouyu5_fire5
+  rotate: true
+  xy: 402, 329
+  size: 53, 102
+  orig: 53, 102
+  offset: 0, 0
+  index: -1
+zhouyu5_footr
+  rotate: true
+  xy: 183, 260
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1
+zhouyu5_hair
+  rotate: true
+  xy: 149, 131
+  size: 120, 137
+  orig: 120, 137
+  offset: 0, 0
+  index: -1
+zhouyu5_han1
+  rotate: false
+  xy: 249, 266
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+zhouyu5_han2
+  rotate: true
+  xy: 226, 265
+  size: 14, 21
+  orig: 14, 21
+  offset: 0, 0
+  index: -1
+zhouyu5_handl
+  rotate: true
+  xy: 154, 254
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1
+zhouyu5_handr
+  rotate: false
+  xy: 402, 298
+  size: 37, 29
+  orig: 37, 29
+  offset: 0, 0
+  index: -1
+zhouyu5_head
+  rotate: true
+  xy: 154, 281
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: -1
+zhouyu5_jaw
+  rotate: false
+  xy: 149, 17
+  size: 55, 112
+  orig: 55, 112
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_effect2
+  rotate: false
+  xy: 2, 253
+  size: 150, 235
+  orig: 151, 235
+  offset: 1, 0
+  index: -1
+zhouyu5_skill_mhq1
+  rotate: false
+  xy: 328, 261
+  size: 127, 35
+  orig: 127, 35
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq2
+  rotate: false
+  xy: 441, 299
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq3
+  rotate: true
+  xy: 154, 383
+  size: 105, 195
+  orig: 105, 195
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_mhq4
+  rotate: true
+  xy: 104, 23
+  size: 86, 35
+  orig: 86, 35
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_pm1
+  rotate: true
+  xy: 288, 160
+  size: 98, 76
+  orig: 98, 76
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_pm2
+  rotate: true
+  xy: 206, 35
+  size: 94, 70
+  orig: 94, 70
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_pm3
+  rotate: false
+  xy: 366, 189
+  size: 96, 70
+  orig: 96, 70
+  offset: 0, 0
+  index: -1
+zhouyu5_skill_pm5
+  rotate: true
+  xy: 394, 384
+  size: 21, 90
+  orig: 21, 90
+  offset: 0, 0
+  index: -1
+zhouyu5_tie1
+  rotate: true
+  xy: 281, 298
+  size: 83, 119
+  orig: 83, 119
+  offset: 0, 0
+  index: -1
+zhouyu5_tie2
+  rotate: true
+  xy: 2, 23
+  size: 34, 96
+  orig: 34, 102
+  offset: 0, 6
+  index: -1

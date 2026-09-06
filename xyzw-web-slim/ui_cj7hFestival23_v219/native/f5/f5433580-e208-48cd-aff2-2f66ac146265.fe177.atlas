@@ -1,0 +1,13 @@
+
+kyxb26_cj_box2.png
+size: 64,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mutong
+  rotate: false
+  xy: 2, 2
+  size: 53, 58
+  orig: 57, 60
+  offset: 2, 2
+  index: -1

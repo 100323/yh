@@ -1,0 +1,34 @@
+
+zhaoyun6_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhaoyun6_skill_bd1
+  rotate: false
+  xy: 303, 92
+  size: 110, 118
+  orig: 110, 118
+  offset: 0, 0
+  index: -1
+zhaoyun6_skill_bd2
+  rotate: true
+  xy: 408, 20
+  size: 70, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1
+zhaoyun6_skill_bd3
+  rotate: false
+  xy: 303, 2
+  size: 103, 88
+  orig: 103, 88
+  offset: 0, 0
+  index: -1
+zhaoyun6_skill_bd4
+  rotate: true
+  xy: 2, 4
+  size: 206, 299
+  orig: 206, 299
+  offset: 0, 0
+  index: -1

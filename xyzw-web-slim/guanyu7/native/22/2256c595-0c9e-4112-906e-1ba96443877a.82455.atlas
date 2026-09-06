@@ -1,0 +1,55 @@
+
+guanyu7_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu6_huaban
+  rotate: false
+  xy: 368, 12
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
+guanyu6_ta
+  rotate: true
+  xy: 2, 2
+  size: 115, 152
+  orig: 115, 152
+  offset: 0, 0
+  index: -1
+guanyu6_ta2
+  rotate: true
+  xy: 268, 35
+  size: 82, 98
+  orig: 82, 98
+  offset: 0, 0
+  index: -1
+guanyu6_txbao1
+  rotate: false
+  xy: 156, 12
+  size: 110, 105
+  orig: 112, 107
+  offset: 1, 1
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 368, 40
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 447, 23
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 447, 69
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1

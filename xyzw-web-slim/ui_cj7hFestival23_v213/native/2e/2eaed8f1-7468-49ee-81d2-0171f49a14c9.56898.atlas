@@ -1,0 +1,55 @@
+
+ydzs26_cj_fashe.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hunzhu1
+  rotate: false
+  xy: 463, 93
+  size: 12, 21
+  orig: 12, 21
+  offset: 0, 0
+  index: -1
+hunzhu2
+  rotate: true
+  xy: 463, 80
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: -1
+hunzhu3
+  rotate: true
+  xy: 349, 66
+  size: 48, 112
+  orig: 48, 112
+  offset: 0, 0
+  index: -1
+hunzhu4
+  rotate: true
+  xy: 417, 6
+  size: 58, 62
+  orig: 58, 62
+  offset: 0, 0
+  index: -1
+hunzhu5
+  rotate: true
+  xy: 349, 2
+  size: 62, 66
+  orig: 62, 66
+  offset: 0, 0
+  index: -1
+hunzhu6
+  rotate: true
+  xy: 2, 9
+  size: 105, 177
+  orig: 105, 177
+  offset: 0, 0
+  index: -1
+hunzhu7
+  rotate: true
+  xy: 181, 42
+  size: 72, 166
+  orig: 72, 166
+  offset: 0, 0
+  index: -1

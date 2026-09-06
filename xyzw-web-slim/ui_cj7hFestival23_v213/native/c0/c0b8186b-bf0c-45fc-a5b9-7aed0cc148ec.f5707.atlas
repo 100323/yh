@@ -1,0 +1,13 @@
+
+ydzs26_cj_box2.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mudun
+  rotate: true
+  xy: 2, 2
+  size: 54, 64
+  orig: 54, 64
+  offset: 0, 0
+  index: -1

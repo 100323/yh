@@ -1,0 +1,41 @@
+
+cjhd25_food.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjhd25_nyf_baobao
+  rotate: false
+  xy: 2, 2
+  size: 178, 249
+  orig: 178, 249
+  offset: 0, 0
+  index: -1
+cjhd25_nyf_gai1
+  rotate: true
+  xy: 182, 42
+  size: 209, 190
+  orig: 209, 190
+  offset: 0, 0
+  index: -1
+cjhd25_nyf_gai2
+  rotate: true
+  xy: 374, 94
+  size: 157, 135
+  orig: 157, 135
+  offset: 0, 0
+  index: -1
+cjhd25_nyf_ying
+  rotate: false
+  xy: 374, 20
+  size: 114, 72
+  orig: 114, 72
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 182, 19
+  size: 21, 21
+  orig: 29, 29
+  offset: 4, 4
+  index: -1

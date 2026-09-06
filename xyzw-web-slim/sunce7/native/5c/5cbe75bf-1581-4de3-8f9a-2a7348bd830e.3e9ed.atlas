@@ -1,0 +1,41 @@
+
+sunce7_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce7_tx_hc1
+  rotate: true
+  xy: 289, 89
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+sunce7_tx_hc2
+  rotate: true
+  xy: 221, 52
+  size: 74, 66
+  orig: 74, 66
+  offset: 0, 0
+  index: -1
+sunce7_tx_hc3
+  rotate: true
+  xy: 2, 4
+  size: 122, 117
+  orig: 122, 117
+  offset: 0, 0
+  index: -1
+sunce7_tx_hc4
+  rotate: true
+  xy: 121, 2
+  size: 124, 98
+  orig: 124, 98
+  offset: 0, 0
+  index: -1
+sunce7_tx_sj1
+  rotate: true
+  xy: 221, 16
+  size: 34, 72
+  orig: 34, 72
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+effect_electric.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_d1
+  rotate: true
+  xy: 338, 23
+  size: 270, 357
+  orig: 282, 361
+  offset: 8, 0
+  index: -1
+effect_d2
+  rotate: true
+  xy: 2, 180
+  size: 272, 334
+  orig: 282, 361
+  offset: 6, 14
+  index: -1
+effect_de_00
+  rotate: true
+  xy: 2, 86
+  size: 92, 241
+  orig: 94, 241
+  offset: 0, 0
+  index: -1
+effect_de_01
+  rotate: true
+  xy: 2, 2
+  size: 82, 238
+  orig: 94, 241
+  offset: 9, 0
+  index: -1
+effect_light1
+  rotate: true
+  xy: 338, 295
+  size: 157, 667
+  orig: 163, 676
+  offset: 1, 9
+  index: -1
+shanping
+  rotate: false
+  xy: 245, 5
+  size: 75, 173
+  orig: 75, 173
+  offset: 0, 0
+  index: -1

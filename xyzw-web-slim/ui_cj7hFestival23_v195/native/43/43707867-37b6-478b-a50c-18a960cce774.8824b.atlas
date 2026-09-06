@@ -1,0 +1,13 @@
+
+zglx25_cj_btn.png
+size: 260,238
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guo
+  rotate: false
+  xy: 2, 2
+  size: 256, 234
+  orig: 256, 234
+  offset: 0, 0
+  index: -1

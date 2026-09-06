@@ -1,0 +1,20 @@
+
+kpyx_fish1.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx4_fish1_1
+  rotate: false
+  xy: 2, 2
+  size: 97, 55
+  orig: 98, 55
+  offset: 1, 0
+  index: -1
+kpyx4_fish1_2
+  rotate: false
+  xy: 2, 59
+  size: 95, 66
+  orig: 96, 66
+  offset: 1, 0
+  index: -1

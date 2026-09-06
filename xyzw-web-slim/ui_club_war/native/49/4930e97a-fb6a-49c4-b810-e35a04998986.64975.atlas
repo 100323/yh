@@ -1,0 +1,104 @@
+
+huoche_che_8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+che1_lun
+  rotate: false
+  xy: 99, 161
+  size: 90, 91
+  orig: 90, 91
+  offset: 0, 0
+  index: -1
+che1_lunx1
+  rotate: false
+  xy: 191, 86
+  size: 92, 78
+  orig: 94, 82
+  offset: 1, 2
+  index: -1
+che1_lunx2
+  rotate: false
+  xy: 191, 178
+  size: 92, 74
+  orig: 94, 77
+  offset: 1, 2
+  index: -1
+che1_lunx3
+  rotate: true
+  xy: 68, 25
+  size: 91, 74
+  orig: 94, 77
+  offset: 1, 2
+  index: -1
+che1_lunx4
+  rotate: true
+  xy: 285, 73
+  size: 91, 74
+  orig: 94, 77
+  offset: 1, 2
+  index: -1
+che1_ying
+  rotate: true
+  xy: 350, 166
+  size: 235, 98
+  orig: 235, 98
+  offset: 0, 0
+  index: -1
+huoche_che_cheng_hx
+  rotate: false
+  xy: 285, 176
+  size: 32, 76
+  orig: 32, 76
+  offset: 0, 0
+  index: -1
+huoche_che_cheng_yan
+  rotate: false
+  xy: 99, 122
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+huoche_che_saoguang
+  rotate: false
+  xy: 2, 118
+  size: 95, 134
+  orig: 95, 134
+  offset: 0, 0
+  index: -1
+huoche_jin
+  rotate: false
+  xy: 2, 254
+  size: 346, 147
+  orig: 347, 148
+  offset: 0, 0
+  index: -1
+huoche_jin_deng1
+  rotate: false
+  xy: 144, 70
+  size: 34, 61
+  orig: 34, 61
+  offset: 0, 0
+  index: -1
+huoche_jin_deng2
+  rotate: false
+  xy: 143, 133
+  size: 37, 26
+  orig: 37, 27
+  offset: 0, 0
+  index: -1
+huoche_jin_jing
+  rotate: true
+  xy: 319, 223
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
+huoche_jin_men
+  rotate: true
+  xy: 2, 2
+  size: 114, 64
+  orig: 115, 64
+  offset: 0, 0
+  index: -1

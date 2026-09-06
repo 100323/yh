@@ -1,0 +1,76 @@
+
+bosstower_boss1_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bosstower_boss1_tx1
+  rotate: false
+  xy: 470, 212
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx2
+  rotate: false
+  xy: 2, 2
+  size: 90, 77
+  orig: 90, 77
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx3
+  rotate: false
+  xy: 338, 71
+  size: 74, 65
+  orig: 74, 65
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx4
+  rotate: false
+  xy: 2, 81
+  size: 225, 167
+  orig: 236, 173
+  offset: 6, 2
+  index: -1
+bosstower_boss1_tx5
+  rotate: true
+  xy: 94, 62
+  size: 17, 133
+  orig: 17, 133
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx6
+  rotate: true
+  xy: 229, 138
+  size: 110, 239
+  orig: 110, 239
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx9
+  rotate: false
+  xy: 414, 68
+  size: 68, 68
+  orig: 77, 76
+  offset: 5, 4
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 162, 18
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+tx_10
+  rotate: true
+  xy: 94, 13
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+tx_11
+  rotate: true
+  xy: 229, 44
+  size: 92, 107
+  orig: 104, 114
+  offset: 3, 3
+  index: -1

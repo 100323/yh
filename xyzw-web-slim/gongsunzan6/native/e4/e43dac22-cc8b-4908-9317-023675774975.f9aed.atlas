@@ -1,0 +1,20 @@
+
+gongsunzan6_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan6_pg_zha
+  rotate: false
+  xy: 2, 2
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 208, 211
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

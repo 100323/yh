@@ -1,0 +1,55 @@
+
+zbz_yjbanner4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 278, 29
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+zbz_dx4_star
+  rotate: false
+  xy: 227, 20
+  size: 49, 61
+  orig: 49, 61
+  offset: 0, 0
+  index: -1
+zbz_newbanner3_star
+  rotate: false
+  xy: 465, 472
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+zbz_newbanner4_bg
+  rotate: false
+  xy: 2, 206
+  size: 461, 272
+  orig: 461, 272
+  offset: 0, 0
+  index: -1
+zbz_newbanner4_cloud
+  rotate: false
+  xy: 2, 139
+  size: 459, 65
+  orig: 459, 65
+  offset: 0, 0
+  index: -1
+zbz_newbanner4_fg
+  rotate: true
+  xy: 227, 83
+  size: 54, 270
+  orig: 54, 270
+  offset: 0, 0
+  index: -1
+zbz_newbanner_light3
+  rotate: false
+  xy: 2, 2
+  size: 223, 135
+  orig: 223, 135
+  offset: 0, 0
+  index: -1

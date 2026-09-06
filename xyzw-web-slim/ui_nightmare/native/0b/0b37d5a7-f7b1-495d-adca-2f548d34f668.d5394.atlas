@@ -1,0 +1,13 @@
+
+cszb_ui_bubble.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cszb_ui_bubble
+  rotate: false
+  xy: 2, 2
+  size: 90, 91
+  orig: 90, 91
+  offset: 0, 0
+  index: -1

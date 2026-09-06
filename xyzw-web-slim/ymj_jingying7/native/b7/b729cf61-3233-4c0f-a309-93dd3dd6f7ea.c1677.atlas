@@ -1,0 +1,237 @@
+
+ymj_jingying7.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 391, 167
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 413, 121
+  size: 15, 13
+  orig: 16, 16
+  offset: 0, 1
+  index: -1
+ymh_jingying5_meye2
+  rotate: false
+  xy: 504, 236
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+ymj_effect_star1
+  rotate: true
+  xy: 422, 180
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 373, 113
+  size: 16, 15
+  orig: 16, 16
+  offset: 0, 1
+  index: -1
+ymj_jingying1_meyes2
+  rotate: true
+  xy: 377, 137
+  size: 27, 11
+  orig: 27, 11
+  offset: 0, 0
+  index: -1
+ymj_jingying7_hbody
+  rotate: false
+  xy: 2, 11
+  size: 201, 185
+  orig: 201, 185
+  offset: 0, 0
+  index: -1
+ymj_jingying7_heye1
+  rotate: true
+  xy: 390, 125
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+ymj_jingying7_heye2
+  rotate: true
+  xy: 391, 145
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+ymj_jingying7_hzs1
+  rotate: false
+  xy: 263, 60
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+ymj_jingying7_hzs2
+  rotate: false
+  xy: 422, 167
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+ymj_jingying7_hzs3
+  rotate: false
+  xy: 263, 2
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+ymj_jingying7_marm
+  rotate: true
+  xy: 263, 37
+  size: 21, 48
+  orig: 21, 48
+  offset: 0, 0
+  index: -1
+ymj_jingying7_mbody
+  rotate: false
+  xy: 299, 8
+  size: 36, 27
+  orig: 36, 27
+  offset: 0, 0
+  index: -1
+ymj_jingying7_mear
+  rotate: true
+  xy: 390, 105
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+ymj_jingying7_meyebrow1
+  rotate: true
+  xy: 504, 243
+  size: 9, 5
+  orig: 9, 5
+  offset: 0, 0
+  index: -1
+ymj_jingying7_meyebrow2
+  rotate: false
+  xy: 386, 96
+  size: 9, 7
+  orig: 9, 7
+  offset: 0, 0
+  index: -1
+ymj_jingying7_meyewhite
+  rotate: false
+  xy: 398, 86
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+ymj_jingying7_mhead
+  rotate: false
+  xy: 205, 74
+  size: 70, 53
+  orig: 70, 53
+  offset: 0, 0
+  index: -1
+ymj_jingying7_mleg
+  rotate: true
+  xy: 313, 38
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+ymj_jingying7_mmouth
+  rotate: false
+  xy: 415, 136
+  size: 20, 13
+  orig: 20, 13
+  offset: 0, 0
+  index: -1
+ymj_jingying7_mtail
+  rotate: false
+  xy: 356, 166
+  size: 33, 30
+  orig: 33, 30
+  offset: 0, 0
+  index: -1
+ymj_jingying7_myz1
+  rotate: false
+  xy: 205, 6
+  size: 56, 66
+  orig: 56, 66
+  offset: 0, 0
+  index: -1
+ymj_jingying7_myz2
+  rotate: true
+  xy: 344, 93
+  size: 103, 10
+  orig: 103, 10
+  offset: 0, 0
+  index: -1
+ymj_jingying7_skill1_1
+  rotate: true
+  xy: 205, 129
+  size: 67, 68
+  orig: 75, 76
+  offset: 4, 4
+  index: -1
+ymj_jingying7_skill1_2
+  rotate: false
+  xy: 277, 66
+  size: 60, 61
+  orig: 66, 67
+  offset: 3, 3
+  index: -1
+ymj_jingying7_skill2_1
+  rotate: false
+  xy: 275, 129
+  size: 67, 67
+  orig: 74, 75
+  offset: 3, 3
+  index: -1
+ymj_jingying7_skill2_2
+  rotate: false
+  xy: 339, 34
+  size: 57, 57
+  orig: 64, 64
+  offset: 3, 3
+  index: -1
+ymj_jingying7_skill3
+  rotate: false
+  xy: 2, 198
+  size: 500, 54
+  orig: 500, 54
+  offset: 0, 0
+  index: -1
+ymj_jingying7_skill4
+  rotate: true
+  xy: 356, 98
+  size: 31, 15
+  orig: 31, 15
+  offset: 0, 0
+  index: -1
+ymj_jingying7_skill5
+  rotate: true
+  xy: 356, 131
+  size: 33, 19
+  orig: 33, 19
+  offset: 0, 0
+  index: -1
+ymj_jingying7_skill6
+  rotate: true
+  xy: 373, 93
+  size: 18, 11
+  orig: 18, 11
+  offset: 0, 0
+  index: -1
+ymj_jingying7_skill7
+  rotate: false
+  xy: 415, 151
+  size: 22, 14
+  orig: 22, 14
+  offset: 0, 0
+  index: -1

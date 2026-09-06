@@ -1,0 +1,62 @@
+
+ymj_jingying1_skill_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 36, 31
+  size: 19, 15
+  orig: 19, 19
+  offset: 0, 3
+  index: -1
+ymj_jingying1_skilla1
+  rotate: false
+  xy: 2, 4
+  size: 61, 24
+  orig: 61, 24
+  offset: 0, 0
+  index: -1
+ymj_jingying1_skilla2
+  rotate: false
+  xy: 36, 48
+  size: 35, 32
+  orig: 35, 32
+  offset: 0, 0
+  index: -1
+ymj_jingying1_skilla3
+  rotate: true
+  xy: 2, 30
+  size: 50, 32
+  orig: 50, 32
+  offset: 0, 0
+  index: -1
+ymj_jingying1_skilla4
+  rotate: true
+  xy: 65, 10
+  size: 20, 17
+  orig: 20, 17
+  offset: 0, 0
+  index: -1
+ymj_jingying1_skilla5
+  rotate: false
+  xy: 57, 32
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+ymj_jingying1_skillb1
+  rotate: false
+  xy: 2, 82
+  size: 150, 69
+  orig: 150, 69
+  offset: 0, 0
+  index: -1
+ymj_jingying1_skillb2
+  rotate: true
+  xy: 154, 2
+  size: 149, 75
+  orig: 149, 75
+  offset: 0, 0
+  index: -1

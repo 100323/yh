@@ -1,0 +1,160 @@
+
+lvbu4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 448, 393
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 350, 397
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+lvbu4_body
+  rotate: false
+  xy: 2, 62
+  size: 242, 150
+  orig: 242, 150
+  offset: 0, 0
+  index: -1
+lvbu4_bubble
+  rotate: true
+  xy: 38, 411
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+lvbu4_footl
+  rotate: false
+  xy: 113, 409
+  size: 61, 30
+  orig: 61, 30
+  offset: 0, 0
+  index: -1
+lvbu4_footr
+  rotate: false
+  xy: 176, 407
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: -1
+lvbu4_handl
+  rotate: false
+  xy: 226, 406
+  size: 42, 33
+  orig: 42, 33
+  offset: 0, 0
+  index: -1
+lvbu4_handr
+  rotate: true
+  xy: 403, 397
+  size: 42, 43
+  orig: 44, 43
+  offset: 0, 0
+  index: -1
+lvbu4_hat
+  rotate: false
+  xy: 246, 2
+  size: 174, 157
+  orig: 174, 157
+  offset: 0, 0
+  index: -1
+lvbu4_hat2
+  rotate: false
+  xy: 407, 310
+  size: 91, 81
+  orig: 91, 81
+  offset: 0, 0
+  index: -1
+lvbu4_legl
+  rotate: false
+  xy: 2, 352
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+lvbu4_legr
+  rotate: false
+  xy: 327, 318
+  size: 78, 77
+  orig: 78, 77
+  offset: 0, 0
+  index: -1
+lvbu4_weapon1
+  rotate: false
+  xy: 160, 330
+  size: 165, 72
+  orig: 165, 72
+  offset: 0, 0
+  index: -1
+lvbu4_weapon2
+  rotate: false
+  xy: 283, 161
+  size: 214, 147
+  orig: 214, 147
+  offset: 0, 0
+  index: -1
+lvbu4_weapon3
+  rotate: true
+  xy: 2, 223
+  size: 114, 123
+  orig: 114, 123
+  offset: 0, 0
+  index: -1
+lvbu_eye
+  rotate: true
+  xy: 2, 430
+  size: 9, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+lvbu_eyebrow
+  rotate: false
+  xy: 70, 410
+  size: 41, 29
+  orig: 41, 29
+  offset: 0, 0
+  index: -1
+lvbu_eyewhite
+  rotate: true
+  xy: 310, 404
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+lvbu_hair
+  rotate: false
+  xy: 127, 214
+  size: 154, 114
+  orig: 154, 162
+  offset: 0, 48
+  index: -1
+lvbu_handr2
+  rotate: true
+  xy: 270, 406
+  size: 33, 38
+  orig: 33, 41
+  offset: 0, 3
+  index: -1
+lvbu_mouth
+  rotate: true
+  xy: 66, 339
+  size: 68, 92
+  orig: 68, 138
+  offset: 0, 46
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 14, 421
+  size: 22, 18
+  orig: 26, 26
+  offset: 4, 5
+  index: -1

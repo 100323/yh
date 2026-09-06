@@ -1,0 +1,195 @@
+
+bcwrm_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bcwrm_banner_bg
+  rotate: false
+  xy: 2, 184
+  size: 572, 326
+  orig: 572, 326
+  offset: 0, 0
+  index: -1
+bcwrm_banner_dian
+  rotate: true
+  xy: 984, 263
+  size: 63, 33
+  orig: 64, 35
+  offset: 0, 1
+  index: -1
+bcwrm_banner_dy
+  rotate: false
+  xy: 708, 36
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+bcwrm_banner_gg
+  rotate: true
+  xy: 503, 27
+  size: 32, 28
+  orig: 33, 29
+  offset: 0, 1
+  index: -1
+bcwrm_banner_guang
+  rotate: false
+  xy: 576, 239
+  size: 210, 271
+  orig: 210, 271
+  offset: 0, 0
+  index: -1
+bcwrm_banner_guo
+  rotate: false
+  xy: 576, 104
+  size: 260, 133
+  orig: 263, 133
+  offset: 3, 0
+  index: -1
+bcwrm_banner_huzi
+  rotate: true
+  xy: 419, 26
+  size: 24, 64
+  orig: 26, 65
+  offset: 1, 1
+  index: -1
+bcwrm_banner_mei
+  rotate: true
+  xy: 708, 2
+  size: 32, 50
+  orig: 33, 52
+  offset: 0, 1
+  index: -1
+bcwrm_banner_pao
+  rotate: false
+  xy: 894, 44
+  size: 58, 46
+  orig: 58, 47
+  offset: 0, 0
+  index: -1
+bcwrm_banner_ping
+  rotate: false
+  xy: 2, 2
+  size: 116, 129
+  orig: 118, 130
+  offset: 1, 1
+  index: -1
+bcwrm_banner_shen
+  rotate: false
+  xy: 788, 256
+  size: 194, 254
+  orig: 194, 254
+  offset: 0, 0
+  index: -1
+bcwrm_banner_shoul
+  rotate: true
+  xy: 576, 24
+  size: 78, 130
+  orig: 79, 130
+  offset: 0, 0
+  index: -1
+bcwrm_banner_shour
+  rotate: true
+  xy: 263, 23
+  size: 108, 89
+  orig: 108, 89
+  offset: 0, 0
+  index: -1
+bcwrm_banner_shu
+  rotate: false
+  xy: 838, 92
+  size: 170, 162
+  orig: 171, 164
+  offset: 0, 1
+  index: -1
+bcwrm_banner_shui
+  rotate: true
+  xy: 533, 13
+  size: 169, 41
+  orig: 169, 41
+  offset: 0, 0
+  index: -1
+bcwrm_banner_ts
+  rotate: true
+  xy: 360, 101
+  size: 81, 171
+  orig: 81, 171
+  offset: 0, 0
+  index: -1
+bcwrm_banner_wen
+  rotate: false
+  xy: 576, 2
+  size: 63, 20
+  orig: 65, 20
+  offset: 1, 0
+  index: -1
+bcwrm_banner_wen2
+  rotate: false
+  xy: 760, 7
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+bcwrm_banner_xin
+  rotate: true
+  xy: 503, 61
+  size: 38, 28
+  orig: 40, 30
+  offset: 1, 1
+  index: -1
+bcwrm_banner_xiu1
+  rotate: false
+  xy: 354, 29
+  size: 63, 70
+  orig: 64, 70
+  offset: 1, 0
+  index: -1
+bcwrm_banner_xiu2
+  rotate: false
+  xy: 777, 33
+  size: 58, 69
+  orig: 58, 70
+  offset: 0, 1
+  index: -1
+bcwrm_banner_yj
+  rotate: false
+  xy: 954, 43
+  size: 47, 47
+  orig: 48, 48
+  offset: 1, 1
+  index: -1
+bcwrm_banner_zuis
+  rotate: true
+  xy: 419, 52
+  size: 47, 82
+  orig: 48, 83
+  offset: 1, 1
+  index: -1
+bcwrm_banner_zuix
+  rotate: true
+  xy: 120, 12
+  size: 119, 141
+  orig: 119, 141
+  offset: 0, 0
+  index: -1
+bcwrm_banner_zz
+  rotate: false
+  xy: 984, 328
+  size: 26, 182
+  orig: 26, 182
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 837, 35
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+yanwu
+  rotate: false
+  xy: 2, 133
+  size: 356, 49
+  orig: 356, 49
+  offset: 0, 0
+  index: -1

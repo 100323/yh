@@ -1,0 +1,146 @@
+
+xkhj25_cj_btn.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ditai
+  rotate: false
+  xy: 287, 101
+  size: 602, 153
+  orig: 602, 154
+  offset: 0, 0
+  index: -1
+jiguangxunneg1
+  rotate: false
+  xy: 121, 5
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+jiguangxunneg10
+  rotate: false
+  xy: 247, 35
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+jiguangxunneg11
+  rotate: true
+  xy: 121, 25
+  size: 21, 20
+  orig: 21, 20
+  offset: 0, 0
+  index: -1
+jiguangxunneg12
+  rotate: true
+  xy: 161, 5
+  size: 66, 65
+  orig: 68, 67
+  offset: 1, 1
+  index: -1
+jiguangxunneg2
+  rotate: false
+  xy: 141, 5
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+jiguangxunneg3
+  rotate: false
+  xy: 125, 55
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+jiguangxunneg4
+  rotate: false
+  xy: 143, 36
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+jiguangxunneg5
+  rotate: false
+  xy: 228, 14
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+jiguangxunneg6
+  rotate: true
+  xy: 143, 54
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+jiguangxunneg7
+  rotate: true
+  xy: 248, 55
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1
+jiguangxunneg8
+  rotate: false
+  xy: 228, 33
+  size: 17, 18
+  orig: 17, 18
+  offset: 0, 0
+  index: -1
+jiguangxunneg9
+  rotate: false
+  xy: 228, 53
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+qiang1
+  rotate: false
+  xy: 58, 10
+  size: 61, 36
+  orig: 61, 36
+  offset: 0, 0
+  index: -1
+qiang2
+  rotate: false
+  xy: 125, 73
+  size: 160, 181
+  orig: 174, 185
+  offset: 0, 0
+  index: -1
+qiang3
+  rotate: true
+  xy: 2, 48
+  size: 206, 121
+  orig: 206, 121
+  offset: 0, 0
+  index: -1
+shou1
+  rotate: false
+  xy: 399, 10
+  size: 76, 89
+  orig: 80, 89
+  offset: 4, 0
+  index: -1
+shou2
+  rotate: true
+  xy: 2, 2
+  size: 44, 54
+  orig: 44, 54
+  offset: 0, 0
+  index: -1
+shou3
+  rotate: false
+  xy: 891, 143
+  size: 112, 111
+  orig: 116, 111
+  offset: 4, 0
+  index: -1
+shou4
+  rotate: true
+  xy: 287, 5
+  size: 94, 110
+  orig: 94, 110
+  offset: 0, 0
+  index: -1

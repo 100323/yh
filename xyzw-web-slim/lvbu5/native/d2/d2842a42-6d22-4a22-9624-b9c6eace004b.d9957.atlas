@@ -1,0 +1,27 @@
+
+lvbu5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 23, 441
+  size: 33, 33
+  orig: 35, 35
+  offset: 1, 1
+  index: -1
+lvbu5_hit2_zha
+  rotate: false
+  xy: 2, 2
+  size: 485, 437
+  orig: 485, 437
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 460
+  size: 19, 14
+  orig: 19, 19
+  offset: 0, 2
+  index: -1

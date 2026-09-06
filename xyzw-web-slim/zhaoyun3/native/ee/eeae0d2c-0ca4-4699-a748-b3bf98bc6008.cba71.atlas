@@ -1,0 +1,27 @@
+
+zhaoyun3_skill_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zy_jnsj01
+  rotate: true
+  xy: 164, 21
+  size: 92, 77
+  orig: 92, 80
+  offset: 0, 3
+  index: -1
+zy_jnsj02
+  rotate: false
+  xy: 2, 54
+  size: 160, 59
+  orig: 160, 59
+  offset: 0, 0
+  index: -1
+zy_jnsj03
+  rotate: false
+  xy: 2, 2
+  size: 85, 50
+  orig: 86, 53
+  offset: 1, 1
+  index: -1

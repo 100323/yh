@@ -1,0 +1,90 @@
+
+jchd_titlerole.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jchd_man_body
+  rotate: false
+  xy: 2, 10
+  size: 218, 200
+  orig: 218, 231
+  offset: 0, 31
+  index: -1
+jchd_man_box1
+  rotate: true
+  xy: 385, 2
+  size: 126, 57
+  orig: 131, 57
+  offset: 3, 0
+  index: -1
+jchd_man_box2
+  rotate: true
+  xy: 444, 2
+  size: 126, 57
+  orig: 126, 59
+  offset: 0, 2
+  index: -1
+jchd_man_eye
+  rotate: true
+  xy: 222, 44
+  size: 32, 9
+  orig: 32, 9
+  offset: 0, 0
+  index: -1
+jchd_man_eyebrow
+  rotate: false
+  xy: 448, 131
+  size: 53, 15
+  orig: 53, 15
+  offset: 0, 0
+  index: -1
+jchd_man_eyewhite
+  rotate: true
+  xy: 485, 157
+  size: 53, 22
+  orig: 53, 22
+  offset: 0, 0
+  index: -1
+jchd_man_glasses
+  rotate: false
+  xy: 448, 148
+  size: 35, 62
+  orig: 35, 62
+  offset: 0, 0
+  index: -1
+jchd_man_hand
+  rotate: true
+  xy: 385, 130
+  size: 80, 61
+  orig: 80, 61
+  offset: 0, 0
+  index: -1
+jchd_man_light1
+  rotate: false
+  xy: 222, 78
+  size: 115, 41
+  orig: 115, 41
+  offset: 0, 0
+  index: -1
+jchd_man_light2
+  rotate: false
+  xy: 222, 121
+  size: 161, 89
+  orig: 161, 89
+  offset: 0, 0
+  index: -1
+jchd_man_mouth
+  rotate: true
+  xy: 339, 77
+  size: 42, 22
+  orig: 42, 22
+  offset: 0, 0
+  index: -1
+jchd_man_nose
+  rotate: false
+  xy: 233, 49
+  size: 21, 27
+  orig: 21, 27
+  offset: 0, 0
+  index: -1

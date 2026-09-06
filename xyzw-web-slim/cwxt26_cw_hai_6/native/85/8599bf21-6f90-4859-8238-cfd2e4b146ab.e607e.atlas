@@ -1,0 +1,139 @@
+
+cwxt26_cw_hai_6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+feng
+  rotate: true
+  xy: 137, 47
+  size: 118, 58
+  orig: 118, 58
+  offset: 0, 0
+  index: -1
+guo
+  rotate: false
+  xy: 6, 171
+  size: 157, 183
+  orig: 158, 183
+  offset: 1, 0
+  index: -1
+guo2
+  rotate: false
+  xy: 6, 360
+  size: 257, 146
+  orig: 258, 150
+  offset: 1, 4
+  index: -1
+huzi
+  rotate: false
+  xy: 369, 142
+  size: 47, 53
+  orig: 47, 53
+  offset: 0, 0
+  index: -1
+mei
+  rotate: true
+  xy: 472, 463
+  size: 43, 26
+  orig: 43, 26
+  offset: 0, 0
+  index: -1
+shen
+  rotate: false
+  xy: 6, 43
+  size: 125, 122
+  orig: 125, 122
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 268, 201
+  size: 117, 107
+  orig: 129, 107
+  offset: 0, 0
+  index: -1
+tui
+  rotate: true
+  xy: 169, 194
+  size: 160, 93
+  orig: 160, 93
+  offset: 0, 0
+  index: -1
+xing
+  rotate: true
+  xy: 6, 7
+  size: 30, 49
+  orig: 30, 51
+  offset: 0, 1
+  index: -1
+ye1
+  rotate: false
+  xy: 61, 28
+  size: 18, 9
+  orig: 18, 10
+  offset: 0, 1
+  index: -1
+ye2
+  rotate: true
+  xy: 169, 171
+  size: 17, 10
+  orig: 17, 10
+  offset: 0, 0
+  index: -1
+yi1
+  rotate: false
+  xy: 293, 6
+  size: 57, 78
+  orig: 57, 78
+  offset: 0, 0
+  index: -1
+yi2
+  rotate: false
+  xy: 269, 390
+  size: 197, 116
+  orig: 198, 117
+  offset: 0, 0
+  index: -1
+youbi
+  rotate: true
+  xy: 201, 20
+  size: 46, 86
+  orig: 46, 86
+  offset: 0, 0
+  index: -1
+youdabi
+  rotate: false
+  xy: 419, 315
+  size: 66, 69
+  orig: 66, 71
+  offset: 0, 2
+  index: -1
+youtui
+  rotate: false
+  xy: 269, 314
+  size: 144, 70
+  orig: 144, 70
+  offset: 0, 0
+  index: -1
+zuitui
+  rotate: true
+  xy: 201, 72
+  size: 116, 86
+  orig: 116, 86
+  offset: 0, 0
+  index: -1
+zuobi
+  rotate: false
+  xy: 391, 206
+  size: 72, 102
+  orig: 72, 102
+  offset: 0, 0
+  index: -1
+zuoxiaobi
+  rotate: false
+  xy: 293, 90
+  size: 70, 105
+  orig: 70, 105
+  offset: 0, 0
+  index: -1

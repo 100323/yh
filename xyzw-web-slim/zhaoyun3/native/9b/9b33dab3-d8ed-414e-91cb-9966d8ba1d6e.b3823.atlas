@@ -1,0 +1,111 @@
+
+zhaoyun3_skill_line.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zy_jn_jg01
+  rotate: true
+  xy: 297, 280
+  size: 170, 155
+  orig: 170, 155
+  offset: 0, 0
+  index: -1
+zy_jn_jg02
+  rotate: true
+  xy: 297, 108
+  size: 170, 155
+  orig: 170, 155
+  offset: 0, 0
+  index: -1
+zy_l02
+  rotate: true
+  xy: 213, 213
+  size: 61, 63
+  orig: 61, 63
+  offset: 0, 0
+  index: -1
+zy_l03
+  rotate: false
+  xy: 214, 77
+  size: 52, 57
+  orig: 52, 57
+  offset: 0, 0
+  index: -1
+zy_l04
+  rotate: true
+  xy: 222, 175
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+zy_l05
+  rotate: false
+  xy: 222, 152
+  size: 31, 21
+  orig: 31, 21
+  offset: 0, 0
+  index: -1
+zy_l06
+  rotate: false
+  xy: 80, 136
+  size: 140, 61
+  orig: 140, 61
+  offset: 0, 0
+  index: -1
+zy_l07
+  rotate: false
+  xy: 92, 8
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+zy_l08
+  rotate: false
+  xy: 80, 199
+  size: 131, 75
+  orig: 131, 75
+  offset: 0, 0
+  index: -1
+zy_l09
+  rotate: false
+  xy: 255, 159
+  size: 17, 14
+  orig: 17, 14
+  offset: 0, 0
+  index: -1
+zy_l10
+  rotate: false
+  xy: 2, 2
+  size: 88, 50
+  orig: 88, 50
+  offset: 0, 0
+  index: -1
+zy_l11
+  rotate: false
+  xy: 2, 276
+  size: 293, 174
+  orig: 293, 175
+  offset: 0, 0
+  index: -1
+zy_l12
+  rotate: true
+  xy: 145, 38
+  size: 96, 67
+  orig: 96, 67
+  offset: 0, 0
+  index: -1
+zy_xuying01
+  rotate: false
+  xy: 2, 54
+  size: 141, 76
+  orig: 143, 76
+  offset: 0, 0
+  index: -1
+zy_xuying02
+  rotate: true
+  xy: 2, 132
+  size: 142, 76
+  orig: 143, 76
+  offset: 0, 0
+  index: -1

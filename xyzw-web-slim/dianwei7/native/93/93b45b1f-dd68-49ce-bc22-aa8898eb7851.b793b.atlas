@@ -1,0 +1,125 @@
+
+dianwei7_skill_position.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei7_skill_bddi
+  rotate: false
+  xy: 571, 275
+  size: 176, 176
+  orig: 176, 176
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bq
+  rotate: false
+  xy: 381, 453
+  size: 252, 209
+  orig: 252, 209
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlong1
+  rotate: true
+  xy: 246, 20
+  size: 222, 323
+  orig: 222, 323
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlt
+  rotate: false
+  xy: 2, 244
+  size: 377, 608
+  orig: 377, 608
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlz1
+  rotate: true
+  xy: 425, 263
+  size: 43, 142
+  orig: 43, 142
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlz2
+  rotate: false
+  xy: 544, 386
+  size: 25, 65
+  orig: 25, 65
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlz3
+  rotate: true
+  xy: 381, 245
+  size: 30, 42
+  orig: 30, 42
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlz4
+  rotate: true
+  xy: 871, 762
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqlz5
+  rotate: false
+  xy: 871, 803
+  size: 41, 49
+  orig: 41, 49
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqshe1
+  rotate: true
+  xy: 2, 2
+  size: 240, 242
+  orig: 240, 242
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqshe2
+  rotate: false
+  xy: 635, 509
+  size: 281, 153
+  orig: 281, 153
+  offset: 0, 0
+  index: -1
+dianwei7_skill_bqst
+  rotate: true
+  xy: 381, 664
+  size: 188, 326
+  orig: 188, 326
+  offset: 0, 0
+  index: -1
+dianwei7_skill_hlz
+  rotate: true
+  xy: 790, 797
+  size: 55, 79
+  orig: 55, 79
+  offset: 0, 0
+  index: -1
+dianwei7_skill_ksg
+  rotate: true
+  xy: 381, 277
+  size: 174, 41
+  orig: 174, 41
+  offset: 0, 0
+  index: -1
+dianwei7_skill_llz
+  rotate: true
+  xy: 709, 785
+  size: 67, 79
+  orig: 67, 79
+  offset: 0, 0
+  index: -1
+xzh
+  rotate: false
+  xy: 487, 317
+  size: 55, 134
+  orig: 55, 134
+  offset: 0, 0
+  index: -1
+xzl
+  rotate: false
+  xy: 425, 308
+  size: 60, 143
+  orig: 60, 143
+  offset: 0, 0
+  index: -1

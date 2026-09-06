@@ -1,0 +1,20 @@
+
+caoren5_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren5_attack_loop1
+  rotate: true
+  xy: 86, 2
+  size: 124, 41
+  orig: 124, 41
+  offset: 0, 0
+  index: -1
+caoren5_attack_loop2
+  rotate: true
+  xy: 2, 11
+  size: 115, 82
+  orig: 135, 95
+  offset: 8, 7
+  index: -1

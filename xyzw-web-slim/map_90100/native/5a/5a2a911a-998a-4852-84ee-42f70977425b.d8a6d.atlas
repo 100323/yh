@@ -1,0 +1,41 @@
+
+sqhd25w7_zq_bj.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhuque_ditu1
+  rotate: false
+  xy: 2, 26
+  size: 302, 454
+  orig: 302, 454
+  offset: 0, 0
+  index: -1
+zhuque_ditu2
+  rotate: false
+  xy: 673, 39
+  size: 302, 202
+  orig: 302, 202
+  offset: 0, 0
+  index: -1
+zhuque_yun3
+  rotate: false
+  xy: 306, 2
+  size: 254, 130
+  orig: 254, 130
+  offset: 0, 0
+  index: -1
+zhuque_yun4
+  rotate: false
+  xy: 306, 134
+  size: 365, 346
+  orig: 365, 346
+  offset: 0, 0
+  index: -1
+zhuque_yun5
+  rotate: false
+  xy: 673, 243
+  size: 311, 237
+  orig: 311, 237
+  offset: 0, 0
+  index: -1

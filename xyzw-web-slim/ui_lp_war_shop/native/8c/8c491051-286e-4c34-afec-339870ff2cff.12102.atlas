@@ -1,0 +1,20 @@
+
+tgcf_tgsd_yun.png
+size: 1024,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pty_sljs2_zzh
+  rotate: true
+  xy: 0, 0
+  size: 22, 782
+  orig: 22, 782
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 784, 0
+  size: 24, 22
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

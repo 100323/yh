@@ -1,0 +1,104 @@
+
+sdsl_boss8_1_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 132, 211
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f1
+  rotate: true
+  xy: 160, 120
+  size: 115, 129
+  orig: 115, 129
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f2
+  rotate: true
+  xy: 2, 117
+  size: 117, 128
+  orig: 118, 128
+  offset: 1, 0
+  index: -1
+sdsl_boss8_f3
+  rotate: true
+  xy: 2, 2
+  size: 113, 124
+  orig: 113, 124
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f4
+  rotate: true
+  xy: 291, 117
+  size: 114, 126
+  orig: 114, 126
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f5
+  rotate: true
+  xy: 132, 4
+  size: 114, 124
+  orig: 114, 124
+  offset: 0, 0
+  index: -1
+sdsl_boss8_f6
+  rotate: true
+  xy: 258, 4
+  size: 111, 124
+  orig: 111, 124
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill1_1
+  rotate: true
+  xy: 457, 230
+  size: 62, 32
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill1_2
+  rotate: true
+  xy: 457, 294
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_1
+  rotate: true
+  xy: 419, 116
+  size: 112, 77
+  orig: 112, 77
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_2
+  rotate: false
+  xy: 160, 237
+  size: 153, 107
+  orig: 153, 107
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_3
+  rotate: false
+  xy: 2, 236
+  size: 156, 108
+  orig: 156, 108
+  offset: 0, 0
+  index: -1
+sdsl_boss8_skill2_4
+  rotate: false
+  xy: 315, 233
+  size: 140, 111
+  orig: 140, 111
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 491, 282
+  size: 11, 10
+  orig: 13, 13
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,20 @@
+
+jidan2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujidan_dan
+  rotate: true
+  xy: 2, 16
+  size: 71, 90
+  orig: 75, 90
+  offset: 4, 0
+  index: -1
+choujidan_guang
+  rotate: true
+  xy: 94, 2
+  size: 85, 117
+  orig: 85, 117
+  offset: 0, 0
+  index: -1

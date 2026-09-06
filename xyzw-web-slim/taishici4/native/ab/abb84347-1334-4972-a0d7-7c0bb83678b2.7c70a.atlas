@@ -1,0 +1,48 @@
+
+taishici4_skill_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 271, 69
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+taishici4_skill_hit1
+  rotate: true
+  xy: 2, 102
+  size: 146, 133
+  orig: 146, 133
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit2
+  rotate: false
+  xy: 189, 25
+  size: 80, 86
+  orig: 80, 86
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit3
+  rotate: true
+  xy: 101, 12
+  size: 88, 86
+  orig: 88, 86
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit4
+  rotate: false
+  xy: 2, 2
+  size: 97, 98
+  orig: 97, 98
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit5
+  rotate: false
+  xy: 137, 113
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1

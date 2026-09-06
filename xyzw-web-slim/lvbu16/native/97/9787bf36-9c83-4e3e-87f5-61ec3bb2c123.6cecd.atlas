@@ -1,0 +1,104 @@
+
+lvbu16_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: false
+  xy: 2, 362
+  size: 12, 9
+  orig: 15, 15
+  offset: 1, 2
+  index: -1
+lvbu16_skill_lj1
+  rotate: true
+  xy: 2, 113
+  size: 109, 521
+  orig: 109, 521
+  offset: 0, 0
+  index: -1
+lvbu16_skill_lj2
+  rotate: true
+  xy: 2, 2
+  size: 109, 521
+  orig: 109, 521
+  offset: 0, 0
+  index: -1
+lvbu16_skill_ljbd
+  rotate: false
+  xy: 418, 224
+  size: 191, 92
+  orig: 191, 92
+  offset: 0, 0
+  index: -1
+lvbu16_skill_ljqi1
+  rotate: false
+  xy: 119, 333
+  size: 140, 38
+  orig: 140, 38
+  offset: 0, 0
+  index: -1
+lvbu16_skill_ljqi2
+  rotate: false
+  xy: 261, 330
+  size: 119, 41
+  orig: 119, 41
+  offset: 0, 0
+  index: -1
+lvbu16_skill_ljqi3
+  rotate: false
+  xy: 16, 335
+  size: 101, 36
+  orig: 101, 36
+  offset: 0, 0
+  index: -1
+lvbu16_skill_ljqi4
+  rotate: false
+  xy: 518, 318
+  size: 185, 53
+  orig: 185, 53
+  offset: 0, 0
+  index: -1
+lvbu16_skill_ljs
+  rotate: true
+  xy: 611, 24
+  size: 280, 289
+  orig: 280, 289
+  offset: 0, 0
+  index: -1
+lvbu16_skill_xllx1
+  rotate: false
+  xy: 2, 264
+  size: 125, 67
+  orig: 125, 67
+  offset: 0, 0
+  index: -1
+lvbu16_skill_xllx2
+  rotate: false
+  xy: 382, 327
+  size: 134, 44
+  orig: 134, 44
+  offset: 0, 0
+  index: -1
+lvbu16_skill_xllx3
+  rotate: false
+  xy: 793, 306
+  size: 155, 65
+  orig: 155, 65
+  offset: 0, 0
+  index: -1
+lvbu16_skill_xllx4
+  rotate: false
+  xy: 705, 312
+  size: 86, 59
+  orig: 86, 59
+  offset: 0, 0
+  index: -1
+lvbu16_skill_xlwuqi
+  rotate: true
+  xy: 129, 242
+  size: 83, 287
+  orig: 83, 287
+  offset: 0, 0
+  index: -1

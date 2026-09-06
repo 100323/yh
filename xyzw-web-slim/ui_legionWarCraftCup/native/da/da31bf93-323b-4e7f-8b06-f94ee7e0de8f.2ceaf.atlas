@@ -1,0 +1,104 @@
+
+zbz_yjbanner2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_newbanner2_bg
+  rotate: true
+  xy: 390, 204
+  size: 286, 95
+  orig: 286, 95
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_fg
+  rotate: false
+  xy: 2, 328
+  size: 386, 162
+  orig: 386, 162
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_mg1
+  rotate: true
+  xy: 487, 302
+  size: 188, 22
+  orig: 188, 22
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_mg2
+  rotate: true
+  xy: 328, 140
+  size: 186, 32
+  orig: 186, 32
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_ye1
+  rotate: false
+  xy: 269, 54
+  size: 57, 55
+  orig: 57, 55
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_ye2
+  rotate: true
+  xy: 184, 53
+  size: 29, 41
+  orig: 29, 41
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_ye3
+  rotate: false
+  xy: 328, 67
+  size: 67, 71
+  orig: 67, 71
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_ye4
+  rotate: false
+  xy: 184, 84
+  size: 83, 62
+  orig: 83, 62
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_ye5
+  rotate: false
+  xy: 184, 148
+  size: 86, 74
+  orig: 86, 74
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_ye6
+  rotate: false
+  xy: 178, 224
+  size: 109, 102
+  orig: 109, 102
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_zhu1
+  rotate: false
+  xy: 289, 111
+  size: 37, 215
+  orig: 37, 215
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_zhu2
+  rotate: false
+  xy: 115, 2
+  size: 67, 217
+  orig: 67, 217
+  offset: 0, 0
+  index: -1
+zbz_newbanner2_zhu3
+  rotate: false
+  xy: 2, 7
+  size: 111, 195
+  orig: 111, 195
+  offset: 0, 0
+  index: -1
+zbz_newbanner_light2
+  rotate: false
+  xy: 2, 221
+  size: 174, 105
+  orig: 174, 105
+  offset: 0, 0
+  index: -1

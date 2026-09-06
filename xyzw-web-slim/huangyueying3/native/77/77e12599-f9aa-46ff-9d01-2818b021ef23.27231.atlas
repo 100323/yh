@@ -1,0 +1,90 @@
+
+huangyueying3_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huangyueying3_dog_body
+  rotate: true
+  xy: 84, 48
+  size: 74, 46
+  orig: 74, 46
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_ear1
+  rotate: true
+  xy: 45, 3
+  size: 13, 23
+  orig: 13, 23
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_ear2
+  rotate: true
+  xy: 2, 2
+  size: 14, 26
+  orig: 14, 26
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_eye
+  rotate: true
+  xy: 30, 2
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_head
+  rotate: true
+  xy: 132, 64
+  size: 58, 54
+  orig: 82, 59
+  offset: 24, 0
+  index: -1
+huangyueying3_dog_leg1
+  rotate: false
+  xy: 84, 21
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_leg2
+  rotate: false
+  xy: 154, 25
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_mouth
+  rotate: true
+  xy: 106, 22
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_tail
+  rotate: true
+  xy: 70, 3
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+huangyueying3_ring
+  rotate: false
+  xy: 130, 24
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+huangyueying3_rope
+  rotate: false
+  xy: 92, 7
+  size: 53, 12
+  orig: 53, 12
+  offset: 0, 0
+  index: -1
+huangyueying3_skill4
+  rotate: true
+  xy: 2, 18
+  size: 104, 80
+  orig: 104, 80
+  offset: 0, 0
+  index: -1

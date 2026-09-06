@@ -1,0 +1,62 @@
+
+zhangjiao6_skill_hit_2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangjiao6_skill2_sjbk
+  rotate: false
+  xy: 136, 6
+  size: 115, 70
+  orig: 115, 70
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjbz
+  rotate: false
+  xy: 2, 64
+  size: 132, 183
+  orig: 132, 183
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjdm
+  rotate: true
+  xy: 136, 78
+  size: 169, 76
+  orig: 169, 76
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjks
+  rotate: false
+  xy: 214, 78
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjsd1
+  rotate: true
+  xy: 253, 2
+  size: 74, 85
+  orig: 74, 85
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjsd2
+  rotate: true
+  xy: 214, 148
+  size: 99, 97
+  orig: 99, 97
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjsk1
+  rotate: false
+  xy: 41, 27
+  size: 30, 35
+  orig: 30, 35
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill2_sjsk2
+  rotate: true
+  xy: 2, 23
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1

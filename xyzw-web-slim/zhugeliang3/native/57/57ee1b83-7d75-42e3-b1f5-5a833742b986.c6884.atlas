@@ -1,0 +1,27 @@
+
+zhugeliang3_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 145, 34
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+zhugeliang3_attack1
+  rotate: true
+  xy: 145, 81
+  size: 57, 50
+  orig: 57, 50
+  offset: 0, 0
+  index: -1
+zhugeliang3_attack2
+  rotate: false
+  xy: 2, 2
+  size: 141, 136
+  orig: 141, 136
+  offset: 0, 0
+  index: -1

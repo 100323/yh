@@ -1,0 +1,27 @@
+
+sunjian4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunjian4_skill_hit1
+  rotate: true
+  xy: 2, 2
+  size: 189, 386
+  orig: 189, 386
+  offset: 0, 0
+  index: -1
+sunjian4_skill_hit2
+  rotate: true
+  xy: 177, 193
+  size: 116, 168
+  orig: 116, 168
+  offset: 0, 0
+  index: -1
+sunjian4_skill_hit3
+  rotate: true
+  xy: 2, 222
+  size: 87, 173
+  orig: 87, 173
+  offset: 0, 0
+  index: -1

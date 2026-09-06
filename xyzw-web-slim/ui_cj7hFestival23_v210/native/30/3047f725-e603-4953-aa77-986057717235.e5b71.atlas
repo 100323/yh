@@ -1,0 +1,90 @@
+
+zxc_cjqh_jpboss4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zxc_cjqh_jp4_1
+  rotate: false
+  xy: 257, 197
+  size: 253, 76
+  orig: 253, 76
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_10
+  rotate: false
+  xy: 2, 53
+  size: 131, 116
+  orig: 131, 116
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_11
+  rotate: false
+  xy: 2, 171
+  size: 253, 189
+  orig: 253, 189
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_2
+  rotate: true
+  xy: 57, 18
+  size: 33, 38
+  orig: 41, 46
+  offset: 4, 4
+  index: -1
+zxc_cjqh_jp4_3
+  rotate: false
+  xy: 209, 21
+  size: 41, 49
+  orig: 49, 57
+  offset: 4, 4
+  index: -1
+zxc_cjqh_jp4_4
+  rotate: true
+  xy: 135, 72
+  size: 97, 120
+  orig: 98, 122
+  offset: 1, 1
+  index: -1
+zxc_cjqh_jp4_5
+  rotate: false
+  xy: 135, 20
+  size: 72, 50
+  orig: 72, 50
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_6
+  rotate: false
+  xy: 257, 275
+  size: 250, 85
+  orig: 250, 85
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_7
+  rotate: false
+  xy: 97, 38
+  size: 32, 13
+  orig: 32, 13
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_8
+  rotate: false
+  xy: 393, 38
+  size: 104, 157
+  orig: 104, 157
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp4_9
+  rotate: true
+  xy: 257, 65
+  size: 130, 134
+  orig: 130, 134
+  offset: 0, 0
+  index: -1
+zxc_xjzw_jp_line
+  rotate: false
+  xy: 2, 2
+  size: 53, 49
+  orig: 53, 49
+  offset: 0, 0
+  index: -1

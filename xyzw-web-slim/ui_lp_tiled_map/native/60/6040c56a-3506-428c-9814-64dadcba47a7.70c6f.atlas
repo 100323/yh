@@ -1,0 +1,34 @@
+
+tgcf_pty_jnk_cfex.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_jnk_cfex_fen1
+  rotate: true
+  xy: 363, 160
+  size: 273, 169
+  orig: 273, 169
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_cfex_fen2
+  rotate: true
+  xy: 190, 50
+  size: 383, 171
+  orig: 383, 171
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_cfex_fen3
+  rotate: false
+  xy: 363, 2
+  size: 278, 156
+  orig: 278, 156
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_cfex_fen4
+  rotate: true
+  xy: 2, 56
+  size: 377, 186
+  orig: 377, 186
+  offset: 0, 0
+  index: -1

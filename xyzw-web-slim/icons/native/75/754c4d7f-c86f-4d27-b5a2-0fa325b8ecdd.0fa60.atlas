@@ -1,0 +1,237 @@
+
+sqhd26_w6_banner.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bl1
+  rotate: false
+  xy: 713, 655
+  size: 71, 68
+  orig: 71, 68
+  offset: 0, 0
+  index: -1
+bolang1
+  rotate: false
+  xy: 492, 725
+  size: 212, 34
+  orig: 212, 34
+  offset: 0, 0
+  index: -1
+bolang2
+  rotate: false
+  xy: 37, 739
+  size: 199, 20
+  orig: 199, 20
+  offset: 0, 0
+  index: -1
+ditai
+  rotate: false
+  xy: 2, 383
+  size: 319, 136
+  orig: 319, 136
+  offset: 0, 0
+  index: -1
+dt
+  rotate: false
+  xy: 394, 2
+  size: 602, 345
+  orig: 602, 345
+  offset: 0, 0
+  index: -1
+qianmian
+  rotate: true
+  xy: 237, 679
+  size: 46, 245
+  orig: 46, 246
+  offset: 0, 1
+  index: -1
+shan1
+  rotate: false
+  xy: 2, 231
+  size: 154, 150
+  orig: 154, 150
+  offset: 0, 0
+  index: -1
+shan2
+  rotate: true
+  xy: 617, 444
+  size: 123, 266
+  orig: 123, 266
+  offset: 0, 0
+  index: -1
+shan3
+  rotate: false
+  xy: 158, 153
+  size: 234, 194
+  orig: 234, 194
+  offset: 0, 0
+  index: -1
+shan4
+  rotate: false
+  xy: 346, 477
+  size: 269, 90
+  orig: 276, 90
+  offset: 3, 0
+  index: -1
+shatan
+  rotate: false
+  xy: 323, 349
+  size: 594, 93
+  orig: 594, 93
+  offset: 0, 0
+  index: -1
+sui1
+  rotate: false
+  xy: 404, 727
+  size: 86, 32
+  orig: 86, 32
+  offset: 0, 0
+  index: -1
+sui2
+  rotate: false
+  xy: 2, 693
+  size: 233, 44
+  orig: 233, 44
+  offset: 0, 0
+  index: -1
+xrz1
+  rotate: true
+  xy: 484, 665
+  size: 58, 69
+  orig: 58, 69
+  offset: 0, 0
+  index: -1
+xrz2
+  rotate: true
+  xy: 2, 623
+  size: 68, 154
+  orig: 70, 156
+  offset: 2, 2
+  index: -1
+xu
+  rotate: true
+  xy: 296, 729
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+yahei
+  rotate: true
+  xy: 706, 725
+  size: 34, 114
+  orig: 34, 114
+  offset: 0, 0
+  index: -1
+yu1
+  rotate: true
+  xy: 2, 750
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+yu2
+  rotate: false
+  xy: 15, 740
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+yu3
+  rotate: false
+  xy: 238, 733
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+yu4
+  rotate: true
+  xy: 329, 729
+  size: 30, 34
+  orig: 30, 34
+  offset: 0, 0
+  index: -1
+yu5
+  rotate: false
+  xy: 922, 580
+  size: 90, 123
+  orig: 90, 123
+  offset: 0, 0
+  index: -1
+yu6
+  rotate: false
+  xy: 266, 731
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+yu7
+  rotate: false
+  xy: 365, 728
+  size: 37, 31
+  orig: 37, 31
+  offset: 0, 0
+  index: -1
+yu8
+  rotate: false
+  xy: 926, 705
+  size: 96, 54
+  orig: 96, 54
+  offset: 0, 0
+  index: -1
+yu9
+  rotate: false
+  xy: 822, 719
+  size: 50, 40
+  orig: 50, 40
+  offset: 0, 0
+  index: -1
+yun1
+  rotate: false
+  xy: 786, 638
+  size: 134, 69
+  orig: 134, 69
+  offset: 0, 0
+  index: -1
+yun2
+  rotate: false
+  xy: 312, 599
+  size: 139, 78
+  orig: 139, 78
+  offset: 0, 0
+  index: -1
+yun3
+  rotate: false
+  xy: 158, 608
+  size: 152, 69
+  orig: 152, 69
+  offset: 0, 0
+  index: -1
+yun4
+  rotate: false
+  xy: 555, 662
+  size: 156, 61
+  orig: 156, 61
+  offset: 0, 0
+  index: -1
+yw1
+  rotate: false
+  xy: 453, 569
+  size: 362, 67
+  orig: 362, 67
+  offset: 0, 0
+  index: -1
+yw2
+  rotate: false
+  xy: 2, 521
+  size: 342, 76
+  orig: 342, 76
+  offset: 0, 0
+  index: -1
+zuqiu
+  rotate: false
+  xy: 874, 709
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

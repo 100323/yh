@@ -1,0 +1,27 @@
+
+jiaxu5_attack_loop.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaxu5_attack_hit1
+  rotate: true
+  xy: 74, 2
+  size: 56, 51
+  orig: 60, 53
+  offset: 4, 2
+  index: -1
+jiaxu5_attack_hit2
+  rotate: false
+  xy: 2, 3
+  size: 70, 55
+  orig: 70, 55
+  offset: 0, 0
+  index: -1
+jiaxu5_attack_hit3
+  rotate: false
+  xy: 2, 60
+  size: 100, 62
+  orig: 101, 62
+  offset: 1, 0
+  index: -1

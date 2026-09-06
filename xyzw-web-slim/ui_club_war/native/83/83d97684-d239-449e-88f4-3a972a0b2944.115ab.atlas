@@ -1,0 +1,76 @@
+
+jlbgcz_medal.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 247, 281
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 49, 329
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+jingjichangmedal_1
+  rotate: true
+  xy: 147, 2
+  size: 142, 151
+  orig: 168, 153
+  offset: 13, 1
+  index: -1
+jingjichangmedal_2
+  rotate: true
+  xy: 2, 23
+  size: 140, 143
+  orig: 164, 145
+  offset: 12, 1
+  index: -1
+jingjichangmedal_3
+  rotate: true
+  xy: 152, 146
+  size: 133, 160
+  orig: 161, 162
+  offset: 14, 1
+  index: -1
+jingjichangmedal_4
+  rotate: true
+  xy: 314, 131
+  size: 139, 152
+  orig: 149, 154
+  offset: 5, 1
+  index: -1
+jingjichangmedal_5
+  rotate: true
+  xy: 2, 165
+  size: 119, 148
+  orig: 149, 150
+  offset: 15, 1
+  index: -1
+jingjichangmedal_6
+  rotate: true
+  xy: 352, 272
+  size: 111, 140
+  orig: 127, 142
+  offset: 8, 1
+  index: -1
+jingjichangmedal_7
+  rotate: true
+  xy: 105, 286
+  size: 97, 140
+  orig: 127, 142
+  offset: 15, 1
+  index: -1
+ui_chest_star
+  rotate: true
+  xy: 2, 353
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1

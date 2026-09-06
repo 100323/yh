@@ -1,0 +1,83 @@
+
+yazhi2_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo2
+  rotate: false
+  xy: 632, 176
+  size: 127, 127
+  orig: 127, 127
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis1
+  rotate: false
+  xy: 530, 305
+  size: 238, 200
+  orig: 238, 200
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis2
+  rotate: false
+  xy: 328, 2
+  size: 200, 172
+  orig: 200, 172
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis3
+  rotate: false
+  xy: 770, 305
+  size: 218, 200
+  orig: 218, 200
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis4
+  rotate: true
+  xy: 632, 44
+  size: 130, 118
+  orig: 130, 118
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis5
+  rotate: true
+  xy: 752, 54
+  size: 120, 114
+  orig: 120, 114
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis6
+  rotate: true
+  xy: 761, 183
+  size: 120, 72
+  orig: 120, 72
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis7
+  rotate: false
+  xy: 328, 176
+  size: 200, 329
+  orig: 200, 339
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis8
+  rotate: true
+  xy: 530, 30
+  size: 273, 100
+  orig: 273, 100
+  offset: 0, 0
+  index: -1
+nles_skill_qianjinzhuis9
+  rotate: true
+  xy: 2, 5
+  size: 500, 324
+  orig: 500, 324
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 990, 494
+  size: 11, 12
+  orig: 32, 32
+  offset: 6, 12
+  index: -1

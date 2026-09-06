@@ -1,0 +1,118 @@
+
+lusu5_armor_intro.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu5_buff_dun1
+  rotate: false
+  xy: 156, 307
+  size: 126, 77
+  orig: 126, 77
+  offset: 0, 0
+  index: -1
+lusu5_buff_dun2
+  rotate: false
+  xy: 2, 2
+  size: 143, 121
+  orig: 143, 121
+  offset: 0, 0
+  index: -1
+lusu5_buff_dun3
+  rotate: true
+  xy: 150, 134
+  size: 171, 140
+  orig: 171, 140
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 292, 270
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+xinpf_buff_dun
+  rotate: false
+  xy: 2, 307
+  size: 152, 190
+  orig: 152, 190
+  offset: 0, 0
+  index: -1
+xinpf_buff_gy
+  rotate: false
+  xy: 265, 411
+  size: 134, 86
+  orig: 134, 86
+  offset: 0, 0
+  index: -1
+xinpf_buff_hdun1
+  rotate: false
+  xy: 156, 386
+  size: 107, 111
+  orig: 107, 111
+  offset: 0, 0
+  index: -1
+xinpf_buff_hdun2
+  rotate: false
+  xy: 2, 125
+  size: 146, 180
+  orig: 146, 180
+  offset: 0, 0
+  index: -1
+xinpf_buff_kuos
+  rotate: false
+  xy: 147, 31
+  size: 150, 92
+  orig: 150, 92
+  offset: 0, 0
+  index: -1
+xinpf_buff_lizi1
+  rotate: true
+  xy: 299, 119
+  size: 45, 44
+  orig: 45, 44
+  offset: 0, 0
+  index: -1
+xinpf_buff_lizi2
+  rotate: false
+  xy: 292, 166
+  size: 45, 47
+  orig: 45, 47
+  offset: 0, 0
+  index: -1
+xinpf_buff_lizi3
+  rotate: true
+  xy: 339, 171
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian1
+  rotate: true
+  xy: 284, 330
+  size: 79, 77
+  orig: 79, 77
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian2
+  rotate: false
+  xy: 214, 5
+  size: 55, 24
+  orig: 55, 24
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian3
+  rotate: false
+  xy: 292, 215
+  size: 47, 53
+  orig: 47, 53
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian4
+  rotate: false
+  xy: 147, 5
+  size: 65, 24
+  orig: 65, 24
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,132 @@
+
+lusu2_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_effect_light_circle3
+  rotate: false
+  xy: 319, 192
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd1
+  rotate: false
+  xy: 383, 204
+  size: 73, 50
+  orig: 73, 50
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd10
+  rotate: false
+  xy: 378, 6
+  size: 49, 63
+  orig: 49, 63
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd11
+  rotate: true
+  xy: 200, 5
+  size: 33, 67
+  orig: 33, 67
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd12
+  rotate: false
+  xy: 74, 14
+  size: 63, 93
+  orig: 63, 93
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd13
+  rotate: true
+  xy: 374, 71
+  size: 58, 57
+  orig: 58, 57
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd2
+  rotate: true
+  xy: 272, 162
+  size: 92, 45
+  orig: 92, 45
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd3
+  rotate: false
+  xy: 374, 131
+  size: 62, 59
+  orig: 62, 59
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd4
+  rotate: false
+  xy: 310, 94
+  size: 62, 66
+  orig: 62, 66
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd5
+  rotate: false
+  xy: 254, 45
+  size: 54, 79
+  orig: 54, 79
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd6
+  rotate: true
+  xy: 269, 9
+  size: 34, 62
+  orig: 34, 62
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd7
+  rotate: true
+  xy: 139, 14
+  size: 93, 59
+  orig: 93, 61
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd8
+  rotate: true
+  xy: 200, 40
+  size: 84, 52
+  orig: 84, 52
+  offset: 0, 0
+  index: -1
+xinpf_pg_bd9
+  rotate: true
+  xy: 2, 14
+  size: 93, 70
+  orig: 93, 70
+  offset: 0, 0
+  index: -1
+xinpf_pg_gyd
+  rotate: true
+  xy: 2, 109
+  size: 145, 142
+  orig: 145, 142
+  offset: 0, 0
+  index: -1
+xinpf_pg_huan
+  rotate: true
+  xy: 146, 126
+  size: 128, 124
+  orig: 128, 124
+  offset: 0, 0
+  index: -1
+xinpf_pg_lizi1
+  rotate: true
+  xy: 333, 2
+  size: 42, 43
+  orig: 42, 43
+  offset: 0, 0
+  index: -1
+xinpf_pg_lizi2
+  rotate: false
+  xy: 310, 46
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

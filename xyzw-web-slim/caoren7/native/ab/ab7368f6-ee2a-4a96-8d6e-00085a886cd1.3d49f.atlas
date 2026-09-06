@@ -1,0 +1,90 @@
+
+caoren7_skill_loop.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bq_01_00000
+  rotate: false
+  xy: 54, 13
+  size: 136, 43
+  orig: 150, 98
+  offset: 4, 0
+  index: -1
+bq_01_00001
+  rotate: true
+  xy: 572, 107
+  size: 145, 94
+  orig: 150, 98
+  offset: 5, 0
+  index: -1
+bq_01_00002
+  rotate: true
+  xy: 668, 108
+  size: 144, 92
+  orig: 150, 98
+  offset: 3, 0
+  index: -1
+bq_01_00004
+  rotate: true
+  xy: 762, 112
+  size: 140, 92
+  orig: 150, 98
+  offset: 4, 2
+  index: -1
+bq_01_00006
+  rotate: true
+  xy: 803, 2
+  size: 108, 71
+  orig: 150, 98
+  offset: 9, 19
+  index: -1
+caoren7_skill_quan1
+  rotate: false
+  xy: 2, 58
+  size: 300, 194
+  orig: 300, 215
+  offset: 0, 21
+  index: -1
+caoren7_skill_tw
+  rotate: false
+  xy: 304, 83
+  size: 266, 169
+  orig: 266, 169
+  offset: 0, 0
+  index: -1
+dilie_00059
+  rotate: false
+  xy: 368, 9
+  size: 374, 72
+  orig: 374, 72
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yanwuq1
+  rotate: false
+  xy: 192, 18
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yanwuq2
+  rotate: false
+  xy: 2, 2
+  size: 50, 54
+  orig: 50, 54
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yanwuq3
+  rotate: false
+  xy: 744, 9
+  size: 57, 97
+  orig: 57, 97
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yanwuq4
+  rotate: false
+  xy: 304, 7
+  size: 62, 74
+  orig: 62, 74
+  offset: 0, 0
+  index: -1

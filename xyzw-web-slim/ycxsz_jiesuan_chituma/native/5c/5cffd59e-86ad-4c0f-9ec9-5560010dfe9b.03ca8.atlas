@@ -1,0 +1,237 @@
+
+ycxsz_jiesuan_chituma.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_chituma2_dbl
+  rotate: false
+  xy: 471, 247
+  size: 115, 50
+  orig: 115, 50
+  offset: 0, 0
+  index: -1
+axian_chituma2_dbr
+  rotate: false
+  xy: 717, 340
+  size: 90, 46
+  orig: 90, 46
+  offset: 0, 0
+  index: -1
+axian_chituma2_dtl
+  rotate: false
+  xy: 913, 126
+  size: 89, 65
+  orig: 89, 65
+  offset: 0, 0
+  index: -1
+axian_chituma2_dtr
+  rotate: true
+  xy: 699, 255
+  size: 77, 105
+  orig: 77, 105
+  offset: 0, 0
+  index: -1
+axian_chituma2_jiaol
+  rotate: true
+  xy: 717, 388
+  size: 122, 179
+  orig: 122, 179
+  offset: 0, 0
+  index: -1
+axian_chituma2_jiaor
+  rotate: false
+  xy: 585, 334
+  size: 130, 176
+  orig: 130, 176
+  offset: 0, 0
+  index: -1
+axian_chituma2_lz
+  rotate: true
+  xy: 571, 10
+  size: 24, 17
+  orig: 24, 17
+  offset: 0, 0
+  index: -1
+axian_chituma2_pfq
+  rotate: false
+  xy: 449, 36
+  size: 226, 109
+  orig: 226, 109
+  offset: 0, 0
+  index: -1
+axian_chituma2_pfx
+  rotate: true
+  xy: 303, 241
+  size: 269, 166
+  orig: 269, 166
+  offset: 0, 0
+  index: -1
+axian_chituma2_shen
+  rotate: true
+  xy: 898, 401
+  size: 109, 105
+  orig: 109, 105
+  offset: 0, 0
+  index: -1
+axian_chituma2_tf
+  rotate: false
+  xy: 597, 170
+  size: 121, 70
+  orig: 121, 70
+  offset: 0, 0
+  index: -1
+axian_chituma2_tou
+  rotate: true
+  xy: 806, 193
+  size: 145, 128
+  orig: 145, 128
+  offset: 0, 0
+  index: -1
+axian_chituma2_wuqi
+  rotate: false
+  xy: 303, 147
+  size: 292, 92
+  orig: 292, 92
+  offset: 0, 0
+  index: -1
+axian_chituma2_xbl
+  rotate: true
+  xy: 882, 350
+  size: 36, 74
+  orig: 36, 74
+  offset: 0, 0
+  index: -1
+axian_chituma2_xbr
+  rotate: true
+  xy: 809, 348
+  size: 38, 71
+  orig: 38, 71
+  offset: 0, 0
+  index: -1
+axian_chituma2_xz
+  rotate: true
+  xy: 471, 299
+  size: 211, 112
+  orig: 211, 112
+  offset: 0, 0
+  index: -1
+axian_chituma_bozi
+  rotate: true
+  xy: 720, 179
+  size: 74, 50
+  orig: 74, 50
+  offset: 0, 0
+  index: -1
+axian_chituma_pif
+  rotate: true
+  xy: 808, 14
+  size: 177, 103
+  orig: 177, 103
+  offset: 0, 0
+  index: -1
+axian_chituma_pijian
+  rotate: false
+  xy: 2, 19
+  size: 155, 64
+  orig: 155, 64
+  offset: 0, 0
+  index: -1
+axian_chituma_shen
+  rotate: true
+  xy: 317, 7
+  size: 92, 112
+  orig: 92, 112
+  offset: 0, 0
+  index: -1
+axian_chituma_shoul
+  rotate: true
+  xy: 159, 20
+  size: 63, 156
+  orig: 63, 156
+  offset: 0, 0
+  index: -1
+axian_chituma_shour
+  rotate: true
+  xy: 303, 101
+  size: 44, 144
+  orig: 44, 144
+  offset: 0, 0
+  index: -1
+axian_chituma_tf
+  rotate: true
+  xy: 588, 242
+  size: 90, 109
+  orig: 90, 109
+  offset: 0, 0
+  index: -1
+axian_chituma_tou
+  rotate: true
+  xy: 677, 9
+  size: 159, 129
+  orig: 159, 129
+  offset: 0, 0
+  index: -1
+axian_chituma_zui
+  rotate: false
+  xy: 482, 8
+  size: 47, 26
+  orig: 47, 26
+  offset: 0, 0
+  index: -1
+axian_eyer2
+  rotate: true
+  xy: 14, 4
+  size: 13, 7
+  orig: 19, 9
+  offset: 3, 1
+  index: -1
+axian_mouth2
+  rotate: false
+  xy: 431, 8
+  size: 49, 26
+  orig: 49, 26
+  offset: 0, 0
+  index: -1
+axian_mouth4
+  rotate: false
+  xy: 550, 11
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_yzl
+  rotate: false
+  xy: 23, 10
+  size: 5, 7
+  orig: 5, 7
+  offset: 0, 0
+  index: -1
+axian_zhangyu2_yzr
+  rotate: false
+  xy: 23, 2
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+axjx_bh_mouth
+  rotate: true
+  xy: 531, 2
+  size: 32, 17
+  orig: 32, 17
+  offset: 0, 0
+  index: -1
+bs
+  rotate: true
+  xy: 2, 5
+  size: 12, 10
+  orig: 15, 15
+  offset: 2, 1
+  index: -1
+ycxsz_jiesuan_qljw3
+  rotate: false
+  xy: 2, 85
+  size: 299, 425
+  orig: 299, 425
+  offset: 0, 0
+  index: -1

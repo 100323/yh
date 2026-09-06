@@ -1,0 +1,62 @@
+
+xsxjt_gyxb_daoju_10.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_kx_huo1
+  rotate: false
+  xy: 42, 32
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_huo2
+  rotate: false
+  xy: 66, 33
+  size: 22, 16
+  orig: 22, 16
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_niiu
+  rotate: true
+  xy: 2, 2
+  size: 47, 38
+  orig: 47, 38
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_shen
+  rotate: false
+  xy: 2, 51
+  size: 86, 74
+  orig: 86, 77
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_zhua1
+  rotate: true
+  xy: 90, 106
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_zhua2
+  rotate: true
+  xy: 90, 65
+  size: 18, 25
+  orig: 18, 25
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_zhua3
+  rotate: true
+  xy: 90, 85
+  size: 19, 25
+  orig: 19, 25
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_kx_zhua4
+  rotate: true
+  xy: 90, 44
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1

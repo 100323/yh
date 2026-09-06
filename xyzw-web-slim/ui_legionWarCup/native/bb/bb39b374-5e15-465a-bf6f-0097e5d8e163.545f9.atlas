@@ -1,0 +1,104 @@
+
+zbz_ft_yuegong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_ft3_body
+  rotate: false
+  xy: 2, 325
+  size: 245, 164
+  orig: 245, 169
+  offset: 0, 0
+  index: -1
+zbz_ft3_box
+  rotate: false
+  xy: 249, 329
+  size: 155, 160
+  orig: 155, 170
+  offset: 0, 1
+  index: -1
+zbz_ft3_eye1
+  rotate: false
+  xy: 90, 18
+  size: 8, 13
+  orig: 9, 13
+  offset: 1, 0
+  index: -1
+zbz_ft3_eye2
+  rotate: false
+  xy: 90, 33
+  size: 9, 14
+  orig: 9, 14
+  offset: 0, 0
+  index: -1
+zbz_ft3_eyebrow1
+  rotate: true
+  xy: 67, 49
+  size: 71, 54
+  orig: 73, 54
+  offset: 2, 0
+  index: -1
+zbz_ft3_eyebrow2
+  rotate: true
+  xy: 378, 215
+  size: 112, 59
+  orig: 115, 60
+  offset: 3, 1
+  index: -1
+zbz_ft3_fin1
+  rotate: false
+  xy: 235, 59
+  size: 182, 88
+  orig: 182, 88
+  offset: 0, 0
+  index: -1
+zbz_ft3_fin2
+  rotate: true
+  xy: 125, 26
+  size: 160, 108
+  orig: 162, 108
+  offset: 0, 0
+  index: -1
+zbz_ft3_head
+  rotate: true
+  xy: 2, 122
+  size: 201, 121
+  orig: 234, 121
+  offset: 8, 0
+  index: -1
+zbz_ft3_moon
+  rotate: true
+  xy: 378, 155
+  size: 58, 73
+  orig: 58, 73
+  offset: 0, 0
+  index: -1
+zbz_ft3_mouth1
+  rotate: true
+  xy: 249, 149
+  size: 178, 127
+  orig: 178, 131
+  offset: 0, 0
+  index: -1
+zbz_ft3_mouth2
+  rotate: true
+  xy: 2, 2
+  size: 118, 63
+  orig: 118, 63
+  offset: 0, 0
+  index: -1
+zbz_ft3_rope
+  rotate: false
+  xy: 67, 11
+  size: 21, 36
+  orig: 21, 36
+  offset: 0, 0
+  index: -1
+zbz_ft3_tail
+  rotate: true
+  xy: 125, 188
+  size: 135, 119
+  orig: 135, 136
+  offset: 0, 17
+  index: -1

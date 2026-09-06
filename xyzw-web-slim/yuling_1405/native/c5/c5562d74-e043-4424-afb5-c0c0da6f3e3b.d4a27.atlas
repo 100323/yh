@@ -1,0 +1,55 @@
+
+yuling_1405.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 36, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_405_body
+  rotate: false
+  xy: 2, 38
+  size: 191, 208
+  orig: 191, 208
+  offset: 0, 0
+  index: -1
+yuling_405_eye
+  rotate: true
+  xy: 70, 19
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+yuling_405_eyewhite
+  rotate: true
+  xy: 274, 15
+  size: 45, 44
+  orig: 45, 44
+  offset: 0, 0
+  index: -1
+yuling_405_mouth
+  rotate: false
+  xy: 2, 2
+  size: 32, 34
+  orig: 32, 34
+  offset: 0, 0
+  index: -1
+yuling_405_tail
+  rotate: true
+  xy: 195, 9
+  size: 51, 77
+  orig: 51, 77
+  offset: 0, 0
+  index: -1
+yuling_405_thorn
+  rotate: false
+  xy: 195, 62
+  size: 105, 184
+  orig: 105, 184
+  offset: 0, 0
+  index: -1

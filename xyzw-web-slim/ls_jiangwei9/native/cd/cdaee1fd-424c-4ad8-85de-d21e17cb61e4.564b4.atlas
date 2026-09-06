@@ -1,0 +1,139 @@
+
+ls_jiangwei9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lsjiangwei9_chi1
+  rotate: false
+  xy: 2, 58
+  size: 122, 170
+  orig: 122, 170
+  offset: 0, 0
+  index: -1
+lsjiangwei9_chi2
+  rotate: false
+  xy: 467, 113
+  size: 42, 47
+  orig: 42, 47
+  offset: 0, 0
+  index: -1
+lsjiangwei9_chi3
+  rotate: true
+  xy: 467, 48
+  size: 24, 21
+  orig: 24, 21
+  offset: 0, 0
+  index: -1
+lsjiangwei9_chi4
+  rotate: false
+  xy: 2, 2
+  size: 85, 54
+  orig: 85, 54
+  offset: 0, 0
+  index: -1
+lsjiangwei9_dhxingx
+  rotate: true
+  xy: 467, 162
+  size: 78, 41
+  orig: 78, 41
+  offset: 0, 0
+  index: -1
+lsjiangwei9_guangyun1
+  rotate: false
+  xy: 478, 412
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lsjiangwei9_guangyun2
+  rotate: false
+  xy: 274, 49
+  size: 191, 191
+  orig: 191, 191
+  offset: 0, 0
+  index: -1
+lsjiangwei9_guangyun3
+  rotate: false
+  xy: 274, 242
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+lsjiangwei9_gy
+  rotate: false
+  xy: 467, 74
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+lsjiangwei9_tt
+  rotate: false
+  xy: 2, 230
+  size: 270, 214
+  orig: 270, 214
+  offset: 0, 0
+  index: -1
+lsjiangwei9_xing1
+  rotate: true
+  xy: 89, 5
+  size: 51, 53
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+shui_000
+  rotate: true
+  xy: 478, 254
+  size: 7, 12
+  orig: 46, 46
+  offset: 23, 4
+  index: -1
+shui_002
+  rotate: false
+  xy: 126, 192
+  size: 17, 36
+  orig: 46, 46
+  offset: 13, 3
+  index: -1
+shui_004
+  rotate: false
+  xy: 478, 294
+  size: 26, 40
+  orig: 46, 46
+  offset: 8, 3
+  index: -1
+shui_006
+  rotate: false
+  xy: 478, 372
+  size: 28, 38
+  orig: 46, 46
+  offset: 7, 7
+  index: -1
+shui_008
+  rotate: false
+  xy: 478, 336
+  size: 28, 34
+  orig: 46, 46
+  offset: 7, 11
+  index: -1
+shui_010
+  rotate: false
+  xy: 478, 263
+  size: 26, 29
+  orig: 46, 46
+  offset: 9, 14
+  index: -1
+shui_012
+  rotate: false
+  xy: 490, 44
+  size: 20, 28
+  orig: 46, 46
+  offset: 11, 14
+  index: -1
+shui_014
+  rotate: true
+  xy: 492, 254
+  size: 7, 4
+  orig: 46, 46
+  offset: 12, 27
+  index: -1

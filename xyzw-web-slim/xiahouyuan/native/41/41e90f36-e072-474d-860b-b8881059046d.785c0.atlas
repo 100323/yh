@@ -1,0 +1,174 @@
+
+xiahouyuan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 153, 229
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 289, 92
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 289, 140
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+huanggai_arrow2
+  rotate: true
+  xy: 237, 209
+  size: 102, 18
+  orig: 102, 18
+  offset: 0, 0
+  index: -1
+huanggai_weapon1
+  rotate: false
+  xy: 273, 297
+  size: 14, 213
+  orig: 14, 213
+  offset: 0, 0
+  index: -1
+xiahouyuan_arrow
+  rotate: false
+  xy: 153, 208
+  size: 49, 19
+  orig: 49, 21
+  offset: 0, 2
+  index: -1
+xiahouyuan_arrowbag
+  rotate: false
+  xy: 148, 2
+  size: 76, 48
+  orig: 102, 58
+  offset: 0, 0
+  index: -1
+xiahouyuan_beard
+  rotate: false
+  xy: 226, 4
+  size: 79, 46
+  orig: 79, 46
+  offset: 0, 0
+  index: -1
+xiahouyuan_body
+  rotate: true
+  xy: 2, 3
+  size: 188, 144
+  orig: 188, 144
+  offset: 0, 0
+  index: -1
+xiahouyuan_eye
+  rotate: false
+  xy: 262, 387
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+xiahouyuan_eyebrow
+  rotate: true
+  xy: 350, 12
+  size: 38, 19
+  orig: 38, 19
+  offset: 0, 0
+  index: -1
+xiahouyuan_eyewhite
+  rotate: true
+  xy: 204, 201
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+xiahouyuan_hair
+  rotate: false
+  xy: 289, 300
+  size: 60, 90
+  orig: 60, 90
+  offset: 0, 0
+  index: -1
+xiahouyuan_handl
+  rotate: true
+  xy: 289, 52
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1
+xiahouyuan_handr1
+  rotate: true
+  xy: 307, 5
+  size: 45, 41
+  orig: 46, 43
+  offset: 0, 2
+  index: -1
+xiahouyuan_handr2
+  rotate: false
+  xy: 334, 52
+  size: 35, 38
+  orig: 35, 40
+  offset: 0, 2
+  index: -1
+xiahouyuan_head
+  rotate: true
+  xy: 153, 396
+  size: 114, 118
+  orig: 114, 118
+  offset: 0, 0
+  index: -1
+xiahouyuan_jaw
+  rotate: false
+  xy: 289, 392
+  size: 121, 118
+  orig: 121, 118
+  offset: 0, 0
+  index: -1
+xiahouyuan_legr
+  rotate: false
+  xy: 322, 267
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+xiahouyuan_shoulderl
+  rotate: false
+  xy: 153, 313
+  size: 107, 81
+  orig: 107, 81
+  offset: 0, 0
+  index: -1
+xiahouyuan_tail
+  rotate: true
+  xy: 257, 193
+  size: 102, 63
+  orig: 102, 63
+  offset: 0, 0
+  index: -1
+xiahouyuan_weapon
+  rotate: false
+  xy: 2, 193
+  size: 149, 317
+  orig: 151, 318
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 322, 243
+  size: 18, 22
+  orig: 26, 26
+  offset: 7, 1
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 148, 52
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

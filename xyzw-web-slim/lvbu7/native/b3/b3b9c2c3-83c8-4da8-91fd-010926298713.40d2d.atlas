@@ -1,0 +1,27 @@
+
+lvbu7_skill_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu8_skill1
+  rotate: false
+  xy: 97, 55
+  size: 129, 70
+  orig: 130, 70
+  offset: 1, 0
+  index: -1
+lvbu8_skill2
+  rotate: true
+  xy: 2, 6
+  size: 119, 93
+  orig: 126, 97
+  offset: 5, 2
+  index: -1
+lvbu8_skill3
+  rotate: true
+  xy: 97, 2
+  size: 51, 50
+  orig: 53, 50
+  offset: 2, 0
+  index: -1

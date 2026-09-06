@@ -1,0 +1,13 @@
+
+sdyl_hdlp_saoguang.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_lpb_xz3
+  rotate: false
+  xy: 2, 2
+  size: 184, 216
+  orig: 184, 244
+  offset: 0, 25
+  index: -1

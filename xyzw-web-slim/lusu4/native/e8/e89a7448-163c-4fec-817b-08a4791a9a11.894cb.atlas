@@ -1,0 +1,48 @@
+
+lusu4_skill_position2.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu3_skill_gyun
+  rotate: true
+  xy: 909, 134
+  size: 116, 113
+  orig: 116, 113
+  offset: 0, 0
+  index: -1
+lusu3_skill_huoyu
+  rotate: false
+  xy: 2, 77
+  size: 301, 173
+  orig: 301, 173
+  offset: 0, 0
+  index: -1
+lusu3_skill_xl3cbl1
+  rotate: false
+  xy: 693, 2
+  size: 127, 248
+  orig: 127, 248
+  offset: 0, 0
+  index: -1
+lusu3_skill_xl3cbr1
+  rotate: false
+  xy: 822, 33
+  size: 85, 217
+  orig: 85, 217
+  offset: 0, 0
+  index: -1
+lusu3_skill_xl3tou
+  rotate: true
+  xy: 305, 15
+  size: 235, 200
+  orig: 239, 209
+  offset: 2, 5
+  index: -1
+lusu3_skill_xl3wei
+  rotate: false
+  xy: 507, 44
+  size: 184, 206
+  orig: 184, 206
+  offset: 0, 0
+  index: -1

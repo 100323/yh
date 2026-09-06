@@ -1,0 +1,139 @@
+
+ui_axian_btn_livingroom_5114.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: false
+  xy: 85, 2
+  size: 10, 5
+  orig: 14, 5
+  offset: 2, 0
+  index: -1
+axian_eyer2
+  rotate: false
+  xy: 119, 3
+  size: 9, 4
+  orig: 13, 6
+  offset: 2, 1
+  index: -1
+ktax_ql_bi
+  rotate: true
+  xy: 138, 101
+  size: 8, 13
+  orig: 10, 15
+  offset: 1, 1
+  index: -1
+ktax_ql_hlr
+  rotate: true
+  xy: 146, 112
+  size: 25, 41
+  orig: 25, 42
+  offset: 0, 1
+  index: -1
+ktax_ql_jianl
+  rotate: true
+  xy: 199, 37
+  size: 100, 80
+  orig: 100, 82
+  offset: 0, 0
+  index: -1
+ktax_ql_jjr
+  rotate: false
+  xy: 338, 32
+  size: 47, 56
+  orig: 47, 56
+  offset: 0, 0
+  index: -1
+ktax_ql_lian
+  rotate: false
+  xy: 281, 90
+  size: 64, 67
+  orig: 65, 68
+  offset: 0, 1
+  index: -1
+ktax_ql_shen
+  rotate: false
+  xy: 219, 159
+  size: 80, 95
+  orig: 80, 95
+  offset: 0, 0
+  index: -1
+ktax_ql_tf
+  rotate: false
+  xy: 122, 111
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+ktax_ql_tf2
+  rotate: false
+  xy: 2, 98
+  size: 118, 156
+  orig: 118, 156
+  offset: 0, 0
+  index: -1
+ktax_ql_tk
+  rotate: true
+  xy: 85, 9
+  size: 87, 112
+  orig: 87, 112
+  offset: 0, 0
+  index: -1
+ktax_ql_tkying
+  rotate: false
+  xy: 122, 139
+  size: 95, 115
+  orig: 95, 116
+  offset: 0, 1
+  index: -1
+ktax_ql_tou
+  rotate: true
+  xy: 281, 28
+  size: 60, 55
+  orig: 60, 56
+  offset: 0, 1
+  index: -1
+ktax_ql_xj
+  rotate: true
+  xy: 2, 2
+  size: 94, 81
+  orig: 97, 82
+  offset: 3, 0
+  index: -1
+ktax_ql_yanl
+  rotate: true
+  xy: 122, 98
+  size: 11, 14
+  orig: 12, 16
+  offset: 1, 1
+  index: -1
+ktax_ql_yanr
+  rotate: true
+  xy: 153, 98
+  size: 12, 14
+  orig: 12, 15
+  offset: 0, 1
+  index: -1
+ktax_ql_yzl
+  rotate: false
+  xy: 106, 2
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+ktax_ql_yzr
+  rotate: false
+  xy: 113, 2
+  size: 4, 5
+  orig: 5, 6
+  offset: 1, 0
+  index: -1
+ktax_ql_zui
+  rotate: false
+  xy: 97, 2
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1

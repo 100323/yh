@@ -1,0 +1,41 @@
+
+simayi2_skill_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 2, 2
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 140, 192
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+simayi2_skill1
+  rotate: false
+  xy: 2, 94
+  size: 136, 139
+  orig: 142, 144
+  offset: 4, 4
+  index: -1
+simayi2_skill12
+  rotate: true
+  xy: 94, 4
+  size: 88, 90
+  orig: 88, 90
+  offset: 0, 0
+  index: -1
+simayi2_skill2
+  rotate: false
+  xy: 140, 149
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

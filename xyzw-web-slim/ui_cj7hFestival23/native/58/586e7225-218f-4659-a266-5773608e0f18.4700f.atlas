@@ -1,0 +1,69 @@
+
+sqhd26_w6_cj_btn.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taizi_di
+  rotate: true
+  xy: 147, 17
+  size: 128, 47
+  orig: 130, 49
+  offset: 1, 1
+  index: -1
+taizi_dizuo
+  rotate: false
+  xy: 2, 147
+  size: 212, 89
+  orig: 214, 91
+  offset: 1, 1
+  index: -1
+taizi_gaizi_l
+  rotate: false
+  xy: 358, 129
+  size: 139, 107
+  orig: 141, 109
+  offset: 1, 1
+  index: -1
+taizi_gaizi_r
+  rotate: false
+  xy: 216, 129
+  size: 140, 107
+  orig: 142, 109
+  offset: 1, 1
+  index: -1
+taizi_tanghuangdizuo_l
+  rotate: false
+  xy: 367, 68
+  size: 67, 59
+  orig: 69, 61
+  offset: 1, 1
+  index: -1
+taizi_tanghuangdizuo_r
+  rotate: false
+  xy: 436, 68
+  size: 67, 59
+  orig: 69, 61
+  offset: 1, 1
+  index: -1
+taizi_tanhuang_l
+  rotate: false
+  xy: 196, 60
+  size: 83, 67
+  orig: 83, 67
+  offset: 0, 0
+  index: -1
+taizi_tanhuang_r
+  rotate: false
+  xy: 281, 61
+  size: 84, 66
+  orig: 84, 66
+  offset: 0, 0
+  index: -1
+taizi_zuqiu
+  rotate: false
+  xy: 2, 2
+  size: 143, 143
+  orig: 145, 145
+  offset: 1, 1
+  index: -1

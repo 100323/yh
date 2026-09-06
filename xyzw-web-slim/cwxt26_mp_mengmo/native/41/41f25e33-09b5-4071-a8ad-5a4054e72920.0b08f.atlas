@@ -1,0 +1,90 @@
+
+cwxt26_mp_mengmo.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_mengmo_jin_mengmo
+  rotate: true
+  xy: 2, 10
+  size: 241, 218
+  orig: 241, 218
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_jin_sj1
+  rotate: true
+  xy: 608, 257
+  size: 111, 82
+  orig: 111, 82
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_jin_sj2
+  rotate: false
+  xy: 2, 253
+  size: 200, 257
+  orig: 200, 257
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_tong_mengmo
+  rotate: true
+  xy: 222, 10
+  size: 241, 218
+  orig: 241, 218
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_tong_sj1
+  rotate: true
+  xy: 692, 257
+  size: 111, 82
+  orig: 111, 82
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_tong_sj2
+  rotate: false
+  xy: 204, 253
+  size: 200, 257
+  orig: 200, 257
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_yin_mengmo
+  rotate: true
+  xy: 442, 10
+  size: 241, 218
+  orig: 241, 218
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_yin_sj1
+  rotate: true
+  xy: 662, 2
+  size: 111, 82
+  orig: 111, 82
+  offset: 0, 0
+  index: -1
+cwxt26_mengmo_yin_sj2
+  rotate: false
+  xy: 406, 253
+  size: 200, 257
+  orig: 200, 257
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_jin_2
+  rotate: true
+  xy: 608, 370
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_tong_2
+  rotate: true
+  xy: 662, 115
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_yin_2
+  rotate: true
+  xy: 696, 370
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1

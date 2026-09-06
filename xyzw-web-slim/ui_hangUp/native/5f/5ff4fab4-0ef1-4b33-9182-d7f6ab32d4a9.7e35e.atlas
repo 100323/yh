@@ -1,0 +1,34 @@
+
+gjjl_levelup.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ensflare
+  rotate: true
+  xy: 102, 13
+  size: 104, 94
+  orig: 110, 106
+  offset: 2, 5
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 198, 65
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+ui_skillup_slight
+  rotate: true
+  xy: 2, 2
+  size: 115, 98
+  orig: 115, 98
+  offset: 0, 0
+  index: -1
+ui_skillup_star
+  rotate: false
+  xy: 198, 34
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

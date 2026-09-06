@@ -1,0 +1,27 @@
+
+zhenji8_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 294
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+zhenji8_pg_zha1
+  rotate: false
+  xy: 42, 264
+  size: 112, 68
+  orig: 112, 68
+  offset: 0, 0
+  index: -1
+zhenji8_pg_zha2
+  rotate: false
+  xy: 2, 2
+  size: 483, 260
+  orig: 483, 260
+  offset: 0, 0
+  index: -1

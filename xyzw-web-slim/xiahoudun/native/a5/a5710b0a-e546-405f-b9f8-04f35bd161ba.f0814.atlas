@@ -1,0 +1,132 @@
+
+xiahoudun.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 396, 393
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 186, 7
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 234, 2
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+xiahoudun_beard2
+  rotate: false
+  xy: 91, 279
+  size: 82, 103
+  orig: 82, 103
+  offset: 0, 0
+  index: -1
+xiahoudun_body2
+  rotate: false
+  xy: 186, 109
+  size: 152, 132
+  orig: 152, 132
+  offset: 0, 0
+  index: -1
+xiahoudun_eyeband
+  rotate: true
+  xy: 186, 55
+  size: 52, 96
+  orig: 52, 96
+  offset: 0, 0
+  index: -1
+xiahoudun_handl
+  rotate: false
+  xy: 385, 56
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+xiahoudun_handr1
+  rotate: false
+  xy: 340, 57
+  size: 43, 41
+  orig: 44, 44
+  offset: 0, 3
+  index: -1
+xiahoudun_handr2
+  rotate: true
+  xy: 327, 243
+  size: 33, 38
+  orig: 34, 41
+  offset: 0, 3
+  index: -1
+xiahoudun_head2
+  rotate: true
+  xy: 2, 7
+  size: 160, 182
+  orig: 164, 185
+  offset: 0, 3
+  index: -1
+xiahoudun_legr
+  rotate: true
+  xy: 367, 253
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+xiahoudun_shoulderl2
+  rotate: true
+  xy: 91, 169
+  size: 108, 69
+  orig: 108, 69
+  offset: 0, 0
+  index: -1
+xiahoudun_shoulderr2
+  rotate: true
+  xy: 284, 42
+  size: 65, 54
+  orig: 66, 54
+  offset: 1, 0
+  index: -1
+xiahoudun_tail
+  rotate: true
+  xy: 340, 100
+  size: 141, 79
+  orig: 141, 84
+  offset: 0, 5
+  index: -1
+xiahoudun_weapon
+  rotate: true
+  xy: 91, 384
+  size: 91, 303
+  orig: 91, 312
+  offset: 0, 0
+  index: -1
+xiahoudun_weapon2
+  rotate: false
+  xy: 2, 169
+  size: 87, 306
+  orig: 87, 306
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 186, 243
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: false
+  xy: 327, 278
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

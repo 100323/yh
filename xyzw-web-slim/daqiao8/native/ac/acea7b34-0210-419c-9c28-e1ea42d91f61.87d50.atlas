@@ -1,0 +1,48 @@
+
+daqiao8_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao8_pg_bd1
+  rotate: false
+  xy: 2, 81
+  size: 138, 166
+  orig: 138, 166
+  offset: 0, 0
+  index: -1
+daqiao8_pg_bdlz1
+  rotate: false
+  xy: 142, 108
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+daqiao8_pg_bdlz2
+  rotate: true
+  xy: 2, 2
+  size: 17, 27
+  orig: 17, 27
+  offset: 0, 0
+  index: -1
+daqiao8_pg_bdlz3
+  rotate: false
+  xy: 200, 234
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+daqiao8_pg_bdxinl
+  rotate: true
+  xy: 2, 21
+  size: 58, 124
+  orig: 58, 124
+  offset: 0, 0
+  index: -1
+daqiao8_pg_bdxinr
+  rotate: false
+  xy: 142, 128
+  size: 56, 119
+  orig: 56, 119
+  offset: 0, 0
+  index: -1

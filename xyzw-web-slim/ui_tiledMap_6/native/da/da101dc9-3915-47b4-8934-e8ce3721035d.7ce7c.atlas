@@ -1,0 +1,62 @@
+
+yg_ds_anim.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 230, 424
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+zbz_dx3_bg
+  rotate: true
+  xy: 2, 2
+  size: 405, 489
+  orig: 405, 489
+  offset: 0, 0
+  index: -1
+zbz_dx3_bg2
+  rotate: false
+  xy: 284, 409
+  size: 99, 67
+  orig: 99, 67
+  offset: 0, 0
+  index: -1
+zbz_dx3_circle
+  rotate: false
+  xy: 61, 468
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+zbz_dx3_light
+  rotate: false
+  xy: 104, 448
+  size: 32, 28
+  orig: 32, 28
+  offset: 0, 0
+  index: -1
+zbz_dx3_light2
+  rotate: true
+  xy: 71, 460
+  size: 16, 31
+  orig: 16, 31
+  offset: 0, 0
+  index: -1
+zbz_dx3_light3
+  rotate: true
+  xy: 2, 471
+  size: 5, 57
+  orig: 5, 57
+  offset: 0, 0
+  index: -1
+zbz_dx3_light4
+  rotate: false
+  xy: 138, 444
+  size: 90, 32
+  orig: 90, 32
+  offset: 0, 0
+  index: -1

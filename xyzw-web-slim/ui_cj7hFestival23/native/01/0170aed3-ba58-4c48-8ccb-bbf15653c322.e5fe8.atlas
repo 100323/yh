@@ -1,0 +1,41 @@
+
+sqhd26_w2_cj_jiantou.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou_dizuo
+  rotate: false
+  xy: 2, 3
+  size: 62, 59
+  orig: 62, 59
+  offset: 0, 0
+  index: -1
+jiantou_shang
+  rotate: false
+  xy: 94, 2
+  size: 26, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+jiantou_xia
+  rotate: true
+  xy: 101, 35
+  size: 27, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+jiantou_you
+  rotate: true
+  xy: 66, 2
+  size: 30, 26
+  orig: 30, 26
+  offset: 0, 0
+  index: -1
+jiantou_zuo
+  rotate: false
+  xy: 66, 34
+  size: 33, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1

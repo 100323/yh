@@ -1,0 +1,48 @@
+
+guojia3_skill_line.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia3_skill1
+  rotate: true
+  xy: 224, 81
+  size: 34, 30
+  orig: 34, 30
+  offset: 0, 0
+  index: -1
+guojia3_skill2
+  rotate: false
+  xy: 90, 43
+  size: 102, 38
+  orig: 102, 38
+  offset: 0, 0
+  index: -1
+guojia3_skill4
+  rotate: false
+  xy: 90, 83
+  size: 132, 32
+  orig: 132, 32
+  offset: 0, 0
+  index: -1
+guojia3_weapon
+  rotate: false
+  xy: 2, 2
+  size: 86, 113
+  orig: 86, 113
+  offset: 0, 0
+  index: -1
+guojia_skill_knife1
+  rotate: false
+  xy: 90, 27
+  size: 89, 14
+  orig: 89, 14
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 194, 33
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

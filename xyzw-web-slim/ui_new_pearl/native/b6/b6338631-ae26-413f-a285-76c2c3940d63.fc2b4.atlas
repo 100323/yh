@@ -1,0 +1,48 @@
+
+yzxt_jineng_baozha_1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yzxt_jn_guang
+  rotate: true
+  xy: 261, 55
+  size: 58, 53
+  orig: 58, 53
+  offset: 0, 0
+  index: -1
+yzxt_jn_guangshu
+  rotate: true
+  xy: 2, 14
+  size: 240, 169
+  orig: 280, 183
+  offset: 25, 13
+  index: -1
+yzxt_jnbz_2
+  rotate: true
+  xy: 173, 115
+  size: 139, 138
+  orig: 139, 138
+  offset: 0, 0
+  index: -1
+yzxt_jnbz_3
+  rotate: true
+  xy: 173, 25
+  size: 88, 86
+  orig: 88, 86
+  offset: 0, 0
+  index: -1
+yzxt_sxbz_1
+  rotate: false
+  xy: 314, 24
+  size: 28, 29
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+yzxt_xing
+  rotate: false
+  xy: 261, 2
+  size: 51, 51
+  orig: 56, 55
+  offset: 3, 2
+  index: -1

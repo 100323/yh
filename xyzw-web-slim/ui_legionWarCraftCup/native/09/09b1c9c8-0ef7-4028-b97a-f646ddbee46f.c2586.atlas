@@ -1,0 +1,104 @@
+
+ycxsz_banner1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_banner_bj
+  rotate: true
+  xy: 807, 181
+  size: 301, 173
+  orig: 301, 173
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_2
+  rotate: false
+  xy: 2, 17
+  size: 154, 98
+  orig: 158, 102
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_guang1
+  rotate: true
+  xy: 982, 257
+  size: 225, 37
+  orig: 225, 37
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_guang2
+  rotate: false
+  xy: 2, 285
+  size: 199, 197
+  orig: 199, 197
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_xian2
+  rotate: true
+  xy: 707, 196
+  size: 129, 74
+  orig: 129, 74
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_yun1
+  rotate: true
+  xy: 392, 2
+  size: 168, 111
+  orig: 168, 111
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_yun2
+  rotate: false
+  xy: 203, 161
+  size: 187, 164
+  orig: 187, 164
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_yun3
+  rotate: true
+  xy: 559, 141
+  size: 184, 146
+  orig: 184, 146
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_yun4
+  rotate: true
+  xy: 2, 117
+  size: 166, 154
+  orig: 166, 154
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_yun5
+  rotate: false
+  xy: 707, 62
+  size: 150, 117
+  orig: 150, 117
+  offset: 0, 0
+  index: -1
+ycxsz_banner_bj_yun6
+  rotate: false
+  xy: 392, 172
+  size: 165, 153
+  orig: 165, 153
+  offset: 0, 0
+  index: -1
+ycxsz_banner_qianj
+  rotate: false
+  xy: 203, 327
+  size: 602, 155
+  orig: 602, 155
+  offset: 0, 0
+  index: -1
+ycxsz_banner_xian1
+  rotate: false
+  xy: 158, 18
+  size: 197, 141
+  orig: 197, 141
+  offset: 0, 0
+  index: -1
+ycxsz_banner_zz
+  rotate: true
+  xy: 859, 59
+  size: 120, 69
+  orig: 120, 69
+  offset: 0, 0
+  index: -1

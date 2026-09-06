@@ -1,0 +1,48 @@
+
+lzjs_bj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: true
+  xy: 2, 2
+  size: 389, 507
+  orig: 389, 507
+  offset: 0, 0
+  index: -1
+shuibo3
+  rotate: false
+  xy: 99, 408
+  size: 109, 77
+  orig: 116, 79
+  offset: 7, 2
+  index: -1
+shuibo4
+  rotate: false
+  xy: 2, 475
+  size: 24, 10
+  orig: 24, 10
+  offset: 0, 0
+  index: -1
+shuibo6
+  rotate: true
+  xy: 28, 423
+  size: 62, 69
+  orig: 62, 70
+  offset: 0, 0
+  index: -1
+shuibo7
+  rotate: false
+  xy: 389, 393
+  size: 111, 92
+  orig: 111, 92
+  offset: 0, 0
+  index: -1
+shuibo8
+  rotate: false
+  xy: 210, 405
+  size: 177, 80
+  orig: 177, 80
+  offset: 0, 0
+  index: -1

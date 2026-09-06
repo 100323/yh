@@ -1,0 +1,188 @@
+
+zhugeliang7_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 120, 87
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_guang
+  rotate: true
+  xy: 757, 91
+  size: 116, 112
+  orig: 116, 112
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_guangyun1
+  rotate: false
+  xy: 757, 15
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_guangyun2
+  rotate: true
+  xy: 635, 17
+  size: 69, 75
+  orig: 69, 75
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_guangyun3
+  rotate: true
+  xy: 635, 88
+  size: 119, 120
+  orig: 119, 120
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_gun1
+  rotate: true
+  xy: 976, 123
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_gun2
+  rotate: true
+  xy: 712, 42
+  size: 44, 43
+  orig: 44, 43
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_gun3
+  rotate: true
+  xy: 635, 211
+  size: 50, 26
+  orig: 50, 26
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_gun4
+  rotate: true
+  xy: 902, 338
+  size: 51, 81
+  orig: 51, 81
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_gun5
+  rotate: false
+  xy: 822, 334
+  size: 78, 55
+  orig: 78, 55
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_gunzha
+  rotate: false
+  xy: 2, 180
+  size: 346, 329
+  orig: 346, 329
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_jian
+  rotate: false
+  xy: 350, 263
+  size: 312, 246
+  orig: 312, 246
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq1
+  rotate: true
+  xy: 937, 169
+  size: 79, 76
+  orig: 83, 76
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq10
+  rotate: false
+  xy: 913, 2
+  size: 76, 37
+  orig: 76, 37
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq2
+  rotate: false
+  xy: 976, 41
+  size: 41, 80
+  orig: 41, 80
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq3
+  rotate: false
+  xy: 176, 104
+  size: 41, 74
+  orig: 42, 75
+  offset: 0, 1
+  index: -1
+zhugeliang7_jn_wq4
+  rotate: true
+  xy: 498, 79
+  size: 182, 135
+  orig: 183, 135
+  offset: 1, 0
+  index: -1
+zhugeliang7_jn_wq5
+  rotate: false
+  xy: 833, 6
+  size: 78, 41
+  orig: 84, 41
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq6
+  rotate: false
+  xy: 664, 209
+  size: 271, 117
+  orig: 272, 117
+  offset: 1, 0
+  index: -1
+zhugeliang7_jn_wq7
+  rotate: false
+  xy: 871, 49
+  size: 103, 118
+  orig: 103, 118
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq8
+  rotate: true
+  xy: 2, 79
+  size: 99, 116
+  orig: 99, 116
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_wq9
+  rotate: false
+  xy: 120, 130
+  size: 54, 48
+  orig: 54, 48
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_yan1
+  rotate: true
+  xy: 664, 328
+  size: 181, 156
+  orig: 181, 156
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_yan2
+  rotate: true
+  xy: 822, 391
+  size: 118, 186
+  orig: 118, 186
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_yan3
+  rotate: false
+  xy: 350, 122
+  size: 146, 139
+  orig: 146, 139
+  offset: 0, 0
+  index: -1
+zhugeliang7_jn_yan4
+  rotate: false
+  xy: 937, 250
+  size: 81, 86
+  orig: 81, 86
+  offset: 0, 0
+  index: -1

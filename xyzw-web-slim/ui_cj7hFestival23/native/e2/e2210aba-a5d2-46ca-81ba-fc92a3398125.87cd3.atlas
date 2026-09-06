@@ -1,0 +1,132 @@
+
+dntg26_cj_btn.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+btn1
+  rotate: false
+  xy: 286, 2
+  size: 124, 68
+  orig: 124, 68
+  offset: 0, 0
+  index: -1
+btn11
+  rotate: false
+  xy: 282, 398
+  size: 221, 110
+  orig: 221, 110
+  offset: 0, 0
+  index: -1
+btn12
+  rotate: false
+  xy: 2, 19
+  size: 190, 7
+  orig: 190, 7
+  offset: 0, 0
+  index: -1
+btn13
+  rotate: true
+  xy: 213, 17
+  size: 81, 71
+  orig: 81, 71
+  offset: 0, 0
+  index: -1
+btn14
+  rotate: false
+  xy: 412, 5
+  size: 77, 62
+  orig: 77, 65
+  offset: 0, 3
+  index: -1
+btn15
+  rotate: true
+  xy: 468, 341
+  size: 55, 35
+  orig: 55, 35
+  offset: 0, 0
+  index: -1
+btn16
+  rotate: true
+  xy: 456, 219
+  size: 66, 44
+  orig: 66, 44
+  offset: 0, 0
+  index: -1
+btn17
+  rotate: false
+  xy: 282, 287
+  size: 184, 109
+  orig: 184, 109
+  offset: 0, 0
+  index: -1
+btn18
+  rotate: false
+  xy: 2, 146
+  size: 213, 127
+  orig: 213, 127
+  offset: 0, 0
+  index: -1
+btn2
+  rotate: true
+  xy: 456, 168
+  size: 49, 26
+  orig: 49, 26
+  offset: 0, 0
+  index: -1
+btn3
+  rotate: false
+  xy: 416, 69
+  size: 66, 73
+  orig: 66, 73
+  offset: 0, 0
+  index: -1
+btn4
+  rotate: false
+  xy: 217, 100
+  size: 68, 173
+  orig: 68, 173
+  offset: 0, 0
+  index: -1
+btn5
+  rotate: false
+  xy: 287, 144
+  size: 167, 141
+  orig: 167, 141
+  offset: 0, 0
+  index: -1
+btn6
+  rotate: false
+  xy: 287, 72
+  size: 127, 70
+  orig: 127, 70
+  offset: 0, 0
+  index: -1
+btn7
+  rotate: false
+  xy: 2, 275
+  size: 278, 233
+  orig: 278, 233
+  offset: 0, 0
+  index: -1
+btn8
+  rotate: false
+  xy: 2, 28
+  size: 209, 116
+  orig: 209, 116
+  offset: 0, 0
+  index: -1
+btn9
+  rotate: false
+  xy: 2, 9
+  size: 18, 8
+  orig: 18, 8
+  offset: 0, 0
+  index: -1
+btn10
+  rotate: false
+  xy: 2, 9
+  size: 18, 8
+  orig: 18, 8
+  offset: 0, 0
+  index: -1

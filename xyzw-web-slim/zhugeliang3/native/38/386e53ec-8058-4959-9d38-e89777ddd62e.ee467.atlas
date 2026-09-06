@@ -1,0 +1,27 @@
+
+zhugeliang3_attack_loop.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhugeliang3_attack3
+  rotate: false
+  xy: 140, 28
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+zhugeliang3_attack4
+  rotate: false
+  xy: 2, 16
+  size: 136, 23
+  orig: 136, 23
+  offset: 0, 0
+  index: -1
+zhugeliang3_attack5
+  rotate: false
+  xy: 2, 2
+  size: 168, 12
+  orig: 169, 12
+  offset: 1, 0
+  index: -1

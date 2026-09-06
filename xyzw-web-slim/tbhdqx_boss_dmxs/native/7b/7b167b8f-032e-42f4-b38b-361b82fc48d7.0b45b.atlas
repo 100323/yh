@@ -1,0 +1,20 @@
+
+tbhdqx_boss_dmxs_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_nmss_pu_dan1
+  rotate: false
+  xy: 2, 2
+  size: 169, 82
+  orig: 169, 82
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_pu_dan2
+  rotate: false
+  xy: 173, 42
+  size: 160, 42
+  orig: 160, 42
+  offset: 0, 0
+  index: -1

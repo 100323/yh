@@ -1,0 +1,139 @@
+
+cwxt26_cw_kong_3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bi
+  rotate: false
+  xy: 146, 59
+  size: 37, 23
+  orig: 48, 25
+  offset: 4, 1
+  index: -1
+zb
+  rotate: false
+  xy: 146, 59
+  size: 37, 23
+  orig: 48, 25
+  offset: 4, 1
+  index: -1
+chi_y
+  rotate: false
+  xy: 145, 203
+  size: 68, 155
+  orig: 68, 155
+  offset: 0, 0
+  index: -1
+chi_z
+  rotate: false
+  xy: 6, 27
+  size: 107, 167
+  orig: 107, 167
+  offset: 0, 0
+  index: -1
+er_y
+  rotate: false
+  xy: 145, 88
+  size: 65, 109
+  orig: 65, 109
+  offset: 0, 0
+  index: -1
+ye
+  rotate: false
+  xy: 145, 88
+  size: 65, 109
+  orig: 65, 109
+  offset: 0, 0
+  index: -1
+er_z
+  rotate: true
+  xy: 216, 30
+  size: 88, 121
+  orig: 88, 121
+  offset: 0, 0
+  index: -1
+tou
+  rotate: true
+  xy: 6, 200
+  size: 158, 133
+  orig: 160, 135
+  offset: 1, 1
+  index: -1
+tou2
+  rotate: true
+  xy: 6, 200
+  size: 158, 133
+  orig: 160, 135
+  offset: 1, 1
+  index: -1
+yan_y
+  rotate: true
+  xy: 119, 165
+  size: 29, 16
+  orig: 31, 19
+  offset: 1, 1
+  index: -1
+yan_z
+  rotate: true
+  xy: 119, 41
+  size: 41, 21
+  orig: 44, 24
+  offset: 1, 2
+  index: -1
+yc
+  rotate: false
+  xy: 219, 124
+  size: 119, 171
+  orig: 119, 171
+  offset: 0, 0
+  index: -1
+yun
+  rotate: false
+  xy: 6, 364
+  size: 260, 118
+  orig: 260, 118
+  offset: 0, 0
+  index: -1
+yy1
+  rotate: false
+  xy: 119, 136
+  size: 7, 23
+  orig: 10, 25
+  offset: 2, 1
+  index: -1
+zy1
+  rotate: false
+  xy: 119, 136
+  size: 7, 23
+  orig: 10, 25
+  offset: 2, 1
+  index: -1
+yy3
+  rotate: true
+  xy: 119, 6
+  size: 29, 40
+  orig: 31, 42
+  offset: 1, 1
+  index: -1
+zc
+  rotate: false
+  xy: 272, 301
+  size: 140, 181
+  orig: 140, 181
+  offset: 0, 0
+  index: -1
+zr
+  rotate: true
+  xy: 343, 32
+  size: 86, 121
+  orig: 88, 121
+  offset: 2, 0
+  index: -1
+zy2
+  rotate: false
+  xy: 219, 309
+  size: 42, 49
+  orig: 44, 52
+  offset: 1, 2
+  index: -1

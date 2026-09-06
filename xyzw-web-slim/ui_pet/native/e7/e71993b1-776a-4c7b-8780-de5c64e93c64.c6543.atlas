@@ -1,0 +1,20 @@
+
+sqhd26_sqkh_cdzw_1.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cdzw_zhu
+  rotate: false
+  xy: 254, 18
+  size: 43, 44
+  orig: 50, 51
+  offset: 3, 4
+  index: -1
+cdzw_zhuqi
+  rotate: true
+  xy: 2, 2
+  size: 60, 250
+  orig: 60, 250
+  offset: 0, 0
+  index: -1

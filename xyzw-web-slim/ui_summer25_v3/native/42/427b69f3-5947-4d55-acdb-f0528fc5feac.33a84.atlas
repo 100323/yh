@@ -1,0 +1,132 @@
+
+sqhd25w3_jupaixiaoyu.png
+size: 373,201
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huihe1
+  rotate: true
+  xy: 329, 81
+  size: 118, 42
+  orig: 118, 43
+  offset: 0, 0
+  index: -1
+huihe2
+  rotate: false
+  xy: 91, 38
+  size: 122, 42
+  orig: 122, 43
+  offset: 0, 0
+  index: -1
+huihe3
+  rotate: false
+  xy: 208, 157
+  size: 119, 42
+  orig: 119, 43
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_beiqi
+  rotate: true
+  xy: 176, 2
+  size: 34, 38
+  orig: 34, 38
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_hudiejie
+  rotate: false
+  xy: 268, 51
+  size: 53, 44
+  orig: 54, 45
+  offset: 0, 1
+  index: -1
+jupaixiaoyu_jiao_l1
+  rotate: false
+  xy: 306, 6
+  size: 27, 36
+  orig: 30, 41
+  offset: 1, 0
+  index: -1
+jupaixiaoyu_jiao_l2
+  rotate: true
+  xy: 268, 9
+  size: 40, 36
+  orig: 40, 36
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_jiao_r1
+  rotate: true
+  xy: 133, 4
+  size: 32, 41
+  orig: 32, 41
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_jiao_r2
+  rotate: false
+  xy: 91, 2
+  size: 40, 34
+  orig: 40, 34
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_jiemao
+  rotate: false
+  xy: 216, 12
+  size: 42, 30
+  orig: 42, 30
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_kua1
+  rotate: true
+  xy: 289, 97
+  size: 58, 38
+  orig: 58, 38
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_paizi2
+  rotate: true
+  xy: 2, 21
+  size: 178, 87
+  orig: 178, 87
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_shenti2
+  rotate: true
+  xy: 91, 82
+  size: 117, 115
+  orig: 124, 115
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_weiba2
+  rotate: false
+  xy: 208, 100
+  size: 79, 55
+  orig: 79, 55
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_yanpi1
+  rotate: false
+  xy: 323, 44
+  size: 42, 35
+  orig: 42, 38
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_yanpi2
+  rotate: true
+  xy: 335, 11
+  size: 31, 29
+  orig: 31, 29
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_yanzhu
+  rotate: false
+  xy: 2, 10
+  size: 6, 9
+  orig: 6, 9
+  offset: 0, 0
+  index: -1
+jupaixiaoyu_zuiba
+  rotate: false
+  xy: 215, 44
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1

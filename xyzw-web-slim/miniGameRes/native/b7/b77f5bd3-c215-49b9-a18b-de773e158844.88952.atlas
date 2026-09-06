@@ -1,0 +1,104 @@
+
+kpyx6_takeout.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx6_Whiteeye1
+  rotate: false
+  xy: 272, 38
+  size: 33, 36
+  orig: 33, 36
+  offset: 0, 0
+  index: -1
+kpyx6_baghou
+  rotate: false
+  xy: 153, 9
+  size: 140, 27
+  orig: 140, 27
+  offset: 0, 0
+  index: -1
+kpyx6_bagqian
+  rotate: false
+  xy: 2, 2
+  size: 149, 99
+  orig: 149, 99
+  offset: 0, 0
+  index: -1
+kpyx6_body1
+  rotate: true
+  xy: 124, 123
+  size: 127, 73
+  orig: 156, 102
+  offset: 22, 20
+  index: -1
+kpyx6_chelun
+  rotate: true
+  xy: 259, 183
+  size: 67, 64
+  orig: 67, 64
+  offset: 0, 0
+  index: -1
+kpyx6_chelun1
+  rotate: false
+  xy: 124, 104
+  size: 10, 17
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+kpyx6_eye1
+  rotate: false
+  xy: 136, 111
+  size: 9, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+kpyx6_eyebrow1
+  rotate: true
+  xy: 216, 40
+  size: 21, 30
+  orig: 22, 31
+  offset: 0, 1
+  index: -1
+kpyx6_hair21
+  rotate: false
+  xy: 2, 103
+  size: 120, 147
+  orig: 131, 151
+  offset: 5, 4
+  index: -1
+kpyx6_hand2
+  rotate: false
+  xy: 199, 172
+  size: 58, 78
+  orig: 59, 78
+  offset: 0, 0
+  index: -1
+kpyx6_handr2
+  rotate: true
+  xy: 216, 63
+  size: 65, 54
+  orig: 65, 55
+  offset: 0, 1
+  index: -1
+kpyx6_leg2
+  rotate: false
+  xy: 153, 38
+  size: 61, 83
+  orig: 69, 90
+  offset: 5, 7
+  index: -1
+kpyx6_tail1
+  rotate: false
+  xy: 199, 130
+  size: 73, 40
+  orig: 73, 40
+  offset: 0, 0
+  index: -1
+kpyx6_xiuzi
+  rotate: true
+  xy: 272, 76
+  size: 52, 43
+  orig: 57, 43
+  offset: 0, 0
+  index: -1

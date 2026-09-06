@@ -1,0 +1,55 @@
+
+zhenji3_skill_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhenji3_effect1
+  rotate: true
+  xy: 171, 45
+  size: 59, 38
+  orig: 61, 40
+  offset: 1, 1
+  index: -1
+zhenji3_effect2
+  rotate: true
+  xy: 195, 2
+  size: 41, 34
+  orig: 43, 35
+  offset: 1, 1
+  index: -1
+zhenji3_effect3
+  rotate: true
+  xy: 211, 65
+  size: 39, 35
+  orig: 41, 35
+  offset: 1, 0
+  index: -1
+zhenji3_effect4
+  rotate: true
+  xy: 152, 8
+  size: 35, 41
+  orig: 37, 43
+  offset: 1, 1
+  index: -1
+zhenji3_effect5
+  rotate: true
+  xy: 102, 48
+  size: 56, 67
+  orig: 56, 69
+  offset: 0, 1
+  index: -1
+zhenji3_weapon1
+  rotate: true
+  xy: 102, 13
+  size: 33, 48
+  orig: 33, 48
+  offset: 0, 0
+  index: -1
+zhenji_skill1
+  rotate: false
+  xy: 2, 7
+  size: 98, 97
+  orig: 99, 99
+  offset: 0, 1
+  index: -1

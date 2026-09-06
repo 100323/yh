@@ -1,0 +1,83 @@
+
+guanyu11_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu11_skill_bk
+  rotate: true
+  xy: 2, 61
+  size: 191, 163
+  orig: 191, 163
+  offset: 0, 0
+  index: -1
+guanyu11_skill_byan1
+  rotate: true
+  xy: 387, 151
+  size: 101, 103
+  orig: 101, 103
+  offset: 0, 0
+  index: -1
+guanyu11_skill_byan2
+  rotate: false
+  xy: 167, 2
+  size: 112, 118
+  orig: 112, 118
+  offset: 0, 0
+  index: -1
+guanyu11_skill_byan3
+  rotate: true
+  xy: 167, 122
+  size: 130, 109
+  orig: 130, 109
+  offset: 0, 0
+  index: -1
+guanyu11_skill_byan4
+  rotate: false
+  xy: 278, 139
+  size: 107, 113
+  orig: 107, 113
+  offset: 0, 0
+  index: -1
+guanyu11_skill_byan5
+  rotate: false
+  xy: 387, 60
+  size: 98, 89
+  orig: 98, 89
+  offset: 0, 0
+  index: -1
+guanyu11_skill_sui1
+  rotate: true
+  xy: 2, 24
+  size: 35, 30
+  orig: 35, 30
+  offset: 0, 0
+  index: -1
+guanyu11_skill_sui2
+  rotate: false
+  xy: 34, 27
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+guanyu11_skill_sui3
+  rotate: true
+  xy: 62, 30
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+guanyu11_skill_sui4
+  rotate: true
+  xy: 2, 2
+  size: 20, 27
+  orig: 20, 27
+  offset: 0, 0
+  index: -1
+guanyu11_skill_sui5
+  rotate: true
+  xy: 31, 3
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1

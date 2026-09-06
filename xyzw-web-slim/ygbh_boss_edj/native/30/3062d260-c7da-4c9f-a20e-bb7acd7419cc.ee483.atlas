@@ -1,0 +1,27 @@
+
+ygbh_boss_edj_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 159
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+ygbh_boss_edj_pg_1
+  rotate: true
+  xy: 46, 119
+  size: 82, 90
+  orig: 82, 90
+  offset: 0, 0
+  index: -1
+ygbh_boss_edj_pg_2
+  rotate: true
+  xy: 138, 2
+  size: 199, 205
+  orig: 199, 205
+  offset: 0, 0
+  index: -1

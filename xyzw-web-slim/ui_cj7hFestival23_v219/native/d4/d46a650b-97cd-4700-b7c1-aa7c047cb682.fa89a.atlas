@@ -1,0 +1,55 @@
+
+rxzq26_cj_huo.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 173, 50
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+ygbh_xyx_fire2
+  rotate: false
+  xy: 138, 104
+  size: 97, 48
+  orig: 97, 48
+  offset: 0, 0
+  index: -1
+ygbh_xyx_fire3
+  rotate: true
+  xy: 2, 2
+  size: 94, 86
+  orig: 94, 86
+  offset: 0, 0
+  index: -1
+ygbh_xyx_fire3_1
+  rotate: true
+  xy: 138, 154
+  size: 85, 82
+  orig: 85, 82
+  offset: 0, 0
+  index: -1
+ygbh_xyx_fire3_2
+  rotate: false
+  xy: 90, 3
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+ygbh_xyx_fire4
+  rotate: false
+  xy: 222, 154
+  size: 77, 85
+  orig: 78, 85
+  offset: 0, 0
+  index: -1
+ygbh_xyx_fire5
+  rotate: true
+  xy: 2, 98
+  size: 141, 134
+  orig: 142, 134
+  offset: 1, 0
+  index: -1

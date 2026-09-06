@@ -1,0 +1,34 @@
+
+sqhd26_w8_cj_jiantou.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou_shang
+  rotate: false
+  xy: 233, 2
+  size: 75, 72
+  orig: 77, 75
+  offset: 1, 1
+  index: -1
+jiantou_xia
+  rotate: false
+  xy: 156, 2
+  size: 75, 72
+  orig: 77, 74
+  offset: 1, 1
+  index: -1
+jiantou_you
+  rotate: false
+  xy: 2, 2
+  size: 75, 72
+  orig: 77, 75
+  offset: 1, 1
+  index: -1
+jiantou_zuo
+  rotate: false
+  xy: 79, 2
+  size: 75, 72
+  orig: 77, 75
+  offset: 1, 1
+  index: -1

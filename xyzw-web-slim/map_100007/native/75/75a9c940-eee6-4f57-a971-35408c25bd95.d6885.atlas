@@ -1,0 +1,48 @@
+
+sdsl_bg7.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 161, 204
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg7_fire1
+  rotate: false
+  xy: 2, 80
+  size: 81, 170
+  orig: 81, 170
+  offset: 0, 0
+  index: -1
+sdsl_bg7_fire2
+  rotate: false
+  xy: 85, 108
+  size: 74, 142
+  orig: 74, 142
+  offset: 0, 0
+  index: -1
+sdsl_bg7_fire3
+  rotate: true
+  xy: 2, 2
+  size: 76, 161
+  orig: 76, 161
+  offset: 0, 0
+  index: -1
+sdsl_bg7_smoke
+  rotate: false
+  xy: 161, 156
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 85, 80
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

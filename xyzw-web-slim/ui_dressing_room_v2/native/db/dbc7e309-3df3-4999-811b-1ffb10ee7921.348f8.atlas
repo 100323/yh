@@ -1,0 +1,41 @@
+
+cangpin_jihuo.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cangpin_jihuo_dian
+  rotate: true
+  xy: 332, 451
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1
+cangpin_jihuo_gs
+  rotate: false
+  xy: 2, 169
+  size: 328, 328
+  orig: 328, 328
+  offset: 0, 0
+  index: -1
+cangpin_jihuo_guang1
+  rotate: false
+  xy: 2, 2
+  size: 169, 165
+  orig: 169, 165
+  offset: 0, 0
+  index: -1
+cangpin_jihuo_guang2
+  rotate: false
+  xy: 173, 5
+  size: 202, 162
+  orig: 202, 162
+  offset: 0, 0
+  index: -1
+cangpin_jihuo_xing
+  rotate: false
+  xy: 332, 469
+  size: 28, 28
+  orig: 32, 32
+  offset: 2, 2
+  index: -1

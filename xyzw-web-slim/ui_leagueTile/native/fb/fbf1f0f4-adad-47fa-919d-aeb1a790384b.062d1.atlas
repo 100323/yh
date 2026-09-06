@@ -1,0 +1,118 @@
+
+hjls_effect_thunderd2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo2
+  rotate: false
+  xy: 327, 29
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+hjls_end_thundera1
+  rotate: false
+  xy: 2, 72
+  size: 233, 171
+  orig: 233, 171
+  offset: 0, 0
+  index: -1
+hjls_end_thundera2
+  rotate: true
+  xy: 279, 27
+  size: 47, 46
+  orig: 48, 46
+  offset: 1, 0
+  index: -1
+hjls_end_thunderb1
+  rotate: true
+  xy: 2, 17
+  size: 53, 152
+  orig: 53, 152
+  offset: 0, 0
+  index: -1
+hjls_end_thunderb2
+  rotate: true
+  xy: 327, 75
+  size: 39, 132
+  orig: 39, 132
+  offset: 0, 0
+  index: -1
+hjls_end_thunderb3
+  rotate: false
+  xy: 327, 116
+  size: 53, 127
+  orig: 53, 127
+  offset: 0, 0
+  index: -1
+hjls_end_thunderc1
+  rotate: false
+  xy: 237, 76
+  size: 88, 167
+  orig: 88, 167
+  offset: 0, 0
+  index: -1
+hjls_end_thunderc2
+  rotate: false
+  xy: 437, 120
+  size: 53, 123
+  orig: 53, 123
+  offset: 0, 0
+  index: -1
+hjls_end_thunderc3
+  rotate: false
+  xy: 382, 118
+  size: 53, 125
+  orig: 53, 125
+  offset: 0, 0
+  index: -1
+hjls_end_thunders1
+  rotate: false
+  xy: 461, 61
+  size: 49, 57
+  orig: 54, 62
+  offset: 2, 3
+  index: -1
+hjls_end_thunders2
+  rotate: false
+  xy: 373, 30
+  size: 45, 43
+  orig: 51, 48
+  offset: 3, 2
+  index: -1
+hjls_end_thunders3
+  rotate: true
+  xy: 227, 17
+  size: 53, 50
+  orig: 63, 61
+  offset: 8, 4
+  index: -1
+hjls_end_thunders4
+  rotate: true
+  xy: 156, 16
+  size: 54, 69
+  orig: 60, 75
+  offset: 4, 2
+  index: -1
+hjls_map_thunderb1
+  rotate: false
+  xy: 2, 2
+  size: 15, 13
+  orig: 15, 13
+  offset: 0, 0
+  index: -1
+hjls_map_thunderb3
+  rotate: false
+  xy: 420, 41
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 492, 232
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1

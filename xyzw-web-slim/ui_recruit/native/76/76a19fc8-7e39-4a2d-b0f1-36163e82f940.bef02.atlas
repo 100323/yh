@@ -1,0 +1,188 @@
+
+maopopo.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gtpopo_arml
+  rotate: false
+  xy: 243, 55
+  size: 142, 229
+  orig: 142, 229
+  offset: 0, 0
+  index: -1
+gtpopo_arml2_1
+  rotate: true
+  xy: 491, 12
+  size: 55, 121
+  orig: 57, 122
+  offset: 1, 0
+  index: -1
+gtpopo_arml2_2
+  rotate: false
+  xy: 400, 478
+  size: 156, 178
+  orig: 156, 178
+  offset: 0, 0
+  index: -1
+gtpopo_armr
+  rotate: false
+  xy: 2, 4
+  size: 142, 226
+  orig: 142, 226
+  offset: 0, 0
+  index: -1
+gtpopo_armr2_1
+  rotate: true
+  xy: 262, 657
+  size: 55, 120
+  orig: 57, 122
+  offset: 1, 1
+  index: -1
+gtpopo_armr2_2
+  rotate: false
+  xy: 400, 298
+  size: 156, 178
+  orig: 156, 178
+  offset: 0, 0
+  index: -1
+gtpopo_body
+  rotate: false
+  xy: 89, 644
+  size: 171, 378
+  orig: 171, 378
+  offset: 0, 0
+  index: -1
+gtpopo_cloakback
+  rotate: false
+  xy: 89, 286
+  size: 309, 356
+  orig: 309, 370
+  offset: 0, 0
+  index: -1
+gtpopo_cloakl
+  rotate: false
+  xy: 2, 627
+  size: 85, 395
+  orig: 85, 400
+  offset: 0, 5
+  index: -1
+gtpopo_cloakr
+  rotate: false
+  xy: 2, 232
+  size: 85, 393
+  orig: 85, 400
+  offset: 0, 7
+  index: -1
+gtpopo_earringl
+  rotate: false
+  xy: 468, 10
+  size: 21, 57
+  orig: 23, 59
+  offset: 1, 1
+  index: -1
+gtpopo_earringr
+  rotate: true
+  xy: 89, 265
+  size: 19, 54
+  orig: 21, 56
+  offset: 1, 1
+  index: -1
+gtpopo_eyeback
+  rotate: false
+  xy: 440, 698
+  size: 149, 29
+  orig: 151, 31
+  offset: 1, 1
+  index: -1
+gtpopo_eyebrowl
+  rotate: false
+  xy: 313, 21
+  size: 67, 32
+  orig: 69, 34
+  offset: 1, 1
+  index: -1
+gtpopo_eyebrowr
+  rotate: false
+  xy: 243, 21
+  size: 68, 32
+  orig: 70, 34
+  offset: 1, 1
+  index: -1
+gtpopo_eyel
+  rotate: true
+  xy: 89, 248
+  size: 15, 13
+  orig: 17, 15
+  offset: 1, 1
+  index: -1
+gtpopo_eyeoutl
+  rotate: true
+  xy: 444, 2
+  size: 65, 22
+  orig: 65, 22
+  offset: 0, 0
+  index: -1
+gtpopo_eyeoutr
+  rotate: true
+  xy: 416, 2
+  size: 65, 26
+  orig: 65, 26
+  offset: 0, 0
+  index: -1
+gtpopo_eyer
+  rotate: false
+  xy: 89, 233
+  size: 15, 13
+  orig: 17, 15
+  offset: 1, 1
+  index: -1
+gtpopo_face
+  rotate: true
+  xy: 387, 69
+  size: 215, 164
+  orig: 215, 196
+  offset: 0, 0
+  index: -1
+gtpopo_front
+  rotate: true
+  xy: 392, 808
+  size: 214, 178
+  orig: 214, 178
+  offset: 0, 0
+  index: -1
+gtpopo_hair
+  rotate: true
+  xy: 262, 714
+  size: 308, 128
+  orig: 310, 130
+  offset: 1, 1
+  index: -1
+gtpopo_hairband
+  rotate: true
+  xy: 146, 11
+  size: 273, 95
+  orig: 275, 97
+  offset: 1, 1
+  index: -1
+gtpopo_nose
+  rotate: false
+  xy: 392, 729
+  size: 147, 77
+  orig: 147, 86
+  offset: 0, 9
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 382, 21
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 384, 658
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1

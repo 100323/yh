@@ -1,0 +1,69 @@
+
+cszb_cardbox2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cszb_cardbox2_1
+  rotate: false
+  xy: 2, 269
+  size: 234, 174
+  orig: 234, 174
+  offset: 0, 0
+  index: -1
+cszb_cardbox2_2
+  rotate: false
+  xy: 164, 151
+  size: 234, 95
+  orig: 234, 95
+  offset: 0, 0
+  index: -1
+cszb_cardbox2_3
+  rotate: true
+  xy: 400, 2
+  size: 233, 94
+  orig: 233, 94
+  offset: 0, 0
+  index: -1
+dyhc_boxlight1
+  rotate: false
+  xy: 2, 108
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+dyhc_boxlight2
+  rotate: false
+  xy: 238, 248
+  size: 196, 195
+  orig: 200, 200
+  offset: 2, 3
+  index: -1
+dyhc_boxlight3
+  rotate: false
+  xy: 164, 3
+  size: 120, 146
+  orig: 120, 146
+  offset: 0, 0
+  index: -1
+dyhc_boxlight4
+  rotate: false
+  xy: 436, 237
+  size: 18, 206
+  orig: 18, 206
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 456, 417
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 484, 423
+  size: 20, 23
+  orig: 26, 26
+  offset: 2, 2
+  index: -1

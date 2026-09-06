@@ -1,0 +1,76 @@
+
+zbz_ft_aiji.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_ft2_eye
+  rotate: false
+  xy: 179, 209
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+zbz_ft5_body1
+  rotate: true
+  xy: 2, 2
+  size: 160, 199
+  orig: 160, 199
+  offset: 0, 0
+  index: -1
+zbz_ft5_body2
+  rotate: true
+  xy: 203, 152
+  size: 70, 122
+  orig: 70, 122
+  offset: 0, 0
+  index: -1
+zbz_ft5_box
+  rotate: false
+  xy: 179, 315
+  size: 139, 132
+  orig: 155, 136
+  offset: 0, 3
+  index: -1
+zbz_ft5_eyewhite1
+  rotate: false
+  xy: 274, 263
+  size: 40, 50
+  orig: 40, 50
+  offset: 0, 0
+  index: -1
+zbz_ft5_eyewhite2
+  rotate: true
+  xy: 316, 264
+  size: 31, 41
+  orig: 31, 41
+  offset: 0, 0
+  index: -1
+zbz_ft5_rope
+  rotate: true
+  xy: 320, 297
+  size: 52, 77
+  orig: 54, 78
+  offset: 2, 1
+  index: -1
+zbz_ft5_tail
+  rotate: false
+  xy: 2, 164
+  size: 175, 283
+  orig: 175, 283
+  offset: 0, 0
+  index: -1
+zbz_ft5_wing1
+  rotate: true
+  xy: 179, 224
+  size: 89, 93
+  orig: 89, 93
+  offset: 0, 0
+  index: -1
+zbz_ft5_wing2
+  rotate: false
+  xy: 320, 351
+  size: 87, 96
+  orig: 87, 96
+  offset: 0, 0
+  index: -1

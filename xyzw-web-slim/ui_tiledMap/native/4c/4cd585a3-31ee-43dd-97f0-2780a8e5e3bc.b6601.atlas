@@ -1,0 +1,34 @@
+
+zbz_effect_return.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 2, 19
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 106, 2
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+hero_effect_scircle
+  rotate: true
+  xy: 162, 24
+  size: 32, 26
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 106, 58
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

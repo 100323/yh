@@ -1,0 +1,20 @@
+
+xshd_penboss_attack_loop.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penboss2_daiji_baijiebu
+  rotate: false
+  xy: 89, 2
+  size: 49, 43
+  orig: 49, 43
+  offset: 0, 0
+  index: -1
+wjboss_tx_tw
+  rotate: false
+  xy: 2, 11
+  size: 85, 34
+  orig: 85, 34
+  offset: 0, 0
+  index: -1

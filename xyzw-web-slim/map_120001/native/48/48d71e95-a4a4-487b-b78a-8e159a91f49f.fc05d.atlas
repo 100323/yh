@@ -1,0 +1,55 @@
+
+ymj_bg_horse.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ymj_bg_horse2
+  rotate: true
+  xy: 373, 104
+  size: 117, 93
+  orig: 118, 93
+  offset: 1, 0
+  index: -1
+ymj_bg_horse3
+  rotate: true
+  xy: 348, 105
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+ymj_bg_horse4
+  rotate: false
+  xy: 348, 48
+  size: 57, 54
+  orig: 57, 54
+  offset: 0, 0
+  index: -1
+ymj_bg_horse5
+  rotate: true
+  xy: 253, 24
+  size: 100, 93
+  orig: 100, 93
+  offset: 0, 0
+  index: -1
+ymj_bg_horse6
+  rotate: true
+  xy: 407, 20
+  size: 82, 36
+  orig: 82, 36
+  offset: 0, 0
+  index: -1
+ymj_bg_horse7
+  rotate: true
+  xy: 2, 2
+  size: 219, 249
+  orig: 219, 249
+  offset: 0, 0
+  index: -1
+ymj_bg_horse8
+  rotate: true
+  xy: 253, 126
+  size: 95, 118
+  orig: 96, 118
+  offset: 1, 0
+  index: -1

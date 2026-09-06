@@ -1,0 +1,265 @@
+
+dianwei2_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei2_bs_huoh
+  rotate: false
+  xy: 660, 367
+  size: 130, 143
+  orig: 130, 143
+  offset: 0, 0
+  index: -1
+dianwei2_bs_huoh2
+  rotate: false
+  xy: 285, 205
+  size: 137, 164
+  orig: 137, 164
+  offset: 0, 0
+  index: -1
+dianwei2_bs_huoh3
+  rotate: true
+  xy: 285, 371
+  size: 139, 180
+  orig: 139, 180
+  offset: 0, 0
+  index: -1
+dianwei2_bs_huol
+  rotate: false
+  xy: 839, 261
+  size: 62, 65
+  orig: 62, 65
+  offset: 0, 0
+  index: -1
+dianwei2_bs_huol2
+  rotate: false
+  xy: 859, 197
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+dianwei2_bs_huol3
+  rotate: true
+  xy: 910, 448
+  size: 62, 65
+  orig: 62, 65
+  offset: 0, 0
+  index: -1
+dianwei2_bs_jiaol
+  rotate: false
+  xy: 467, 464
+  size: 35, 46
+  orig: 35, 46
+  offset: 0, 0
+  index: -1
+dianwei2_bs_jiaor
+  rotate: false
+  xy: 467, 416
+  size: 35, 46
+  orig: 35, 46
+  offset: 0, 0
+  index: -1
+dianwei2_bs_shen
+  rotate: false
+  xy: 2, 190
+  size: 281, 320
+  orig: 281, 320
+  offset: 0, 0
+  index: -1
+dianwei2_bs_shoul
+  rotate: true
+  xy: 747, 114
+  size: 133, 110
+  orig: 133, 110
+  offset: 0, 0
+  index: -1
+dianwei2_bs_shour
+  rotate: true
+  xy: 514, 61
+  size: 133, 113
+  orig: 133, 113
+  offset: 0, 0
+  index: -1
+dianwei2_bs_wei
+  rotate: false
+  xy: 686, 14
+  size: 131, 76
+  orig: 132, 78
+  offset: 0, 0
+  index: -1
+dianwei2_bs_yan
+  rotate: false
+  xy: 874, 335
+  size: 71, 53
+  orig: 71, 53
+  offset: 0, 0
+  index: -1
+dianwei2_bs_zui
+  rotate: false
+  xy: 424, 191
+  size: 76, 142
+  orig: 77, 159
+  offset: 0, 17
+  index: -1
+dianwei2_hei1
+  rotate: true
+  xy: 689, 249
+  size: 64, 148
+  orig: 64, 148
+  offset: 0, 0
+  index: -1
+dianwei2_hei2
+  rotate: true
+  xy: 349, 14
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+dianwei2_jj1
+  rotate: false
+  xy: 792, 390
+  size: 116, 120
+  orig: 116, 120
+  offset: 0, 0
+  index: -1
+dianwei2_jj2
+  rotate: false
+  xy: 610, 7
+  size: 74, 52
+  orig: 74, 52
+  offset: 0, 0
+  index: -1
+dianwei2_leidian1
+  rotate: false
+  xy: 522, 6
+  size: 86, 53
+  orig: 86, 53
+  offset: 0, 0
+  index: -1
+dianwei2_leidian2
+  rotate: true
+  xy: 792, 328
+  size: 60, 80
+  orig: 60, 80
+  offset: 0, 0
+  index: -1
+dianwei2_nuqi1
+  rotate: true
+  xy: 2, 21
+  size: 167, 257
+  orig: 167, 257
+  offset: 0, 0
+  index: -1
+dianwei2_nuqi2
+  rotate: true
+  xy: 819, 11
+  size: 101, 124
+  orig: 101, 124
+  offset: 0, 0
+  index: -1
+dianwei2_pg_3
+  rotate: false
+  xy: 629, 92
+  size: 116, 127
+  orig: 116, 127
+  offset: 0, 0
+  index: -1
+dianwei2_shou1
+  rotate: true
+  xy: 467, 335
+  size: 38, 40
+  orig: 38, 42
+  offset: 0, 1
+  index: -1
+dianwei2_tui1
+  rotate: false
+  xy: 424, 338
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+dianwei2_tui2
+  rotate: true
+  xy: 550, 196
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+dianwei2_wuqir2
+  rotate: false
+  xy: 261, 51
+  size: 251, 137
+  orig: 251, 137
+  offset: 0, 0
+  index: -1
+dianwei_body
+  rotate: false
+  xy: 502, 221
+  size: 185, 89
+  orig: 185, 89
+  offset: 0, 0
+  index: -1
+dianwei_eye
+  rotate: false
+  xy: 2, 11
+  size: 7, 8
+  orig: 7, 8
+  offset: 0, 0
+  index: -1
+dianwei_eyebrow
+  rotate: false
+  xy: 502, 196
+  size: 46, 23
+  orig: 46, 23
+  offset: 0, 0
+  index: -1
+dianwei_eyewhite
+  rotate: true
+  xy: 629, 65
+  size: 25, 24
+  orig: 25, 24
+  offset: 0, 0
+  index: -1
+dianwei_handr1
+  rotate: false
+  xy: 467, 375
+  size: 41, 39
+  orig: 42, 41
+  offset: 0, 2
+  index: -1
+dianwei_head
+  rotate: false
+  xy: 514, 312
+  size: 144, 198
+  orig: 144, 206
+  offset: 0, 0
+  index: -1
+dianwei_mouth
+  rotate: true
+  xy: 660, 315
+  size: 50, 94
+  orig: 50, 105
+  offset: 0, 11
+  index: -1
+dianwei_tail
+  rotate: false
+  xy: 261, 2
+  size: 86, 47
+  orig: 87, 51
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 426, 5
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 472, 10
+  size: 39, 48
+  orig: 39, 48
+  offset: 0, 0
+  index: -1

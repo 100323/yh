@@ -1,0 +1,69 @@
+
+zxc_cjqh_jpboss1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zxc_cjqh_jp1_1
+  rotate: true
+  xy: 2, 2
+  size: 87, 108
+  orig: 87, 108
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp1_2
+  rotate: false
+  xy: 257, 85
+  size: 86, 190
+  orig: 86, 190
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp1_3
+  rotate: false
+  xy: 109, 192
+  size: 60, 67
+  orig: 61, 67
+  offset: 1, 0
+  index: -1
+zxc_cjqh_jp1_4
+  rotate: true
+  xy: 109, 133
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp1_5
+  rotate: true
+  xy: 109, 126
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp1_6
+  rotate: false
+  xy: 2, 91
+  size: 105, 168
+  orig: 105, 168
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp1_7
+  rotate: true
+  xy: 257, 277
+  size: 174, 148
+  orig: 174, 148
+  offset: 0, 0
+  index: -1
+zxc_cjqh_jp1_8
+  rotate: false
+  xy: 2, 261
+  size: 253, 190
+  orig: 253, 190
+  offset: 0, 0
+  index: -1
+zxc_xjzw_jp_line
+  rotate: false
+  xy: 109, 141
+  size: 53, 49
+  orig: 53, 49
+  offset: 0, 0
+  index: -1

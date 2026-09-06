@@ -1,0 +1,223 @@
+
+zhugeliang5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 321, 93
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 268, 97
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+zhugeliang3_beard1
+  rotate: false
+  xy: 70, 51
+  size: 17, 62
+  orig: 17, 62
+  offset: 0, 0
+  index: -1
+zhugeliang3_beard2
+  rotate: false
+  xy: 170, 90
+  size: 46, 38
+  orig: 46, 38
+  offset: 0, 0
+  index: -1
+zhugeliang3_eye
+  rotate: false
+  xy: 501, 418
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+zhugeliang3_eyebrow
+  rotate: true
+  xy: 254, 70
+  size: 25, 39
+  orig: 25, 39
+  offset: 0, 0
+  index: -1
+zhugeliang3_eyewhite
+  rotate: false
+  xy: 218, 94
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+zhugeliang3_mouth
+  rotate: false
+  xy: 453, 106
+  size: 46, 80
+  orig: 46, 80
+  offset: 0, 0
+  index: -1
+zhugeliang5_arml
+  rotate: true
+  xy: 184, 130
+  size: 81, 82
+  orig: 84, 82
+  offset: 3, 0
+  index: -1
+zhugeliang5_arml2
+  rotate: false
+  xy: 92, 189
+  size: 90, 78
+  orig: 108, 78
+  offset: 18, 0
+  index: -1
+zhugeliang5_armr
+  rotate: true
+  xy: 92, 112
+  size: 75, 76
+  orig: 75, 76
+  offset: 0, 0
+  index: -1
+zhugeliang5_armr2
+  rotate: true
+  xy: 2, 181
+  size: 86, 88
+  orig: 86, 88
+  offset: 0, 0
+  index: -1
+zhugeliang5_body
+  rotate: true
+  xy: 384, 270
+  size: 154, 115
+  orig: 154, 115
+  offset: 0, 0
+  index: -1
+zhugeliang5_daizi
+  rotate: true
+  xy: 268, 141
+  size: 70, 65
+  orig: 70, 65
+  offset: 0, 0
+  index: -1
+zhugeliang5_effect1
+  rotate: false
+  xy: 74, 166
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+zhugeliang5_effect2
+  rotate: false
+  xy: 218, 70
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+zhugeliang5_effect3
+  rotate: false
+  xy: 295, 72
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+zhugeliang5_effect4
+  rotate: false
+  xy: 2, 115
+  size: 70, 64
+  orig: 70, 64
+  offset: 0, 0
+  index: -1
+zhugeliang5_footl
+  rotate: true
+  xy: 416, 73
+  size: 45, 34
+  orig: 45, 34
+  offset: 0, 0
+  index: -1
+zhugeliang5_footr
+  rotate: false
+  xy: 452, 66
+  size: 47, 38
+  orig: 47, 38
+  offset: 0, 0
+  index: -1
+zhugeliang5_handl
+  rotate: true
+  xy: 369, 78
+  size: 40, 45
+  orig: 40, 46
+  offset: 0, 0
+  index: -1
+zhugeliang5_handl2
+  rotate: true
+  xy: 2, 2
+  size: 48, 50
+  orig: 48, 50
+  offset: 0, 0
+  index: -1
+zhugeliang5_handr
+  rotate: false
+  xy: 337, 259
+  size: 45, 66
+  orig: 45, 66
+  offset: 0, 0
+  index: -1
+zhugeliang5_handr2
+  rotate: false
+  xy: 335, 141
+  size: 45, 48
+  orig: 45, 48
+  offset: 0, 0
+  index: -1
+zhugeliang5_hat
+  rotate: false
+  xy: 2, 269
+  size: 192, 155
+  orig: 192, 155
+  offset: 0, 0
+  index: -1
+zhugeliang5_head
+  rotate: true
+  xy: 196, 213
+  size: 112, 139
+  orig: 112, 139
+  offset: 0, 0
+  index: -1
+zhugeliang5_line1
+  rotate: false
+  xy: 337, 191
+  size: 39, 66
+  orig: 39, 66
+  offset: 0, 0
+  index: -1
+zhugeliang5_line2
+  rotate: true
+  xy: 453, 188
+  size: 80, 56
+  orig: 81, 56
+  offset: 1, 0
+  index: -1
+zhugeliang5_pai
+  rotate: true
+  xy: 2, 52
+  size: 61, 66
+  orig: 61, 66
+  offset: 0, 0
+  index: -1
+zhugeliang5_tie
+  rotate: true
+  xy: 384, 120
+  size: 148, 67
+  orig: 148, 67
+  offset: 0, 0
+  index: -1
+zhugeliang5_weapon
+  rotate: true
+  xy: 196, 327
+  size: 97, 186
+  orig: 97, 186
+  offset: 0, 0
+  index: -1

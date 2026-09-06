@@ -1,0 +1,41 @@
+
+zhangjiao6_attack_loop.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 78, 21
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: true
+  xy: 121, 41
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 93, 6
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: true
+  xy: 78, 5
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+zhangjiao6_skill_02
+  rotate: false
+  xy: 2, 2
+  size: 74, 60
+  orig: 74, 60
+  offset: 0, 0
+  index: -1

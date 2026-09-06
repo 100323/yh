@@ -1,0 +1,48 @@
+
+zhangjiao8_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangjiao8_skill_dian1
+  rotate: false
+  xy: 2, 123
+  size: 383, 386
+  orig: 383, 386
+  offset: 0, 0
+  index: -1
+zhangjiao8_skill_dian2
+  rotate: false
+  xy: 387, 126
+  size: 305, 383
+  orig: 305, 383
+  offset: 0, 0
+  index: -1
+zhangjiao8_skill_dilie
+  rotate: false
+  xy: 2, 107
+  size: 304, 14
+  orig: 304, 14
+  offset: 0, 0
+  index: -1
+zhangjiao8_skill_shan1
+  rotate: false
+  xy: 584, 5
+  size: 62, 119
+  orig: 62, 119
+  offset: 0, 0
+  index: -1
+zhangjiao8_skill_shan2
+  rotate: true
+  xy: 387, 2
+  size: 122, 195
+  orig: 122, 195
+  offset: 0, 0
+  index: -1
+zhangjiao8_skill_shan3
+  rotate: false
+  xy: 694, 108
+  size: 278, 401
+  orig: 278, 401
+  offset: 0, 0
+  index: -1

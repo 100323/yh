@@ -1,0 +1,90 @@
+
+tgcf_ky_hou.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_ymj_erl
+  rotate: true
+  xy: 425, 26
+  size: 56, 60
+  orig: 56, 60
+  offset: 0, 0
+  index: -1
+tgcf_ymj_err
+  rotate: false
+  xy: 367, 19
+  size: 56, 63
+  orig: 56, 63
+  offset: 0, 0
+  index: -1
+tgcf_ymj_lian
+  rotate: false
+  xy: 0, 98
+  size: 171, 192
+  orig: 171, 192
+  offset: 0, 0
+  index: -1
+tgcf_ymj_mao
+  rotate: true
+  xy: 284, 0
+  size: 114, 81
+  orig: 114, 83
+  offset: 0, 2
+  index: -1
+tgcf_ymj_maol
+  rotate: false
+  xy: 292, 116
+  size: 49, 174
+  orig: 49, 174
+  offset: 0, 0
+  index: -1
+tgcf_ymj_maor
+  rotate: true
+  xy: 367, 84
+  size: 77, 100
+  orig: 77, 100
+  offset: 0, 0
+  index: -1
+tgcf_ymj_shen
+  rotate: false
+  xy: 0, 292
+  size: 341, 212
+  orig: 341, 212
+  offset: 0, 0
+  index: -1
+tgcf_ymj_shoul
+  rotate: false
+  xy: 173, 24
+  size: 109, 92
+  orig: 109, 99
+  offset: 0, 0
+  index: -1
+tgcf_ymj_shour
+  rotate: false
+  xy: 0, 11
+  size: 117, 85
+  orig: 117, 89
+  offset: 0, 0
+  index: -1
+tgcf_ymj_tuil
+  rotate: true
+  xy: 173, 118
+  size: 172, 117
+  orig: 172, 117
+  offset: 0, 0
+  index: -1
+tgcf_ymj_tuir
+  rotate: false
+  xy: 343, 163
+  size: 147, 123
+  orig: 147, 123
+  offset: 0, 0
+  index: -1
+tgcf_ymj_yibai
+  rotate: true
+  xy: 343, 288
+  size: 216, 165
+  orig: 216, 165
+  offset: 0, 0
+  index: -1

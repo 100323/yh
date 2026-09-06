@@ -1,0 +1,48 @@
+
+effect_cuilian_grade.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ensflare
+  rotate: false
+  xy: 104, 8
+  size: 98, 94
+  orig: 98, 94
+  offset: 0, 0
+  index: -1
+effect_refresh_01s
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+ui_effect_light_box2
+  rotate: false
+  xy: 117, 144
+  size: 73, 73
+  orig: 75, 75
+  offset: 1, 1
+  index: -1
+ui_jiangli_saoguangline
+  rotate: true
+  xy: 192, 162
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+ui_skillup_halo
+  rotate: false
+  xy: 2, 104
+  size: 113, 113
+  orig: 113, 113
+  offset: 0, 0
+  index: -1
+ui_skillup_star
+  rotate: false
+  xy: 192, 134
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

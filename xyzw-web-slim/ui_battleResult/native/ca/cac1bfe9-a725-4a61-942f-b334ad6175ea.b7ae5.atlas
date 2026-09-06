@@ -1,0 +1,62 @@
+
+sdsl_xjsl_jiesuan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_xjtz_jiesuan_bo1
+  rotate: false
+  xy: 241, 74
+  size: 113, 152
+  orig: 113, 152
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_bo2
+  rotate: true
+  xy: 223, 228
+  size: 65, 125
+  orig: 65, 125
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_di
+  rotate: true
+  xy: 415, 352
+  size: 113, 32
+  orig: 113, 32
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_dian1
+  rotate: false
+  xy: 356, 156
+  size: 134, 137
+  orig: 134, 137
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_dian2
+  rotate: false
+  xy: 356, 6
+  size: 122, 148
+  orig: 122, 148
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_yan1
+  rotate: true
+  xy: 223, 295
+  size: 170, 190
+  orig: 170, 190
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_yuan2
+  rotate: false
+  xy: 2, 218
+  size: 219, 247
+  orig: 219, 247
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_yuan3
+  rotate: true
+  xy: 2, 2
+  size: 214, 237
+  orig: 214, 237
+  offset: 0, 0
+  index: -1

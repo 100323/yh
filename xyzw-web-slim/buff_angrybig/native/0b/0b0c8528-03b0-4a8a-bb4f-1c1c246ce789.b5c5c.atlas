@@ -1,0 +1,27 @@
+
+buff_angrybig.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_buff_angry1
+  rotate: false
+  xy: 2, 2
+  size: 227, 135
+  orig: 227, 135
+  offset: 0, 0
+  index: -1
+tgcf_buff_angry2
+  rotate: true
+  xy: 321, 30
+  size: 270, 161
+  orig: 270, 161
+  offset: 0, 0
+  index: -1
+tgcf_buff_angry3
+  rotate: false
+  xy: 2, 139
+  size: 317, 161
+  orig: 317, 161
+  offset: 0, 0
+  index: -1

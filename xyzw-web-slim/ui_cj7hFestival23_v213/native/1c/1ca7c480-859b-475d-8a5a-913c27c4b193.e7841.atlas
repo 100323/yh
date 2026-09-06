@@ -1,0 +1,41 @@
+
+xkhj25_cj_dajiang1.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bhjx8_heidong_dong
+  rotate: true
+  xy: 2, 93
+  size: 461, 475
+  orig: 461, 475
+  offset: 0, 0
+  index: -1
+bhjx8_heidong_dong2
+  rotate: true
+  xy: 63, 872
+  size: 56, 60
+  orig: 56, 60
+  offset: 0, 0
+  index: -1
+bhjx8_heidong_xian
+  rotate: true
+  xy: 125, 556
+  size: 372, 480
+  orig: 372, 480
+  offset: 0, 0
+  index: -1
+bhjx8_heidong_xian2
+  rotate: true
+  xy: 479, 2
+  size: 552, 501
+  orig: 552, 501
+  offset: 0, 0
+  index: -1
+bhjx8_heidong_xing
+  rotate: true
+  xy: 2, 883
+  size: 45, 59
+  orig: 45, 59
+  offset: 0, 0
+  index: -1

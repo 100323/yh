@@ -1,0 +1,62 @@
+
+zbz_ft_tianting.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_ft4_box
+  rotate: false
+  xy: 340, 73
+  size: 118, 121
+  orig: 118, 122
+  offset: 0, 1
+  index: -1
+zbz_ft4_eye
+  rotate: false
+  xy: 485, 62
+  size: 8, 11
+  orig: 8, 11
+  offset: 0, 0
+  index: -1
+zbz_ft4_head
+  rotate: false
+  xy: 2, 13
+  size: 189, 181
+  orig: 189, 189
+  offset: 0, 6
+  index: -1
+zbz_ft4_rope
+  rotate: false
+  xy: 460, 75
+  size: 25, 67
+  orig: 25, 67
+  offset: 0, 0
+  index: -1
+zbz_ft4_tail
+  rotate: true
+  xy: 193, 61
+  size: 133, 145
+  orig: 142, 156
+  offset: 9, 11
+  index: -1
+zbz_ft4_wing1
+  rotate: false
+  xy: 340, 28
+  size: 98, 43
+  orig: 100, 46
+  offset: 0, 0
+  index: -1
+zbz_ft4_wing2
+  rotate: true
+  xy: 460, 144
+  size: 50, 40
+  orig: 50, 40
+  offset: 0, 0
+  index: -1
+zbz_ft4_wing3
+  rotate: true
+  xy: 440, 2
+  size: 69, 43
+  orig: 69, 43
+  offset: 0, 0
+  index: -1

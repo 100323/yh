@@ -1,0 +1,132 @@
+
+zesdlnew_dslb.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdlb_zegb_g
+  rotate: false
+  xy: 144, 338
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+sdlb_zegb_gy
+  rotate: false
+  xy: 407, 24
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+sdlb_zegb_huan1
+  rotate: false
+  xy: 305, 76
+  size: 140, 223
+  orig: 140, 223
+  offset: 0, 0
+  index: -1
+sdlb_zegb_huan2
+  rotate: true
+  xy: 338, 301
+  size: 209, 160
+  orig: 209, 160
+  offset: 0, 0
+  index: -1
+sdlb_zegb_huan3
+  rotate: true
+  xy: 2, 174
+  size: 254, 140
+  orig: 254, 140
+  offset: 0, 0
+  index: -1
+sdlb_zegb_qiu
+  rotate: false
+  xy: 144, 140
+  size: 159, 159
+  orig: 159, 160
+  offset: 0, 0
+  index: -1
+sdlb_zegb_qiug
+  rotate: false
+  xy: 117, 53
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+sdlb_zegb_qiux
+  rotate: true
+  xy: 236, 336
+  size: 92, 89
+  orig: 92, 89
+  offset: 0, 0
+  index: -1
+sdlb_zegb_qiux2
+  rotate: true
+  xy: 2, 58
+  size: 114, 113
+  orig: 114, 113
+  offset: 0, 0
+  index: -1
+sdlb_zegb_shi1
+  rotate: true
+  xy: 204, 9
+  size: 54, 55
+  orig: 55, 56
+  offset: 1, 0
+  index: -1
+sdlb_zegb_shi2
+  rotate: false
+  xy: 90, 7
+  size: 53, 44
+  orig: 56, 55
+  offset: 0, 11
+  index: -1
+sdlb_zegb_shi3
+  rotate: true
+  xy: 145, 9
+  size: 42, 52
+  orig: 46, 54
+  offset: 3, 1
+  index: -1
+sdlb_zegb_shi4
+  rotate: false
+  xy: 2, 2
+  size: 86, 54
+  orig: 87, 67
+  offset: 0, 12
+  index: -1
+sdlb_zegb_shi5
+  rotate: false
+  xy: 2, 430
+  size: 334, 80
+  orig: 334, 88
+  offset: 0, 7
+  index: -1
+sdlb_zegb_xing
+  rotate: false
+  xy: 117, 145
+  size: 18, 27
+  orig: 19, 28
+  offset: 0, 0
+  index: -1
+sdlb_zegb_xz1
+  rotate: true
+  xy: 204, 65
+  size: 73, 69
+  orig: 79, 75
+  offset: 3, 3
+  index: -1
+sdlb_zegb_xz2
+  rotate: false
+  xy: 275, 18
+  size: 76, 56
+  orig: 82, 62
+  offset: 3, 3
+  index: -1
+sdlb_zegb_xz3
+  rotate: false
+  xy: 353, 22
+  size: 52, 52
+  orig: 58, 58
+  offset: 3, 3
+  index: -1

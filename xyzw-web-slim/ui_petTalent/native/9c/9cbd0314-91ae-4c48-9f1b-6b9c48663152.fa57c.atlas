@@ -1,0 +1,69 @@
+
+cwxt26_tianfu_jiyin.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_tianfu_jy_dian1
+  rotate: false
+  xy: 353, 35
+  size: 30, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1
+cwxt26_tianfu_jy_dian2
+  rotate: false
+  xy: 372, 23
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+cwxt26_tianfu_jy_qiu
+  rotate: false
+  xy: 2, 21
+  size: 155, 155
+  orig: 156, 155
+  offset: 0, 0
+  index: -1
+cwxt26_tianfu_jy_qiuci1
+  rotate: false
+  xy: 348, 5
+  size: 22, 28
+  orig: 22, 30
+  offset: 0, 1
+  index: -1
+cwxt26_tianfu_jy_qiuci2
+  rotate: false
+  xy: 319, 35
+  size: 32, 30
+  orig: 34, 32
+  offset: 1, 1
+  index: -1
+cwxt26_tianfu_jy_qiuci3
+  rotate: false
+  xy: 319, 2
+  size: 27, 31
+  orig: 30, 32
+  offset: 2, 0
+  index: -1
+cwxt26_tianfu_jy_qiuci4
+  rotate: true
+  xy: 385, 27
+  size: 38, 29
+  orig: 39, 30
+  offset: 1, 0
+  index: -1
+cwxt26_tianfu_jy_qiug
+  rotate: false
+  xy: 159, 23
+  size: 158, 153
+  orig: 158, 153
+  offset: 0, 0
+  index: -1
+cwxt26_tianfu_jy_qiujy
+  rotate: false
+  xy: 319, 67
+  size: 92, 109
+  orig: 92, 109
+  offset: 0, 0
+  index: -1

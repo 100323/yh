@@ -1,0 +1,174 @@
+
+lvbu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 286, 61
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 455, 264
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+lvbu8_attack1
+  rotate: true
+  xy: 225, 154
+  size: 96, 34
+  orig: 96, 37
+  offset: 0, 3
+  index: -1
+lvbu8_attack2
+  rotate: true
+  xy: 146, 2
+  size: 112, 138
+  orig: 112, 138
+  offset: 0, 0
+  index: -1
+lvbu8_body
+  rotate: true
+  xy: 2, 7
+  size: 187, 142
+  orig: 187, 142
+  offset: 0, 0
+  index: -1
+lvbu8_handl
+  rotate: false
+  xy: 455, 362
+  size: 54, 41
+  orig: 60, 41
+  offset: 6, 0
+  index: -1
+lvbu8_handlel
+  rotate: false
+  xy: 261, 200
+  size: 63, 37
+  orig: 63, 41
+  offset: 0, 0
+  index: -1
+lvbu8_handr
+  rotate: true
+  xy: 455, 196
+  size: 66, 48
+  orig: 66, 48
+  offset: 0, 0
+  index: -1
+lvbu8_head
+  rotate: true
+  xy: 116, 197
+  size: 93, 107
+  orig: 93, 107
+  offset: 0, 0
+  index: -1
+lvbu8_huear1
+  rotate: true
+  xy: 146, 116
+  size: 79, 74
+  orig: 79, 74
+  offset: 0, 0
+  index: -1
+lvbu8_huear2
+  rotate: true
+  xy: 261, 127
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+lvbu8_hueye1
+  rotate: true
+  xy: 33, 196
+  size: 94, 81
+  orig: 94, 81
+  offset: 0, 0
+  index: -1
+lvbu8_hueye2
+  rotate: true
+  xy: 329, 116
+  size: 61, 67
+  orig: 61, 67
+  offset: 0, 0
+  index: -1
+lvbu8_hufin
+  rotate: true
+  xy: 455, 308
+  size: 52, 53
+  orig: 52, 53
+  offset: 0, 0
+  index: -1
+lvbu8_huhead
+  rotate: false
+  xy: 263, 239
+  size: 190, 164
+  orig: 190, 164
+  offset: 0, 0
+  index: -1
+lvbu8_jaw
+  rotate: true
+  xy: 329, 179
+  size: 58, 89
+  orig: 58, 89
+  offset: 0, 0
+  index: -1
+lvbu8_legr
+  rotate: true
+  xy: 420, 109
+  size: 85, 86
+  orig: 90, 86
+  offset: 5, 0
+  index: -1
+lvbu8_muma1
+  rotate: true
+  xy: 2, 300
+  size: 98, 122
+  orig: 98, 122
+  offset: 0, 0
+  index: -1
+lvbu8_muma2
+  rotate: false
+  xy: 2, 400
+  size: 259, 91
+  orig: 259, 91
+  offset: 0, 0
+  index: -1
+lvbu8_tail
+  rotate: false
+  xy: 146, 292
+  size: 114, 106
+  orig: 119, 106
+  offset: 5, 0
+  index: -1
+lvbu8_weapon
+  rotate: true
+  xy: 263, 405
+  size: 86, 239
+  orig: 86, 239
+  offset: 0, 0
+  index: -1
+lvbu_eye
+  rotate: true
+  xy: 126, 389
+  size: 9, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+lvbu_eyebrow
+  rotate: true
+  xy: 2, 196
+  size: 41, 29
+  orig: 41, 29
+  offset: 0, 0
+  index: -1
+lvbu_eyewhite
+  rotate: false
+  xy: 225, 252
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+zbz_ft_maya.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_ft1_body
+  rotate: false
+  xy: 2, 147
+  size: 236, 212
+  orig: 236, 212
+  offset: 0, 0
+  index: -1
+zbz_ft1_box
+  rotate: false
+  xy: 240, 72
+  size: 158, 154
+  orig: 158, 154
+  offset: 0, 0
+  index: -1
+zbz_ft1_fin1
+  rotate: true
+  xy: 2, 66
+  size: 79, 87
+  orig: 79, 87
+  offset: 0, 0
+  index: -1
+zbz_ft1_fin2
+  rotate: true
+  xy: 91, 119
+  size: 26, 82
+  orig: 26, 82
+  offset: 0, 0
+  index: -1
+zbz_ft1_mask
+  rotate: false
+  xy: 240, 228
+  size: 210, 131
+  orig: 210, 131
+  offset: 0, 0
+  index: -1
+zbz_ft1_mask2
+  rotate: true
+  xy: 448, 193
+  size: 31, 40
+  orig: 31, 40
+  offset: 0, 0
+  index: -1
+zbz_ft1_mouth
+  rotate: true
+  xy: 400, 161
+  size: 65, 46
+  orig: 65, 46
+  offset: 0, 0
+  index: -1
+zbz_ft1_nose
+  rotate: true
+  xy: 452, 226
+  size: 66, 50
+  orig: 66, 50
+  offset: 0, 0
+  index: -1
+zbz_ft1_rope
+  rotate: false
+  xy: 452, 294
+  size: 51, 65
+  orig: 51, 65
+  offset: 0, 0
+  index: -1
+zbz_ft1_tail
+  rotate: false
+  xy: 400, 2
+  size: 100, 157
+  orig: 128, 157
+  offset: 0, 0
+  index: -1

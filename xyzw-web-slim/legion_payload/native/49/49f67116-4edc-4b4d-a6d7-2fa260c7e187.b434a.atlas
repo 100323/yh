@@ -1,0 +1,41 @@
+
+tgcf_pty_dj_feimaotui1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_zyhls_ljf_feng2
+  rotate: false
+  xy: 115, 43
+  size: 89, 58
+  orig: 89, 58
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_feng3
+  rotate: true
+  xy: 115, 103
+  size: 124, 114
+  orig: 124, 114
+  offset: 0, 0
+  index: -1
+axwq_zyhls_ljf_feng4
+  rotate: false
+  xy: 2, 66
+  size: 111, 161
+  orig: 111, 161
+  offset: 0, 0
+  index: -1
+axwq_zyhls_yezi4
+  rotate: true
+  xy: 66, 36
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+axwq_zyhls_yezi6
+  rotate: false
+  xy: 2, 2
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1

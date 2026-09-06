@@ -1,0 +1,146 @@
+
+shhj25_plt.png
+size: 1006,1009
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+loading_fish35_xingxing1
+  rotate: true
+  xy: 949, 676
+  size: 46, 55
+  orig: 52, 60
+  offset: 3, 3
+  index: -1
+lzjs25_plt_bing
+  rotate: true
+  xy: 270, 537
+  size: 165, 268
+  orig: 165, 269
+  offset: 0, 0
+  index: -1
+lzjs25_plt_caitiao1
+  rotate: false
+  xy: 390, 430
+  size: 146, 105
+  orig: 146, 105
+  offset: 0, 0
+  index: -1
+lzjs25_plt_caitiao2
+  rotate: false
+  xy: 823, 196
+  size: 180, 193
+  orig: 180, 193
+  offset: 0, 0
+  index: -1
+lzjs25_plt_fuchen1
+  rotate: true
+  xy: 270, 406
+  size: 129, 118
+  orig: 130, 120
+  offset: 0, 1
+  index: -1
+lzjs25_plt_fuchen2
+  rotate: true
+  xy: 712, 305
+  size: 84, 96
+  orig: 84, 96
+  offset: 0, 0
+  index: -1
+lzjs25_plt_guangxiao
+  rotate: false
+  xy: 2, 405
+  size: 266, 297
+  orig: 312, 368
+  offset: 22, 48
+  index: -1
+lzjs25_plt_guangyun1
+  rotate: true
+  xy: 281, 9
+  size: 395, 241
+  orig: 407, 249
+  offset: 6, 4
+  index: -1
+lzjs25_plt_guangyun2
+  rotate: true
+  xy: 2, 19
+  size: 370, 277
+  orig: 420, 315
+  offset: 35, 9
+  index: -1
+lzjs25_plt_juanzhou
+  rotate: false
+  xy: 2, 704
+  size: 537, 303
+  orig: 541, 313
+  offset: 4, 0
+  index: -1
+lzjs25_plt_lianhua2
+  rotate: false
+  xy: 541, 724
+  size: 423, 283
+  orig: 423, 283
+  offset: 0, 0
+  index: -1
+lzjs25_plt_lianhua3
+  rotate: false
+  xy: 524, 128
+  size: 186, 261
+  orig: 187, 261
+  offset: 1, 0
+  index: -1
+lzjs25_plt_meimao
+  rotate: true
+  xy: 949, 629
+  size: 45, 55
+  orig: 48, 59
+  offset: 0, 4
+  index: -1
+lzjs25_plt_shan
+  rotate: false
+  xy: 541, 391
+  size: 406, 331
+  orig: 415, 335
+  offset: 4, 4
+  index: -1
+lzjs25_plt_shenti
+  rotate: false
+  xy: 823, 26
+  size: 180, 168
+  orig: 180, 168
+  offset: 0, 0
+  index: -1
+lzjs25_plt_shou_l
+  rotate: false
+  xy: 966, 973
+  size: 35, 34
+  orig: 35, 34
+  offset: 0, 0
+  index: -1
+lzjs25_plt_shou_r
+  rotate: false
+  xy: 966, 884
+  size: 26, 26
+  orig: 27, 26
+  offset: 1, 0
+  index: -1
+lzjs25_plt_tou
+  rotate: false
+  xy: 622, 30
+  size: 199, 96
+  orig: 199, 96
+  offset: 0, 0
+  index: -1
+lzjs25_plt_toufa1
+  rotate: true
+  xy: 966, 912
+  size: 59, 33
+  orig: 59, 33
+  offset: 0, 0
+  index: -1
+lzjs25_plt_yifu1
+  rotate: true
+  xy: 524, 2
+  size: 124, 96
+  orig: 124, 96
+  offset: 0, 0
+  index: -1

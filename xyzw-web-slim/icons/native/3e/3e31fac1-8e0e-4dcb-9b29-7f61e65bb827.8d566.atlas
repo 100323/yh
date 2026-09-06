@@ -1,0 +1,146 @@
+
+zxc_ss_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ss_banner_1
+  rotate: false
+  xy: 461, 15
+  size: 20, 94
+  orig: 20, 94
+  offset: 0, 0
+  index: -1
+ss_banner_10
+  rotate: false
+  xy: 135, 5
+  size: 68, 58
+  orig: 68, 58
+  offset: 0, 0
+  index: -1
+ss_banner_11
+  rotate: false
+  xy: 74, 4
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+ss_banner_12
+  rotate: false
+  xy: 337, 244
+  size: 83, 108
+  orig: 83, 108
+  offset: 0, 0
+  index: -1
+ss_banner_13
+  rotate: true
+  xy: 2, 2
+  size: 61, 70
+  orig: 61, 70
+  offset: 0, 0
+  index: -1
+ss_banner_14
+  rotate: false
+  xy: 2, 262
+  size: 333, 242
+  orig: 333, 242
+  offset: 0, 0
+  index: -1
+ss_banner_15
+  rotate: false
+  xy: 337, 354
+  size: 98, 150
+  orig: 98, 150
+  offset: 0, 0
+  index: -1
+ss_banner_16
+  rotate: false
+  xy: 2, 65
+  size: 333, 195
+  orig: 333, 195
+  offset: 0, 0
+  index: -1
+ss_banner_17
+  rotate: false
+  xy: 337, 142
+  size: 49, 100
+  orig: 49, 100
+  offset: 0, 0
+  index: -1
+ss_banner_18
+  rotate: false
+  xy: 324, 12
+  size: 101, 51
+  orig: 101, 51
+  offset: 0, 0
+  index: -1
+ss_banner_19
+  rotate: true
+  xy: 265, 9
+  size: 54, 57
+  orig: 54, 57
+  offset: 0, 0
+  index: -1
+ss_banner_2
+  rotate: false
+  xy: 337, 72
+  size: 75, 68
+  orig: 75, 68
+  offset: 0, 0
+  index: -1
+ss_banner_3
+  rotate: true
+  xy: 422, 244
+  size: 27, 36
+  orig: 27, 36
+  offset: 0, 0
+  index: -1
+ss_banner_4
+  rotate: false
+  xy: 422, 273
+  size: 50, 79
+  orig: 50, 79
+  offset: 0, 0
+  index: -1
+ss_banner_5
+  rotate: false
+  xy: 460, 250
+  size: 22, 21
+  orig: 22, 21
+  offset: 0, 0
+  index: -1
+ss_banner_6
+  rotate: true
+  xy: 205, 8
+  size: 55, 58
+  orig: 55, 58
+  offset: 0, 0
+  index: -1
+ss_banner_7
+  rotate: true
+  xy: 414, 66
+  size: 43, 45
+  orig: 43, 45
+  offset: 0, 0
+  index: -1
+ss_banner_8
+  rotate: true
+  xy: 414, 111
+  size: 46, 49
+  orig: 46, 49
+  offset: 0, 0
+  index: -1
+ss_banner_9
+  rotate: false
+  xy: 388, 159
+  size: 99, 83
+  orig: 99, 83
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 465, 136
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+xyx_ui_entrance.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xyx_ui_gamel1
+  rotate: true
+  xy: 112, 149
+  size: 101, 38
+  orig: 101, 38
+  offset: 0, 0
+  index: -1
+xyx_ui_gamel2
+  rotate: false
+  xy: 112, 136
+  size: 36, 11
+  orig: 36, 11
+  offset: 0, 0
+  index: -1
+xyx_ui_gamel3
+  rotate: false
+  xy: 112, 122
+  size: 33, 12
+  orig: 33, 12
+  offset: 0, 0
+  index: -1
+xyx_ui_gamesb1
+  rotate: false
+  xy: 2, 112
+  size: 108, 138
+  orig: 108, 138
+  offset: 0, 0
+  index: -1
+xyx_ui_gamesb2
+  rotate: true
+  xy: 2, 2
+  size: 108, 137
+  orig: 108, 137
+  offset: 0, 0
+  index: -1

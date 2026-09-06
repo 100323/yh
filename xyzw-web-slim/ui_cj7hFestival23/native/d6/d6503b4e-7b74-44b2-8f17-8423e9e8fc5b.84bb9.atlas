@@ -1,0 +1,55 @@
+
+cdzx26_cj_jiang.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiang_guang1
+  rotate: false
+  xy: 2, 12
+  size: 47, 19
+  orig: 47, 19
+  offset: 0, 0
+  index: -1
+jiang_guang3
+  rotate: false
+  xy: 2, 33
+  size: 162, 84
+  orig: 162, 84
+  offset: 0, 0
+  index: -1
+jiang_guangdian
+  rotate: false
+  xy: 51, 3
+  size: 24, 28
+  orig: 24, 28
+  offset: 0, 0
+  index: -1
+jiang_guangdian1
+  rotate: false
+  xy: 77, 7
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+jiang_xiangzi
+  rotate: false
+  xy: 222, 61
+  size: 55, 56
+  orig: 55, 56
+  offset: 0, 0
+  index: -1
+jiang_xiangzi2
+  rotate: false
+  xy: 166, 44
+  size: 54, 73
+  orig: 54, 73
+  offset: 0, 0
+  index: -1
+jiang_zi
+  rotate: false
+  xy: 222, 2
+  size: 50, 57
+  orig: 50, 58
+  offset: 0, 1
+  index: -1

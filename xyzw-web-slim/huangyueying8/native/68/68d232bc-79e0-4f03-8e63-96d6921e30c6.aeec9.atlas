@@ -1,0 +1,48 @@
+
+huangyueying8_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+093313kl27rp07f55bqpzh
+  rotate: false
+  xy: 2, 13
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 166, 35
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+jsyueying_tx_attact1
+  rotate: false
+  xy: 2, 2
+  size: 12, 9
+  orig: 12, 9
+  offset: 0, 0
+  index: -1
+jsyueying_tx_attact2
+  rotate: true
+  xy: 68, 10
+  size: 11, 14
+  orig: 11, 14
+  offset: 0, 0
+  index: -1
+jsyueying_tx_attact3
+  rotate: true
+  xy: 166, 5
+  size: 28, 42
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+jsyueying_tx_attact4
+  rotate: true
+  xy: 68, 23
+  size: 54, 96
+  orig: 54, 96
+  offset: 0, 0
+  index: -1

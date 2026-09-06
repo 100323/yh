@@ -1,0 +1,27 @@
+
+ghg_jingying_baiyu_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_bytz_pg_zha1
+  rotate: false
+  xy: 2, 169
+  size: 284, 263
+  orig: 284, 263
+  offset: 0, 0
+  index: -1
+xghg_bytz_pg_zha2
+  rotate: true
+  xy: 2, 2
+  size: 165, 299
+  orig: 165, 299
+  offset: 0, 0
+  index: -1
+xghg_bytz_pg_zha3
+  rotate: true
+  xy: 288, 196
+  size: 236, 154
+  orig: 236, 154
+  offset: 0, 0
+  index: -1

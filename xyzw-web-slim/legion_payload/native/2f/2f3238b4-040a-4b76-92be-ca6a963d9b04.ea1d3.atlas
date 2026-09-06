@@ -1,0 +1,188 @@
+
+tgcf_pty_blue.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bangshetou
+  rotate: false
+  xy: 98, 2
+  size: 88, 116
+  orig: 88, 116
+  offset: 0, 0
+  index: -1
+biyan
+  rotate: false
+  xy: 449, 425
+  size: 60, 41
+  orig: 60, 41
+  offset: 0, 0
+  index: -1
+fashi
+  rotate: true
+  xy: 2, 2
+  size: 128, 94
+  orig: 128, 94
+  offset: 0, 0
+  index: -1
+meimao01
+  rotate: true
+  xy: 295, 313
+  size: 16, 7
+  orig: 16, 7
+  offset: 0, 0
+  index: -1
+meimao02
+  rotate: true
+  xy: 506, 352
+  size: 9, 4
+  orig: 9, 4
+  offset: 0, 0
+  index: -1
+piaodai02
+  rotate: false
+  xy: 305, 362
+  size: 142, 140
+  orig: 142, 140
+  offset: 0, 0
+  index: -1
+piaodiai01
+  rotate: false
+  xy: 98, 151
+  size: 87, 86
+  orig: 87, 86
+  offset: 0, 0
+  index: -1
+shangbang
+  rotate: false
+  xy: 2, 358
+  size: 301, 144
+  orig: 308, 149
+  offset: 4, 3
+  index: -1
+shangbanya
+  rotate: false
+  xy: 188, 57
+  size: 218, 73
+  orig: 218, 73
+  offset: 0, 0
+  index: -1
+shangshen
+  rotate: true
+  xy: 428, 120
+  size: 37, 68
+  orig: 37, 68
+  offset: 0, 0
+  index: -1
+sq01
+  rotate: false
+  xy: 2, 151
+  size: 86, 86
+  orig: 94, 92
+  offset: 4, 3
+  index: -1
+sq02
+  rotate: false
+  xy: 188, 148
+  size: 91, 89
+  orig: 98, 96
+  offset: 3, 4
+  index: -1
+tgcf_pty_dj_huo
+  rotate: false
+  xy: 449, 394
+  size: 58, 29
+  orig: 58, 29
+  offset: 0, 0
+  index: -1
+tgcf_pty_dj_huo01
+  rotate: false
+  xy: 449, 363
+  size: 58, 29
+  orig: 58, 29
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 305, 240
+  size: 141, 120
+  orig: 141, 120
+  offset: 0, 0
+  index: -1
+toufa01
+  rotate: false
+  xy: 448, 195
+  size: 47, 88
+  orig: 47, 88
+  offset: 0, 0
+  index: -1
+toufa02
+  rotate: true
+  xy: 448, 285
+  size: 30, 55
+  orig: 30, 55
+  offset: 0, 0
+  index: -1
+toufa03
+  rotate: true
+  xy: 188, 8
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+weiba
+  rotate: true
+  xy: 227, 8
+  size: 47, 34
+  orig: 47, 34
+  offset: 0, 0
+  index: -1
+xiabang
+  rotate: false
+  xy: 2, 239
+  size: 291, 117
+  orig: 291, 117
+  offset: 0, 0
+  index: -1
+xiashen
+  rotate: false
+  xy: 295, 132
+  size: 131, 106
+  orig: 131, 106
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 295, 343
+  size: 13, 8
+  orig: 13, 13
+  offset: 0, 4
+  index: -1
+yougebo
+  rotate: false
+  xy: 449, 317
+  size: 55, 44
+  orig: 55, 44
+  offset: 0, 0
+  index: -1
+zb
+  rotate: true
+  xy: 428, 159
+  size: 34, 75
+  orig: 34, 75
+  offset: 0, 0
+  index: -1
+zhengyan
+  rotate: false
+  xy: 449, 468
+  size: 61, 34
+  orig: 61, 34
+  offset: 0, 0
+  index: -1
+zuiba
+  rotate: true
+  xy: 295, 331
+  size: 10, 8
+  orig: 10, 8
+  offset: 0, 0
+  index: -1

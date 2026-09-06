@@ -1,0 +1,34 @@
+
+gfjx_cz_yanhua.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gfjx_cz_yanhua_dian
+  rotate: true
+  xy: 90, 5
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+gfjx_cz_yanhua_gy
+  rotate: false
+  xy: 2, 2
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+gfjx_cz_yanhua_yh1
+  rotate: false
+  xy: 51, 12
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+gfjx_cz_yanhua_yh2
+  rotate: false
+  xy: 90, 21
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1

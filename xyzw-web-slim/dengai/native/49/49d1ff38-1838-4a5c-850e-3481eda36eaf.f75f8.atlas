@@ -1,0 +1,608 @@
+
+dengai.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bozi
+  rotate: false
+  xy: 75, 268
+  size: 20, 23
+  orig: 20, 23
+  offset: 0, 0
+  index: -1
+c_dunbai
+  rotate: true
+  xy: 156, 313
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+c_dunpaidai
+  rotate: true
+  xy: 367, 259
+  size: 15, 7
+  orig: 15, 7
+  offset: 0, 0
+  index: -1
+c_houbai
+  rotate: true
+  xy: 434, 342
+  size: 19, 29
+  orig: 19, 29
+  offset: 0, 0
+  index: -1
+c_qunbai
+  rotate: true
+  xy: 156, 297
+  size: 14, 25
+  orig: 14, 25
+  offset: 0, 0
+  index: -1
+c_shenti
+  rotate: false
+  xy: 436, 363
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+c_tou
+  rotate: false
+  xy: 98, 323
+  size: 41, 39
+  orig: 41, 39
+  offset: 0, 0
+  index: -1
+c_yanjing
+  rotate: false
+  xy: 466, 436
+  size: 7, 4
+  orig: 7, 4
+  offset: 0, 0
+  index: -1
+c_yaodai
+  rotate: true
+  xy: 121, 265
+  size: 22, 11
+  orig: 22, 11
+  offset: 0, 0
+  index: -1
+c_yifu
+  rotate: true
+  xy: 42, 268
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+c_yifuhou
+  rotate: true
+  xy: 433, 271
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+c_youdabi
+  rotate: true
+  xy: 156, 260
+  size: 15, 23
+  orig: 15, 23
+  offset: 0, 0
+  index: -1
+c_youdatui
+  rotate: true
+  xy: 134, 253
+  size: 15, 20
+  orig: 15, 20
+  offset: 0, 0
+  index: -1
+c_zuodatui
+  rotate: true
+  xy: 134, 253
+  size: 15, 20
+  orig: 15, 20
+  offset: 0, 0
+  index: -1
+c_youjianjia
+  rotate: true
+  xy: 134, 270
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+c_youjiao
+  rotate: true
+  xy: 376, 326
+  size: 17, 12
+  orig: 17, 12
+  offset: 0, 0
+  index: -1
+c_zuojiao
+  rotate: true
+  xy: 376, 326
+  size: 17, 12
+  orig: 17, 12
+  offset: 0, 0
+  index: -1
+c_youkuijia
+  rotate: true
+  xy: 97, 266
+  size: 21, 22
+  orig: 21, 22
+  offset: 0, 0
+  index: -1
+c_youliuhai
+  rotate: true
+  xy: 2, 253
+  size: 14, 26
+  orig: 14, 26
+  offset: 0, 0
+  index: -1
+c_youshou
+  rotate: false
+  xy: 376, 310
+  size: 12, 14
+  orig: 12, 14
+  offset: 0, 0
+  index: -1
+c_youxiaobi
+  rotate: false
+  xy: 177, 237
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+c_youxiaotui
+  rotate: false
+  xy: 181, 254
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+c_zuoxiaotui
+  rotate: false
+  xy: 181, 254
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+c_zuodabi
+  rotate: true
+  xy: 234, 276
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+c_zuojianjia
+  rotate: false
+  xy: 258, 276
+  size: 19, 16
+  orig: 19, 16
+  offset: 0, 0
+  index: -1
+c_zuoliuhai
+  rotate: false
+  xy: 297, 270
+  size: 16, 31
+  orig: 16, 31
+  offset: 0, 0
+  index: -1
+c_zuoshou
+  rotate: true
+  xy: 141, 317
+  size: 11, 13
+  orig: 11, 13
+  offset: 0, 0
+  index: -1
+c_zuoxiaobi
+  rotate: true
+  xy: 229, 259
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+dun
+  rotate: true
+  xy: 97, 289
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+effect/attack/ci/dengai_attack_ci_00010
+  rotate: false
+  xy: 315, 345
+  size: 73, 18
+  orig: 119, 36
+  offset: 2, 8
+  index: -1
+effect/attack/ci/dengai_attack_ci_00011
+  rotate: true
+  xy: 477, 431
+  size: 79, 33
+  orig: 119, 36
+  offset: 33, 1
+  index: -1
+effect/attack/ci/dengai_attack_ci_00012
+  rotate: false
+  xy: 156, 348
+  size: 76, 23
+  orig: 119, 36
+  offset: 35, 6
+  index: -1
+effect/attack/ci/dengai_attack_ci_00013
+  rotate: false
+  xy: 245, 338
+  size: 68, 15
+  orig: 119, 36
+  offset: 42, 10
+  index: -1
+effect/attack/ci/dengai_attack_ci_00014
+  rotate: true
+  xy: 234, 304
+  size: 67, 9
+  orig: 119, 36
+  offset: 44, 13
+  index: -1
+effect/attack/ci/dengai_attack_ci_00015
+  rotate: false
+  xy: 376, 300
+  size: 56, 7
+  orig: 119, 36
+  offset: 56, 14
+  index: -1
+effect/attack/ci/dengai_attack_ci_00016
+  rotate: false
+  xy: 461, 270
+  size: 49, 4
+  orig: 119, 36
+  offset: 63, 16
+  index: -1
+effect/attack/ci/dengai_attack_ci_00017
+  rotate: false
+  xy: 269, 356
+  size: 43, 3
+  orig: 119, 36
+  offset: 70, 16
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00017
+  rotate: false
+  xy: 162, 467
+  size: 156, 43
+  orig: 176, 61
+  offset: 4, 7
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00018
+  rotate: false
+  xy: 2, 364
+  size: 152, 59
+  orig: 176, 61
+  offset: 24, 0
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00019
+  rotate: false
+  xy: 160, 417
+  size: 153, 48
+  orig: 176, 61
+  offset: 23, 5
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00020
+  rotate: false
+  xy: 320, 467
+  size: 155, 43
+  orig: 176, 61
+  offset: 21, 8
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00021
+  rotate: false
+  xy: 2, 425
+  size: 156, 43
+  orig: 176, 61
+  offset: 20, 8
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00022
+  rotate: false
+  xy: 2, 470
+  size: 158, 40
+  orig: 176, 61
+  offset: 18, 9
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00023
+  rotate: false
+  xy: 315, 428
+  size: 149, 37
+  orig: 176, 61
+  offset: 27, 10
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00024
+  rotate: false
+  xy: 315, 402
+  size: 119, 24
+  orig: 176, 61
+  offset: 41, 16
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00025
+  rotate: false
+  xy: 156, 394
+  size: 111, 21
+  orig: 176, 61
+  offset: 41, 18
+  index: -1
+effect/skill/ci1/dengai_skill_ci1_00026
+  rotate: false
+  xy: 156, 373
+  size: 87, 19
+  orig: 176, 61
+  offset: 65, 20
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00004
+  rotate: false
+  xy: 315, 297
+  size: 59, 46
+  orig: 63, 51
+  offset: 3, 2
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00005
+  rotate: true
+  xy: 465, 315
+  size: 58, 45
+  orig: 63, 51
+  offset: 3, 3
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00006
+  rotate: false
+  xy: 376, 252
+  size: 55, 46
+  orig: 63, 51
+  offset: 4, 2
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00007
+  rotate: true
+  xy: 466, 375
+  size: 54, 44
+  orig: 63, 51
+  offset: 4, 3
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00008
+  rotate: true
+  xy: 390, 309
+  size: 53, 42
+  orig: 63, 51
+  offset: 6, 3
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00009
+  rotate: false
+  xy: 245, 294
+  size: 50, 42
+  orig: 63, 51
+  offset: 8, 3
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00010
+  rotate: false
+  xy: 315, 254
+  size: 50, 41
+  orig: 63, 51
+  offset: 8, 4
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00011
+  rotate: false
+  xy: 2, 322
+  size: 50, 40
+  orig: 63, 51
+  offset: 8, 5
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00012
+  rotate: false
+  xy: 463, 276
+  size: 47, 37
+  orig: 63, 51
+  offset: 8, 8
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00013
+  rotate: false
+  xy: 391, 364
+  size: 43, 36
+  orig: 63, 51
+  offset: 9, 8
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00014
+  rotate: false
+  xy: 54, 327
+  size: 42, 35
+  orig: 63, 51
+  offset: 10, 8
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00015
+  rotate: false
+  xy: 54, 293
+  size: 41, 32
+  orig: 63, 51
+  offset: 11, 8
+  index: -1
+effect/skill/xuli/dengai_skill_xl_00016
+  rotate: true
+  xy: 436, 394
+  size: 32, 28
+  orig: 63, 51
+  offset: 18, 11
+  index: -1
+mawei
+  rotate: true
+  xy: 193, 313
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+mawei2
+  rotate: false
+  xy: 245, 355
+  size: 22, 37
+  orig: 22, 37
+  offset: 0, 0
+  index: -1
+qunbai
+  rotate: true
+  xy: 434, 318
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 2, 289
+  size: 38, 31
+  orig: 38, 31
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 461, 228
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1
+wuqi
+  rotate: true
+  xy: 315, 365
+  size: 35, 74
+  orig: 35, 74
+  offset: 0, 0
+  index: -1
+yanjing
+  rotate: true
+  xy: 367, 276
+  size: 19, 7
+  orig: 19, 7
+  offset: 0, 0
+  index: -1
+yaodai
+  rotate: false
+  xy: 269, 361
+  size: 44, 12
+  orig: 44, 12
+  offset: 0, 0
+  index: -1
+yifu
+  rotate: false
+  xy: 269, 375
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: -1
+youdabi
+  rotate: false
+  xy: 156, 277
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+youdatui
+  rotate: false
+  xy: 433, 249
+  size: 26, 20
+  orig: 26, 20
+  offset: 0, 0
+  index: -1
+youjianjia
+  rotate: true
+  xy: 466, 442
+  size: 23, 9
+  orig: 23, 9
+  offset: 0, 0
+  index: -1
+youjiao
+  rotate: false
+  xy: 202, 250
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+youkuijia
+  rotate: false
+  xy: 434, 295
+  size: 27, 21
+  orig: 27, 21
+  offset: 0, 0
+  index: -1
+youliuhai
+  rotate: true
+  xy: 181, 273
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: false
+  xy: 141, 347
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+youxiaobi
+  rotate: false
+  xy: 248, 262
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+youxiaotui
+  rotate: false
+  xy: 206, 268
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+zuodabi
+  rotate: false
+  xy: 209, 291
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+zuodatui
+  rotate: false
+  xy: 183, 293
+  size: 24, 18
+  orig: 24, 18
+  offset: 0, 0
+  index: -1
+zuojianjia
+  rotate: true
+  xy: 134, 291
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+zuojiao
+  rotate: false
+  xy: 156, 241
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+zuoliuhai
+  rotate: true
+  xy: 2, 269
+  size: 18, 26
+  orig: 18, 26
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: true
+  xy: 141, 330
+  size: 15, 13
+  orig: 15, 13
+  offset: 0, 0
+  index: -1
+zuoxiaobi
+  rotate: true
+  xy: 297, 303
+  size: 33, 16
+  orig: 33, 16
+  offset: 0, 0
+  index: -1
+zuoxiaotui
+  rotate: true
+  xy: 279, 273
+  size: 19, 16
+  orig: 19, 16
+  offset: 0, 0
+  index: -1

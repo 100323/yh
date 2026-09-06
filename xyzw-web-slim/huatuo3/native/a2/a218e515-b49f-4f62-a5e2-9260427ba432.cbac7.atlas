@@ -1,0 +1,188 @@
+
+huatuo3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 110, 272
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 453, 417
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 400, 421
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+huatuo3_board
+  rotate: false
+  xy: 2, 201
+  size: 91, 90
+  orig: 91, 90
+  offset: 0, 0
+  index: -1
+huatuo3_body
+  rotate: false
+  xy: 2, 8
+  size: 148, 139
+  orig: 148, 140
+  offset: 0, 1
+  index: -1
+huatuo3_handl
+  rotate: false
+  xy: 133, 431
+  size: 43, 32
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+huatuo3_hat
+  rotate: true
+  xy: 2, 293
+  size: 77, 106
+  orig: 77, 106
+  offset: 0, 0
+  index: -1
+huatuo3_tool
+  rotate: false
+  xy: 152, 2
+  size: 141, 139
+  orig: 141, 139
+  offset: 0, 0
+  index: -1
+huatuo3_weapon1
+  rotate: false
+  xy: 300, 256
+  size: 168, 86
+  orig: 168, 86
+  offset: 0, 0
+  index: -1
+huatuo3_weapon2
+  rotate: false
+  xy: 272, 344
+  size: 162, 75
+  orig: 162, 75
+  offset: 0, 0
+  index: -1
+huatuo3_weapon3
+  rotate: false
+  xy: 216, 143
+  size: 206, 111
+  orig: 206, 111
+  offset: 0, 0
+  index: -1
+huatuo3_weapon4
+  rotate: true
+  xy: 2, 392
+  size: 48, 60
+  orig: 48, 64
+  offset: 0, 4
+  index: -1
+huatuo3_weapon5
+  rotate: true
+  xy: 194, 260
+  size: 82, 104
+  orig: 82, 104
+  offset: 0, 0
+  index: -1
+huatuo_beard1
+  rotate: true
+  xy: 219, 423
+  size: 40, 74
+  orig: 40, 78
+  offset: 0, 4
+  index: -1
+huatuo_beard2
+  rotate: true
+  xy: 64, 372
+  size: 57, 88
+  orig: 57, 88
+  offset: 0, 0
+  index: -1
+huatuo_effect2
+  rotate: true
+  xy: 2, 457
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+huatuo_eye
+  rotate: true
+  xy: 12, 455
+  size: 8, 10
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+huatuo_eyebrow
+  rotate: true
+  xy: 24, 442
+  size: 21, 40
+  orig: 21, 40
+  offset: 0, 0
+  index: -1
+huatuo_eyewhite
+  rotate: true
+  xy: 99, 439
+  size: 24, 32
+  orig: 24, 32
+  offset: 0, 0
+  index: -1
+huatuo_handl
+  rotate: true
+  xy: 295, 423
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+huatuo_handr2
+  rotate: false
+  xy: 178, 427
+  size: 39, 36
+  orig: 42, 38
+  offset: 2, 0
+  index: -1
+huatuo_head
+  rotate: true
+  xy: 95, 149
+  size: 109, 119
+  orig: 109, 119
+  offset: 0, 0
+  index: -1
+huatuo_legr
+  rotate: true
+  xy: 66, 440
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+huatuo_mouth
+  rotate: true
+  xy: 339, 422
+  size: 41, 59
+  orig: 41, 59
+  offset: 0, 0
+  index: -1
+huatuo_tail
+  rotate: false
+  xy: 154, 356
+  size: 116, 65
+  orig: 116, 65
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 295, 2
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,153 @@
+
+ui_axian_btn_livingroom_5108.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyer2
+  rotate: false
+  xy: 489, 283
+  size: 13, 6
+  orig: 18, 8
+  offset: 2, 1
+  index: -1
+bhjx_kt_yanbai
+  rotate: true
+  xy: 489, 319
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+ktax_xwzj_jjl
+  rotate: true
+  xy: 109, 124
+  size: 75, 44
+  orig: 109, 113
+  offset: 34, 69
+  index: -1
+ktax_xwzj_lian
+  rotate: true
+  xy: 155, 20
+  size: 81, 102
+  orig: 81, 102
+  offset: 0, 0
+  index: -1
+ktax_xwzj_yanbai
+  rotate: true
+  xy: 489, 291
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: -1
+ktrk_bhht_jj1
+  rotate: true
+  xy: 339, 129
+  size: 113, 138
+  orig: 113, 138
+  offset: 0, 0
+  index: -1
+ktrk_bhht_jj2
+  rotate: true
+  xy: 2, 107
+  size: 92, 105
+  orig: 92, 105
+  offset: 0, 0
+  index: -1
+ktrk_bhht_lian
+  rotate: true
+  xy: 2, 15
+  size: 90, 94
+  orig: 90, 94
+  offset: 0, 0
+  index: -1
+ktrk_bhht_mei1
+  rotate: false
+  xy: 489, 304
+  size: 16, 13
+  orig: 16, 13
+  offset: 0, 0
+  index: -1
+ktrk_bhht_mei2
+  rotate: false
+  xy: 479, 219
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+ktrk_bhht_shen
+  rotate: false
+  xy: 296, 22
+  size: 115, 105
+  orig: 115, 105
+  offset: 0, 0
+  index: -1
+ktrk_bhht_tf
+  rotate: true
+  xy: 413, 2
+  size: 125, 85
+  orig: 125, 85
+  offset: 0, 0
+  index: -1
+ktrk_bhht_tou
+  rotate: false
+  xy: 179, 211
+  size: 158, 157
+  orig: 158, 157
+  offset: 0, 0
+  index: -1
+ktrk_bhht_xiong
+  rotate: false
+  xy: 179, 103
+  size: 115, 106
+  orig: 115, 106
+  offset: 0, 0
+  index: -1
+ktrk_bhht_yan1
+  rotate: true
+  xy: 489, 352
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ktrk_bhht_yan2
+  rotate: true
+  xy: 489, 334
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ktrk_bhht_ying1
+  rotate: false
+  xy: 2, 201
+  size: 175, 167
+  orig: 175, 167
+  offset: 0, 0
+  index: -1
+ktrk_bhht_ying2
+  rotate: true
+  xy: 339, 244
+  size: 124, 148
+  orig: 124, 148
+  offset: 0, 0
+  index: -1
+ktrk_bhht_yz
+  rotate: true
+  xy: 489, 275
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+ktrk_bhht_yz2
+  rotate: false
+  xy: 504, 281
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+ktrk_bhht_zhao
+  rotate: true
+  xy: 109, 47
+  size: 75, 44
+  orig: 75, 44
+  offset: 0, 0
+  index: -1

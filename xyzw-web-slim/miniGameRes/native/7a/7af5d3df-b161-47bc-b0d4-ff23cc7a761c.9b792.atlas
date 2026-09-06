@@ -1,0 +1,69 @@
+
+xypk_count.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pp_img_guangqiulv
+  rotate: false
+  xy: 2, 46
+  size: 192, 192
+  orig: 225, 223
+  offset: 17, 16
+  index: -1
+pp_img_xian
+  rotate: false
+  xy: 2, 5
+  size: 163, 4
+  orig: 163, 4
+  offset: 0, 0
+  index: -1
+xypk_count_1
+  rotate: true
+  xy: 2, 11
+  size: 33, 84
+  orig: 33, 84
+  offset: 0, 0
+  index: -1
+xypk_count_2
+  rotate: false
+  xy: 259, 66
+  size: 58, 86
+  orig: 58, 86
+  offset: 0, 0
+  index: -1
+xypk_count_3
+  rotate: false
+  xy: 196, 65
+  size: 61, 87
+  orig: 61, 87
+  offset: 0, 0
+  index: -1
+xypk_count_4
+  rotate: false
+  xy: 196, 154
+  size: 66, 84
+  orig: 66, 84
+  offset: 0, 0
+  index: -1
+xypk_count_5
+  rotate: true
+  xy: 196, 2
+  size: 61, 86
+  orig: 61, 86
+  offset: 0, 0
+  index: -1
+xypk_count_c
+  rotate: false
+  xy: 2, 240
+  size: 270, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 88, 18
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+ss_boss1b_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 406, 303
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ss_boss1_skill1
+  rotate: false
+  xy: 406, 380
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+ss_boss1_skill2
+  rotate: false
+  xy: 406, 334
+  size: 48, 44
+  orig: 48, 44
+  offset: 0, 0
+  index: -1
+ss_boss1_skillh1
+  rotate: true
+  xy: 404, 91
+  size: 209, 50
+  orig: 209, 52
+  offset: 0, 0
+  index: -1
+ss_boss1_skillh2
+  rotate: true
+  xy: 2, 2
+  size: 133, 214
+  orig: 133, 216
+  offset: 0, 1
+  index: -1
+ss_boss1_skillh3
+  rotate: false
+  xy: 218, 11
+  size: 79, 159
+  orig: 79, 160
+  offset: 0, 0
+  index: -1
+ss_boss1_skillh5
+  rotate: false
+  xy: 2, 137
+  size: 177, 295
+  orig: 177, 296
+  offset: 0, 0
+  index: -1
+ss_boss1_skillh6
+  rotate: true
+  xy: 181, 172
+  size: 128, 221
+  orig: 128, 221
+  offset: 0, 0
+  index: -1
+ss_boss1_skillh7
+  rotate: true
+  xy: 181, 302
+  size: 130, 223
+  orig: 130, 223
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 437, 319
+  size: 16, 13
+  orig: 16, 16
+  offset: 0, 2
+  index: -1

@@ -1,0 +1,48 @@
+
+cwxt26_zhangyu_txk.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hair
+  rotate: true
+  xy: 107, 25
+  size: 13, 24
+  orig: 13, 24
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 107, 40
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+hg
+  rotate: true
+  xy: 63, 5
+  size: 90, 42
+  orig: 90, 42
+  offset: 0, 0
+  index: -1
+maozi
+  rotate: false
+  xy: 2, 97
+  size: 111, 85
+  orig: 111, 85
+  offset: 0, 0
+  index: -1
+mj
+  rotate: true
+  xy: 2, 2
+  size: 93, 59
+  orig: 93, 59
+  offset: 0, 0
+  index: -1
+tou
+  rotate: true
+  xy: 115, 82
+  size: 100, 77
+  orig: 100, 77
+  offset: 0, 0
+  index: -1

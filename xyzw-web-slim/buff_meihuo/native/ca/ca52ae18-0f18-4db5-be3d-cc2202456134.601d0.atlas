@@ -1,0 +1,20 @@
+
+buff_meihuo.png
+size: 163,100
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xin1
+  rotate: true
+  xy: 113, 48
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+xin2
+  rotate: false
+  xy: 2, 2
+  size: 109, 96
+  orig: 111, 100
+  offset: 1, 2
+  index: -1

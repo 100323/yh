@@ -1,0 +1,90 @@
+
+ssxt_mp_simayi9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: true
+  xy: 414, 75
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: true
+  xy: 351, 150
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: true
+  xy: 230, 65
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_simayi9_1
+  rotate: true
+  xy: 2, 4
+  size: 244, 226
+  orig: 244, 227
+  offset: 0, 0
+  index: -1
+mp_simayi9_2
+  rotate: false
+  xy: 2, 250
+  size: 244, 227
+  orig: 244, 227
+  offset: 0, 0
+  index: -1
+mp_simayi9_3
+  rotate: true
+  xy: 248, 233
+  size: 244, 227
+  orig: 244, 227
+  offset: 0, 0
+  index: -1
+mp_zuo_1
+  rotate: true
+  xy: 351, 31
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_2
+  rotate: false
+  xy: 230, 2
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 230, 148
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 245, 213
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: false
+  xy: 230, 211
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 304, 120
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

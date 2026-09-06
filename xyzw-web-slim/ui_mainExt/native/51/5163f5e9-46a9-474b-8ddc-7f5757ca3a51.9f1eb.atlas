@@ -1,0 +1,48 @@
+
+zlys_rukou.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 444, 2
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+zlys_rukou_bt
+  rotate: false
+  xy: 250, 3
+  size: 192, 57
+  orig: 194, 59
+  offset: 1, 1
+  index: -1
+zlys_rukou_dt
+  rotate: false
+  xy: 2, 5
+  size: 246, 239
+  orig: 248, 242
+  offset: 1, 2
+  index: -1
+zlys_rukou_jb1
+  rotate: false
+  xy: 476, 196
+  size: 29, 48
+  orig: 31, 50
+  offset: 1, 1
+  index: -1
+zlys_rukou_jb2
+  rotate: true
+  xy: 476, 151
+  size: 43, 33
+  orig: 45, 36
+  offset: 1, 1
+  index: -1
+zlys_rukou_lu
+  rotate: false
+  xy: 250, 62
+  size: 224, 182
+  orig: 234, 189
+  offset: 1, 3
+  index: -1

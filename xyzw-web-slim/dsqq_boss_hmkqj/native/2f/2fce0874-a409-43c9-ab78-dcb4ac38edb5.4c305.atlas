@@ -1,0 +1,69 @@
+
+dsqq_boss_hmkqj_skill_hit.png
+size: 452,299
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_boss_hmkq_jn_g
+  rotate: true
+  xy: 2, 9
+  size: 102, 262
+  orig: 102, 262
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_jn_x1
+  rotate: true
+  xy: 360, 68
+  size: 52, 81
+  orig: 52, 81
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_jn_x2
+  rotate: true
+  xy: 360, 28
+  size: 38, 65
+  orig: 38, 65
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_jn_x3
+  rotate: false
+  xy: 289, 50
+  size: 69, 155
+  orig: 69, 155
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_jn_ym1
+  rotate: true
+  xy: 2, 207
+  size: 90, 316
+  orig: 90, 316
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_jn_ym2
+  rotate: true
+  xy: 2, 113
+  size: 92, 285
+  orig: 92, 285
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_jn_z1
+  rotate: false
+  xy: 360, 122
+  size: 90, 95
+  orig: 90, 95
+  offset: 0, 0
+  index: -1
+dsqq_boss_hmkq_pg_zha2
+  rotate: true
+  xy: 320, 219
+  size: 78, 121
+  orig: 182, 160
+  offset: 104, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 266, 2
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

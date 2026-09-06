@@ -1,0 +1,258 @@
+
+guanyu5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu5_attack1
+  rotate: false
+  xy: 45, 60
+  size: 64, 64
+  orig: 74, 74
+  offset: 4, 4
+  index: -1
+guanyu5_attack2
+  rotate: true
+  xy: 407, 254
+  size: 52, 71
+  orig: 52, 71
+  offset: 0, 0
+  index: -1
+guanyu5_attack3
+  rotate: false
+  xy: 259, 374
+  size: 46, 12
+  orig: 46, 12
+  offset: 0, 0
+  index: -1
+guanyu5_attack4
+  rotate: false
+  xy: 210, 165
+  size: 26, 61
+  orig: 26, 61
+  offset: 0, 0
+  index: -1
+guanyu5_attack5
+  rotate: true
+  xy: 181, 14
+  size: 22, 41
+  orig: 22, 41
+  offset: 0, 0
+  index: -1
+guanyu5_beard
+  rotate: false
+  xy: 333, 369
+  size: 127, 138
+  orig: 127, 138
+  offset: 0, 0
+  index: -1
+guanyu5_body
+  rotate: true
+  xy: 239, 211
+  size: 156, 102
+  orig: 156, 102
+  offset: 0, 0
+  index: -1
+guanyu5_earline
+  rotate: true
+  xy: 333, 102
+  size: 107, 44
+  orig: 107, 44
+  offset: 0, 0
+  index: -1
+guanyu5_eye
+  rotate: true
+  xy: 307, 378
+  size: 8, 10
+  orig: 8, 10
+  offset: 0, 0
+  index: -1
+guanyu5_eyebrow
+  rotate: true
+  xy: 210, 126
+  size: 37, 23
+  orig: 37, 23
+  offset: 0, 0
+  index: -1
+guanyu5_eyewhite
+  rotate: true
+  xy: 45, 22
+  size: 36, 53
+  orig: 36, 53
+  offset: 0, 0
+  index: -1
+guanyu5_footl
+  rotate: false
+  xy: 100, 4
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+guanyu5_footr
+  rotate: false
+  xy: 140, 6
+  size: 39, 30
+  orig: 39, 30
+  offset: 0, 0
+  index: -1
+guanyu5_glasses1
+  rotate: false
+  xy: 427, 318
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+guanyu5_glasses2
+  rotate: false
+  xy: 379, 114
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+guanyu5_glasses3
+  rotate: true
+  xy: 428, 181
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+guanyu5_glasses4
+  rotate: true
+  xy: 410, 41
+  size: 71, 49
+  orig: 71, 49
+  offset: 0, 0
+  index: -1
+guanyu5_handl
+  rotate: true
+  xy: 452, 129
+  size: 50, 47
+  orig: 50, 47
+  offset: 0, 0
+  index: -1
+guanyu5_handr
+  rotate: false
+  xy: 343, 244
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+guanyu5_hat
+  rotate: false
+  xy: 129, 228
+  size: 108, 158
+  orig: 109, 158
+  offset: 1, 0
+  index: -1
+guanyu5_head
+  rotate: false
+  xy: 2, 257
+  size: 125, 129
+  orig: 125, 129
+  offset: 0, 0
+  index: -1
+guanyu5_legl
+  rotate: true
+  xy: 379, 165
+  size: 77, 47
+  orig: 77, 47
+  offset: 0, 0
+  index: -1
+guanyu5_legr
+  rotate: false
+  xy: 330, 53
+  size: 78, 47
+  orig: 78, 47
+  offset: 0, 0
+  index: -1
+guanyu5_mouth
+  rotate: false
+  xy: 229, 36
+  size: 58, 83
+  orig: 58, 83
+  offset: 0, 0
+  index: -1
+guanyu5_skills1
+  rotate: true
+  xy: 2, 126
+  size: 129, 115
+  orig: 129, 115
+  offset: 0, 0
+  index: -1
+guanyu5_skills2
+  rotate: true
+  xy: 289, 16
+  size: 53, 24
+  orig: 53, 24
+  offset: 0, 0
+  index: -1
+guanyu5_skills3
+  rotate: true
+  xy: 119, 226
+  size: 29, 8
+  orig: 29, 8
+  offset: 0, 0
+  index: -1
+guanyu5_star
+  rotate: false
+  xy: 343, 308
+  size: 82, 59
+  orig: 83, 59
+  offset: 1, 0
+  index: -1
+guanyu5_tail
+  rotate: true
+  xy: 238, 121
+  size: 88, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+guanyu5_weapon1
+  rotate: true
+  xy: 2, 2
+  size: 122, 41
+  orig: 122, 41
+  offset: 0, 0
+  index: -1
+guanyu5_weapon2
+  rotate: false
+  xy: 2, 388
+  size: 329, 119
+  orig: 329, 119
+  offset: 0, 0
+  index: -1
+guanyu5_weapon3
+  rotate: true
+  xy: 119, 125
+  size: 99, 89
+  orig: 99, 89
+  offset: 0, 0
+  index: -1
+guanyu5_weapon6
+  rotate: false
+  xy: 111, 38
+  size: 116, 85
+  orig: 116, 85
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 315, 7
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 239, 372
+  size: 14, 18
+  orig: 24, 24
+  offset: 7, 5
+  index: -1
+xysg_hero_guanyu_eye2
+  rotate: false
+  xy: 289, 71
+  size: 39, 48
+  orig: 39, 48
+  offset: 0, 0
+  index: -1

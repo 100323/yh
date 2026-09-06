@@ -1,0 +1,48 @@
+
+txk_dianwei7.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw9_lz
+  rotate: false
+  xy: 2, 104
+  size: 142, 143
+  orig: 168, 167
+  offset: 13, 12
+  index: -1
+dw9_lz1
+  rotate: false
+  xy: 129, 6
+  size: 74, 74
+  orig: 94, 95
+  offset: 10, 11
+  index: -1
+txk_dw9_jin
+  rotate: false
+  xy: 2, 49
+  size: 125, 53
+  orig: 127, 56
+  offset: 1, 1
+  index: -1
+txk_dw9_kuang
+  rotate: false
+  xy: 146, 127
+  size: 108, 120
+  orig: 110, 122
+  offset: 1, 1
+  index: -1
+txk_dw9_you
+  rotate: true
+  xy: 146, 82
+  size: 43, 83
+  orig: 47, 87
+  offset: 2, 2
+  index: -1
+txk_dw9_zuo
+  rotate: true
+  xy: 2, 2
+  size: 45, 86
+  orig: 49, 90
+  offset: 2, 2
+  index: -1

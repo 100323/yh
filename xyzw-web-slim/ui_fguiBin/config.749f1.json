@@ -1,0 +1,1 @@
+{"paths":{"0":["ui_fguiBin",1],"1":["ui_fguiBin",0]},"types":["cc.JsonAsset","cc.BufferAsset"],"uuids":["9dBx3Shm9EVYZ2Ge+UHxl0","923qFFpY9EG7lypfFsnRAX"],"scenes":{},"redirect":[],"deps":[],"packs":{},"name":"ui_fguiBin","importBase":"import","nativeBase":"native","debug":false,"isZip":false,"encrypted":false,"versions":{"import":[1,"caf31",0,"6d4a0"],"native":[0,"e7575"]}}

@@ -1,0 +1,41 @@
+
+cdzx26_cj_btn.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+toushiche1
+  rotate: false
+  xy: 419, 96
+  size: 90, 122
+  orig: 90, 122
+  offset: 0, 0
+  index: -1
+toushiche3
+  rotate: false
+  xy: 305, 3
+  size: 138, 87
+  orig: 138, 90
+  offset: 0, 0
+  index: -1
+toushiche4
+  rotate: true
+  xy: 305, 92
+  size: 126, 112
+  orig: 126, 112
+  offset: 0, 0
+  index: -1
+toushiche5
+  rotate: false
+  xy: 2, 2
+  size: 301, 216
+  orig: 302, 219
+  offset: 0, 0
+  index: -1
+toushiche6
+  rotate: false
+  xy: 445, 14
+  size: 129, 80
+  orig: 129, 80
+  offset: 0, 0
+  index: -1

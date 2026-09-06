@@ -1,0 +1,62 @@
+
+zhenji5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 262, 50
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zhenji5_effect_star
+  rotate: true
+  xy: 195, 74
+  size: 64, 65
+  orig: 78, 83
+  offset: 7, 9
+  index: -1
+zhenji5_skill_b1
+  rotate: true
+  xy: 195, 2
+  size: 70, 44
+  orig: 72, 46
+  offset: 1, 1
+  index: -1
+zhenji5_skill_b2
+  rotate: false
+  xy: 344, 82
+  size: 54, 56
+  orig: 57, 59
+  offset: 1, 1
+  index: -1
+zhenji5_skill_b3
+  rotate: false
+  xy: 262, 98
+  size: 80, 40
+  orig: 82, 42
+  offset: 1, 1
+  index: -1
+zhenji5_skill_c1
+  rotate: false
+  xy: 2, 140
+  size: 264, 262
+  orig: 269, 268
+  offset: 2, 1
+  index: -1
+zhenji5_skill_c2
+  rotate: true
+  xy: 2, 27
+  size: 111, 191
+  orig: 113, 197
+  offset: 2, 3
+  index: -1
+zhenji5_skill_c3
+  rotate: true
+  xy: 268, 140
+  size: 262, 225
+  orig: 262, 225
+  offset: 0, 0
+  index: -1

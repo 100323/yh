@@ -1,0 +1,153 @@
+
+bosstower_boss4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+boss04_beidai
+  rotate: true
+  xy: 2, 14
+  size: 181, 87
+  orig: 181, 87
+  offset: 0, 0
+  index: -1
+boss04_daizi
+  rotate: false
+  xy: 106, 317
+  size: 193, 177
+  orig: 193, 177
+  offset: 0, 0
+  index: -1
+boss04_dao
+  rotate: false
+  xy: 2, 197
+  size: 102, 297
+  orig: 102, 297
+  offset: 0, 0
+  index: -1
+boss04_deng
+  rotate: false
+  xy: 276, 26
+  size: 72, 78
+  orig: 72, 78
+  offset: 0, 0
+  index: -1
+boss04_dg
+  rotate: false
+  xy: 348, 157
+  size: 52, 55
+  orig: 52, 55
+  offset: 0, 0
+  index: -1
+boss04_dg01
+  rotate: false
+  xy: 439, 331
+  size: 66, 163
+  orig: 66, 163
+  offset: 0, 0
+  index: -1
+boss04_dg02
+  rotate: true
+  xy: 258, 214
+  size: 62, 159
+  orig: 62, 159
+  offset: 0, 0
+  index: -1
+boss04_j_daoguang
+  rotate: true
+  xy: 301, 278
+  size: 216, 136
+  orig: 216, 136
+  offset: 0, 0
+  index: -1
+boss04_sj_g
+  rotate: true
+  xy: 163, 31
+  size: 73, 111
+  orig: 73, 111
+  offset: 0, 0
+  index: -1
+boss04_tou
+  rotate: true
+  xy: 106, 210
+  size: 105, 150
+  orig: 105, 150
+  offset: 0, 0
+  index: -1
+boss04_weiba
+  rotate: false
+  xy: 350, 33
+  size: 82, 70
+  orig: 82, 70
+  offset: 0, 0
+  index: -1
+boss04_wuqi01
+  rotate: true
+  xy: 402, 105
+  size: 73, 84
+  orig: 74, 85
+  offset: 0, 1
+  index: -1
+boss04_wuqi02
+  rotate: false
+  xy: 261, 106
+  size: 85, 106
+  orig: 86, 106
+  offset: 0, 0
+  index: -1
+boss04_xiaba
+  rotate: false
+  xy: 163, 106
+  size: 96, 102
+  orig: 96, 102
+  offset: 0, 0
+  index: -1
+boss04_xianglian
+  rotate: false
+  xy: 419, 180
+  size: 91, 96
+  orig: 91, 96
+  offset: 0, 0
+  index: -1
+boss04_xing
+  rotate: false
+  xy: 348, 106
+  size: 37, 49
+  orig: 49, 61
+  offset: 6, 6
+  index: -1
+boss04_yanjing
+  rotate: true
+  xy: 258, 278
+  size: 37, 34
+  orig: 37, 36
+  offset: 0, 1
+  index: -1
+boss04_yanzhu
+  rotate: false
+  xy: 2, 2
+  size: 9, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+boss04_yifu
+  rotate: true
+  xy: 91, 57
+  size: 138, 70
+  orig: 138, 70
+  offset: 0, 0
+  index: -1
+boss04_youjiao
+  rotate: false
+  xy: 439, 287
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: -1
+boss04_zuojiao
+  rotate: false
+  xy: 434, 61
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: -1

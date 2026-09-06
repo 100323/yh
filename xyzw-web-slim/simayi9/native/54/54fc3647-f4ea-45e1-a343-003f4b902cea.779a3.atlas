@@ -1,0 +1,153 @@
+
+simayi9_skill_position.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/hero_effect_halo1
+  rotate: false
+  xy: 341, 45
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bd1
+  rotate: true
+  xy: 365, 6
+  size: 37, 92
+  orig: 37, 92
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bd2
+  rotate: true
+  xy: 552, 9
+  size: 60, 59
+  orig: 60, 59
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bd3
+  rotate: true
+  xy: 459, 3
+  size: 50, 91
+  orig: 50, 91
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bdd
+  rotate: false
+  xy: 417, 104
+  size: 90, 150
+  orig: 90, 150
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bz1
+  rotate: false
+  xy: 723, 2
+  size: 56, 110
+  orig: 56, 110
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bz3
+  rotate: false
+  xy: 2, 11
+  size: 213, 243
+  orig: 214, 243
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_bz4
+  rotate: true
+  xy: 509, 112
+  size: 142, 138
+  orig: 142, 138
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_d1
+  rotate: false
+  xy: 476, 71
+  size: 104, 31
+  orig: 104, 31
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_d2
+  rotate: true
+  xy: 641, 19
+  size: 91, 80
+  orig: 91, 80
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_gz
+  rotate: true
+  xy: 341, 93
+  size: 161, 74
+  orig: 161, 74
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_hd
+  rotate: true
+  xy: 476, 55
+  size: 14, 60
+  orig: 14, 60
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_hdg
+  rotate: false
+  xy: 705, 164
+  size: 28, 90
+  orig: 28, 90
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_hdxg
+  rotate: false
+  xy: 613, 10
+  size: 26, 100
+  orig: 26, 100
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_lizi
+  rotate: true
+  xy: 417, 93
+  size: 9, 26
+  orig: 9, 26
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_men1
+  rotate: true
+  xy: 705, 136
+  size: 26, 75
+  orig: 26, 75
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_men2
+  rotate: true
+  xy: 217, 4
+  size: 38, 146
+  orig: 38, 146
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_men3
+  rotate: true
+  xy: 649, 114
+  size: 18, 73
+  orig: 18, 73
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_sdx
+  rotate: false
+  xy: 389, 55
+  size: 85, 36
+  orig: 85, 36
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_st
+  rotate: true
+  xy: 217, 44
+  size: 210, 122
+  orig: 210, 122
+  offset: 0, 0
+  index: -1
+images/simayi9_skill_tw
+  rotate: true
+  xy: 649, 134
+  size: 120, 54
+  orig: 120, 54
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+zhouyu2_attack_line.png
+size: 128,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhouyu2_effect1
+  rotate: false
+  xy: 2, 2
+  size: 68, 21
+  orig: 71, 23
+  offset: 2, 1
+  index: -1

@@ -1,0 +1,41 @@
+
+xghg_cc1.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xghg_cc1_1
+  rotate: true
+  xy: 79, 53
+  size: 69, 59
+  orig: 71, 61
+  offset: 1, 1
+  index: -1
+xghg_cc1_2
+  rotate: true
+  xy: 162, 34
+  size: 35, 31
+  orig: 37, 33
+  offset: 1, 1
+  index: -1
+xghg_cc1_3
+  rotate: false
+  xy: 140, 71
+  size: 43, 51
+  orig: 45, 53
+  offset: 1, 1
+  index: -1
+xghg_cc1_4
+  rotate: true
+  xy: 2, 25
+  size: 97, 75
+  orig: 99, 77
+  offset: 1, 1
+  index: -1
+xghg_cc1_5
+  rotate: false
+  xy: 79, 2
+  size: 81, 49
+  orig: 83, 51
+  offset: 1, 1
+  index: -1

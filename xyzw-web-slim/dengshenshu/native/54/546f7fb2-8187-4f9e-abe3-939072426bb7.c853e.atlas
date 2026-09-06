@@ -1,0 +1,41 @@
+
+dengshenshu_attack_hit.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dengshen_effect01
+  rotate: true
+  xy: 2, 2
+  size: 47, 49
+  orig: 47, 49
+  offset: 0, 0
+  index: -1
+dengshen_effect02
+  rotate: false
+  xy: 68, 95
+  size: 20, 20
+  orig: 21, 22
+  offset: 1, 2
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 2, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 53, 22
+  size: 27, 27
+  orig: 29, 29
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 68, 77
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+daqiao2_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xtxd_1
+  rotate: false
+  xy: 89, 140
+  size: 138, 40
+  orig: 139, 40
+  offset: 0, 0
+  index: -1
+xtxd_2
+  rotate: false
+  xy: 2, 171
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1
+xtxd_3
+  rotate: false
+  xy: 229, 129
+  size: 152, 51
+  orig: 152, 51
+  offset: 0, 0
+  index: -1
+xtxd_4
+  rotate: false
+  xy: 2, 2
+  size: 294, 125
+  orig: 294, 125
+  offset: 0, 0
+  index: -1
+xtxd_5
+  rotate: false
+  xy: 31, 157
+  size: 26, 23
+  orig: 36, 30
+  offset: 5, 4
+  index: -1
+xtxd_6
+  rotate: false
+  xy: 59, 153
+  size: 28, 27
+  orig: 33, 31
+  offset: 2, 2
+  index: -1

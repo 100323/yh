@@ -1,0 +1,258 @@
+
+ghg_jingying_fu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_fu_skilla1
+  rotate: false
+  xy: 2, 101
+  size: 175, 409
+  orig: 175, 409
+  offset: 0, 0
+  index: -1
+ghg_fu_skilla2
+  rotate: false
+  xy: 381, 130
+  size: 175, 128
+  orig: 175, 128
+  offset: 0, 0
+  index: -1
+ghg_fu_skillb1
+  rotate: false
+  xy: 179, 101
+  size: 200, 157
+  orig: 200, 157
+  offset: 0, 0
+  index: -1
+ghg_fu_skillp1
+  rotate: false
+  xy: 2, 57
+  size: 256, 42
+  orig: 256, 42
+  offset: 0, 0
+  index: -1
+ghg_fu_skillp2
+  rotate: false
+  xy: 405, 314
+  size: 256, 196
+  orig: 256, 196
+  offset: 0, 0
+  index: -1
+ghg_fu_skillp3
+  rotate: false
+  xy: 731, 211
+  size: 200, 203
+  orig: 200, 203
+  offset: 0, 0
+  index: -1
+ghg_fu_skills1
+  rotate: true
+  xy: 663, 326
+  size: 88, 63
+  orig: 88, 63
+  offset: 0, 0
+  index: -1
+ghg_fu_skills2
+  rotate: true
+  xy: 663, 416
+  size: 94, 85
+  orig: 124, 85
+  offset: 1, 0
+  index: -1
+ghg_fu_skills3
+  rotate: false
+  xy: 410, 16
+  size: 140, 58
+  orig: 140, 58
+  offset: 0, 0
+  index: -1
+ghg_jingying4_arm1
+  rotate: false
+  xy: 259, 19
+  size: 82, 36
+  orig: 82, 36
+  offset: 0, 0
+  index: -1
+ghg_jingying4_arm2
+  rotate: true
+  xy: 260, 64
+  size: 35, 65
+  orig: 35, 65
+  offset: 0, 0
+  index: -1
+ghg_jingying4_body
+  rotate: false
+  xy: 327, 61
+  size: 51, 38
+  orig: 51, 38
+  offset: 0, 0
+  index: -1
+ghg_jingying4_ear1
+  rotate: true
+  xy: 193, 7
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+ghg_jingying4_ear2
+  rotate: false
+  xy: 343, 16
+  size: 65, 43
+  orig: 65, 43
+  offset: 0, 0
+  index: -1
+ghg_jingying4_eye1
+  rotate: false
+  xy: 88, 9
+  size: 6, 9
+  orig: 6, 9
+  offset: 0, 0
+  index: -1
+ghg_jingying4_eye2
+  rotate: true
+  xy: 88, 2
+  size: 5, 9
+  orig: 5, 9
+  offset: 0, 0
+  index: -1
+ghg_jingying4_eyebrow
+  rotate: false
+  xy: 416, 109
+  size: 40, 19
+  orig: 40, 19
+  offset: 0, 0
+  index: -1
+ghg_jingying4_eyewhite1
+  rotate: true
+  xy: 508, 84
+  size: 25, 24
+  orig: 25, 24
+  offset: 0, 0
+  index: -1
+ghg_jingying4_eyewhite2
+  rotate: true
+  xy: 453, 78
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
+ghg_jingying4_footl
+  rotate: true
+  xy: 458, 109
+  size: 19, 25
+  orig: 19, 25
+  offset: 0, 0
+  index: -1
+ghg_jingying4_footr
+  rotate: false
+  xy: 485, 111
+  size: 26, 17
+  orig: 26, 17
+  offset: 0, 0
+  index: -1
+ghg_jingying4_hair
+  rotate: false
+  xy: 380, 76
+  size: 40, 23
+  orig: 40, 23
+  offset: 0, 0
+  index: -1
+ghg_jingying4_head
+  rotate: false
+  xy: 552, 9
+  size: 86, 74
+  orig: 86, 74
+  offset: 0, 0
+  index: -1
+ghg_jingying4_legl
+  rotate: true
+  xy: 2, 4
+  size: 14, 29
+  orig: 14, 29
+  offset: 0, 0
+  index: -1
+ghg_jingying4_legr
+  rotate: true
+  xy: 481, 79
+  size: 28, 25
+  orig: 28, 25
+  offset: 0, 0
+  index: -1
+ghg_jingying4_light1
+  rotate: true
+  xy: 179, 260
+  size: 250, 224
+  orig: 250, 224
+  offset: 0, 0
+  index: -1
+ghg_jingying4_light2
+  rotate: false
+  xy: 759, 9
+  size: 199, 200
+  orig: 199, 200
+  offset: 0, 0
+  index: -1
+ghg_jingying4_mouth
+  rotate: false
+  xy: 381, 104
+  size: 33, 24
+  orig: 33, 24
+  offset: 0, 0
+  index: -1
+ghg_jingying4_pd
+  rotate: false
+  xy: 640, 7
+  size: 117, 122
+  orig: 117, 122
+  offset: 0, 0
+  index: -1
+ghg_jingying4_tail
+  rotate: false
+  xy: 534, 85
+  size: 53, 43
+  orig: 53, 43
+  offset: 0, 0
+  index: -1
+ghg_jingying4_weapon
+  rotate: true
+  xy: 2, 20
+  size: 35, 189
+  orig: 35, 189
+  offset: 0, 0
+  index: -1
+ghg_jingying4_weapon2
+  rotate: true
+  xy: 558, 131
+  size: 181, 171
+  orig: 181, 171
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 422, 78
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 73, 3
+  size: 15, 13
+  orig: 16, 16
+  offset: 0, 1
+  index: -1
+ymj_effect_star1
+  rotate: true
+  xy: 33, 2
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 56, 2
+  size: 16, 15
+  orig: 16, 16
+  offset: 0, 1
+  index: -1

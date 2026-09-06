@@ -1,0 +1,34 @@
+
+zhouyu7_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhouyu7_attack1
+  rotate: false
+  xy: 278, 61
+  size: 200, 80
+  orig: 204, 86
+  offset: 0, 3
+  index: -1
+zhouyu7_attack2
+  rotate: false
+  xy: 2, 67
+  size: 274, 74
+  orig: 291, 81
+  offset: 13, 4
+  index: -1
+zhouyu7_attack3
+  rotate: false
+  xy: 2, 2
+  size: 200, 63
+  orig: 204, 69
+  offset: 0, 3
+  index: -1
+zhouyu7_attack4
+  rotate: false
+  xy: 480, 72
+  size: 27, 69
+  orig: 32, 69
+  offset: 5, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+ssxt_mp_caoren7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: true
+  xy: 412, 61
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: true
+  xy: 340, 136
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: true
+  xy: 219, 58
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_caoren7_1
+  rotate: false
+  xy: 2, 252
+  size: 248, 215
+  orig: 248, 215
+  offset: 0, 0
+  index: -1
+mp_caoren7_2
+  rotate: true
+  xy: 252, 219
+  size: 248, 215
+  orig: 248, 215
+  offset: 0, 0
+  index: -1
+mp_caoren7_3
+  rotate: true
+  xy: 2, 2
+  size: 248, 215
+  orig: 248, 215
+  offset: 0, 0
+  index: -1
+mp_zuo_1
+  rotate: false
+  xy: 293, 73
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_2
+  rotate: false
+  xy: 293, 10
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 219, 141
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 219, 204
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: true
+  xy: 239, 204
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 219, 224
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

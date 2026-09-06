@@ -1,0 +1,181 @@
+
+lvbu11_skill_hit_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00001
+  rotate: false
+  xy: 269, 28
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00003
+  rotate: false
+  xy: 354, 28
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00005
+  rotate: true
+  xy: 985, 426
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00007
+  rotate: true
+  xy: 973, 341
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00009
+  rotate: true
+  xy: 439, 2
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00011
+  rotate: true
+  xy: 472, 2
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00013
+  rotate: true
+  xy: 505, 2
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00015
+  rotate: true
+  xy: 538, 2
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00017
+  rotate: true
+  xy: 571, 2
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00019
+  rotate: false
+  xy: 791, 347
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00021
+  rotate: false
+  xy: 937, 154
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00023
+  rotate: false
+  xy: 937, 121
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+00025
+  rotate: false
+  xy: 937, 88
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 937, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lvbu11_skill_dong
+  rotate: true
+  xy: 392, 87
+  size: 291, 196
+  orig: 291, 196
+  offset: 0, 0
+  index: -1
+lvbu11_skill_kuai
+  rotate: false
+  xy: 791, 187
+  size: 227, 152
+  orig: 227, 152
+  offset: 0, 0
+  index: -1
+lvbu11_skill_lby
+  rotate: false
+  xy: 590, 155
+  size: 199, 223
+  orig: 199, 223
+  offset: 0, 0
+  index: -1
+lvbu11_skill_sdq
+  rotate: true
+  xy: 2, 61
+  size: 448, 388
+  orig: 448, 388
+  offset: 0, 0
+  index: -1
+lvbu11_skill_wg
+  rotate: true
+  xy: 118, 5
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+lvbu11_skill_xing
+  rotate: false
+  xy: 901, 373
+  size: 70, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1
+lvbu11_skill_zhua1
+  rotate: false
+  xy: 392, 380
+  size: 507, 129
+  orig: 507, 129
+  offset: 0, 0
+  index: -1
+lvbu11_skill_zhua2
+  rotate: false
+  xy: 604, 9
+  size: 331, 144
+  orig: 331, 144
+  offset: 0, 0
+  index: -1
+zhouyu8_yz_dong
+  rotate: false
+  xy: 2, 30
+  size: 114, 29
+  orig: 114, 29
+  offset: 0, 0
+  index: -1
+zhouyu8_yz_guang
+  rotate: false
+  xy: 901, 444
+  size: 82, 65
+  orig: 82, 65
+  offset: 0, 0
+  index: -1
+zhouyu8_yz_xing
+  rotate: false
+  xy: 173, 29
+  size: 94, 30
+  orig: 94, 30
+  offset: 0, 0
+  index: -1

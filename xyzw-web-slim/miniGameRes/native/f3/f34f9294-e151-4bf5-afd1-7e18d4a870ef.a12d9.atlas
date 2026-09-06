@@ -1,0 +1,20 @@
+
+kpyx_qg_jiandao.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+qg_img_jiandao1
+  rotate: false
+  xy: 2, 2
+  size: 64, 216
+  orig: 64, 216
+  offset: 0, 0
+  index: -1
+qg_img_jiandao2
+  rotate: false
+  xy: 68, 8
+  size: 59, 210
+  orig: 59, 210
+  offset: 0, 0
+  index: -1

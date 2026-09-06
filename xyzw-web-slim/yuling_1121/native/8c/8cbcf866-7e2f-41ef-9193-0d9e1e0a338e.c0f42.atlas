@@ -1,0 +1,48 @@
+
+yuling_1121.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 15, 166
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 46, 166
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+yuling1121_shen
+  rotate: false
+  xy: 2, 2
+  size: 218, 149
+  orig: 218, 149
+  offset: 0, 0
+  index: -1
+yuling1121_yan
+  rotate: false
+  xy: 77, 165
+  size: 31, 30
+  orig: 32, 30
+  offset: 1, 0
+  index: -1
+yuling1121_yq
+  rotate: false
+  xy: 110, 153
+  size: 43, 42
+  orig: 43, 42
+  offset: 0, 0
+  index: -1
+yuling1121_yz
+  rotate: true
+  xy: 2, 185
+  size: 10, 11
+  orig: 10, 12
+  offset: 0, 1
+  index: -1

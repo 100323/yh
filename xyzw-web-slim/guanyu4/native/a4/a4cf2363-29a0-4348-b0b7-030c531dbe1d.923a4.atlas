@@ -1,0 +1,48 @@
+
+guanyu4_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu4_skillhit1
+  rotate: false
+  xy: 2, 65
+  size: 149, 116
+  orig: 151, 118
+  offset: 1, 1
+  index: -1
+guanyu4_skillhit2
+  rotate: false
+  xy: 153, 9
+  size: 150, 67
+  orig: 150, 71
+  offset: 0, 0
+  index: -1
+guanyu4_skillhit4
+  rotate: true
+  xy: 153, 78
+  size: 103, 177
+  orig: 103, 177
+  offset: 0, 0
+  index: -1
+guanyu4_skillhit5
+  rotate: true
+  xy: 332, 2
+  size: 179, 78
+  orig: 179, 120
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 22
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 305, 54
+  size: 22, 20
+  orig: 22, 22
+  offset: 0, 2
+  index: -1

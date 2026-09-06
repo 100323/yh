@@ -1,0 +1,132 @@
+
+axwq_xyht.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_huatong_arm
+  rotate: true
+  xy: 208, 8
+  size: 188, 178
+  orig: 188, 178
+  offset: 0, 0
+  index: -1
+axwq_huatong_effect1
+  rotate: true
+  xy: 2, 2
+  size: 194, 204
+  orig: 194, 204
+  offset: 0, 0
+  index: -1
+axwq_huatong_effecta1
+  rotate: false
+  xy: 548, 175
+  size: 157, 163
+  orig: 162, 168
+  offset: 2, 3
+  index: -1
+axwq_huatong_effecta2
+  rotate: false
+  xy: 388, 31
+  size: 158, 164
+  orig: 162, 168
+  offset: 2, 2
+  index: -1
+axwq_huatong_effecta3
+  rotate: false
+  xy: 548, 10
+  size: 157, 163
+  orig: 162, 167
+  offset: 2, 2
+  index: -1
+axwq_huatong_effecta4
+  rotate: false
+  xy: 707, 35
+  size: 158, 160
+  orig: 162, 166
+  offset: 2, 3
+  index: -1
+axwq_huatong_effectd1
+  rotate: false
+  xy: 369, 256
+  size: 99, 97
+  orig: 118, 115
+  offset: 9, 9
+  index: -1
+axwq_huatong_effectd2
+  rotate: false
+  xy: 2, 198
+  size: 263, 153
+  orig: 269, 159
+  offset: 3, 3
+  index: -1
+axwq_huatong_effectd3
+  rotate: false
+  xy: 2, 353
+  size: 273, 153
+  orig: 279, 160
+  offset: 3, 4
+  index: -1
+axwq_huatong_effectd4
+  rotate: false
+  xy: 277, 355
+  size: 261, 151
+  orig: 267, 158
+  offset: 3, 4
+  index: -1
+axwq_huatong_gai1
+  rotate: true
+  xy: 867, 82
+  size: 113, 100
+  orig: 113, 100
+  offset: 0, 0
+  index: -1
+axwq_huatong_gai2
+  rotate: true
+  xy: 267, 242
+  size: 109, 100
+  orig: 109, 100
+  offset: 0, 0
+  index: -1
+axwq_huatong_hand1
+  rotate: false
+  xy: 921, 225
+  size: 97, 133
+  orig: 97, 133
+  offset: 0, 0
+  index: -1
+axwq_huatong_hand2
+  rotate: false
+  xy: 540, 340
+  size: 205, 166
+  orig: 205, 166
+  offset: 0, 0
+  index: -1
+axwq_huatong_tong
+  rotate: true
+  xy: 747, 197
+  size: 161, 172
+  orig: 163, 175
+  offset: 0, 3
+  index: -1
+axwq_huatong_tong2
+  rotate: true
+  xy: 867, 14
+  size: 66, 100
+  orig: 66, 100
+  offset: 0, 0
+  index: -1
+axwq_huatong_xin
+  rotate: true
+  xy: 747, 360
+  size: 146, 209
+  orig: 146, 209
+  offset: 0, 0
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 958, 442
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,83 @@
+
+ymj_bg_cup.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 205, 160
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ymj_bg_cup1_1
+  rotate: false
+  xy: 331, 243
+  size: 102, 141
+  orig: 102, 141
+  offset: 0, 0
+  index: -1
+ymj_bg_cup1_2
+  rotate: true
+  xy: 331, 156
+  size: 85, 75
+  orig: 85, 75
+  offset: 0, 0
+  index: -1
+ymj_bg_cup2_1
+  rotate: false
+  xy: 205, 82
+  size: 91, 72
+  orig: 91, 72
+  offset: 0, 0
+  index: -1
+ymj_bg_cup2_2
+  rotate: true
+  xy: 408, 188
+  size: 53, 68
+  orig: 53, 68
+  offset: 0, 0
+  index: -1
+ymj_bg_cup2_3
+  rotate: true
+  xy: 298, 32
+  size: 55, 81
+  orig: 55, 81
+  offset: 0, 0
+  index: -1
+ymj_bg_cup2_4
+  rotate: false
+  xy: 298, 89
+  size: 57, 65
+  orig: 57, 65
+  offset: 0, 0
+  index: -1
+ymj_bg_cup2_6
+  rotate: false
+  xy: 2, 2
+  size: 201, 187
+  orig: 201, 187
+  offset: 0, 0
+  index: -1
+ymj_bg_horse1
+  rotate: false
+  xy: 2, 191
+  size: 327, 193
+  orig: 327, 193
+  offset: 0, 0
+  index: -1
+ymj_bg_horse3
+  rotate: false
+  xy: 236, 172
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+ymj_bg_horse4
+  rotate: false
+  xy: 357, 100
+  size: 57, 54
+  orig: 57, 54
+  offset: 0, 0
+  index: -1

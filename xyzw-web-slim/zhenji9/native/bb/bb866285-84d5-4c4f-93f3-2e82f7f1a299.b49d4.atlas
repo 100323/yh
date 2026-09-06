@@ -1,0 +1,83 @@
+
+zhenji9_buff_jckz.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhenji9_buff_dig
+  rotate: false
+  xy: 615, 76
+  size: 144, 176
+  orig: 144, 176
+  offset: 0, 0
+  index: -1
+zhenji9_buff_huan
+  rotate: false
+  xy: 309, 130
+  size: 304, 122
+  orig: 304, 122
+  offset: 0, 0
+  index: -1
+zhenji9_buff_shuiz1
+  rotate: false
+  xy: 761, 175
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+zhenji9_buff_shuiz2
+  rotate: false
+  xy: 309, 8
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+zhenji9_buff_tuowei
+  rotate: false
+  xy: 2, 2
+  size: 305, 250
+  orig: 305, 250
+  offset: 0, 0
+  index: -1
+zhenji9_buff_x1
+  rotate: true
+  xy: 607, 15
+  size: 59, 155
+  orig: 59, 155
+  offset: 0, 0
+  index: -1
+zhenji9_buff_x2
+  rotate: true
+  xy: 764, 14
+  size: 60, 75
+  orig: 60, 75
+  offset: 0, 0
+  index: -1
+zhenji9_buff_x3
+  rotate: true
+  xy: 431, 6
+  size: 61, 123
+  orig: 61, 123
+  offset: 0, 0
+  index: -1
+zhenji9_buff_x4
+  rotate: false
+  xy: 761, 76
+  size: 60, 97
+  orig: 60, 97
+  offset: 0, 0
+  index: -1
+zhenji9_buff_x5
+  rotate: true
+  xy: 431, 69
+  size: 59, 174
+  orig: 59, 174
+  offset: 0, 0
+  index: -1
+zhenji9_buff_x6
+  rotate: false
+  xy: 823, 107
+  size: 55, 66
+  orig: 55, 66
+  offset: 0, 0
+  index: -1

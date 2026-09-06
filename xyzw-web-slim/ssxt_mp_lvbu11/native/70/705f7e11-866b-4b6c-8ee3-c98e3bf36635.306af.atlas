@@ -1,0 +1,90 @@
+
+ssxt_mp_lvbu11.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: true
+  xy: 416, 77
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: true
+  xy: 353, 152
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: true
+  xy: 232, 65
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_lvbu11_1
+  rotate: false
+  xy: 2, 250
+  size: 243, 228
+  orig: 243, 228
+  offset: 0, 0
+  index: -1
+mp_lvbu11_2
+  rotate: true
+  xy: 247, 235
+  size: 243, 228
+  orig: 243, 228
+  offset: 0, 0
+  index: -1
+mp_lvbu11_3
+  rotate: true
+  xy: 2, 5
+  size: 243, 228
+  orig: 243, 228
+  offset: 0, 0
+  index: -1
+mp_zuo_1
+  rotate: true
+  xy: 353, 33
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_2
+  rotate: false
+  xy: 232, 2
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 232, 148
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 247, 215
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: false
+  xy: 232, 211
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 306, 120
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

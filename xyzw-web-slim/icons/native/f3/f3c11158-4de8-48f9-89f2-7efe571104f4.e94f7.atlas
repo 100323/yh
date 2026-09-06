@@ -1,0 +1,104 @@
+
+zlys_plt.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zlys_plt_dai
+  rotate: false
+  xy: 857, 193
+  size: 138, 270
+  orig: 138, 270
+  offset: 0, 0
+  index: -1
+zlys_plt_dai2
+  rotate: true
+  xy: 585, 465
+  size: 114, 355
+  orig: 114, 355
+  offset: 0, 0
+  index: -1
+zlys_plt_dai3
+  rotate: true
+  xy: 925, 845
+  size: 75, 69
+  orig: 75, 69
+  offset: 0, 0
+  index: -1
+zlys_plt_dai4
+  rotate: true
+  xy: 585, 272
+  size: 191, 270
+  orig: 191, 270
+  offset: 0, 0
+  index: -1
+zlys_plt_xiangzi
+  rotate: false
+  xy: 315, 55
+  size: 233, 201
+  orig: 233, 201
+  offset: 0, 0
+  index: -1
+zlys_plt_xing1
+  rotate: false
+  xy: 925, 922
+  size: 92, 99
+  orig: 101, 109
+  offset: 5, 5
+  index: -1
+zlys_plt_xing4
+  rotate: true
+  xy: 550, 2
+  size: 55, 62
+  orig: 68, 75
+  offset: 7, 6
+  index: -1
+zlys_plt_xing5
+  rotate: true
+  xy: 315, 45
+  size: 8, 9
+  orig: 9, 10
+  offset: 1, 0
+  index: -1
+zlys_plt_xing6
+  rotate: true
+  xy: 614, 3
+  size: 54, 59
+  orig: 64, 71
+  offset: 5, 6
+  index: -1
+zlys_plt_yin
+  rotate: false
+  xy: 816, 38
+  size: 154, 153
+  orig: 154, 153
+  offset: 0, 0
+  index: -1
+zlys_plt_zhi
+  rotate: false
+  xy: 2, 24
+  size: 311, 232
+  orig: 311, 232
+  offset: 0, 0
+  index: -1
+zlys_plt_zhi2
+  rotate: false
+  xy: 2, 258
+  size: 581, 763
+  orig: 581, 763
+  offset: 0, 0
+  index: -1
+zlys_plt_zhi3
+  rotate: false
+  xy: 585, 581
+  size: 338, 440
+  orig: 338, 440
+  offset: 0, 0
+  index: -1
+zlys_plt_zt
+  rotate: false
+  xy: 550, 59
+  size: 264, 197
+  orig: 264, 197
+  offset: 0, 0
+  index: -1

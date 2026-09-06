@@ -1,0 +1,27 @@
+
+zytp_boss1_attack_hit.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 14, 97
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 104
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+zytp_boss1_attack1
+  rotate: true
+  xy: 2, 2
+  size: 93, 118
+  orig: 93, 118
+  offset: 0, 0
+  index: -1

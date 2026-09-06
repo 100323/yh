@@ -1,0 +1,27 @@
+
+effect_electric-up.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_boom1
+  rotate: false
+  xy: 2, 79
+  size: 526, 670
+  orig: 527, 671
+  offset: 1, 1
+  index: -1
+guai_star
+  rotate: false
+  xy: 177, 3
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+shanping
+  rotate: true
+  xy: 2, 2
+  size: 75, 173
+  orig: 75, 173
+  offset: 0, 0
+  index: -1

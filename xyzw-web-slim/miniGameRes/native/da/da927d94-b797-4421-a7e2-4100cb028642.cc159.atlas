@@ -1,0 +1,34 @@
+
+kpyx_daqiao_fish.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dq_img_haiguai1
+  rotate: false
+  xy: 248, 157
+  size: 244, 169
+  orig: 244, 169
+  offset: 0, 0
+  index: -1
+dq_img_haiguai2
+  rotate: false
+  xy: 2, 126
+  size: 244, 200
+  orig: 244, 200
+  offset: 0, 0
+  index: -1
+dq_img_haiguai3
+  rotate: false
+  xy: 248, 2
+  size: 244, 153
+  orig: 244, 153
+  offset: 0, 0
+  index: -1
+dq_img_haiguai4
+  rotate: false
+  xy: 2, 12
+  size: 244, 112
+  orig: 244, 112
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+jiaxu4_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 322, 42
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 168, 29
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+jiaxu4_skill_hit1
+  rotate: false
+  xy: 322, 140
+  size: 128, 109
+  orig: 128, 109
+  offset: 0, 0
+  index: -1
+jiaxu4_skill_hit2
+  rotate: true
+  xy: 168, 75
+  size: 174, 152
+  orig: 176, 152
+  offset: 0, 0
+  index: -1
+jiaxu4_skill_hit3
+  rotate: true
+  xy: 2, 2
+  size: 247, 164
+  orig: 247, 164
+  offset: 0, 0
+  index: -1

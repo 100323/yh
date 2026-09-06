@@ -1,0 +1,223 @@
+
+lvbu7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 70, 91
+  size: 39, 48
+  orig: 39, 48
+  offset: 0, 0
+  index: -1
+lvbu7_attack_e1
+  rotate: true
+  xy: 432, 26
+  size: 80, 74
+  orig: 80, 75
+  offset: 0, 1
+  index: -1
+lvbu7_attack_e2
+  rotate: true
+  xy: 407, 202
+  size: 97, 85
+  orig: 97, 85
+  offset: 0, 0
+  index: -1
+lvbu7_attack_e3
+  rotate: false
+  xy: 301, 22
+  size: 76, 74
+  orig: 78, 74
+  offset: 1, 0
+  index: -1
+lvbu8_body
+  rotate: true
+  xy: 218, 298
+  size: 198, 152
+  orig: 198, 152
+  offset: 0, 0
+  index: -1
+lvbu8_eye
+  rotate: true
+  xy: 114, 309
+  size: 5, 7
+  orig: 5, 7
+  offset: 0, 0
+  index: -1
+lvbu8_eye2
+  rotate: true
+  xy: 123, 309
+  size: 5, 7
+  orig: 5, 7
+  offset: 0, 0
+  index: -1
+lvbu8_footl
+  rotate: false
+  xy: 103, 22
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+lvbu8_footr
+  rotate: true
+  xy: 257, 53
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+lvbu8_glasses
+  rotate: false
+  xy: 257, 87
+  size: 42, 51
+  orig: 43, 51
+  offset: 1, 0
+  index: -1
+lvbu8_hair
+  rotate: false
+  xy: 2, 2
+  size: 66, 137
+  orig: 66, 137
+  offset: 0, 0
+  index: -1
+lvbu8_handl1
+  rotate: true
+  xy: 70, 51
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+lvbu8_handr
+  rotate: true
+  xy: 372, 301
+  size: 58, 59
+  orig: 58, 59
+  offset: 0, 0
+  index: -1
+lvbu8_shoulderr
+  rotate: false
+  xy: 114, 316
+  size: 101, 84
+  orig: 101, 84
+  offset: 0, 0
+  index: -1
+lvbu8_skill_effect
+  rotate: true
+  xy: 303, 188
+  size: 108, 102
+  orig: 108, 102
+  offset: 0, 0
+  index: -1
+lvbu8_skill_p1
+  rotate: true
+  xy: 432, 108
+  size: 92, 78
+  orig: 92, 78
+  offset: 0, 0
+  index: -1
+lvbu8_skill_p2
+  rotate: true
+  xy: 2, 287
+  size: 113, 110
+  orig: 113, 110
+  offset: 0, 0
+  index: -1
+lvbu8_smoke1
+  rotate: true
+  xy: 257, 140
+  size: 47, 44
+  orig: 47, 44
+  offset: 0, 0
+  index: -1
+lvbu8_tail
+  rotate: true
+  xy: 111, 44
+  size: 143, 53
+  orig: 143, 53
+  offset: 0, 0
+  index: -1
+lvbu8_weapon1
+  rotate: false
+  xy: 2, 402
+  size: 214, 94
+  orig: 235, 99
+  offset: 21, 2
+  index: -1
+lvbu8_weapon1_ba
+  rotate: true
+  xy: 463, 364
+  size: 66, 27
+  orig: 67, 27
+  offset: 0, 0
+  index: -1
+lvbu8_weapon1_effect1
+  rotate: true
+  xy: 463, 432
+  size: 64, 46
+  orig: 74, 53
+  offset: 3, 6
+  index: -1
+lvbu8_weapon1_effect2
+  rotate: false
+  xy: 433, 311
+  size: 68, 48
+  orig: 79, 58
+  offset: 4, 6
+  index: -1
+lvbu8_weapon1_lian1
+  rotate: false
+  xy: 303, 98
+  size: 127, 88
+  orig: 129, 88
+  offset: 2, 0
+  index: -1
+lvbu8_weapon1_lian2
+  rotate: true
+  xy: 166, 68
+  size: 119, 89
+  orig: 119, 89
+  offset: 0, 0
+  index: -1
+lvbu8_weapon1_lian3
+  rotate: true
+  xy: 372, 361
+  size: 135, 89
+  orig: 135, 89
+  offset: 0, 0
+  index: -1
+lvbu8_weapon2
+  rotate: true
+  xy: 114, 189
+  size: 107, 187
+  orig: 107, 187
+  offset: 0, 0
+  index: -1
+lvbu_eyebrow
+  rotate: true
+  xy: 255, 13
+  size: 38, 27
+  orig: 38, 27
+  offset: 0, 0
+  index: -1
+lvbu_hair
+  rotate: true
+  xy: 2, 141
+  size: 144, 107
+  orig: 144, 152
+  offset: 0, 45
+  index: -1
+lvbu_handr2
+  rotate: false
+  xy: 70, 14
+  size: 31, 35
+  orig: 31, 38
+  offset: 0, 3
+  index: -1
+lvbu_mouth
+  rotate: true
+  xy: 166, 2
+  size: 64, 87
+  orig: 64, 130
+  offset: 0, 43
+  index: -1

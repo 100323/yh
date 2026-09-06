@@ -1,0 +1,69 @@
+
+xsxjt_loading.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 331, 364
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_gaiguan2
+  rotate: false
+  xy: 2, 89
+  size: 291, 187
+  orig: 291, 187
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_mei
+  rotate: false
+  xy: 295, 109
+  size: 84, 62
+  orig: 84, 62
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_xiangzi
+  rotate: false
+  xy: 2, 278
+  size: 327, 214
+  orig: 327, 214
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_yc1
+  rotate: false
+  xy: 2, 2
+  size: 239, 85
+  orig: 239, 85
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_yc2
+  rotate: false
+  xy: 312, 50
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_yq
+  rotate: false
+  xy: 295, 173
+  size: 101, 99
+  orig: 101, 99
+  offset: 0, 0
+  index: -1
+xsxjt_cjbx_yz
+  rotate: true
+  xy: 243, 18
+  size: 69, 67
+  orig: 69, 67
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box2
+  rotate: false
+  xy: 331, 274
+  size: 102, 88
+  orig: 102, 102
+  offset: 0, 0
+  index: -1

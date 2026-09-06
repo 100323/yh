@@ -1,0 +1,69 @@
+
+cwxt26_axgp_he.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axgp_he_daizi
+  rotate: true
+  xy: 304, 94
+  size: 158, 289
+  orig: 158, 290
+  offset: 0, 1
+  index: -1
+axgp_he_g1
+  rotate: true
+  xy: 822, 87
+  size: 165, 168
+  orig: 165, 168
+  offset: 0, 0
+  index: -1
+axgp_he_g2
+  rotate: false
+  xy: 595, 2
+  size: 89, 86
+  orig: 89, 86
+  offset: 0, 0
+  index: -1
+axgp_he_g3
+  rotate: false
+  xy: 412, 3
+  size: 95, 89
+  orig: 95, 89
+  offset: 0, 0
+  index: -1
+axgp_he_g4
+  rotate: true
+  xy: 595, 90
+  size: 162, 225
+  orig: 162, 225
+  offset: 0, 0
+  index: -1
+axgp_he_g5
+  rotate: false
+  xy: 2, 2
+  size: 300, 250
+  orig: 300, 250
+  offset: 0, 0
+  index: -1
+axgp_he_qiu
+  rotate: true
+  xy: 304, 5
+  size: 87, 106
+  orig: 88, 106
+  offset: 1, 0
+  index: -1
+axgp_he_qiu2
+  rotate: true
+  xy: 509, 5
+  size: 87, 84
+  orig: 88, 86
+  offset: 1, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 686, 42
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

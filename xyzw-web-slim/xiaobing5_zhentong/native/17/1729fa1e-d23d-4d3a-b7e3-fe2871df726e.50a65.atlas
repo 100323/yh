@@ -1,0 +1,104 @@
+
+xiaobing5_zhentong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: true
+  xy: 143, 98
+  size: 47, 58
+  orig: 47, 58
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_jiaol
+  rotate: true
+  xy: 470, 166
+  size: 49, 35
+  orig: 49, 35
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_jiaor
+  rotate: true
+  xy: 420, 38
+  size: 47, 42
+  orig: 47, 42
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_ks
+  rotate: false
+  xy: 470, 217
+  size: 33, 87
+  orig: 33, 87
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_mao
+  rotate: false
+  xy: 2, 18
+  size: 139, 127
+  orig: 139, 127
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_shen
+  rotate: false
+  xy: 2, 258
+  size: 306, 227
+  orig: 306, 227
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_shoul
+  rotate: false
+  xy: 230, 91
+  size: 68, 86
+  orig: 68, 86
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_shour
+  rotate: false
+  xy: 230, 179
+  size: 73, 77
+  orig: 73, 77
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_tou
+  rotate: true
+  xy: 310, 306
+  size: 179, 168
+  orig: 179, 168
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_yan
+  rotate: true
+  xy: 367, 38
+  size: 47, 51
+  orig: 47, 51
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_zhen
+  rotate: true
+  xy: 231, 2
+  size: 83, 134
+  orig: 83, 134
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_zhentl
+  rotate: false
+  xy: 310, 87
+  size: 158, 217
+  orig: 158, 217
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_zhentr
+  rotate: true
+  xy: 2, 147
+  size: 109, 226
+  orig: 109, 226
+  offset: 0, 0
+  index: -1
+xiaobing5_zhenguan_zui
+  rotate: false
+  xy: 143, 4
+  size: 86, 85
+  orig: 86, 85
+  offset: 0, 0
+  index: -1

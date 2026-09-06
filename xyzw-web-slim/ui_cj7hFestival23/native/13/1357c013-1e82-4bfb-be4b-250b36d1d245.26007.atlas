@@ -1,0 +1,41 @@
+
+dntg26_cj_jiang.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_jiang1
+  rotate: true
+  xy: 450, 75
+  size: 22, 21
+  orig: 24, 23
+  offset: 1, 1
+  index: -1
+choujiang_jiang2
+  rotate: false
+  xy: 190, 26
+  size: 83, 71
+  orig: 85, 73
+  offset: 1, 1
+  index: -1
+choujiang_jiang3
+  rotate: true
+  xy: 355, 36
+  size: 61, 93
+  orig: 63, 95
+  offset: 1, 1
+  index: -1
+choujiang_jiang4
+  rotate: false
+  xy: 2, 2
+  size: 186, 95
+  orig: 186, 95
+  offset: 0, 0
+  index: -1
+jiang
+  rotate: false
+  xy: 275, 27
+  size: 78, 70
+  orig: 80, 72
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,48 @@
+
+taishici7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taishici7_skill_sjbd
+  rotate: true
+  xy: 2, 2
+  size: 274, 253
+  orig: 274, 253
+  offset: 0, 0
+  index: -1
+taishici7_skill_sjks1
+  rotate: true
+  xy: 348, 122
+  size: 159, 113
+  orig: 160, 113
+  offset: 0, 0
+  index: -1
+taishici7_skill_sjks2
+  rotate: true
+  xy: 257, 150
+  size: 126, 81
+  orig: 126, 81
+  offset: 0, 0
+  index: -1
+taishici7_skill_sjks3
+  rotate: false
+  xy: 257, 38
+  size: 83, 82
+  orig: 83, 82
+  offset: 0, 0
+  index: -1
+taishici7_skill_sjks4
+  rotate: false
+  xy: 2, 278
+  size: 344, 148
+  orig: 344, 148
+  offset: 0, 0
+  index: -1
+taishici7_skill_sjlz
+  rotate: true
+  xy: 348, 283
+  size: 143, 121
+  orig: 143, 121
+  offset: 0, 0
+  index: -1

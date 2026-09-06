@@ -1,0 +1,20 @@
+
+htt_light.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 9
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+htt_pingzi2_xing
+  rotate: true
+  xy: 62, 2
+  size: 65, 76
+  orig: 73, 84
+  offset: 4, 4
+  index: -1

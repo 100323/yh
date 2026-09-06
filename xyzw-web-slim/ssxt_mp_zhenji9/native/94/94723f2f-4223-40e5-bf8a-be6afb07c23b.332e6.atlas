@@ -1,0 +1,90 @@
+
+ssxt_mp_zhenji9.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: false
+  xy: 494, 276
+  size: 82, 71
+  orig: 82, 71
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: false
+  xy: 578, 266
+  size: 91, 81
+  orig: 91, 81
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: false
+  xy: 671, 266
+  size: 91, 81
+  orig: 91, 81
+  offset: 0, 0
+  index: -1
+mp_zhenji9_1
+  rotate: true
+  xy: 290, 12
+  size: 262, 286
+  orig: 262, 286
+  offset: 0, 0
+  index: -1
+mp_zhenji9_2
+  rotate: true
+  xy: 578, 2
+  size: 262, 286
+  orig: 262, 286
+  offset: 0, 0
+  index: -1
+mp_zhenji9_3
+  rotate: true
+  xy: 2, 15
+  size: 262, 286
+  orig: 262, 286
+  offset: 0, 0
+  index: -1
+mp_zuo_1
+  rotate: false
+  xy: 98, 279
+  size: 129, 68
+  orig: 130, 68
+  offset: 1, 0
+  index: -1
+mp_zuo_2
+  rotate: false
+  xy: 229, 279
+  size: 129, 68
+  orig: 130, 68
+  offset: 1, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 360, 279
+  size: 132, 68
+  orig: 132, 68
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 45, 327
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: true
+  xy: 2, 333
+  size: 14, 41
+  orig: 14, 41
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 67, 318
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

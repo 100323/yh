@@ -1,0 +1,55 @@
+
+zbz_yjbanner3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_newbanner3_bg
+  rotate: false
+  xy: 2, 188
+  size: 500, 294
+  orig: 500, 294
+  offset: 0, 0
+  index: -1
+zbz_newbanner3_effect1
+  rotate: false
+  xy: 301, 68
+  size: 22, 36
+  orig: 22, 36
+  offset: 0, 0
+  index: -1
+zbz_newbanner3_effect2
+  rotate: false
+  xy: 252, 106
+  size: 124, 80
+  orig: 124, 80
+  offset: 0, 0
+  index: -1
+zbz_newbanner3_effect3
+  rotate: true
+  xy: 252, 2
+  size: 102, 47
+  orig: 102, 47
+  offset: 0, 0
+  index: -1
+zbz_newbanner3_mask
+  rotate: true
+  xy: 378, 72
+  size: 114, 73
+  orig: 114, 73
+  offset: 0, 0
+  index: -1
+zbz_newbanner3_star
+  rotate: true
+  xy: 325, 96
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+zbz_newbanner_light3
+  rotate: false
+  xy: 2, 36
+  size: 248, 150
+  orig: 248, 150
+  offset: 0, 0
+  index: -1

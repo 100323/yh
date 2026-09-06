@@ -1,0 +1,139 @@
+
+znq25_qdy_ccjj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ccjj_banzi1
+  rotate: true
+  xy: 147, 202
+  size: 197, 90
+  orig: 197, 90
+  offset: 0, 0
+  index: -1
+ccjj_banzi2
+  rotate: false
+  xy: 324, 213
+  size: 167, 83
+  orig: 167, 83
+  offset: 0, 0
+  index: -1
+ccjj_banzi3
+  rotate: true
+  xy: 146, 65
+  size: 135, 88
+  orig: 135, 88
+  offset: 0, 0
+  index: -1
+ccjj_cao1
+  rotate: false
+  xy: 339, 76
+  size: 71, 52
+  orig: 71, 52
+  offset: 0, 0
+  index: -1
+ccjj_cao2
+  rotate: true
+  xy: 412, 54
+  size: 74, 48
+  orig: 74, 48
+  offset: 0, 0
+  index: -1
+ccjj_xb_jian
+  rotate: false
+  xy: 324, 130
+  size: 118, 81
+  orig: 118, 81
+  offset: 0, 0
+  index: -1
+ccjj_xb_shen
+  rotate: true
+  xy: 2, 95
+  size: 123, 112
+  orig: 124, 112
+  offset: 0, 0
+  index: -1
+ccjj_xb_shou
+  rotate: false
+  xy: 239, 363
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+ccjj_yy2
+  rotate: true
+  xy: 116, 94
+  size: 124, 28
+  orig: 124, 28
+  offset: 0, 0
+  index: -1
+ccjj_zgl_caoren
+  rotate: false
+  xy: 280, 298
+  size: 157, 196
+  orig: 157, 196
+  offset: 0, 0
+  index: -1
+ccjj_zgl_chuanh
+  rotate: true
+  xy: 239, 123
+  size: 173, 83
+  orig: 173, 83
+  offset: 0, 0
+  index: -1
+ccjj_zgl_chuanq
+  rotate: false
+  xy: 2, 401
+  size: 276, 93
+  orig: 276, 93
+  offset: 0, 0
+  index: -1
+ccjj_zgl_fd
+  rotate: false
+  xy: 444, 159
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+ccjj_zgl_huzi
+  rotate: true
+  xy: 129, 10
+  size: 53, 62
+  orig: 53, 62
+  offset: 0, 0
+  index: -1
+ccjj_zgl_jiang
+  rotate: true
+  xy: 2, 2
+  size: 91, 107
+  orig: 91, 107
+  offset: 0, 0
+  index: -1
+ccjj_zgl_mei
+  rotate: true
+  xy: 111, 58
+  size: 34, 16
+  orig: 35, 17
+  offset: 0, 1
+  index: -1
+ccjj_zgl_shanzi
+  rotate: true
+  xy: 236, 24
+  size: 97, 101
+  orig: 97, 101
+  offset: 0, 0
+  index: -1
+ccjj_zgl_shen
+  rotate: false
+  xy: 2, 220
+  size: 143, 179
+  orig: 143, 179
+  offset: 0, 0
+  index: -1
+ccjj_zgl_shou
+  rotate: false
+  xy: 239, 315
+  size: 32, 46
+  orig: 32, 47
+  offset: 0, 1
+  index: -1

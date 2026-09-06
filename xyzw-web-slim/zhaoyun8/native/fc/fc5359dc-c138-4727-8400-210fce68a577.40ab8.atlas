@@ -1,0 +1,132 @@
+
+zhaoyun8_skill_line.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 674, 627
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 3
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 207, 169
+  size: 16, 11
+  orig: 26, 26
+  offset: 8, 4
+  index: -1
+zhaoyun8_skill1_effecta1
+  rotate: true
+  xy: 767, 621
+  size: 385, 251
+  orig: 385, 251
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill1_effecta2
+  rotate: true
+  xy: 372, 11
+  size: 158, 77
+  orig: 158, 77
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill1_effecta3
+  rotate: true
+  xy: 88, 187
+  size: 147, 126
+  orig: 147, 126
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill1_effecta4
+  rotate: false
+  xy: 2, 788
+  size: 763, 218
+  orig: 763, 218
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill1_effecta5
+  rotate: true
+  xy: 729, 506
+  size: 113, 73
+  orig: 113, 73
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectlong1
+  rotate: true
+  xy: 2, 51
+  size: 283, 84
+  orig: 283, 84
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectq
+  rotate: true
+  xy: 456, 306
+  size: 313, 271
+  orig: 313, 271
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects1
+  rotate: false
+  xy: 88, 2
+  size: 282, 62
+  orig: 282, 62
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects2
+  rotate: false
+  xy: 456, 55
+  size: 288, 249
+  orig: 288, 249
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects3
+  rotate: false
+  xy: 207, 133
+  size: 140, 34
+  orig: 144, 36
+  offset: 2, 1
+  index: -1
+zhaoyun8_skill2_effects4
+  rotate: true
+  xy: 232, 171
+  size: 615, 222
+  orig: 615, 222
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effects5
+  rotate: true
+  xy: 2, 336
+  size: 450, 228
+  orig: 450, 228
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectsd1
+  rotate: false
+  xy: 88, 66
+  size: 117, 119
+  orig: 117, 119
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectsd2
+  rotate: false
+  xy: 456, 624
+  size: 216, 85
+  orig: 216, 85
+  offset: 0, 0
+  index: -1
+zhaoyun8_skill2_effectsd3
+  rotate: false
+  xy: 456, 711
+  size: 282, 75
+  orig: 282, 75
+  offset: 0, 0
+  index: -1

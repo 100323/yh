@@ -1,0 +1,55 @@
+
+tbhdqx_boss_ls_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_ls_jn_dao1
+  rotate: true
+  xy: 379, 158
+  size: 326, 238
+  orig: 326, 238
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_jn_dao2
+  rotate: true
+  xy: 619, 38
+  size: 223, 222
+  orig: 223, 222
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_jn_guang
+  rotate: false
+  xy: 117, 2
+  size: 43, 50
+  orig: 43, 50
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_jn_hxing
+  rotate: false
+  xy: 619, 263
+  size: 254, 221
+  orig: 254, 221
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_jn_shen
+  rotate: false
+  xy: 379, 35
+  size: 98, 121
+  orig: 98, 121
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_jn_tui
+  rotate: false
+  xy: 2, 6
+  size: 113, 46
+  orig: 113, 46
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_jn_xuanz
+  rotate: true
+  xy: 2, 54
+  size: 430, 375
+  orig: 430, 375
+  offset: 0, 0
+  index: -1

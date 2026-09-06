@@ -1,0 +1,132 @@
+
+penqianglv1_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1_dy01
+  rotate: true
+  xy: 868, 138
+  size: 372, 111
+  orig: 372, 111
+  offset: 0, 0
+  index: -1
+1_dy02
+  rotate: false
+  xy: 291, 75
+  size: 372, 119
+  orig: 372, 119
+  offset: 0, 0
+  index: -1
+1_guangzhu
+  rotate: true
+  xy: 665, 40
+  size: 154, 201
+  orig: 154, 201
+  offset: 0, 0
+  index: -1
+1_huomiao1
+  rotate: false
+  xy: 364, 2
+  size: 58, 71
+  orig: 58, 71
+  offset: 0, 0
+  index: -1
+1_huomiao10
+  rotate: true
+  xy: 488, 196
+  size: 314, 186
+  orig: 314, 186
+  offset: 0, 0
+  index: -1
+1_huomiao11
+  rotate: true
+  xy: 291, 196
+  size: 314, 195
+  orig: 314, 195
+  offset: 0, 0
+  index: -1
+1_huomiao2
+  rotate: false
+  xy: 424, 3
+  size: 83, 34
+  orig: 83, 34
+  offset: 0, 0
+  index: -1
+1_huomiao3
+  rotate: false
+  xy: 151, 2
+  size: 76, 14
+  orig: 76, 14
+  offset: 0, 0
+  index: -1
+1_huomiao4
+  rotate: false
+  xy: 541, 26
+  size: 43, 47
+  orig: 43, 47
+  offset: 0, 0
+  index: -1
+1_huomiao5
+  rotate: false
+  xy: 151, 18
+  size: 93, 39
+  orig: 93, 39
+  offset: 0, 0
+  index: -1
+1_huomiao6
+  rotate: false
+  xy: 424, 39
+  size: 87, 34
+  orig: 87, 34
+  offset: 0, 0
+  index: -1
+1_huomiao7
+  rotate: false
+  xy: 246, 3
+  size: 61, 24
+  orig: 61, 24
+  offset: 0, 0
+  index: -1
+1_huomiao8
+  rotate: false
+  xy: 2, 16
+  size: 147, 41
+  orig: 147, 41
+  offset: 0, 0
+  index: -1
+1_huomiao9
+  rotate: false
+  xy: 246, 29
+  size: 116, 28
+  orig: 116, 28
+  offset: 0, 0
+  index: -1
+1_xiaopenqiang
+  rotate: false
+  xy: 868, 8
+  size: 80, 128
+  orig: 80, 128
+  offset: 0, 0
+  index: -1
+1_yan1
+  rotate: true
+  xy: 676, 295
+  size: 215, 137
+  orig: 215, 137
+  offset: 0, 0
+  index: -1
+1_yan2
+  rotate: true
+  xy: 2, 59
+  size: 451, 287
+  orig: 451, 287
+  offset: 0, 0
+  index: -1
+bawanglong_guang
+  rotate: false
+  xy: 509, 7
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+guojia4_attack_loop.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia4_attack4
+  rotate: false
+  xy: 2, 2
+  size: 88, 17
+  orig: 88, 17
+  offset: 0, 0
+  index: -1
+guojia4_attack5
+  rotate: false
+  xy: 2, 21
+  size: 130, 133
+  orig: 134, 135
+  offset: 3, 1
+  index: -1

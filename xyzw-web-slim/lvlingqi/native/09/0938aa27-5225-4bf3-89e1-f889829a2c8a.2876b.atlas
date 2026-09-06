@@ -1,0 +1,27 @@
+
+lvlingqi_skill_hit.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 66, 67
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+lvlingqi_skill
+  rotate: false
+  xy: 2, 2
+  size: 62, 111
+  orig: 65, 113
+  offset: 2, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 66, 39
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

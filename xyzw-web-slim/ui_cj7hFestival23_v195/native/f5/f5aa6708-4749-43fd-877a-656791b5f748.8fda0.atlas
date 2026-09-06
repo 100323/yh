@@ -1,0 +1,62 @@
+
+sqhd25w6_cjyx_fashe.png
+size: 327,265
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_jinneg1
+  rotate: false
+  xy: 62, 37
+  size: 25, 37
+  orig: 25, 37
+  offset: 0, 0
+  index: -1
+choujiang_jinneg2
+  rotate: false
+  xy: 89, 44
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+choujiang_jinneg3
+  rotate: false
+  xy: 89, 58
+  size: 14, 16
+  orig: 14, 16
+  offset: 0, 0
+  index: -1
+choujiang_jinneg4
+  rotate: false
+  xy: 62, 2
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+choujiang_jinneg5
+  rotate: false
+  xy: 2, 76
+  size: 146, 187
+  orig: 146, 187
+  offset: 0, 0
+  index: -1
+choujiang_jinneg6
+  rotate: false
+  xy: 2, 9
+  size: 58, 65
+  orig: 58, 65
+  offset: 0, 0
+  index: -1
+choujiang_jinneg7
+  rotate: true
+  xy: 150, 133
+  size: 130, 175
+  orig: 130, 175
+  offset: 0, 0
+  index: -1
+choujiang_jinneg8
+  rotate: true
+  xy: 150, 7
+  size: 124, 153
+  orig: 124, 153
+  offset: 0, 0
+  index: -1

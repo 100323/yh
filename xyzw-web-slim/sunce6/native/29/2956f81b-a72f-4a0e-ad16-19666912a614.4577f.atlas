@@ -1,0 +1,34 @@
+
+sunce6_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 435, 84
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+sunce6_pg_zha1
+  rotate: true
+  xy: 2, 2
+  size: 181, 218
+  orig: 181, 218
+  offset: 0, 0
+  index: -1
+sunce6_pg_zha2
+  rotate: false
+  xy: 435, 115
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+sunce6_pg_zha3
+  rotate: false
+  xy: 222, 44
+  size: 211, 139
+  orig: 211, 139
+  offset: 0, 0
+  index: -1

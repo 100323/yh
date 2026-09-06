@@ -1,0 +1,20 @@
+
+cdzx26_cj_fashe.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fashe1
+  rotate: false
+  xy: 2, 2
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+fashe2
+  rotate: true
+  xy: 2, 57
+  size: 61, 216
+  orig: 61, 216
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+cwxt26_cw_hai_3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mei
+  rotate: false
+  xy: 6, 304
+  size: 39, 30
+  orig: 40, 31
+  offset: 1, 1
+  index: -1
+shou1
+  rotate: true
+  xy: 276, 204
+  size: 83, 91
+  orig: 83, 91
+  offset: 0, 0
+  index: -1
+shou2
+  rotate: false
+  xy: 373, 197
+  size: 119, 87
+  orig: 119, 87
+  offset: 0, 0
+  index: -1
+shou3
+  rotate: true
+  xy: 51, 303
+  size: 31, 37
+  orig: 31, 37
+  offset: 0, 0
+  index: -1
+shou4
+  rotate: true
+  xy: 397, 290
+  size: 44, 73
+  orig: 44, 73
+  offset: 0, 0
+  index: -1
+shou5
+  rotate: true
+  xy: 94, 296
+  size: 38, 88
+  orig: 38, 88
+  offset: 0, 0
+  index: -1
+shou6
+  rotate: true
+  xy: 246, 293
+  size: 41, 80
+  orig: 41, 80
+  offset: 0, 0
+  index: -1
+shou7
+  rotate: true
+  xy: 332, 293
+  size: 41, 59
+  orig: 41, 59
+  offset: 0, 0
+  index: -1
+shui
+  rotate: false
+  xy: 6, 210
+  size: 264, 77
+  orig: 264, 77
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 6, 30
+  size: 185, 174
+  orig: 185, 174
+  offset: 0, 0
+  index: -1
+tou2
+  rotate: false
+  xy: 197, 6
+  size: 194, 185
+  orig: 194, 185
+  offset: 0, 0
+  index: -1
+yan
+  rotate: false
+  xy: 188, 296
+  size: 52, 38
+  orig: 52, 38
+  offset: 0, 0
+  index: -1

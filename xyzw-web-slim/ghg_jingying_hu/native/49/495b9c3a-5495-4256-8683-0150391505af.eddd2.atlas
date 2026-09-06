@@ -1,0 +1,76 @@
+
+ghg_jingying_hu_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_jingying6_skilla1
+  rotate: false
+  xy: 325, 10
+  size: 76, 120
+  orig: 76, 120
+  offset: 0, 0
+  index: -1
+ghg_jingying6_skilla2
+  rotate: true
+  xy: 463, 459
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+ghg_jingying6_skilla3
+  rotate: false
+  xy: 207, 132
+  size: 215, 152
+  orig: 215, 152
+  offset: 0, 0
+  index: -1
+ghg_jingying6_skilla4
+  rotate: false
+  xy: 207, 286
+  size: 254, 224
+  orig: 254, 224
+  offset: 0, 0
+  index: -1
+ghg_jingying6_skilla5
+  rotate: true
+  xy: 424, 193
+  size: 91, 58
+  orig: 96, 61
+  offset: 2, 1
+  index: -1
+ghg_jingying6_skilla6
+  rotate: false
+  xy: 2, 234
+  size: 203, 276
+  orig: 203, 276
+  offset: 0, 0
+  index: -1
+ghg_jingying6_skilla8
+  rotate: true
+  xy: 193, 10
+  size: 120, 130
+  orig: 120, 130
+  offset: 0, 0
+  index: -1
+ghg_jingying6_skilla9
+  rotate: false
+  xy: 2, 2
+  size: 189, 230
+  orig: 195, 233
+  offset: 3, 1
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 424, 121
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 193, 223
+  size: 12, 9
+  orig: 18, 18
+  offset: 3, 3
+  index: -1

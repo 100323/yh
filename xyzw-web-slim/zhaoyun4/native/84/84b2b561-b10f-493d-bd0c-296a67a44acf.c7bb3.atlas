@@ -1,0 +1,20 @@
+
+zhaoyun4_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 228
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhaoyun4_attack
+  rotate: false
+  xy: 45, 2
+  size: 301, 267
+  orig: 301, 267
+  offset: 0, 0
+  index: -1

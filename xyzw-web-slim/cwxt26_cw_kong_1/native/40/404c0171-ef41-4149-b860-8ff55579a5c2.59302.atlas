@@ -1,0 +1,111 @@
+
+cwxt26_cw_kong_1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2-chi
+  rotate: false
+  xy: 309, 64
+  size: 69, 60
+  orig: 69, 60
+  offset: 0, 0
+  index: -1
+2-shen
+  rotate: false
+  xy: 157, 135
+  size: 148, 114
+  orig: 149, 115
+  offset: 0, 1
+  index: -1
+2-weij
+  rotate: false
+  xy: 311, 130
+  size: 109, 119
+  orig: 109, 137
+  offset: 0, 18
+  index: -1
+2-yanzl
+  rotate: false
+  xy: 96, 45
+  size: 54, 69
+  orig: 54, 70
+  offset: 0, 0
+  index: -1
+2-yanzr
+  rotate: true
+  xy: 6, 10
+  size: 38, 59
+  orig: 38, 59
+  offset: 0, 0
+  index: -1
+2-zui
+  rotate: false
+  xy: 6, 54
+  size: 84, 60
+  orig: 84, 60
+  offset: 0, 0
+  index: -1
+chil
+  rotate: true
+  xy: 426, 173
+  size: 76, 59
+  orig: 76, 59
+  offset: 0, 0
+  index: -1
+chir
+  rotate: false
+  xy: 291, 9
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1
+shen
+  rotate: false
+  xy: 6, 120
+  size: 145, 129
+  orig: 145, 129
+  offset: 0, 0
+  index: -1
+weijin
+  rotate: true
+  xy: 157, 28
+  size: 101, 128
+  orig: 102, 129
+  offset: 0, 0
+  index: -1
+yanl
+  rotate: true
+  xy: 384, 11
+  size: 54, 69
+  orig: 54, 70
+  offset: 0, 0
+  index: -1
+yanr
+  rotate: false
+  xy: 459, 6
+  size: 38, 59
+  orig: 38, 59
+  offset: 0, 0
+  index: -1
+yanzl
+  rotate: false
+  xy: 291, 105
+  size: 12, 24
+  orig: 14, 25
+  offset: 1, 0
+  index: -1
+yanzr
+  rotate: false
+  xy: 71, 24
+  size: 11, 24
+  orig: 12, 24
+  offset: 1, 0
+  index: -1
+zui
+  rotate: false
+  xy: 384, 71
+  size: 86, 53
+  orig: 86, 53
+  offset: 0, 0
+  index: -1

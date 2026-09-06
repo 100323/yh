@@ -1,0 +1,20 @@
+
+rxzq26_cj_cahngjing.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beijing
+  rotate: true
+  xy: 2, 2
+  size: 473, 905
+  orig: 473, 905
+  offset: 0, 0
+  index: -1
+beijing_guang1
+  rotate: true
+  xy: 909, 340
+  size: 135, 80
+  orig: 135, 80
+  offset: 0, 0
+  index: -1

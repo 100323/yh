@@ -1,0 +1,111 @@
+
+xjs26_medal_yin.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjs26_medal_3
+  rotate: false
+  xy: 2, 27
+  size: 192, 147
+  orig: 196, 149
+  offset: 1, 1
+  index: -1
+xjs26_medal_bo
+  rotate: false
+  xy: 2, 176
+  size: 278, 268
+  orig: 278, 268
+  offset: 0, 0
+  index: -1
+xjs26_medal_lh
+  rotate: true
+  xy: 282, 31
+  size: 197, 195
+  orig: 199, 197
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao1
+  rotate: false
+  xy: 248, 147
+  size: 19, 27
+  orig: 21, 29
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao2
+  rotate: true
+  xy: 248, 107
+  size: 12, 13
+  orig: 14, 15
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao3
+  rotate: true
+  xy: 237, 39
+  size: 22, 14
+  orig: 24, 16
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao4
+  rotate: false
+  xy: 248, 121
+  size: 18, 24
+  orig: 20, 26
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao5
+  rotate: false
+  xy: 268, 141
+  size: 4, 4
+  orig: 6, 6
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao6
+  rotate: true
+  xy: 263, 110
+  size: 9, 10
+  orig: 11, 12
+  offset: 1, 1
+  index: -1
+xjs26_medal_pao7
+  rotate: false
+  xy: 268, 135
+  size: 4, 4
+  orig: 6, 6
+  offset: 1, 1
+  index: -1
+xjs26_medal_xing3
+  rotate: false
+  xy: 196, 106
+  size: 50, 68
+  orig: 58, 75
+  offset: 4, 4
+  index: -1
+xjs26_medal_ying
+  rotate: true
+  xy: 282, 230
+  size: 214, 208
+  orig: 214, 208
+  offset: 0, 0
+  index: -1
+xjs26_medal_yu1
+  rotate: true
+  xy: 196, 44
+  size: 60, 39
+  orig: 60, 39
+  offset: 0, 0
+  index: -1
+xjs26_medal_yu2
+  rotate: false
+  xy: 237, 63
+  size: 38, 41
+  orig: 38, 41
+  offset: 0, 0
+  index: -1
+xjs26_medal_yu3
+  rotate: true
+  xy: 196, 2
+  size: 40, 39
+  orig: 40, 39
+  offset: 0, 0
+  index: -1

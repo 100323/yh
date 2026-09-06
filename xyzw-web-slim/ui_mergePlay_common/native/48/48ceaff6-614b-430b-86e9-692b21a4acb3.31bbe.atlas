@@ -1,0 +1,48 @@
+
+xsxjt_gyxb_luodiyan.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_luodiyan1
+  rotate: false
+  xy: 2, 23
+  size: 38, 39
+  orig: 40, 41
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_luodiyan2
+  rotate: false
+  xy: 25, 6
+  size: 21, 15
+  orig: 23, 20
+  offset: 1, 4
+  index: -1
+xsxjt_gyxb_luodiyan3
+  rotate: false
+  xy: 42, 36
+  size: 26, 26
+  orig: 31, 28
+  offset: 4, 1
+  index: -1
+xsxjt_gyxb_luodiyan4
+  rotate: true
+  xy: 70, 48
+  size: 14, 13
+  orig: 16, 15
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_luodiyan5
+  rotate: true
+  xy: 48, 10
+  size: 24, 22
+  orig: 26, 24
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_luodiyan6
+  rotate: false
+  xy: 2, 2
+  size: 21, 19
+  orig: 23, 21
+  offset: 1, 1
+  index: -1

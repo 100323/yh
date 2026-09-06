@@ -1,0 +1,167 @@
+
+pvpmap_bjd2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pvpmap_tsgz_miao
+  rotate: false
+  xy: 2, 193
+  size: 483, 317
+  orig: 483, 317
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_shui1
+  rotate: true
+  xy: 809, 195
+  size: 315, 194
+  orig: 315, 194
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_shui2
+  rotate: false
+  xy: 683, 72
+  size: 109, 52
+  orig: 109, 52
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_shui3
+  rotate: false
+  xy: 680, 12
+  size: 66, 58
+  orig: 66, 58
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_shui4
+  rotate: false
+  xy: 487, 282
+  size: 320, 228
+  orig: 320, 228
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_shuihua
+  rotate: false
+  xy: 794, 111
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh1
+  rotate: false
+  xy: 880, 64
+  size: 79, 39
+  orig: 79, 39
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh10
+  rotate: false
+  xy: 905, 105
+  size: 91, 88
+  orig: 91, 88
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh2
+  rotate: true
+  xy: 694, 126
+  size: 95, 112
+  orig: 95, 112
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh3
+  rotate: false
+  xy: 748, 29
+  size: 40, 41
+  orig: 40, 41
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh4
+  rotate: false
+  xy: 794, 68
+  size: 84, 39
+  orig: 84, 39
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh5
+  rotate: true
+  xy: 808, 109
+  size: 84, 95
+  orig: 84, 95
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh6
+  rotate: true
+  xy: 493, 141
+  size: 63, 196
+  orig: 63, 196
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh7
+  rotate: true
+  xy: 493, 74
+  size: 65, 188
+  orig: 65, 188
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh8
+  rotate: true
+  xy: 843, 20
+  size: 46, 35
+  orig: 46, 35
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yeh9
+  rotate: true
+  xy: 634, 11
+  size: 61, 44
+  orig: 61, 44
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yhc3
+  rotate: true
+  xy: 790, 16
+  size: 50, 51
+  orig: 58, 59
+  offset: 4, 4
+  index: -1
+pvpmap_tsgz_yun1
+  rotate: false
+  xy: 694, 223
+  size: 113, 57
+  orig: 113, 57
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yun2
+  rotate: false
+  xy: 487, 206
+  size: 205, 74
+  orig: 205, 74
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yun3
+  rotate: false
+  xy: 493, 13
+  size: 139, 59
+  orig: 139, 59
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yun4
+  rotate: true
+  xy: 2, 2
+  size: 189, 106
+  orig: 189, 106
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yunh1
+  rotate: false
+  xy: 110, 17
+  size: 227, 174
+  orig: 227, 174
+  offset: 0, 0
+  index: -1
+pvpmap_tsgz_yunh2
+  rotate: true
+  xy: 339, 17
+  size: 174, 152
+  orig: 174, 152
+  offset: 0, 0
+  index: -1

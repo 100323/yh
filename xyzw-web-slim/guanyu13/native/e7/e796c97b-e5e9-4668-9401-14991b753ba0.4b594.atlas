@@ -1,0 +1,118 @@
+
+guanyu13_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gy13-dz-d1
+  rotate: false
+  xy: 2, 7
+  size: 281, 83
+  orig: 281, 83
+  offset: 0, 0
+  index: -1
+gy13-dz-gy
+  rotate: false
+  xy: 588, 63
+  size: 223, 191
+  orig: 223, 191
+  offset: 0, 0
+  index: -1
+gy13-dz-jq1
+  rotate: false
+  xy: 814, 235
+  size: 195, 266
+  orig: 195, 266
+  offset: 0, 0
+  index: -1
+gy13-dz-s1
+  rotate: false
+  xy: 588, 256
+  size: 224, 245
+  orig: 224, 245
+  offset: 0, 0
+  index: -1
+gy13-dz-s2
+  rotate: false
+  xy: 245, 225
+  size: 341, 276
+  orig: 341, 276
+  offset: 0, 0
+  index: -1
+gy13-dz-s3
+  rotate: false
+  xy: 2, 92
+  size: 241, 409
+  orig: 241, 409
+  offset: 0, 0
+  index: -1
+gy13-dz-y1
+  rotate: false
+  xy: 476, 2
+  size: 104, 102
+  orig: 104, 102
+  offset: 0, 0
+  index: -1
+gy13-dz-y2
+  rotate: true
+  xy: 813, 18
+  size: 88, 158
+  orig: 88, 158
+  offset: 0, 0
+  index: -1
+gy13-dz-y3
+  rotate: false
+  xy: 813, 108
+  size: 184, 125
+  orig: 184, 125
+  offset: 0, 0
+  index: -1
+gy13-dz-y4
+  rotate: false
+  xy: 245, 106
+  size: 305, 117
+  orig: 305, 117
+  offset: 0, 0
+  index: -1
+gy13-dz-yw1
+  rotate: true
+  xy: 662, 4
+  size: 57, 61
+  orig: 57, 61
+  offset: 0, 0
+  index: -1
+gy13-dz-yw2
+  rotate: false
+  xy: 725, 9
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+gy13-dz-yw3
+  rotate: false
+  xy: 973, 8
+  size: 48, 46
+  orig: 48, 46
+  offset: 0, 0
+  index: -1
+gy13-dz-yw4
+  rotate: false
+  xy: 973, 56
+  size: 48, 50
+  orig: 48, 50
+  offset: 0, 0
+  index: -1
+gy13-dz-yw5
+  rotate: true
+  xy: 582, 11
+  size: 50, 78
+  orig: 50, 78
+  offset: 0, 0
+  index: -1
+gy13-j3
+  rotate: true
+  xy: 285, 5
+  size: 99, 189
+  orig: 101, 190
+  offset: 0, 1
+  index: -1

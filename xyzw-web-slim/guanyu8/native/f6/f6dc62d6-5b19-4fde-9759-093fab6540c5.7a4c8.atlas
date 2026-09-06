@@ -1,0 +1,76 @@
+
+guanyu8_skill_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu8_skill_sj
+  rotate: false
+  xy: 2, 93
+  size: 136, 161
+  orig: 136, 161
+  offset: 0, 0
+  index: -1
+simayi9_pg_dian
+  rotate: false
+  xy: 162, 116
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+simayi9_pg_guang
+  rotate: true
+  xy: 2, 18
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+simayi9_pg_xian
+  rotate: false
+  xy: 76, 33
+  size: 56, 58
+  orig: 56, 58
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan1
+  rotate: false
+  xy: 140, 204
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha1
+  rotate: true
+  xy: 76, 2
+  size: 29, 48
+  orig: 29, 48
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha2
+  rotate: true
+  xy: 126, 2
+  size: 29, 41
+  orig: 29, 41
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha3
+  rotate: true
+  xy: 134, 40
+  size: 51, 31
+  orig: 51, 31
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha4
+  rotate: true
+  xy: 140, 156
+  size: 46, 43
+  orig: 46, 43
+  offset: 0, 0
+  index: -1
+simayi9_pg_zha5
+  rotate: false
+  xy: 140, 113
+  size: 20, 41
+  orig: 20, 41
+  offset: 0, 0
+  index: -1

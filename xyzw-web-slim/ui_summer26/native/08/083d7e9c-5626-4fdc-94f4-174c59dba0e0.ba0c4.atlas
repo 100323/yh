@@ -1,0 +1,20 @@
+
+sqhd26_qmxrk.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd26_jiangbei
+  rotate: true
+  xy: 2, 2
+  size: 68, 142
+  orig: 69, 142
+  offset: 1, 0
+  index: -1
+sqhd26_shoubi
+  rotate: false
+  xy: 146, 11
+  size: 92, 59
+  orig: 92, 59
+  offset: 0, 0
+  index: -1

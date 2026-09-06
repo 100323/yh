@@ -1,0 +1,48 @@
+
+dwj23_boat1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dwj23_effect_water2
+  rotate: true
+  xy: 21, 178
+  size: 9, 51
+  orig: 9, 51
+  offset: 0, 0
+  index: -1
+dwj23_lz_chuan1
+  rotate: true
+  xy: 2, 2
+  size: 76, 236
+  orig: 76, 236
+  offset: 0, 0
+  index: -1
+dwj23_lz_jiang1
+  rotate: false
+  xy: 138, 151
+  size: 59, 36
+  orig: 59, 36
+  offset: 0, 0
+  index: -1
+dwj23_lz_jiang2_2
+  rotate: true
+  xy: 2, 180
+  size: 7, 17
+  orig: 7, 17
+  offset: 0, 0
+  index: -1
+dwj23_lz_ying
+  rotate: true
+  xy: 2, 80
+  size: 69, 194
+  orig: 69, 198
+  offset: 0, 4
+  index: -1
+dwjl23_effect_water1
+  rotate: false
+  xy: 74, 165
+  size: 62, 22
+  orig: 62, 22
+  offset: 0, 0
+  index: -1

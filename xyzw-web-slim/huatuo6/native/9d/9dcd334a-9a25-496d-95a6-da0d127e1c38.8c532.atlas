@@ -1,0 +1,20 @@
+
+huatuo6_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo6_pg_zidan1
+  rotate: false
+  xy: 2, 2
+  size: 280, 173
+  orig: 280, 173
+  offset: 0, 0
+  index: -1
+huatuo6_pg_zidan2
+  rotate: true
+  xy: 284, 155
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1

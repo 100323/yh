@@ -1,0 +1,83 @@
+
+ymj_jingying3_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 13
+  size: 11, 6
+  orig: 19, 19
+  offset: 7, 8
+  index: -1
+ymj_jingying3_skilla1
+  rotate: false
+  xy: 2, 112
+  size: 352, 50
+  orig: 352, 52
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skilla2
+  rotate: false
+  xy: 2, 336
+  size: 422, 173
+  orig: 422, 173
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skilla3
+  rotate: false
+  xy: 2, 164
+  size: 422, 170
+  orig: 422, 170
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skilla4
+  rotate: false
+  xy: 426, 169
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skillb1
+  rotate: true
+  xy: 194, 2
+  size: 108, 114
+  orig: 108, 114
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skillb2
+  rotate: true
+  xy: 310, 25
+  size: 85, 38
+  orig: 85, 38
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skillc1
+  rotate: true
+  xy: 426, 277
+  size: 232, 66
+  orig: 232, 66
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skillc2
+  rotate: false
+  xy: 356, 125
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skillc3
+  rotate: false
+  xy: 2, 21
+  size: 190, 89
+  orig: 190, 89
+  offset: 0, 0
+  index: -1
+ymj_jingying3_skillc4
+  rotate: true
+  xy: 426, 194
+  size: 81, 77
+  orig: 81, 77
+  offset: 0, 0
+  index: -1

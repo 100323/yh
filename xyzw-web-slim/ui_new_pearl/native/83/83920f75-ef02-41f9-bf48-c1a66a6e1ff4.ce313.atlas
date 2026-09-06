@@ -1,0 +1,20 @@
+
+yzxt_bg_2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yzxt_bg1
+  rotate: true
+  xy: 2, 2
+  size: 506, 406
+  orig: 506, 406
+  offset: 0, 0
+  index: -1
+yzxt_bk
+  rotate: true
+  xy: 410, 63
+  size: 445, 251
+  orig: 447, 270
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,384 @@
+
+zqhd24_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 976, 4
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 929, 403
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dai1
+  rotate: false
+  xy: 502, 126
+  size: 175, 55
+  orig: 176, 55
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dai2
+  rotate: false
+  xy: 713, 278
+  size: 159, 123
+  orig: 159, 123
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dai3
+  rotate: false
+  xy: 2, 347
+  size: 459, 163
+  orig: 459, 163
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dai4
+  rotate: false
+  xy: 951, 283
+  size: 52, 50
+  orig: 52, 50
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dai5
+  rotate: false
+  xy: 463, 357
+  size: 34, 44
+  orig: 34, 44
+  offset: 0, 0
+  index: -1
+zqhd24_banner_deng1
+  rotate: true
+  xy: 1000, 402
+  size: 17, 22
+  orig: 17, 22
+  offset: 0, 0
+  index: -1
+zqhd24_banner_deng2
+  rotate: true
+  xy: 1000, 383
+  size: 17, 22
+  orig: 17, 22
+  offset: 0, 0
+  index: -1
+zqhd24_banner_deng3
+  rotate: true
+  xy: 2, 2
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dian1
+  rotate: true
+  xy: 973, 137
+  size: 9, 7
+  orig: 9, 7
+  offset: 0, 0
+  index: -1
+zqhd24_banner_dian2
+  rotate: false
+  xy: 1017, 435
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+zqhd24_banner_eh
+  rotate: true
+  xy: 1001, 188
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+zqhd24_banner_gl1
+  rotate: true
+  xy: 2, 37
+  size: 71, 194
+  orig: 72, 195
+  offset: 0, 1
+  index: -1
+zqhd24_banner_gl2
+  rotate: true
+  xy: 198, 37
+  size: 71, 140
+  orig: 72, 140
+  offset: 0, 0
+  index: -1
+zqhd24_banner_guang1
+  rotate: false
+  xy: 713, 159
+  size: 123, 45
+  orig: 123, 45
+  offset: 0, 0
+  index: -1
+zqhd24_banner_guang2
+  rotate: false
+  xy: 713, 206
+  size: 156, 70
+  orig: 156, 70
+  offset: 0, 0
+  index: -1
+zqhd24_banner_hb
+  rotate: true
+  xy: 945, 2
+  size: 31, 29
+  orig: 31, 29
+  offset: 0, 0
+  index: -1
+zqhd24_banner_hz
+  rotate: false
+  xy: 463, 403
+  size: 464, 107
+  orig: 464, 107
+  offset: 0, 0
+  index: -1
+zqhd24_banner_mei
+  rotate: false
+  xy: 929, 421
+  size: 86, 19
+  orig: 86, 19
+  offset: 0, 0
+  index: -1
+zqhd24_banner_sb
+  rotate: true
+  xy: 604, 19
+  size: 105, 87
+  orig: 105, 87
+  offset: 0, 0
+  index: -1
+zqhd24_banner_sb2
+  rotate: false
+  xy: 903, 131
+  size: 48, 63
+  orig: 48, 63
+  offset: 0, 0
+  index: -1
+zqhd24_banner_shen
+  rotate: false
+  xy: 874, 285
+  size: 75, 116
+  orig: 75, 116
+  offset: 0, 0
+  index: -1
+zqhd24_banner_shu
+  rotate: false
+  xy: 2, 110
+  size: 326, 235
+  orig: 326, 235
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tf1
+  rotate: false
+  xy: 929, 442
+  size: 93, 68
+  orig: 93, 68
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tf2
+  rotate: true
+  xy: 399, 4
+  size: 39, 62
+  orig: 39, 62
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tf3
+  rotate: false
+  xy: 502, 183
+  size: 209, 218
+  orig: 209, 231
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tf4
+  rotate: true
+  xy: 340, 2
+  size: 41, 57
+  orig: 41, 57
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tou
+  rotate: false
+  xy: 330, 126
+  size: 170, 219
+  orig: 170, 219
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_er1
+  rotate: true
+  xy: 953, 148
+  size: 58, 46
+  orig: 59, 46
+  offset: 1, 0
+  index: -1
+zqhd24_banner_tu1_er2
+  rotate: false
+  xy: 838, 159
+  size: 63, 35
+  orig: 63, 35
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_mei
+  rotate: true
+  xy: 982, 99
+  size: 47, 27
+  orig: 48, 27
+  offset: 1, 0
+  index: -1
+zqhd24_banner_tu1_tou
+  rotate: true
+  xy: 798, 49
+  size: 108, 87
+  orig: 108, 87
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_yan1
+  rotate: false
+  xy: 297, 5
+  size: 39, 30
+  orig: 39, 30
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_yan2
+  rotate: true
+  xy: 865, 2
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_yz1
+  rotate: false
+  xy: 679, 172
+  size: 11, 9
+  orig: 12, 9
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_yz2
+  rotate: true
+  xy: 784, 49
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu1_zui
+  rotate: true
+  xy: 951, 335
+  size: 84, 47
+  orig: 85, 47
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_er1
+  rotate: false
+  xy: 887, 83
+  size: 53, 46
+  orig: 53, 46
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_er2
+  rotate: false
+  xy: 942, 83
+  size: 38, 46
+  orig: 39, 46
+  offset: 1, 0
+  index: -1
+zqhd24_banner_tu2_mei
+  rotate: false
+  xy: 887, 46
+  size: 61, 35
+  orig: 61, 35
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_shen
+  rotate: true
+  xy: 950, 208
+  size: 73, 53
+  orig: 73, 53
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_shou
+  rotate: false
+  xy: 784, 4
+  size: 79, 43
+  orig: 79, 43
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_tou
+  rotate: false
+  xy: 489, 22
+  size: 113, 102
+  orig: 113, 102
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_yan1
+  rotate: false
+  xy: 950, 35
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_yan2
+  rotate: false
+  xy: 907, 2
+  size: 36, 42
+  orig: 36, 43
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_yb
+  rotate: false
+  xy: 693, 61
+  size: 103, 96
+  orig: 104, 96
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_yz1
+  rotate: false
+  xy: 953, 131
+  size: 9, 15
+  orig: 9, 15
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_yz2
+  rotate: false
+  xy: 964, 131
+  size: 7, 15
+  orig: 7, 15
+  offset: 0, 0
+  index: -1
+zqhd24_banner_tu2_zui
+  rotate: false
+  xy: 693, 10
+  size: 89, 49
+  orig: 89, 49
+  offset: 0, 0
+  index: -1
+zqhd24_banner_yanwu
+  rotate: false
+  xy: 340, 45
+  size: 147, 79
+  orig: 147, 79
+  offset: 0, 0
+  index: -1
+zqhd24_banner_yun1
+  rotate: false
+  xy: 179, 8
+  size: 116, 27
+  orig: 116, 27
+  offset: 0, 0
+  index: -1
+zqhd24_banner_yun2
+  rotate: true
+  xy: 874, 196
+  size: 87, 74
+  orig: 87, 74
+  offset: 0, 0
+  index: -1
+zqhd24_banner_zhezhao
+  rotate: true
+  xy: 2, 16
+  size: 19, 175
+  orig: 19, 175
+  offset: 0, 0
+  index: -1

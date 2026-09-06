@@ -1,0 +1,34 @@
+
+guojia3_attack_line.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia3_skill1
+  rotate: true
+  xy: 204, 16
+  size: 34, 30
+  orig: 34, 30
+  offset: 0, 0
+  index: -1
+guojia3_skill3
+  rotate: false
+  xy: 2, 12
+  size: 66, 38
+  orig: 66, 38
+  offset: 0, 0
+  index: -1
+guojia3_skill4
+  rotate: false
+  xy: 70, 18
+  size: 132, 32
+  orig: 132, 32
+  offset: 0, 0
+  index: -1
+guojia_skill_knife1
+  rotate: false
+  xy: 70, 2
+  size: 89, 14
+  orig: 89, 14
+  offset: 0, 0
+  index: -1

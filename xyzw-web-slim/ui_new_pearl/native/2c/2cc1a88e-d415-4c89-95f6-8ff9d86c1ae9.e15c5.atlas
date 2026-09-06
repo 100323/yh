@@ -1,0 +1,48 @@
+
+yzxt_shengji.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yzxt_sj_g1
+  rotate: false
+  xy: 94, 2
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+yzxt_sj_g2
+  rotate: false
+  xy: 194, 100
+  size: 129, 132
+  orig: 129, 132
+  offset: 0, 0
+  index: -1
+yzxt_sj_g4
+  rotate: true
+  xy: 155, 10
+  size: 51, 122
+  orig: 51, 122
+  offset: 0, 0
+  index: -1
+yzxt_sj_g5
+  rotate: false
+  xy: 2, 14
+  size: 90, 218
+  orig: 90, 218
+  offset: 0, 0
+  index: -1
+yzxt_sj_g6
+  rotate: false
+  xy: 94, 63
+  size: 98, 169
+  orig: 98, 169
+  offset: 0, 0
+  index: -1
+yzxt_sj_jt
+  rotate: false
+  xy: 279, 48
+  size: 40, 50
+  orig: 40, 50
+  offset: 0, 0
+  index: -1

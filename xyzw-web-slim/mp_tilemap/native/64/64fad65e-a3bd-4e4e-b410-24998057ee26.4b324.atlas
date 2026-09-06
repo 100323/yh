@@ -1,0 +1,41 @@
+
+xsxjt_gyxb_daoju_4.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_cb_cai
+  rotate: false
+  xy: 78, 32
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_cb_shoul
+  rotate: true
+  xy: 106, 36
+  size: 24, 63
+  orig: 24, 63
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_cb_shour
+  rotate: true
+  xy: 78, 4
+  size: 26, 79
+  orig: 26, 81
+  offset: 0, 1
+  index: -1
+xsxjt_gyxb_cb_yan
+  rotate: true
+  xy: 2, 2
+  size: 58, 74
+  orig: 58, 74
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_cb_yz
+  rotate: false
+  xy: 159, 21
+  size: 8, 13
+  orig: 8, 13
+  offset: 0, 0
+  index: -1

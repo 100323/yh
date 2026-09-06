@@ -1,0 +1,20 @@
+
+cwxt26_hecheng_danzhu.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_hecheng_danzhu1
+  rotate: false
+  xy: 2, 2
+  size: 87, 86
+  orig: 91, 91
+  offset: 2, 3
+  index: -1
+cwxt26_hecheng_danzhu2
+  rotate: false
+  xy: 91, 9
+  size: 68, 79
+  orig: 73, 86
+  offset: 3, 4
+  index: -1

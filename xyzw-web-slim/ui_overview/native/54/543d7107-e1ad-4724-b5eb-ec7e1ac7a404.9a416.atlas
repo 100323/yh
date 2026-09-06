@@ -1,0 +1,69 @@
+
+xymb.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xymb_dian
+  rotate: false
+  xy: 47, 3
+  size: 42, 49
+  orig: 42, 49
+  offset: 0, 0
+  index: -1
+xymb_jiaol
+  rotate: false
+  xy: 2, 2
+  size: 43, 50
+  orig: 43, 50
+  offset: 0, 0
+  index: -1
+xymb_jiaor
+  rotate: true
+  xy: 91, 7
+  size: 45, 43
+  orig: 45, 43
+  offset: 0, 0
+  index: -1
+xymb_ma
+  rotate: false
+  xy: 217, 238
+  size: 134, 126
+  orig: 134, 126
+  offset: 0, 0
+  index: -1
+xymb_mh
+  rotate: true
+  xy: 217, 366
+  size: 137, 132
+  orig: 137, 132
+  offset: 0, 0
+  index: -1
+xymb_ying
+  rotate: true
+  xy: 351, 367
+  size: 136, 58
+  orig: 136, 58
+  offset: 0, 0
+  index: -1
+xymb_yu
+  rotate: false
+  xy: 2, 231
+  size: 213, 272
+  orig: 213, 272
+  offset: 0, 0
+  index: -1
+xymb_zi1
+  rotate: false
+  xy: 2, 54
+  size: 160, 175
+  orig: 161, 175
+  offset: 0, 0
+  index: -1
+xymb_zi2
+  rotate: false
+  xy: 164, 54
+  size: 160, 175
+  orig: 161, 175
+  offset: 0, 0
+  index: -1

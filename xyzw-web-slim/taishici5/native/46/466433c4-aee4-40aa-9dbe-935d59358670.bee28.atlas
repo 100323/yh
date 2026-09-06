@@ -1,0 +1,370 @@
+
+taishici5.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 75, 36
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 103, 39
+  size: 23, 29
+  orig: 23, 29
+  offset: 0, 0
+  index: -1
+taishici5_attack2
+  rotate: false
+  xy: 132, 5
+  size: 61, 32
+  orig: 61, 32
+  offset: 0, 0
+  index: -1
+taishici5_attack3
+  rotate: false
+  xy: 341, 89
+  size: 67, 36
+  orig: 67, 36
+  offset: 0, 0
+  index: -1
+taishici5_attack4
+  rotate: false
+  xy: 106, 116
+  size: 134, 46
+  orig: 141, 50
+  offset: 2, 2
+  index: -1
+taishici5_body
+  rotate: true
+  xy: 257, 189
+  size: 65, 45
+  orig: 65, 45
+  offset: 0, 0
+  index: -1
+taishici5_body2
+  rotate: false
+  xy: 182, 69
+  size: 75, 45
+  orig: 75, 45
+  offset: 0, 0
+  index: -1
+taishici5_eyebrown
+  rotate: false
+  xy: 414, 6
+  size: 28, 20
+  orig: 28, 20
+  offset: 0, 0
+  index: -1
+taishici5_fire1
+  rotate: false
+  xy: 343, 174
+  size: 27, 23
+  orig: 27, 23
+  offset: 0, 0
+  index: -1
+taishici5_fire2
+  rotate: false
+  xy: 165, 39
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+taishici5_fire3
+  rotate: false
+  xy: 383, 2
+  size: 29, 20
+  orig: 29, 20
+  offset: 0, 0
+  index: -1
+taishici5_fire4
+  rotate: true
+  xy: 444, 2
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+taishici5_footl
+  rotate: true
+  xy: 277, 173
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+taishici5_hair1
+  rotate: false
+  xy: 425, 141
+  size: 30, 34
+  orig: 30, 34
+  offset: 0, 0
+  index: -1
+taishici5_hair2
+  rotate: true
+  xy: 242, 125
+  size: 46, 72
+  orig: 46, 72
+  offset: 0, 0
+  index: -1
+taishici5_hair4
+  rotate: false
+  xy: 389, 42
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+taishici5_hait3
+  rotate: false
+  xy: 372, 174
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: -1
+taishici5_handl
+  rotate: true
+  xy: 315, 173
+  size: 24, 26
+  orig: 26, 26
+  offset: 2, 0
+  index: -1
+taishici5_handr
+  rotate: false
+  xy: 134, 39
+  size: 29, 23
+  orig: 31, 23
+  offset: 2, 0
+  index: -1
+taishici5_legl
+  rotate: true
+  xy: 344, 39
+  size: 48, 43
+  orig: 48, 43
+  offset: 0, 0
+  index: -1
+taishici5_legr
+  rotate: true
+  xy: 356, 203
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+taishici5_ling1
+  rotate: false
+  xy: 40, 164
+  size: 89, 90
+  orig: 89, 90
+  offset: 0, 0
+  index: -1
+taishici5_ling2
+  rotate: false
+  xy: 62, 2
+  size: 68, 32
+  orig: 68, 32
+  offset: 0, 0
+  index: -1
+taishici5_ling3
+  rotate: false
+  xy: 197, 173
+  size: 58, 81
+  orig: 58, 81
+  offset: 0, 0
+  index: -1
+taishici5_lun
+  rotate: true
+  xy: 40, 36
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+taishici5_lunz1
+  rotate: true
+  xy: 373, 24
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+taishici5_lunz2
+  rotate: false
+  xy: 393, 24
+  size: 14, 16
+  orig: 14, 16
+  offset: 0, 0
+  index: -1
+taishici5_lunz3
+  rotate: true
+  xy: 409, 28
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
+taishici5_skilla1
+  rotate: true
+  xy: 304, 199
+  size: 55, 50
+  orig: 56, 50
+  offset: 1, 0
+  index: -1
+taishici5_skilla2
+  rotate: false
+  xy: 287, 21
+  size: 55, 59
+  orig: 55, 60
+  offset: 0, 1
+  index: -1
+taishici5_skilla3
+  rotate: true
+  xy: 257, 173
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+taishici5_skilla4
+  rotate: false
+  xy: 40, 64
+  size: 64, 98
+  orig: 68, 102
+  offset: 2, 2
+  index: -1
+taishici5_skilla5
+  rotate: true
+  xy: 376, 127
+  size: 45, 47
+  orig: 45, 47
+  offset: 0, 0
+  index: -1
+taishici5_skilla6
+  rotate: true
+  xy: 195, 4
+  size: 63, 90
+  orig: 63, 90
+  offset: 0, 0
+  index: -1
+taishici5_tie1
+  rotate: true
+  xy: 324, 4
+  size: 15, 30
+  orig: 15, 30
+  offset: 0, 0
+  index: -1
+taishici5_tie2
+  rotate: true
+  xy: 344, 22
+  size: 15, 27
+  orig: 15, 27
+  offset: 0, 0
+  index: -1
+taishici5_tie3
+  rotate: true
+  xy: 445, 29
+  size: 21, 26
+  orig: 21, 26
+  offset: 0, 0
+  index: -1
+taishici5_tie4
+  rotate: false
+  xy: 356, 4
+  size: 25, 16
+  orig: 25, 16
+  offset: 0, 0
+  index: -1
+taishici5_weapon
+  rotate: true
+  xy: 2, 35
+  size: 219, 36
+  orig: 219, 36
+  offset: 0, 0
+  index: -1
+taishici5_weaponeffect
+  rotate: false
+  xy: 106, 64
+  size: 74, 50
+  orig: 74, 50
+  offset: 0, 0
+  index: -1
+taishici5_weaponeffect2
+  rotate: false
+  xy: 287, 4
+  size: 35, 15
+  orig: 37, 17
+  offset: 1, 1
+  index: -1
+taishici5_xiul
+  rotate: true
+  xy: 403, 215
+  size: 39, 57
+  orig: 39, 57
+  offset: 0, 0
+  index: -1
+taishici5_xiur
+  rotate: false
+  xy: 316, 127
+  size: 58, 44
+  orig: 58, 44
+  offset: 0, 0
+  index: -1
+taishici5_xiur2
+  rotate: false
+  xy: 404, 177
+  size: 48, 36
+  orig: 48, 36
+  offset: 0, 0
+  index: -1
+taishici5_zhuol
+  rotate: true
+  xy: 410, 90
+  size: 35, 34
+  orig: 35, 34
+  offset: 0, 0
+  index: -1
+taishici5_zhuor
+  rotate: true
+  xy: 436, 52
+  size: 36, 29
+  orig: 36, 29
+  offset: 0, 0
+  index: -1
+taishici_eye
+  rotate: false
+  xy: 131, 167
+  size: 4, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+taishici_eyewhite
+  rotate: true
+  xy: 296, 173
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+taishici_head
+  rotate: false
+  xy: 131, 174
+  size: 64, 80
+  orig: 64, 80
+  offset: 0, 0
+  index: -1
+taishici_mouth
+  rotate: true
+  xy: 2, 5
+  size: 28, 58
+  orig: 28, 58
+  offset: 0, 0
+  index: -1
+taishici_tail
+  rotate: false
+  xy: 259, 82
+  size: 80, 41
+  orig: 80, 41
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 429, 28
+  size: 14, 12
+  orig: 14, 14
+  offset: 0, 1
+  index: -1

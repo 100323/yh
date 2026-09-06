@@ -1,0 +1,13 @@
+
+jiangwei2_attack_line.png
+size: 256,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei2_skill7
+  rotate: false
+  xy: 2, 2
+  size: 198, 25
+  orig: 198, 25
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+gongsunzan4_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_gunattack2
+  rotate: true
+  xy: 121, 22
+  size: 60, 65
+  orig: 86, 86
+  offset: 13, 15
+  index: -1
+effect_gunattack3
+  rotate: true
+  xy: 256, 12
+  size: 70, 73
+  orig: 86, 86
+  offset: 11, 10
+  index: -1
+effect_gunattack4
+  rotate: true
+  xy: 331, 2
+  size: 80, 81
+  orig: 86, 86
+  offset: 5, 4
+  index: -1
+effect_gunattack5
+  rotate: false
+  xy: 2, 30
+  size: 56, 52
+  orig: 86, 86
+  offset: 12, 21
+  index: -1
+effect_gunattack6
+  rotate: true
+  xy: 60, 24
+  size: 58, 59
+  orig: 86, 86
+  offset: 12, 14
+  index: -1
+effect_gunattack7
+  rotate: true
+  xy: 188, 22
+  size: 60, 66
+  orig: 86, 86
+  offset: 11, 7
+  index: -1

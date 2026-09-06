@@ -1,0 +1,41 @@
+
+2024znq_yhfl_light.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bapxiang_tongyong guang_5
+  rotate: false
+  xy: 56, 60
+  size: 48, 52
+  orig: 48, 54
+  offset: 0, 1
+  index: -1
+bapxiang_tongyong guang_6
+  rotate: false
+  xy: 2, 56
+  size: 52, 56
+  orig: 54, 58
+  offset: 1, 1
+  index: -1
+bapxiang_tongyong guang_7
+  rotate: false
+  xy: 106, 73
+  size: 38, 39
+  orig: 40, 39
+  offset: 1, 0
+  index: -1
+bapxiang_tongyong guang_8
+  rotate: true
+  xy: 146, 89
+  size: 23, 21
+  orig: 25, 23
+  offset: 1, 1
+  index: -1
+gy
+  rotate: false
+  xy: 2, 2
+  size: 149, 52
+  orig: 149, 52
+  offset: 0, 0
+  index: -1

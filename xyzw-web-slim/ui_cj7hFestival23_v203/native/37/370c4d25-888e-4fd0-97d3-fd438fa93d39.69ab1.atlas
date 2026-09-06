@@ -1,0 +1,48 @@
+
+llqj25_cj_jiang.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_dajiang1
+  rotate: false
+  xy: 2, 19
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+choujiang_dajiang3
+  rotate: true
+  xy: 49, 8
+  size: 50, 75
+  orig: 50, 75
+  offset: 0, 0
+  index: -1
+choujiang_daocaoren1
+  rotate: false
+  xy: 126, 2
+  size: 51, 62
+  orig: 55, 64
+  offset: 0, 0
+  index: -1
+choujiang_texiao1
+  rotate: true
+  xy: 49, 60
+  size: 66, 58
+  orig: 66, 58
+  offset: 0, 0
+  index: -1
+choujiang_texiao2
+  rotate: true
+  xy: 2, 40
+  size: 86, 45
+  orig: 89, 48
+  offset: 2, 0
+  index: -1
+choujiang_texiao3
+  rotate: false
+  xy: 109, 66
+  size: 55, 60
+  orig: 59, 64
+  offset: 2, 2
+  index: -1

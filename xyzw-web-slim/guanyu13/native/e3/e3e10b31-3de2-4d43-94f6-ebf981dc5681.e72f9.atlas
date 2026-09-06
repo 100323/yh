@@ -1,0 +1,48 @@
+
+guanyu13_attack_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gy13-pg-gy1
+  rotate: false
+  xy: 2, 71
+  size: 279, 281
+  orig: 279, 281
+  offset: 0, 0
+  index: -1
+gy13-pg-j1
+  rotate: true
+  xy: 323, 183
+  size: 225, 105
+  orig: 225, 105
+  offset: 0, 0
+  index: -1
+gy13-pg-j2
+  rotate: false
+  xy: 2, 354
+  size: 319, 54
+  orig: 319, 54
+  offset: 0, 0
+  index: -1
+gy13-pg-y1
+  rotate: false
+  xy: 85, 14
+  size: 71, 55
+  orig: 71, 55
+  offset: 0, 0
+  index: -1
+gy13-pg-y2
+  rotate: false
+  xy: 2, 2
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: -1
+gy13-pg-y3
+  rotate: true
+  xy: 283, 51
+  size: 130, 67
+  orig: 131, 67
+  offset: 0, 0
+  index: -1

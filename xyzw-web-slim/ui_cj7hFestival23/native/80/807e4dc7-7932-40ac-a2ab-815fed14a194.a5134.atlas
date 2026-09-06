@@ -1,0 +1,76 @@
+
+sqhd26_w2_cj_btn.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taizi_di
+  rotate: true
+  xy: 283, 142
+  size: 103, 39
+  orig: 104, 39
+  offset: 1, 0
+  index: -1
+taizi_dizuo
+  rotate: true
+  xy: 2, 74
+  size: 171, 73
+  orig: 171, 73
+  offset: 0, 0
+  index: -1
+taizi_gaizi_l
+  rotate: true
+  xy: 203, 16
+  size: 113, 87
+  orig: 113, 87
+  offset: 0, 0
+  index: -1
+taizi_gaizi_r
+  rotate: true
+  xy: 194, 131
+  size: 114, 87
+  orig: 114, 87
+  offset: 0, 0
+  index: -1
+taizi_tanghuangdizuo_l
+  rotate: false
+  xy: 146, 78
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+taizi_tanghuangdizuo_r
+  rotate: true
+  xy: 292, 85
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+taizi_tanhuang_l
+  rotate: true
+  xy: 112, 6
+  size: 66, 54
+  orig: 66, 54
+  offset: 0, 0
+  index: -1
+taizi_tanhuang_r
+  rotate: false
+  xy: 77, 74
+  size: 67, 53
+  orig: 67, 53
+  offset: 0, 0
+  index: -1
+taizi_zuqiu
+  rotate: false
+  xy: 77, 129
+  size: 115, 116
+  orig: 115, 116
+  offset: 0, 0
+  index: -1
+taizi_zuqiu_yingzi
+  rotate: false
+  xy: 2, 2
+  size: 108, 70
+  orig: 110, 70
+  offset: 1, 0
+  index: -1

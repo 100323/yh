@@ -1,0 +1,160 @@
+
+sdlb_huoche.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+boxkangyu_guang
+  rotate: true
+  xy: 320, 272
+  size: 424, 226
+  orig: 424, 257
+  offset: 0, 31
+  index: -1
+boxkangyu_guang1
+  rotate: false
+  xy: 2, 698
+  size: 606, 324
+  orig: 606, 368
+  offset: 0, 44
+  index: -1
+boxkangyu_guang2
+  rotate: true
+  xy: 610, 598
+  size: 424, 226
+  orig: 424, 257
+  offset: 0, 31
+  index: -1
+boxkangyu_guang3
+  rotate: true
+  xy: 548, 172
+  size: 424, 226
+  orig: 424, 257
+  offset: 0, 31
+  index: -1
+boxkangyu_guang4
+  rotate: true
+  xy: 776, 172
+  size: 424, 226
+  orig: 424, 257
+  offset: 0, 31
+  index: -1
+boxkangyu_yuan
+  rotate: false
+  xy: 583, 94
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+huoche_sdlb_lb1
+  rotate: false
+  xy: 2, 160
+  size: 210, 186
+  orig: 210, 187
+  offset: 0, 1
+  index: -1
+huoche_sdlb_lb2
+  rotate: false
+  xy: 838, 852
+  size: 134, 170
+  orig: 134, 170
+  offset: 0, 0
+  index: -1
+huoche_sdlb_lb3
+  rotate: true
+  xy: 285, 30
+  size: 125, 162
+  orig: 125, 162
+  offset: 0, 0
+  index: -1
+huoche_sdlb_lb4
+  rotate: true
+  xy: 310, 157
+  size: 113, 167
+  orig: 113, 167
+  offset: 0, 0
+  index: -1
+huoche_sdlb_shen
+  rotate: false
+  xy: 2, 348
+  size: 316, 348
+  orig: 316, 348
+  offset: 0, 0
+  index: -1
+huoche_sdlb_shoul
+  rotate: false
+  xy: 2, 2
+  size: 140, 156
+  orig: 140, 156
+  offset: 0, 0
+  index: -1
+huoche_sdlb_shour
+  rotate: false
+  xy: 449, 21
+  size: 132, 134
+  orig: 132, 134
+  offset: 0, 0
+  index: -1
+huoche_sdlb_syc
+  rotate: false
+  xy: 144, 19
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1
+huoche_sdlb_tf
+  rotate: true
+  xy: 974, 971
+  size: 51, 39
+  orig: 51, 39
+  offset: 0, 0
+  index: -1
+huoche_sdlb_tf1
+  rotate: true
+  xy: 548, 630
+  size: 66, 42
+  orig: 66, 42
+  offset: 0, 0
+  index: -1
+huoche_sdlb_tf2
+  rotate: false
+  xy: 214, 269
+  size: 94, 77
+  orig: 94, 77
+  offset: 0, 0
+  index: -1
+huoche_sdlb_tf3
+  rotate: false
+  xy: 214, 172
+  size: 74, 95
+  orig: 74, 95
+  offset: 0, 0
+  index: -1
+huoche_sdlb_xin
+  rotate: false
+  xy: 479, 219
+  size: 49, 51
+  orig: 49, 51
+  offset: 0, 0
+  index: -1
+huoche_sdlb_xing
+  rotate: true
+  xy: 838, 606
+  size: 83, 112
+  orig: 83, 112
+  offset: 0, 0
+  index: -1
+huoche_sdlb_zui
+  rotate: false
+  xy: 838, 691
+  size: 132, 159
+  orig: 132, 159
+  offset: 0, 0
+  index: -1
+kong
+  rotate: false
+  xy: 144, 16
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1

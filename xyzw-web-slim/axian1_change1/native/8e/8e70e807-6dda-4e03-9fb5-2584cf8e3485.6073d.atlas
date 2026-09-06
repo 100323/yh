@@ -1,0 +1,181 @@
+
+axian1_change1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: false
+  xy: 9, 400
+  size: 22, 8
+  orig: 22, 8
+  offset: 0, 0
+  index: -1
+axian_eyewhitel
+  rotate: true
+  xy: 162, 385
+  size: 23, 28
+  orig: 23, 28
+  offset: 0, 0
+  index: -1
+axian_eyewhiter
+  rotate: true
+  xy: 105, 390
+  size: 18, 29
+  orig: 18, 29
+  offset: 0, 0
+  index: -1
+axian_nose
+  rotate: true
+  xy: 136, 389
+  size: 19, 24
+  orig: 19, 24
+  offset: 0, 0
+  index: -1
+axian_redl
+  rotate: false
+  xy: 33, 396
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1
+axian_redr
+  rotate: false
+  xy: 50, 396
+  size: 18, 12
+  orig: 18, 12
+  offset: 0, 0
+  index: -1
+axjx_sh_arml
+  rotate: true
+  xy: 296, 247
+  size: 71, 122
+  orig: 71, 122
+  offset: 0, 0
+  index: -1
+axjx_sh_armr
+  rotate: true
+  xy: 109, 259
+  size: 59, 185
+  orig: 59, 185
+  offset: 0, 0
+  index: -1
+axjx_sh_body
+  rotate: true
+  xy: 2, 73
+  size: 110, 117
+  orig: 110, 117
+  offset: 0, 0
+  index: -1
+axjx_sh_eye
+  rotate: true
+  xy: 2, 404
+  size: 4, 5
+  orig: 4, 5
+  offset: 0, 0
+  index: -1
+axjx_sh_fingerl
+  rotate: true
+  xy: 192, 385
+  size: 23, 34
+  orig: 23, 45
+  offset: 0, 0
+  index: -1
+axjx_sh_hair
+  rotate: false
+  xy: 414, 332
+  size: 90, 76
+  orig: 90, 76
+  offset: 0, 0
+  index: -1
+axjx_sh_hair2
+  rotate: true
+  xy: 228, 382
+  size: 26, 35
+  orig: 26, 35
+  offset: 0, 0
+  index: -1
+axjx_sh_handl
+  rotate: true
+  xy: 304, 370
+  size: 38, 60
+  orig: 38, 60
+  offset: 0, 0
+  index: -1
+axjx_sh_hat
+  rotate: true
+  xy: 420, 196
+  size: 134, 78
+  orig: 134, 78
+  offset: 0, 0
+  index: -1
+axjx_sh_head
+  rotate: false
+  xy: 205, 150
+  size: 109, 95
+  orig: 109, 95
+  offset: 0, 0
+  index: -1
+axjx_sh_hem
+  rotate: true
+  xy: 121, 2
+  size: 146, 182
+  orig: 146, 182
+  offset: 0, 0
+  index: -1
+axjx_sh_hip
+  rotate: false
+  xy: 2, 277
+  size: 105, 58
+  orig: 105, 58
+  offset: 0, 0
+  index: -1
+axjx_sh_leg
+  rotate: true
+  xy: 2, 337
+  size: 46, 178
+  orig: 46, 178
+  offset: 0, 0
+  index: -1
+axjx_sh_mouth
+  rotate: false
+  xy: 70, 392
+  size: 33, 16
+  orig: 33, 16
+  offset: 0, 0
+  index: -1
+axjx_sh_neck
+  rotate: true
+  xy: 265, 379
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+axjx_sh_scarf
+  rotate: true
+  xy: 182, 320
+  size: 47, 213
+  orig: 47, 213
+  offset: 0, 0
+  index: -1
+axjx_sh_scarf2
+  rotate: true
+  xy: 2, 185
+  size: 72, 201
+  orig: 72, 201
+  offset: 0, 0
+  index: -1
+axjx_sh_tie
+  rotate: false
+  xy: 366, 369
+  size: 46, 39
+  orig: 46, 39
+  offset: 0, 0
+  index: -1
+axwq_w01
+  rotate: false
+  xy: 316, 117
+  size: 100, 128
+  orig: 160, 160
+  offset: 30, 16
+  index: -1

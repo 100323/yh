@@ -1,0 +1,20 @@
+
+sdyl_zfsd_juanzhou2.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_zhoufu_tc1
+  rotate: false
+  xy: 2, 2
+  size: 458, 70
+  orig: 458, 70
+  offset: 0, 0
+  index: -1
+sdyl_zhoufu_tc2
+  rotate: false
+  xy: 462, 2
+  size: 458, 70
+  orig: 458, 70
+  offset: 0, 0
+  index: -1

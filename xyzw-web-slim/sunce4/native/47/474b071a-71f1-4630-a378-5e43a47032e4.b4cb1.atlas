@@ -1,0 +1,76 @@
+
+sunce4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: true
+  xy: 159, 166
+  size: 82, 44
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 159, 138
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+sunce4_hit_fire1
+  rotate: false
+  xy: 351, 311
+  size: 134, 59
+  orig: 134, 59
+  offset: 0, 0
+  index: -1
+sunce4_hit_fire2
+  rotate: false
+  xy: 351, 261
+  size: 119, 48
+  orig: 119, 48
+  offset: 0, 0
+  index: -1
+sunce4_hit_fire3
+  rotate: true
+  xy: 120, 139
+  size: 109, 37
+  orig: 109, 37
+  offset: 0, 0
+  index: -1
+sunce4_hit_fire4
+  rotate: true
+  xy: 2, 2
+  size: 132, 229
+  orig: 132, 229
+  offset: 0, 0
+  index: -1
+sunce4_hit_fire5
+  rotate: false
+  xy: 2, 136
+  size: 116, 234
+  orig: 116, 234
+  offset: 0, 0
+  index: -1
+sunce4_hit_fire6
+  rotate: true
+  xy: 120, 250
+  size: 120, 229
+  orig: 120, 229
+  offset: 0, 0
+  index: -1
+sunce4_hit_fist
+  rotate: false
+  xy: 233, 140
+  size: 89, 108
+  orig: 89, 108
+  offset: 0, 0
+  index: -1
+sunce4_hit_light
+  rotate: true
+  xy: 324, 54
+  size: 194, 82
+  orig: 194, 82
+  offset: 0, 0
+  index: -1

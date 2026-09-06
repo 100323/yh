@@ -1,0 +1,76 @@
+
+kpyx_hxys_water.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shui1
+  rotate: false
+  xy: 94, 69
+  size: 24, 16
+  orig: 24, 16
+  offset: 0, 0
+  index: -1
+shui2
+  rotate: true
+  xy: 69, 65
+  size: 20, 23
+  orig: 20, 23
+  offset: 0, 0
+  index: -1
+shui3
+  rotate: true
+  xy: 117, 6
+  size: 31, 55
+  orig: 31, 55
+  offset: 0, 0
+  index: -1
+shui4
+  rotate: true
+  xy: 2, 2
+  size: 58, 92
+  orig: 58, 92
+  offset: 0, 0
+  index: -1
+shui5
+  rotate: false
+  xy: 122, 145
+  size: 78, 92
+  orig: 78, 92
+  offset: 0, 0
+  index: -1
+shui6
+  rotate: true
+  xy: 2, 62
+  size: 74, 65
+  orig: 74, 65
+  offset: 0, 0
+  index: -1
+shui7
+  rotate: true
+  xy: 122, 39
+  size: 104, 74
+  orig: 104, 74
+  offset: 0, 0
+  index: -1
+shui8
+  rotate: true
+  xy: 96, 30
+  size: 37, 19
+  orig: 37, 19
+  offset: 0, 0
+  index: -1
+xyx_img_xingxing
+  rotate: false
+  xy: 69, 87
+  size: 40, 49
+  orig: 40, 49
+  offset: 0, 0
+  index: -1
+xyx_img_yan
+  rotate: false
+  xy: 2, 138
+  size: 118, 99
+  orig: 118, 99
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,209 @@
+
+mdcg26_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: true
+  xy: 983, 394
+  size: 51, 32
+  orig: 51, 32
+  offset: 0, 0
+  index: -1
+js_dtui
+  rotate: true
+  xy: 878, 71
+  size: 79, 56
+  orig: 79, 56
+  offset: 0, 0
+  index: -1
+js_huzi
+  rotate: false
+  xy: 496, 173
+  size: 167, 159
+  orig: 167, 161
+  offset: 0, 0
+  index: -1
+js_jiao
+  rotate: false
+  xy: 983, 352
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+js_jjl
+  rotate: false
+  xy: 795, 242
+  size: 150, 105
+  orig: 150, 105
+  offset: 0, 0
+  index: -1
+js_mei
+  rotate: false
+  xy: 936, 65
+  size: 40, 32
+  orig: 40, 32
+  offset: 0, 0
+  index: -1
+js_pifeng
+  rotate: false
+  xy: 790, 349
+  size: 191, 159
+  orig: 191, 159
+  offset: 0, 0
+  index: -1
+js_qunzi
+  rotate: false
+  xy: 795, 152
+  size: 140, 88
+  orig: 140, 88
+  offset: 0, 0
+  index: -1
+js_sbl
+  rotate: false
+  xy: 783, 66
+  size: 93, 84
+  orig: 93, 84
+  offset: 0, 0
+  index: -1
+js_shenti
+  rotate: false
+  xy: 302, 126
+  size: 192, 247
+  orig: 192, 247
+  offset: 0, 0
+  index: -1
+js_suibu
+  rotate: false
+  xy: 2, 2
+  size: 54, 21
+  orig: 54, 21
+  offset: 0, 0
+  index: -1
+js_toujin
+  rotate: false
+  xy: 496, 52
+  size: 120, 119
+  orig: 120, 119
+  offset: 0, 0
+  index: -1
+js_wuqi2
+  rotate: true
+  xy: 2, 375
+  size: 133, 521
+  orig: 133, 521
+  offset: 0, 0
+  index: -1
+js_yan
+  rotate: false
+  xy: 978, 64
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+js_yang
+  rotate: true
+  xy: 302, 21
+  size: 103, 163
+  orig: 103, 163
+  offset: 0, 0
+  index: -1
+js_yaod
+  rotate: false
+  xy: 768, 19
+  size: 56, 45
+  orig: 56, 45
+  offset: 0, 0
+  index: -1
+js_yaods
+  rotate: true
+  xy: 937, 168
+  size: 72, 71
+  orig: 72, 75
+  offset: 0, 4
+  index: -1
+ma_erl
+  rotate: false
+  xy: 983, 447
+  size: 36, 61
+  orig: 36, 61
+  offset: 0, 0
+  index: -1
+ma_err
+  rotate: false
+  xy: 467, 78
+  size: 27, 46
+  orig: 27, 46
+  offset: 0, 0
+  index: -1
+ma_htuil
+  rotate: false
+  xy: 947, 266
+  size: 49, 81
+  orig: 49, 81
+  offset: 0, 0
+  index: -1
+ma_htuir
+  rotate: true
+  xy: 690, 23
+  size: 66, 76
+  orig: 66, 76
+  offset: 0, 0
+  index: -1
+ma_qtuil
+  rotate: false
+  xy: 690, 91
+  size: 91, 95
+  orig: 91, 95
+  offset: 0, 0
+  index: -1
+ma_qtuir
+  rotate: false
+  xy: 937, 99
+  size: 72, 67
+  orig: 72, 67
+  offset: 0, 0
+  index: -1
+ma_shen
+  rotate: false
+  xy: 2, 25
+  size: 298, 348
+  orig: 298, 351
+  offset: 0, 3
+  index: -1
+ma_tf
+  rotate: true
+  xy: 525, 334
+  size: 174, 263
+  orig: 175, 263
+  offset: 1, 0
+  index: -1
+ma_wei
+  rotate: false
+  xy: 618, 60
+  size: 70, 111
+  orig: 70, 111
+  offset: 0, 0
+  index: -1
+ma_yan
+  rotate: false
+  xy: 826, 20
+  size: 49, 44
+  orig: 49, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 496, 357
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+yueliang
+  rotate: true
+  xy: 665, 188
+  size: 144, 128
+  orig: 144, 128
+  offset: 0, 0
+  index: -1

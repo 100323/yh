@@ -1,0 +1,83 @@
+
+10750.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: false
+  xy: 217, 254
+  size: 71, 96
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 2, 149
+  size: 213, 269
+  orig: 213, 269
+  offset: 0, 0
+  index: -1
+tui1
+  rotate: true
+  xy: 194, 11
+  size: 48, 142
+  orig: 58, 142
+  offset: 5, 0
+  index: -1
+tui2
+  rotate: true
+  xy: 194, 11
+  size: 48, 142
+  orig: 58, 142
+  offset: 5, 0
+  index: -1
+yanhei
+  rotate: true
+  xy: 217, 238
+  size: 14, 13
+  orig: 16, 15
+  offset: 1, 1
+  index: -1
+yanjing
+  rotate: false
+  xy: 294, 273
+  size: 73, 77
+  orig: 75, 79
+  offset: 1, 1
+  index: -1
+yanjing2
+  rotate: false
+  xy: 319, 357
+  size: 63, 61
+  orig: 63, 61
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: true
+  xy: 290, 232
+  size: 39, 49
+  orig: 39, 49
+  offset: 0, 0
+  index: -1
+yuqi1
+  rotate: false
+  xy: 217, 352
+  size: 100, 66
+  orig: 102, 68
+  offset: 1, 1
+  index: -1
+yuqi2
+  rotate: true
+  xy: 194, 61
+  size: 86, 98
+  orig: 86, 98
+  offset: 0, 0
+  index: -1
+yuwei
+  rotate: true
+  xy: 2, 2
+  size: 145, 190
+  orig: 145, 190
+  offset: 0, 0
+  index: -1

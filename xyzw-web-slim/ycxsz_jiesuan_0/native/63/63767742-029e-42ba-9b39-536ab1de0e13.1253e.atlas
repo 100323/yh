@@ -1,0 +1,188 @@
+
+ycxsz_jiesuan_0.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_apron
+  rotate: false
+  xy: 411, 219
+  size: 146, 291
+  orig: 146, 291
+  offset: 0, 0
+  index: -1
+axian_armr
+  rotate: true
+  xy: 2, 10
+  size: 69, 221
+  orig: 69, 221
+  offset: 0, 0
+  index: -1
+axian_body
+  rotate: true
+  xy: 559, 219
+  size: 152, 202
+  orig: 152, 202
+  offset: 0, 0
+  index: -1
+axian_eyel
+  rotate: false
+  xy: 26, 5
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+axian_eyel2
+  rotate: false
+  xy: 2, 2
+  size: 15, 6
+  orig: 20, 8
+  offset: 3, 1
+  index: -1
+axian_eyer
+  rotate: false
+  xy: 19, 3
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+axian_eyer2
+  rotate: true
+  xy: 370, 7
+  size: 13, 7
+  orig: 19, 9
+  offset: 3, 1
+  index: -1
+axian_eyewhitel
+  rotate: false
+  xy: 725, 24
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+axian_eyewhiter
+  rotate: true
+  xy: 267, 3
+  size: 17, 27
+  orig: 17, 27
+  offset: 0, 0
+  index: -1
+axian_face
+  rotate: false
+  xy: 763, 246
+  size: 142, 125
+  orig: 142, 125
+  offset: 0, 0
+  index: -1
+axian_hair
+  rotate: false
+  xy: 567, 107
+  size: 137, 110
+  orig: 137, 110
+  offset: 0, 0
+  index: -1
+axian_handl
+  rotate: true
+  xy: 429, 8
+  size: 85, 204
+  orig: 85, 204
+  offset: 0, 0
+  index: -1
+axian_hat
+  rotate: false
+  xy: 559, 373
+  size: 307, 137
+  orig: 307, 137
+  offset: 0, 0
+  index: -1
+axian_hip
+  rotate: false
+  xy: 411, 95
+  size: 154, 122
+  orig: 154, 122
+  offset: 0, 0
+  index: -1
+axian_legl
+  rotate: true
+  xy: 635, 52
+  size: 53, 188
+  orig: 53, 188
+  offset: 0, 0
+  index: -1
+axian_legr
+  rotate: true
+  xy: 225, 22
+  size: 57, 202
+  orig: 57, 202
+  offset: 0, 0
+  index: -1
+axian_mouth1
+  rotate: false
+  xy: 674, 2
+  size: 42, 20
+  orig: 42, 20
+  offset: 0, 0
+  index: -1
+axian_mouth2
+  rotate: false
+  xy: 674, 24
+  size: 49, 26
+  orig: 49, 26
+  offset: 0, 0
+  index: -1
+axian_mouth3
+  rotate: false
+  xy: 225, 8
+  size: 40, 12
+  orig: 40, 12
+  offset: 0, 0
+  index: -1
+axian_mouth4
+  rotate: true
+  xy: 718, 3
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1
+axian_neck
+  rotate: false
+  xy: 635, 3
+  size: 37, 47
+  orig: 37, 47
+  offset: 0, 0
+  index: -1
+axian_nose
+  rotate: true
+  xy: 296, 2
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+axian_redl
+  rotate: true
+  xy: 357, 6
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+axian_redr
+  rotate: true
+  xy: 344, 3
+  size: 17, 11
+  orig: 17, 11
+  offset: 0, 0
+  index: -1
+axian_spot
+  rotate: false
+  xy: 321, 4
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_qljw3
+  rotate: false
+  xy: 2, 81
+  size: 407, 429
+  orig: 407, 429
+  offset: 0, 0
+  index: -1

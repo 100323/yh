@@ -1,0 +1,62 @@
+
+taishici7_skill_position.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taishici7_skill_jian
+  rotate: false
+  xy: 2, 2
+  size: 530, 203
+  orig: 530, 203
+  offset: 0, 0
+  index: -1
+taishici7_skill_jiand
+  rotate: true
+  xy: 822, 234
+  size: 503, 176
+  orig: 503, 176
+  offset: 0, 0
+  index: -1
+taishici7_skill_jianx
+  rotate: false
+  xy: 2, 207
+  size: 642, 312
+  orig: 642, 312
+  offset: 0, 0
+  index: -1
+taishici7_skill_tw
+  rotate: false
+  xy: 2, 639
+  size: 818, 98
+  orig: 818, 98
+  offset: 0, 0
+  index: -1
+taishici7_skill_tw2
+  rotate: false
+  xy: 2, 521
+  size: 668, 116
+  orig: 668, 116
+  offset: 0, 0
+  index: -1
+taishici7_skill_ym
+  rotate: false
+  xy: 646, 255
+  size: 173, 77
+  orig: 173, 77
+  offset: 0, 0
+  index: -1
+taishici7_skill_zd
+  rotate: true
+  xy: 760, 334
+  size: 303, 44
+  orig: 303, 44
+  offset: 0, 0
+  index: -1
+taishici7_skill_zd2
+  rotate: true
+  xy: 672, 360
+  size: 277, 86
+  orig: 277, 86
+  offset: 0, 0
+  index: -1

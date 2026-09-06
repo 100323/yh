@@ -1,0 +1,111 @@
+
+xxwky_chilun.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 970, 81
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xxwky_chilun_bing1
+  rotate: true
+  xy: 839, 5
+  size: 122, 129
+  orig: 122, 130
+  offset: 0, 0
+  index: -1
+xxwky_chilun_bing2
+  rotate: true
+  xy: 839, 129
+  size: 122, 130
+  orig: 122, 130
+  offset: 0, 0
+  index: -1
+xxwky_chilun_cl1
+  rotate: false
+  xy: 558, 95
+  size: 103, 103
+  orig: 103, 104
+  offset: 0, 1
+  index: -1
+xxwky_chilun_cl2
+  rotate: true
+  xy: 238, 12
+  size: 107, 106
+  orig: 107, 106
+  offset: 0, 0
+  index: -1
+xxwky_chilun_cl3
+  rotate: true
+  xy: 346, 91
+  size: 107, 106
+  orig: 107, 106
+  offset: 0, 0
+  index: -1
+xxwky_chilun_cl4
+  rotate: true
+  xy: 454, 92
+  size: 106, 102
+  orig: 106, 102
+  offset: 0, 0
+  index: -1
+xxwky_chilun_cl5
+  rotate: false
+  xy: 2, 98
+  size: 102, 100
+  orig: 102, 104
+  offset: 0, 2
+  index: -1
+xxwky_chilun_gy
+  rotate: false
+  xy: 688, 98
+  size: 149, 153
+  orig: 149, 153
+  offset: 0, 0
+  index: -1
+xxwky_chilun_hg1
+  rotate: true
+  xy: 107, 4
+  size: 108, 129
+  orig: 108, 129
+  offset: 0, 0
+  index: -1
+xxwky_chilun_hg2
+  rotate: true
+  xy: 2, 2
+  size: 94, 103
+  orig: 94, 103
+  offset: 0, 0
+  index: -1
+xxwky_chilun_liant
+  rotate: true
+  xy: 2, 200
+  size: 51, 684
+  orig: 51, 684
+  offset: 0, 0
+  index: -1
+xxwky_chilun_zha1
+  rotate: true
+  xy: 185, 121
+  size: 77, 69
+  orig: 77, 69
+  offset: 0, 0
+  index: -1
+xxwky_chilun_zha2
+  rotate: true
+  xy: 256, 128
+  size: 70, 68
+  orig: 70, 68
+  offset: 0, 0
+  index: -1
+xxwky_chilun_zha3
+  rotate: false
+  xy: 106, 114
+  size: 77, 84
+  orig: 77, 84
+  offset: 0, 0
+  index: -1

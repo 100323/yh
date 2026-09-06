@@ -1,0 +1,69 @@
+
+sdsl_boss1_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 189, 138
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_can1
+  rotate: false
+  xy: 189, 198
+  size: 75, 100
+  orig: 75, 100
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_can2
+  rotate: false
+  xy: 194, 36
+  size: 75, 100
+  orig: 75, 100
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_effect1
+  rotate: false
+  xy: 2, 317
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_effect2
+  rotate: false
+  xy: 2, 130
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec1
+  rotate: true
+  xy: 101, 5
+  size: 123, 91
+  orig: 123, 91
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec2
+  rotate: false
+  xy: 189, 300
+  size: 100, 101
+  orig: 100, 101
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec3
+  rotate: false
+  xy: 189, 403
+  size: 110, 99
+  orig: 110, 99
+  offset: 0, 0
+  index: -1
+sdsl_boss1_skill_elec4
+  rotate: false
+  xy: 2, 2
+  size: 97, 126
+  orig: 97, 126
+  offset: 0, 0
+  index: -1

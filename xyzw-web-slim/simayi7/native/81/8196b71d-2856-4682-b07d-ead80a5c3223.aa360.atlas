@@ -1,0 +1,48 @@
+
+simayi7_attack_loop.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+simayi7_attack1
+  rotate: true
+  xy: 57, 3
+  size: 22, 44
+  orig: 22, 44
+  offset: 0, 0
+  index: -1
+simayi7_attack2
+  rotate: true
+  xy: 2, 2
+  size: 23, 53
+  orig: 23, 53
+  offset: 0, 0
+  index: -1
+simayi7_attack3
+  rotate: true
+  xy: 103, 14
+  size: 11, 38
+  orig: 11, 38
+  offset: 0, 0
+  index: -1
+simayi7_attack4
+  rotate: false
+  xy: 285, 16
+  size: 83, 37
+  orig: 84, 38
+  offset: 0, 1
+  index: -1
+simayi7_attack5
+  rotate: false
+  xy: 197, 12
+  size: 86, 41
+  orig: 86, 41
+  offset: 0, 0
+  index: -1
+simayi7_attack6
+  rotate: false
+  xy: 2, 27
+  size: 193, 26
+  orig: 204, 26
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+hero_die2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_die_fish1_1
+  rotate: false
+  xy: 142, 111
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+effect_die_fish1_2
+  rotate: false
+  xy: 216, 2
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+effect_die_fish2_1
+  rotate: false
+  xy: 183, 113
+  size: 44, 49
+  orig: 44, 49
+  offset: 0, 0
+  index: -1
+effect_die_fish2_2
+  rotate: false
+  xy: 262, 2
+  size: 42, 34
+  orig: 42, 34
+  offset: 0, 0
+  index: -1
+effect_die_xz0
+  rotate: false
+  xy: 202, 166
+  size: 82, 86
+  orig: 86, 88
+  offset: 4, 2
+  index: -1
+effect_die_xz1
+  rotate: true
+  xy: 2, 110
+  size: 142, 138
+  orig: 142, 138
+  offset: 0, 0
+  index: -1
+effect_die_xz2
+  rotate: false
+  xy: 142, 164
+  size: 58, 88
+  orig: 58, 88
+  offset: 0, 0
+  index: -1
+effect_die_xz5
+  rotate: false
+  xy: 216, 38
+  size: 70, 73
+  orig: 80, 82
+  offset: 10, 9
+  index: -1
+hero_die_1
+  rotate: false
+  xy: 273, 142
+  size: 18, 22
+  orig: 18, 22
+  offset: 0, 0
+  index: -1
+hero_die_2
+  rotate: false
+  xy: 2, 3
+  size: 93, 105
+  orig: 93, 105
+  offset: 0, 0
+  index: -1
+hero_die_5
+  rotate: true
+  xy: 97, 11
+  size: 97, 117
+  orig: 97, 117
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 229, 122
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1

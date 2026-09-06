@@ -1,0 +1,202 @@
+
+zhurongfuren.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 393, 297
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 106, 82
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 196, 52
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+zhurongfuren_arml12
+  rotate: true
+  xy: 70, 7
+  size: 22, 34
+  orig: 22, 34
+  offset: 0, 0
+  index: -1
+zhurongfuren_arml22
+  rotate: true
+  xy: 38, 2
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+zhurongfuren_armr12
+  rotate: true
+  xy: 361, 204
+  size: 35, 42
+  orig: 35, 42
+  offset: 0, 0
+  index: -1
+zhurongfuren_armr22
+  rotate: true
+  xy: 2, 2
+  size: 27, 34
+  orig: 27, 34
+  offset: 0, 0
+  index: -1
+zhurongfuren_body12
+  rotate: true
+  xy: 347, 325
+  size: 59, 97
+  orig: 59, 97
+  offset: 0, 0
+  index: -1
+zhurongfuren_body42
+  rotate: true
+  xy: 204, 317
+  size: 59, 66
+  orig: 59, 66
+  offset: 0, 0
+  index: -1
+zhurongfuren_eyebrowl2
+  rotate: false
+  xy: 361, 183
+  size: 28, 19
+  orig: 28, 19
+  offset: 0, 0
+  index: -1
+zhurongfuren_eyebrowr2
+  rotate: false
+  xy: 361, 163
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+zhurongfuren_eyel2
+  rotate: true
+  xy: 365, 125
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+zhurongfuren_eyelidl2
+  rotate: true
+  xy: 154, 46
+  size: 82, 31
+  orig: 82, 31
+  offset: 0, 0
+  index: -1
+zhurongfuren_eyelidl3
+  rotate: true
+  xy: 361, 241
+  size: 82, 30
+  orig: 82, 30
+  offset: 0, 0
+  index: -1
+zhurongfuren_eyer2
+  rotate: false
+  xy: 365, 143
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+zhurongfuren_face2
+  rotate: false
+  xy: 204, 378
+  size: 141, 130
+  orig: 141, 130
+  offset: 0, 0
+  index: -1
+zhurongfuren_feather12
+  rotate: false
+  xy: 106, 22
+  size: 44, 58
+  orig: 48, 58
+  offset: 0, 0
+  index: -1
+zhurongfuren_feather22
+  rotate: true
+  xy: 272, 318
+  size: 58, 63
+  orig: 69, 63
+  offset: 11, 0
+  index: -1
+zhurongfuren_hair12
+  rotate: true
+  xy: 2, 31
+  size: 97, 102
+  orig: 97, 102
+  offset: 0, 0
+  index: -1
+zhurongfuren_hair22
+  rotate: true
+  xy: 300, 119
+  size: 35, 63
+  orig: 35, 63
+  offset: 0, 0
+  index: -1
+zhurongfuren_hair52
+  rotate: false
+  xy: 347, 386
+  size: 111, 122
+  orig: 114, 122
+  offset: 0, 0
+  index: -1
+zhurongfuren_handl2
+  rotate: false
+  xy: 393, 249
+  size: 22, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+zhurongfuren_handr2
+  rotate: false
+  xy: 421, 302
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+zhurongfuren_mask
+  rotate: true
+  xy: 393, 271
+  size: 24, 33
+  orig: 26, 33
+  offset: 2, 0
+  index: -1
+zhurongfuren_mouth2
+  rotate: false
+  xy: 337, 313
+  size: 21, 10
+  orig: 21, 10
+  offset: 0, 0
+  index: -1
+zhurongfuren_tail2
+  rotate: true
+  xy: 2, 130
+  size: 176, 192
+  orig: 176, 192
+  offset: 0, 0
+  index: -1
+zhurongfuren_weaponr2
+  rotate: false
+  xy: 2, 308
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+zhurongfuren_weaponr3
+  rotate: true
+  xy: 196, 156
+  size: 150, 163
+  orig: 150, 163
+  offset: 0, 0
+  index: -1

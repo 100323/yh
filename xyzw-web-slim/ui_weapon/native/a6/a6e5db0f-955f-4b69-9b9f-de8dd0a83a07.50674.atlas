@@ -1,0 +1,62 @@
+
+cangpin_sjq.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cangpin_sjq_dg
+  rotate: false
+  xy: 198, 7
+  size: 146, 91
+  orig: 146, 91
+  offset: 0, 0
+  index: -1
+cangpin_sjq_dian
+  rotate: true
+  xy: 159, 100
+  size: 142, 140
+  orig: 142, 140
+  offset: 0, 0
+  index: -1
+cangpin_sjq_dz
+  rotate: false
+  xy: 2, 6
+  size: 102, 67
+  orig: 104, 69
+  offset: 1, 1
+  index: -1
+cangpin_sjq_g1
+  rotate: true
+  xy: 2, 75
+  size: 167, 155
+  orig: 167, 155
+  offset: 0, 0
+  index: -1
+cangpin_sjq_gg
+  rotate: false
+  xy: 346, 23
+  size: 88, 94
+  orig: 88, 94
+  offset: 0, 0
+  index: -1
+cangpin_sjq_qiu
+  rotate: false
+  xy: 301, 119
+  size: 121, 123
+  orig: 121, 123
+  offset: 0, 0
+  index: -1
+cangpin_sjq_yu
+  rotate: false
+  xy: 106, 2
+  size: 90, 71
+  orig: 92, 73
+  offset: 1, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 424, 184
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1

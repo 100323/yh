@@ -1,0 +1,48 @@
+
+sqhd25w2_hglp_zhuanpan.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w2_hgzp_shan
+  rotate: false
+  xy: 2, 2
+  size: 634, 498
+  orig: 634, 498
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_shuidian1
+  rotate: true
+  xy: 857, 450
+  size: 50, 47
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_shuidian2
+  rotate: false
+  xy: 857, 429
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_shuidian3
+  rotate: false
+  xy: 857, 410
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_yun1
+  rotate: true
+  xy: 638, 240
+  size: 260, 217
+  orig: 261, 219
+  offset: 0, 1
+  index: -1
+sqhd25w2_hgzp_yun4
+  rotate: false
+  xy: 638, 40
+  size: 242, 198
+  orig: 242, 199
+  offset: 0, 1
+  index: -1

@@ -1,0 +1,20 @@
+
+ydhd25_bky1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 2, 2
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+ydhd25_bky_1
+  rotate: false
+  xy: 2, 106
+  size: 192, 124
+  orig: 192, 124
+  offset: 0, 0
+  index: -1

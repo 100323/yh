@@ -1,0 +1,55 @@
+
+sjhd_zxjiazai.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjhd_jiazai_banzi
+  rotate: false
+  xy: 2, 2
+  size: 284, 270
+  orig: 284, 270
+  offset: 0, 0
+  index: -1
+sjhd_jiazai_fj
+  rotate: false
+  xy: 2, 274
+  size: 295, 154
+  orig: 295, 154
+  offset: 0, 0
+  index: -1
+sjhd_jiazai_jiang1
+  rotate: true
+  xy: 288, 135
+  size: 137, 84
+  orig: 137, 84
+  offset: 0, 0
+  index: -1
+sjhd_jiazai_jiang2
+  rotate: false
+  xy: 299, 366
+  size: 139, 62
+  orig: 139, 62
+  offset: 0, 0
+  index: -1
+sjhd_jiazai_jiang3
+  rotate: false
+  xy: 299, 300
+  size: 137, 64
+  orig: 137, 64
+  offset: 0, 0
+  index: -1
+sjhd_jiazai_xj1
+  rotate: false
+  xy: 352, 73
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+sjhd_jiazai_xj2
+  rotate: true
+  xy: 288, 73
+  size: 60, 62
+  orig: 60, 62
+  offset: 0, 0
+  index: -1

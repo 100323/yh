@@ -1,0 +1,97 @@
+
+jlbghz_ydcj_huo.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jlbghz_yingdi_huo1
+  rotate: false
+  xy: 426, 36
+  size: 82, 65
+  orig: 82, 66
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo10
+  rotate: true
+  xy: 2, 3
+  size: 39, 61
+  orig: 40, 62
+  offset: 0, 1
+  index: -1
+jlbghz_yingdi_huo11
+  rotate: false
+  xy: 212, 7
+  size: 23, 35
+  orig: 24, 35
+  offset: 1, 0
+  index: -1
+jlbghz_yingdi_huo2
+  rotate: true
+  xy: 65, 4
+  size: 38, 45
+  orig: 38, 46
+  offset: 0, 1
+  index: -1
+jlbghz_yingdi_huo3
+  rotate: false
+  xy: 112, 4
+  size: 23, 38
+  orig: 23, 38
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo4
+  rotate: true
+  xy: 445, 3
+  size: 31, 43
+  orig: 31, 43
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo5
+  rotate: false
+  xy: 426, 2
+  size: 17, 32
+  orig: 18, 32
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo6
+  rotate: true
+  xy: 336, 3
+  size: 98, 88
+  orig: 98, 89
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo7
+  rotate: true
+  xy: 137, 5
+  size: 37, 73
+  orig: 39, 75
+  offset: 1, 1
+  index: -1
+jlbghz_yingdi_huo8
+  rotate: true
+  xy: 237, 15
+  size: 27, 74
+  orig: 33, 75
+  offset: 6, 1
+  index: -1
+jlbghz_yingdi_huo9
+  rotate: true
+  xy: 336, 103
+  size: 150, 174
+  orig: 150, 174
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo_xing1
+  rotate: true
+  xy: 2, 44
+  size: 209, 165
+  orig: 209, 165
+  offset: 0, 0
+  index: -1
+jlbghz_yingdi_huo_xing2
+  rotate: true
+  xy: 169, 44
+  size: 209, 165
+  orig: 209, 165
+  offset: 0, 0
+  index: -1

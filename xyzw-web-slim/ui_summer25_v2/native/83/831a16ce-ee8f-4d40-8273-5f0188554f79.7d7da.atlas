@@ -1,0 +1,62 @@
+
+sqhd25_fxkp.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25_fxkp_bs
+  rotate: false
+  xy: 561, 271
+  size: 454, 194
+  orig: 454, 194
+  offset: 0, 0
+  index: -1
+sqhd25_fxkp_bx
+  rotate: true
+  xy: 370, 8
+  size: 457, 189
+  orig: 457, 189
+  offset: 0, 0
+  index: -1
+sqhd25_fxkp_fl
+  rotate: false
+  xy: 733, 41
+  size: 92, 94
+  orig: 95, 95
+  offset: 0, 1
+  index: -1
+sqhd25_fxkp_ft
+  rotate: true
+  xy: 733, 137
+  size: 80, 276
+  orig: 80, 276
+  offset: 0, 0
+  index: -1
+sqhd25_fxkp_hdj
+  rotate: true
+  xy: 561, 8
+  size: 209, 170
+  orig: 209, 170
+  offset: 0, 0
+  index: -1
+sqhd25_fxkp_k1
+  rotate: false
+  xy: 561, 219
+  size: 450, 50
+  orig: 450, 50
+  offset: 0, 0
+  index: -1
+sqhd25_fxkp_ks
+  rotate: true
+  xy: 2, 2
+  size: 463, 188
+  orig: 463, 188
+  offset: 0, 0
+  index: -1
+sqhd25_fxkp_kx
+  rotate: true
+  xy: 192, 2
+  size: 463, 176
+  orig: 463, 176
+  offset: 0, 0
+  index: -1

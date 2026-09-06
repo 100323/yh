@@ -1,0 +1,41 @@
+
+ui_axian_btn_livingroom_6001.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+scs_1
+  rotate: false
+  xy: 93, 8
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+scs_2
+  rotate: true
+  xy: 180, 24
+  size: 69, 56
+  orig: 69, 58
+  offset: 0, 0
+  index: -1
+scs_4
+  rotate: false
+  xy: 2, 4
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+scs_g1
+  rotate: false
+  xy: 180, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+scs_g2
+  rotate: false
+  xy: 202, 6
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

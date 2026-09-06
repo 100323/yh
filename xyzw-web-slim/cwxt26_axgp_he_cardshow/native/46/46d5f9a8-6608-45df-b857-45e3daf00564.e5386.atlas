@@ -1,0 +1,90 @@
+
+cwxt26_axgp_he_cardshow.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+he_jn_hez_cbl2
+  rotate: true
+  xy: 336, 296
+  size: 103, 114
+  orig: 103, 114
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbl3
+  rotate: true
+  xy: 210, 417
+  size: 60, 134
+  orig: 60, 134
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbl4
+  rotate: true
+  xy: 346, 401
+  size: 76, 111
+  orig: 76, 111
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbl5
+  rotate: false
+  xy: 105, 323
+  size: 123, 92
+  orig: 123, 92
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbr2
+  rotate: true
+  xy: 2, 332
+  size: 86, 101
+  orig: 86, 101
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbr3
+  rotate: false
+  xy: 114, 419
+  size: 94, 58
+  orig: 94, 58
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbr4
+  rotate: false
+  xy: 30, 420
+  size: 82, 57
+  orig: 82, 57
+  offset: 0, 0
+  index: -1
+he_jn_hez_cbr5
+  rotate: true
+  xy: 230, 321
+  size: 94, 104
+  orig: 94, 104
+  offset: 0, 0
+  index: -1
+he_jn_hez_shen
+  rotate: false
+  xy: 2, 218
+  size: 226, 103
+  orig: 226, 103
+  offset: 0, 0
+  index: -1
+he_jn_hez_tuowei1
+  rotate: false
+  xy: 230, 172
+  size: 204, 122
+  orig: 204, 122
+  offset: 0, 0
+  index: -1
+he_jn_hez_tuowei2
+  rotate: false
+  xy: 2, 2
+  size: 330, 168
+  orig: 330, 168
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 451
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

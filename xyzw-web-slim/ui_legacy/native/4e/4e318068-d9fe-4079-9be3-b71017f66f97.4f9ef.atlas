@@ -1,0 +1,48 @@
+
+huoche_txzan.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huoche_txzan_che1
+  rotate: false
+  xy: 2, 52
+  size: 169, 74
+  orig: 169, 77
+  offset: 0, 0
+  index: -1
+huoche_txzan_jt
+  rotate: false
+  xy: 58, 18
+  size: 41, 32
+  orig: 43, 34
+  offset: 1, 1
+  index: -1
+huoche_txzan_kuang1
+  rotate: false
+  xy: 2, 128
+  size: 214, 125
+  orig: 214, 125
+  offset: 0, 0
+  index: -1
+huoche_txzan_xian
+  rotate: false
+  xy: 173, 17
+  size: 66, 109
+  orig: 66, 109
+  offset: 0, 0
+  index: -1
+huoche_txzan_xing
+  rotate: true
+  xy: 2, 2
+  size: 48, 54
+  orig: 54, 60
+  offset: 3, 3
+  index: -1
+huoche_txzan_zi
+  rotate: true
+  xy: 218, 138
+  size: 115, 30
+  orig: 117, 32
+  offset: 1, 1
+  index: -1

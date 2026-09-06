@@ -1,0 +1,20 @@
+
+kpyx3_water.png
+size: 128,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx3_waterline1
+  rotate: false
+  xy: 2, 2
+  size: 58, 3
+  orig: 58, 3
+  offset: 0, 0
+  index: -1
+kpyx3_waterline2
+  rotate: false
+  xy: 2, 7
+  size: 100, 11
+  orig: 100, 11
+  offset: 0, 0
+  index: -1

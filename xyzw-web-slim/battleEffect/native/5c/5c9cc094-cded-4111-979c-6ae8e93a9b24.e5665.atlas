@@ -1,0 +1,160 @@
+
+axwq_sfbj.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq7_cong1
+  rotate: false
+  xy: 144, 2
+  size: 74, 68
+  orig: 74, 68
+  offset: 0, 0
+  index: -1
+axwq7_cong2
+  rotate: true
+  xy: 280, 15
+  size: 83, 119
+  orig: 83, 119
+  offset: 0, 0
+  index: -1
+axwq7_fish_body
+  rotate: false
+  xy: 2, 72
+  size: 276, 112
+  orig: 276, 112
+  offset: 0, 0
+  index: -1
+axwq7_fish_eye
+  rotate: false
+  xy: 817, 67
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+axwq7_fish_eyewhite1
+  rotate: true
+  xy: 991, 299
+  size: 38, 31
+  orig: 38, 31
+  offset: 0, 0
+  index: -1
+axwq7_fish_eyewhite2
+  rotate: true
+  xy: 430, 148
+  size: 36, 23
+  orig: 36, 23
+  offset: 0, 0
+  index: -1
+axwq7_fish_hand
+  rotate: false
+  xy: 280, 100
+  size: 148, 84
+  orig: 148, 84
+  offset: 0, 0
+  index: -1
+axwq7_fish_head1
+  rotate: false
+  xy: 837, 252
+  size: 152, 85
+  orig: 152, 85
+  offset: 0, 0
+  index: -1
+axwq7_fish_head2
+  rotate: true
+  xy: 737, 75
+  size: 151, 85
+  orig: 151, 85
+  offset: 0, 0
+  index: -1
+axwq7_fish_head3
+  rotate: false
+  xy: 2, 15
+  size: 140, 55
+  orig: 140, 55
+  offset: 0, 0
+  index: -1
+axwq7_fish_mouth
+  rotate: false
+  xy: 837, 167
+  size: 119, 83
+  orig: 119, 83
+  offset: 0, 0
+  index: -1
+axwq7_lajiao1
+  rotate: false
+  xy: 824, 92
+  size: 93, 73
+  orig: 93, 73
+  offset: 0, 0
+  index: -1
+axwq7_lajiao2
+  rotate: false
+  xy: 737, 8
+  size: 78, 65
+  orig: 78, 65
+  offset: 0, 0
+  index: -1
+axwq7_onion1
+  rotate: false
+  xy: 919, 88
+  size: 76, 77
+  orig: 78, 77
+  offset: 2, 0
+  index: -1
+axwq7_onion2
+  rotate: false
+  xy: 824, 13
+  size: 82, 77
+  orig: 82, 77
+  offset: 0, 0
+  index: -1
+axwq7_smoke
+  rotate: false
+  xy: 220, 24
+  size: 42, 46
+  orig: 42, 46
+  offset: 0, 0
+  index: -1
+axwq7_smoke1
+  rotate: false
+  xy: 837, 339
+  size: 173, 167
+  orig: 173, 167
+  offset: 0, 0
+  index: -1
+axwq7_smoke2
+  rotate: false
+  xy: 457, 18
+  size: 278, 208
+  orig: 278, 208
+  offset: 0, 0
+  index: -1
+axwq7_smoke3
+  rotate: false
+  xy: 457, 228
+  size: 378, 278
+  orig: 378, 278
+  offset: 0, 0
+  index: -1
+axwq7_smoke4
+  rotate: false
+  xy: 2, 186
+  size: 453, 320
+  orig: 453, 320
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 991, 266
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 401, 91
+  size: 8, 7
+  orig: 8, 8
+  offset: 0, 0
+  index: -1

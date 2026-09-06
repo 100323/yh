@@ -1,0 +1,97 @@
+
+jiangwei8_skill_hit2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianc_000
+  rotate: true
+  xy: 2, 48
+  size: 87, 44
+  orig: 87, 44
+  offset: 0, 0
+  index: -1
+dianc_001
+  rotate: false
+  xy: 2, 2
+  size: 87, 44
+  orig: 87, 44
+  offset: 0, 0
+  index: -1
+dianc_002
+  rotate: false
+  xy: 48, 91
+  size: 87, 44
+  orig: 87, 44
+  offset: 0, 0
+  index: -1
+dianc_003
+  rotate: true
+  xy: 91, 2
+  size: 87, 44
+  orig: 87, 44
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 48, 49
+  size: 40, 40
+  orig: 44, 44
+  offset: 2, 2
+  index: -1
+jiangwei8_hit1
+  rotate: false
+  xy: 281, 66
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+jiangwei8_hit10
+  rotate: false
+  xy: 150, 162
+  size: 143, 78
+  orig: 156, 83
+  offset: 6, 5
+  index: -1
+jiangwei8_hit4
+  rotate: false
+  xy: 337, 71
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+jiangwei8_hit5
+  rotate: false
+  xy: 150, 29
+  size: 77, 131
+  orig: 77, 131
+  offset: 0, 0
+  index: -1
+jiangwei8_hit6
+  rotate: true
+  xy: 295, 94
+  size: 146, 75
+  orig: 146, 75
+  offset: 0, 0
+  index: -1
+jiangwei8_hit7
+  rotate: true
+  xy: 229, 54
+  size: 106, 50
+  orig: 106, 50
+  offset: 0, 0
+  index: -1
+jiangwei8_hit8
+  rotate: false
+  xy: 2, 137
+  size: 146, 103
+  orig: 146, 103
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 311, 68
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

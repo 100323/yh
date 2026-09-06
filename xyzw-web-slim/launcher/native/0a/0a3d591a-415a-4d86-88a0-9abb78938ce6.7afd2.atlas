@@ -1,0 +1,195 @@
+
+loading_fish57.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guangyun
+  rotate: false
+  xy: 366, 361
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+yanwu_1
+  rotate: true
+  xy: 226, 193
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_2
+  rotate: true
+  xy: 226, 115
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_3
+  rotate: true
+  xy: 87, 103
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_4
+  rotate: true
+  xy: 2, 80
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_5
+  rotate: false
+  xy: 302, 53
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_6
+  rotate: false
+  xy: 163, 39
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_7
+  rotate: true
+  xy: 78, 25
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_8
+  rotate: true
+  xy: 2, 2
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yanwu_9
+  rotate: false
+  xy: 360, 154
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
+yu1
+  rotate: false
+  xy: 87, 182
+  size: 44, 78
+  orig: 44, 78
+  offset: 0, 0
+  index: -1
+yu2
+  rotate: false
+  xy: 302, 129
+  size: 56, 99
+  orig: 56, 99
+  offset: 0, 0
+  index: -1
+yu3
+  rotate: false
+  xy: 2, 158
+  size: 83, 102
+  orig: 83, 102
+  offset: 0, 0
+  index: -1
+yu4
+  rotate: true
+  xy: 181, 378
+  size: 8, 10
+  orig: 8, 10
+  offset: 0, 0
+  index: -1
+yu5
+  rotate: true
+  xy: 138, 388
+  size: 36, 50
+  orig: 36, 50
+  offset: 0, 0
+  index: -1
+yu6
+  rotate: true
+  xy: 380, 75
+  size: 77, 73
+  orig: 77, 73
+  offset: 0, 0
+  index: -1
+yu7
+  rotate: false
+  xy: 2, 262
+  size: 134, 162
+  orig: 134, 162
+  offset: 0, 0
+  index: -1
+yu_jiaodai1
+  rotate: false
+  xy: 138, 181
+  size: 86, 88
+  orig: 86, 88
+  offset: 0, 0
+  index: -1
+yu_jiaodai2
+  rotate: false
+  xy: 438, 220
+  size: 67, 87
+  orig: 67, 87
+  offset: 0, 0
+  index: -1
+yu_yingzi
+  rotate: true
+  xy: 429, 309
+  size: 89, 67
+  orig: 89, 67
+  offset: 0, 0
+  index: -1
+yun2_b
+  rotate: false
+  xy: 138, 271
+  size: 164, 82
+  orig: 164, 82
+  offset: 0, 0
+  index: -1
+yun_b
+  rotate: false
+  xy: 2, 426
+  size: 213, 81
+  orig: 213, 81
+  offset: 0, 0
+  index: -1
+zq_jd_yingzi1
+  rotate: true
+  xy: 138, 358
+  size: 28, 41
+  orig: 28, 41
+  offset: 0, 0
+  index: -1
+zq_jd_yingzi2
+  rotate: true
+  xy: 366, 400
+  size: 107, 101
+  orig: 107, 101
+  offset: 0, 0
+  index: -1
+zq_jiaodai
+  rotate: true
+  xy: 217, 355
+  size: 152, 147
+  orig: 152, 147
+  offset: 0, 0
+  index: -1
+zq_yingzi
+  rotate: false
+  xy: 380, 3
+  size: 85, 70
+  orig: 85, 70
+  offset: 0, 0
+  index: -1
+zuqiu
+  rotate: false
+  xy: 304, 230
+  size: 123, 123
+  orig: 123, 123
+  offset: 0, 0
+  index: -1

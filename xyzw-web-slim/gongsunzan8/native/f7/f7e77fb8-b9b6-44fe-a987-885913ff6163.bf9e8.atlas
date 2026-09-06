@@ -1,0 +1,27 @@
+
+gongsunzan8_buff_bmjj_p1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan8_buff_di
+  rotate: false
+  xy: 2, 2
+  size: 269, 203
+  orig: 269, 203
+  offset: 0, 0
+  index: -1
+gongsunzan8_buff_g
+  rotate: true
+  xy: 2, 282
+  size: 94, 100
+  orig: 94, 100
+  offset: 0, 0
+  index: -1
+gongsunzan8_buff_huo1
+  rotate: true
+  xy: 104, 207
+  size: 169, 218
+  orig: 169, 218
+  offset: 0, 0
+  index: -1

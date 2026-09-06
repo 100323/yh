@@ -1,0 +1,104 @@
+
+ft2_taishici7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_tsc_chibl
+  rotate: false
+  xy: 258, 117
+  size: 138, 199
+  orig: 138, 199
+  offset: 0, 0
+  index: -1
+ft_tsc_chibr
+  rotate: false
+  xy: 2, 284
+  size: 254, 213
+  orig: 254, 213
+  offset: 0, 0
+  index: -1
+ft_tsc_lizi
+  rotate: false
+  xy: 141, 142
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+ft_tsc_lizix
+  rotate: true
+  xy: 141, 206
+  size: 76, 71
+  orig: 76, 71
+  offset: 0, 0
+  index: -1
+ft_tsc_shen
+  rotate: true
+  xy: 258, 318
+  size: 179, 152
+  orig: 179, 152
+  offset: 0, 0
+  index: -1
+ft_tsc_tou
+  rotate: true
+  xy: 2, 18
+  size: 85, 122
+  orig: 85, 122
+  offset: 0, 0
+  index: -1
+ft_tsc_ts1
+  rotate: false
+  xy: 412, 366
+  size: 92, 131
+  orig: 92, 131
+  offset: 0, 0
+  index: -1
+ft_tsc_ts2
+  rotate: true
+  xy: 141, 2
+  size: 113, 133
+  orig: 113, 133
+  offset: 0, 0
+  index: -1
+ft_tsc_ym
+  rotate: false
+  xy: 276, 18
+  size: 64, 97
+  orig: 64, 97
+  offset: 0, 0
+  index: -1
+ft_tsc_yml
+  rotate: false
+  xy: 342, 5
+  size: 52, 110
+  orig: 52, 110
+  offset: 0, 0
+  index: -1
+ft_tsc_ymr
+  rotate: false
+  xy: 398, 4
+  size: 110, 163
+  orig: 110, 163
+  offset: 0, 0
+  index: -1
+ft_tsc_zsl
+  rotate: false
+  xy: 398, 169
+  size: 70, 147
+  orig: 70, 147
+  offset: 0, 0
+  index: -1
+ft_tsc_zsr
+  rotate: true
+  xy: 2, 105
+  size: 177, 137
+  orig: 177, 137
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 412, 335
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1

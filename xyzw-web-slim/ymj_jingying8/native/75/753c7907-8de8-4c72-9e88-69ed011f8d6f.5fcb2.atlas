@@ -1,0 +1,41 @@
+
+ymj_jingying8_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 273, 47
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ymj_jingying8_fj2
+  rotate: false
+  xy: 161, 2
+  size: 110, 74
+  orig: 114, 85
+  offset: 3, 10
+  index: -1
+ymj_jingying8_pg_yan
+  rotate: false
+  xy: 307, 21
+  size: 62, 177
+  orig: 62, 177
+  offset: 0, 0
+  index: -1
+ymj_jingying8_pg_yan1
+  rotate: false
+  xy: 161, 78
+  size: 144, 120
+  orig: 144, 120
+  offset: 0, 0
+  index: -1
+ymj_jingying8_pg_yan2
+  rotate: true
+  xy: 2, 47
+  size: 151, 157
+  orig: 151, 157
+  offset: 0, 0
+  index: -1

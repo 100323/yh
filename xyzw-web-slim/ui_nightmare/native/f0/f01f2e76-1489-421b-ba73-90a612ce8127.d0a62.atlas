@@ -1,0 +1,41 @@
+
+sdyl_zfsd_juanzhou1.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdyl_zhoufu_tc_jz2
+  rotate: false
+  xy: 350, 2
+  size: 595, 99
+  orig: 595, 99
+  offset: 0, 0
+  index: -1
+sdyl_zhoufu_tc_shou1
+  rotate: false
+  xy: 2, 38
+  size: 166, 80
+  orig: 166, 80
+  offset: 0, 0
+  index: -1
+sdyl_zhoufu_tc_shou2
+  rotate: false
+  xy: 170, 17
+  size: 178, 101
+  orig: 178, 102
+  offset: 0, 1
+  index: -1
+sdyl_zhoufu_tc_ying
+  rotate: false
+  xy: 517, 103
+  size: 430, 55
+  orig: 430, 55
+  offset: 0, 0
+  index: -1
+sdyl_zhoufu_tc_zhi
+  rotate: false
+  xy: 2, 120
+  size: 513, 38
+  orig: 513, 38
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,104 @@
+
+kpyx6_Farmerfish.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx6_Whiteeye
+  rotate: false
+  xy: 177, 19
+  size: 33, 36
+  orig: 33, 36
+  offset: 0, 0
+  index: -1
+kpyx6_beidail
+  rotate: false
+  xy: 148, 57
+  size: 56, 66
+  orig: 56, 66
+  offset: 0, 0
+  index: -1
+kpyx6_beidair
+  rotate: true
+  xy: 42, 32
+  size: 87, 62
+  orig: 87, 62
+  offset: 0, 0
+  index: -1
+kpyx6_body
+  rotate: true
+  xy: 2, 121
+  size: 133, 90
+  orig: 156, 102
+  offset: 16, 12
+  index: -1
+kpyx6_eye
+  rotate: false
+  xy: 106, 32
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+kpyx6_eyebrow
+  rotate: false
+  xy: 212, 33
+  size: 21, 30
+  orig: 22, 31
+  offset: 0, 1
+  index: -1
+kpyx6_hair2
+  rotate: true
+  xy: 169, 131
+  size: 123, 122
+  orig: 131, 122
+  offset: 0, 0
+  index: -1
+kpyx6_handll
+  rotate: true
+  xy: 124, 6
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+kpyx6_handr
+  rotate: true
+  xy: 206, 65
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
+kpyx6_kuang
+  rotate: true
+  xy: 94, 125
+  size: 129, 73
+  orig: 129, 86
+  offset: 0, 0
+  index: -1
+kpyx6_kuang1
+  rotate: true
+  xy: 2, 2
+  size: 117, 38
+  orig: 129, 86
+  offset: 4, 47
+  index: -1
+kpyx6_legl
+  rotate: true
+  xy: 42, 4
+  size: 26, 33
+  orig: 27, 34
+  offset: 0, 1
+  index: -1
+kpyx6_legr
+  rotate: true
+  xy: 77, 4
+  size: 26, 31
+  orig: 27, 32
+  offset: 0, 0
+  index: -1
+kpyx6_tail
+  rotate: true
+  xy: 106, 50
+  size: 73, 40
+  orig: 73, 40
+  offset: 0, 0
+  index: -1

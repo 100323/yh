@@ -1,0 +1,132 @@
+
+ls_zhangjiao6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ls_zhangjiao6_chi1
+  rotate: false
+  xy: 2, 66
+  size: 119, 145
+  orig: 119, 145
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_chi4
+  rotate: false
+  xy: 2, 2
+  size: 70, 62
+  orig: 70, 62
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_dhxingx
+  rotate: true
+  xy: 467, 145
+  size: 78, 41
+  orig: 78, 41
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_guangyun1
+  rotate: false
+  xy: 478, 360
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_guangyun2
+  rotate: false
+  xy: 274, 32
+  size: 191, 191
+  orig: 191, 191
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_guangyun3
+  rotate: false
+  xy: 274, 225
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_gy
+  rotate: false
+  xy: 467, 5
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_tt
+  rotate: false
+  xy: 2, 213
+  size: 270, 214
+  orig: 270, 214
+  offset: 0, 0
+  index: -1
+ls_zhangjiao6_xing1
+  rotate: false
+  xy: 478, 394
+  size: 32, 33
+  orig: 51, 54
+  offset: 9, 10
+  index: -1
+sd_000
+  rotate: false
+  xy: 176, 165
+  size: 53, 46
+  orig: 62, 62
+  offset: 4, 7
+  index: -1
+sd_001
+  rotate: true
+  xy: 467, 88
+  size: 55, 42
+  orig: 62, 62
+  offset: 3, 11
+  index: -1
+sd_002
+  rotate: false
+  xy: 74, 15
+  size: 57, 49
+  orig: 62, 62
+  offset: 1, 5
+  index: -1
+sd_003
+  rotate: false
+  xy: 123, 67
+  size: 50, 44
+  orig: 62, 62
+  offset: 4, 6
+  index: -1
+sd_004
+  rotate: false
+  xy: 123, 162
+  size: 51, 49
+  orig: 62, 62
+  offset: 3, 3
+  index: -1
+sd_005
+  rotate: false
+  xy: 123, 113
+  size: 53, 47
+  orig: 62, 62
+  offset: 3, 4
+  index: -1
+sd_006
+  rotate: true
+  xy: 133, 15
+  size: 50, 46
+  orig: 62, 62
+  offset: 4, 4
+  index: -1
+sd_007
+  rotate: false
+  xy: 175, 67
+  size: 48, 44
+  orig: 62, 62
+  offset: 4, 6
+  index: -1
+sd_008
+  rotate: true
+  xy: 467, 44
+  size: 42, 37
+  orig: 62, 62
+  offset: 9, 10
+  index: -1

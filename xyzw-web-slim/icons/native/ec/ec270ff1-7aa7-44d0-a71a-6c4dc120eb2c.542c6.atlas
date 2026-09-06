@@ -1,0 +1,202 @@
+
+ydhd24_banner.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ydhd24_banner_deng
+  rotate: false
+  xy: 198, 15
+  size: 43, 72
+  orig: 44, 72
+  offset: 1, 0
+  index: -1
+ydhd24_banner_dengguang1
+  rotate: false
+  xy: 340, 105
+  size: 16, 20
+  orig: 16, 20
+  offset: 0, 0
+  index: -1
+ydhd24_banner_dengguang2
+  rotate: false
+  xy: 345, 57
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1
+ydhd24_banner_dengguang3
+  rotate: true
+  xy: 278, 32
+  size: 58, 48
+  orig: 58, 48
+  offset: 0, 0
+  index: -1
+ydhd24_banner_huoguang
+  rotate: true
+  xy: 46, 7
+  size: 79, 150
+  orig: 79, 150
+  offset: 0, 0
+  index: -1
+ydhd24_banner_maozi
+  rotate: false
+  xy: 243, 29
+  size: 33, 61
+  orig: 33, 62
+  offset: 0, 1
+  index: -1
+ydhd24_banner_shou
+  rotate: true
+  xy: 358, 92
+  size: 33, 30
+  orig: 34, 30
+  offset: 0, 0
+  index: -1
+ydhd24_banner_shoubi
+  rotate: false
+  xy: 291, 102
+  size: 29, 23
+  orig: 29, 24
+  offset: 0, 1
+  index: -1
+ydhd24_banner_shuidong
+  rotate: true
+  xy: 0, 2
+  size: 84, 44
+  orig: 84, 45
+  offset: 0, 1
+  index: -1
+ydhd24_banner_shuidong2
+  rotate: false
+  xy: 277, 1
+  size: 51, 26
+  orig: 51, 27
+  offset: 0, 1
+  index: -1
+ydhd24_banner_shuihua1
+  rotate: false
+  xy: 223, 7
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+ydhd24_banner_shuihua2
+  rotate: false
+  xy: 198, 0
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+ydhd24_banner_shuihua3
+  rotate: true
+  xy: 364, 4
+  size: 17, 26
+  orig: 17, 26
+  offset: 0, 0
+  index: -1
+ydhd24_banner_shuiwen3
+  rotate: false
+  xy: 158, 88
+  size: 32, 11
+  orig: 32, 11
+  offset: 0, 0
+  index: -1
+ydhd24_banner_wen1
+  rotate: true
+  xy: 328, 41
+  size: 49, 15
+  orig: 49, 15
+  offset: 0, 0
+  index: -1
+ydhd24_banner_wen2
+  rotate: true
+  xy: 212, 91
+  size: 9, 7
+  orig: 9, 7
+  offset: 0, 0
+  index: -1
+ydhd24_banner_xiaoyu
+  rotate: false
+  xy: 364, 23
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yanbai
+  rotate: false
+  xy: 379, 62
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yanpi
+  rotate: true
+  xy: 322, 104
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yanpi1
+  rotate: false
+  xy: 192, 89
+  size: 18, 11
+  orig: 18, 11
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yanzhu
+  rotate: true
+  xy: 214, 5
+  size: 8, 7
+  orig: 9, 8
+  offset: 0, 1
+  index: -1
+ydhd24_banner_yu
+  rotate: false
+  xy: 291, 127
+  size: 115, 129
+  orig: 120, 129
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yugan2
+  rotate: false
+  xy: 158, 101
+  size: 27, 155
+  orig: 27, 156
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yuganxian
+  rotate: true
+  xy: 221, 92
+  size: 8, 126
+  orig: 8, 126
+  offset: 0, 0
+  index: -1
+ydhd24_banner_yuwei
+  rotate: true
+  xy: 330, 4
+  size: 35, 32
+  orig: 35, 32
+  offset: 0, 0
+  index: -1
+ydhd24_banner_z
+  rotate: false
+  xy: 243, 0
+  size: 32, 27
+  orig: 32, 27
+  offset: 0, 0
+  index: -1
+ydhd_banner_bgsnow1
+  rotate: false
+  xy: 0, 88
+  size: 156, 168
+  orig: 156, 168
+  offset: 0, 0
+  index: -1
+ydhd_banner_bgsnow2
+  rotate: false
+  xy: 187, 102
+  size: 102, 154
+  orig: 102, 154
+  offset: 0, 0
+  index: -1

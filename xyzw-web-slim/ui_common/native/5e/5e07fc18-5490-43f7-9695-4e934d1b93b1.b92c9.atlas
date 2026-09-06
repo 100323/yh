@@ -1,0 +1,41 @@
+
+hero_die.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_die_1
+  rotate: false
+  xy: 311, 44
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+hero_die_2
+  rotate: true
+  xy: 150, 7
+  size: 116, 131
+  orig: 116, 131
+  offset: 0, 0
+  index: -1
+hero_die_3
+  rotate: true
+  xy: 283, 15
+  size: 57, 26
+  orig: 57, 26
+  offset: 0, 0
+  index: -1
+hero_die_4
+  rotate: true
+  xy: 283, 74
+  size: 49, 39
+  orig: 51, 39
+  offset: 1, 0
+  index: -1
+hero_die_5
+  rotate: true
+  xy: 2, 2
+  size: 121, 146
+  orig: 121, 146
+  offset: 0, 0
+  index: -1

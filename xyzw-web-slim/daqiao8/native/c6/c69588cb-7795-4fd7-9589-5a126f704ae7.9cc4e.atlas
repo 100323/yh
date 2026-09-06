@@ -1,0 +1,55 @@
+
+daqiao8_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao8_pg_aixin
+  rotate: false
+  xy: 2, 46
+  size: 144, 134
+  orig: 144, 134
+  offset: 0, 0
+  index: -1
+daqiao8_pg_lizi1
+  rotate: false
+  xy: 210, 13
+  size: 48, 47
+  orig: 48, 47
+  offset: 0, 0
+  index: -1
+daqiao8_pg_lizi2
+  rotate: true
+  xy: 148, 2
+  size: 58, 60
+  orig: 58, 60
+  offset: 0, 0
+  index: -1
+daqiao8_pg_lizi3
+  rotate: false
+  xy: 299, 26
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+daqiao8_pg_lizi4
+  rotate: true
+  xy: 260, 22
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+daqiao8_pg_tuowei1
+  rotate: true
+  xy: 354, 50
+  size: 130, 64
+  orig: 130, 64
+  offset: 0, 0
+  index: -1
+daqiao8_pg_tuowei2
+  rotate: false
+  xy: 148, 62
+  size: 204, 118
+  orig: 204, 118
+  offset: 0, 0
+  index: -1

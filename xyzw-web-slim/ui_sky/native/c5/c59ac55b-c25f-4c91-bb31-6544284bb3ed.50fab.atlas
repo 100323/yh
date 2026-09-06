@@ -1,0 +1,83 @@
+
+tgcf_ent_ymj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 161, 2
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+lvbu3_effect_shine
+  rotate: true
+  xy: 94, 2
+  size: 46, 65
+  orig: 46, 65
+  offset: 0, 0
+  index: -1
+tgcf_entrance_box
+  rotate: false
+  xy: 2, 255
+  size: 224, 246
+  orig: 224, 246
+  offset: 0, 0
+  index: -1
+tgcf_entrance_light
+  rotate: true
+  xy: 2, 50
+  size: 203, 202
+  orig: 205, 206
+  offset: 1, 2
+  index: -1
+tgcf_entrance_ymj_cloud3
+  rotate: true
+  xy: 228, 387
+  size: 114, 80
+  orig: 114, 80
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ymj_cloud4
+  rotate: true
+  xy: 228, 272
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ymj_dest
+  rotate: false
+  xy: 206, 70
+  size: 158, 62
+  orig: 158, 62
+  offset: 0, 0
+  index: -1
+tgcf_entrance_ymj_hat
+  rotate: true
+  xy: 206, 134
+  size: 119, 90
+  orig: 120, 92
+  offset: 0, 1
+  index: -1
+tgcf_entrance_ymj_pen
+  rotate: false
+  xy: 2, 3
+  size: 90, 45
+  orig: 90, 46
+  offset: 0, 1
+  index: -1
+tgcf_entrance_ymj_zj
+  rotate: false
+  xy: 209, 6
+  size: 95, 62
+  orig: 95, 62
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 306, 44
+  size: 24, 23
+  orig: 26, 26
+  offset: 1, 2
+  index: -1

@@ -1,0 +1,34 @@
+
+ydzs26_cj_jiantou.png
+size: 64,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou_shang
+  rotate: false
+  xy: 2, 112
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+jiantou_xia
+  rotate: false
+  xy: 2, 169
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+jiantou_you
+  rotate: false
+  xy: 2, 57
+  size: 54, 53
+  orig: 54, 54
+  offset: 0, 1
+  index: -1
+jiantou_zuo
+  rotate: false
+  xy: 2, 2
+  size: 54, 53
+  orig: 54, 54
+  offset: 0, 1
+  index: -1

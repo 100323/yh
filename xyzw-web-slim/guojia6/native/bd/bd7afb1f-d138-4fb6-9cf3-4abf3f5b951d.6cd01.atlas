@@ -1,0 +1,265 @@
+
+guojia6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia6_skill_b1
+  rotate: true
+  xy: 77, 43
+  size: 98, 55
+  orig: 98, 55
+  offset: 0, 0
+  index: -1
+guojia6_skill_b10
+  rotate: true
+  xy: 211, 102
+  size: 64, 75
+  orig: 64, 75
+  offset: 0, 0
+  index: -1
+guojia6_skill_b11
+  rotate: false
+  xy: 349, 138
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+guojia6_skill_b12
+  rotate: true
+  xy: 211, 63
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+guojia6_skill_b13
+  rotate: true
+  xy: 220, 220
+  size: 18, 30
+  orig: 18, 30
+  offset: 0, 0
+  index: -1
+guojia6_skill_b2
+  rotate: false
+  xy: 167, 4
+  size: 76, 44
+  orig: 76, 44
+  offset: 0, 0
+  index: -1
+guojia6_skill_b3
+  rotate: true
+  xy: 143, 183
+  size: 61, 33
+  orig: 61, 33
+  offset: 0, 0
+  index: -1
+guojia6_skill_b4
+  rotate: false
+  xy: 76, 6
+  size: 46, 35
+  orig: 46, 35
+  offset: 0, 0
+  index: -1
+guojia6_skill_b5
+  rotate: true
+  xy: 326, 40
+  size: 60, 59
+  orig: 60, 59
+  offset: 0, 0
+  index: -1
+guojia6_skill_b6
+  rotate: true
+  xy: 220, 258
+  size: 86, 47
+  orig: 86, 52
+  offset: 0, 5
+  index: -1
+guojia6_skill_b7
+  rotate: false
+  xy: 299, 161
+  size: 48, 56
+  orig: 48, 56
+  offset: 0, 0
+  index: -1
+guojia6_skill_b8
+  rotate: false
+  xy: 2, 51
+  size: 73, 90
+  orig: 73, 90
+  offset: 0, 0
+  index: -1
+guojia6_skill_b9
+  rotate: true
+  xy: 352, 199
+  size: 80, 59
+  orig: 84, 59
+  offset: 0, 0
+  index: -1
+guojia6_skill_c1
+  rotate: false
+  xy: 211, 215
+  size: 7, 162
+  orig: 7, 162
+  offset: 0, 0
+  index: -1
+guojia6_skill_c2
+  rotate: false
+  xy: 181, 231
+  size: 28, 146
+  orig: 28, 146
+  offset: 0, 0
+  index: -1
+guojia6_skill_c3
+  rotate: true
+  xy: 134, 50
+  size: 79, 75
+  orig: 81, 75
+  offset: 2, 0
+  index: -1
+guojia6_skill_d1
+  rotate: true
+  xy: 2, 7
+  size: 42, 48
+  orig: 42, 48
+  offset: 0, 0
+  index: -1
+guojia6_skill_d2
+  rotate: true
+  xy: 295, 219
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+guojia6_skill_d3
+  rotate: true
+  xy: 2, 246
+  size: 131, 177
+  orig: 131, 179
+  offset: 0, 0
+  index: -1
+guojia6_skill_d4
+  rotate: true
+  xy: 271, 271
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+guojia6_skill_d5
+  rotate: false
+  xy: 2, 379
+  size: 229, 131
+  orig: 229, 131
+  offset: 0, 0
+  index: -1
+guojia6_skill_d6
+  rotate: true
+  xy: 52, 12
+  size: 37, 22
+  orig: 37, 22
+  offset: 0, 0
+  index: -1
+guojia6_skill_d7
+  rotate: false
+  xy: 124, 5
+  size: 41, 36
+  orig: 41, 36
+  offset: 0, 0
+  index: -1
+guojia6_skill_d8
+  rotate: false
+  xy: 413, 240
+  size: 95, 270
+  orig: 95, 271
+  offset: 0, 1
+  index: -1
+guojia6_skill_d9
+  rotate: true
+  xy: 233, 346
+  size: 164, 178
+  orig: 164, 178
+  offset: 0, 0
+  index: -1
+guojia6_skill_s1
+  rotate: true
+  xy: 345, 281
+  size: 63, 65
+  orig: 63, 65
+  offset: 0, 0
+  index: -1
+guojia6_skill_s2
+  rotate: false
+  xy: 207, 168
+  size: 90, 45
+  orig: 90, 45
+  offset: 0, 0
+  index: -1
+guojia6_skill_s3
+  rotate: true
+  xy: 283, 69
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1
+guojia6_skill_s4
+  rotate: true
+  xy: 269, 241
+  size: 28, 24
+  orig: 28, 24
+  offset: 0, 0
+  index: -1
+guojia6_skill_s5
+  rotate: true
+  xy: 178, 167
+  size: 62, 27
+  orig: 62, 27
+  offset: 0, 0
+  index: -1
+guojia6_skill_s6
+  rotate: true
+  xy: 143, 131
+  size: 50, 21
+  orig: 50, 21
+  offset: 0, 0
+  index: -1
+guojia6_skill_s7
+  rotate: false
+  xy: 2, 143
+  size: 139, 101
+  orig: 139, 101
+  offset: 0, 0
+  index: -1
+guojia6_skill_s8
+  rotate: false
+  xy: 245, 2
+  size: 79, 59
+  orig: 79, 59
+  offset: 0, 0
+  index: -1
+guojia6_skill_s9
+  rotate: true
+  xy: 166, 141
+  size: 24, 43
+  orig: 24, 43
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: true
+  xy: 288, 102
+  size: 57, 56
+  orig: 57, 56
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 252, 220
+  size: 18, 17
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 249, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

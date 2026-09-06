@@ -1,0 +1,20 @@
+
+zhangliao_skill_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 126, 80
+  size: 26, 24
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zhangliao_skill
+  rotate: false
+  xy: 2, 2
+  size: 122, 102
+  orig: 122, 102
+  offset: 0, 0
+  index: -1

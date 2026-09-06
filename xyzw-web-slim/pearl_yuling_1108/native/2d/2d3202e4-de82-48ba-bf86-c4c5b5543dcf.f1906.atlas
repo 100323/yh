@@ -1,0 +1,13 @@
+
+yuling_1108.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yuling_107_body
+  rotate: false
+  xy: 2, 2
+  size: 230, 139
+  orig: 230, 139
+  offset: 0, 0
+  index: -1

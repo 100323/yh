@@ -1,0 +1,13 @@
+
+ydzs26_cj_box3.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+muzhuang
+  rotate: false
+  xy: 2, 2
+  size: 62, 63
+  orig: 62, 63
+  offset: 0, 0
+  index: -1

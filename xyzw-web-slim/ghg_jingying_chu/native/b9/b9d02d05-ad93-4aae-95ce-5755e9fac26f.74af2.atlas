@@ -1,0 +1,237 @@
+
+ghg_jingying_chu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_jingying1_leg1
+  rotate: false
+  xy: 472, 180
+  size: 35, 44
+  orig: 35, 44
+  offset: 0, 0
+  index: -1
+ghg_jingying2_arm
+  rotate: true
+  xy: 468, 259
+  size: 79, 37
+  orig: 79, 37
+  offset: 0, 0
+  index: -1
+ghg_jingying2_body
+  rotate: false
+  xy: 446, 340
+  size: 58, 45
+  orig: 58, 45
+  offset: 0, 0
+  index: -1
+ghg_jingying2_ear1
+  rotate: true
+  xy: 376, 147
+  size: 77, 94
+  orig: 77, 94
+  offset: 0, 0
+  index: -1
+ghg_jingying2_ear2
+  rotate: true
+  xy: 275, 4
+  size: 67, 79
+  orig: 67, 79
+  offset: 0, 0
+  index: -1
+ghg_jingying2_eye1
+  rotate: false
+  xy: 505, 499
+  size: 5, 11
+  orig: 5, 11
+  offset: 0, 0
+  index: -1
+ghg_jingying2_eye2
+  rotate: false
+  xy: 505, 108
+  size: 5, 11
+  orig: 5, 11
+  offset: 0, 0
+  index: -1
+ghg_jingying2_eyebrow
+  rotate: false
+  xy: 182, 199
+  size: 33, 13
+  orig: 33, 13
+  offset: 0, 0
+  index: -1
+ghg_jingying2_eyewhite1
+  rotate: false
+  xy: 481, 121
+  size: 29, 27
+  orig: 29, 27
+  offset: 0, 0
+  index: -1
+ghg_jingying2_eyewhite2
+  rotate: false
+  xy: 472, 150
+  size: 35, 28
+  orig: 35, 28
+  offset: 0, 0
+  index: -1
+ghg_jingying2_head
+  rotate: true
+  xy: 378, 226
+  size: 103, 88
+  orig: 103, 88
+  offset: 0, 0
+  index: -1
+ghg_jingying2_leg
+  rotate: false
+  xy: 435, 100
+  size: 44, 45
+  orig: 44, 45
+  offset: 0, 0
+  index: -1
+ghg_jingying2_light1
+  rotate: false
+  xy: 182, 214
+  size: 93, 150
+  orig: 93, 150
+  offset: 0, 0
+  index: -1
+ghg_jingying2_light2
+  rotate: false
+  xy: 2, 14
+  size: 113, 180
+  orig: 113, 180
+  offset: 0, 0
+  index: -1
+ghg_jingying2_mouth
+  rotate: true
+  xy: 468, 226
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1
+ghg_jingying2_pd
+  rotate: false
+  xy: 182, 366
+  size: 141, 144
+  orig: 141, 144
+  offset: 0, 0
+  index: -1
+ghg_jingying2_skill1
+  rotate: true
+  xy: 444, 441
+  size: 69, 59
+  orig: 71, 67
+  offset: 2, 5
+  index: -1
+ghg_jingying2_skill2
+  rotate: false
+  xy: 117, 14
+  size: 59, 180
+  orig: 59, 180
+  offset: 0, 0
+  index: -1
+ghg_jingying2_skill3
+  rotate: true
+  xy: 325, 331
+  size: 86, 119
+  orig: 90, 119
+  offset: 0, 0
+  index: -1
+ghg_jingying2_tail
+  rotate: false
+  xy: 446, 387
+  size: 64, 52
+  orig: 64, 52
+  offset: 0, 0
+  index: -1
+ghg_jingying2_weapon
+  rotate: false
+  xy: 2, 196
+  size: 178, 314
+  orig: 178, 314
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 277, 331
+  size: 33, 33
+  orig: 35, 35
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 250, 173
+  size: 19, 18
+  orig: 19, 19
+  offset: 0, 1
+  index: -1
+ymj_effect_star1
+  rotate: true
+  xy: 250, 193
+  size: 19, 25
+  orig: 19, 25
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: false
+  xy: 250, 153
+  size: 19, 18
+  orig: 19, 19
+  offset: 0, 1
+  index: -1
+ymj_jingying2_skilla1
+  rotate: false
+  xy: 325, 419
+  size: 117, 91
+  orig: 117, 91
+  offset: 0, 0
+  index: -1
+ymj_jingying2_skilla2
+  rotate: false
+  xy: 277, 148
+  size: 97, 82
+  orig: 97, 82
+  offset: 0, 0
+  index: -1
+ymj_jingying2_skilla3
+  rotate: false
+  xy: 275, 73
+  size: 88, 73
+  orig: 88, 73
+  offset: 0, 0
+  index: -1
+ymj_jingying2_skilla4
+  rotate: false
+  xy: 178, 2
+  size: 95, 86
+  orig: 95, 86
+  offset: 0, 0
+  index: -1
+ymj_jingying2_skillb1_1
+  rotate: false
+  xy: 365, 86
+  size: 68, 59
+  orig: 83, 67
+  offset: 6, 0
+  index: -1
+ymj_jingying2_skillc1
+  rotate: false
+  xy: 277, 232
+  size: 99, 97
+  orig: 99, 97
+  offset: 0, 0
+  index: -1
+ymj_jingying2_skillc2
+  rotate: true
+  xy: 481, 100
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1
+ymj_jingying2_skillc3
+  rotate: true
+  xy: 178, 90
+  size: 104, 70
+  orig: 104, 70
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,279 @@
+
+jiangwei8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianqiu_000
+  rotate: true
+  xy: 156, 345
+  size: 48, 40
+  orig: 58, 58
+  offset: 4, 8
+  index: -1
+dianqiu_002
+  rotate: false
+  xy: 105, 11
+  size: 52, 43
+  orig: 58, 58
+  offset: 2, 6
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 199, 75
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 156, 253
+  size: 40, 40
+  orig: 44, 44
+  offset: 2, 2
+  index: -1
+jiangwei8_attack1
+  rotate: true
+  xy: 156, 235
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+jiangwei8_beard
+  rotate: true
+  xy: 287, 213
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+jiangwei8_body
+  rotate: false
+  xy: 2, 56
+  size: 195, 175
+  orig: 195, 176
+  offset: 0, 0
+  index: -1
+jiangwei8_effect1
+  rotate: true
+  xy: 198, 247
+  size: 24, 113
+  orig: 24, 113
+  offset: 0, 0
+  index: -1
+jiangwei8_effect4
+  rotate: false
+  xy: 278, 25
+  size: 67, 62
+  orig: 67, 62
+  offset: 0, 0
+  index: -1
+jiangwei8_effect7
+  rotate: true
+  xy: 287, 179
+  size: 32, 23
+  orig: 34, 29
+  offset: 1, 3
+  index: -1
+jiangwei8_effect8
+  rotate: false
+  xy: 52, 10
+  size: 51, 44
+  orig: 53, 47
+  offset: 1, 2
+  index: -1
+jiangwei8_eyebrow
+  rotate: false
+  xy: 352, 282
+  size: 45, 29
+  orig: 45, 29
+  offset: 0, 0
+  index: -1
+jiangwei8_eyewhite
+  rotate: false
+  xy: 2, 9
+  size: 48, 45
+  orig: 50, 47
+  offset: 1, 1
+  index: -1
+jiangwei8_hair
+  rotate: true
+  xy: 202, 401
+  size: 109, 176
+  orig: 109, 176
+  offset: 0, 0
+  index: -1
+jiangwei8_handl2
+  rotate: true
+  xy: 314, 280
+  size: 31, 36
+  orig: 32, 39
+  offset: 0, 3
+  index: -1
+jiangwei8_handr
+  rotate: false
+  xy: 156, 295
+  size: 40, 48
+  orig: 40, 48
+  offset: 0, 0
+  index: -1
+jiangwei8_hat
+  rotate: false
+  xy: 313, 168
+  size: 95, 103
+  orig: 95, 103
+  offset: 0, 0
+  index: -1
+jiangwei8_hat1
+  rotate: false
+  xy: 199, 154
+  size: 86, 91
+  orig: 86, 91
+  offset: 0, 0
+  index: -1
+jiangwei8_head
+  rotate: true
+  xy: 80, 395
+  size: 115, 120
+  orig: 115, 120
+  offset: 0, 0
+  index: -1
+jiangwei8_huo1
+  rotate: false
+  xy: 468, 332
+  size: 26, 68
+  orig: 26, 68
+  offset: 0, 0
+  index: -1
+jiangwei8_huo2
+  rotate: false
+  xy: 347, 17
+  size: 23, 70
+  orig: 23, 70
+  offset: 0, 0
+  index: -1
+jiangwei8_huo3
+  rotate: false
+  xy: 452, 2
+  size: 20, 69
+  orig: 20, 69
+  offset: 0, 0
+  index: -1
+jiangwei8_huo4
+  rotate: false
+  xy: 372, 22
+  size: 23, 65
+  orig: 23, 65
+  offset: 0, 0
+  index: -1
+jiangwei8_huo5
+  rotate: true
+  xy: 199, 50
+  size: 23, 65
+  orig: 23, 65
+  offset: 0, 0
+  index: -1
+jiangwei8_jy
+  rotate: true
+  xy: 287, 89
+  size: 77, 110
+  orig: 77, 110
+  offset: 0, 0
+  index: -1
+jiangwei8_leg
+  rotate: false
+  xy: 476, 408
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+jiangwei8_line1
+  rotate: true
+  xy: 80, 251
+  size: 142, 74
+  orig: 142, 74
+  offset: 0, 0
+  index: -1
+jiangwei8_line2
+  rotate: true
+  xy: 409, 286
+  size: 113, 57
+  orig: 113, 57
+  offset: 0, 0
+  index: -1
+jiangwei8_ring1
+  rotate: true
+  xy: 397, 21
+  size: 50, 53
+  orig: 50, 53
+  offset: 0, 0
+  index: -1
+jiangwei8_shou
+  rotate: false
+  xy: 410, 170
+  size: 54, 47
+  orig: 54, 47
+  offset: 0, 0
+  index: -1
+jiangwei8_shoulderl
+  rotate: false
+  xy: 399, 73
+  size: 75, 93
+  orig: 75, 93
+  offset: 0, 0
+  index: -1
+jiangwei8_shoulderr
+  rotate: true
+  xy: 314, 313
+  size: 86, 93
+  orig: 86, 102
+  offset: 0, 9
+  index: -1
+jiangwei8_tail
+  rotate: false
+  xy: 422, 402
+  size: 52, 35
+  orig: 52, 35
+  offset: 0, 0
+  index: -1
+jiangwei8_weapon
+  rotate: false
+  xy: 2, 233
+  size: 76, 277
+  orig: 83, 289
+  offset: 4, 6
+  index: -1
+tongyong_fg
+  rotate: true
+  xy: 380, 439
+  size: 71, 126
+  orig: 71, 126
+  offset: 0, 0
+  index: -1
+tongyong_shen
+  rotate: false
+  xy: 199, 273
+  size: 113, 120
+  orig: 116, 124
+  offset: 2, 3
+  index: -1
+tongyong_xing
+  rotate: true
+  xy: 380, 401
+  size: 36, 40
+  orig: 38, 42
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 468, 308
+  size: 22, 19
+  orig: 24, 24
+  offset: 0, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 410, 219
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1

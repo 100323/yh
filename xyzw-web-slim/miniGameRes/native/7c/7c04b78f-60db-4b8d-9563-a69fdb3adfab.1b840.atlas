@@ -1,0 +1,139 @@
+
+kpyx5_zhugeliang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 472, 74
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+kpyx5_han
+  rotate: true
+  xy: 459, 53
+  size: 19, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+kpyx5_help
+  rotate: false
+  xy: 2, 20
+  size: 211, 232
+  orig: 211, 232
+  offset: 0, 0
+  index: -1
+kpyx5_tan1
+  rotate: true
+  xy: 98, 5
+  size: 13, 35
+  orig: 13, 35
+  offset: 0, 0
+  index: -1
+kpyx5_tan2
+  rotate: true
+  xy: 421, 124
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+zhugeliang_beard1
+  rotate: true
+  xy: 421, 102
+  size: 20, 49
+  orig: 20, 49
+  offset: 0, 0
+  index: -1
+zhugeliang_beard2
+  rotate: true
+  xy: 421, 75
+  size: 25, 48
+  orig: 25, 48
+  offset: 0, 0
+  index: -1
+zhugeliang_body
+  rotate: false
+  xy: 215, 80
+  size: 107, 172
+  orig: 107, 172
+  offset: 0, 0
+  index: -1
+zhugeliang_eye
+  rotate: false
+  xy: 135, 12
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+zhugeliang_eyebrow
+  rotate: true
+  xy: 2, 2
+  size: 16, 41
+  orig: 16, 41
+  offset: 0, 0
+  index: -1
+zhugeliang_eyewhite
+  rotate: true
+  xy: 421, 3
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+zhugeliang_fan
+  rotate: true
+  xy: 324, 158
+  size: 94, 171
+  orig: 94, 171
+  offset: 0, 0
+  index: -1
+zhugeliang_footr
+  rotate: false
+  xy: 485, 45
+  size: 20, 27
+  orig: 20, 27
+  offset: 0, 0
+  index: -1
+zhugeliang_hair
+  rotate: true
+  xy: 45, 4
+  size: 14, 51
+  orig: 14, 51
+  offset: 0, 0
+  index: -1
+zhugeliang_hand1
+  rotate: false
+  xy: 473, 121
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+zhugeliang_hand2
+  rotate: false
+  xy: 455, 5
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1
+zhugeliang_handl
+  rotate: true
+  xy: 421, 39
+  size: 34, 36
+  orig: 34, 36
+  offset: 0, 0
+  index: -1
+zhugeliang_hat
+  rotate: true
+  xy: 324, 12
+  size: 144, 95
+  orig: 144, 95
+  offset: 0, 0
+  index: -1
+zhugeliang_tail
+  rotate: false
+  xy: 215, 17
+  size: 90, 61
+  orig: 90, 61
+  offset: 0, 0
+  index: -1

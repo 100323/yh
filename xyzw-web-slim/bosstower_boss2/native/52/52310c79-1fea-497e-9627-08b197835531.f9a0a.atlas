@@ -1,0 +1,55 @@
+
+bosstower_boss2_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bosstower_boss2_jinbi
+  rotate: true
+  xy: 271, 7
+  size: 37, 43
+  orig: 37, 43
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 227, 2
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 316, 18
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+tx_10
+  rotate: false
+  xy: 381, 33
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+tx_13
+  rotate: true
+  xy: 381, 101
+  size: 96, 86
+  orig: 96, 86
+  offset: 0, 0
+  index: -1
+tx_7
+  rotate: false
+  xy: 2, 9
+  size: 223, 188
+  orig: 236, 201
+  offset: 6, 6
+  index: -1
+tx_8
+  rotate: true
+  xy: 227, 46
+  size: 151, 152
+  orig: 158, 157
+  offset: 4, 3
+  index: -1

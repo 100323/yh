@@ -1,0 +1,62 @@
+
+daqiao7_attack_line.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao7_pg_di
+  rotate: false
+  xy: 2, 112
+  size: 276, 112
+  orig: 276, 112
+  offset: 0, 0
+  index: -1
+daqiao7_pg_xian1
+  rotate: true
+  xy: 450, 2
+  size: 62, 7
+  orig: 62, 7
+  offset: 0, 0
+  index: -1
+daqiao7_pg_yl1
+  rotate: false
+  xy: 90, 4
+  size: 80, 106
+  orig: 80, 106
+  offset: 0, 0
+  index: -1
+daqiao7_pg_yl2
+  rotate: false
+  xy: 2, 4
+  size: 86, 106
+  orig: 86, 106
+  offset: 0, 0
+  index: -1
+daqiao7_pg_yl3
+  rotate: false
+  xy: 280, 59
+  size: 168, 165
+  orig: 168, 165
+  offset: 0, 0
+  index: -1
+daqiao7_pg_yldi1
+  rotate: true
+  xy: 450, 66
+  size: 44, 56
+  orig: 44, 56
+  offset: 0, 0
+  index: -1
+daqiao7_pg_yldi2
+  rotate: true
+  xy: 450, 112
+  size: 48, 56
+  orig: 48, 56
+  offset: 0, 0
+  index: -1
+daqiao7_pg_yldi3
+  rotate: true
+  xy: 450, 162
+  size: 62, 56
+  orig: 62, 56
+  offset: 0, 0
+  index: -1

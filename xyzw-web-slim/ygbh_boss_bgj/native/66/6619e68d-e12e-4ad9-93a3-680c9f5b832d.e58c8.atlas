@@ -1,0 +1,104 @@
+
+ygbh_boss_bgj_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 927, 723
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_g11
+  rotate: true
+  xy: 2, 416
+  size: 102, 334
+  orig: 102, 334
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_g2
+  rotate: false
+  xy: 855, 290
+  size: 166, 333
+  orig: 166, 333
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_sb1
+  rotate: true
+  xy: 522, 40
+  size: 248, 252
+  orig: 248, 252
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_shen
+  rotate: true
+  xy: 548, 625
+  size: 384, 377
+  orig: 384, 377
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_shoul
+  rotate: true
+  xy: 776, 53
+  size: 235, 220
+  orig: 235, 220
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_shoullian
+  rotate: true
+  xy: 267, 101
+  size: 255, 253
+  orig: 256, 255
+  offset: 0, 1
+  index: -1
+ygbh_boss_bgj_skill_shoulshoul
+  rotate: false
+  xy: 2, 2
+  size: 147, 133
+  orig: 149, 134
+  offset: 1, 1
+  index: -1
+ygbh_boss_bgj_skill_tf1
+  rotate: false
+  xy: 548, 290
+  size: 305, 333
+  orig: 305, 333
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_tf2
+  rotate: false
+  xy: 2, 520
+  size: 544, 489
+  orig: 544, 489
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_zha1
+  rotate: false
+  xy: 338, 358
+  size: 157, 160
+  orig: 157, 160
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_zha2
+  rotate: true
+  xy: 927, 896
+  size: 113, 64
+  orig: 114, 66
+  offset: 0, 0
+  index: -1
+ygbh_boss_bgj_skill_zha3
+  rotate: false
+  xy: 927, 771
+  size: 54, 123
+  orig: 55, 125
+  offset: 0, 1
+  index: -1
+ygbh_boss_bgj_skill_zha4
+  rotate: true
+  xy: 2, 137
+  size: 277, 263
+  orig: 277, 263
+  offset: 0, 0
+  index: -1

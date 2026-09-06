@@ -1,0 +1,13 @@
+
+tgcf_pty_tjtz_jifen.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_pty_tjtz_dian
+  rotate: false
+  xy: 2, 2
+  size: 68, 68
+  orig: 70, 70
+  offset: 1, 1
+  index: -1

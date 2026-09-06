@@ -1,0 +1,13 @@
+
+dzfj_mrt_hz1_cj_zhaoyun.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhaoyun
+  rotate: false
+  xy: 2, 2
+  size: 434, 325
+  orig: 436, 327
+  offset: 1, 1
+  index: -1

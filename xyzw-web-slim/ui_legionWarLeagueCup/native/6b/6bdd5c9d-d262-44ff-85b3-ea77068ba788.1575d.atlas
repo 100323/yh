@@ -1,0 +1,125 @@
+
+hjls26_banner_xuanwu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 148, 48
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_g2x
+  rotate: true
+  xy: 401, 65
+  size: 92, 11
+  orig: 92, 11
+  offset: 0, 0
+  index: -1
+hjls26_banner_bh_g2xx
+  rotate: true
+  xy: 487, 258
+  size: 117, 10
+  orig: 117, 10
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_bing1
+  rotate: false
+  xy: 148, 7
+  size: 70, 39
+  orig: 82, 42
+  offset: 4, 1
+  index: -1
+hjls26_banner_xw_bing2
+  rotate: true
+  xy: 228, 378
+  size: 35, 49
+  orig: 36, 52
+  offset: 0, 2
+  index: -1
+hjls26_banner_xw_bing3
+  rotate: false
+  xy: 148, 91
+  size: 45, 47
+  orig: 48, 50
+  offset: 1, 2
+  index: -1
+hjls26_banner_xw_bing4
+  rotate: true
+  xy: 390, 393
+  size: 20, 16
+  orig: 22, 16
+  offset: 1, 0
+  index: -1
+hjls26_banner_xw_bing5
+  rotate: true
+  xy: 2, 140
+  size: 273, 224
+  orig: 273, 224
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_gui
+  rotate: true
+  xy: 228, 159
+  size: 216, 186
+  orig: 218, 186
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_xing
+  rotate: true
+  xy: 416, 122
+  size: 253, 69
+  orig: 253, 69
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_yun
+  rotate: false
+  xy: 2, 415
+  size: 421, 71
+  orig: 421, 71
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_yun1
+  rotate: true
+  xy: 425, 377
+  size: 109, 85
+  orig: 109, 85
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_yun2
+  rotate: true
+  xy: 414, 6
+  size: 114, 83
+  orig: 114, 83
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_yun3
+  rotate: true
+  xy: 228, 2
+  size: 155, 171
+  orig: 155, 171
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_yun4
+  rotate: true
+  xy: 2, 10
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+hjls26_banner_xw_zz
+  rotate: true
+  xy: 279, 383
+  size: 30, 85
+  orig: 30, 85
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 366, 391
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

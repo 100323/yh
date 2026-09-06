@@ -1,0 +1,55 @@
+
+dianwei5_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei5_at_01
+  rotate: false
+  xy: 2, 106
+  size: 277, 293
+  orig: 277, 293
+  offset: 0, 0
+  index: -1
+dianwei5_at_02
+  rotate: false
+  xy: 281, 258
+  size: 82, 58
+  orig: 82, 58
+  offset: 0, 0
+  index: -1
+dianwei5_at_03
+  rotate: false
+  xy: 2, 2
+  size: 141, 102
+  orig: 141, 102
+  offset: 0, 0
+  index: -1
+dianwei5_at_04
+  rotate: false
+  xy: 145, 26
+  size: 257, 78
+  orig: 257, 78
+  offset: 0, 0
+  index: -1
+dianwei5_at_05
+  rotate: true
+  xy: 343, 351
+  size: 48, 50
+  orig: 48, 50
+  offset: 0, 0
+  index: -1
+dianwei5_at_06
+  rotate: true
+  xy: 343, 334
+  size: 15, 19
+  orig: 15, 19
+  offset: 0, 0
+  index: -1
+dianwei5_yu
+  rotate: true
+  xy: 281, 318
+  size: 81, 60
+  orig: 85, 70
+  offset: 2, 2
+  index: -1

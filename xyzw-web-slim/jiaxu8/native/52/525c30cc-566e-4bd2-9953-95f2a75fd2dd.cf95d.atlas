@@ -1,0 +1,76 @@
+
+jiaxu8_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 450, 5
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_lizi1
+  rotate: true
+  xy: 446, 182
+  size: 69, 59
+  orig: 69, 59
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_lizi2
+  rotate: true
+  xy: 390, 21
+  size: 78, 58
+  orig: 78, 58
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_lizi3
+  rotate: false
+  xy: 219, 39
+  size: 102, 60
+  orig: 102, 60
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_lizi4
+  rotate: true
+  xy: 323, 17
+  size: 82, 65
+  orig: 82, 65
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_lizi5
+  rotate: true
+  xy: 446, 119
+  size: 61, 58
+  orig: 61, 58
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_xg
+  rotate: false
+  xy: 2, 2
+  size: 215, 97
+  orig: 215, 97
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_yas
+  rotate: false
+  xy: 450, 53
+  size: 55, 64
+  orig: 55, 64
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_yax
+  rotate: false
+  xy: 219, 5
+  size: 56, 32
+  orig: 56, 32
+  offset: 0, 0
+  index: -1
+jiaxu8_pg_zidan
+  rotate: false
+  xy: 2, 101
+  size: 442, 150
+  orig: 442, 150
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+ui_newhero_light.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_effect_light_box
+  rotate: false
+  xy: 307, 111
+  size: 63, 65
+  orig: 63, 65
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 178, 49
+  size: 127, 127
+  orig: 127, 127
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 2
+  size: 174, 174
+  orig: 174, 174
+  offset: 0, 0
+  index: -1

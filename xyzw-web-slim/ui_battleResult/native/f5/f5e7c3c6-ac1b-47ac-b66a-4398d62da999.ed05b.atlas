@@ -1,0 +1,69 @@
+
+zytp_js_win.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zytp_js_win1
+  rotate: false
+  xy: 190, 251
+  size: 240, 112
+  orig: 240, 112
+  offset: 0, 0
+  index: -1
+zytp_js_win2
+  rotate: false
+  xy: 190, 158
+  size: 89, 91
+  orig: 91, 91
+  offset: 2, 0
+  index: -1
+zytp_js_win3
+  rotate: true
+  xy: 420, 126
+  size: 123, 55
+  orig: 123, 60
+  offset: 0, 0
+  index: -1
+zytp_js_win4
+  rotate: false
+  xy: 432, 280
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+zytp_js_win5
+  rotate: false
+  xy: 281, 197
+  size: 137, 52
+  orig: 138, 52
+  offset: 1, 0
+  index: -1
+zytp_js_win6
+  rotate: false
+  xy: 432, 324
+  size: 59, 39
+  orig: 59, 40
+  offset: 0, 1
+  index: -1
+zytp_js_win7
+  rotate: false
+  xy: 2, 157
+  size: 186, 206
+  orig: 186, 206
+  offset: 0, 0
+  index: -1
+zytp_js_win8
+  rotate: false
+  xy: 364, 2
+  size: 122, 122
+  orig: 122, 122
+  offset: 0, 0
+  index: -1
+zytp_js_win9
+  rotate: false
+  xy: 2, 70
+  size: 360, 85
+  orig: 360, 86
+  offset: 0, 1
+  index: -1

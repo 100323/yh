@@ -1,0 +1,111 @@
+
+zxc_cardbox2_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_box_he1
+  rotate: false
+  xy: 2, 326
+  size: 209, 179
+  orig: 209, 179
+  offset: 0, 0
+  index: -1
+dyhc_boxlight1
+  rotate: false
+  xy: 2, 165
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+dyhc_boxlight3
+  rotate: false
+  xy: 307, 164
+  size: 120, 146
+  orig: 120, 146
+  offset: 0, 0
+  index: -1
+dyhc_boxlight4
+  rotate: true
+  xy: 137, 2
+  size: 18, 206
+  orig: 18, 206
+  offset: 0, 0
+  index: -1
+dyhc_boxlightck1
+  rotate: false
+  xy: 2, 5
+  size: 133, 158
+  orig: 133, 158
+  offset: 0, 0
+  index: -1
+dyhc_boxlightck2
+  rotate: false
+  xy: 429, 172
+  size: 58, 142
+  orig: 58, 142
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 279, 140
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xjzw_box_gai1
+  rotate: true
+  xy: 213, 312
+  size: 84, 212
+  orig: 84, 212
+  offset: 0, 0
+  index: -1
+xjzw_box_gai2
+  rotate: false
+  xy: 213, 398
+  size: 212, 107
+  orig: 212, 107
+  offset: 0, 0
+  index: -1
+xjzw_box_hed1
+  rotate: true
+  xy: 427, 316
+  size: 189, 40
+  orig: 190, 40
+  offset: 0, 0
+  index: -1
+xjzw_box_kou1
+  rotate: false
+  xy: 469, 415
+  size: 41, 90
+  orig: 41, 90
+  offset: 0, 0
+  index: -1
+xjzw_box_kou2
+  rotate: false
+  xy: 469, 325
+  size: 29, 88
+  orig: 29, 88
+  offset: 0, 0
+  index: -1
+xjzw_box_pan1
+  rotate: false
+  xy: 137, 22
+  size: 140, 141
+  orig: 140, 141
+  offset: 0, 0
+  index: -1
+xjzw_box_pan2
+  rotate: false
+  xy: 164, 168
+  size: 141, 142
+  orig: 141, 142
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 279, 115
+  size: 20, 23
+  orig: 26, 26
+  offset: 2, 2
+  index: -1

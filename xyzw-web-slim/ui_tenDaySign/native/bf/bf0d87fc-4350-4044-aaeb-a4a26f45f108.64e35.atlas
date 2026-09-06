@@ -1,0 +1,153 @@
+
+zpgf_srqd.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zpgf_srqd_biaoti
+  rotate: false
+  xy: 680, 2
+  size: 329, 98
+  orig: 332, 101
+  offset: 1, 2
+  index: -1
+zpgf_srqd_di
+  rotate: true
+  xy: 432, 367
+  size: 635, 62
+  orig: 635, 62
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_mao
+  rotate: true
+  xy: 688, 135
+  size: 194, 166
+  orig: 197, 168
+  offset: 1, 1
+  index: -1
+zpgf_srqd_long_mei1
+  rotate: false
+  xy: 633, 215
+  size: 37, 56
+  orig: 39, 58
+  offset: 1, 1
+  index: -1
+zpgf_srqd_long_mei2
+  rotate: false
+  xy: 432, 226
+  size: 85, 45
+  orig: 87, 47
+  offset: 1, 1
+  index: -1
+zpgf_srqd_long_she
+  rotate: false
+  xy: 496, 711
+  size: 171, 79
+  orig: 171, 79
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_shen1
+  rotate: false
+  xy: 2, 211
+  size: 428, 791
+  orig: 428, 791
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_tou2
+  rotate: true
+  xy: 688, 627
+  size: 375, 296
+  orig: 375, 296
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_wei
+  rotate: true
+  xy: 856, 122
+  size: 207, 154
+  orig: 207, 154
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_xu1
+  rotate: false
+  xy: 432, 273
+  size: 228, 92
+  orig: 228, 92
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_xu2
+  rotate: false
+  xy: 496, 908
+  size: 148, 94
+  orig: 148, 94
+  offset: 0, 0
+  index: -1
+zpgf_srqd_long_yan
+  rotate: true
+  xy: 587, 218
+  size: 53, 44
+  orig: 55, 46
+  offset: 1, 1
+  index: -1
+zpgf_srqd_long_yanz
+  rotate: true
+  xy: 1011, 985
+  size: 7, 8
+  orig: 9, 10
+  offset: 1, 1
+  index: -1
+zpgf_srqd_long_zhua
+  rotate: false
+  xy: 496, 792
+  size: 122, 114
+  orig: 125, 116
+  offset: 2, 1
+  index: -1
+zpgf_srqd_mb1
+  rotate: false
+  xy: 2, 12
+  size: 676, 88
+  orig: 678, 90
+  offset: 1, 1
+  index: -1
+zpgf_srqd_mb2
+  rotate: false
+  xy: 2, 102
+  size: 684, 107
+  orig: 686, 109
+  offset: 1, 1
+  index: -1
+zpgf_srqd_sc_hc
+  rotate: false
+  xy: 496, 609
+  size: 100, 100
+  orig: 102, 103
+  offset: 1, 1
+  index: -1
+zpgf_srqd_sc_hz
+  rotate: false
+  xy: 519, 214
+  size: 66, 57
+  orig: 68, 59
+  offset: 1, 1
+  index: -1
+zpgf_srqd_sc_jiao
+  rotate: true
+  xy: 688, 331
+  size: 294, 332
+  orig: 294, 332
+  offset: 0, 0
+  index: -1
+zpgf_srqd_sc_xiu
+  rotate: false
+  xy: 598, 638
+  size: 85, 71
+  orig: 87, 73
+  offset: 1, 1
+  index: -1
+zpgf_srqd_sc_yz
+  rotate: false
+  xy: 1011, 994
+  size: 10, 8
+  orig: 12, 10
+  offset: 1, 1
+  index: -1

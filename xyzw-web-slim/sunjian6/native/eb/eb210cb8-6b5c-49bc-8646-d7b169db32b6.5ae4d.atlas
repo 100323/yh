@@ -1,0 +1,34 @@
+
+sunjian6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 271
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sunjian6_skilla1
+  rotate: false
+  xy: 2, 2
+  size: 466, 98
+  orig: 466, 98
+  offset: 0, 0
+  index: -1
+sunjian6_skilla2
+  rotate: false
+  xy: 27, 199
+  size: 464, 95
+  orig: 464, 95
+  offset: 0, 0
+  index: -1
+sunjian6_skilla3
+  rotate: false
+  xy: 2, 102
+  size: 464, 95
+  orig: 464, 95
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,188 @@
+
+ydhd26_xyx_yw.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dwhd24_xyw_guang1
+  rotate: true
+  xy: 418, 5
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+dwhd24_xyw_xian
+  rotate: false
+  xy: 451, 362
+  size: 75, 148
+  orig: 75, 148
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_jiao_l
+  rotate: false
+  xy: 528, 398
+  size: 67, 112
+  orig: 67, 112
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_jiao_r
+  rotate: true
+  xy: 370, 5
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_maozi
+  rotate: true
+  xy: 2, 21
+  size: 181, 218
+  orig: 181, 218
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_shenti
+  rotate: false
+  xy: 2, 204
+  size: 241, 306
+  orig: 241, 321
+  offset: 0, 15
+  index: -1
+dwhd25_bjzwy_dayuwang_shou_l
+  rotate: false
+  xy: 451, 303
+  size: 56, 57
+  orig: 56, 57
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_shou_r
+  rotate: true
+  xy: 509, 307
+  size: 53, 59
+  orig: 54, 60
+  offset: 1, 1
+  index: -1
+dwhd25_bjzwy_dayuwang_shoujuan1
+  rotate: true
+  xy: 524, 44
+  size: 161, 144
+  orig: 161, 144
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_shoujuan2
+  rotate: false
+  xy: 370, 41
+  size: 152, 161
+  orig: 152, 161
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_texiao1
+  rotate: false
+  xy: 664, 264
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_texiao2
+  rotate: true
+  xy: 570, 312
+  size: 84, 62
+  orig: 84, 62
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_weiba
+  rotate: true
+  xy: 328, 303
+  size: 207, 121
+  orig: 207, 121
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_yanbai
+  rotate: false
+  xy: 634, 327
+  size: 50, 71
+  orig: 50, 74
+  offset: 0, 3
+  index: -1
+dwhd25_bjzwy_dayuwang_yanzhu
+  rotate: false
+  xy: 222, 2
+  size: 20, 18
+  orig: 20, 18
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_dayuwang_yingzi
+  rotate: true
+  xy: 245, 297
+  size: 213, 81
+  orig: 213, 81
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_jiao_l
+  rotate: true
+  xy: 453, 5
+  size: 34, 25
+  orig: 34, 27
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_jiao_r
+  rotate: true
+  xy: 526, 18
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_maozi
+  rotate: false
+  xy: 345, 204
+  size: 95, 97
+  orig: 95, 97
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_shenti
+  rotate: false
+  xy: 222, 22
+  size: 146, 180
+  orig: 146, 180
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_shou_l
+  rotate: false
+  xy: 597, 400
+  size: 99, 110
+  orig: 99, 110
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_shou_r
+  rotate: true
+  xy: 245, 204
+  size: 91, 98
+  orig: 91, 98
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_weiba
+  rotate: true
+  xy: 600, 232
+  size: 78, 62
+  orig: 78, 62
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_yanbai
+  rotate: true
+  xy: 480, 6
+  size: 33, 44
+  orig: 33, 44
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_yanzhu
+  rotate: false
+  xy: 2, 6
+  size: 9, 13
+  orig: 9, 13
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyuwang_yingzi
+  rotate: false
+  xy: 442, 207
+  size: 156, 94
+  orig: 156, 94
+  offset: 0, 0
+  index: -1

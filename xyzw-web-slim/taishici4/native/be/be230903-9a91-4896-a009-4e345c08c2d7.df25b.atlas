@@ -1,0 +1,167 @@
+
+taishici4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 425, 60
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 425, 104
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+taishici4_ball1
+  rotate: false
+  xy: 150, 277
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+taishici4_body
+  rotate: false
+  xy: 139, 138
+  size: 155, 131
+  orig: 155, 131
+  offset: 0, 0
+  index: -1
+taishici4_hair1
+  rotate: false
+  xy: 282, 2
+  size: 58, 42
+  orig: 58, 42
+  offset: 0, 0
+  index: -1
+taishici4_hair2
+  rotate: true
+  xy: 2, 24
+  size: 108, 166
+  orig: 108, 166
+  offset: 0, 0
+  index: -1
+taishici4_handl1
+  rotate: false
+  xy: 411, 217
+  size: 81, 82
+  orig: 82, 82
+  offset: 1, 0
+  index: -1
+taishici4_handl2
+  rotate: false
+  xy: 282, 46
+  size: 89, 86
+  orig: 89, 86
+  offset: 0, 0
+  index: -1
+taishici4_handr
+  rotate: true
+  xy: 170, 24
+  size: 112, 110
+  orig: 112, 110
+  offset: 0, 0
+  index: -1
+taishici4_shoulderr
+  rotate: false
+  xy: 411, 157
+  size: 59, 58
+  orig: 59, 58
+  offset: 0, 0
+  index: -1
+taishici4_skill_handl
+  rotate: false
+  xy: 150, 377
+  size: 166, 122
+  orig: 166, 122
+  offset: 0, 0
+  index: -1
+taishici4_skill_handr
+  rotate: false
+  xy: 318, 377
+  size: 162, 122
+  orig: 162, 122
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit4
+  rotate: true
+  xy: 250, 278
+  size: 97, 98
+  orig: 97, 98
+  offset: 0, 0
+  index: -1
+taishici4_skill_hit5
+  rotate: false
+  xy: 2, 134
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+taishici4_skill_tanhuang
+  rotate: false
+  xy: 2, 271
+  size: 146, 228
+  orig: 146, 228
+  offset: 0, 0
+  index: -1
+taishici_eye
+  rotate: false
+  xy: 482, 394
+  size: 8, 8
+  orig: 10, 9
+  offset: 0, 0
+  index: -1
+taishici_eyebrow
+  rotate: true
+  xy: 482, 432
+  size: 35, 25
+  orig: 35, 25
+  offset: 0, 0
+  index: -1
+taishici_eyewhite
+  rotate: false
+  xy: 482, 469
+  size: 26, 30
+  orig: 26, 30
+  offset: 0, 0
+  index: -1
+taishici_head
+  rotate: false
+  xy: 296, 134
+  size: 113, 142
+  orig: 114, 142
+  offset: 0, 0
+  index: -1
+taishici_legr
+  rotate: false
+  xy: 342, 14
+  size: 22, 30
+  orig: 22, 30
+  offset: 0, 0
+  index: -1
+taishici_mouth
+  rotate: false
+  xy: 373, 29
+  size: 50, 103
+  orig: 50, 103
+  offset: 0, 0
+  index: -1
+taishici_tail
+  rotate: false
+  xy: 350, 301
+  size: 142, 74
+  orig: 142, 74
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 482, 404
+  size: 26, 25
+  orig: 26, 26
+  offset: 0, 1
+  index: -1

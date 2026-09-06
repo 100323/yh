@@ -1,0 +1,27 @@
+
+huangyueying2_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huangyueying2_effect1
+  rotate: false
+  xy: 146, 9
+  size: 33, 86
+  orig: 33, 86
+  offset: 0, 0
+  index: -1
+huangyueying2_skill1
+  rotate: false
+  xy: 2, 2
+  size: 70, 93
+  orig: 70, 93
+  offset: 0, 0
+  index: -1
+huangyueying2_skill2
+  rotate: false
+  xy: 74, 2
+  size: 70, 93
+  orig: 70, 93
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,209 @@
+
+simayi5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 308, 118
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+simayi5_attack1
+  rotate: true
+  xy: 432, 49
+  size: 76, 60
+  orig: 76, 60
+  offset: 0, 0
+  index: -1
+simayi5_attack3
+  rotate: false
+  xy: 167, 83
+  size: 139, 57
+  orig: 140, 59
+  offset: 0, 2
+  index: -1
+simayi5_body
+  rotate: true
+  xy: 344, 383
+  size: 127, 122
+  orig: 127, 122
+  offset: 0, 0
+  index: -1
+simayi5_bread
+  rotate: true
+  xy: 450, 143
+  size: 58, 43
+  orig: 65, 53
+  offset: 0, 10
+  index: -1
+simayi5_bread2
+  rotate: false
+  xy: 167, 142
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+simayi5_cloth1
+  rotate: true
+  xy: 206, 171
+  size: 87, 144
+  orig: 87, 157
+  offset: 0, 13
+  index: -1
+simayi5_cloth2
+  rotate: false
+  xy: 2, 51
+  size: 72, 129
+  orig: 84, 129
+  offset: 12, 0
+  index: -1
+simayi5_cloth3
+  rotate: false
+  xy: 76, 2
+  size: 64, 94
+  orig: 64, 94
+  offset: 0, 0
+  index: -1
+simayi5_eyebrow
+  rotate: true
+  xy: 206, 260
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+simayi5_eyewhite
+  rotate: true
+  xy: 246, 263
+  size: 34, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+simayi5_footr
+  rotate: true
+  xy: 50, 21
+  size: 28, 22
+  orig: 28, 22
+  offset: 0, 0
+  index: -1
+simayi5_hair1
+  rotate: true
+  xy: 450, 203
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+simayi5_hair2
+  rotate: false
+  xy: 352, 55
+  size: 78, 70
+  orig: 78, 71
+  offset: 0, 1
+  index: -1
+simayi5_handl
+  rotate: true
+  xy: 462, 339
+  size: 42, 38
+  orig: 43, 38
+  offset: 1, 0
+  index: -1
+simayi5_handr
+  rotate: true
+  xy: 308, 67
+  size: 49, 42
+  orig: 49, 42
+  offset: 0, 0
+  index: -1
+simayi5_hat
+  rotate: false
+  xy: 344, 260
+  size: 116, 121
+  orig: 124, 142
+  offset: 0, 21
+  index: -1
+simayi5_head
+  rotate: false
+  xy: 89, 224
+  size: 115, 141
+  orig: 115, 141
+  offset: 0, 0
+  index: -1
+simayi5_skill1
+  rotate: false
+  xy: 462, 290
+  size: 29, 47
+  orig: 29, 47
+  offset: 0, 0
+  index: -1
+simayi5_skill2
+  rotate: true
+  xy: 2, 182
+  size: 183, 85
+  orig: 184, 114
+  offset: 0, 0
+  index: -1
+simayi5_weapon1
+  rotate: false
+  xy: 2, 367
+  size: 340, 143
+  orig: 354, 161
+  offset: 6, 8
+  index: -1
+simayi5_weapon2
+  rotate: true
+  xy: 167, 184
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+simayi5_weapon3
+  rotate: false
+  xy: 352, 127
+  size: 96, 131
+  orig: 108, 146
+  offset: 6, 7
+  index: -1
+simayi_back
+  rotate: true
+  xy: 89, 98
+  size: 124, 76
+  orig: 124, 76
+  offset: 0, 0
+  index: -1
+simayi_eye
+  rotate: false
+  xy: 330, 289
+  size: 7, 8
+  orig: 7, 8
+  offset: 0, 0
+  index: -1
+simayi_handr2
+  rotate: true
+  xy: 290, 264
+  size: 33, 38
+  orig: 34, 39
+  offset: 1, 1
+  index: -1
+simayi_tail
+  rotate: false
+  xy: 206, 299
+  size: 136, 66
+  orig: 136, 66
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 50, 3
+  size: 24, 16
+  orig: 26, 26
+  offset: 0, 4
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 2, 3
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

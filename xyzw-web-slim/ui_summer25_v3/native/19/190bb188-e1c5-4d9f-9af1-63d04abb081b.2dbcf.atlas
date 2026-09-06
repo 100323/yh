@@ -1,0 +1,27 @@
+
+sqhd25w3_xuanzhong_lan1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w3_xzg_dian1
+  rotate: false
+  xy: 18, 122
+  size: 142, 56
+  orig: 142, 56
+  offset: 0, 0
+  index: -1
+sqhd25w3_xzg_gz
+  rotate: true
+  xy: 2, 2
+  size: 118, 145
+  orig: 118, 145
+  offset: 0, 0
+  index: -1
+sqhd25w3_xzg_xing1
+  rotate: false
+  xy: 2, 164
+  size: 14, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1

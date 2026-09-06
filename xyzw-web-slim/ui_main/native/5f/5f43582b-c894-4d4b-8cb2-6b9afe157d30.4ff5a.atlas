@@ -1,0 +1,34 @@
+
+gfjx_guaji.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gfjx_rk_canjuan
+  rotate: false
+  xy: 2, 87
+  size: 129, 130
+  orig: 129, 130
+  offset: 0, 0
+  index: -1
+gfjx_rk_kaiqizhong_1
+  rotate: false
+  xy: 2, 2
+  size: 83, 83
+  orig: 83, 86
+  offset: 0, 3
+  index: -1
+gfjx_rk_kaiqizhong_2
+  rotate: true
+  xy: 133, 145
+  size: 72, 64
+  orig: 74, 67
+  offset: 1, 2
+  index: -1
+gfjx_rk_weikaiqi
+  rotate: false
+  xy: 87, 4
+  size: 81, 81
+  orig: 83, 86
+  offset: 1, 4
+  index: -1

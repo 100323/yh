@@ -1,0 +1,48 @@
+
+cjqh_boss3b_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_boss3_attack2
+  rotate: false
+  xy: 2, 128
+  size: 280, 307
+  orig: 280, 307
+  offset: 0, 0
+  index: -1
+cjqh_boss3_attack3
+  rotate: true
+  xy: 284, 367
+  size: 68, 54
+  orig: 68, 57
+  offset: 0, 3
+  index: -1
+cjqh_boss3_attack4
+  rotate: false
+  xy: 284, 247
+  size: 26, 26
+  orig: 27, 26
+  offset: 0, 0
+  index: -1
+cjqh_boss3_attack5
+  rotate: false
+  xy: 284, 275
+  size: 52, 90
+  orig: 52, 90
+  offset: 0, 0
+  index: -1
+cjqh_boss3_attack6
+  rotate: true
+  xy: 2, 2
+  size: 124, 161
+  orig: 124, 161
+  offset: 0, 0
+  index: -1
+cjqh_boss3_attack7
+  rotate: true
+  xy: 165, 4
+  size: 122, 176
+  orig: 122, 176
+  offset: 0, 0
+  index: -1

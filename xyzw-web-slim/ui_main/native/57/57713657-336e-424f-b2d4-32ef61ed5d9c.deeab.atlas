@@ -1,0 +1,48 @@
+
+ui_axian_btn_livingroom_chituma.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ktax_ctm_shen
+  rotate: false
+  xy: 136, 131
+  size: 112, 73
+  orig: 112, 73
+  offset: 0, 0
+  index: -1
+ktax_ctm_tf
+  rotate: true
+  xy: 2, 18
+  size: 76, 92
+  orig: 76, 92
+  offset: 0, 0
+  index: -1
+ktax_ctm_tou
+  rotate: true
+  xy: 136, 2
+  size: 127, 103
+  orig: 127, 103
+  offset: 0, 0
+  index: -1
+ktax_ctm_ying
+  rotate: false
+  xy: 2, 96
+  size: 132, 108
+  orig: 132, 108
+  offset: 0, 0
+  index: -1
+ktax_ctm_yz1
+  rotate: false
+  xy: 241, 124
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
+ktax_ctm_yz2
+  rotate: false
+  xy: 241, 117
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1

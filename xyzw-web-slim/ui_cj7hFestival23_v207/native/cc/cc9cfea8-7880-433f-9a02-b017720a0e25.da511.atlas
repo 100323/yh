@@ -1,0 +1,69 @@
+
+xkhj25_cj_beijing.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beijing
+  rotate: true
+  xy: 2, 2
+  size: 421, 804
+  orig: 421, 804
+  offset: 0, 0
+  index: -1
+beijing2
+  rotate: false
+  xy: 561, 425
+  size: 439, 340
+  orig: 439, 340
+  offset: 0, 0
+  index: -1
+wuqi1
+  rotate: true
+  xy: 2, 676
+  size: 174, 290
+  orig: 174, 290
+  offset: 0, 0
+  index: -1
+wuqi2
+  rotate: true
+  xy: 294, 604
+  size: 246, 265
+  orig: 246, 265
+  offset: 0, 0
+  index: -1
+xingqiu1
+  rotate: true
+  xy: 775, 767
+  size: 107, 108
+  orig: 107, 108
+  offset: 0, 0
+  index: -1
+xingqiu2
+  rotate: false
+  xy: 2, 853
+  size: 22, 21
+  orig: 22, 21
+  offset: 0, 0
+  index: -1
+xingqiu3
+  rotate: false
+  xy: 729, 830
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xingqiu4
+  rotate: false
+  xy: 697, 844
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+yaan
+  rotate: true
+  xy: 26, 852
+  size: 22, 669
+  orig: 22, 669
+  offset: 0, 0
+  index: -1

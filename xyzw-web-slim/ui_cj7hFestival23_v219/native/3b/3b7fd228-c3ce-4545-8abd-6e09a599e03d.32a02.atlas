@@ -1,0 +1,20 @@
+
+kyxb26_cj_changjing.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beijing_yanwu1
+  rotate: false
+  xy: 136, 28
+  size: 44, 45
+  orig: 44, 45
+  offset: 0, 0
+  index: -1
+beijing_yanwu2
+  rotate: true
+  xy: 2, 2
+  size: 71, 132
+  orig: 71, 132
+  offset: 0, 0
+  index: -1

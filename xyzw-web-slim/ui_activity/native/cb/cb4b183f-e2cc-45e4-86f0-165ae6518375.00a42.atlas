@@ -1,0 +1,41 @@
+
+fljs_key2.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wsj23_xx1
+  rotate: false
+  xy: 110, 28
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+yk_js_key1
+  rotate: false
+  xy: 2, 2
+  size: 14, 57
+  orig: 14, 57
+  offset: 0, 0
+  index: -1
+yk_js_key2
+  rotate: false
+  xy: 65, 4
+  size: 43, 55
+  orig: 45, 58
+  offset: 1, 2
+  index: -1
+yk_js_key3
+  rotate: true
+  xy: 18, 4
+  size: 55, 45
+  orig: 55, 52
+  offset: 0, 0
+  index: -1
+yk_js_key4
+  rotate: true
+  xy: 110, 12
+  size: 14, 30
+  orig: 14, 37
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,125 @@
+
+ui_axian_btn_livingroom_5101.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: true
+  xy: 245, 198
+  size: 10, 5
+  orig: 14, 5
+  offset: 2, 0
+  index: -1
+axian_eyer2
+  rotate: false
+  xy: 245, 217
+  size: 9, 4
+  orig: 13, 6
+  offset: 2, 1
+  index: -1
+ktax_xw_bi
+  rotate: false
+  xy: 245, 223
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+ktax_xw_hl2
+  rotate: false
+  xy: 216, 6
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+ktax_xw_hlying
+  rotate: false
+  xy: 177, 2
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+ktax_xw_lian
+  rotate: false
+  xy: 2, 131
+  size: 62, 54
+  orig: 62, 54
+  offset: 0, 0
+  index: -1
+ktax_xw_pf
+  rotate: true
+  xy: 177, 41
+  size: 83, 66
+  orig: 83, 66
+  offset: 0, 0
+  index: -1
+ktax_xw_shen
+  rotate: false
+  xy: 88, 110
+  size: 65, 75
+  orig: 65, 75
+  offset: 0, 0
+  index: -1
+ktax_xw_shen2
+  rotate: false
+  xy: 2, 187
+  size: 151, 63
+  orig: 151, 77
+  offset: 0, 14
+  index: -1
+ktax_xw_tf
+  rotate: true
+  xy: 88, 7
+  size: 101, 87
+  orig: 101, 87
+  offset: 0, 0
+  index: -1
+ktax_xw_tk
+  rotate: false
+  xy: 2, 4
+  size: 84, 120
+  orig: 84, 120
+  offset: 0, 0
+  index: -1
+ktax_xw_tkying
+  rotate: false
+  xy: 155, 126
+  size: 88, 124
+  orig: 88, 124
+  offset: 0, 0
+  index: -1
+ktax_xw_yanl
+  rotate: true
+  xy: 66, 175
+  size: 10, 13
+  orig: 10, 13
+  offset: 0, 0
+  index: -1
+ktax_xw_yanr
+  rotate: false
+  xy: 245, 236
+  size: 9, 14
+  orig: 9, 14
+  offset: 0, 0
+  index: -1
+ktax_xw_yzl
+  rotate: false
+  xy: 245, 192
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+ktax_xw_yzr
+  rotate: false
+  xy: 245, 186
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+ktax_xw_zui
+  rotate: false
+  xy: 245, 210
+  size: 8, 5
+  orig: 8, 5
+  offset: 0, 0
+  index: -1

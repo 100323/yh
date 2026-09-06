@@ -1,0 +1,27 @@
+
+sdsl_xjlp_tong_dianliang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axwq_ui_circle5
+  rotate: false
+  xy: 2, 85
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+sdsl_xjlp_tong_xing
+  rotate: false
+  xy: 199, 2
+  size: 139, 138
+  orig: 139, 138
+  offset: 0, 0
+  index: -1
+sdsl_xjlp_yin_xing
+  rotate: false
+  xy: 59, 4
+  size: 138, 136
+  orig: 138, 136
+  offset: 0, 0
+  index: -1

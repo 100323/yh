@@ -1,0 +1,62 @@
+
+xsxjt_gyxb_xiaoshi.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 91, 29
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_xiaoshi1
+  rotate: false
+  xy: 151, 34
+  size: 45, 53
+  orig: 47, 55
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_xiaoshi2
+  rotate: true
+  xy: 2, 2
+  size: 85, 87
+  orig: 87, 90
+  offset: 1, 2
+  index: -1
+xsxjt_gyxb_xiaoshi_dian1
+  rotate: false
+  xy: 151, 15
+  size: 18, 17
+  orig: 20, 19
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_xiaoshi_dian2
+  rotate: true
+  xy: 91, 10
+  size: 17, 15
+  orig: 19, 17
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_xiaoshi_dian3
+  rotate: false
+  xy: 125, 14
+  size: 13, 13
+  orig: 16, 15
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_xiaoshi_dian4
+  rotate: true
+  xy: 108, 11
+  size: 16, 15
+  orig: 18, 17
+  offset: 1, 1
+  index: -1
+xsxjt_gyxb_xiaoshi_dian5
+  rotate: false
+  xy: 171, 19
+  size: 13, 13
+  orig: 15, 15
+  offset: 1, 1
+  index: -1

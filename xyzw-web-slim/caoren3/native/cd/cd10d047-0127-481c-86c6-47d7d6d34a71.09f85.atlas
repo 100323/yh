@@ -1,0 +1,90 @@
+
+caoren3_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren3_ball1
+  rotate: false
+  xy: 286, 117
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+caoren3_ball2
+  rotate: false
+  xy: 342, 55
+  size: 51, 60
+  orig: 55, 64
+  offset: 1, 2
+  index: -1
+caoren3_ball3
+  rotate: false
+  xy: 282, 10
+  size: 58, 76
+  orig: 60, 78
+  offset: 1, 1
+  index: -1
+caoren3_ball4
+  rotate: true
+  xy: 286, 178
+  size: 67, 63
+  orig: 69, 65
+  offset: 1, 1
+  index: -1
+caoren3_ball6
+  rotate: false
+  xy: 211, 166
+  size: 73, 79
+  orig: 75, 81
+  offset: 1, 1
+  index: -1
+caoren3_ball7
+  rotate: false
+  xy: 211, 88
+  size: 73, 76
+  orig: 75, 81
+  offset: 1, 1
+  index: -1
+caoren3_ball8
+  rotate: true
+  xy: 211, 16
+  size: 70, 69
+  orig: 71, 70
+  offset: 1, 0
+  index: -1
+caoren3_skill1
+  rotate: false
+  xy: 80, 30
+  size: 63, 215
+  orig: 65, 216
+  offset: 1, 0
+  index: -1
+caoren3_skill2
+  rotate: false
+  xy: 2, 44
+  size: 76, 201
+  orig: 77, 202
+  offset: 1, 0
+  index: -1
+caoren3_skill3
+  rotate: false
+  xy: 145, 37
+  size: 64, 208
+  orig: 65, 209
+  offset: 1, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 40, 40
+  orig: 44, 44
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 44, 18
+  size: 24, 12
+  orig: 24, 24
+  offset: 0, 6
+  index: -1

@@ -1,0 +1,244 @@
+
+ydhd26_xyx_xym.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dwhd25_bjzwy_xiaoyumen_1yu1
+  rotate: true
+  xy: 139, 2
+  size: 32, 38
+  orig: 32, 38
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_1yu2
+  rotate: false
+  xy: 470, 73
+  size: 112, 123
+  orig: 112, 123
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_1yu3
+  rotate: false
+  xy: 450, 9
+  size: 64, 41
+  orig: 64, 41
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_2yu1
+  rotate: false
+  xy: 124, 2
+  size: 5, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_2yu2
+  rotate: true
+  xy: 2, 2
+  size: 24, 30
+  orig: 24, 30
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_2yu3
+  rotate: false
+  xy: 246, 51
+  size: 112, 145
+  orig: 112, 145
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_2yu4
+  rotate: true
+  xy: 692, 125
+  size: 71, 51
+  orig: 71, 51
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu1
+  rotate: true
+  xy: 113, 2
+  size: 7, 9
+  orig: 7, 9
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu2
+  rotate: true
+  xy: 206, 6
+  size: 28, 34
+  orig: 28, 34
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu3
+  rotate: true
+  xy: 271, 3
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu4
+  rotate: false
+  xy: 625, 9
+  size: 52, 62
+  orig: 53, 62
+  offset: 1, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu5
+  rotate: false
+  xy: 411, 7
+  size: 37, 43
+  orig: 37, 43
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu6
+  rotate: false
+  xy: 2, 28
+  size: 123, 168
+  orig: 123, 168
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_3yu7
+  rotate: false
+  xy: 324, 6
+  size: 85, 43
+  orig: 85, 43
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_4yu1
+  rotate: false
+  xy: 679, 36
+  size: 56, 76
+  orig: 56, 76
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_4yu2
+  rotate: false
+  xy: 179, 3
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_4yu3
+  rotate: false
+  xy: 131, 3
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_4yu4
+  rotate: false
+  xy: 34, 3
+  size: 20, 23
+  orig: 22, 23
+  offset: 1, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_4yu5
+  rotate: false
+  xy: 360, 52
+  size: 108, 144
+  orig: 108, 144
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_4yu6
+  rotate: true
+  xy: 584, 103
+  size: 93, 55
+  orig: 93, 55
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_5yu1
+  rotate: true
+  xy: 101, 2
+  size: 7, 10
+  orig: 7, 10
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_5yu2
+  rotate: true
+  xy: 56, 5
+  size: 21, 43
+  orig: 21, 43
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_5yu3
+  rotate: true
+  xy: 516, 8
+  size: 63, 107
+  orig: 63, 107
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_5yu4
+  rotate: false
+  xy: 127, 36
+  size: 117, 160
+  orig: 117, 160
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_5yu5
+  rotate: true
+  xy: 641, 114
+  size: 82, 49
+  orig: 82, 49
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_fenghuotai
+  rotate: false
+  xy: 2, 198
+  size: 783, 312
+  orig: 783, 312
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi1
+  rotate: false
+  xy: 101, 11
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi2
+  rotate: true
+  xy: 242, 6
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi3
+  rotate: false
+  xy: 584, 73
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi4
+  rotate: false
+  xy: 642, 75
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi5
+  rotate: false
+  xy: 117, 12
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi6
+  rotate: false
+  xy: 679, 7
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi7
+  rotate: true
+  xy: 613, 73
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+dwhd25_bjzwy_xiaoyumen_wuqi8
+  rotate: true
+  xy: 737, 88
+  size: 35, 34
+  orig: 35, 34
+  offset: 0, 0
+  index: -1

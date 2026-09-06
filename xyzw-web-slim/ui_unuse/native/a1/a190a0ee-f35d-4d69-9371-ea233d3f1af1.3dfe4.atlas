@@ -1,0 +1,160 @@
+
+guanyu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_die3
+  rotate: false
+  xy: 339, 273
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle2
+  rotate: false
+  xy: 2, 2
+  size: 145, 145
+  orig: 151, 151
+  offset: 3, 3
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: false
+  xy: 236, 321
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_body
+  rotate: false
+  xy: 106, 308
+  size: 128, 117
+  orig: 128, 117
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_eye
+  rotate: true
+  xy: 236, 313
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_eye2
+  rotate: true
+  xy: 346, 383
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_eyebrow
+  rotate: false
+  xy: 336, 65
+  size: 44, 26
+  orig: 44, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_eyewhite
+  rotate: true
+  xy: 343, 204
+  size: 26, 40
+  orig: 26, 40
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_face
+  rotate: true
+  xy: 106, 212
+  size: 94, 161
+  orig: 94, 161
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_handl
+  rotate: true
+  xy: 339, 232
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_handr
+  rotate: false
+  xy: 106, 167
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_hat
+  rotate: false
+  xy: 149, 21
+  size: 76, 85
+  orig: 76, 85
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_hatback
+  rotate: true
+  xy: 346, 339
+  size: 42, 47
+  orig: 42, 47
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_hatball
+  rotate: false
+  xy: 269, 222
+  size: 66, 38
+  orig: 66, 38
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_hatsign
+  rotate: false
+  xy: 292, 61
+  size: 42, 30
+  orig: 42, 30
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_legl
+  rotate: false
+  xy: 227, 75
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_legr
+  rotate: false
+  xy: 227, 75
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_palmr
+  rotate: true
+  xy: 252, 59
+  size: 32, 38
+  orig: 32, 38
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 149, 108
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shoulderl
+  rotate: false
+  xy: 269, 262
+  size: 68, 57
+  orig: 68, 57
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_tail
+  rotate: true
+  xy: 253, 93
+  size: 117, 88
+  orig: 117, 88
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_weaponr
+  rotate: false
+  xy: 2, 149
+  size: 102, 276
+  orig: 102, 276
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+clickfire_start.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_fire01
+  rotate: true
+  xy: 2, 2
+  size: 76, 90
+  orig: 76, 90
+  offset: 0, 0
+  index: -1
+effect_fire02
+  rotate: false
+  xy: 94, 2
+  size: 78, 76
+  orig: 78, 76
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_attack5
+  rotate: false
+  xy: 132, 147
+  size: 50, 61
+  orig: 50, 61
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 132, 91
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 2, 80
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

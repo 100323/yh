@@ -1,0 +1,167 @@
+
+lvmeng.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 409, 294
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halfcircle1
+  rotate: false
+  xy: 348, 380
+  size: 86, 40
+  orig: 86, 40
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 47, 356
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 436, 378
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+lvmeng_beard1
+  rotate: true
+  xy: 118, 401
+  size: 19, 37
+  orig: 19, 38
+  offset: 0, 1
+  index: -1
+lvmeng_beard2
+  rotate: true
+  xy: 95, 338
+  size: 57, 88
+  orig: 57, 88
+  offset: 0, 0
+  index: -1
+lvmeng_body
+  rotate: false
+  xy: 308, 158
+  size: 172, 134
+  orig: 172, 134
+  offset: 0, 0
+  index: -1
+lvmeng_cloak
+  rotate: false
+  xy: 90, 235
+  size: 110, 86
+  orig: 110, 86
+  offset: 0, 0
+  index: -1
+lvmeng_eye
+  rotate: true
+  xy: 2, 414
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+lvmeng_eyebrow
+  rotate: false
+  xy: 220, 394
+  size: 40, 26
+  orig: 44, 26
+  offset: 0, 0
+  index: -1
+lvmeng_eyewhite
+  rotate: false
+  xy: 190, 395
+  size: 28, 25
+  orig: 28, 25
+  offset: 0, 0
+  index: -1
+lvmeng_handl
+  rotate: true
+  xy: 303, 382
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1
+lvmeng_handr1
+  rotate: true
+  xy: 2, 364
+  size: 42, 43
+  orig: 43, 45
+  offset: 0, 2
+  index: -1
+lvmeng_handr2
+  rotate: true
+  xy: 262, 387
+  size: 33, 39
+  orig: 34, 42
+  offset: 0, 3
+  index: -1
+lvmeng_head
+  rotate: false
+  xy: 2, 90
+  size: 169, 143
+  orig: 169, 143
+  offset: 0, 0
+  index: -1
+lvmeng_legr
+  rotate: true
+  xy: 157, 397
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+lvmeng_shoulderl
+  rotate: false
+  xy: 2, 269
+  size: 86, 85
+  orig: 89, 85
+  offset: 3, 0
+  index: -1
+lvmeng_skill1
+  rotate: false
+  xy: 185, 323
+  size: 102, 62
+  orig: 102, 62
+  offset: 0, 0
+  index: -1
+lvmeng_skill4
+  rotate: true
+  xy: 202, 206
+  size: 102, 104
+  orig: 102, 104
+  offset: 0, 0
+  index: -1
+lvmeng_skill6
+  rotate: false
+  xy: 12, 408
+  size: 51, 12
+  orig: 51, 12
+  offset: 0, 0
+  index: -1
+lvmeng_skill7
+  rotate: false
+  xy: 65, 404
+  size: 51, 16
+  orig: 51, 16
+  offset: 0, 0
+  index: -1
+lvmeng_tail
+  rotate: false
+  xy: 289, 310
+  size: 118, 68
+  orig: 118, 68
+  offset: 0, 0
+  index: -1
+lvmeng_weapon
+  rotate: true
+  xy: 173, 2
+  size: 154, 297
+  orig: 157, 297
+  offset: 0, 0
+  index: -1

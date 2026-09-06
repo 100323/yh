@@ -1,0 +1,132 @@
+
+gongsunzan6_skill_hit.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan6_jn_bai
+  rotate: false
+  xy: 280, 188
+  size: 196, 111
+  orig: 196, 111
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_dian1
+  rotate: true
+  xy: 162, 106
+  size: 84, 92
+  orig: 84, 92
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_dian2
+  rotate: true
+  xy: 162, 16
+  size: 88, 85
+  orig: 88, 85
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_dian3
+  rotate: true
+  xy: 249, 18
+  size: 86, 129
+  orig: 86, 129
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_dian4
+  rotate: false
+  xy: 162, 192
+  size: 73, 92
+  orig: 73, 92
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_dian5
+  rotate: false
+  xy: 420, 47
+  size: 84, 139
+  orig: 84, 139
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_wu1
+  rotate: false
+  xy: 280, 445
+  size: 207, 243
+  orig: 207, 243
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_yan1
+  rotate: true
+  xy: 239, 377
+  size: 110, 39
+  orig: 110, 39
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_yan2
+  rotate: true
+  xy: 239, 287
+  size: 88, 39
+  orig: 88, 39
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_yan3
+  rotate: true
+  xy: 2, 212
+  size: 72, 155
+  orig: 72, 155
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_yan4
+  rotate: true
+  xy: 256, 106
+  size: 80, 162
+  orig: 80, 162
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_zha1
+  rotate: false
+  xy: 2, 489
+  size: 276, 199
+  orig: 276, 199
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_zha2
+  rotate: true
+  xy: 280, 301
+  size: 142, 203
+  orig: 142, 203
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_zha3
+  rotate: true
+  xy: 2, 2
+  size: 184, 158
+  orig: 184, 158
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_zha4
+  rotate: false
+  xy: 2, 286
+  size: 235, 201
+  orig: 235, 201
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_zha5
+  rotate: true
+  xy: 2, 782
+  size: 228, 498
+  orig: 228, 498
+  offset: 0, 0
+  index: -1
+gongsunzan6_jn_zhu
+  rotate: true
+  xy: 2, 690
+  size: 90, 494
+  orig: 90, 494
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 239, 246
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1

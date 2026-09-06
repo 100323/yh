@@ -1,0 +1,55 @@
+
+cwxt26_cw_hai_1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dan_1
+  rotate: true
+  xy: 6, 6
+  size: 216, 172
+  orig: 218, 174
+  offset: 1, 1
+  index: -1
+dan_2
+  rotate: true
+  xy: 184, 6
+  size: 216, 172
+  orig: 218, 174
+  offset: 1, 1
+  index: -1
+haidan_2
+  rotate: true
+  xy: 184, 6
+  size: 216, 172
+  orig: 218, 174
+  offset: 1, 1
+  index: -1
+mei
+  rotate: true
+  xy: 436, 26
+  size: 78, 52
+  orig: 80, 55
+  offset: 1, 2
+  index: -1
+pao
+  rotate: false
+  xy: 362, 110
+  size: 114, 112
+  orig: 116, 114
+  offset: 1, 1
+  index: -1
+yan
+  rotate: true
+  xy: 362, 35
+  size: 69, 68
+  orig: 69, 68
+  offset: 0, 0
+  index: -1
+yanzhu
+  rotate: false
+  xy: 482, 182
+  size: 23, 40
+  orig: 25, 42
+  offset: 1, 1
+  index: -1

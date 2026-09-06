@@ -1,0 +1,118 @@
+
+js_dstz_lost.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_dstz_lose_fish1
+  rotate: false
+  xy: 180, 106
+  size: 140, 61
+  orig: 141, 65
+  offset: 0, 4
+  index: -1
+js_dstz_lose_fish10
+  rotate: false
+  xy: 159, 224
+  size: 46, 44
+  orig: 46, 44
+  offset: 0, 0
+  index: -1
+js_dstz_lose_fish11
+  rotate: true
+  xy: 2, 216
+  size: 122, 102
+  orig: 123, 102
+  offset: 0, 0
+  index: -1
+js_dstz_lose_fish2
+  rotate: true
+  xy: 180, 169
+  size: 53, 40
+  orig: 57, 40
+  offset: 4, 0
+  index: -1
+js_dstz_lose_fish3
+  rotate: false
+  xy: 106, 224
+  size: 51, 44
+  orig: 52, 46
+  offset: 1, 2
+  index: -1
+js_dstz_lose_fish4
+  rotate: true
+  xy: 70, 84
+  size: 30, 18
+  orig: 32, 18
+  offset: 0, 0
+  index: -1
+js_dstz_lose_fish5
+  rotate: true
+  xy: 322, 133
+  size: 55, 33
+  orig: 55, 34
+  offset: 0, 0
+  index: -1
+js_dstz_lose_fish6
+  rotate: false
+  xy: 2, 116
+  size: 92, 98
+  orig: 94, 105
+  offset: 2, 7
+  index: -1
+js_dstz_lose_fish7
+  rotate: true
+  xy: 96, 84
+  size: 130, 82
+  orig: 130, 82
+  offset: 0, 0
+  index: -1
+js_dstz_lose_fish8
+  rotate: false
+  xy: 241, 190
+  size: 193, 215
+  orig: 211, 215
+  offset: 0, 0
+  index: -1
+js_dstz_lose_fish9
+  rotate: false
+  xy: 2, 2
+  size: 66, 112
+  orig: 66, 112
+  offset: 0, 0
+  index: -1
+js_dstz_lose_help
+  rotate: false
+  xy: 106, 270
+  size: 120, 68
+  orig: 120, 68
+  offset: 0, 0
+  index: -1
+js_dstz_lose_help2
+  rotate: false
+  xy: 106, 216
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+js_dstz_lose_text
+  rotate: false
+  xy: 2, 340
+  size: 237, 65
+  orig: 237, 65
+  offset: 0, 0
+  index: -1
+js_dstz_text2
+  rotate: true
+  xy: 222, 190
+  size: 50, 15
+  orig: 50, 15
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 207, 242
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

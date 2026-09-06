@@ -1,0 +1,27 @@
+
+sdsl_xjsl_jiesuan_xing.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_xjtz_jiesuan_guang
+  rotate: false
+  xy: 2, 2
+  size: 82, 115
+  orig: 82, 115
+  offset: 0, 0
+  index: -1
+sdsl_xjtz_jiesuan_xing1
+  rotate: false
+  xy: 168, 38
+  size: 76, 79
+  orig: 78, 81
+  offset: 1, 1
+  index: -1
+sdsl_xjtz_jiesuan_xing2
+  rotate: false
+  xy: 86, 30
+  size: 80, 87
+  orig: 82, 89
+  offset: 1, 1
+  index: -1

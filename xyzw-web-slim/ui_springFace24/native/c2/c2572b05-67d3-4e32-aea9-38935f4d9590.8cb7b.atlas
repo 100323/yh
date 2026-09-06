@@ -1,0 +1,258 @@
+
+nznh25_plt.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huodong_aobing1
+  rotate: true
+  xy: 673, 825
+  size: 185, 286
+  orig: 185, 286
+  offset: 0, 0
+  index: -1
+huodong_aobing10
+  rotate: false
+  xy: 878, 265
+  size: 132, 137
+  orig: 132, 137
+  offset: 0, 0
+  index: -1
+huodong_aobing11
+  rotate: true
+  xy: 2, 28
+  size: 83, 95
+  orig: 83, 95
+  offset: 0, 0
+  index: -1
+huodong_aobing12
+  rotate: true
+  xy: 668, 133
+  size: 263, 129
+  orig: 263, 141
+  offset: 0, 0
+  index: -1
+huodong_aobing13
+  rotate: false
+  xy: 327, 14
+  size: 68, 74
+  orig: 68, 74
+  offset: 0, 0
+  index: -1
+huodong_aobing14
+  rotate: false
+  xy: 679, 600
+  size: 71, 42
+  orig: 71, 42
+  offset: 0, 0
+  index: -1
+huodong_aobing15
+  rotate: false
+  xy: 431, 793
+  size: 240, 217
+  orig: 240, 217
+  offset: 0, 0
+  index: -1
+huodong_aobing16
+  rotate: true
+  xy: 336, 353
+  size: 221, 330
+  orig: 221, 330
+  offset: 0, 0
+  index: -1
+huodong_aobing17
+  rotate: false
+  xy: 2, 113
+  size: 160, 128
+  orig: 160, 128
+  offset: 0, 0
+  index: -1
+huodong_aobing2
+  rotate: false
+  xy: 679, 644
+  size: 276, 179
+  orig: 280, 182
+  offset: 4, 3
+  index: -1
+huodong_aobing3
+  rotate: true
+  xy: 99, 38
+  size: 73, 62
+  orig: 73, 62
+  offset: 0, 0
+  index: -1
+huodong_aobing4
+  rotate: true
+  xy: 799, 220
+  size: 176, 77
+  orig: 176, 78
+  offset: 0, 0
+  index: -1
+huodong_aobing5
+  rotate: false
+  xy: 431, 599
+  size: 246, 192
+  orig: 246, 198
+  offset: 0, 0
+  index: -1
+huodong_aobing6
+  rotate: false
+  xy: 500, 100
+  size: 103, 116
+  orig: 103, 116
+  offset: 0, 0
+  index: -1
+huodong_aobing7
+  rotate: false
+  xy: 336, 178
+  size: 162, 173
+  orig: 162, 173
+  offset: 0, 0
+  index: -1
+huodong_aobing8
+  rotate: false
+  xy: 286, 90
+  size: 114, 86
+  orig: 114, 86
+  offset: 0, 0
+  index: -1
+huodong_aobing9
+  rotate: true
+  xy: 164, 116
+  size: 125, 120
+  orig: 125, 120
+  offset: 0, 0
+  index: -1
+huodong_guangqiu1
+  rotate: false
+  xy: 706, 43
+  size: 88, 88
+  orig: 92, 92
+  offset: 2, 2
+  index: -1
+huodong_guangqiu4
+  rotate: true
+  xy: 402, 88
+  size: 88, 83
+  orig: 88, 83
+  offset: 0, 0
+  index: -1
+huodong_guangqiu5
+  rotate: true
+  xy: 2, 243
+  size: 331, 332
+  orig: 354, 354
+  offset: 11, 11
+  index: -1
+huodong_guangxiao2
+  rotate: false
+  xy: 232, 14
+  size: 93, 74
+  orig: 97, 78
+  offset: 2, 3
+  index: -1
+huodong_guangxiao4
+  rotate: false
+  xy: 961, 900
+  size: 61, 110
+  orig: 67, 114
+  offset: 2, 2
+  index: -1
+huodong_guangxiao6
+  rotate: false
+  xy: 752, 601
+  size: 101, 41
+  orig: 107, 44
+  offset: 1, 2
+  index: -1
+huodong_guangzhao1
+  rotate: false
+  xy: 2, 576
+  size: 427, 434
+  orig: 436, 437
+  offset: 7, 2
+  index: -1
+huodong_nezha1
+  rotate: true
+  xy: 500, 218
+  size: 133, 112
+  orig: 134, 113
+  offset: 0, 0
+  index: -1
+huodong_nezha10
+  rotate: true
+  xy: 850, 404
+  size: 195, 169
+  orig: 195, 193
+  offset: 0, 24
+  index: -1
+huodong_nezha11
+  rotate: false
+  xy: 605, 39
+  size: 99, 92
+  orig: 99, 94
+  offset: 0, 2
+  index: -1
+huodong_nezha12
+  rotate: true
+  xy: 668, 398
+  size: 199, 180
+  orig: 199, 180
+  offset: 0, 0
+  index: -1
+huodong_nezha2
+  rotate: false
+  xy: 957, 616
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+huodong_nezha3
+  rotate: false
+  xy: 799, 35
+  size: 169, 183
+  orig: 169, 187
+  offset: 0, 4
+  index: -1
+huodong_nezha4
+  rotate: false
+  xy: 961, 841
+  size: 46, 57
+  orig: 46, 57
+  offset: 0, 0
+  index: -1
+huodong_nezha5
+  rotate: true
+  xy: 487, 20
+  size: 78, 93
+  orig: 79, 93
+  offset: 1, 0
+  index: -1
+huodong_nezha6
+  rotate: false
+  xy: 957, 749
+  size: 64, 74
+  orig: 64, 76
+  offset: 0, 0
+  index: -1
+huodong_nezha7
+  rotate: false
+  xy: 397, 19
+  size: 66, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+huodong_nezha8
+  rotate: false
+  xy: 957, 667
+  size: 63, 80
+  orig: 64, 82
+  offset: 0, 0
+  index: -1
+huodong_nezha9
+  rotate: true
+  xy: 164, 2
+  size: 112, 66
+  orig: 112, 66
+  offset: 0, 0
+  index: -1

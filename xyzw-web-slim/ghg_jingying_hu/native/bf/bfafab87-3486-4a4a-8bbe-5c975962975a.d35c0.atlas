@@ -1,0 +1,174 @@
+
+ghg_jingying_hu_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_attack_bunny1
+  rotate: false
+  xy: 104, 7
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny10
+  rotate: false
+  xy: 237, 50
+  size: 13, 39
+  orig: 13, 39
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny11
+  rotate: false
+  xy: 237, 12
+  size: 26, 36
+  orig: 26, 36
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny12
+  rotate: true
+  xy: 231, 137
+  size: 21, 44
+  orig: 21, 44
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny2
+  rotate: false
+  xy: 113, 7
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny3
+  rotate: false
+  xy: 265, 2
+  size: 25, 19
+  orig: 25, 19
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny4
+  rotate: true
+  xy: 213, 469
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny5
+  rotate: true
+  xy: 213, 490
+  size: 20, 14
+  orig: 20, 14
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny6
+  rotate: true
+  xy: 156, 142
+  size: 56, 73
+  orig: 56, 73
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny7
+  rotate: true
+  xy: 265, 23
+  size: 32, 25
+  orig: 32, 25
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny8
+  rotate: false
+  xy: 223, 255
+  size: 26, 54
+  orig: 26, 54
+  offset: 0, 0
+  index: -1
+ghg_attack_bunny9
+  rotate: false
+  xy: 237, 91
+  size: 41, 44
+  orig: 42, 44
+  offset: 1, 0
+  index: -1
+ghg_attack_bunnyw1
+  rotate: false
+  xy: 231, 160
+  size: 34, 45
+  orig: 34, 45
+  offset: 0, 0
+  index: -1
+ghg_attack_bunnyw2
+  rotate: false
+  xy: 223, 207
+  size: 29, 46
+  orig: 29, 46
+  offset: 0, 0
+  index: -1
+ghg_attack_hit1
+  rotate: false
+  xy: 175, 311
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ghg_attack_hit2
+  rotate: true
+  xy: 133, 363
+  size: 147, 78
+  orig: 147, 78
+  offset: 0, 0
+  index: -1
+ghg_attack_hit3
+  rotate: true
+  xy: 133, 309
+  size: 52, 40
+  orig: 52, 40
+  offset: 0, 0
+  index: -1
+ghg_attack_hit4
+  rotate: false
+  xy: 89, 16
+  size: 146, 116
+  orig: 146, 116
+  offset: 0, 0
+  index: -1
+ghg_attack_hit6
+  rotate: false
+  xy: 2, 134
+  size: 152, 173
+  orig: 152, 173
+  offset: 0, 0
+  index: -1
+ghg_attack_hit7
+  rotate: false
+  xy: 2, 309
+  size: 129, 201
+  orig: 129, 201
+  offset: 0, 0
+  index: -1
+ghg_attack_wqhu
+  rotate: true
+  xy: 156, 200
+  size: 107, 65
+  orig: 107, 66
+  offset: 0, 0
+  index: -1
+ghg_attack_wqhulight
+  rotate: true
+  xy: 2, 5
+  size: 127, 85
+  orig: 127, 85
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 252, 57
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 89, 4
+  size: 13, 10
+  orig: 18, 18
+  offset: 2, 4
+  index: -1

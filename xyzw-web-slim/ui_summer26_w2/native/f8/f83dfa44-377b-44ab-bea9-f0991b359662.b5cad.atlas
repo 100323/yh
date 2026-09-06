@@ -1,0 +1,48 @@
+
+sqhd26_bsjc_vs.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 331, 260
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sqhd26_bsjc_qiu
+  rotate: false
+  xy: 134, 22
+  size: 121, 120
+  orig: 121, 120
+  offset: 0, 0
+  index: -1
+sqhd26_bsjc_sd1
+  rotate: true
+  xy: 257, 6
+  size: 136, 118
+  orig: 136, 118
+  offset: 0, 0
+  index: -1
+sqhd26_bsjc_sd2
+  rotate: false
+  xy: 2, 150
+  size: 169, 156
+  orig: 169, 156
+  offset: 0, 0
+  index: -1
+sqhd26_bsjc_sd3
+  rotate: false
+  xy: 173, 144
+  size: 156, 162
+  orig: 156, 162
+  offset: 0, 0
+  index: -1
+sqhd26_bsjc_vs
+  rotate: true
+  xy: 2, 2
+  size: 146, 130
+  orig: 159, 143
+  offset: 6, 6
+  index: -1

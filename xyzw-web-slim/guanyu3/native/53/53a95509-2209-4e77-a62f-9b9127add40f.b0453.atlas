@@ -1,0 +1,118 @@
+
+guanyu3_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu3_skill1
+  rotate: true
+  xy: 147, 172
+  size: 89, 53
+  orig: 90, 53
+  offset: 1, 0
+  index: -1
+guanyu3_skill10
+  rotate: false
+  xy: 2, 116
+  size: 18, 70
+  orig: 18, 70
+  offset: 0, 0
+  index: -1
+guanyu3_skill11
+  rotate: false
+  xy: 2, 2
+  size: 201, 80
+  orig: 276, 110
+  offset: 22, 8
+  index: -1
+guanyu3_skill12
+  rotate: false
+  xy: 2, 263
+  size: 181, 173
+  orig: 181, 173
+  offset: 0, 0
+  index: -1
+guanyu3_skill13
+  rotate: false
+  xy: 185, 263
+  size: 181, 173
+  orig: 181, 173
+  offset: 0, 0
+  index: -1
+guanyu3_skill2
+  rotate: true
+  xy: 368, 256
+  size: 180, 94
+  orig: 180, 94
+  offset: 0, 0
+  index: -1
+guanyu3_skill4
+  rotate: true
+  xy: 464, 84
+  size: 352, 31
+  orig: 362, 35
+  offset: 5, 2
+  index: -1
+guanyu3_skill5
+  rotate: false
+  xy: 2, 188
+  size: 27, 73
+  orig: 28, 74
+  offset: 1, 0
+  index: -1
+guanyu3_skill6
+  rotate: true
+  xy: 205, 101
+  size: 160, 161
+  orig: 160, 161
+  offset: 0, 0
+  index: -1
+guanyu3_skill7
+  rotate: false
+  xy: 32, 150
+  size: 113, 111
+  orig: 114, 111
+  offset: 1, 0
+  index: -1
+guanyu3_skill8
+  rotate: true
+  xy: 78, 120
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+guanyu3_skill9
+  rotate: true
+  xy: 22, 108
+  size: 18, 54
+  orig: 18, 54
+  offset: 0, 0
+  index: -1
+guanyu3_water1
+  rotate: false
+  xy: 2, 84
+  size: 28, 15
+  orig: 28, 15
+  offset: 0, 0
+  index: -1
+guanyu3_water2
+  rotate: false
+  xy: 497, 418
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
+guanyu3_water3
+  rotate: false
+  xy: 497, 395
+  size: 9, 21
+  orig: 9, 21
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 147, 128
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1

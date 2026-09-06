@@ -1,0 +1,34 @@
+
+daqiao5_attack_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao5_tx_attact2
+  rotate: true
+  xy: 223, 143
+  size: 21, 13
+  orig: 21, 13
+  offset: 0, 0
+  index: -1
+daqiao5_tx_attact3
+  rotate: true
+  xy: 223, 166
+  size: 31, 23
+  orig: 31, 23
+  offset: 0, 0
+  index: -1
+daqiao5_tx_attact4
+  rotate: true
+  xy: 2, 2
+  size: 195, 219
+  orig: 199, 222
+  offset: 2, 2
+  index: -1
+daqiao5_tx_attact5
+  rotate: false
+  xy: 2, 199
+  size: 502, 118
+  orig: 502, 118
+  offset: 0, 0
+  index: -1

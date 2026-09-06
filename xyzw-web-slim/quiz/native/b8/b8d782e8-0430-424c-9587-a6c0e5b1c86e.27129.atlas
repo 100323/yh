@@ -1,0 +1,146 @@
+
+zxc_fish_zzb.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: true
+  xy: 281, 95
+  size: 57, 77
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+tui1
+  rotate: true
+  xy: 139, 23
+  size: 38, 114
+  orig: 38, 114
+  offset: 0, 0
+  index: -1
+tui2
+  rotate: true
+  xy: 139, 23
+  size: 38, 114
+  orig: 38, 114
+  offset: 0, 0
+  index: -1
+yanhei
+  rotate: false
+  xy: 2, 4
+  size: 11, 10
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+yanjing
+  rotate: false
+  xy: 426, 102
+  size: 52, 50
+  orig: 52, 50
+  offset: 0, 0
+  index: -1
+yanjing2
+  rotate: false
+  xy: 309, 2
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: false
+  xy: 361, 28
+  size: 31, 39
+  orig: 31, 39
+  offset: 0, 0
+  index: -1
+ygbh_zzb_shen
+  rotate: false
+  xy: 2, 16
+  size: 135, 222
+  orig: 135, 222
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tf1
+  rotate: false
+  xy: 465, 158
+  size: 37, 80
+  orig: 37, 80
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tf2
+  rotate: true
+  xy: 139, 63
+  size: 86, 138
+  orig: 86, 138
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tf3
+  rotate: true
+  xy: 360, 111
+  size: 41, 64
+  orig: 41, 64
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tj
+  rotate: false
+  xy: 139, 151
+  size: 140, 87
+  orig: 140, 90
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tui
+  rotate: true
+  xy: 361, 192
+  size: 46, 102
+  orig: 46, 102
+  offset: 0, 0
+  index: -1
+ygbh_zzb_tui1
+  rotate: true
+  xy: 361, 154
+  size: 36, 102
+  orig: 36, 102
+  offset: 0, 0
+  index: -1
+ygbh_zzb_wei
+  rotate: false
+  xy: 281, 154
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+ygbh_zzb_yan1
+  rotate: true
+  xy: 279, 53
+  size: 40, 54
+  orig: 42, 54
+  offset: 2, 0
+  index: -1
+ygbh_zzb_yan2
+  rotate: true
+  xy: 360, 69
+  size: 40, 54
+  orig: 42, 54
+  offset: 2, 0
+  index: -1
+ygbh_zzb_yq
+  rotate: false
+  xy: 416, 63
+  size: 52, 37
+  orig: 53, 39
+  offset: 0, 0
+  index: -1
+ygbh_zzb_yz
+  rotate: false
+  xy: 335, 83
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+yuqi2
+  rotate: false
+  xy: 255, 2
+  size: 52, 49
+  orig: 52, 49
+  offset: 0, 0
+  index: -1

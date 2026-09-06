@@ -1,0 +1,41 @@
+
+daqiao2_skill_hit2.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dtxz_1
+  rotate: true
+  xy: 99, 10
+  size: 108, 89
+  orig: 108, 89
+  offset: 0, 0
+  index: -1
+dtxz_2
+  rotate: true
+  xy: 190, 11
+  size: 35, 59
+  orig: 35, 59
+  offset: 0, 0
+  index: -1
+dtxz_3
+  rotate: true
+  xy: 2, 2
+  size: 116, 95
+  orig: 116, 95
+  offset: 0, 0
+  index: -1
+dtxz_4
+  rotate: false
+  xy: 251, 15
+  size: 30, 31
+  orig: 32, 33
+  offset: 1, 1
+  index: -1
+dtxz_5
+  rotate: true
+  xy: 190, 48
+  size: 70, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1

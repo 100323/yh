@@ -1,0 +1,27 @@
+
+ss_boss5a_skill_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 143, 105
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ss_boss5_skill5
+  rotate: false
+  xy: 2, 2
+  size: 139, 132
+  orig: 139, 132
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 143, 91
+  size: 12, 9
+  orig: 16, 16
+  offset: 1, 6
+  index: -1

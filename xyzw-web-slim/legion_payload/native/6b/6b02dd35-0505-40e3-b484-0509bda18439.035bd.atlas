@@ -1,0 +1,244 @@
+
+tgcf_pty_orange.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+p_head01
+  rotate: false
+  xy: 231, 189
+  size: 128, 111
+  orig: 128, 124
+  offset: 0, 13
+  index: -1
+p_pd01
+  rotate: false
+  xy: 2, 80
+  size: 129, 220
+  orig: 129, 220
+  offset: 0, 0
+  index: -1
+p_pd02
+  rotate: true
+  xy: 231, 87
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+p_pd03
+  rotate: false
+  xy: 133, 87
+  size: 96, 213
+  orig: 96, 213
+  offset: 0, 0
+  index: -1
+p_qz01
+  rotate: true
+  xy: 377, 343
+  size: 167, 126
+  orig: 167, 126
+  offset: 0, 0
+  index: -1
+p_sidai01
+  rotate: false
+  xy: 152, 27
+  size: 62, 58
+  orig: 62, 58
+  offset: 0, 0
+  index: -1
+p_sidai02
+  rotate: true
+  xy: 152, 2
+  size: 23, 41
+  orig: 23, 41
+  offset: 0, 0
+  index: -1
+p_sz01
+  rotate: false
+  xy: 2, 302
+  size: 373, 208
+  orig: 373, 208
+  offset: 0, 0
+  index: -1
+p_tf01
+  rotate: false
+  xy: 343, 87
+  size: 32, 30
+  orig: 32, 30
+  offset: 0, 0
+  index: -1
+p_tf02
+  rotate: false
+  xy: 335, 51
+  size: 28, 34
+  orig: 28, 34
+  offset: 0, 0
+  index: -1
+p_tf03
+  rotate: false
+  xy: 443, 308
+  size: 50, 33
+  orig: 50, 33
+  offset: 0, 0
+  index: -1
+p_tf04
+  rotate: false
+  xy: 387, 258
+  size: 42, 44
+  orig: 42, 44
+  offset: 0, 0
+  index: -1
+p_tf05
+  rotate: true
+  xy: 246, 5
+  size: 24, 38
+  orig: 24, 38
+  offset: 0, 0
+  index: -1
+p_tf06
+  rotate: false
+  xy: 2, 7
+  size: 86, 71
+  orig: 86, 71
+  offset: 0, 0
+  index: -1
+p_ts01
+  rotate: false
+  xy: 446, 276
+  size: 29, 30
+  orig: 29, 30
+  offset: 0, 0
+  index: -1
+p_ts02
+  rotate: false
+  xy: 477, 295
+  size: 11, 11
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+p_ts03
+  rotate: false
+  xy: 495, 323
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+p_tsheng01
+  rotate: false
+  xy: 361, 214
+  size: 29, 39
+  orig: 29, 39
+  offset: 0, 0
+  index: -1
+p_tsheng02
+  rotate: true
+  xy: 286, 7
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1
+p_wb01
+  rotate: false
+  xy: 216, 31
+  size: 59, 54
+  orig: 59, 54
+  offset: 0, 0
+  index: -1
+p_yb01
+  rotate: true
+  xy: 277, 39
+  size: 46, 56
+  orig: 46, 56
+  offset: 0, 0
+  index: -1
+p_yd01
+  rotate: true
+  xy: 343, 119
+  size: 68, 20
+  orig: 68, 20
+  offset: 0, 0
+  index: -1
+p_ymm01
+  rotate: false
+  xy: 335, 40
+  size: 14, 9
+  orig: 14, 9
+  offset: 0, 0
+  index: -1
+p_ys01
+  rotate: false
+  xy: 216, 2
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+p_yxz01
+  rotate: false
+  xy: 90, 7
+  size: 60, 71
+  orig: 60, 71
+  offset: 0, 0
+  index: -1
+p_yy01
+  rotate: true
+  xy: 431, 269
+  size: 33, 13
+  orig: 33, 16
+  offset: 0, 2
+  index: -1
+p_zb
+  rotate: false
+  xy: 376, 201
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+p_zdabi01
+  rotate: false
+  xy: 377, 304
+  size: 64, 37
+  orig: 64, 37
+  offset: 0, 0
+  index: -1
+p_zmm01
+  rotate: true
+  xy: 326, 29
+  size: 8, 6
+  orig: 8, 6
+  offset: 0, 0
+  index: -1
+p_zxz01
+  rotate: false
+  xy: 392, 217
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+p_zxz02
+  rotate: true
+  xy: 361, 255
+  size: 45, 24
+  orig: 45, 24
+  offset: 0, 0
+  index: -1
+p_zy01
+  rotate: true
+  xy: 195, 3
+  size: 22, 12
+  orig: 22, 12
+  offset: 0, 0
+  index: -1
+xingxing
+  rotate: false
+  xy: 361, 199
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 361, 189
+  size: 13, 8
+  orig: 13, 13
+  offset: 0, 4
+  index: -1

@@ -1,0 +1,20 @@
+
+ygbh_axgp_yun2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygbh_axgl_cai_yun1
+  rotate: false
+  xy: 2, 256
+  size: 319, 252
+  orig: 319, 252
+  offset: 0, 0
+  index: -1
+ygbh_axgl_cai_yun2
+  rotate: false
+  xy: 2, 2
+  size: 319, 252
+  orig: 319, 252
+  offset: 0, 0
+  index: -1

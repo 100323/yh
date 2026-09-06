@@ -1,0 +1,90 @@
+
+shanzeidundao.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+monster2_beard
+  rotate: true
+  xy: 2, 2
+  size: 50, 53
+  orig: 50, 53
+  offset: 0, 0
+  index: -1
+monster2_body
+  rotate: false
+  xy: 2, 54
+  size: 138, 199
+  orig: 138, 199
+  offset: 0, 0
+  index: -1
+monster2_eye
+  rotate: false
+  xy: 94, 3
+  size: 7, 9
+  orig: 7, 9
+  offset: 0, 0
+  index: -1
+monster2_eyewhite
+  rotate: false
+  xy: 57, 7
+  size: 35, 45
+  orig: 35, 45
+  offset: 0, 0
+  index: -1
+monster2_handl
+  rotate: false
+  xy: 283, 24
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+monster2_handr
+  rotate: false
+  xy: 94, 14
+  size: 36, 38
+  orig: 36, 38
+  offset: 0, 0
+  index: -1
+monster2_legl
+  rotate: false
+  xy: 132, 22
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+monster2_legr
+  rotate: false
+  xy: 339, 48
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+monster2_shield
+  rotate: true
+  xy: 230, 80
+  size: 63, 108
+  orig: 63, 108
+  offset: 0, 0
+  index: -1
+monster2_tail
+  rotate: false
+  xy: 164, 4
+  size: 117, 66
+  orig: 117, 66
+  offset: 0, 0
+  index: -1
+monster2_weaponl
+  rotate: false
+  xy: 142, 72
+  size: 86, 181
+  orig: 86, 181
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 230, 145
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

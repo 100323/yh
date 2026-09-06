@@ -1,0 +1,83 @@
+
+dsqq_boss_nxx_skill_hit.png
+size: 921,435
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_boss_nxx_jn_nl1
+  rotate: true
+  xy: 349, 7
+  size: 157, 179
+  orig: 157, 179
+  offset: 0, 0
+  index: -1
+dsqq_boss_nxx_jn_nl2
+  rotate: false
+  xy: 747, 124
+  size: 162, 141
+  orig: 162, 141
+  offset: 0, 0
+  index: -1
+dsqq_boss_nxx_jn_nl3
+  rotate: false
+  xy: 573, 130
+  size: 172, 135
+  orig: 172, 135
+  offset: 0, 0
+  index: -1
+dsqq_boss_nxx_jn_nl4
+  rotate: false
+  xy: 690, 2
+  size: 123, 120
+  orig: 123, 120
+  offset: 0, 0
+  index: -1
+dsqq_boss_nxx_jn_zha
+  rotate: true
+  xy: 815, 5
+  size: 117, 104
+  orig: 117, 104
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_yan1
+  rotate: true
+  xy: 530, 5
+  size: 123, 158
+  orig: 123, 158
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_yan3
+  rotate: true
+  xy: 2, 2
+  size: 29, 73
+  orig: 29, 73
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_zga1
+  rotate: false
+  xy: 349, 166
+  size: 222, 267
+  orig: 222, 267
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_zha2
+  rotate: false
+  xy: 2, 33
+  size: 345, 400
+  orig: 345, 400
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_zha3
+  rotate: false
+  xy: 573, 267
+  size: 283, 166
+  orig: 345, 400
+  offset: 62, 234
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 858, 387
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

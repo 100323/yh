@@ -1,0 +1,62 @@
+
+cjhd24_cardbox.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjhd_box1
+  rotate: false
+  xy: 2, 212
+  size: 295, 227
+  orig: 295, 227
+  offset: 0, 0
+  index: -1
+cjhd_box2
+  rotate: true
+  xy: 299, 2
+  size: 239, 190
+  orig: 239, 190
+  offset: 0, 0
+  index: -1
+dyhc_boxlight1
+  rotate: false
+  xy: 2, 51
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+dyhc_boxlight2
+  rotate: true
+  xy: 299, 243
+  size: 196, 195
+  orig: 200, 200
+  offset: 2, 3
+  index: -1
+dyhc_boxlight3
+  rotate: false
+  xy: 164, 64
+  size: 120, 146
+  orig: 120, 146
+  offset: 0, 0
+  index: -1
+dyhc_boxlight4
+  rotate: false
+  xy: 491, 35
+  size: 18, 206
+  orig: 18, 206
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 164, 36
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 192, 39
+  size: 20, 23
+  orig: 26, 26
+  offset: 2, 2
+  index: -1

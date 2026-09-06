@@ -1,0 +1,132 @@
+
+zytp_boss5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 87, 11
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 2, 2
+  size: 4, 5
+  orig: 13, 13
+  offset: 8, 5
+  index: -1
+zytp_boss5_ball2
+  rotate: true
+  xy: 223, 243
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1
+zytp_boss5_skill2
+  rotate: false
+  xy: 9, 2
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+zytp_boss5_skill3
+  rotate: false
+  xy: 2, 337
+  size: 173, 173
+  orig: 175, 175
+  offset: 1, 1
+  index: -1
+zytp_boss5_skill4
+  rotate: false
+  xy: 2, 36
+  size: 131, 131
+  orig: 131, 131
+  offset: 0, 0
+  index: -1
+zytp_boss5_skill5
+  rotate: true
+  xy: 156, 212
+  size: 123, 65
+  orig: 125, 66
+  offset: 1, 0
+  index: -1
+zytp_boss5_skill6
+  rotate: true
+  xy: 2, 169
+  size: 166, 152
+  orig: 166, 152
+  offset: 0, 0
+  index: -1
+zytp_boss5_skill7
+  rotate: true
+  xy: 223, 295
+  size: 71, 59
+  orig: 71, 60
+  offset: 0, 1
+  index: -1
+zytp_boss5_skill8
+  rotate: false
+  xy: 205, 134
+  size: 73, 76
+  orig: 75, 78
+  offset: 1, 1
+  index: -1
+zytp_boss5_skill9
+  rotate: true
+  xy: 177, 420
+  size: 90, 76
+  orig: 90, 77
+  offset: 0, 0
+  index: -1
+zytp_boss5_skillb1
+  rotate: false
+  xy: 2, 8
+  size: 83, 10
+  orig: 83, 10
+  offset: 0, 0
+  index: -1
+zytp_boss5_skillb2
+  rotate: false
+  xy: 2, 20
+  size: 71, 14
+  orig: 71, 14
+  offset: 0, 0
+  index: -1
+zytp_boss5_skillb3
+  rotate: false
+  xy: 135, 28
+  size: 68, 139
+  orig: 76, 148
+  offset: 4, 4
+  index: -1
+zytp_boss5_skillf1
+  rotate: false
+  xy: 177, 368
+  size: 129, 50
+  orig: 130, 50
+  offset: 1, 0
+  index: -1
+zytp_boss5_skillf2
+  rotate: false
+  xy: 255, 457
+  size: 117, 53
+  orig: 117, 53
+  offset: 0, 0
+  index: -1
+zytp_boss5_skillf3
+  rotate: true
+  xy: 252, 19
+  size: 113, 45
+  orig: 113, 45
+  offset: 0, 0
+  index: -1
+zytp_boss5_skillf4
+  rotate: true
+  xy: 205, 11
+  size: 121, 45
+  orig: 121, 45
+  offset: 0, 0
+  index: -1

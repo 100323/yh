@@ -1,0 +1,97 @@
+
+zhenji9_attack_hit.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 587, 63
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+sjyan1
+  rotate: true
+  xy: 2, 20
+  size: 233, 183
+  orig: 233, 183
+  offset: 0, 0
+  index: -1
+sjyan2
+  rotate: true
+  xy: 187, 36
+  size: 217, 194
+  orig: 217, 194
+  offset: 0, 0
+  index: -1
+xian
+  rotate: true
+  xy: 538, 40
+  size: 50, 47
+  orig: 50, 47
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi1
+  rotate: true
+  xy: 541, 158
+  size: 95, 91
+  orig: 95, 91
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi2
+  rotate: false
+  xy: 218, 8
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi3
+  rotate: true
+  xy: 383, 3
+  size: 87, 86
+  orig: 87, 86
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi4
+  rotate: false
+  xy: 541, 109
+  size: 46, 47
+  orig: 46, 47
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi5
+  rotate: true
+  xy: 187, 2
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi6
+  rotate: true
+  xy: 471, 16
+  size: 74, 65
+  orig: 74, 65
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi7
+  rotate: false
+  xy: 2, 7
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+zhenji9_pg_lizi8
+  rotate: false
+  xy: 246, 12
+  size: 21, 22
+  orig: 21, 22
+  offset: 0, 0
+  index: -1
+zhenji9_pg_shuiqiu
+  rotate: true
+  xy: 383, 92
+  size: 161, 156
+  orig: 161, 156
+  offset: 0, 0
+  index: -1

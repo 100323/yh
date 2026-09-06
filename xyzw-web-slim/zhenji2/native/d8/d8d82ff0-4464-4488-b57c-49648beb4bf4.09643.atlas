@@ -1,0 +1,125 @@
+
+zhenji2_skill_line.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia2_skill1
+  rotate: false
+  xy: 2, 96
+  size: 155, 158
+  orig: 162, 164
+  offset: 5, 4
+  index: -1
+guojia2_skill2
+  rotate: false
+  xy: 2, 22
+  size: 72, 72
+  orig: 74, 74
+  offset: 1, 1
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 195, 152
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 299, 212
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+zhenji2_skill_effect1
+  rotate: false
+  xy: 230, 103
+  size: 62, 47
+  orig: 62, 47
+  offset: 0, 0
+  index: -1
+zhenji2_skill_effect2
+  rotate: true
+  xy: 294, 105
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+zhenji2_skill_ice4
+  rotate: false
+  xy: 159, 113
+  size: 34, 141
+  orig: 34, 141
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon1_1
+  rotate: true
+  xy: 76, 27
+  size: 67, 63
+  orig: 67, 63
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon1_2
+  rotate: true
+  xy: 141, 27
+  size: 67, 63
+  orig: 67, 63
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon1_3
+  rotate: true
+  xy: 206, 30
+  size: 67, 63
+  orig: 67, 63
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon2_1
+  rotate: true
+  xy: 2, 2
+  size: 18, 46
+  orig: 18, 46
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon2_2
+  rotate: true
+  xy: 195, 99
+  size: 51, 33
+  orig: 51, 33
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon2_3
+  rotate: false
+  xy: 103, 5
+  size: 31, 20
+  orig: 31, 23
+  offset: 0, 3
+  index: -1
+zhenji2_skill_weapon2_4
+  rotate: false
+  xy: 50, 2
+  size: 21, 18
+  orig: 21, 18
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon2_5
+  rotate: true
+  xy: 271, 34
+  size: 67, 63
+  orig: 67, 63
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon2_6
+  rotate: false
+  xy: 76, 4
+  size: 25, 21
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+zhenji2_skill_weapon2_7
+  rotate: true
+  xy: 299, 168
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: -1

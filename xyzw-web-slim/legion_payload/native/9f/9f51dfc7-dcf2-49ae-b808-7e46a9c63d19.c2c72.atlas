@@ -1,0 +1,34 @@
+
+tgcf_pty_jnk_cmds.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_cmds_g1
+  rotate: true
+  xy: 361, 85
+  size: 370, 328
+  orig: 370, 328
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_cmds_g2
+  rotate: true
+  xy: 2, 53
+  size: 402, 357
+  orig: 402, 357
+  offset: 0, 0
+  index: -1
+tgcf_pty_jnk_cmds_g3
+  rotate: true
+  xy: 691, 113
+  size: 342, 283
+  orig: 342, 283
+  offset: 0, 0
+  index: -1

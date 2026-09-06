@@ -1,0 +1,55 @@
+
+ycxsz_banner_shuaguang.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_sg_1
+  rotate: true
+  xy: 2, 2
+  size: 79, 135
+  orig: 79, 135
+  offset: 0, 0
+  index: -1
+ycxsz_sg_2
+  rotate: true
+  xy: 291, 3
+  size: 17, 148
+  orig: 17, 148
+  offset: 0, 0
+  index: -1
+ycxsz_sg_3
+  rotate: true
+  xy: 291, 3
+  size: 17, 148
+  orig: 17, 148
+  offset: 0, 0
+  index: -1
+ycxsz_sg_4
+  rotate: true
+  xy: 291, 22
+  size: 31, 148
+  orig: 31, 148
+  offset: 0, 0
+  index: -1
+ycxsz_sg_5
+  rotate: true
+  xy: 139, 7
+  size: 74, 150
+  orig: 74, 150
+  offset: 0, 0
+  index: -1
+ycxsz_sg_6
+  rotate: true
+  xy: 291, 55
+  size: 26, 166
+  orig: 26, 166
+  offset: 0, 0
+  index: -1
+ycxsz_sg_7
+  rotate: false
+  xy: 459, 43
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1

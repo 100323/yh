@@ -1,0 +1,293 @@
+
+axian5114.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axhz_ql_bizi
+  rotate: false
+  xy: 293, 71
+  size: 12, 18
+  orig: 14, 20
+  offset: 1, 1
+  index: -1
+axhz_ql_dtuir
+  rotate: false
+  xy: 387, 284
+  size: 28, 83
+  orig: 30, 83
+  offset: 1, 0
+  index: -1
+axhz_ql_jiao
+  rotate: false
+  xy: 125, 63
+  size: 56, 103
+  orig: 57, 104
+  offset: 0, 1
+  index: -1
+axhz_ql_jiaor
+  rotate: true
+  xy: 318, 53
+  size: 61, 46
+  orig: 61, 46
+  offset: 0, 0
+  index: -1
+axhz_ql_jjl1
+  rotate: false
+  xy: 176, 272
+  size: 140, 110
+  orig: 140, 114
+  offset: 0, 0
+  index: -1
+axhz_ql_jjl2
+  rotate: false
+  xy: 327, 369
+  size: 99, 47
+  orig: 99, 47
+  offset: 0, 0
+  index: -1
+axhz_ql_jjl3
+  rotate: false
+  xy: 253, 91
+  size: 63, 88
+  orig: 63, 88
+  offset: 0, 0
+  index: -1
+axhz_ql_jjr
+  rotate: true
+  xy: 417, 284
+  size: 62, 76
+  orig: 62, 76
+  offset: 0, 0
+  index: -1
+axhz_ql_jjr1
+  rotate: false
+  xy: 485, 453
+  size: 24, 57
+  orig: 24, 57
+  offset: 0, 0
+  index: -1
+axhz_ql_jl
+  rotate: false
+  xy: 426, 102
+  size: 71, 46
+  orig: 71, 46
+  offset: 0, 0
+  index: -1
+axhz_ql_lh
+  rotate: false
+  xy: 250, 8
+  size: 30, 36
+  orig: 31, 36
+  offset: 1, 0
+  index: -1
+axhz_ql_sbl
+  rotate: true
+  xy: 428, 348
+  size: 68, 82
+  orig: 69, 83
+  offset: 1, 0
+  index: -1
+axhz_ql_sbl2
+  rotate: true
+  xy: 368, 135
+  size: 69, 56
+  orig: 69, 57
+  offset: 0, 0
+  index: -1
+axhz_ql_sbl3
+  rotate: false
+  xy: 368, 69
+  size: 55, 64
+  orig: 55, 64
+  offset: 0, 0
+  index: -1
+axhz_ql_sbr1
+  rotate: true
+  xy: 425, 62
+  size: 38, 62
+  orig: 38, 62
+  offset: 0, 0
+  index: -1
+axhz_ql_sbr2
+  rotate: false
+  xy: 318, 283
+  size: 67, 84
+  orig: 69, 85
+  offset: 1, 0
+  index: -1
+axhz_ql_shen
+  rotate: true
+  xy: 327, 418
+  size: 92, 156
+  orig: 92, 156
+  offset: 0, 0
+  index: -1
+axhz_ql_shoul1
+  rotate: false
+  xy: 421, 214
+  size: 66, 68
+  orig: 66, 69
+  offset: 0, 1
+  index: -1
+axhz_ql_shoul2
+  rotate: false
+  xy: 352, 206
+  size: 67, 75
+  orig: 67, 76
+  offset: 0, 0
+  index: -1
+axhz_ql_shour
+  rotate: false
+  xy: 318, 116
+  size: 48, 74
+  orig: 48, 75
+  offset: 0, 0
+  index: -1
+axhz_ql_tk
+  rotate: false
+  xy: 2, 10
+  size: 121, 156
+  orig: 121, 156
+  offset: 0, 0
+  index: -1
+axhz_ql_tk2
+  rotate: true
+  xy: 366, 32
+  size: 35, 57
+  orig: 35, 58
+  offset: 0, 1
+  index: -1
+axhz_ql_tou
+  rotate: true
+  xy: 176, 181
+  size: 89, 131
+  orig: 90, 132
+  offset: 0, 1
+  index: -1
+axhz_ql_touf
+  rotate: false
+  xy: 2, 168
+  size: 172, 342
+  orig: 172, 342
+  offset: 0, 0
+  index: -1
+axhz_ql_tuil
+  rotate: false
+  xy: 183, 89
+  size: 68, 90
+  orig: 69, 90
+  offset: 0, 0
+  index: -1
+axhz_ql_tuil1
+  rotate: false
+  xy: 309, 192
+  size: 41, 78
+  orig: 41, 80
+  offset: 0, 1
+  index: -1
+axhz_ql_tuir
+  rotate: false
+  xy: 183, 2
+  size: 65, 85
+  orig: 65, 85
+  offset: 0, 0
+  index: -1
+axhz_ql_xgl
+  rotate: true
+  xy: 425, 14
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+axhz_ql_xgr
+  rotate: true
+  xy: 125, 13
+  size: 48, 53
+  orig: 48, 53
+  offset: 0, 0
+  index: -1
+axhz_ql_xiong
+  rotate: false
+  xy: 176, 384
+  size: 149, 126
+  orig: 153, 127
+  offset: 4, 0
+  index: -1
+axhz_ql_yanl
+  rotate: false
+  xy: 495, 274
+  size: 15, 20
+  orig: 16, 22
+  offset: 1, 1
+  index: -1
+axhz_ql_yanr
+  rotate: false
+  xy: 485, 431
+  size: 16, 20
+  orig: 16, 21
+  offset: 0, 1
+  index: -1
+axhz_ql_yzl
+  rotate: true
+  xy: 14, 2
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+axhz_ql_yzr
+  rotate: false
+  xy: 176, 172
+  size: 5, 7
+  orig: 6, 8
+  offset: 1, 0
+  index: -1
+axhz_ql_zhu1
+  rotate: false
+  xy: 495, 322
+  size: 15, 24
+  orig: 17, 24
+  offset: 1, 0
+  index: -1
+axhz_ql_zhu2
+  rotate: false
+  xy: 426, 150
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+axhz_ql_zhu3
+  rotate: false
+  xy: 495, 296
+  size: 15, 24
+  orig: 17, 24
+  offset: 1, 0
+  index: -1
+axhz_ql_zhu4
+  rotate: true
+  xy: 478, 14
+  size: 46, 20
+  orig: 46, 20
+  offset: 0, 0
+  index: -1
+axhz_ql_zui
+  rotate: false
+  xy: 2, 2
+  size: 10, 6
+  orig: 10, 6
+  offset: 0, 0
+  index: -1
+axian_eyel2
+  rotate: true
+  xy: 503, 432
+  size: 19, 7
+  orig: 19, 7
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 250, 46
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+huatuo8_skill_position.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo8_skill2_kslizi1
+  rotate: false
+  xy: 2, 251
+  size: 106, 70
+  orig: 106, 70
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_kslizi2
+  rotate: false
+  xy: 257, 317
+  size: 49, 37
+  orig: 49, 37
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_kslizi3
+  rotate: false
+  xy: 308, 295
+  size: 106, 59
+  orig: 106, 59
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_kuo
+  rotate: false
+  xy: 110, 166
+  size: 270, 127
+  orig: 270, 127
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_yeti
+  rotate: false
+  xy: 2, 2
+  size: 419, 162
+  orig: 419, 162
+  offset: 0, 0
+  index: -1
+paopao_10
+  rotate: false
+  xy: 103, 323
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1
+paopao_11
+  rotate: false
+  xy: 145, 322
+  size: 49, 32
+  orig: 49, 32
+  offset: 0, 0
+  index: -1
+paopao_12
+  rotate: false
+  xy: 196, 322
+  size: 59, 32
+  orig: 59, 32
+  offset: 0, 0
+  index: -1
+paopao_14
+  rotate: false
+  xy: 2, 331
+  size: 60, 23
+  orig: 60, 23
+  offset: 0, 0
+  index: -1
+paopao_9
+  rotate: false
+  xy: 64, 326
+  size: 37, 28
+  orig: 37, 28
+  offset: 0, 0
+  index: -1

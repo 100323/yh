@@ -1,0 +1,27 @@
+
+huatuo6_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo6_jn_diguang1
+  rotate: true
+  xy: 153, 32
+  size: 153, 124
+  orig: 153, 124
+  offset: 0, 0
+  index: -1
+huatuo6_jn_diguang2
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+huatuo6_jn_diguang3
+  rotate: false
+  xy: 2, 36
+  size: 149, 149
+  orig: 149, 149
+  offset: 0, 0
+  index: -1

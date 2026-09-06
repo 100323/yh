@@ -1,0 +1,27 @@
+
+sqhd25w2_hglp_xuanzhong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w2_hgzp_cz1
+  rotate: false
+  xy: 2, 16
+  size: 231, 144
+  orig: 232, 144
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_cz2
+  rotate: false
+  xy: 2, 162
+  size: 364, 242
+  orig: 364, 242
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_sdgy
+  rotate: false
+  xy: 235, 2
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1

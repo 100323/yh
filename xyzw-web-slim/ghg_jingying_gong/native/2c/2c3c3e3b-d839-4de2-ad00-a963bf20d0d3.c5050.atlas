@@ -1,0 +1,244 @@
+
+ghg_jingying_gong.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_gong_hit_jian1
+  rotate: false
+  xy: 753, 179
+  size: 48, 234
+  orig: 48, 234
+  offset: 0, 0
+  index: -1
+ghg_gong_hit_jian2
+  rotate: true
+  xy: 350, 415
+  size: 87, 533
+  orig: 87, 533
+  offset: 0, 0
+  index: -1
+ghg_gong_hit_jiandian
+  rotate: false
+  xy: 585, 73
+  size: 142, 146
+  orig: 142, 146
+  offset: 0, 0
+  index: -1
+ghg_gong_hit_jianxian1
+  rotate: false
+  xy: 2, 110
+  size: 259, 142
+  orig: 259, 142
+  offset: 0, 0
+  index: -1
+ghg_gong_hit_jianxian2
+  rotate: true
+  xy: 2, 254
+  size: 248, 346
+  orig: 248, 346
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_bizi
+  rotate: true
+  xy: 1009, 474
+  size: 11, 8
+  orig: 11, 9
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_erl
+  rotate: true
+  xy: 335, 24
+  size: 60, 61
+  orig: 60, 61
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_err
+  rotate: false
+  xy: 2, 56
+  size: 57, 52
+  orig: 57, 52
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_gongjian
+  rotate: true
+  xy: 350, 203
+  size: 210, 233
+  orig: 210, 233
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_guang
+  rotate: false
+  xy: 885, 371
+  size: 122, 131
+  orig: 122, 131
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_hongdian1
+  rotate: false
+  xy: 516, 63
+  size: 52, 138
+  orig: 52, 138
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_hongdian2
+  rotate: true
+  xy: 469, 46
+  size: 155, 45
+  orig: 155, 45
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_jian
+  rotate: true
+  xy: 585, 221
+  size: 192, 166
+  orig: 193, 166
+  offset: 1, 0
+  index: -1
+ghg_jingying_gong_jiantou
+  rotate: true
+  xy: 33, 26
+  size: 28, 25
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_liuhai
+  rotate: true
+  xy: 33, 3
+  size: 21, 17
+  orig: 21, 18
+  offset: 0, 1
+  index: -1
+ghg_jingying_gong_meimao
+  rotate: true
+  xy: 61, 25
+  size: 39, 29
+  orig: 39, 29
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_shen
+  rotate: true
+  xy: 170, 52
+  size: 56, 39
+  orig: 57, 39
+  offset: 1, 0
+  index: -1
+ghg_jingying_gong_shoul
+  rotate: true
+  xy: 439, 36
+  size: 48, 28
+  orig: 48, 28
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_shour
+  rotate: false
+  xy: 263, 83
+  size: 70, 80
+  orig: 70, 80
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_tou
+  rotate: true
+  xy: 263, 165
+  size: 87, 75
+  orig: 87, 75
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_tuil
+  rotate: false
+  xy: 107, 26
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_tuir
+  rotate: false
+  xy: 61, 66
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_wei
+  rotate: true
+  xy: 398, 11
+  size: 73, 39
+  orig: 73, 39
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_weijin
+  rotate: false
+  xy: 340, 86
+  size: 127, 115
+  orig: 127, 115
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_xian1
+  rotate: false
+  xy: 1009, 355
+  size: 7, 117
+  orig: 7, 117
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_yanl
+  rotate: true
+  xy: 729, 159
+  size: 27, 19
+  orig: 27, 20
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_yanr
+  rotate: true
+  xy: 729, 188
+  size: 31, 21
+  orig: 32, 21
+  offset: 1, 0
+  index: -1
+ghg_jingying_gong_yanzhull
+  rotate: false
+  xy: 340, 242
+  size: 7, 10
+  orig: 7, 11
+  offset: 0, 0
+  index: -1
+ghg_jingying_gong_yanzhur
+  rotate: false
+  xy: 340, 232
+  size: 7, 8
+  orig: 8, 9
+  offset: 1, 1
+  index: -1
+ghg_jingying_gong_zui
+  rotate: false
+  xy: 107, 68
+  size: 61, 40
+  orig: 61, 40
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 25
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 1009, 487
+  size: 15, 13
+  orig: 16, 16
+  offset: 0, 1
+  index: -1
+ymj_effect_star1
+  rotate: false
+  xy: 2, 2
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ymj_effect_star2
+  rotate: true
+  xy: 141, 50
+  size: 16, 15
+  orig: 16, 16
+  offset: 0, 1
+  index: -1

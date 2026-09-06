@@ -1,0 +1,55 @@
+
+qnwd26_cj_fashe.png
+size: 256,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hunzhu1
+  rotate: true
+  xy: 24, 351
+  size: 15, 26
+  orig: 15, 26
+  offset: 0, 0
+  index: -1
+hunzhu2
+  rotate: true
+  xy: 2, 352
+  size: 14, 20
+  orig: 14, 20
+  offset: 0, 0
+  index: -1
+hunzhu3
+  rotate: true
+  xy: 52, 306
+  size: 60, 140
+  orig: 60, 140
+  offset: 0, 0
+  index: -1
+hunzhu4
+  rotate: true
+  xy: 2, 231
+  size: 73, 77
+  orig: 73, 77
+  offset: 0, 0
+  index: -1
+hunzhu5
+  rotate: true
+  xy: 81, 227
+  size: 77, 83
+  orig: 77, 83
+  offset: 0, 0
+  index: -1
+hunzhu6
+  rotate: true
+  xy: 2, 2
+  size: 131, 221
+  orig: 131, 221
+  offset: 0, 0
+  index: -1
+hunzhu7
+  rotate: true
+  xy: 2, 135
+  size: 90, 208
+  orig: 90, 208
+  offset: 0, 0
+  index: -1

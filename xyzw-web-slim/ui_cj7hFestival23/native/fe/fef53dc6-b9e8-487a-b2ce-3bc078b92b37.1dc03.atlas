@@ -1,0 +1,13 @@
+
+dntg26_cj_guangbiao.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guangbiao1
+  rotate: false
+  xy: 2, 2
+  size: 89, 89
+  orig: 117, 108
+  offset: 10, 10
+  index: -1

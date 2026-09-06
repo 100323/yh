@@ -1,0 +1,48 @@
+
+jiangwei5_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+jiangwei5_skill2
+  rotate: true
+  xy: 2, 45
+  size: 200, 188
+  orig: 200, 188
+  offset: 0, 0
+  index: -1
+jiangwei5_skill3
+  rotate: true
+  xy: 247, 10
+  size: 63, 60
+  orig: 63, 60
+  offset: 0, 0
+  index: -1
+jiangwei5_skill4
+  rotate: false
+  xy: 192, 75
+  size: 284, 170
+  orig: 284, 170
+  offset: 0, 0
+  index: -1
+jiangwei5_skill5
+  rotate: true
+  xy: 192, 5
+  size: 68, 53
+  orig: 68, 53
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 45, 21
+  size: 22, 14
+  orig: 22, 22
+  offset: 0, 5
+  index: -1

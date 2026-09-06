@@ -1,0 +1,153 @@
+
+boss_xianyuwang_guide.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 174, 225
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 482, 486
+  size: 24, 21
+  orig: 26, 26
+  offset: 2, 5
+  index: -1
+xyw_ui_arml
+  rotate: false
+  xy: 362, 37
+  size: 66, 110
+  orig: 66, 110
+  offset: 0, 0
+  index: -1
+xyw_ui_armr
+  rotate: true
+  xy: 275, 149
+  size: 74, 111
+  orig: 74, 111
+  offset: 0, 0
+  index: -1
+xyw_ui_body
+  rotate: false
+  xy: 2, 209
+  size: 170, 298
+  orig: 170, 298
+  offset: 0, 0
+  index: -1
+xyw_ui_cloak
+  rotate: true
+  xy: 2, 122
+  size: 85, 271
+  orig: 85, 271
+  offset: 0, 0
+  index: -1
+xyw_ui_eye
+  rotate: false
+  xy: 46, 6
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+xyw_ui_eyewhite
+  rotate: true
+  xy: 278, 228
+  size: 42, 50
+  orig: 42, 50
+  offset: 0, 0
+  index: -1
+xyw_ui_hat
+  rotate: false
+  xy: 174, 417
+  size: 98, 90
+  orig: 98, 90
+  offset: 0, 0
+  index: -1
+xyw_ui_head
+  rotate: true
+  xy: 205, 17
+  size: 103, 155
+  orig: 103, 155
+  offset: 0, 0
+  index: -1
+xyw_ui_jaw
+  rotate: true
+  xy: 278, 272
+  size: 62, 94
+  orig: 62, 94
+  offset: 0, 0
+  index: -1
+xyw_ui_legl
+  rotate: false
+  xy: 275, 390
+  size: 74, 117
+  orig: 74, 117
+  offset: 0, 0
+  index: -1
+xyw_ui_legr
+  rotate: true
+  xy: 384, 342
+  size: 62, 116
+  orig: 62, 116
+  offset: 0, 0
+  index: -1
+xyw_ui_line1
+  rotate: false
+  xy: 274, 336
+  size: 108, 52
+  orig: 108, 52
+  offset: 0, 0
+  index: -1
+xyw_ui_line2
+  rotate: false
+  xy: 330, 236
+  size: 30, 34
+  orig: 30, 34
+  offset: 0, 0
+  index: -1
+xyw_ui_line3
+  rotate: true
+  xy: 384, 246
+  size: 94, 69
+  orig: 94, 69
+  offset: 0, 0
+  index: -1
+xyw_ui_pants
+  rotate: true
+  xy: 362, 406
+  size: 101, 118
+  orig: 101, 118
+  offset: 0, 0
+  index: -1
+xyw_ui_saliva1
+  rotate: true
+  xy: 362, 5
+  size: 30, 74
+  orig: 30, 74
+  offset: 0, 0
+  index: -1
+xyw_ui_saliva2
+  rotate: true
+  xy: 2, 2
+  size: 14, 42
+  orig: 14, 42
+  offset: 0, 0
+  index: -1
+xyw_ui_tail
+  rotate: false
+  xy: 2, 18
+  size: 201, 102
+  orig: 201, 102
+  offset: 0, 0
+  index: -1
+xyw_ui_tie
+  rotate: false
+  xy: 174, 329
+  size: 98, 86
+  orig: 98, 86
+  offset: 0, 0
+  index: -1

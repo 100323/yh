@@ -1,0 +1,41 @@
+
+zhaoyun9_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu5_pg_sj1
+  rotate: true
+  xy: 221, 37
+  size: 89, 83
+  orig: 89, 83
+  offset: 0, 0
+  index: -1
+lusu5_pg_sj2
+  rotate: false
+  xy: 306, 39
+  size: 68, 87
+  orig: 68, 87
+  offset: 0, 0
+  index: -1
+lusu5_pg_sj3
+  rotate: false
+  xy: 115, 22
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+lusu5_pg_sj4
+  rotate: false
+  xy: 2, 2
+  size: 111, 124
+  orig: 111, 124
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 221, 6
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

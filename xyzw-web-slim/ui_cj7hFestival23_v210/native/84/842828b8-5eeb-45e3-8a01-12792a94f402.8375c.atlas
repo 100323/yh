@@ -1,0 +1,41 @@
+
+rxzq26_cj_jiantou.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou_dizuo
+  rotate: false
+  xy: 2, 38
+  size: 69, 67
+  orig: 69, 67
+  offset: 0, 0
+  index: -1
+jiantou_shang
+  rotate: true
+  xy: 2, 6
+  size: 30, 33
+  orig: 31, 33
+  offset: 0, 0
+  index: -1
+jiantou_xia
+  rotate: false
+  xy: 73, 73
+  size: 31, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+jiantou_you
+  rotate: true
+  xy: 37, 2
+  size: 34, 29
+  orig: 34, 30
+  offset: 0, 1
+  index: -1
+jiantou_zuo
+  rotate: true
+  xy: 73, 34
+  size: 37, 30
+  orig: 38, 32
+  offset: 0, 1
+  index: -1

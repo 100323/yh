@@ -1,0 +1,132 @@
+
+sdsl_xiaobing1.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: false
+  xy: 146, 60
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_arm1
+  rotate: false
+  xy: 127, 89
+  size: 23, 37
+  orig: 23, 37
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_arm2
+  rotate: false
+  xy: 124, 13
+  size: 25, 32
+  orig: 25, 32
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_body
+  rotate: false
+  xy: 94, 89
+  size: 31, 37
+  orig: 31, 37
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_eye1
+  rotate: false
+  xy: 53, 5
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_eye2
+  rotate: false
+  xy: 58, 6
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_eyewhite1
+  rotate: true
+  xy: 82, 72
+  size: 9, 12
+  orig: 9, 12
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_eyewhite2
+  rotate: true
+  xy: 40, 2
+  size: 7, 11
+  orig: 7, 11
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_hair1
+  rotate: true
+  xy: 50, 83
+  size: 43, 42
+  orig: 43, 42
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_hair2
+  rotate: false
+  xy: 40, 11
+  size: 39, 50
+  orig: 39, 50
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_hand1
+  rotate: true
+  xy: 96, 71
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_hand2
+  rotate: true
+  xy: 107, 6
+  size: 17, 15
+  orig: 17, 15
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_hat
+  rotate: true
+  xy: 117, 47
+  size: 40, 27
+  orig: 40, 27
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_head
+  rotate: true
+  xy: 2, 63
+  size: 63, 46
+  orig: 63, 46
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_mask
+  rotate: false
+  xy: 81, 25
+  size: 34, 43
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_tail
+  rotate: true
+  xy: 2, 3
+  size: 58, 36
+  orig: 58, 36
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_weapon1
+  rotate: false
+  xy: 81, 4
+  size: 24, 19
+  orig: 24, 19
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing1_weapon2
+  rotate: false
+  xy: 50, 70
+  size: 30, 11
+  orig: 30, 11
+  offset: 0, 0
+  index: -1

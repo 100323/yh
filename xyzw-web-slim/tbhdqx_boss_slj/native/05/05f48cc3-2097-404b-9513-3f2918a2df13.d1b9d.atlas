@@ -1,0 +1,153 @@
+
+tbhdqx_boss_slj.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_slj_dabi
+  rotate: false
+  xy: 222, 72
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_jn_bian
+  rotate: true
+  xy: 2, 2
+  size: 15, 328
+  orig: 15, 328
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_meiil
+  rotate: false
+  xy: 207, 20
+  size: 32, 14
+  orig: 32, 14
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_meir
+  rotate: true
+  xy: 380, 37
+  size: 33, 21
+  orig: 34, 22
+  offset: 0, 1
+  index: -1
+tbhdqx_slj_pu_chun1
+  rotate: true
+  xy: 260, 106
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_shen
+  rotate: false
+  xy: 332, 72
+  size: 56, 98
+  orig: 56, 98
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_shou1
+  rotate: false
+  xy: 332, 30
+  size: 46, 40
+  orig: 46, 42
+  offset: 0, 1
+  index: -1
+tbhdqx_slj_shou2
+  rotate: false
+  xy: 173, 24
+  size: 32, 24
+  orig: 33, 26
+  offset: 0, 1
+  index: -1
+tbhdqx_slj_shou3
+  rotate: false
+  xy: 390, 149
+  size: 30, 21
+  orig: 30, 23
+  offset: 0, 1
+  index: -1
+tbhdqx_slj_shoubi1
+  rotate: false
+  xy: 173, 50
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_tou
+  rotate: true
+  xy: 2, 19
+  size: 151, 169
+  orig: 153, 169
+  offset: 1, 0
+  index: -1
+tbhdqx_slj_toufa
+  rotate: true
+  xy: 173, 118
+  size: 52, 85
+  orig: 52, 85
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_tuil
+  rotate: false
+  xy: 302, 49
+  size: 24, 55
+  orig: 24, 55
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_tuir
+  rotate: false
+  xy: 256, 53
+  size: 44, 51
+  orig: 44, 51
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_xiaobi1
+  rotate: false
+  xy: 222, 36
+  size: 25, 34
+  orig: 27, 34
+  offset: 2, 0
+  index: -1
+tbhdqx_slj_yp1
+  rotate: false
+  xy: 302, 26
+  size: 28, 21
+  orig: 29, 22
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_yp2
+  rotate: false
+  xy: 249, 29
+  size: 29, 22
+  orig: 30, 22
+  offset: 1, 0
+  index: -1
+tbhdqx_slj_yz1
+  rotate: true
+  xy: 390, 93
+  size: 16, 20
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_yz2
+  rotate: true
+  xy: 390, 111
+  size: 17, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+tbhdqx_slj_zui1
+  rotate: true
+  xy: 390, 130
+  size: 17, 21
+  orig: 18, 22
+  offset: 1, 1
+  index: -1
+tbhdqx_slj_zui2
+  rotate: true
+  xy: 280, 22
+  size: 29, 20
+  orig: 30, 20
+  offset: 1, 0
+  index: -1

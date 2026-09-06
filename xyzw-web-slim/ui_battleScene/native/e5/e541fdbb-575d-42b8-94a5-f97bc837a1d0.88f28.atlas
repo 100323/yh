@@ -1,0 +1,20 @@
+
+sdsl_js_huomiao.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_gk_xhm1
+  rotate: false
+  xy: 2, 2
+  size: 80, 132
+  orig: 83, 136
+  offset: 2, 2
+  index: -1
+sdsl_gk_xhm2
+  rotate: false
+  xy: 84, 14
+  size: 88, 120
+  orig: 92, 124
+  offset: 2, 2
+  index: -1

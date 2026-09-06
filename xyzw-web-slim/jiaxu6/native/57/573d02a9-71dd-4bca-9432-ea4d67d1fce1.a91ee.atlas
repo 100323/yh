@@ -1,0 +1,76 @@
+
+jiaxu6_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 359, 470
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_1
+  rotate: false
+  xy: 265, 105
+  size: 90, 148
+  orig: 90, 148
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_2
+  rotate: true
+  xy: 347, 277
+  size: 95, 105
+  orig: 95, 105
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_3
+  rotate: true
+  xy: 41, 251
+  size: 257, 129
+  orig: 257, 129
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_4
+  rotate: true
+  xy: 41, 70
+  size: 179, 222
+  orig: 179, 222
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_5
+  rotate: true
+  xy: 172, 255
+  size: 117, 173
+  orig: 117, 173
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_6
+  rotate: true
+  xy: 172, 374
+  size: 134, 185
+  orig: 134, 185
+  offset: 0, 0
+  index: -1
+jiaxu7_jn_7
+  rotate: false
+  xy: 2, 2
+  size: 19, 506
+  orig: 21, 506
+  offset: 1, 0
+  index: -1
+jiaxu7_jn_8
+  rotate: false
+  xy: 23, 18
+  size: 16, 490
+  orig: 20, 490
+  offset: 2, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 399, 489
+  size: 19, 18
+  orig: 21, 21
+  offset: 1, 1
+  index: -1

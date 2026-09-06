@@ -1,0 +1,433 @@
+
+cwxt26_cw_huan_6_plt.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wutuan_h1
+  rotate: true
+  xy: 921, 422
+  size: 66, 79
+  orig: 66, 79
+  offset: 0, 0
+  index: -1
+wutuan_h2
+  rotate: false
+  xy: 180, 190
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: -1
+wutuan_h3
+  rotate: false
+  xy: 922, 607
+  size: 100, 84
+  orig: 100, 84
+  offset: 0, 0
+  index: -1
+wutuan_h4
+  rotate: false
+  xy: 904, 102
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+wutuan_h5
+  rotate: false
+  xy: 2, 694
+  size: 294, 328
+  orig: 294, 328
+  offset: 0, 0
+  index: -1
+wutuan_q1
+  rotate: false
+  xy: 796, 298
+  size: 131, 122
+  orig: 131, 122
+  offset: 0, 0
+  index: -1
+wutuan_q2
+  rotate: true
+  xy: 789, 162
+  size: 134, 142
+  orig: 134, 142
+  offset: 0, 0
+  index: -1
+wutuan_q3
+  rotate: true
+  xy: 933, 162
+  size: 69, 58
+  orig: 69, 58
+  offset: 0, 0
+  index: -1
+wutuan_q4
+  rotate: false
+  xy: 785, 631
+  size: 135, 156
+  orig: 135, 156
+  offset: 0, 0
+  index: -1
+wutuan_q5
+  rotate: false
+  xy: 2, 442
+  size: 242, 250
+  orig: 242, 250
+  offset: 0, 0
+  index: -1
+ying_hzhua_l
+  rotate: false
+  xy: 922, 693
+  size: 100, 94
+  orig: 100, 94
+  offset: 0, 0
+  index: -1
+ying_mao1
+  rotate: false
+  xy: 258, 320
+  size: 172, 152
+  orig: 172, 152
+  offset: 0, 0
+  index: -1
+ying_mao_2
+  rotate: false
+  xy: 246, 474
+  size: 162, 197
+  orig: 162, 197
+  offset: 0, 0
+  index: -1
+ying_mei_l
+  rotate: false
+  xy: 480, 102
+  size: 121, 131
+  orig: 121, 131
+  offset: 0, 0
+  index: -1
+ying_mei_r
+  rotate: true
+  xy: 603, 84
+  size: 55, 123
+  orig: 55, 123
+  offset: 0, 0
+  index: -1
+ying_pigu
+  rotate: true
+  xy: 544, 367
+  size: 159, 154
+  orig: 159, 154
+  offset: 0, 0
+  index: -1
+ying_se1
+  rotate: false
+  xy: 180, 234
+  size: 76, 206
+  orig: 76, 206
+  offset: 0, 0
+  index: -1
+ying_se2
+  rotate: false
+  xy: 526, 528
+  size: 144, 174
+  orig: 144, 174
+  offset: 0, 0
+  index: -1
+ying_se3
+  rotate: true
+  xy: 785, 575
+  size: 54, 135
+  orig: 54, 135
+  offset: 0, 0
+  index: -1
+ying_se_szui
+  rotate: true
+  xy: 728, 2
+  size: 110, 77
+  orig: 110, 77
+  offset: 0, 0
+  index: -1
+ying_se_tong
+  rotate: false
+  xy: 719, 215
+  size: 7, 18
+  orig: 7, 18
+  offset: 0, 0
+  index: -1
+ying_se_xinzi
+  rotate: true
+  xy: 983, 932
+  size: 90, 32
+  orig: 90, 32
+  offset: 0, 0
+  index: -1
+ying_se_xzui
+  rotate: true
+  xy: 494, 2
+  size: 98, 85
+  orig: 99, 85
+  offset: 0, 0
+  index: -1
+ying_se_yan
+  rotate: false
+  xy: 904, 70
+  size: 41, 30
+  orig: 41, 30
+  offset: 0, 0
+  index: -1
+ying_shou_l
+  rotate: true
+  xy: 500, 704
+  size: 110, 190
+  orig: 110, 190
+  offset: 0, 0
+  index: -1
+ying_shou_r
+  rotate: true
+  xy: 258, 233
+  size: 85, 178
+  orig: 85, 178
+  offset: 0, 0
+  index: -1
+ying_tou
+  rotate: true
+  xy: 533, 816
+  size: 206, 219
+  orig: 206, 219
+  offset: 0, 0
+  index: -1
+ying_tui_l
+  rotate: true
+  xy: 354, 19
+  size: 70, 138
+  orig: 70, 138
+  offset: 0, 0
+  index: -1
+ying_tx1
+  rotate: true
+  xy: 298, 673
+  size: 143, 200
+  orig: 143, 200
+  offset: 0, 0
+  index: -1
+ying_tx10
+  rotate: true
+  xy: 695, 235
+  size: 106, 92
+  orig: 106, 92
+  offset: 0, 0
+  index: -1
+ying_tx11
+  rotate: false
+  xy: 410, 474
+  size: 114, 197
+  orig: 114, 197
+  offset: 0, 0
+  index: -1
+ying_tx12
+  rotate: false
+  xy: 432, 320
+  size: 110, 152
+  orig: 110, 152
+  offset: 0, 0
+  index: -1
+ying_tx13
+  rotate: true
+  xy: 929, 490
+  size: 115, 93
+  orig: 115, 93
+  offset: 0, 0
+  index: -1
+ying_tx14
+  rotate: false
+  xy: 807, 15
+  size: 83, 49
+  orig: 83, 49
+  offset: 0, 0
+  index: -1
+ying_tx15
+  rotate: true
+  xy: 983, 894
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+ying_tx16
+  rotate: false
+  xy: 990, 243
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+ying_tx17
+  rotate: true
+  xy: 692, 704
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+ying_tx18
+  rotate: false
+  xy: 990, 275
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ying_tx19
+  rotate: false
+  xy: 749, 754
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+ying_tx2
+  rotate: true
+  xy: 179, 2
+  size: 182, 173
+  orig: 182, 173
+  offset: 0, 0
+  index: -1
+ying_tx3
+  rotate: true
+  xy: 754, 876
+  size: 146, 227
+  orig: 146, 227
+  offset: 0, 0
+  index: -1
+ying_tx4
+  rotate: true
+  xy: 796, 422
+  size: 151, 123
+  orig: 151, 123
+  offset: 0, 0
+  index: -1
+ying_tx5
+  rotate: false
+  xy: 728, 114
+  size: 59, 119
+  orig: 59, 119
+  offset: 0, 0
+  index: -1
+ying_tx6
+  rotate: false
+  xy: 946, 796
+  size: 37, 78
+  orig: 37, 78
+  offset: 0, 0
+  index: -1
+ying_tx7
+  rotate: true
+  xy: 581, 12
+  size: 70, 124
+  orig: 70, 124
+  offset: 0, 0
+  index: -1
+ying_tx8
+  rotate: false
+  xy: 692, 735
+  size: 55, 79
+  orig: 55, 79
+  offset: 0, 0
+  index: -1
+ying_tx9
+  rotate: false
+  xy: 2, 2
+  size: 175, 182
+  orig: 175, 182
+  offset: 0, 0
+  index: -1
+ying_yan1
+  rotate: true
+  xy: 754, 789
+  size: 85, 190
+  orig: 85, 190
+  offset: 0, 0
+  index: -1
+ying_yan2
+  rotate: false
+  xy: 700, 343
+  size: 94, 183
+  orig: 94, 183
+  offset: 0, 0
+  index: -1
+ying_yan3
+  rotate: false
+  xy: 298, 818
+  size: 233, 204
+  orig: 233, 204
+  offset: 0, 0
+  index: -1
+ying_yan4
+  rotate: false
+  xy: 354, 91
+  size: 124, 140
+  orig: 124, 140
+  offset: 0, 0
+  index: -1
+ying_yan5
+  rotate: false
+  xy: 929, 309
+  size: 71, 111
+  orig: 71, 111
+  offset: 0, 0
+  index: -1
+ying_yan6
+  rotate: false
+  xy: 672, 528
+  size: 111, 174
+  orig: 111, 174
+  offset: 0, 0
+  index: -1
+ying_yan_l
+  rotate: false
+  xy: 807, 66
+  size: 95, 94
+  orig: 95, 94
+  offset: 0, 0
+  index: -1
+ying_yan_r
+  rotate: false
+  xy: 933, 233
+  size: 55, 74
+  orig: 55, 74
+  offset: 0, 0
+  index: -1
+ying_yantong_l
+  rotate: true
+  xy: 354, 2
+  size: 15, 30
+  orig: 15, 30
+  offset: 0, 0
+  index: -1
+ying_yantong_r
+  rotate: true
+  xy: 500, 690
+  size: 12, 24
+  orig: 12, 24
+  offset: 0, 0
+  index: -1
+ying_zhua_l
+  rotate: false
+  xy: 2, 186
+  size: 176, 254
+  orig: 176, 254
+  offset: 0, 0
+  index: -1
+ying_zhua_r
+  rotate: false
+  xy: 438, 236
+  size: 102, 82
+  orig: 102, 82
+  offset: 0, 0
+  index: -1
+ying_zui_s
+  rotate: false
+  xy: 544, 235
+  size: 149, 130
+  orig: 149, 130
+  offset: 0, 0
+  index: -1
+ying_zui_x
+  rotate: false
+  xy: 603, 141
+  size: 114, 92
+  orig: 114, 92
+  offset: 0, 0
+  index: -1

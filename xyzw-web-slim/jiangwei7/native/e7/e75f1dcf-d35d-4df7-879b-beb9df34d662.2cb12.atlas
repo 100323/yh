@@ -1,0 +1,55 @@
+
+jiangwei7_skill_line.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 776, 278
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+jiangwei7_jn_xian1
+  rotate: false
+  xy: 2, 262
+  size: 772, 107
+  orig: 772, 107
+  offset: 0, 0
+  index: -1
+jiangwei7_jn_xian2
+  rotate: false
+  xy: 2, 371
+  size: 772, 114
+  orig: 772, 114
+  offset: 0, 0
+  index: -1
+jiangwei7_jn_xianz1
+  rotate: false
+  xy: 265, 18
+  size: 264, 242
+  orig: 264, 242
+  offset: 0, 0
+  index: -1
+jiangwei7_jn_xianz2
+  rotate: false
+  xy: 2, 2
+  size: 261, 258
+  orig: 261, 258
+  offset: 0, 0
+  index: -1
+jiangwei7_jn_zha1
+  rotate: false
+  xy: 531, 108
+  size: 164, 152
+  orig: 164, 152
+  offset: 0, 0
+  index: -1
+jiangwei7_jn_zha2
+  rotate: false
+  xy: 776, 318
+  size: 189, 167
+  orig: 189, 167
+  offset: 0, 0
+  index: -1

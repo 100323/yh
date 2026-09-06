@@ -1,0 +1,167 @@
+
+ui_axian_btn_livingroom_sdsl9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: false
+  xy: 393, 326
+  size: 15, 5
+  orig: 19, 7
+  offset: 2, 1
+  index: -1
+axian_eyer2
+  rotate: false
+  xy: 369, 327
+  size: 13, 6
+  orig: 18, 8
+  offset: 2, 1
+  index: -1
+ktax_pdw_bian
+  rotate: false
+  xy: 234, 323
+  size: 133, 139
+  orig: 133, 139
+  offset: 0, 0
+  index: -1
+ktax_pdw_bozi
+  rotate: true
+  xy: 369, 335
+  size: 32, 36
+  orig: 32, 36
+  offset: 0, 0
+  index: -1
+ktax_pdw_huo1
+  rotate: false
+  xy: 2, 98
+  size: 102, 110
+  orig: 102, 110
+  offset: 0, 0
+  index: -1
+ktax_pdw_huo2
+  rotate: true
+  xy: 317, 226
+  size: 95, 109
+  orig: 95, 109
+  offset: 0, 0
+  index: -1
+ktax_pdw_huo3
+  rotate: false
+  xy: 106, 37
+  size: 92, 111
+  orig: 92, 111
+  offset: 0, 0
+  index: -1
+ktax_pdw_huo4
+  rotate: true
+  xy: 369, 369
+  size: 93, 113
+  orig: 93, 113
+  offset: 0, 0
+  index: -1
+ktax_pdw_huo5
+  rotate: true
+  xy: 218, 122
+  size: 95, 113
+  orig: 95, 113
+  offset: 0, 0
+  index: -1
+ktax_pdw_huo6
+  rotate: false
+  xy: 218, 219
+  size: 97, 102
+  orig: 97, 102
+  offset: 0, 0
+  index: -1
+ktax_pdw_jjl
+  rotate: false
+  xy: 2, 344
+  size: 230, 118
+  orig: 230, 118
+  offset: 0, 0
+  index: -1
+ktax_pdw_jjr
+  rotate: true
+  xy: 131, 156
+  size: 186, 85
+  orig: 186, 85
+  offset: 0, 0
+  index: -1
+ktax_pdw_lh
+  rotate: true
+  xy: 200, 56
+  size: 64, 56
+  orig: 64, 56
+  offset: 0, 0
+  index: -1
+ktax_pdw_lian
+  rotate: false
+  xy: 2, 2
+  size: 90, 94
+  orig: 90, 94
+  offset: 0, 0
+  index: -1
+ktax_pdw_tf1
+  rotate: false
+  xy: 2, 210
+  size: 127, 132
+  orig: 127, 132
+  offset: 0, 0
+  index: -1
+ktax_pdw_tf4
+  rotate: true
+  xy: 333, 101
+  size: 123, 67
+  orig: 123, 67
+  offset: 0, 0
+  index: -1
+ktax_pdw_yl
+  rotate: true
+  xy: 407, 351
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+ktax_pdw_yml
+  rotate: true
+  xy: 218, 326
+  size: 16, 13
+  orig: 16, 13
+  offset: 0, 0
+  index: -1
+ktax_pdw_ymr
+  rotate: true
+  xy: 106, 181
+  size: 27, 23
+  orig: 27, 23
+  offset: 0, 0
+  index: -1
+ktax_pdw_yr
+  rotate: true
+  xy: 407, 333
+  size: 16, 21
+  orig: 16, 21
+  offset: 0, 0
+  index: -1
+ktax_pdw_yzl
+  rotate: false
+  xy: 410, 325
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+ktax_pdw_yzr
+  rotate: true
+  xy: 384, 327
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+ktax_pdw_zui
+  rotate: true
+  xy: 106, 150
+  size: 29, 22
+  orig: 29, 22
+  offset: 0, 0
+  index: -1

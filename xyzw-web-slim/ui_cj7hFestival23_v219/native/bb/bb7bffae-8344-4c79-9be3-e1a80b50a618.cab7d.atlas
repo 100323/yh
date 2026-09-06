@@ -1,0 +1,13 @@
+
+kyxb26_cj_box1.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+maozi
+  rotate: false
+  xy: 2, 2
+  size: 70, 54
+  orig: 72, 57
+  offset: 0, 2
+  index: -1

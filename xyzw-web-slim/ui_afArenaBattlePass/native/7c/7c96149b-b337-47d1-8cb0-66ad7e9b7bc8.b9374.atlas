@@ -1,0 +1,83 @@
+
+jlbghz_sjtxz.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huoche_txzan_jt
+  rotate: false
+  xy: 199, 55
+  size: 41, 32
+  orig: 43, 34
+  offset: 1, 1
+  index: -1
+huoche_txzan_kuang2
+  rotate: false
+  xy: 2, 60
+  size: 132, 118
+  orig: 132, 118
+  offset: 0, 0
+  index: -1
+huoche_txzan_xing
+  rotate: false
+  xy: 44, 4
+  size: 48, 54
+  orig: 54, 60
+  offset: 3, 3
+  index: -1
+huoche_txzan_zi
+  rotate: false
+  xy: 136, 89
+  size: 115, 30
+  orig: 117, 32
+  offset: 1, 1
+  index: -1
+txz_deng
+  rotate: false
+  xy: 140, 121
+  size: 91, 121
+  orig: 93, 123
+  offset: 1, 1
+  index: -1
+txz_g
+  rotate: false
+  xy: 94, 5
+  size: 72, 53
+  orig: 74, 55
+  offset: 1, 1
+  index: -1
+txz_guang
+  rotate: false
+  xy: 2, 180
+  size: 136, 62
+  orig: 146, 77
+  offset: 4, 14
+  index: -1
+txz_guang1
+  rotate: false
+  xy: 2, 2
+  size: 40, 56
+  orig: 40, 56
+  offset: 0, 0
+  index: -1
+txz_guang2
+  rotate: false
+  xy: 168, 11
+  size: 29, 47
+  orig: 29, 47
+  offset: 0, 0
+  index: -1
+txz_huo1
+  rotate: true
+  xy: 199, 24
+  size: 29, 39
+  orig: 31, 41
+  offset: 1, 1
+  index: -1
+txz_huo2
+  rotate: true
+  xy: 136, 60
+  size: 27, 44
+  orig: 29, 48
+  offset: 1, 1
+  index: -1

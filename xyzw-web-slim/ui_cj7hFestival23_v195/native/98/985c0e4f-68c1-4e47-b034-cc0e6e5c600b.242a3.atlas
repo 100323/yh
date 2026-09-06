@@ -1,0 +1,160 @@
+
+zglx25_cj_beijing.png
+size: 1009,680
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beijing
+  rotate: true
+  xy: 2, 257
+  size: 421, 817
+  orig: 421, 817
+  offset: 0, 0
+  index: -1
+lvzhi1
+  rotate: true
+  xy: 821, 303
+  size: 168, 161
+  orig: 168, 161
+  offset: 0, 0
+  index: -1
+lvzhi11
+  rotate: false
+  xy: 273, 146
+  size: 123, 109
+  orig: 123, 109
+  offset: 0, 0
+  index: -1
+lvzhi12
+  rotate: false
+  xy: 359, 2
+  size: 29, 36
+  orig: 29, 36
+  offset: 0, 0
+  index: -1
+lvzhi13
+  rotate: false
+  xy: 945, 168
+  size: 62, 133
+  orig: 62, 133
+  offset: 0, 0
+  index: -1
+lvzhi14
+  rotate: false
+  xy: 273, 14
+  size: 84, 130
+  orig: 84, 135
+  offset: 0, 5
+  index: -1
+lvzhi15
+  rotate: false
+  xy: 689, 70
+  size: 114, 71
+  orig: 114, 71
+  offset: 0, 0
+  index: -1
+lvzhi16
+  rotate: true
+  xy: 398, 94
+  size: 84, 135
+  orig: 84, 136
+  offset: 0, 1
+  index: -1
+lvzhi17
+  rotate: false
+  xy: 821, 67
+  size: 122, 234
+  orig: 122, 234
+  offset: 0, 0
+  index: -1
+lvzhi18
+  rotate: false
+  xy: 708, 143
+  size: 96, 112
+  orig: 98, 112
+  offset: 2, 0
+  index: -1
+lvzhi19
+  rotate: true
+  xy: 821, 473
+  size: 205, 177
+  orig: 205, 189
+  offset: 0, 12
+  index: -1
+lvzhi2
+  rotate: false
+  xy: 612, 26
+  size: 75, 152
+  orig: 75, 159
+  offset: 0, 0
+  index: -1
+lvzhi20
+  rotate: false
+  xy: 945, 9
+  size: 47, 157
+  orig: 47, 157
+  offset: 0, 0
+  index: -1
+lvzhi21
+  rotate: false
+  xy: 689, 21
+  size: 156, 44
+  orig: 156, 44
+  offset: 0, 0
+  index: -1
+lvzhi22
+  rotate: false
+  xy: 535, 20
+  size: 75, 158
+  orig: 75, 158
+  offset: 0, 0
+  index: -1
+lvzhi3
+  rotate: true
+  xy: 398, 180
+  size: 75, 308
+  orig: 75, 316
+  offset: 0, 8
+  index: -1
+lvzhi4
+  rotate: false
+  xy: 984, 435
+  size: 22, 36
+  orig: 22, 36
+  offset: 0, 0
+  index: -1
+lvzhi5
+  rotate: true
+  xy: 359, 101
+  size: 43, 36
+  orig: 43, 36
+  offset: 0, 0
+  index: -1
+lvzhi6
+  rotate: true
+  xy: 2, 2
+  size: 56, 175
+  orig: 56, 175
+  offset: 0, 0
+  index: -1
+lvzhi7
+  rotate: false
+  xy: 359, 40
+  size: 34, 59
+  orig: 34, 60
+  offset: 0, 0
+  index: -1
+lvzhi8
+  rotate: true
+  xy: 2, 60
+  size: 195, 269
+  orig: 195, 269
+  offset: 0, 0
+  index: -1
+lvzhi9
+  rotate: true
+  xy: 395, 18
+  size: 74, 88
+  orig: 74, 88
+  offset: 0, 0
+  index: -1

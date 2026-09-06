@@ -1,0 +1,34 @@
+
+zhangyu_skill_preview.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chituma_skill_preview_huang
+  rotate: false
+  xy: 2, 4
+  size: 212, 465
+  orig: 212, 465
+  offset: 0, 0
+  index: -1
+zhangyu1
+  rotate: false
+  xy: 425, 254
+  size: 213, 215
+  orig: 213, 215
+  offset: 0, 0
+  index: -1
+zhangyu2
+  rotate: true
+  xy: 216, 2
+  size: 207, 250
+  orig: 207, 250
+  offset: 0, 0
+  index: -1
+zhangyu3
+  rotate: false
+  xy: 216, 211
+  size: 207, 258
+  orig: 207, 258
+  offset: 0, 0
+  index: -1

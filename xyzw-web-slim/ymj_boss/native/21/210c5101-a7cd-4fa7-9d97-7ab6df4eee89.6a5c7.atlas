@@ -1,0 +1,167 @@
+
+ymj_boss_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 286, 47
+  size: 12, 11
+  orig: 13, 13
+  offset: 1, 1
+  index: -1
+ymh_jingying5_msz
+  rotate: true
+  xy: 306, 230
+  size: 54, 30
+  orig: 54, 30
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla1
+  rotate: false
+  xy: 306, 401
+  size: 85, 51
+  orig: 85, 51
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla10
+  rotate: false
+  xy: 300, 7
+  size: 108, 51
+  orig: 108, 51
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla11
+  rotate: false
+  xy: 393, 316
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla12
+  rotate: false
+  xy: 2, 152
+  size: 302, 357
+  orig: 302, 357
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla13
+  rotate: true
+  xy: 124, 2
+  size: 40, 82
+  orig: 40, 82
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla14
+  rotate: false
+  xy: 2, 44
+  size: 160, 106
+  orig: 160, 106
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla15
+  rotate: false
+  xy: 2, 8
+  size: 120, 34
+  orig: 120, 34
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla2
+  rotate: false
+  xy: 366, 330
+  size: 15, 35
+  orig: 15, 35
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla3
+  rotate: false
+  xy: 366, 367
+  size: 22, 32
+  orig: 22, 32
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla4
+  rotate: false
+  xy: 346, 316
+  size: 14, 35
+  orig: 14, 35
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla5
+  rotate: false
+  xy: 398, 241
+  size: 35, 31
+  orig: 35, 31
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla6
+  rotate: false
+  xy: 306, 454
+  size: 93, 55
+  orig: 93, 55
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla7
+  rotate: true
+  xy: 208, 9
+  size: 36, 90
+  orig: 36, 90
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla8
+  rotate: true
+  xy: 408, 423
+  size: 86, 91
+  orig: 86, 91
+  offset: 0, 0
+  index: -1
+ymj_boss_skilla9
+  rotate: true
+  xy: 408, 274
+  size: 40, 61
+  orig: 40, 61
+  offset: 0, 0
+  index: -1
+ymj_boss_skillb1
+  rotate: true
+  xy: 286, 60
+  size: 90, 120
+  orig: 90, 120
+  offset: 0, 0
+  index: -1
+ymj_boss_skillb2
+  rotate: false
+  xy: 164, 47
+  size: 120, 103
+  orig: 120, 103
+  offset: 0, 0
+  index: -1
+ymj_boss_skillc2
+  rotate: false
+  xy: 306, 286
+  size: 38, 65
+  orig: 38, 69
+  offset: 0, 0
+  index: -1
+ymj_jingying2_attack1
+  rotate: false
+  xy: 306, 353
+  size: 58, 46
+  orig: 58, 46
+  offset: 0, 0
+  index: -1
+ymj_jingying3_mbottle
+  rotate: false
+  xy: 471, 270
+  size: 33, 44
+  orig: 33, 44
+  offset: 0, 0
+  index: -1
+ymj_jingying6_attack2
+  rotate: false
+  xy: 346, 272
+  size: 50, 42
+  orig: 50, 42
+  offset: 0, 0
+  index: -1

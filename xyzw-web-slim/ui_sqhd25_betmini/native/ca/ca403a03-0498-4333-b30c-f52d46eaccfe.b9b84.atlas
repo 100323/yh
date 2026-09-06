@@ -1,0 +1,55 @@
+
+sqhd25w9_lxxyx_xing.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w2_jzjl_dl_dian
+  rotate: false
+  xy: 2, 2
+  size: 35, 32
+  orig: 35, 32
+  offset: 0, 0
+  index: -1
+sqhd25w2_jzjl_dl_guangyun
+  rotate: false
+  xy: 337, 110
+  size: 107, 107
+  orig: 107, 107
+  offset: 0, 0
+  index: -1
+sqhd25w2_jzjl_dl_xing
+  rotate: false
+  xy: 169, 39
+  size: 166, 178
+  orig: 186, 198
+  offset: 10, 10
+  index: -1
+sqhd25w2_jzjl_dl_xing2
+  rotate: false
+  xy: 2, 36
+  size: 165, 181
+  orig: 185, 208
+  offset: 10, 14
+  index: -1
+sqhd25w2_jzjl_dl_yuan
+  rotate: false
+  xy: 337, 24
+  size: 84, 84
+  orig: 94, 94
+  offset: 5, 5
+  index: -1
+sqhd25w2_jzjl_dl_yuan1
+  rotate: false
+  xy: 446, 159
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sqhd25w2_jzjl_dl_yuan2
+  rotate: false
+  xy: 423, 26
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+yuling_xieli_hand2.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 312, 17
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 19, 17
+  orig: 19, 19
+  offset: 0, 1
+  index: -1
+yuling_xt_handb1
+  rotate: false
+  xy: 211, 17
+  size: 99, 108
+  orig: 99, 110
+  offset: 0, 1
+  index: -1
+yuling_xt_handb2
+  rotate: false
+  xy: 108, 18
+  size: 101, 107
+  orig: 101, 109
+  offset: 0, 1
+  index: -1
+yuling_xt_handb3
+  rotate: false
+  xy: 2, 21
+  size: 104, 104
+  orig: 106, 106
+  offset: 1, 1
+  index: -1
+yuling_xt_hou
+  rotate: true
+  xy: 312, 54
+  size: 71, 41
+  orig: 71, 41
+  offset: 0, 0
+  index: -1

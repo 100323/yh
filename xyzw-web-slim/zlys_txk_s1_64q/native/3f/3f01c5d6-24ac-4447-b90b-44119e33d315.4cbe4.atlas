@@ -1,0 +1,69 @@
+
+zlys_txk_s1_64q.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zlys_txk_s1_hx1
+  rotate: false
+  xy: 130, 150
+  size: 34, 24
+  orig: 37, 24
+  offset: 1, 0
+  index: -1
+zlys_txk_s1_sd
+  rotate: false
+  xy: 166, 123
+  size: 169, 51
+  orig: 169, 54
+  offset: 0, 0
+  index: -1
+zlys_txk_s1_tx
+  rotate: false
+  xy: 2, 67
+  size: 82, 82
+  orig: 87, 88
+  offset: 3, 3
+  index: -1
+zlys_txk_s1_x1
+  rotate: true
+  xy: 197, 33
+  size: 88, 111
+  orig: 91, 115
+  offset: 1, 2
+  index: -1
+zlys_txk_s1_x2
+  rotate: true
+  xy: 310, 2
+  size: 90, 115
+  orig: 93, 119
+  offset: 1, 2
+  index: -1
+zlys_txk_s1_x3
+  rotate: true
+  xy: 337, 94
+  size: 80, 119
+  orig: 83, 123
+  offset: 1, 2
+  index: -1
+zlys_txk_s1_x4
+  rotate: true
+  xy: 86, 38
+  size: 83, 109
+  orig: 87, 113
+  offset: 2, 1
+  index: -1
+zlys_txk_s1_zi
+  rotate: false
+  xy: 39, 151
+  size: 89, 23
+  orig: 89, 29
+  offset: 0, 3
+  index: -1
+zlys_txk_s1_zi2
+  rotate: false
+  xy: 2, 154
+  size: 35, 20
+  orig: 35, 20
+  offset: 0, 0
+  index: -1

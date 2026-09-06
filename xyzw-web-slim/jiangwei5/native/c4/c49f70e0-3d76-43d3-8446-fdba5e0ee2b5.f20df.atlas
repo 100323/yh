@@ -1,0 +1,20 @@
+
+jiangwei5_attack_loop.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei5_attack2
+  rotate: true
+  xy: 175, 2
+  size: 146, 79
+  orig: 154, 87
+  offset: 4, 4
+  index: -1
+jiangwei5_attack3
+  rotate: false
+  xy: 2, 4
+  size: 171, 144
+  orig: 180, 156
+  offset: 5, 7
+  index: -1

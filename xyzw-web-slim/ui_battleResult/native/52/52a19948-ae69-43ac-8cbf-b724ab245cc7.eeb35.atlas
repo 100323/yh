@@ -1,0 +1,125 @@
+
+js_ty_win.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_ty_win_bg2
+  rotate: false
+  xy: 288, 122
+  size: 47, 200
+  orig: 47, 200
+  offset: 0, 0
+  index: -1
+js_ty_win_bg3
+  rotate: false
+  xy: 2, 43
+  size: 62, 279
+  orig: 62, 279
+  offset: 0, 0
+  index: -1
+js_ty_win_fire
+  rotate: true
+  xy: 188, 97
+  size: 225, 98
+  orig: 225, 98
+  offset: 0, 0
+  index: -1
+js_ty_win_fish1
+  rotate: true
+  xy: 66, 36
+  size: 73, 91
+  orig: 73, 97
+  offset: 0, 6
+  index: -1
+js_ty_win_fish2
+  rotate: false
+  xy: 468, 407
+  size: 38, 100
+  orig: 41, 105
+  offset: 0, 4
+  index: -1
+js_ty_win_fish3
+  rotate: true
+  xy: 159, 12
+  size: 83, 142
+  orig: 83, 142
+  offset: 0, 0
+  index: -1
+js_ty_win_fish4
+  rotate: false
+  xy: 66, 111
+  size: 120, 211
+  orig: 122, 211
+  offset: 0, 0
+  index: -1
+js_ty_win_fish5
+  rotate: false
+  xy: 433, 28
+  size: 49, 89
+  orig: 50, 90
+  offset: 1, 0
+  index: -1
+js_ty_win_fish6
+  rotate: false
+  xy: 327, 364
+  size: 139, 143
+  orig: 139, 143
+  offset: 0, 0
+  index: -1
+js_ty_win_fish7
+  rotate: true
+  xy: 337, 216
+  size: 146, 89
+  orig: 146, 89
+  offset: 0, 0
+  index: -1
+js_ty_win_fish8
+  rotate: false
+  xy: 2, 2
+  size: 43, 39
+  orig: 56, 45
+  offset: 4, 3
+  index: -1
+js_ty_win_fish9
+  rotate: false
+  xy: 428, 237
+  size: 32, 29
+  orig: 39, 32
+  offset: 7, 0
+  index: -1
+js_ty_win_guo
+  rotate: false
+  xy: 2, 324
+  size: 323, 183
+  orig: 326, 200
+  offset: 3, 0
+  index: -1
+js_ty_win_t1
+  rotate: false
+  xy: 337, 119
+  size: 101, 95
+  orig: 101, 95
+  offset: 0, 0
+  index: -1
+js_ty_win_t2
+  rotate: false
+  xy: 428, 268
+  size: 54, 94
+  orig: 55, 94
+  offset: 1, 0
+  index: -1
+js_ty_win_t3
+  rotate: false
+  xy: 303, 29
+  size: 128, 88
+  orig: 128, 90
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 468, 387
+  size: 22, 18
+  orig: 24, 24
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,20 @@
+
+nznh25_choujiang_box4.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_xia1
+  rotate: false
+  xy: 85, 4
+  size: 23, 104
+  orig: 23, 104
+  offset: 0, 0
+  index: -1
+choujiang_xia2
+  rotate: false
+  xy: 2, 12
+  size: 81, 96
+  orig: 81, 96
+  offset: 0, 0
+  index: -1

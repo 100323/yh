@@ -1,0 +1,174 @@
+
+sunce2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 370, 142
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 371, 26
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sunce2_arm
+  rotate: false
+  xy: 348, 74
+  size: 78, 66
+  orig: 78, 66
+  offset: 0, 0
+  index: -1
+sunce2_chest
+  rotate: true
+  xy: 113, 96
+  size: 125, 72
+  orig: 125, 72
+  offset: 0, 0
+  index: -1
+sunce2_effect1
+  rotate: false
+  xy: 187, 84
+  size: 77, 84
+  orig: 79, 88
+  offset: 1, 2
+  index: -1
+sunce2_effect2
+  rotate: true
+  xy: 100, 20
+  size: 74, 84
+  orig: 76, 86
+  offset: 1, 1
+  index: -1
+sunce2_effect3
+  rotate: true
+  xy: 266, 96
+  size: 72, 80
+  orig: 73, 82
+  offset: 0, 1
+  index: -1
+sunce2_effect4
+  rotate: true
+  xy: 186, 31
+  size: 51, 53
+  orig: 51, 53
+  offset: 0, 0
+  index: -1
+sunce2_hand
+  rotate: false
+  xy: 320, 21
+  size: 49, 51
+  orig: 49, 51
+  offset: 0, 0
+  index: -1
+sunce2_head
+  rotate: false
+  xy: 2, 333
+  size: 264, 168
+  orig: 264, 168
+  offset: 0, 0
+  index: -1
+sunce2_hip
+  rotate: true
+  xy: 409, 352
+  size: 149, 101
+  orig: 149, 101
+  offset: 0, 0
+  index: -1
+sunce2_legl
+  rotate: false
+  xy: 2, 128
+  size: 109, 94
+  orig: 109, 94
+  offset: 0, 0
+  index: -1
+sunce2_legr
+  rotate: true
+  xy: 123, 223
+  size: 108, 111
+  orig: 108, 111
+  offset: 0, 0
+  index: -1
+sunce2_light1
+  rotate: true
+  xy: 236, 309
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+sunce2_light2
+  rotate: true
+  xy: 266, 2
+  size: 92, 52
+  orig: 92, 52
+  offset: 0, 0
+  index: -1
+sunce2_line
+  rotate: false
+  xy: 236, 170
+  size: 132, 69
+  orig: 132, 69
+  offset: 0, 0
+  index: -1
+sunce2_ring2
+  rotate: false
+  xy: 428, 70
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+sunce2_shield1
+  rotate: true
+  xy: 2, 224
+  size: 107, 119
+  orig: 108, 121
+  offset: 0, 1
+  index: -1
+sunce2_shield2
+  rotate: false
+  xy: 187, 170
+  size: 45, 51
+  orig: 45, 51
+  offset: 0, 0
+  index: -1
+sunce2_shield3
+  rotate: true
+  xy: 268, 241
+  size: 119, 135
+  orig: 119, 135
+  offset: 0, 0
+  index: -1
+sunce2_shoulderl
+  rotate: true
+  xy: 2, 40
+  size: 86, 96
+  orig: 86, 96
+  offset: 0, 0
+  index: -1
+sunce2_shoulderr
+  rotate: true
+  xy: 405, 226
+  size: 124, 95
+  orig: 124, 95
+  offset: 0, 0
+  index: -1
+sunce2_weapon2
+  rotate: false
+  xy: 454, 123
+  size: 55, 101
+  orig: 55, 101
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 268, 362
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

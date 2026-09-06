@@ -1,0 +1,76 @@
+
+tgcf_ky_baoxiang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 70, 18
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+tgcf_ky_show_guang2
+  rotate: false
+  xy: 122, 0
+  size: 45, 46
+  orig: 45, 46
+  offset: 0, 0
+  index: -1
+tgcf_ymj_baoxiang_gaizi
+  rotate: true
+  xy: 356, 47
+  size: 167, 96
+  orig: 167, 96
+  offset: 0, 0
+  index: -1
+tgcf_ymj_baoxiang_guang
+  rotate: true
+  xy: 70, 40
+  size: 57, 50
+  orig: 57, 50
+  offset: 0, 0
+  index: -1
+tgcf_ymj_baoxiang_guang2
+  rotate: false
+  xy: 0, 99
+  size: 170, 115
+  orig: 170, 115
+  offset: 0, 0
+  index: -1
+tgcf_ymj_baoxiang_guang3
+  rotate: false
+  xy: 0, 30
+  size: 68, 67
+  orig: 68, 67
+  offset: 0, 0
+  index: -1
+tgcf_ymj_baoxiang_qiu
+  rotate: true
+  xy: 122, 48
+  size: 49, 47
+  orig: 49, 48
+  offset: 0, 1
+  index: -1
+tgcf_ymj_baoxiang_qiu1
+  rotate: false
+  xy: 171, 3
+  size: 49, 47
+  orig: 49, 48
+  offset: 0, 1
+  index: -1
+tgcf_ymj_baoxiang_xia1
+  rotate: false
+  xy: 172, 134
+  size: 182, 80
+  orig: 186, 102
+  offset: 0, 0
+  index: -1
+tgcf_ymj_baoxiang_xia2
+  rotate: false
+  xy: 172, 52
+  size: 182, 80
+  orig: 186, 102
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+huatuo7_attack_loop.png
+size: 512,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ht_pg03
+  rotate: false
+  xy: 2, 2
+  size: 290, 27
+  orig: 290, 27
+  offset: 0, 0
+  index: -1

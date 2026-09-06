@@ -1,0 +1,27 @@
+
+dianwei3_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei2_pg_1
+  rotate: false
+  xy: 48, 156
+  size: 146, 80
+  orig: 146, 80
+  offset: 0, 0
+  index: -1
+dw_ef_pgsj
+  rotate: true
+  xy: 2, 2
+  size: 152, 182
+  orig: 152, 182
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 192
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

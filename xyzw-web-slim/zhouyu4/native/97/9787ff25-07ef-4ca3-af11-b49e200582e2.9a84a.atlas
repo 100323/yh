@@ -1,0 +1,20 @@
+
+zhouyu4_attack_line.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_die3
+  rotate: false
+  xy: 2, 2
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhouyu4_effect2
+  rotate: false
+  xy: 2, 45
+  size: 114, 67
+  orig: 114, 67
+  offset: 0, 0
+  index: -1

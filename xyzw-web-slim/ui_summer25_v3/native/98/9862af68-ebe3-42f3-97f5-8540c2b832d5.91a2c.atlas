@@ -1,0 +1,118 @@
+
+xuanwu_wenzi.png
+size: 428,532
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fj1_zg
+  rotate: true
+  xy: 366, 262
+  size: 58, 57
+  orig: 60, 60
+  offset: 1, 2
+  index: -1
+wusheng2_10
+  rotate: false
+  xy: 2, 96
+  size: 106, 106
+  orig: 106, 106
+  offset: 0, 0
+  index: -1
+wusheng2_11
+  rotate: false
+  xy: 110, 96
+  size: 106, 106
+  orig: 106, 106
+  offset: 0, 0
+  index: -1
+wusheng2_12
+  rotate: true
+  xy: 262, 322
+  size: 102, 104
+  orig: 102, 104
+  offset: 0, 0
+  index: -1
+wusheng2_13
+  rotate: false
+  xy: 323, 2
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+wusheng2_14
+  rotate: true
+  xy: 324, 132
+  size: 78, 99
+  orig: 78, 99
+  offset: 0, 0
+  index: -1
+wusheng2_3
+  rotate: false
+  xy: 218, 106
+  size: 104, 103
+  orig: 104, 103
+  offset: 0, 0
+  index: -1
+wusheng2_4
+  rotate: true
+  xy: 218, 2
+  size: 102, 103
+  orig: 102, 103
+  offset: 0, 0
+  index: -1
+wusheng2_5
+  rotate: true
+  xy: 260, 212
+  size: 103, 104
+  orig: 103, 104
+  offset: 0, 0
+  index: -1
+wusheng2_6
+  rotate: false
+  xy: 154, 211
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+wusheng2_7
+  rotate: true
+  xy: 154, 424
+  size: 106, 105
+  orig: 106, 105
+  offset: 0, 0
+  index: -1
+wusheng2_8
+  rotate: false
+  xy: 154, 317
+  size: 106, 105
+  orig: 106, 105
+  offset: 0, 0
+  index: -1
+wusheng2_9
+  rotate: true
+  xy: 261, 426
+  size: 104, 105
+  orig: 104, 105
+  offset: 0, 0
+  index: -1
+xuanwu_1
+  rotate: true
+  xy: 92, 8
+  size: 86, 88
+  orig: 86, 88
+  offset: 0, 0
+  index: -1
+xuanwu_2
+  rotate: false
+  xy: 2, 7
+  size: 88, 87
+  orig: 88, 87
+  offset: 0, 0
+  index: -1
+yahei
+  rotate: false
+  xy: 2, 204
+  size: 150, 326
+  orig: 150, 326
+  offset: 0, 0
+  index: -1

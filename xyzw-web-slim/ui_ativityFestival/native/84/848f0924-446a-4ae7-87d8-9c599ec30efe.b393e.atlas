@@ -1,0 +1,55 @@
+
+sqhd_dkxb_box.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 73, 61
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+lvbu3_effect_shine
+  rotate: false
+  xy: 2, 2
+  size: 57, 81
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_box1
+  rotate: true
+  xy: 133, 42
+  size: 77, 40
+  orig: 77, 41
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_box2
+  rotate: true
+  xy: 2, 85
+  size: 95, 69
+  orig: 95, 69
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_box3
+  rotate: false
+  xy: 2, 182
+  size: 97, 35
+  orig: 97, 35
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_box4
+  rotate: true
+  xy: 101, 121
+  size: 96, 89
+  orig: 96, 89
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 61, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,97 @@
+
+hjls_ft_dianman.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 209, 63
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 186, 27
+  size: 15, 15
+  orig: 26, 26
+  offset: 5, 6
+  index: -1
+zbz_ft7_body
+  rotate: false
+  xy: 387, 309
+  size: 114, 201
+  orig: 114, 201
+  offset: 0, 0
+  index: -1
+zbz_ft7_box
+  rotate: false
+  xy: 2, 2
+  size: 105, 100
+  orig: 105, 100
+  offset: 0, 0
+  index: -1
+zbz_ft7_elec1
+  rotate: true
+  xy: 109, 8
+  size: 33, 41
+  orig: 33, 41
+  offset: 0, 0
+  index: -1
+zbz_ft7_elec2
+  rotate: false
+  xy: 2, 104
+  size: 196, 196
+  orig: 200, 200
+  offset: 2, 2
+  index: -1
+zbz_ft7_elec3
+  rotate: false
+  xy: 189, 314
+  size: 196, 196
+  orig: 200, 200
+  offset: 2, 2
+  index: -1
+zbz_ft7_elec4
+  rotate: false
+  xy: 200, 111
+  size: 196, 196
+  orig: 200, 200
+  offset: 2, 2
+  index: -1
+zbz_ft7_eye
+  rotate: false
+  xy: 189, 303
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+zbz_ft7_eyewhite
+  rotate: false
+  xy: 152, 9
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+zbz_ft7_fin1
+  rotate: false
+  xy: 109, 43
+  size: 50, 59
+  orig: 50, 59
+  offset: 0, 0
+  index: -1
+zbz_ft7_head
+  rotate: false
+  xy: 2, 302
+  size: 185, 208
+  orig: 185, 208
+  offset: 0, 0
+  index: -1
+zbz_ft7_rope
+  rotate: false
+  xy: 161, 44
+  size: 46, 58
+  orig: 46, 58
+  offset: 0, 0
+  index: -1

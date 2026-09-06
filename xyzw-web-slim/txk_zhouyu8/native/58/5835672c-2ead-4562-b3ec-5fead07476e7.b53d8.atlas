@@ -1,0 +1,83 @@
+
+txk_zhouyu8.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huo_000
+  rotate: false
+  xy: 344, 42
+  size: 40, 84
+  orig: 77, 116
+  offset: 20, 4
+  index: -1
+huo_001
+  rotate: false
+  xy: 258, 36
+  size: 45, 90
+  orig: 77, 116
+  offset: 18, 4
+  index: -1
+huo_002
+  rotate: false
+  xy: 215, 24
+  size: 41, 102
+  orig: 77, 116
+  offset: 19, 4
+  index: -1
+huo_003
+  rotate: false
+  xy: 173, 18
+  size: 40, 108
+  orig: 77, 116
+  offset: 20, 4
+  index: -1
+huo_004
+  rotate: false
+  xy: 305, 18
+  size: 37, 108
+  orig: 77, 116
+  offset: 21, 4
+  index: -1
+huo_005
+  rotate: false
+  xy: 386, 43
+  size: 39, 83
+  orig: 77, 116
+  offset: 21, 3
+  index: -1
+txk_zhouyu8_fang
+  rotate: false
+  xy: 215, 4
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+txk_zhouyu8_jiao1
+  rotate: false
+  xy: 386, 2
+  size: 41, 39
+  orig: 41, 39
+  offset: 0, 0
+  index: -1
+txk_zhouyu8_jiao2
+  rotate: false
+  xy: 427, 70
+  size: 58, 56
+  orig: 62, 60
+  offset: 2, 2
+  index: -1
+txk_zhouyu8_kuang
+  rotate: true
+  xy: 2, 7
+  size: 119, 111
+  orig: 125, 115
+  offset: 4, 0
+  index: -1
+txk_zhouyu8_qian
+  rotate: true
+  xy: 115, 10
+  size: 116, 56
+  orig: 116, 56
+  offset: 0, 0
+  index: -1

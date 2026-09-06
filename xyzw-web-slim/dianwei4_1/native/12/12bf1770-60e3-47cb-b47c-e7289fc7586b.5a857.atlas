@@ -1,0 +1,363 @@
+
+dianwei4_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei2_bs_yan
+  rotate: true
+  xy: 865, 333
+  size: 68, 51
+  orig: 68, 51
+  offset: 0, 0
+  index: -1
+dianwei2_bs_zui
+  rotate: false
+  xy: 516, 357
+  size: 74, 153
+  orig: 74, 153
+  offset: 0, 0
+  index: -1
+dianwei4_body
+  rotate: true
+  xy: 583, 208
+  size: 147, 125
+  orig: 147, 125
+  offset: 0, 0
+  index: -1
+dianwei4_bs_head1
+  rotate: false
+  xy: 144, 32
+  size: 253, 171
+  orig: 253, 171
+  offset: 0, 0
+  index: -1
+dianwei4_bs_jiaol
+  rotate: false
+  xy: 808, 371
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+dianwei4_bs_jiaor
+  rotate: true
+  xy: 749, 211
+  size: 33, 39
+  orig: 33, 39
+  offset: 0, 0
+  index: -1
+dianwei4_bs_pf1
+  rotate: false
+  xy: 233, 205
+  size: 153, 96
+  orig: 153, 96
+  offset: 0, 0
+  index: -1
+dianwei4_bs_pf2
+  rotate: true
+  xy: 682, 75
+  size: 131, 93
+  orig: 131, 93
+  offset: 0, 0
+  index: -1
+dianwei4_bs_shen
+  rotate: false
+  xy: 2, 205
+  size: 229, 305
+  orig: 243, 305
+  offset: 14, 0
+  index: -1
+dianwei4_bs_shoul
+  rotate: false
+  xy: 388, 208
+  size: 125, 94
+  orig: 125, 94
+  offset: 0, 0
+  index: -1
+dianwei4_bs_shoulyun
+  rotate: true
+  xy: 760, 5
+  size: 68, 65
+  orig: 68, 65
+  offset: 0, 0
+  index: -1
+dianwei4_bs_shour
+  rotate: true
+  xy: 710, 246
+  size: 121, 105
+  orig: 121, 105
+  offset: 0, 0
+  index: -1
+dianwei4_bs_shouryun
+  rotate: false
+  xy: 745, 450
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+dianwei4_bs_tf1
+  rotate: false
+  xy: 926, 146
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+dianwei4_bs_tf2
+  rotate: false
+  xy: 614, 3
+  size: 79, 69
+  orig: 79, 69
+  offset: 0, 0
+  index: -1
+dianwei4_bs_tf3
+  rotate: true
+  xy: 745, 369
+  size: 72, 61
+  orig: 72, 61
+  offset: 0, 0
+  index: -1
+dianwei4_gbl
+  rotate: false
+  xy: 865, 91
+  size: 47, 49
+  orig: 50, 49
+  offset: 3, 0
+  index: -1
+dianwei4_gbr
+  rotate: true
+  xy: 516, 305
+  size: 50, 49
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+dianwei4_handr1
+  rotate: true
+  xy: 441, 2
+  size: 38, 35
+  orig: 40, 35
+  offset: 1, 0
+  index: -1
+dianwei4_head1
+  rotate: true
+  xy: 399, 42
+  size: 164, 112
+  orig: 164, 112
+  offset: 0, 0
+  index: -1
+dianwei4_head2
+  rotate: false
+  xy: 918, 32
+  size: 52, 58
+  orig: 53, 58
+  offset: 0, 0
+  index: -1
+dianwei4_jj1
+  rotate: false
+  xy: 918, 443
+  size: 102, 67
+  orig: 102, 67
+  offset: 0, 0
+  index: -1
+dianwei4_jj2
+  rotate: false
+  xy: 695, 4
+  size: 63, 69
+  orig: 64, 69
+  offset: 0, 0
+  index: -1
+dianwei4_jjmao
+  rotate: true
+  xy: 591, 74
+  size: 132, 89
+  orig: 132, 89
+  offset: 0, 0
+  index: -1
+dianwei4_jjmaol
+  rotate: false
+  xy: 865, 142
+  size: 59, 72
+  orig: 59, 72
+  offset: 0, 0
+  index: -1
+dianwei4_nuqi1
+  rotate: false
+  xy: 592, 365
+  size: 91, 145
+  orig: 91, 145
+  offset: 0, 0
+  index: -1
+dianwei4_nuqihuang
+  rotate: false
+  xy: 914, 92
+  size: 57, 48
+  orig: 57, 48
+  offset: 0, 0
+  index: -1
+dianwei4_pf1
+  rotate: false
+  xy: 827, 4
+  size: 89, 84
+  orig: 89, 84
+  offset: 0, 0
+  index: -1
+dianwei4_pf2
+  rotate: true
+  xy: 515, 208
+  size: 94, 66
+  orig: 94, 66
+  offset: 0, 0
+  index: -1
+dianwei4_pg_3
+  rotate: false
+  xy: 777, 90
+  size: 86, 119
+  orig: 86, 119
+  offset: 0, 0
+  index: -1
+dianwei4_ql_01
+  rotate: true
+  xy: 926, 222
+  size: 60, 87
+  orig: 60, 87
+  offset: 0, 0
+  index: -1
+dianwei4_ql_02
+  rotate: false
+  xy: 685, 369
+  size: 58, 141
+  orig: 58, 141
+  offset: 0, 0
+  index: -1
+dianwei4_quqifgr
+  rotate: false
+  xy: 513, 50
+  size: 76, 156
+  orig: 76, 156
+  offset: 0, 0
+  index: -1
+dianwei4_shou1
+  rotate: true
+  xy: 710, 210
+  size: 34, 37
+  orig: 34, 37
+  offset: 0, 0
+  index: -1
+dianwei4_tf1
+  rotate: true
+  xy: 808, 403
+  size: 107, 108
+  orig: 107, 108
+  offset: 0, 0
+  index: -1
+dianwei4_tf1-1
+  rotate: false
+  xy: 526, 6
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+dianwei4_tf2
+  rotate: true
+  xy: 817, 216
+  size: 109, 107
+  orig: 109, 107
+  offset: 0, 0
+  index: -1
+dianwei4_tf2-2
+  rotate: false
+  xy: 570, 6
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+dianwei4_tui1
+  rotate: false
+  xy: 144, 4
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+dianwei4_tui2
+  rotate: false
+  xy: 239, 11
+  size: 18, 19
+  orig: 19, 19
+  offset: 1, 0
+  index: -1
+dianwei4_wuqir2
+  rotate: true
+  xy: 233, 303
+  size: 207, 133
+  orig: 207, 134
+  offset: 0, 0
+  index: -1
+dianwei4_wuqir3
+  rotate: false
+  xy: 368, 304
+  size: 146, 206
+  orig: 146, 206
+  offset: 0, 0
+  index: -1
+dianwei4_yanjingguang
+  rotate: true
+  xy: 399, 2
+  size: 38, 40
+  orig: 38, 40
+  offset: 0, 0
+  index: -1
+dianwei_eye
+  rotate: false
+  xy: 2, 5
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+dianwei_eyebrow
+  rotate: false
+  xy: 193, 8
+  size: 44, 22
+  orig: 44, 22
+  offset: 0, 0
+  index: -1
+dianwei_eyewhite
+  rotate: true
+  xy: 168, 6
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+dianwei_headt
+  rotate: false
+  xy: 2, 14
+  size: 140, 189
+  orig: 140, 189
+  offset: 0, 0
+  index: -1
+dianwei_mouth
+  rotate: true
+  xy: 926, 284
+  size: 48, 91
+  orig: 48, 101
+  offset: 0, 10
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 817, 327
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 478, 3
+  size: 37, 46
+  orig: 37, 46
+  offset: 0, 0
+  index: -1
+xuying
+  rotate: true
+  xy: 918, 334
+  size: 107, 93
+  orig: 107, 93
+  offset: 0, 0
+  index: -1

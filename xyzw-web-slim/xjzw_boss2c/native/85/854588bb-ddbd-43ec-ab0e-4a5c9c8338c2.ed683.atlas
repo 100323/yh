@@ -1,0 +1,160 @@
+
+xjzw_boss2c.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjzw_boss2_1eye1
+  rotate: true
+  xy: 87, 2
+  size: 23, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1eye2
+  rotate: false
+  xy: 116, 8
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1eyebrow1
+  rotate: true
+  xy: 261, 47
+  size: 25, 17
+  orig: 25, 17
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1eyebrow2
+  rotate: true
+  xy: 123, 85
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1handl
+  rotate: false
+  xy: 285, 125
+  size: 53, 127
+  orig: 53, 127
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1handr
+  rotate: true
+  xy: 285, 37
+  size: 86, 100
+  orig: 86, 100
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1mouth1
+  rotate: true
+  xy: 387, 93
+  size: 51, 16
+  orig: 51, 16
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1mouth2
+  rotate: true
+  xy: 261, 74
+  size: 47, 19
+  orig: 47, 19
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1skill1
+  rotate: true
+  xy: 87, 27
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1skill2
+  rotate: true
+  xy: 340, 190
+  size: 62, 65
+  orig: 62, 65
+  offset: 0, 0
+  index: -1
+xjzw_boss2_1skill3
+  rotate: true
+  xy: 2, 120
+  size: 132, 136
+  orig: 145, 137
+  offset: 12, 1
+  index: -1
+xjzw_boss2_1skill4
+  rotate: true
+  xy: 137, 6
+  size: 54, 68
+  orig: 72, 75
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3arml
+  rotate: true
+  xy: 2, 79
+  size: 39, 119
+  orig: 39, 119
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3armr
+  rotate: true
+  xy: 140, 62
+  size: 59, 119
+  orig: 59, 119
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3body
+  rotate: true
+  xy: 2, 12
+  size: 65, 83
+  orig: 65, 83
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3glasses
+  rotate: false
+  xy: 340, 146
+  size: 104, 42
+  orig: 104, 42
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3head
+  rotate: true
+  xy: 140, 123
+  size: 129, 143
+  orig: 129, 144
+  offset: 0, 1
+  index: -1
+xjzw_boss2_3hip
+  rotate: false
+  xy: 407, 223
+  size: 55, 29
+  orig: 55, 29
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3legl
+  rotate: true
+  xy: 407, 192
+  size: 29, 37
+  orig: 29, 38
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3legr
+  rotate: false
+  xy: 249, 6
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+xjzw_boss2_3necklace
+  rotate: true
+  xy: 207, 19
+  size: 41, 40
+  orig: 41, 40
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 123, 103
+  size: 15, 15
+  orig: 16, 16
+  offset: 1, 1
+  index: -1

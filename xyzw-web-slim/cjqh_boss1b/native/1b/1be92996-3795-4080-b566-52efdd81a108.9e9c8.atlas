@@ -1,0 +1,27 @@
+
+cjqh_boss1b_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_boss1_attack2
+  rotate: true
+  xy: 2, 2
+  size: 131, 193
+  orig: 131, 194
+  offset: 0, 1
+  index: -1
+cjqh_boss1_attack3
+  rotate: true
+  xy: 27, 135
+  size: 100, 128
+  orig: 100, 128
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 212
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1

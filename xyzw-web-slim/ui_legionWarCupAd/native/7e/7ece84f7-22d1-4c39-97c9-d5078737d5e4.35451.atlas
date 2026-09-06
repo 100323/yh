@@ -1,0 +1,153 @@
+
+ycxsz2026_plt_qjs_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: true
+  xy: 684, 187
+  size: 26, 25
+  orig: 28, 28
+  offset: 2, 1
+  index: -1
+qjs_plt_chaju
+  rotate: false
+  xy: 573, 215
+  size: 139, 166
+  orig: 139, 166
+  offset: 0, 0
+  index: -1
+qjs_plt_guo
+  rotate: false
+  xy: 421, 74
+  size: 150, 307
+  orig: 150, 307
+  offset: 0, 0
+  index: -1
+qjs_plt_kb
+  rotate: true
+  xy: 948, 403
+  size: 86, 69
+  orig: 86, 69
+  offset: 0, 0
+  index: -1
+qjs_plt_lian
+  rotate: true
+  xy: 924, 286
+  size: 115, 93
+  orig: 115, 93
+  offset: 0, 0
+  index: -1
+qjs_plt_qi
+  rotate: true
+  xy: 714, 327
+  size: 54, 46
+  orig: 54, 46
+  offset: 0, 0
+  index: -1
+qjs_plt_sb1
+  rotate: true
+  xy: 714, 124
+  size: 117, 143
+  orig: 117, 143
+  offset: 0, 0
+  index: -1
+qjs_plt_sb2
+  rotate: false
+  xy: 795, 74
+  size: 34, 48
+  orig: 34, 48
+  offset: 0, 0
+  index: -1
+qjs_plt_shou
+  rotate: true
+  xy: 714, 265
+  size: 60, 41
+  orig: 60, 41
+  offset: 0, 0
+  index: -1
+qjs_plt_szq1
+  rotate: false
+  xy: 831, 69
+  size: 51, 31
+  orig: 51, 31
+  offset: 0, 0
+  index: -1
+qjs_plt_szq2
+  rotate: true
+  xy: 652, 52
+  size: 43, 30
+  orig: 43, 30
+  offset: 0, 0
+  index: -1
+qjs_plt_tf
+  rotate: true
+  xy: 767, 243
+  size: 158, 155
+  orig: 158, 155
+  offset: 0, 0
+  index: -1
+qjs_plt_xs
+  rotate: true
+  xy: 859, 102
+  size: 139, 93
+  orig: 139, 93
+  offset: 0, 0
+  index: -1
+qjs_plt_ying
+  rotate: false
+  xy: 714, 243
+  size: 48, 20
+  orig: 48, 20
+  offset: 0, 0
+  index: -1
+qjs_plt_yl
+  rotate: false
+  xy: 684, 35
+  size: 109, 87
+  orig: 109, 87
+  offset: 0, 0
+  index: -1
+ycxsz_plt_chuangkou
+  rotate: false
+  xy: 2, 152
+  size: 417, 337
+  orig: 417, 337
+  offset: 0, 0
+  index: -1
+ycxsz_plt_jil
+  rotate: false
+  xy: 573, 2
+  size: 77, 93
+  orig: 175, 335
+  offset: 98, 242
+  index: -1
+ycxsz_plt_jqr
+  rotate: true
+  xy: 573, 97
+  size: 116, 109
+  orig: 152, 342
+  offset: 36, 233
+  index: -1
+ycxsz_plt_zx1
+  rotate: false
+  xy: 924, 249
+  size: 36, 35
+  orig: 42, 41
+  offset: 3, 3
+  index: -1
+ycxsz_plt_zx3
+  rotate: true
+  xy: 421, 383
+  size: 18, 344
+  orig: 18, 344
+  offset: 0, 0
+  index: -1
+ycxsz_plt_zx5
+  rotate: false
+  xy: 421, 429
+  size: 525, 60
+  orig: 525, 60
+  offset: 0, 0
+  index: -1

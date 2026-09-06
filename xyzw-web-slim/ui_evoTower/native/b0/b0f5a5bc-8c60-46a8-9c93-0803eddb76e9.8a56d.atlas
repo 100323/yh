@@ -1,0 +1,20 @@
+
+xsxjt_cjhd_light.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_cjhd_cjk_g1
+  rotate: false
+  xy: 2, 99
+  size: 298, 311
+  orig: 298, 311
+  offset: 0, 0
+  index: -1
+xsxjt_cjhd_cjk_g2
+  rotate: true
+  xy: 2, 2
+  size: 95, 98
+  orig: 95, 98
+  offset: 0, 0
+  index: -1

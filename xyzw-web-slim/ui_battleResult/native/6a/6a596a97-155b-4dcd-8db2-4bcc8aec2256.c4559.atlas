@@ -1,0 +1,139 @@
+
+js_xjt_lost.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_xjt_lose_bg
+  rotate: false
+  xy: 2, 228
+  size: 526, 282
+  orig: 534, 288
+  offset: 3, 6
+  index: -1
+js_xjt_lose_circle
+  rotate: false
+  xy: 530, 229
+  size: 139, 116
+  orig: 139, 116
+  offset: 0, 0
+  index: -1
+js_xjt_lose_fish1
+  rotate: true
+  xy: 536, 4
+  size: 45, 27
+  orig: 45, 27
+  offset: 0, 0
+  index: -1
+js_xjt_lose_fish2
+  rotate: false
+  xy: 273, 7
+  size: 56, 37
+  orig: 56, 37
+  offset: 0, 0
+  index: -1
+js_xjt_lose_fish3
+  rotate: false
+  xy: 331, 9
+  size: 50, 35
+  orig: 50, 36
+  offset: 0, 0
+  index: -1
+js_xjt_lose_fish4
+  rotate: true
+  xy: 403, 51
+  size: 175, 169
+  orig: 178, 172
+  offset: 0, 0
+  index: -1
+js_xjt_lose_fish5
+  rotate: false
+  xy: 383, 10
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+js_xjt_lose_foot
+  rotate: true
+  xy: 429, 3
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+js_xjt_lose_line1
+  rotate: true
+  xy: 671, 260
+  size: 85, 130
+  orig: 85, 130
+  offset: 0, 0
+  index: -1
+js_xjt_lose_line2
+  rotate: false
+  xy: 633, 13
+  size: 82, 60
+  orig: 82, 60
+  offset: 0, 0
+  index: -1
+js_xjt_lose_seng1
+  rotate: false
+  xy: 2, 25
+  size: 142, 201
+  orig: 142, 202
+  offset: 0, 0
+  index: -1
+js_xjt_lose_seng2
+  rotate: false
+  xy: 574, 9
+  size: 57, 64
+  orig: 57, 64
+  offset: 0, 0
+  index: -1
+js_xjt_lose_seng3
+  rotate: false
+  xy: 273, 46
+  size: 128, 180
+  orig: 128, 180
+  offset: 0, 0
+  index: -1
+js_xjt_lose_seng4
+  rotate: false
+  xy: 482, 4
+  size: 52, 45
+  orig: 52, 51
+  offset: 0, 0
+  index: -1
+js_xjt_lose_seng5
+  rotate: false
+  xy: 146, 2
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+js_xjt_lose_seng6
+  rotate: false
+  xy: 146, 2
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+js_xjt_lose_smoke1
+  rotate: true
+  xy: 530, 347
+  size: 163, 151
+  orig: 163, 151
+  offset: 0, 0
+  index: -1
+js_xjt_lose_smoke2
+  rotate: true
+  xy: 574, 75
+  size: 152, 126
+  orig: 152, 126
+  offset: 0, 0
+  index: -1
+js_xjt_lose_title
+  rotate: true
+  xy: 146, 26
+  size: 200, 125
+  orig: 200, 125
+  offset: 0, 0
+  index: -1

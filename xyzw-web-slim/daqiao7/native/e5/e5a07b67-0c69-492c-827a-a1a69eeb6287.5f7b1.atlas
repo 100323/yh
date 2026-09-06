@@ -1,0 +1,13 @@
+
+daqiao7_buff_zi.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao7_zi
+  rotate: false
+  xy: 2, 2
+  size: 131, 246
+  orig: 131, 246
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,139 @@
+
+kyxb26_cj_btn.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+langan
+  rotate: false
+  xy: 2, 370
+  size: 433, 140
+  orig: 434, 140
+  offset: 0, 0
+  index: -1
+qiang1
+  rotate: false
+  xy: 236, 135
+  size: 145, 226
+  orig: 145, 226
+  offset: 0, 0
+  index: -1
+qiang1_shou1
+  rotate: true
+  xy: 102, 2
+  size: 32, 47
+  orig: 32, 48
+  offset: 0, 1
+  index: -1
+qiang1_shou2
+  rotate: true
+  xy: 102, 36
+  size: 66, 54
+  orig: 66, 56
+  offset: 0, 1
+  index: -1
+qiang1_shou3
+  rotate: false
+  xy: 220, 5
+  size: 30, 28
+  orig: 31, 31
+  offset: 1, 2
+  index: -1
+qiang1_shou4
+  rotate: true
+  xy: 223, 35
+  size: 98, 105
+  orig: 98, 105
+  offset: 0, 0
+  index: -1
+qiang2
+  rotate: false
+  xy: 2, 185
+  size: 232, 183
+  orig: 232, 183
+  offset: 0, 0
+  index: -1
+qiang2_shou1
+  rotate: false
+  xy: 252, 6
+  size: 32, 27
+  orig: 32, 27
+  offset: 0, 0
+  index: -1
+qiang2_shou2
+  rotate: true
+  xy: 437, 436
+  size: 74, 64
+  orig: 74, 64
+  offset: 0, 0
+  index: -1
+qiang2_shou3
+  rotate: true
+  xy: 330, 6
+  size: 41, 42
+  orig: 41, 43
+  offset: 0, 1
+  index: -1
+qiang2_shou4
+  rotate: false
+  xy: 165, 57
+  size: 55, 66
+  orig: 55, 66
+  offset: 0, 0
+  index: -1
+qiang2_shou5
+  rotate: true
+  xy: 330, 49
+  size: 84, 96
+  orig: 84, 96
+  offset: 0, 0
+  index: -1
+qiang2_shou6
+  rotate: false
+  xy: 2, 16
+  size: 98, 86
+  orig: 98, 86
+  offset: 0, 0
+  index: -1
+qiang_jichui1
+  rotate: true
+  xy: 419, 15
+  size: 32, 43
+  orig: 32, 43
+  offset: 0, 0
+  index: -1
+qianghuo
+  rotate: false
+  xy: 2, 104
+  size: 161, 79
+  orig: 162, 79
+  offset: 1, 0
+  index: -1
+yanwu1
+  rotate: true
+  xy: 437, 363
+  size: 71, 57
+  orig: 71, 58
+  offset: 0, 1
+  index: -1
+yanwu2
+  rotate: false
+  xy: 165, 125
+  size: 56, 58
+  orig: 57, 59
+  offset: 0, 1
+  index: -1
+yanwu3
+  rotate: false
+  xy: 374, 10
+  size: 43, 37
+  orig: 43, 38
+  offset: 0, 1
+  index: -1
+yanwu4
+  rotate: true
+  xy: 158, 8
+  size: 47, 60
+  orig: 47, 61
+  offset: 0, 1
+  index: -1

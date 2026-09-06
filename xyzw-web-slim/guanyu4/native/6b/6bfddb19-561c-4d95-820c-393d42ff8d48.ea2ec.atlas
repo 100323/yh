@@ -1,0 +1,202 @@
+
+guanyu4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu4_body1
+  rotate: false
+  xy: 2, 37
+  size: 153, 110
+  orig: 153, 110
+  offset: 0, 0
+  index: -1
+guanyu4_body2
+  rotate: false
+  xy: 340, 467
+  size: 109, 30
+  orig: 109, 30
+  offset: 0, 0
+  index: -1
+guanyu4_eye
+  rotate: false
+  xy: 2, 492
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
+guanyu4_eyebrow
+  rotate: false
+  xy: 229, 473
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+guanyu4_eyewhite
+  rotate: true
+  xy: 268, 472
+  size: 25, 29
+  orig: 25, 29
+  offset: 0, 0
+  index: -1
+guanyu4_hair
+  rotate: true
+  xy: 117, 149
+  size: 107, 146
+  orig: 107, 146
+  offset: 0, 0
+  index: -1
+guanyu4_handl1
+  rotate: true
+  xy: 2, 452
+  size: 36, 39
+  orig: 38, 41
+  offset: 0, 2
+  index: -1
+guanyu4_handl2
+  rotate: true
+  xy: 451, 467
+  size: 30, 35
+  orig: 32, 39
+  offset: 0, 3
+  index: -1
+guanyu4_hat1
+  rotate: true
+  xy: 340, 238
+  size: 99, 106
+  orig: 99, 106
+  offset: 0, 0
+  index: -1
+guanyu4_hat2
+  rotate: true
+  xy: 299, 470
+  size: 27, 39
+  orig: 27, 39
+  offset: 0, 0
+  index: -1
+guanyu4_head
+  rotate: true
+  xy: 380, 126
+  size: 110, 127
+  orig: 110, 127
+  offset: 0, 0
+  index: -1
+guanyu4_legr
+  rotate: true
+  xy: 200, 477
+  size: 20, 27
+  orig: 20, 27
+  offset: 0, 0
+  index: -1
+guanyu4_mouth
+  rotate: true
+  xy: 133, 427
+  size: 48, 71
+  orig: 48, 71
+  offset: 0, 0
+  index: -1
+guanyu4_shield
+  rotate: true
+  xy: 2, 151
+  size: 105, 113
+  orig: 105, 113
+  offset: 0, 0
+  index: -1
+guanyu4_shoulder
+  rotate: false
+  xy: 2, 388
+  size: 83, 62
+  orig: 83, 62
+  offset: 0, 0
+  index: -1
+guanyu4_shoulderl
+  rotate: false
+  xy: 348, 404
+  size: 64, 61
+  orig: 64, 61
+  offset: 0, 0
+  index: -1
+guanyu4_skill1
+  rotate: false
+  xy: 414, 404
+  size: 62, 61
+  orig: 64, 65
+  offset: 1, 2
+  index: -1
+guanyu4_skill2
+  rotate: false
+  xy: 10, 490
+  size: 188, 7
+  orig: 188, 9
+  offset: 0, 1
+  index: -1
+guanyu4_skill3
+  rotate: false
+  xy: 274, 2
+  size: 123, 122
+  orig: 125, 124
+  offset: 1, 1
+  index: -1
+guanyu4_skill4
+  rotate: true
+  xy: 157, 15
+  size: 110, 115
+  orig: 110, 115
+  offset: 0, 0
+  index: -1
+guanyu4_skill5
+  rotate: true
+  xy: 265, 127
+  size: 109, 113
+  orig: 109, 113
+  offset: 0, 0
+  index: -1
+guanyu4_skill6
+  rotate: true
+  xy: 87, 355
+  size: 70, 74
+  orig: 70, 74
+  offset: 0, 0
+  index: -1
+guanyu4_skill7
+  rotate: false
+  xy: 206, 420
+  size: 140, 45
+  orig: 140, 45
+  offset: 0, 0
+  index: -1
+guanyu4_skill8
+  rotate: false
+  xy: 267, 339
+  size: 210, 63
+  orig: 210, 67
+  offset: 0, 2
+  index: -1
+guanyu4_weapon
+  rotate: true
+  xy: 2, 258
+  size: 79, 336
+  orig: 85, 348
+  offset: 6, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 90, 447
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_eye2
+  rotate: true
+  xy: 43, 452
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_tail
+  rotate: false
+  xy: 163, 341
+  size: 102, 77
+  orig: 102, 77
+  offset: 0, 0
+  index: -1

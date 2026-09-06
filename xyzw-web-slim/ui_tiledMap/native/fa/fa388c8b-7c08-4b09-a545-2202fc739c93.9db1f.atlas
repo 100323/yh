@@ -1,0 +1,160 @@
+
+hjls_effect_ldq.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 420, 38
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hjls_ldq_guang
+  rotate: false
+  xy: 410, 399
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+hjls_ldq_guangquan
+  rotate: false
+  xy: 295, 126
+  size: 113, 113
+  orig: 113, 113
+  offset: 0, 0
+  index: -1
+hjls_ldq_guangquan1
+  rotate: false
+  xy: 410, 216
+  size: 93, 93
+  orig: 93, 93
+  offset: 0, 0
+  index: -1
+hjls_map_covera1
+  rotate: false
+  xy: 346, 304
+  size: 62, 70
+  orig: 62, 70
+  offset: 0, 0
+  index: -1
+hjls_map_covera2
+  rotate: true
+  xy: 234, 177
+  size: 62, 59
+  orig: 62, 59
+  offset: 0, 0
+  index: -1
+hjls_map_covera3
+  rotate: false
+  xy: 346, 245
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+hjls_map_covera4
+  rotate: false
+  xy: 410, 311
+  size: 96, 86
+  orig: 96, 86
+  offset: 0, 0
+  index: -1
+hjls_map_covera5
+  rotate: true
+  xy: 290, 376
+  size: 123, 118
+  orig: 123, 118
+  offset: 0, 0
+  index: -1
+hjls_map_thundera1
+  rotate: false
+  xy: 364, 3
+  size: 54, 121
+  orig: 54, 121
+  offset: 0, 0
+  index: -1
+hjls_map_thundera2
+  rotate: false
+  xy: 2, 334
+  size: 160, 165
+  orig: 160, 165
+  offset: 0, 0
+  index: -1
+hjls_map_thundera3
+  rotate: false
+  xy: 2, 172
+  size: 146, 160
+  orig: 146, 160
+  offset: 0, 0
+  index: -1
+hjls_map_thundera4
+  rotate: false
+  xy: 2, 10
+  size: 135, 160
+  orig: 135, 160
+  offset: 0, 0
+  index: -1
+hjls_map_thunderd1
+  rotate: false
+  xy: 420, 86
+  size: 78, 44
+  orig: 78, 44
+  offset: 0, 0
+  index: -1
+hjls_map_thunderd2
+  rotate: true
+  xy: 259, 2
+  size: 122, 103
+  orig: 122, 103
+  offset: 0, 0
+  index: -1
+hjls_map_thunderd3
+  rotate: true
+  xy: 139, 36
+  size: 134, 118
+  orig: 134, 118
+  offset: 0, 0
+  index: -1
+hjls_map_thunders1
+  rotate: true
+  xy: 150, 202
+  size: 130, 82
+  orig: 130, 82
+  offset: 0, 0
+  index: -1
+hjls_map_thunders2
+  rotate: true
+  xy: 410, 132
+  size: 82, 69
+  orig: 82, 69
+  offset: 0, 0
+  index: -1
+hjls_map_thunders3
+  rotate: true
+  xy: 164, 371
+  size: 128, 124
+  orig: 128, 124
+  offset: 0, 0
+  index: -1
+hjls_map_thunders4
+  rotate: true
+  xy: 234, 241
+  size: 128, 110
+  orig: 128, 110
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 167, 12
+  size: 22, 18
+  orig: 26, 26
+  offset: 1, 4
+  index: -1
+xysg_hero_effect_kuang
+  rotate: false
+  xy: 139, 8
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+lzjs25_tongguan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huang
+  rotate: true
+  xy: 229, 175
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+huarui
+  rotate: true
+  xy: 392, 2
+  size: 106, 77
+  orig: 106, 77
+  offset: 0, 0
+  index: -1
+kaihua1
+  rotate: false
+  xy: 2, 134
+  size: 123, 114
+  orig: 123, 114
+  offset: 0, 0
+  index: -1
+kaihua2
+  rotate: true
+  xy: 127, 124
+  size: 124, 100
+  orig: 124, 100
+  offset: 0, 0
+  index: -1
+kaihua3
+  rotate: true
+  xy: 294, 21
+  size: 87, 96
+  orig: 87, 96
+  offset: 0, 0
+  index: -1
+kaihua4
+  rotate: true
+  xy: 295, 110
+  size: 123, 99
+  orig: 123, 99
+  offset: 0, 0
+  index: -1
+kaihua5
+  rotate: false
+  xy: 2, 6
+  size: 99, 126
+  orig: 99, 126
+  offset: 0, 0
+  index: -1
+kaihua6
+  rotate: false
+  xy: 2, 250
+  size: 296, 227
+  orig: 296, 227
+  offset: 0, 0
+  index: -1
+kaihua7
+  rotate: true
+  xy: 300, 235
+  size: 242, 206
+  orig: 242, 206
+  offset: 0, 0
+  index: -1
+lanyuan
+  rotate: false
+  xy: 103, 25
+  size: 100, 97
+  orig: 100, 97
+  offset: 0, 0
+  index: -1
+lv
+  rotate: true
+  xy: 396, 130
+  size: 103, 63
+  orig: 103, 63
+  offset: 0, 0
+  index: -1
+zi
+  rotate: true
+  xy: 205, 24
+  size: 98, 87
+  orig: 98, 87
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,293 @@
+
+sqhd25w4_banner.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baihu_fuchen1
+  rotate: false
+  xy: 625, 326
+  size: 82, 90
+  orig: 82, 90
+  offset: 0, 0
+  index: -1
+baihu_fuchen2
+  rotate: true
+  xy: 625, 264
+  size: 60, 66
+  orig: 60, 66
+  offset: 0, 0
+  index: -1
+baihu_guangshu1
+  rotate: true
+  xy: 2, 33
+  size: 106, 205
+  orig: 107, 205
+  offset: 0, 0
+  index: -1
+baihu_guangshu2
+  rotate: false
+  xy: 621, 480
+  size: 81, 91
+  orig: 86, 102
+  offset: 1, 10
+  index: -1
+baihu_guangshu3
+  rotate: false
+  xy: 620, 627
+  size: 112, 135
+  orig: 118, 151
+  offset: 1, 15
+  index: -1
+baihu_guangshu4
+  rotate: false
+  xy: 541, 270
+  size: 82, 130
+  orig: 82, 132
+  offset: 0, 1
+  index: -1
+baihu_huzi1
+  rotate: false
+  xy: 47, 2
+  size: 37, 29
+  orig: 37, 29
+  offset: 0, 0
+  index: -1
+baihu_huzi2
+  rotate: true
+  xy: 2, 2
+  size: 29, 43
+  orig: 29, 43
+  offset: 0, 0
+  index: -1
+baihu_huzi3
+  rotate: false
+  xy: 134, 13
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+baihu_maozi
+  rotate: true
+  xy: 699, 576
+  size: 49, 38
+  orig: 54, 40
+  offset: 4, 1
+  index: -1
+baihu_meimao
+  rotate: false
+  xy: 739, 593
+  size: 35, 33
+  orig: 37, 36
+  offset: 2, 3
+  index: -1
+baihu_shan1
+  rotate: true
+  xy: 2, 141
+  size: 602, 194
+  orig: 602, 194
+  offset: 0, 0
+  index: -1
+baihu_shandian1
+  rotate: false
+  xy: 541, 402
+  size: 78, 165
+  orig: 78, 165
+  offset: 0, 0
+  index: -1
+baihu_shandian2
+  rotate: true
+  xy: 605, 764
+  size: 97, 214
+  orig: 97, 214
+  offset: 0, 0
+  index: -1
+baihu_shandian3
+  rotate: true
+  xy: 620, 573
+  size: 52, 77
+  orig: 52, 77
+  offset: 0, 0
+  index: -1
+baihu_shandian4
+  rotate: false
+  xy: 541, 569
+  size: 77, 174
+  orig: 77, 174
+  offset: 0, 0
+  index: -1
+baihu_shandian5
+  rotate: true
+  xy: 312, 21
+  size: 48, 70
+  orig: 48, 70
+  offset: 0, 0
+  index: -1
+baihu_shandian6
+  rotate: false
+  xy: 312, 71
+  size: 116, 68
+  orig: 116, 68
+  offset: 0, 0
+  index: -1
+baihu_shenti
+  rotate: false
+  xy: 209, 22
+  size: 101, 118
+  orig: 101, 118
+  offset: 0, 0
+  index: -1
+baihu_shishizi1
+  rotate: false
+  xy: 605, 863
+  size: 186, 159
+  orig: 186, 188
+  offset: 0, 0
+  index: -1
+baihu_shishizi2
+  rotate: false
+  xy: 793, 864
+  size: 185, 158
+  orig: 186, 159
+  offset: 0, 0
+  index: -1
+baihu_shitai
+  rotate: false
+  xy: 821, 773
+  size: 157, 89
+  orig: 165, 89
+  offset: 0, 0
+  index: -1
+baihu_shitou
+  rotate: false
+  xy: 842, 641
+  size: 98, 130
+  orig: 98, 130
+  offset: 0, 0
+  index: -1
+baihu_shou_l
+  rotate: false
+  xy: 980, 785
+  size: 21, 23
+  orig: 21, 24
+  offset: 0, 0
+  index: -1
+baihu_shou_r
+  rotate: false
+  xy: 776, 603
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+baihu_shuzhi
+  rotate: true
+  xy: 734, 628
+  size: 134, 106
+  orig: 134, 106
+  offset: 0, 0
+  index: -1
+baihu_tiankong
+  rotate: false
+  xy: 2, 745
+  size: 601, 277
+  orig: 601, 289
+  offset: 0, 12
+  index: -1
+baihu_tou
+  rotate: false
+  xy: 384, 15
+  size: 46, 54
+  orig: 46, 54
+  offset: 0, 0
+  index: -1
+baihu_toufa
+  rotate: true
+  xy: 980, 810
+  size: 40, 21
+  orig: 40, 22
+  offset: 0, 0
+  index: -1
+baihu_xiuzi_l
+  rotate: false
+  xy: 980, 852
+  size: 24, 63
+  orig: 24, 63
+  offset: 0, 0
+  index: -1
+baihu_xiuzi_r
+  rotate: false
+  xy: 621, 418
+  size: 74, 60
+  orig: 74, 65
+  offset: 0, 5
+  index: -1
+baihu_yaodai
+  rotate: true
+  xy: 942, 705
+  size: 66, 30
+  orig: 66, 30
+  offset: 0, 0
+  index: -1
+baihu_yingzi
+  rotate: true
+  xy: 980, 917
+  size: 105, 30
+  orig: 106, 30
+  offset: 0, 0
+  index: -1
+baihu_yudai_l
+  rotate: false
+  xy: 942, 660
+  size: 20, 43
+  orig: 21, 48
+  offset: 0, 5
+  index: -1
+baihu_yudai_r
+  rotate: true
+  xy: 551, 77
+  size: 64, 58
+  orig: 65, 58
+  offset: 0, 0
+  index: -1
+baihu_yun1
+  rotate: true
+  xy: 198, 142
+  size: 601, 127
+  orig: 601, 127
+  offset: 0, 0
+  index: -1
+baihu_yun2
+  rotate: false
+  xy: 430, 81
+  size: 119, 58
+  orig: 119, 58
+  offset: 0, 0
+  index: -1
+baihu_yun3
+  rotate: false
+  xy: 86, 13
+  size: 46, 18
+  orig: 46, 18
+  offset: 0, 0
+  index: -1
+baihu_yun4
+  rotate: true
+  xy: 541, 143
+  size: 125, 69
+  orig: 125, 69
+  offset: 0, 0
+  index: -1
+baihu_yun5
+  rotate: true
+  xy: 442, 141
+  size: 602, 97
+  orig: 602, 97
+  offset: 0, 0
+  index: -1
+toutu_zhehei
+  rotate: true
+  xy: 327, 141
+  size: 602, 113
+  orig: 602, 116
+  offset: 0, 0
+  index: -1

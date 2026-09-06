@@ -1,0 +1,13 @@
+
+llqj25_cj_box1.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_xiaochuan
+  rotate: false
+  xy: 2, 2
+  size: 67, 45
+  orig: 67, 45
+  offset: 0, 0
+  index: -1

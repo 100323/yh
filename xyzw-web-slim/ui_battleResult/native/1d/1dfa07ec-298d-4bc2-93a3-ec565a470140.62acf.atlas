@@ -1,0 +1,55 @@
+
+sdsl_effectmask.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 186, 19
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sdsl_mask1_1
+  rotate: true
+  xy: 186, 79
+  size: 133, 150
+  orig: 133, 150
+  offset: 0, 0
+  index: -1
+sdsl_mask1_2
+  rotate: true
+  xy: 2, 36
+  size: 176, 182
+  orig: 176, 182
+  offset: 0, 0
+  index: -1
+sdsl_mask_effect1
+  rotate: false
+  xy: 246, 38
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+sdsl_mask_effect2
+  rotate: false
+  xy: 287, 38
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+sdsl_mask_effect3
+  rotate: false
+  xy: 338, 53
+  size: 31, 159
+  orig: 31, 159
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

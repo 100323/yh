@@ -1,0 +1,27 @@
+
+huatuo7_skill_hit.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ht_jn18
+  rotate: false
+  xy: 226, 18
+  size: 178, 82
+  orig: 178, 82
+  offset: 0, 0
+  index: -1
+ht_jn19
+  rotate: false
+  xy: 406, 2
+  size: 164, 98
+  orig: 164, 98
+  offset: 0, 0
+  index: -1
+ht_jn20
+  rotate: false
+  xy: 2, 16
+  size: 222, 84
+  orig: 222, 84
+  offset: 0, 0
+  index: -1

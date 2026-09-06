@@ -1,0 +1,76 @@
+
+baihu_beijing.png
+size: 936,738
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hu_beijing
+  rotate: true
+  xy: 2, 435
+  size: 301, 847
+  orig: 301, 847
+  offset: 0, 0
+  index: -1
+hu_cao1
+  rotate: true
+  xy: 793, 146
+  size: 142, 141
+  orig: 142, 141
+  offset: 0, 0
+  index: -1
+hu_cao2
+  rotate: true
+  xy: 793, 290
+  size: 143, 141
+  orig: 143, 141
+  offset: 0, 0
+  index: -1
+hu_cao3
+  rotate: false
+  xy: 851, 666
+  size: 83, 70
+  orig: 83, 70
+  offset: 0, 0
+  index: -1
+hu_cao4
+  rotate: true
+  xy: 851, 477
+  size: 84, 65
+  orig: 84, 65
+  offset: 0, 0
+  index: -1
+hu_cao5
+  rotate: true
+  xy: 851, 563
+  size: 101, 73
+  orig: 101, 73
+  offset: 0, 0
+  index: -1
+hu_cao6
+  rotate: false
+  xy: 535, 7
+  size: 170, 114
+  orig: 170, 114
+  offset: 0, 0
+  index: -1
+hu_shitou4
+  rotate: false
+  xy: 651, 164
+  size: 140, 269
+  orig: 140, 269
+  offset: 0, 0
+  index: -1
+hu_shitou5
+  rotate: false
+  xy: 535, 123
+  size: 114, 310
+  orig: 114, 310
+  offset: 0, 0
+  index: -1
+hu_xingxing
+  rotate: false
+  xy: 2, 2
+  size: 531, 431
+  orig: 531, 431
+  offset: 0, 0
+  index: -1

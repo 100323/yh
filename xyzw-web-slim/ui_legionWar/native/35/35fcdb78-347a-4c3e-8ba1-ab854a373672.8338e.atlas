@@ -1,0 +1,69 @@
+
+hjls_jisuan_text2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls_jisuan2_c1
+  rotate: true
+  xy: 180, 108
+  size: 32, 47
+  orig: 34, 47
+  offset: 2, 0
+  index: -1
+hjls_jisuan2_c2
+  rotate: true
+  xy: 236, 189
+  size: 23, 16
+  orig: 28, 16
+  offset: 5, 0
+  index: -1
+hjls_jisuan2_c3
+  rotate: false
+  xy: 180, 142
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+hjls_jisuan2_c4
+  rotate: true
+  xy: 236, 214
+  size: 20, 17
+  orig: 20, 17
+  offset: 0, 0
+  index: -1
+hjls_jisuan2_t1
+  rotate: false
+  xy: 94, 11
+  size: 101, 82
+  orig: 101, 86
+  offset: 0, 4
+  index: -1
+hjls_jisuan2_t2
+  rotate: false
+  xy: 2, 2
+  size: 72, 90
+  orig: 82, 90
+  offset: 10, 0
+  index: -1
+hjls_jisuan2_t3
+  rotate: false
+  xy: 94, 95
+  size: 84, 88
+  orig: 84, 88
+  offset: 0, 0
+  index: -1
+hjls_jisuan2_t4
+  rotate: true
+  xy: 2, 94
+  size: 89, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+hjls_jisuan_halo
+  rotate: false
+  xy: 2, 185
+  size: 232, 49
+  orig: 237, 50
+  offset: 2, 1
+  index: -1

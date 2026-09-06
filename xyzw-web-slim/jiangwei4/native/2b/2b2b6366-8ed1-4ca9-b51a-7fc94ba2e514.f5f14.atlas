@@ -1,0 +1,153 @@
+
+jiangwei4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 122, 95
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 170, 99
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+jiangwei4_body1
+  rotate: false
+  xy: 247, 6
+  size: 161, 135
+  orig: 161, 135
+  offset: 0, 0
+  index: -1
+jiangwei4_body2
+  rotate: true
+  xy: 287, 214
+  size: 79, 87
+  orig: 79, 87
+  offset: 0, 0
+  index: -1
+jiangwei4_body3
+  rotate: false
+  xy: 287, 295
+  size: 164, 63
+  orig: 164, 63
+  offset: 0, 0
+  index: -1
+jiangwei4_effect1
+  rotate: false
+  xy: 287, 153
+  size: 82, 59
+  orig: 82, 59
+  offset: 0, 0
+  index: -1
+jiangwei4_effect2
+  rotate: false
+  xy: 2, 2
+  size: 90, 90
+  orig: 91, 90
+  offset: 1, 0
+  index: -1
+jiangwei4_hair
+  rotate: false
+  xy: 122, 307
+  size: 120, 179
+  orig: 120, 179
+  offset: 0, 0
+  index: -1
+jiangwei4_handl
+  rotate: true
+  xy: 453, 321
+  size: 46, 42
+  orig: 46, 42
+  offset: 0, 0
+  index: -1
+jiangwei4_handr
+  rotate: false
+  xy: 410, 125
+  size: 49, 53
+  orig: 49, 53
+  offset: 0, 0
+  index: -1
+jiangwei4_head
+  rotate: true
+  xy: 244, 360
+  size: 126, 144
+  orig: 127, 144
+  offset: 1, 0
+  index: -1
+jiangwei4_helmet1
+  rotate: false
+  xy: 94, 6
+  size: 151, 86
+  orig: 151, 86
+  offset: 0, 0
+  index: -1
+jiangwei4_helmet2
+  rotate: false
+  xy: 122, 143
+  size: 163, 162
+  orig: 163, 162
+  offset: 0, 0
+  index: -1
+jiangwei4_legr
+  rotate: true
+  xy: 244, 311
+  size: 47, 34
+  orig: 47, 34
+  offset: 0, 0
+  index: -1
+jiangwei4_mouth
+  rotate: false
+  xy: 449, 205
+  size: 48, 88
+  orig: 48, 88
+  offset: 0, 0
+  index: -1
+jiangwei4_shoulderr
+  rotate: true
+  xy: 390, 369
+  size: 117, 86
+  orig: 117, 86
+  offset: 0, 0
+  index: -1
+jiangwei4_tail
+  rotate: true
+  xy: 376, 180
+  size: 113, 71
+  orig: 113, 71
+  offset: 0, 0
+  index: -1
+jiangwei4_weapon
+  rotate: false
+  xy: 2, 94
+  size: 118, 392
+  orig: 118, 392
+  offset: 0, 0
+  index: -1
+jiangwei_eye
+  rotate: false
+  xy: 223, 98
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+jiangwei_eyebrow
+  rotate: true
+  xy: 223, 107
+  size: 34, 15
+  orig: 34, 15
+  offset: 0, 0
+  index: -1
+jiangwei_eyewhite
+  rotate: false
+  xy: 371, 148
+  size: 37, 30
+  orig: 37, 30
+  offset: 0, 0
+  index: -1

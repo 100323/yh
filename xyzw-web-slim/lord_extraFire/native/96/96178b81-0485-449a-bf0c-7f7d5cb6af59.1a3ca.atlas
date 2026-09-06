@@ -1,0 +1,13 @@
+
+jidan1.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jidan_dan
+  rotate: false
+  xy: 2, 2
+  size: 72, 88
+  orig: 72, 88
+  offset: 0, 0
+  index: -1

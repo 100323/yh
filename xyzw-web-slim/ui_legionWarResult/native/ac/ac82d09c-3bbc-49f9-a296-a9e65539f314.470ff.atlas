@@ -1,0 +1,55 @@
+
+ycxsz_jiesuan_hjtg2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_jiesuan_hjtg_di
+  rotate: false
+  xy: 2, 534
+  size: 463, 435
+  orig: 463, 435
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg_gh1
+  rotate: false
+  xy: 427, 264
+  size: 272, 214
+  orig: 272, 214
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg_gh2
+  rotate: false
+  xy: 467, 680
+  size: 362, 289
+  orig: 362, 289
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg_gq
+  rotate: false
+  xy: 2, 109
+  size: 423, 423
+  orig: 423, 423
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg_xing
+  rotate: false
+  xy: 831, 919
+  size: 46, 50
+  orig: 50, 56
+  offset: 2, 3
+  index: -1
+ycxsz_jiesuan_hjtg_yun
+  rotate: false
+  xy: 467, 480
+  size: 427, 198
+  orig: 427, 198
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_zz
+  rotate: false
+  xy: 2, 2
+  size: 60, 105
+  orig: 60, 105
+  offset: 0, 0
+  index: -1

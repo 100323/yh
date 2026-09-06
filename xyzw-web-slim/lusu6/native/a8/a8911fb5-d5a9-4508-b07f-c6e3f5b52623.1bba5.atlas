@@ -1,0 +1,41 @@
+
+lusu6_armor_intro.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hudun
+  rotate: false
+  xy: 257, 137
+  size: 253, 297
+  orig: 253, 297
+  offset: 0, 0
+  index: -1
+hudunh1
+  rotate: false
+  xy: 257, 2
+  size: 152, 133
+  orig: 152, 133
+  offset: 0, 0
+  index: -1
+hudunh3
+  rotate: true
+  xy: 411, 16
+  size: 119, 73
+  orig: 119, 73
+  offset: 0, 0
+  index: -1
+hudunl
+  rotate: false
+  xy: 2, 118
+  size: 253, 316
+  orig: 253, 316
+  offset: 0, 0
+  index: -1
+xinpf_buff_hdun1
+  rotate: true
+  xy: 2, 9
+  size: 107, 111
+  orig: 107, 111
+  offset: 0, 0
+  index: -1

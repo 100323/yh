@@ -1,0 +1,20 @@
+
+sqhd26_w8_cj_guangbiao.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guangbiao1
+  rotate: false
+  xy: 2, 2
+  size: 77, 77
+  orig: 81, 81
+  offset: 2, 3
+  index: -1
+guangbiao2
+  rotate: false
+  xy: 81, 9
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+cszb_bg_fire.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cszb_bg_light
+  rotate: false
+  xy: 2, 126
+  size: 400, 294
+  orig: 400, 294
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 286, 78
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg4_fire1
+  rotate: false
+  xy: 404, 250
+  size: 81, 170
+  orig: 81, 170
+  offset: 0, 0
+  index: -1
+sdsl_bg4_fire2
+  rotate: true
+  xy: 142, 50
+  size: 74, 142
+  orig: 74, 142
+  offset: 0, 0
+  index: -1
+sdsl_bg4_fire3
+  rotate: false
+  xy: 404, 87
+  size: 76, 161
+  orig: 76, 161
+  offset: 0, 0
+  index: -1
+xslt_img_flag
+  rotate: false
+  xy: 2, 2
+  size: 138, 122
+  orig: 138, 122
+  offset: 0, 0
+  index: -1

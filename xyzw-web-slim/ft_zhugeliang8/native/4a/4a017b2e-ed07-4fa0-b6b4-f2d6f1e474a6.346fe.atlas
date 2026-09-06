@@ -1,0 +1,48 @@
+
+ft_zhugeliang8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_qlguanyu_10
+  rotate: false
+  xy: 2, 2
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 214
+  size: 205, 279
+  orig: 205, 279
+  offset: 0, 0
+  index: -1
+pd01
+  rotate: false
+  xy: 134, 69
+  size: 133, 115
+  orig: 133, 115
+  offset: 0, 0
+  index: -1
+pd02
+  rotate: false
+  xy: 209, 186
+  size: 245, 85
+  orig: 245, 85
+  offset: 0, 0
+  index: -1
+st
+  rotate: false
+  xy: 209, 273
+  size: 221, 220
+  orig: 221, 220
+  offset: 0, 0
+  index: -1
+wb
+  rotate: false
+  xy: 2, 21
+  size: 130, 191
+  orig: 230, 206
+  offset: 100, 15
+  index: -1

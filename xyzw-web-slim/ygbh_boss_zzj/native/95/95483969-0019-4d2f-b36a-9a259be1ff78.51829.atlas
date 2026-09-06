@@ -1,0 +1,41 @@
+
+ygbh_boss_zzj_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 56
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_skill_lei2
+  rotate: false
+  xy: 340, 223
+  size: 232, 244
+  orig: 232, 244
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_skill_lei4
+  rotate: false
+  xy: 536, 23
+  size: 187, 198
+  orig: 187, 198
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_skill_lei5
+  rotate: false
+  xy: 2, 104
+  size: 336, 363
+  orig: 336, 363
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_skill_lei6
+  rotate: false
+  xy: 340, 2
+  size: 194, 219
+  orig: 194, 219
+  offset: 0, 0
+  index: -1

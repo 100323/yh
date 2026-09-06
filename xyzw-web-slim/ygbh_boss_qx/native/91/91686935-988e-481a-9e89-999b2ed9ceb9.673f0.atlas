@@ -1,0 +1,272 @@
+
+ygbh_boss_qx.png
+size: 497,450
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygbh_boss_qx_lv_erl
+  rotate: false
+  xy: 334, 51
+  size: 66, 55
+  orig: 66, 62
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_err
+  rotate: false
+  xy: 255, 12
+  size: 51, 46
+  orig: 51, 46
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_shen
+  rotate: true
+  xy: 396, 191
+  size: 35, 62
+  orig: 35, 62
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_tou
+  rotate: false
+  xy: 268, 185
+  size: 126, 119
+  orig: 126, 119
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_tui1
+  rotate: true
+  xy: 328, 20
+  size: 29, 51
+  orig: 30, 51
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_tui2
+  rotate: true
+  xy: 402, 35
+  size: 28, 56
+  orig: 29, 57
+  offset: 1, 0
+  index: -1
+ygbh_boss_qx_lv_tui3
+  rotate: false
+  xy: 2, 32
+  size: 126, 166
+  orig: 126, 166
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_tui4
+  rotate: false
+  xy: 460, 42
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_tui5
+  rotate: true
+  xy: 204, 2
+  size: 31, 49
+  orig: 31, 49
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_weiba
+  rotate: true
+  xy: 142, 4
+  size: 30, 60
+  orig: 30, 60
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_xian1
+  rotate: false
+  xy: 366, 5
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_lv_zui
+  rotate: true
+  xy: 458, 84
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_mei
+  rotate: true
+  xy: 469, 241
+  size: 53, 26
+  orig: 53, 26
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_qun
+  rotate: false
+  xy: 396, 228
+  size: 71, 66
+  orig: 71, 66
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_sb2
+  rotate: false
+  xy: 445, 3
+  size: 21, 30
+  orig: 21, 30
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_sb5
+  rotate: true
+  xy: 206, 39
+  size: 15, 34
+  orig: 15, 34
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_sf2_g
+  rotate: false
+  xy: 130, 56
+  size: 106, 142
+  orig: 106, 142
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_sf2_sb
+  rotate: false
+  xy: 328, 3
+  size: 36, 15
+  orig: 36, 15
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_sf2_wq
+  rotate: true
+  xy: 409, 296
+  size: 46, 85
+  orig: 46, 85
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_sf2_x1
+  rotate: false
+  xy: 479, 190
+  size: 15, 21
+  orig: 16, 24
+  offset: 1, 2
+  index: -1
+ygbh_boss_qx_sf2_x2
+  rotate: false
+  xy: 242, 44
+  size: 10, 14
+  orig: 10, 14
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_shen
+  rotate: true
+  xy: 401, 6
+  size: 27, 42
+  orig: 27, 42
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_shou33
+  rotate: false
+  xy: 460, 191
+  size: 17, 20
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_skll_1
+  rotate: false
+  xy: 2, 12
+  size: 138, 18
+  orig: 138, 18
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_skll_quan1
+  rotate: false
+  xy: 334, 108
+  size: 66, 75
+  orig: 66, 75
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_skll_quan2
+  rotate: false
+  xy: 409, 344
+  size: 82, 104
+  orig: 82, 104
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_skll_quan31
+  rotate: false
+  xy: 2, 200
+  size: 264, 248
+  orig: 264, 248
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_tf1
+  rotate: true
+  xy: 130, 36
+  size: 18, 74
+  orig: 18, 74
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_tf2
+  rotate: false
+  xy: 452, 130
+  size: 16, 59
+  orig: 16, 59
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_tf3
+  rotate: false
+  xy: 402, 124
+  size: 48, 65
+  orig: 49, 65
+  offset: 1, 0
+  index: -1
+ygbh_boss_qx_tfh
+  rotate: false
+  xy: 268, 306
+  size: 139, 142
+  orig: 139, 142
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_tou
+  rotate: false
+  xy: 238, 60
+  size: 94, 123
+  orig: 94, 123
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_wq1
+  rotate: false
+  xy: 402, 65
+  size: 54, 57
+  orig: 54, 57
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_x3
+  rotate: true
+  xy: 396, 296
+  size: 8, 11
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+ygbh_boss_qx_x4
+  rotate: true
+  xy: 238, 185
+  size: 13, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+ygbh_boss_zx_mei
+  rotate: true
+  xy: 308, 4
+  size: 54, 18
+  orig: 55, 19
+  offset: 1, 1
+  index: -1
+ygbh_boss_zx_sf_1
+  rotate: false
+  xy: 381, 26
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+ygbh_boss_zx_sf_3
+  rotate: false
+  xy: 469, 213
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

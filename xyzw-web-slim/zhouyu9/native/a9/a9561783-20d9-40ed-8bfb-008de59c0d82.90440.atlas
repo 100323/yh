@@ -1,0 +1,146 @@
+
+zhouyu9_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 939, 254
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 675, 241
+  size: 16, 12
+  orig: 19, 19
+  offset: 2, 5
+  index: -1
+zhouyu9_skill1_gy
+  rotate: false
+  xy: 933, 185
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+zhouyu9_skill1_jian
+  rotate: true
+  xy: 689, 30
+  size: 100, 121
+  orig: 100, 121
+  offset: 0, 0
+  index: -1
+zhouyu9_skill1_ke1
+  rotate: false
+  xy: 313, 209
+  size: 314, 286
+  orig: 314, 286
+  offset: 0, 0
+  index: -1
+zhouyu9_skill1_ke2
+  rotate: true
+  xy: 629, 259
+  size: 236, 308
+  orig: 236, 308
+  offset: 0, 0
+  index: -1
+zhouyu9_skill1_ke3
+  rotate: false
+  xy: 2, 197
+  size: 309, 298
+  orig: 309, 298
+  offset: 0, 0
+  index: -1
+zhouyu9_skill1_tw
+  rotate: false
+  xy: 340, 4
+  size: 99, 55
+  orig: 99, 55
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_bo
+  rotate: false
+  xy: 2, 2
+  size: 336, 193
+  orig: 336, 193
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_ci
+  rotate: false
+  xy: 939, 333
+  size: 49, 162
+  orig: 49, 162
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_fu1
+  rotate: false
+  xy: 629, 231
+  size: 44, 26
+  orig: 44, 26
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_fu2
+  rotate: false
+  xy: 933, 145
+  size: 67, 38
+  orig: 67, 38
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_fu3
+  rotate: false
+  xy: 918, 103
+  size: 64, 40
+  orig: 64, 40
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_fu4
+  rotate: true
+  xy: 990, 456
+  size: 39, 27
+  orig: 39, 27
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_gq2
+  rotate: false
+  xy: 807, 151
+  size: 124, 106
+  orig: 124, 106
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_yan1
+  rotate: false
+  xy: 812, 45
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_yan2
+  rotate: false
+  xy: 340, 61
+  size: 113, 146
+  orig: 113, 146
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_yan3
+  rotate: false
+  xy: 574, 76
+  size: 113, 131
+  orig: 113, 131
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_zha2
+  rotate: false
+  xy: 689, 132
+  size: 116, 125
+  orig: 116, 125
+  offset: 0, 0
+  index: -1
+zhouyu9_skill2_zha3
+  rotate: false
+  xy: 455, 73
+  size: 117, 134
+  orig: 117, 134
+  offset: 0, 0
+  index: -1

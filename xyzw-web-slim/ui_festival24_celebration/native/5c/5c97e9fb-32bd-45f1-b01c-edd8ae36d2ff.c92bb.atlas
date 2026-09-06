@@ -1,0 +1,153 @@
+
+znq2024_szf_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_szf_ax_mao
+  rotate: false
+  xy: 2, 2
+  size: 136, 156
+  orig: 136, 156
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_s1
+  rotate: false
+  xy: 937, 35
+  size: 78, 78
+  orig: 78, 78
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_s2
+  rotate: false
+  xy: 376, 161
+  size: 44, 21
+  orig: 44, 21
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_s3
+  rotate: false
+  xy: 549, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_s4
+  rotate: false
+  xy: 468, 189
+  size: 33, 48
+  orig: 33, 48
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_sb
+  rotate: true
+  xy: 140, 7
+  size: 151, 165
+  orig: 151, 165
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_shen
+  rotate: true
+  xy: 2, 160
+  size: 350, 310
+  orig: 350, 310
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_tf
+  rotate: false
+  xy: 549, 28
+  size: 250, 209
+  orig: 250, 209
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_tou
+  rotate: true
+  xy: 560, 261
+  size: 249, 239
+  orig: 249, 239
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_yxj
+  rotate: true
+  xy: 307, 12
+  size: 146, 97
+  orig: 146, 97
+  offset: 0, 0
+  index: -1
+2024znq_szf_ax_zui
+  rotate: false
+  xy: 503, 196
+  size: 28, 41
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+2024znq_szf_xian
+  rotate: false
+  xy: 801, 409
+  size: 209, 101
+  orig: 209, 101
+  offset: 0, 0
+  index: -1
+2024znq_szf_xian1
+  rotate: false
+  xy: 801, 115
+  size: 203, 86
+  orig: 203, 86
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu1_jiao
+  rotate: false
+  xy: 420, 185
+  size: 46, 52
+  orig: 46, 53
+  offset: 0, 1
+  index: -1
+2024znq_szf_yu1_sb
+  rotate: false
+  xy: 314, 174
+  size: 60, 63
+  orig: 60, 63
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu1_shen
+  rotate: false
+  xy: 314, 239
+  size: 244, 271
+  orig: 244, 271
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu1_shou
+  rotate: true
+  xy: 422, 20
+  size: 163, 125
+  orig: 164, 128
+  offset: 1, 3
+  index: -1
+2024znq_szf_yu1_wei
+  rotate: false
+  xy: 801, 3
+  size: 134, 110
+  orig: 134, 110
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu1_yan
+  rotate: false
+  xy: 376, 184
+  size: 42, 53
+  orig: 42, 53
+  offset: 0, 0
+  index: -1
+2024znq_szf_yu1_yz
+  rotate: false
+  xy: 314, 160
+  size: 9, 12
+  orig: 9, 13
+  offset: 0, 0
+  index: -1
+2024znq_szf_yxj
+  rotate: false
+  xy: 801, 203
+  size: 207, 204
+  orig: 207, 205
+  offset: 0, 1
+  index: -1

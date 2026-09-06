@@ -1,0 +1,34 @@
+
+sqhd25w2_hglp_dajiang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w2_hgzp_cjdj
+  rotate: false
+  xy: 2, 2
+  size: 259, 112
+  orig: 260, 113
+  offset: 0, 1
+  index: -1
+sqhd25w2_hgzp_cjdj1
+  rotate: false
+  xy: 2, 116
+  size: 288, 142
+  orig: 294, 147
+  offset: 4, 3
+  index: -1
+sqhd25w2_hgzp_cjdj2
+  rotate: false
+  xy: 2, 260
+  size: 404, 244
+  orig: 404, 244
+  offset: 0, 0
+  index: -1
+sqhd25w2_hgzp_sdgy
+  rotate: false
+  xy: 292, 127
+  size: 131, 131
+  orig: 131, 131
+  offset: 0, 0
+  index: -1

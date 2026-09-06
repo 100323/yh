@@ -1,0 +1,41 @@
+
+huangyueying5_attack_line.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huangyueying5_attack1
+  rotate: false
+  xy: 393, 2
+  size: 85, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+huangyueying5_attack2
+  rotate: true
+  xy: 393, 90
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+huangyueying5_attack3
+  rotate: true
+  xy: 393, 173
+  size: 76, 110
+  orig: 76, 110
+  offset: 0, 0
+  index: -1
+huangyueying5_weapon2
+  rotate: false
+  xy: 202, 41
+  size: 189, 208
+  orig: 190, 208
+  offset: 0, 0
+  index: -1
+huangyueying5_weapon3
+  rotate: false
+  xy: 2, 40
+  size: 198, 209
+  orig: 198, 209
+  offset: 0, 0
+  index: -1

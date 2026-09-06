@@ -1,0 +1,41 @@
+
+gongsunzan8_attack_line.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan8_pg_twlz1
+  rotate: true
+  xy: 907, 2
+  size: 63, 56
+  orig: 63, 56
+  offset: 0, 0
+  index: -1
+gongsunzan8_pg_twlz2
+  rotate: false
+  xy: 907, 67
+  size: 65, 57
+  orig: 65, 57
+  offset: 0, 0
+  index: -1
+gongsunzan8_pg_twlz4
+  rotate: true
+  xy: 965, 2
+  size: 63, 56
+  orig: 63, 56
+  offset: 0, 0
+  index: -1
+gongsunzan8_pg_zd1
+  rotate: false
+  xy: 2, 14
+  size: 467, 110
+  orig: 467, 110
+  offset: 0, 0
+  index: -1
+gongsunzan8_pg_zd2
+  rotate: false
+  xy: 471, 19
+  size: 434, 105
+  orig: 434, 105
+  offset: 0, 0
+  index: -1

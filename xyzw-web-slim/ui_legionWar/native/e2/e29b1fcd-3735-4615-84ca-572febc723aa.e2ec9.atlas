@@ -1,0 +1,34 @@
+
+ycxsz_jiesuan_daojishi.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_jiesuan_hjtg2_djs12
+  rotate: false
+  xy: 2, 2
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg2_djs4
+  rotate: true
+  xy: 364, 25
+  size: 17, 83
+  orig: 17, 83
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg2_djs5
+  rotate: true
+  xy: 364, 44
+  size: 48, 83
+  orig: 48, 83
+  offset: 0, 0
+  index: -1
+ycxsz_jiesuan_hjtg2_djs6
+  rotate: false
+  xy: 449, 9
+  size: 46, 83
+  orig: 46, 83
+  offset: 0, 0
+  index: -1

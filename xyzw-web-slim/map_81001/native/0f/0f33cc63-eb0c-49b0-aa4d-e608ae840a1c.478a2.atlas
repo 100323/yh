@@ -1,0 +1,48 @@
+
+huoche_bj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huoche_cj_cwj
+  rotate: false
+  xy: 2, 21
+  size: 361, 197
+  orig: 361, 197
+  offset: 0, 0
+  index: -1
+huoche_cj_fz1
+  rotate: true
+  xy: 365, 2
+  size: 94, 112
+  orig: 94, 112
+  offset: 0, 0
+  index: -1
+huoche_cj_fz2
+  rotate: false
+  xy: 418, 277
+  size: 89, 105
+  orig: 89, 105
+  offset: 0, 0
+  index: -1
+huoche_cj_fz3
+  rotate: false
+  xy: 418, 163
+  size: 83, 112
+  orig: 83, 112
+  offset: 0, 0
+  index: -1
+huoche_cj_gj
+  rotate: true
+  xy: 365, 98
+  size: 63, 118
+  orig: 63, 118
+  offset: 0, 0
+  index: -1
+huoche_cj_xian
+  rotate: false
+  xy: 2, 220
+  size: 414, 162
+  orig: 414, 162
+  offset: 0, 0
+  index: -1

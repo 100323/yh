@@ -1,0 +1,27 @@
+
+daqiao4_skill_hit2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao4_tx_xf4
+  rotate: false
+  xy: 2, 2
+  size: 249, 239
+  orig: 249, 239
+  offset: 0, 0
+  index: -1
+dtxd_5
+  rotate: false
+  xy: 253, 154
+  size: 34, 44
+  orig: 34, 44
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 253, 200
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1

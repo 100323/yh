@@ -1,0 +1,83 @@
+
+lusu2_skill_position.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_effect_light_circle3
+  rotate: false
+  xy: 46, 14
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb1
+  rotate: true
+  xy: 376, 132
+  size: 118, 122
+  orig: 118, 122
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb2
+  rotate: false
+  xy: 168, 112
+  size: 102, 138
+  orig: 102, 138
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb3
+  rotate: false
+  xy: 376, 14
+  size: 45, 116
+  orig: 45, 116
+  offset: 0, 0
+  index: -1
+xinpf_pg_jb4
+  rotate: false
+  xy: 272, 112
+  size: 102, 138
+  orig: 102, 138
+  offset: 0, 0
+  index: -1
+xinpf_pg_jbtw
+  rotate: true
+  xy: 2, 78
+  size: 172, 164
+  orig: 172, 164
+  offset: 0, 0
+  index: -1
+xinpf_pg_x1
+  rotate: false
+  xy: 110, 30
+  size: 121, 46
+  orig: 121, 46
+  offset: 0, 0
+  index: -1
+xinpf_pg_x2
+  rotate: true
+  xy: 281, 5
+  size: 105, 42
+  orig: 105, 42
+  offset: 0, 0
+  index: -1
+xinpf_pg_x3
+  rotate: true
+  xy: 325, 12
+  size: 98, 42
+  orig: 98, 42
+  offset: 0, 0
+  index: -1
+xinpf_pg_x4
+  rotate: true
+  xy: 2, 2
+  size: 74, 42
+  orig: 74, 42
+  offset: 0, 0
+  index: -1
+xinpf_pg_x5
+  rotate: true
+  xy: 233, 3
+  size: 107, 46
+  orig: 107, 46
+  offset: 0, 0
+  index: -1

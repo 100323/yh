@@ -1,0 +1,125 @@
+
+huangyueying3_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huangyueying3_dog_body
+  rotate: true
+  xy: 122, 184
+  size: 74, 46
+  orig: 74, 46
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_leg1
+  rotate: false
+  xy: 100, 95
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_leg2
+  rotate: false
+  xy: 122, 145
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+huangyueying3_dog_tail
+  rotate: false
+  xy: 170, 214
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+huangyueying3_ring
+  rotate: false
+  xy: 170, 236
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+huangyueying3_rope
+  rotate: true
+  xy: 176, 98
+  size: 53, 12
+  orig: 53, 12
+  offset: 0, 0
+  index: -1
+huangyueying3_skill2
+  rotate: true
+  xy: 100, 7
+  size: 86, 85
+  orig: 87, 85
+  offset: 0, 0
+  index: -1
+huangyueying3_skill3
+  rotate: false
+  xy: 2, 260
+  size: 194, 192
+  orig: 194, 192
+  offset: 0, 0
+  index: -1
+huangyueying3_skill4
+  rotate: false
+  xy: 291, 57
+  size: 104, 80
+  orig: 104, 80
+  offset: 0, 0
+  index: -1
+huangyueying3_skill5
+  rotate: false
+  xy: 190, 49
+  size: 99, 88
+  orig: 99, 88
+  offset: 0, 0
+  index: -1
+huangyueying3_skill6
+  rotate: false
+  xy: 122, 101
+  size: 26, 42
+  orig: 26, 42
+  offset: 0, 0
+  index: -1
+huangyueying3_skill7
+  rotate: false
+  xy: 159, 153
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+huangyueying_skill1
+  rotate: true
+  xy: 2, 2
+  size: 118, 96
+  orig: 118, 96
+  offset: 0, 0
+  index: -1
+huangyueying_skill2_1
+  rotate: false
+  xy: 198, 139
+  size: 125, 160
+  orig: 125, 160
+  offset: 0, 0
+  index: -1
+huangyueying_skill2_2
+  rotate: true
+  xy: 198, 301
+  size: 151, 130
+  orig: 151, 130
+  offset: 0, 0
+  index: -1
+huangyueying_skill2_3
+  rotate: true
+  xy: 2, 122
+  size: 136, 118
+  orig: 136, 118
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 150, 118
+  size: 24, 25
+  orig: 26, 26
+  offset: 1, 0
+  index: -1

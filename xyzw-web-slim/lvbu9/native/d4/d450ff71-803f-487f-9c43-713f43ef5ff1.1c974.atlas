@@ -1,0 +1,146 @@
+
+lvbu9_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 701, 238
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+lvbu9_jian
+  rotate: true
+  xy: 2, 98
+  size: 95, 356
+  orig: 97, 358
+  offset: 1, 1
+  index: -1
+lvbu9_skill_dianda
+  rotate: false
+  xy: 735, 526
+  size: 214, 186
+  orig: 214, 186
+  offset: 0, 0
+  index: -1
+lvbu9_skill_dianx
+  rotate: true
+  xy: 665, 278
+  size: 115, 233
+  orig: 115, 233
+  offset: 0, 0
+  index: -1
+lvbu9_skill_guangyun2
+  rotate: false
+  xy: 540, 228
+  size: 54, 58
+  orig: 54, 58
+  offset: 0, 0
+  index: -1
+lvbu9_skill_guiji
+  rotate: false
+  xy: 967, 879
+  size: 22, 137
+  orig: 22, 137
+  offset: 0, 0
+  index: -1
+lvbu9_skill_hb
+  rotate: false
+  xy: 235, 14
+  size: 127, 82
+  orig: 127, 82
+  offset: 0, 0
+  index: -1
+lvbu9_skill_hua
+  rotate: false
+  xy: 2, 543
+  size: 573, 473
+  orig: 573, 473
+  offset: 0, 0
+  index: -1
+lvbu9_skill_jian
+  rotate: false
+  xy: 577, 554
+  size: 156, 462
+  orig: 156, 462
+  offset: 0, 0
+  index: -1
+lvbu9_skill_jian1
+  rotate: true
+  xy: 2, 18
+  size: 78, 231
+  orig: 78, 231
+  offset: 0, 0
+  index: -1
+lvbu9_skill_kuosan
+  rotate: false
+  xy: 665, 395
+  size: 239, 129
+  orig: 239, 129
+  offset: 0, 0
+  index: -1
+lvbu9_skill_tuowei
+  rotate: true
+  xy: 360, 103
+  size: 90, 190
+  orig: 90, 190
+  offset: 0, 0
+  index: -1
+lvbu9_skill_xian
+  rotate: true
+  xy: 735, 714
+  size: 302, 230
+  orig: 302, 230
+  offset: 0, 0
+  index: -1
+lvbu9_skill_xingd
+  rotate: true
+  xy: 540, 288
+  size: 253, 123
+  orig: 253, 123
+  offset: 0, 0
+  index: -1
+lvbu9_skill_yan1
+  rotate: false
+  xy: 364, 2
+  size: 161, 99
+  orig: 161, 99
+  offset: 0, 0
+  index: -1
+lvbu9_skill_yan2
+  rotate: false
+  xy: 649, 226
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+lvbu9_skill_yan3
+  rotate: false
+  xy: 596, 236
+  size: 51, 50
+  orig: 51, 50
+  offset: 0, 0
+  index: -1
+lvbu9_skill_yan4
+  rotate: false
+  xy: 906, 391
+  size: 107, 133
+  orig: 107, 133
+  offset: 0, 0
+  index: -1
+lvbu9_skill_ying
+  rotate: true
+  xy: 900, 242
+  size: 147, 85
+  orig: 147, 85
+  offset: 0, 0
+  index: -1
+lvbu9_skill_zha
+  rotate: false
+  xy: 2, 195
+  size: 536, 346
+  orig: 536, 346
+  offset: 0, 0
+  index: -1

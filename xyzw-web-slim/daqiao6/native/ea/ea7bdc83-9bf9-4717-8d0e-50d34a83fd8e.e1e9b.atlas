@@ -1,0 +1,76 @@
+
+daqiao6_attack_hit.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao6_pg_cj1
+  rotate: false
+  xy: 965, 151
+  size: 53, 77
+  orig: 53, 77
+  offset: 0, 0
+  index: -1
+daqiao6_pg_cj2
+  rotate: true
+  xy: 447, 2
+  size: 77, 95
+  orig: 77, 95
+  offset: 0, 0
+  index: -1
+daqiao6_pg_cj3
+  rotate: false
+  xy: 339, 81
+  size: 278, 50
+  orig: 278, 50
+  offset: 0, 0
+  index: -1
+daqiao6_pg_cj4
+  rotate: false
+  xy: 173, 5
+  size: 272, 74
+  orig: 272, 74
+  offset: 0, 0
+  index: -1
+daqiao6_pg_cj5
+  rotate: false
+  xy: 658, 150
+  size: 305, 78
+  orig: 305, 78
+  offset: 0, 0
+  index: -1
+daqiao6_pg_txks
+  rotate: true
+  xy: 2, 5
+  size: 78, 169
+  orig: 78, 169
+  offset: 0, 0
+  index: -1
+daqiao6_pg_txy1
+  rotate: true
+  xy: 339, 133
+  size: 95, 317
+  orig: 95, 317
+  offset: 0, 0
+  index: -1
+daqiao6_pg_txy2
+  rotate: true
+  xy: 658, 56
+  size: 92, 290
+  orig: 92, 290
+  offset: 0, 0
+  index: -1
+daqiao6_pg_yan1
+  rotate: false
+  xy: 2, 85
+  size: 186, 143
+  orig: 186, 143
+  offset: 0, 0
+  index: -1
+daqiao6_pg_yan2
+  rotate: true
+  xy: 190, 116
+  size: 112, 147
+  orig: 112, 147
+  offset: 0, 0
+  index: -1

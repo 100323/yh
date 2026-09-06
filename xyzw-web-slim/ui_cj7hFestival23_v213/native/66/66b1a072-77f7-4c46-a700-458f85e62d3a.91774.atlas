@@ -1,0 +1,97 @@
+
+ydzs26_cj_btn.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+anniu_faguang
+  rotate: false
+  xy: 2, 41
+  size: 178, 202
+  orig: 186, 212
+  offset: 5, 5
+  index: -1
+anniu_he_shu1
+  rotate: false
+  xy: 517, 27
+  size: 108, 133
+  orig: 108, 133
+  offset: 0, 0
+  index: -1
+anniu_he_shu2
+  rotate: false
+  xy: 343, 102
+  size: 131, 141
+  orig: 134, 141
+  offset: 0, 0
+  index: -1
+anniu_kai_shu1
+  rotate: false
+  xy: 841, 10
+  size: 82, 139
+  orig: 82, 139
+  offset: 0, 0
+  index: -1
+anniu_kai_shu2
+  rotate: false
+  xy: 738, 20
+  size: 101, 140
+  orig: 101, 140
+  offset: 0, 0
+  index: -1
+anniu_kai_shu3
+  rotate: true
+  xy: 655, 162
+  size: 81, 141
+  orig: 81, 141
+  offset: 0, 0
+  index: -1
+anniu_kai_shu4
+  rotate: true
+  xy: 841, 151
+  size: 92, 128
+  orig: 92, 128
+  offset: 0, 0
+  index: -1
+anniu_kai_shu5
+  rotate: false
+  xy: 627, 30
+  size: 109, 130
+  orig: 109, 130
+  offset: 0, 0
+  index: -1
+anniu_shou_l
+  rotate: true
+  xy: 343, 2
+  size: 98, 172
+  orig: 98, 172
+  offset: 0, 0
+  index: -1
+anniu_shou_r
+  rotate: true
+  xy: 476, 162
+  size: 81, 177
+  orig: 81, 177
+  offset: 0, 0
+  index: -1
+anniu_shu_yingzi
+  rotate: false
+  xy: 925, 46
+  size: 82, 103
+  orig: 82, 103
+  offset: 0, 0
+  index: -1
+anniu_zi
+  rotate: false
+  xy: 182, 3
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+anniu_zi_faguang
+  rotate: false
+  xy: 182, 62
+  size: 159, 181
+  orig: 173, 194
+  offset: 7, 7
+  index: -1

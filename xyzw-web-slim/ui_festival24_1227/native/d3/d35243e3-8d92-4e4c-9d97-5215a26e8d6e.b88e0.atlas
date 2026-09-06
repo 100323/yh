@@ -1,0 +1,90 @@
+
+ydhd25_qiang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ydhd25_qiang
+  rotate: false
+  xy: 2, 157
+  size: 239, 343
+  orig: 240, 345
+  offset: 0, 1
+  index: -1
+ydhd25_qiang_dan
+  rotate: false
+  xy: 422, 182
+  size: 84, 70
+  orig: 86, 70
+  offset: 1, 0
+  index: -1
+ydhd25_qiang_dangai1
+  rotate: true
+  xy: 346, 66
+  size: 82, 76
+  orig: 83, 76
+  offset: 1, 0
+  index: -1
+ydhd25_qiang_dangai2
+  rotate: false
+  xy: 345, 227
+  size: 75, 97
+  orig: 75, 99
+  offset: 0, 1
+  index: -1
+ydhd25_qiang_lg
+  rotate: false
+  xy: 2, 2
+  size: 176, 153
+  orig: 177, 153
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_qiangba
+  rotate: false
+  xy: 258, 34
+  size: 86, 130
+  orig: 86, 132
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_s1
+  rotate: false
+  xy: 243, 326
+  size: 117, 174
+  orig: 117, 174
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_s2
+  rotate: false
+  xy: 362, 341
+  size: 127, 159
+  orig: 127, 159
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_shou1
+  rotate: false
+  xy: 243, 166
+  size: 100, 158
+  orig: 100, 159
+  offset: 0, 1
+  index: -1
+ydhd25_qiang_shou2
+  rotate: false
+  xy: 180, 6
+  size: 76, 149
+  orig: 77, 149
+  offset: 1, 0
+  index: -1
+ydhd25_qiang_xq
+  rotate: true
+  xy: 422, 254
+  size: 85, 80
+  orig: 87, 82
+  offset: 1, 1
+  index: -1
+ydhd25_qiang_xq1
+  rotate: true
+  xy: 346, 150
+  size: 75, 66
+  orig: 76, 66
+  offset: 0, 0
+  index: -1

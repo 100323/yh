@@ -1,0 +1,20 @@
+
+ymj_jingying5_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ymh_jingying5_msz
+  rotate: true
+  xy: 99, 23
+  size: 82, 44
+  orig: 82, 44
+  offset: 0, 0
+  index: -1
+ymj_jingying5_attack
+  rotate: true
+  xy: 2, 2
+  size: 103, 95
+  orig: 103, 95
+  offset: 0, 0
+  index: -1

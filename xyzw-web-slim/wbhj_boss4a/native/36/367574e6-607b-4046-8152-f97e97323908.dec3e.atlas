@@ -1,0 +1,118 @@
+
+wbhj_boss4a.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 332, 67
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_armr
+  rotate: false
+  xy: 370, 61
+  size: 140, 136
+  orig: 140, 136
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_attack1
+  rotate: false
+  xy: 124, 99
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_attack2
+  rotate: false
+  xy: 197, 2
+  size: 97, 94
+  orig: 111, 105
+  offset: 8, 5
+  index: -1
+wbhj_boss4a_body
+  rotate: false
+  xy: 2, 172
+  size: 193, 153
+  orig: 193, 153
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_cup
+  rotate: true
+  xy: 197, 98
+  size: 127, 171
+  orig: 127, 171
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_footl
+  rotate: true
+  xy: 124, 16
+  size: 39, 47
+  orig: 39, 47
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_footr
+  rotate: true
+  xy: 124, 57
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_handl
+  rotate: false
+  xy: 2, 55
+  size: 120, 115
+  orig: 120, 115
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_head
+  rotate: false
+  xy: 375, 199
+  size: 135, 126
+  orig: 135, 126
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_hip
+  rotate: false
+  xy: 197, 227
+  size: 176, 98
+  orig: 176, 98
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_mouth
+  rotate: false
+  xy: 296, 73
+  size: 34, 23
+  orig: 34, 23
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_nose
+  rotate: false
+  xy: 296, 43
+  size: 28, 28
+  orig: 30, 28
+  offset: 1, 0
+  index: -1
+wbhj_boss4a_skill3
+  rotate: true
+  xy: 173, 81
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_skill4
+  rotate: false
+  xy: 173, 28
+  size: 14, 23
+  orig: 14, 23
+  offset: 0, 0
+  index: -1
+wbhj_boss4a_skill5
+  rotate: false
+  xy: 173, 53
+  size: 20, 26
+  orig: 20, 26
+  offset: 0, 0
+  index: -1

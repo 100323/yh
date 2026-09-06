@@ -1,0 +1,13 @@
+
+yuling_1118.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dly_shen
+  rotate: false
+  xy: 2, 2
+  size: 205, 190
+  orig: 205, 190
+  offset: 0, 0
+  index: -1

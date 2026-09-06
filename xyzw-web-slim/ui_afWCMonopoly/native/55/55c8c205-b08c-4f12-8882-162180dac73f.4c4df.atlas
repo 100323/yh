@@ -1,0 +1,41 @@
+
+sjb_cup.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+banner4_star1
+  rotate: false
+  xy: 109, 72
+  size: 51, 59
+  orig: 55, 61
+  offset: 2, 1
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 98, 133
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+sjb2_cup1
+  rotate: false
+  xy: 2, 79
+  size: 94, 156
+  orig: 94, 156
+  offset: 0, 0
+  index: -1
+sjb2_cup2
+  rotate: false
+  xy: 2, 2
+  size: 105, 75
+  orig: 105, 75
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 109, 38
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+huatuo8_skill_loop.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo8_skill2_zd1
+  rotate: false
+  xy: 300, 2
+  size: 260, 121
+  orig: 260, 121
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_zd2
+  rotate: false
+  xy: 2, 3
+  size: 296, 120
+  orig: 296, 120
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_zd3
+  rotate: false
+  xy: 339, 161
+  size: 260, 89
+  orig: 260, 89
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_zdd1
+  rotate: true
+  xy: 562, 20
+  size: 139, 53
+  orig: 139, 53
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_zdd2
+  rotate: false
+  xy: 339, 133
+  size: 53, 26
+  orig: 53, 26
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_zdd3
+  rotate: false
+  xy: 2, 125
+  size: 335, 125
+  orig: 335, 125
+  offset: 0, 0
+  index: -1
+huatuo8_skill2_zdlizi
+  rotate: false
+  xy: 394, 136
+  size: 56, 23
+  orig: 56, 23
+  offset: 0, 0
+  index: -1

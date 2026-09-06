@@ -1,0 +1,76 @@
+
+gfjx_cz_liuhuo.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cizhui_liuhuo_chang_g
+  rotate: false
+  xy: 126, 2
+  size: 128, 53
+  orig: 128, 53
+  offset: 0, 0
+  index: -1
+cizhui_liuhuo_chang_huo1
+  rotate: false
+  xy: 71, 106
+  size: 89, 33
+  orig: 100, 50
+  offset: 8, 16
+  index: -1
+cizhui_liuhuo_chang_huo2
+  rotate: false
+  xy: 66, 70
+  size: 83, 34
+  orig: 85, 37
+  offset: 1, 2
+  index: -1
+cizhui_liuhuo_chang_ying
+  rotate: false
+  xy: 2, 26
+  size: 122, 42
+  orig: 122, 42
+  offset: 0, 0
+  index: -1
+cizhui_liuhuo_chang_ys1
+  rotate: false
+  xy: 2, 123
+  size: 17, 16
+  orig: 19, 18
+  offset: 1, 1
+  index: -1
+cizhui_liuhuo_chang_ys2
+  rotate: false
+  xy: 211, 105
+  size: 35, 34
+  orig: 37, 36
+  offset: 1, 1
+  index: -1
+cizhui_liuhuo_duan_g
+  rotate: false
+  xy: 151, 57
+  size: 74, 46
+  orig: 82, 55
+  offset: 3, 5
+  index: -1
+cizhui_liuhuo_duan_huo1
+  rotate: false
+  xy: 21, 107
+  size: 48, 32
+  orig: 50, 34
+  offset: 1, 1
+  index: -1
+cizhui_liuhuo_duan_huo2
+  rotate: false
+  xy: 162, 106
+  size: 47, 33
+  orig: 50, 35
+  offset: 2, 1
+  index: -1
+cizhui_liuhuo_duan_ying
+  rotate: false
+  xy: 2, 72
+  size: 62, 33
+  orig: 74, 42
+  offset: 4, 5
+  index: -1

@@ -1,0 +1,90 @@
+
+xxwky_kaixiang.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 902, 63
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_bs
+  rotate: true
+  xy: 950, 313
+  size: 182, 43
+  orig: 182, 44
+  offset: 0, 1
+  index: -1
+xxwky_kaixiangzi_gai1
+  rotate: false
+  xy: 560, 111
+  size: 357, 169
+  orig: 358, 169
+  offset: 1, 0
+  index: -1
+xxwky_kaixiangzi_gai2
+  rotate: false
+  xy: 2, 22
+  size: 365, 175
+  orig: 365, 175
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_he
+  rotate: false
+  xy: 278, 282
+  size: 354, 213
+  orig: 354, 215
+  offset: 0, 1
+  index: -1
+xxwky_kaixiangzi_suo1
+  rotate: false
+  xy: 278, 231
+  size: 280, 49
+  orig: 282, 50
+  offset: 1, 1
+  index: -1
+xxwky_kaixiangzi_suo2
+  rotate: false
+  xy: 478, 24
+  size: 282, 41
+  orig: 282, 41
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_xing
+  rotate: true
+  xy: 478, 67
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_ying
+  rotate: false
+  xy: 369, 123
+  size: 175, 106
+  orig: 175, 106
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_zha1
+  rotate: true
+  xy: 369, 2
+  size: 119, 107
+  orig: 119, 107
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_zha3
+  rotate: true
+  xy: 2, 199
+  size: 296, 274
+  orig: 296, 274
+  offset: 0, 0
+  index: -1
+xxwky_kaixiangzi_zhazha2
+  rotate: false
+  xy: 762, 17
+  size: 138, 92
+  orig: 138, 92
+  offset: 0, 0
+  index: -1

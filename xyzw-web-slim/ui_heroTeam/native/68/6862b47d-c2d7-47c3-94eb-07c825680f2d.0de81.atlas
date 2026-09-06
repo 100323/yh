@@ -1,0 +1,76 @@
+
+qhzr_can2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+monster1_effect_scary
+  rotate: false
+  xy: 208, 35
+  size: 58, 59
+  orig: 58, 59
+  offset: 0, 0
+  index: -1
+monster_die_jar1
+  rotate: false
+  xy: 2, 38
+  size: 204, 214
+  orig: 204, 214
+  offset: 0, 0
+  index: -1
+monster_die_jar2
+  rotate: true
+  xy: 348, 71
+  size: 181, 108
+  orig: 181, 108
+  offset: 0, 0
+  index: -1
+monster_die_jar3
+  rotate: false
+  xy: 208, 96
+  size: 138, 156
+  orig: 138, 156
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 159, 11
+  size: 25, 23
+  orig: 26, 26
+  offset: 1, 1
+  index: -1
+zbz_fight_sc1
+  rotate: false
+  xy: 132, 8
+  size: 25, 28
+  orig: 25, 28
+  offset: 0, 0
+  index: -1
+zbz_fight_sc2
+  rotate: false
+  xy: 2, 2
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+zbz_fight_sc4
+  rotate: false
+  xy: 76, 9
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+zbz_fight_sc5
+  rotate: true
+  xy: 105, 7
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+zbz_fight_sc6
+  rotate: false
+  xy: 35, 12
+  size: 39, 24
+  orig: 39, 24
+  offset: 0, 0
+  index: -1

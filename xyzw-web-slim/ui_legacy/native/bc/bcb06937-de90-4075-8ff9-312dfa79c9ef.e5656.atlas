@@ -1,0 +1,27 @@
+
+gfjx26_dhjf.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gfjx26_dhjf
+  rotate: true
+  xy: 2, 2
+  size: 78, 88
+  orig: 78, 88
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 92, 35
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1
+ui_jifen_light
+  rotate: false
+  xy: 2, 82
+  size: 167, 168
+  orig: 167, 168
+  offset: 0, 0
+  index: -1

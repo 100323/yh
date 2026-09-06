@@ -1,0 +1,97 @@
+
+txk_zhugeliang8.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dian_000
+  rotate: true
+  xy: 281, 60
+  size: 66, 58
+  orig: 68, 60
+  offset: 1, 1
+  index: -1
+dian_001
+  rotate: true
+  xy: 226, 56
+  size: 70, 53
+  orig: 72, 55
+  offset: 1, 1
+  index: -1
+dian_002
+  rotate: true
+  xy: 163, 54
+  size: 72, 61
+  orig: 74, 63
+  offset: 1, 1
+  index: -1
+dian_003
+  rotate: false
+  xy: 292, 3
+  size: 62, 55
+  orig: 64, 57
+  offset: 1, 1
+  index: -1
+txk_qlzhuge_1
+  rotate: true
+  xy: 117, 2
+  size: 47, 63
+  orig: 49, 65
+  offset: 1, 1
+  index: -1
+txk_qlzhuge_3
+  rotate: true
+  xy: 67, 49
+  size: 77, 32
+  orig: 79, 34
+  offset: 1, 1
+  index: -1
+txk_qlzhuge_4
+  rotate: true
+  xy: 2, 16
+  size: 110, 63
+  orig: 112, 65
+  offset: 1, 1
+  index: -1
+zhugeliang8_skill_bgbai
+  rotate: true
+  xy: 341, 91
+  size: 35, 17
+  orig: 37, 19
+  offset: 1, 1
+  index: -1
+zhugeliang8_skill_bgbaitw
+  rotate: true
+  xy: 67, 5
+  size: 42, 48
+  orig: 44, 51
+  offset: 1, 1
+  index: -1
+zhugeliang8_skill_bghei
+  rotate: true
+  xy: 270, 15
+  size: 39, 20
+  orig: 41, 22
+  offset: 1, 1
+  index: -1
+zhugeliang8_zs_bao
+  rotate: true
+  xy: 232, 7
+  size: 47, 36
+  orig: 47, 36
+  offset: 0, 0
+  index: -1
+zhugeliang8_zs_bdlz1
+  rotate: true
+  xy: 101, 51
+  size: 75, 60
+  orig: 75, 60
+  offset: 0, 0
+  index: -1
+zhugeliang8_zs_bdyuan
+  rotate: false
+  xy: 182, 4
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1

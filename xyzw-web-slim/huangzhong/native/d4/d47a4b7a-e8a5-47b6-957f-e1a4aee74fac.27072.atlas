@@ -1,0 +1,13 @@
+
+huangzhong_attack_loop.png
+size: 32,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huangzhong_skill1
+  rotate: false
+  xy: 2, 2
+  size: 24, 102
+  orig: 24, 102
+  offset: 0, 0
+  index: -1

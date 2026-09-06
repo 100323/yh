@@ -1,0 +1,258 @@
+
+guojia5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia5_attack_loop5
+  rotate: false
+  xy: 138, 8
+  size: 81, 101
+  orig: 81, 101
+  offset: 0, 0
+  index: -1
+guojia5_attack_loop6
+  rotate: false
+  xy: 290, 2
+  size: 34, 107
+  orig: 34, 107
+  offset: 0, 0
+  index: -1
+guojia5_bird1
+  rotate: true
+  xy: 385, 339
+  size: 31, 20
+  orig: 31, 20
+  offset: 0, 0
+  index: -1
+guojia5_bird2
+  rotate: true
+  xy: 442, 67
+  size: 47, 27
+  orig: 47, 27
+  offset: 0, 0
+  index: -1
+guojia5_bird3
+  rotate: false
+  xy: 135, 336
+  size: 149, 111
+  orig: 149, 111
+  offset: 0, 0
+  index: -1
+guojia5_birdw1
+  rotate: true
+  xy: 253, 148
+  size: 70, 27
+  orig: 70, 27
+  offset: 0, 0
+  index: -1
+guojia5_birdw2
+  rotate: false
+  xy: 292, 220
+  size: 113, 116
+  orig: 113, 116
+  offset: 0, 0
+  index: -1
+guojia5_birdw3
+  rotate: true
+  xy: 407, 242
+  size: 128, 76
+  orig: 128, 76
+  offset: 0, 0
+  index: -1
+guojia5_birdw4
+  rotate: true
+  xy: 367, 58
+  size: 64, 29
+  orig: 64, 29
+  offset: 0, 0
+  index: -1
+guojia5_body
+  rotate: true
+  xy: 2, 83
+  size: 151, 127
+  orig: 151, 127
+  offset: 0, 0
+  index: -1
+guojia5_eye
+  rotate: true
+  xy: 221, 8
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+guojia5_eyebrow
+  rotate: false
+  xy: 374, 22
+  size: 50, 28
+  orig: 50, 28
+  offset: 0, 0
+  index: -1
+guojia5_eyewhite
+  rotate: false
+  xy: 440, 35
+  size: 29, 30
+  orig: 29, 30
+  offset: 0, 0
+  index: -1
+guojia5_foot1
+  rotate: true
+  xy: 326, 8
+  size: 29, 46
+  orig: 29, 46
+  offset: 0, 0
+  index: -1
+guojia5_foot2
+  rotate: true
+  xy: 398, 52
+  size: 21, 40
+  orig: 21, 40
+  offset: 0, 0
+  index: -1
+guojia5_g1
+  rotate: false
+  xy: 253, 220
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+guojia5_g2
+  rotate: false
+  xy: 492, 485
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+guojia5_hair1
+  rotate: true
+  xy: 282, 168
+  size: 50, 77
+  orig: 50, 77
+  offset: 0, 0
+  index: -1
+guojia5_hair2
+  rotate: false
+  xy: 2, 236
+  size: 131, 211
+  orig: 131, 211
+  offset: 0, 0
+  index: -1
+guojia5_hair3
+  rotate: false
+  xy: 385, 372
+  size: 105, 130
+  orig: 105, 130
+  offset: 0, 0
+  index: -1
+guojia5_hair4
+  rotate: false
+  xy: 398, 75
+  size: 42, 39
+  orig: 42, 39
+  offset: 0, 0
+  index: -1
+guojia5_hair5
+  rotate: true
+  xy: 135, 242
+  size: 92, 155
+  orig: 92, 155
+  offset: 0, 0
+  index: -1
+guojia5_hand
+  rotate: true
+  xy: 326, 39
+  size: 71, 39
+  orig: 71, 39
+  offset: 0, 0
+  index: -1
+guojia5_hand2
+  rotate: false
+  xy: 221, 19
+  size: 67, 90
+  orig: 67, 90
+  offset: 0, 0
+  index: -1
+guojia5_head
+  rotate: true
+  xy: 135, 148
+  size: 92, 116
+  orig: 92, 116
+  offset: 0, 0
+  index: -1
+guojia5_mouth
+  rotate: true
+  xy: 2, 2
+  size: 79, 134
+  orig: 79, 134
+  offset: 0, 0
+  index: -1
+guojia5_necklece
+  rotate: false
+  xy: 407, 145
+  size: 75, 47
+  orig: 75, 47
+  offset: 0, 0
+  index: -1
+guojia5_shoulder
+  rotate: false
+  xy: 407, 194
+  size: 77, 46
+  orig: 77, 46
+  offset: 0, 0
+  index: -1
+guojia5_weapon1
+  rotate: false
+  xy: 2, 449
+  size: 373, 53
+  orig: 373, 53
+  offset: 0, 0
+  index: -1
+guojia5_weapon2
+  rotate: true
+  xy: 402, 116
+  size: 27, 62
+  orig: 27, 62
+  offset: 0, 0
+  index: -1
+guojia5_weaponlight
+  rotate: false
+  xy: 131, 111
+  size: 188, 35
+  orig: 190, 38
+  offset: 1, 1
+  index: -1
+guojia5_xiu
+  rotate: true
+  xy: 286, 338
+  size: 109, 97
+  orig: 109, 97
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 361, 124
+  size: 39, 48
+  orig: 39, 48
+  offset: 0, 0
+  index: -1
+simayi7_effect1
+  rotate: true
+  xy: 321, 112
+  size: 54, 38
+  orig: 54, 38
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 466, 119
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 361, 174
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1

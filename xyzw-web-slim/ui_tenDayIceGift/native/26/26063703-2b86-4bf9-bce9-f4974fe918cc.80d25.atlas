@@ -1,0 +1,34 @@
+
+xshd_ui_bxlb2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penboss_kai_11
+  rotate: false
+  xy: 2, 94
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+penboss_kai_12
+  rotate: true
+  xy: 154, 94
+  size: 150, 124
+  orig: 150, 124
+  offset: 0, 0
+  index: -1
+penboss_kai_13
+  rotate: false
+  xy: 2, 2
+  size: 150, 90
+  orig: 150, 90
+  offset: 0, 0
+  index: -1
+penboss_kai_14
+  rotate: false
+  xy: 154, 20
+  size: 142, 72
+  orig: 142, 72
+  offset: 0, 0
+  index: -1

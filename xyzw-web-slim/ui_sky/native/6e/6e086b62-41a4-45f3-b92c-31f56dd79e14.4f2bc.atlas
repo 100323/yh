@@ -1,0 +1,41 @@
+
+tgcf_tgl_book.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_tgl_book1
+  rotate: false
+  xy: 352, 172
+  size: 327, 333
+  orig: 327, 337
+  offset: 0, 4
+  index: -1
+tgcf_tgl_book2
+  rotate: true
+  xy: 681, 178
+  size: 327, 333
+  orig: 327, 337
+  offset: 0, 4
+  index: -1
+tgcf_tgl_book3_2
+  rotate: true
+  xy: 2, 108
+  size: 397, 348
+  orig: 397, 348
+  offset: 0, 0
+  index: -1
+tgcf_tgl_book4
+  rotate: false
+  xy: 2, 23
+  size: 47, 83
+  orig: 47, 83
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1

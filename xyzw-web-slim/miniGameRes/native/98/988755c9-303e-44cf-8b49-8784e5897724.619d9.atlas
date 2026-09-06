@@ -1,0 +1,90 @@
+
+sdsl_boss5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 326, 330
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k1
+  rotate: false
+  xy: 91, 327
+  size: 233, 183
+  orig: 233, 183
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k10
+  rotate: true
+  xy: 369, 209
+  size: 150, 132
+  orig: 150, 132
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k2
+  rotate: false
+  xy: 2, 243
+  size: 87, 267
+  orig: 87, 267
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k3
+  rotate: false
+  xy: 2, 5
+  size: 240, 236
+  orig: 240, 236
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k4
+  rotate: true
+  xy: 346, 2
+  size: 53, 102
+  orig: 53, 102
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k5
+  rotate: true
+  xy: 369, 57
+  size: 150, 123
+  orig: 150, 123
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k6
+  rotate: false
+  xy: 91, 265
+  size: 63, 60
+  orig: 63, 60
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k7
+  rotate: true
+  xy: 326, 361
+  size: 149, 156
+  orig: 149, 156
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k8
+  rotate: false
+  xy: 244, 104
+  size: 123, 221
+  orig: 123, 221
+  offset: 0, 0
+  index: -1
+sdsl_boss_skill_k9
+  rotate: false
+  xy: 244, 9
+  size: 100, 93
+  orig: 100, 93
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 346, 86
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

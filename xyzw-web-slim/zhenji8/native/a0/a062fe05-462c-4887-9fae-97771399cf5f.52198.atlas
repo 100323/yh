@@ -1,0 +1,27 @@
+
+zhenji8_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhenji8_pg_guang
+  rotate: false
+  xy: 2, 5
+  size: 349, 96
+  orig: 349, 96
+  offset: 0, 0
+  index: -1
+zhenji8_pg_xing1
+  rotate: true
+  xy: 413, 23
+  size: 78, 58
+  orig: 88, 68
+  offset: 5, 5
+  index: -1
+zhenji8_pg_zhuan
+  rotate: true
+  xy: 353, 2
+  size: 99, 58
+  orig: 99, 58
+  offset: 0, 0
+  index: -1

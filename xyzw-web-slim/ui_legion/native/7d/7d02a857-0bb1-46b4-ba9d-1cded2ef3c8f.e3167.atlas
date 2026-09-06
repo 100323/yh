@@ -1,0 +1,202 @@
+
+jlb_man.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jlb_img_gouzi
+  rotate: true
+  xy: 117, 141
+  size: 96, 222
+  orig: 96, 222
+  offset: 0, 0
+  index: -1
+jlb_img_man_armla1
+  rotate: false
+  xy: 390, 231
+  size: 102, 90
+  orig: 102, 90
+  offset: 0, 0
+  index: -1
+jlb_img_man_armla2
+  rotate: true
+  xy: 144, 338
+  size: 71, 134
+  orig: 71, 134
+  offset: 0, 0
+  index: -1
+jlb_img_man_armlb1
+  rotate: false
+  xy: 198, 411
+  size: 101, 42
+  orig: 101, 42
+  offset: 0, 0
+  index: -1
+jlb_img_man_armlb2
+  rotate: false
+  xy: 280, 326
+  size: 82, 71
+  orig: 82, 71
+  offset: 0, 0
+  index: -1
+jlb_img_man_armra1
+  rotate: true
+  xy: 2, 185
+  size: 90, 113
+  orig: 90, 113
+  offset: 0, 0
+  index: -1
+jlb_img_man_armrb1
+  rotate: false
+  xy: 301, 399
+  size: 74, 47
+  orig: 74, 47
+  offset: 0, 0
+  index: -1
+jlb_img_man_body
+  rotate: true
+  xy: 113, 2
+  size: 137, 216
+  orig: 137, 228
+  offset: 0, 12
+  index: -1
+jlb_img_man_eye
+  rotate: false
+  xy: 2, 473
+  size: 46, 7
+  orig: 46, 7
+  offset: 0, 0
+  index: -1
+jlb_img_man_eyebrow
+  rotate: false
+  xy: 184, 462
+  size: 74, 18
+  orig: 74, 22
+  offset: 0, 4
+  index: -1
+jlb_img_man_eyewhite
+  rotate: false
+  xy: 50, 469
+  size: 64, 11
+  orig: 64, 11
+  offset: 0, 0
+  index: -1
+jlb_img_man_glasses
+  rotate: false
+  xy: 2, 371
+  size: 73, 57
+  orig: 73, 57
+  offset: 0, 0
+  index: -1
+jlb_img_man_hair
+  rotate: false
+  xy: 240, 239
+  size: 148, 82
+  orig: 148, 101
+  offset: 0, 5
+  index: -1
+jlb_img_man_handl1
+  rotate: true
+  xy: 377, 398
+  size: 48, 86
+  orig: 48, 86
+  offset: 0, 0
+  index: -1
+jlb_img_man_handl2
+  rotate: true
+  xy: 2, 430
+  size: 37, 84
+  orig: 37, 84
+  offset: 0, 0
+  index: -1
+jlb_img_man_head
+  rotate: true
+  xy: 2, 277
+  size: 76, 130
+  orig: 79, 130
+  offset: 3, 0
+  index: -1
+jlb_img_man_mouth
+  rotate: false
+  xy: 137, 421
+  size: 59, 39
+  orig: 59, 39
+  offset: 0, 0
+  index: -1
+jlb_img_man_nose
+  rotate: true
+  xy: 299, 455
+  size: 25, 31
+  orig: 25, 39
+  offset: 0, 7
+  index: -1
+jlb_img_man_tie
+  rotate: false
+  xy: 332, 448
+  size: 162, 32
+  orig: 162, 32
+  offset: 0, 0
+  index: -1
+jlb_img_mingce1
+  rotate: false
+  xy: 77, 355
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+jlb_img_mingce2
+  rotate: true
+  xy: 341, 121
+  size: 108, 141
+  orig: 108, 141
+  offset: 0, 0
+  index: -1
+jlb_img_owl1
+  rotate: false
+  xy: 148, 463
+  size: 34, 17
+  orig: 34, 17
+  offset: 0, 0
+  index: -1
+jlb_img_owl2
+  rotate: false
+  xy: 134, 247
+  size: 104, 89
+  orig: 104, 89
+  offset: 0, 0
+  index: -1
+jlb_img_owl3
+  rotate: false
+  xy: 364, 323
+  size: 90, 73
+  orig: 90, 73
+  offset: 0, 0
+  index: -1
+jlb_img_owl4
+  rotate: false
+  xy: 88, 425
+  size: 47, 39
+  orig: 47, 39
+  offset: 0, 0
+  index: -1
+jlb_img_owl5
+  rotate: false
+  xy: 116, 466
+  size: 30, 14
+  orig: 34, 16
+  offset: 0, 1
+  index: -1
+jlb_img_owl6
+  rotate: false
+  xy: 260, 460
+  size: 37, 20
+  orig: 37, 20
+  offset: 0, 0
+  index: -1
+jlb_man_shoubi_shoubis
+  rotate: false
+  xy: 2, 43
+  size: 109, 140
+  orig: 109, 141
+  offset: 0, 1
+  index: -1

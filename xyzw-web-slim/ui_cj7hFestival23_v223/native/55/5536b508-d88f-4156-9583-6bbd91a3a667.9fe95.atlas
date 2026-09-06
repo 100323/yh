@@ -1,0 +1,13 @@
+
+cdzx26_cj_box2.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhuangpeng
+  rotate: false
+  xy: 2, 2
+  size: 64, 59
+  orig: 64, 59
+  offset: 0, 0
+  index: -1

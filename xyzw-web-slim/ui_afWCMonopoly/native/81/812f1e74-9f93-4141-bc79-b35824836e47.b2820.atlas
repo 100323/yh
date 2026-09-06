@@ -1,0 +1,41 @@
+
+sjb2_tool1.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sjb2_box1_water
+  rotate: true
+  xy: 125, 51
+  size: 75, 21
+  orig: 75, 21
+  offset: 0, 0
+  index: -1
+sjb2_box2_borad1
+  rotate: false
+  xy: 77, 2
+  size: 73, 43
+  orig: 73, 43
+  offset: 0, 0
+  index: -1
+sjb2_box2_borad2
+  rotate: false
+  xy: 2, 5
+  size: 73, 33
+  orig: 73, 33
+  offset: 0, 0
+  index: -1
+sjb2_ping_ding
+  rotate: true
+  xy: 58, 47
+  size: 79, 65
+  orig: 79, 65
+  offset: 0, 0
+  index: -1
+sjb2_ping_tan
+  rotate: false
+  xy: 2, 40
+  size: 54, 86
+  orig: 54, 86
+  offset: 0, 0
+  index: -1

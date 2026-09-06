@@ -1,0 +1,83 @@
+
+ft2_guanyu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_qlguanyu2_huxul
+  rotate: false
+  xy: 321, 221
+  size: 41, 104
+  orig: 41, 104
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_huxur
+  rotate: false
+  xy: 195, 327
+  size: 200, 139
+  orig: 200, 139
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_lzhual
+  rotate: true
+  xy: 249, 43
+  size: 92, 116
+  orig: 92, 116
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_lzhuar
+  rotate: true
+  xy: 195, 219
+  size: 106, 124
+  orig: 106, 124
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_shen
+  rotate: false
+  xy: 2, 218
+  size: 191, 248
+  orig: 191, 248
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_tou
+  rotate: true
+  xy: 2, 2
+  size: 214, 245
+  orig: 214, 245
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_weiba
+  rotate: true
+  xy: 249, 137
+  size: 80, 160
+  orig: 80, 160
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_zsl
+  rotate: false
+  xy: 367, 17
+  size: 90, 118
+  orig: 90, 118
+  offset: 0, 0
+  index: -1
+ft_qlguanyu2_zsr
+  rotate: false
+  xy: 397, 320
+  size: 112, 146
+  orig: 116, 146
+  offset: 4, 0
+  index: -1
+tyxingchen1
+  rotate: true
+  xy: 364, 295
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: true
+  xy: 395, 297
+  size: 21, 62
+  orig: 21, 62
+  offset: 0, 0
+  index: -1

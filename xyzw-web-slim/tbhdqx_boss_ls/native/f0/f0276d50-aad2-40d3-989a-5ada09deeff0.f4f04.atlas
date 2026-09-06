@@ -1,0 +1,34 @@
+
+tbhdqx_boss_ls_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 199, 20
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_pu_1
+  rotate: true
+  xy: 103, 21
+  size: 103, 94
+  orig: 103, 94
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_pu_2
+  rotate: false
+  xy: 199, 68
+  size: 50, 56
+  orig: 50, 56
+  offset: 0, 0
+  index: -1
+tbhdqx_ls_pu_3
+  rotate: true
+  xy: 2, 2
+  size: 122, 99
+  orig: 122, 99
+  offset: 0, 0
+  index: -1

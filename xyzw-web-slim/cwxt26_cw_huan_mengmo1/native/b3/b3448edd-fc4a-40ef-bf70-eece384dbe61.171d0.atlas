@@ -1,0 +1,34 @@
+
+mengmo_skill_preview.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chituma_skill_preview_huang
+  rotate: false
+  xy: 2, 37
+  size: 212, 465
+  orig: 212, 465
+  offset: 0, 0
+  index: -1
+chituma_skill_preview_ma
+  rotate: false
+  xy: 474, 253
+  size: 238, 249
+  orig: 238, 249
+  offset: 0, 0
+  index: -1
+mengmo1
+  rotate: false
+  xy: 474, 2
+  size: 238, 249
+  orig: 238, 249
+  offset: 0, 0
+  index: -1
+mengmo3
+  rotate: true
+  xy: 216, 222
+  size: 280, 256
+  orig: 280, 256
+  offset: 0, 0
+  index: -1

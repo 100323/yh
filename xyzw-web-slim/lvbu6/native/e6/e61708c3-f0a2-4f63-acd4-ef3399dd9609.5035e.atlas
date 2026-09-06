@@ -1,0 +1,20 @@
+
+lvbu6_skill_line.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+lvbu6_skill2
+  rotate: false
+  xy: 2, 45
+  size: 239, 176
+  orig: 241, 185
+  offset: 1, 2
+  index: -1

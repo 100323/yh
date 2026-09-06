@@ -1,0 +1,48 @@
+
+ycxsz_banner_light.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_banner_ys_chi1
+  rotate: true
+  xy: 2, 2
+  size: 34, 77
+  orig: 34, 80
+  offset: 0, 1
+  index: -1
+ycxsz_banner_ys_chi2
+  rotate: true
+  xy: 141, 38
+  size: 36, 96
+  orig: 41, 102
+  offset: 4, 2
+  index: -1
+ycxsz_banner_ys_g1
+  rotate: false
+  xy: 153, 110
+  size: 116, 144
+  orig: 116, 144
+  offset: 0, 0
+  index: -1
+ycxsz_banner_ys_g2
+  rotate: true
+  xy: 2, 76
+  size: 178, 149
+  orig: 178, 149
+  offset: 0, 0
+  index: -1
+ycxsz_banner_ys_g4
+  rotate: true
+  xy: 2, 38
+  size: 36, 137
+  orig: 36, 137
+  offset: 0, 0
+  index: -1
+ycxsz_banner_ys_xing4
+  rotate: false
+  xy: 81, 18
+  size: 11, 18
+  orig: 11, 18
+  offset: 0, 0
+  index: -1

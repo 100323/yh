@@ -1,0 +1,48 @@
+
+wyhd25_xcjhd_xy.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_chest_star
+  rotate: false
+  xy: 285, 348
+  size: 30, 45
+  orig: 30, 45
+  offset: 0, 0
+  index: -1
+ui_jifen_light
+  rotate: false
+  xy: 285, 108
+  size: 167, 168
+  orig: 167, 168
+  offset: 0, 0
+  index: -1
+wyhd25_xcjhd_xy
+  rotate: true
+  xy: 345, 278
+  size: 146, 112
+  orig: 146, 134
+  offset: 0, 22
+  index: -1
+wyhd25_xcjhd_xy_g1
+  rotate: true
+  xy: 2, 111
+  size: 282, 281
+  orig: 290, 290
+  offset: 4, 5
+  index: -1
+wyhd25_xcjhd_xy_gy
+  rotate: true
+  xy: 2, 2
+  size: 107, 112
+  orig: 107, 112
+  offset: 0, 0
+  index: -1
+wyhd25_xcjhd_xy_jdt
+  rotate: false
+  xy: 2, 395
+  size: 341, 29
+  orig: 341, 29
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+jlb_ssjc.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 58, 2
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+ssjc_banner1
+  rotate: true
+  xy: 299, 125
+  size: 123, 99
+  orig: 123, 99
+  offset: 0, 0
+  index: -1
+ssjc_banner2
+  rotate: true
+  xy: 142, 88
+  size: 160, 155
+  orig: 160, 155
+  offset: 0, 0
+  index: -1
+ssjc_banner3
+  rotate: false
+  xy: 2, 41
+  size: 138, 207
+  orig: 138, 218
+  offset: 0, 11
+  index: -1
+ssjc_banner4
+  rotate: true
+  xy: 2, 5
+  size: 34, 54
+  orig: 34, 54
+  offset: 0, 0
+  index: -1
+ssjc_banner5
+  rotate: true
+  xy: 270, 10
+  size: 76, 56
+  orig: 76, 56
+  offset: 0, 0
+  index: -1
+ssjc_banner6
+  rotate: true
+  xy: 142, 12
+  size: 74, 62
+  orig: 74, 62
+  offset: 0, 0
+  index: -1
+ssjc_banner7
+  rotate: true
+  xy: 206, 14
+  size: 72, 62
+  orig: 72, 62
+  offset: 0, 0
+  index: -1

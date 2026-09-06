@@ -1,0 +1,13 @@
+
+sqhd26_w2_cj_box3.png
+size: 64,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+qiumen
+  rotate: false
+  xy: 2, 2
+  size: 57, 56
+  orig: 57, 56
+  offset: 0, 0
+  index: -1

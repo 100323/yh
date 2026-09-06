@@ -1,0 +1,41 @@
+
+yzxt_bg_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wyhd24_fk2_pao1
+  rotate: true
+  xy: 60, 447
+  size: 47, 49
+  orig: 50, 50
+  offset: 1, 0
+  index: -1
+wyhd24_fk2_pao2
+  rotate: false
+  xy: 26, 464
+  size: 32, 30
+  orig: 33, 34
+  offset: 0, 4
+  index: -1
+wyhd24_fk2_pao3
+  rotate: false
+  xy: 2, 475
+  size: 22, 19
+  orig: 22, 19
+  offset: 0, 0
+  index: -1
+yzxt_dingguang
+  rotate: false
+  xy: 2, 2
+  size: 472, 356
+  orig: 472, 356
+  offset: 0, 0
+  index: -1
+yzxt_jinengzhu
+  rotate: true
+  xy: 111, 360
+  size: 134, 142
+  orig: 134, 142
+  offset: 0, 0
+  index: -1

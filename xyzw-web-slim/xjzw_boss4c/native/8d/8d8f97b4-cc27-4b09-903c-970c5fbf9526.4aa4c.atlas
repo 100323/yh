@@ -1,0 +1,27 @@
+
+xjzw_boss4c_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjzw_boss4c_attack3
+  rotate: true
+  xy: 184, 8
+  size: 83, 122
+  orig: 83, 122
+  offset: 0, 0
+  index: -1
+xjzw_boss4c_attack4
+  rotate: true
+  xy: 2, 2
+  size: 89, 180
+  orig: 89, 180
+  offset: 0, 0
+  index: -1
+xjzw_boss4c_attack5
+  rotate: true
+  xy: 308, 13
+  size: 78, 108
+  orig: 78, 108
+  offset: 0, 0
+  index: -1

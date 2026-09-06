@@ -1,0 +1,13 @@
+
+dsqq_huner.png
+size: 102,123
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_huner
+  rotate: false
+  xy: 2, 2
+  size: 98, 119
+  orig: 98, 119
+  offset: 0, 0
+  index: -1

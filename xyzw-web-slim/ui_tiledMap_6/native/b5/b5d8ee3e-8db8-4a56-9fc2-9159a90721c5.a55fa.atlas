@@ -1,0 +1,48 @@
+
+yg_zy3_anim.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 157, 41
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+yg_effect_fire1
+  rotate: false
+  xy: 157, 92
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+yg_effect_fire2
+  rotate: false
+  xy: 157, 158
+  size: 48, 65
+  orig: 48, 65
+  offset: 0, 0
+  index: -1
+yg_effect_fire3
+  rotate: false
+  xy: 207, 166
+  size: 42, 57
+  orig: 42, 57
+  offset: 0, 0
+  index: -1
+yg_zy3_1
+  rotate: false
+  xy: 2, 2
+  size: 153, 221
+  orig: 153, 221
+  offset: 0, 0
+  index: -1
+yg_zy3_2
+  rotate: false
+  xy: 207, 119
+  size: 43, 45
+  orig: 43, 45
+  offset: 0, 0
+  index: -1

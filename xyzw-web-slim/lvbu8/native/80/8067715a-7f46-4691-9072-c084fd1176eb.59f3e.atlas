@@ -1,0 +1,27 @@
+
+lvbu8_skill_hit2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu8_skilla2
+  rotate: true
+  xy: 204, 11
+  size: 149, 150
+  orig: 149, 150
+  offset: 0, 0
+  index: -1
+lvbu8_skillb1
+  rotate: false
+  xy: 2, 18
+  size: 200, 142
+  orig: 200, 142
+  offset: 0, 0
+  index: -1
+lvbu8_skillb2
+  rotate: true
+  xy: 356, 2
+  size: 158, 122
+  orig: 158, 122
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,111 @@
+
+xiaobing5_gutou.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_eye_cry
+  rotate: true
+  xy: 85, 2
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_jiaol
+  rotate: true
+  xy: 335, 129
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_jiaor
+  rotate: true
+  xy: 335, 159
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_jj
+  rotate: false
+  xy: 157, 47
+  size: 94, 70
+  orig: 94, 70
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_ks
+  rotate: false
+  xy: 318, 132
+  size: 15, 35
+  orig: 15, 35
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_lh1
+  rotate: false
+  xy: 266, 119
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_lh2
+  rotate: true
+  xy: 328, 191
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_shen
+  rotate: false
+  xy: 2, 46
+  size: 153, 208
+  orig: 153, 208
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_shoul
+  rotate: true
+  xy: 178, 6
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_shour
+  rotate: true
+  xy: 218, 8
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_wei
+  rotate: false
+  xy: 2, 2
+  size: 81, 42
+  orig: 81, 42
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_wq
+  rotate: false
+  xy: 157, 119
+  size: 107, 135
+  orig: 107, 135
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_yan
+  rotate: true
+  xy: 138, 4
+  size: 40, 38
+  orig: 40, 38
+  offset: 0, 0
+  index: -1
+xiaobing5_gutou_zui
+  rotate: true
+  xy: 266, 169
+  size: 85, 60
+  orig: 85, 60
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 255, 9
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

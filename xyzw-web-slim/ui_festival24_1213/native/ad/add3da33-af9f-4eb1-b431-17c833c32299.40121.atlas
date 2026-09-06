@@ -1,0 +1,27 @@
+
+bcwrm_tongguan.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bcwrm_tongguan_1
+  rotate: false
+  xy: 149, 274
+  size: 159, 132
+  orig: 159, 132
+  offset: 0, 0
+  index: -1
+bcwrm_tongguan_2
+  rotate: false
+  xy: 2, 276
+  size: 145, 130
+  orig: 145, 130
+  offset: 0, 0
+  index: -1
+bcwrm_tongguan_3
+  rotate: false
+  xy: 2, 2
+  size: 324, 270
+  orig: 324, 270
+  offset: 0, 0
+  index: -1

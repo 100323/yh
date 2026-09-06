@@ -1,0 +1,41 @@
+
+lvbu10_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+lvbu10_pu_hit1
+  rotate: false
+  xy: 2, 33
+  size: 187, 208
+  orig: 187, 208
+  offset: 0, 0
+  index: -1
+lvbu10_pu_hit2
+  rotate: true
+  xy: 191, 85
+  size: 156, 143
+  orig: 156, 143
+  offset: 0, 0
+  index: -1
+lvbu10_pu_hit3
+  rotate: true
+  xy: 336, 127
+  size: 114, 123
+  orig: 114, 123
+  offset: 0, 0
+  index: -1
+lvbu10_pu_hit4
+  rotate: false
+  xy: 336, 5
+  size: 105, 120
+  orig: 105, 120
+  offset: 0, 0
+  index: -1

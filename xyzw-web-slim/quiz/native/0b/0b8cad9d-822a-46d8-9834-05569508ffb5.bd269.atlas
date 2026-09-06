@@ -1,0 +1,76 @@
+
+11650.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ter1
+  rotate: true
+  xy: 80, 72
+  size: 71, 96
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 2, 145
+  size: 253, 361
+  orig: 253, 361
+  offset: 0, 0
+  index: -1
+tui1
+  rotate: true
+  xy: 2, 2
+  size: 48, 143
+  orig: 48, 143
+  offset: 0, 0
+  index: -1
+tui2
+  rotate: true
+  xy: 2, 2
+  size: 48, 143
+  orig: 48, 143
+  offset: 0, 0
+  index: -1
+yanhei
+  rotate: false
+  xy: 80, 57
+  size: 13, 13
+  orig: 15, 15
+  offset: 1, 1
+  index: -1
+yanjing
+  rotate: false
+  xy: 2, 52
+  size: 76, 91
+  orig: 78, 93
+  offset: 1, 1
+  index: -1
+yanjing2
+  rotate: true
+  xy: 229, 18
+  size: 63, 61
+  orig: 63, 61
+  offset: 0, 0
+  index: -1
+yanjing2_1
+  rotate: false
+  xy: 256, 94
+  size: 39, 49
+  orig: 39, 49
+  offset: 0, 0
+  index: -1
+yuqi1
+  rotate: false
+  xy: 178, 83
+  size: 76, 60
+  orig: 78, 62
+  offset: 1, 1
+  index: -1
+yuqi2
+  rotate: false
+  xy: 147, 9
+  size: 80, 61
+  orig: 80, 61
+  offset: 0, 0
+  index: -1

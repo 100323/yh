@@ -1,0 +1,48 @@
+
+ydhd25_yu1.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ydhd25_yu1_wei
+  rotate: false
+  xy: 111, 13
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+ydhd25_yu2_shen
+  rotate: true
+  xy: 2, 8
+  size: 94, 107
+  orig: 94, 107
+  offset: 0, 0
+  index: -1
+ydhd25_yu2_shou1
+  rotate: true
+  xy: 160, 2
+  size: 48, 36
+  orig: 49, 36
+  offset: 0, 0
+  index: -1
+ydhd25_yu2_shou2
+  rotate: false
+  xy: 221, 49
+  size: 17, 27
+  orig: 17, 28
+  offset: 0, 1
+  index: -1
+ydhd25_yu2_wj
+  rotate: false
+  xy: 111, 52
+  size: 108, 50
+  orig: 108, 50
+  offset: 0, 0
+  index: -1
+ydhd25_yu2_yan
+  rotate: false
+  xy: 221, 78
+  size: 23, 24
+  orig: 25, 24
+  offset: 1, 0
+  index: -1

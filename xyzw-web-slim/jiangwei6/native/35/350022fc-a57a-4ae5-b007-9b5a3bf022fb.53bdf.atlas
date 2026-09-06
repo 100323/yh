@@ -1,0 +1,27 @@
+
+jiangwei6_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei6_pg_zha_1
+  rotate: true
+  xy: 150, 106
+  size: 109, 104
+  orig: 109, 104
+  offset: 0, 0
+  index: -1
+jiangwei6_pg_zha_2
+  rotate: false
+  xy: 2, 160
+  size: 146, 55
+  orig: 146, 55
+  offset: 0, 0
+  index: -1
+jiangwei6_pg_zha_3
+  rotate: false
+  xy: 2, 2
+  size: 234, 102
+  orig: 234, 102
+  offset: 0, 0
+  index: -1

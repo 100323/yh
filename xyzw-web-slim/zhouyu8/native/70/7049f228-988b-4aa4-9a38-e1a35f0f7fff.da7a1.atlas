@@ -1,0 +1,377 @@
+
+zhouyu8_skill_preview.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 835, 349
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xingchen1
+  rotate: false
+  xy: 541, 646
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+xingchen2
+  rotate: true
+  xy: 645, 3
+  size: 70, 124
+  orig: 70, 124
+  offset: 0, 0
+  index: -1
+xingjia
+  rotate: true
+  xy: 529, 350
+  size: 131, 128
+  orig: 131, 128
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 878, 854
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zhouyu8_bianshen
+  rotate: false
+  xy: 641, 650
+  size: 146, 94
+  orig: 146, 94
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_bg_jianciy
+  rotate: true
+  xy: 377, 20
+  size: 279, 55
+  orig: 279, 55
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_bg_xingchen2
+  rotate: true
+  xy: 828, 447
+  size: 48, 58
+  orig: 48, 58
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_bg_xingchen3
+  rotate: false
+  xy: 923, 625
+  size: 71, 54
+  orig: 71, 54
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_gdg
+  rotate: true
+  xy: 924, 776
+  size: 80, 64
+  orig: 80, 64
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_guangshu
+  rotate: false
+  xy: 746, 486
+  size: 76, 162
+  orig: 76, 162
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_hyq
+  rotate: false
+  xy: 746, 360
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_hyq1
+  rotate: true
+  xy: 886, 560
+  size: 58, 71
+  orig: 58, 71
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_hyq2
+  rotate: false
+  xy: 771, 2
+  size: 61, 71
+  orig: 61, 71
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_hyyt
+  rotate: true
+  xy: 541, 746
+  size: 79, 215
+  orig: 79, 215
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jiancir
+  rotate: true
+  xy: 681, 328
+  size: 320, 63
+  orig: 320, 63
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jiaogg1
+  rotate: false
+  xy: 246, 644
+  size: 90, 106
+  orig: 90, 106
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jiaogg2
+  rotate: true
+  xy: 434, 7
+  size: 71, 83
+  orig: 71, 83
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jiaogg3
+  rotate: true
+  xy: 789, 676
+  size: 75, 87
+  orig: 75, 87
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jj_jial
+  rotate: true
+  xy: 529, 187
+  size: 161, 125
+  orig: 161, 125
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jj_jian
+  rotate: false
+  xy: 353, 827
+  size: 232, 193
+  orig: 232, 194
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jj_tuil
+  rotate: false
+  xy: 353, 646
+  size: 186, 179
+  orig: 186, 179
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jj_wei
+  rotate: false
+  xy: 884, 25
+  size: 74, 167
+  orig: 74, 167
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jj_xiong
+  rotate: true
+  xy: 140, 810
+  size: 210, 211
+  orig: 210, 211
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_jj_yaoj
+  rotate: false
+  xy: 587, 845
+  size: 190, 175
+  orig: 190, 175
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_paodan1
+  rotate: true
+  xy: 656, 224
+  size: 102, 177
+  orig: 102, 177
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_paodan12
+  rotate: false
+  xy: 2, 644
+  size: 136, 376
+  orig: 136, 376
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_paodang1
+  rotate: false
+  xy: 846, 850
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_paodang2
+  rotate: false
+  xy: 906, 858
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_paodanxu
+  rotate: true
+  xy: 645, 75
+  size: 47, 164
+  orig: 47, 164
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_saoguang
+  rotate: false
+  xy: 964, 712
+  size: 51, 62
+  orig: 51, 62
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_shizig
+  rotate: true
+  xy: 377, 483
+  size: 161, 302
+  orig: 161, 302
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_shou
+  rotate: false
+  xy: 824, 558
+  size: 60, 60
+  orig: 61, 60
+  offset: 1, 0
+  index: -1
+zhouyu8_skill2_shoubi
+  rotate: false
+  xy: 779, 882
+  size: 222, 138
+  orig: 222, 138
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_shoubih
+  rotate: false
+  xy: 560, 6
+  size: 45, 36
+  orig: 45, 36
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_tou
+  rotate: true
+  xy: 2, 273
+  size: 369, 373
+  orig: 371, 373
+  offset: 1, 0
+  index: -1
+zhouyu8_skill2_tou1
+  rotate: true
+  xy: 828, 397
+  size: 48, 51
+  orig: 48, 51
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_tou2
+  rotate: false
+  xy: 377, 301
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_twh
+  rotate: true
+  xy: 656, 194
+  size: 28, 246
+  orig: 28, 246
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_twh1
+  rotate: true
+  xy: 140, 752
+  size: 56, 204
+  orig: 56, 204
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_twh4
+  rotate: false
+  xy: 835, 12
+  size: 47, 180
+  orig: 47, 180
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_txian
+  rotate: true
+  xy: 520, 124
+  size: 61, 313
+  orig: 61, 313
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_txian2
+  rotate: false
+  xy: 434, 176
+  size: 84, 123
+  orig: 84, 123
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_weiyan
+  rotate: false
+  xy: 824, 620
+  size: 97, 54
+  orig: 97, 54
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_xiang2
+  rotate: true
+  xy: 758, 753
+  size: 90, 164
+  orig: 90, 164
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_xingchen1
+  rotate: true
+  xy: 878, 681
+  size: 70, 84
+  orig: 70, 84
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_xiogg1
+  rotate: false
+  xy: 746, 410
+  size: 80, 74
+  orig: 80, 74
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_xiongl1
+  rotate: false
+  xy: 519, 3
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yan
+  rotate: false
+  xy: 434, 80
+  size: 83, 94
+  orig: 83, 94
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yang
+  rotate: false
+  xy: 519, 44
+  size: 124, 78
+  orig: 124, 78
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yanwu
+  rotate: true
+  xy: 824, 497
+  size: 59, 62
+  orig: 59, 62
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_yuan
+  rotate: true
+  xy: 140, 647
+  size: 103, 104
+  orig: 103, 104
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_zz
+  rotate: true
+  xy: 779, 850
+  size: 30, 65
+  orig: 30, 65
+  offset: 0, 0
+  index: -1

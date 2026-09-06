@@ -1,0 +1,146 @@
+
+sgzy26_plt.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_zlys_sgzy_plt_di
+  rotate: true
+  xy: 2, 987
+  size: 11, 507
+  orig: 17, 514
+  offset: 4, 0
+  index: -1
+ycxsz_zlys_sgzy_plt_di1
+  rotate: false
+  xy: 2, 131
+  size: 289, 260
+  orig: 289, 260
+  offset: 0, 0
+  index: -1
+ycxsz_zlys_sgzy_plt_dian
+  rotate: false
+  xy: 260, 651
+  size: 290, 243
+  orig: 290, 243
+  offset: 0, 0
+  index: -1
+ycxsz_zlys_sgzy_plt_dian1
+  rotate: true
+  xy: 70, 917
+  size: 68, 93
+  orig: 74, 99
+  offset: 3, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_dian2
+  rotate: false
+  xy: 321, 906
+  size: 105, 79
+  orig: 115, 87
+  offset: 5, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_dian3
+  rotate: true
+  xy: 773, 947
+  size: 51, 60
+  orig: 57, 66
+  offset: 3, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_dian4
+  rotate: true
+  xy: 895, 935
+  size: 63, 65
+  orig: 70, 71
+  offset: 3, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_dig
+  rotate: true
+  xy: 511, 979
+  size: 19, 260
+  orig: 19, 260
+  offset: 0, 0
+  index: -1
+ycxsz_zlys_sgzy_plt_gy
+  rotate: false
+  xy: 835, 944
+  size: 58, 54
+  orig: 58, 54
+  offset: 0, 0
+  index: -1
+ycxsz_zlys_sgzy_plt_jj
+  rotate: false
+  xy: 321, 267
+  size: 569, 231
+  orig: 569, 261
+  offset: 0, 0
+  index: -1
+ycxsz_zlys_sgzy_plt_jp1
+  rotate: false
+  xy: 552, 500
+  size: 361, 236
+  orig: 374, 247
+  offset: 6, 5
+  index: -1
+ycxsz_zlys_sgzy_plt_jp2
+  rotate: true
+  xy: 574, 738
+  size: 204, 304
+  orig: 214, 316
+  offset: 4, 6
+  index: -1
+ycxsz_zlys_sgzy_plt_jp3
+  rotate: false
+  xy: 293, 8
+  size: 360, 257
+  orig: 372, 268
+  offset: 6, 6
+  index: -1
+ycxsz_zlys_sgzy_plt_jp4
+  rotate: true
+  xy: 2, 674
+  size: 234, 256
+  orig: 245, 266
+  offset: 5, 5
+  index: -1
+ycxsz_zlys_sgzy_plt_jp5
+  rotate: true
+  xy: 655, 2
+  size: 263, 277
+  orig: 276, 290
+  offset: 6, 7
+  index: -1
+ycxsz_zlys_sgzy_plt_jp6
+  rotate: true
+  xy: 2, 393
+  size: 256, 317
+  orig: 271, 334
+  offset: 7, 7
+  index: -1
+ycxsz_zlys_sgzy_plt_zk1
+  rotate: false
+  xy: 428, 896
+  size: 144, 81
+  orig: 151, 86
+  offset: 4, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_zk2
+  rotate: true
+  xy: 243, 910
+  size: 75, 76
+  orig: 81, 82
+  offset: 3, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_zk3
+  rotate: true
+  xy: 165, 917
+  size: 68, 76
+  orig: 74, 82
+  offset: 3, 3
+  index: -1
+ycxsz_zlys_sgzy_plt_zk4
+  rotate: true
+  xy: 2, 921
+  size: 64, 66
+  orig: 70, 72
+  offset: 3, 3
+  index: -1

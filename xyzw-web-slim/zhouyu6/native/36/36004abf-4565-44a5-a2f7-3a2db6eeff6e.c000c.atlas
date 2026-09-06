@@ -1,0 +1,13 @@
+
+zhouyu6_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhouyu6_attack4
+  rotate: false
+  xy: 2, 2
+  size: 186, 96
+  orig: 186, 96
+  offset: 0, 0
+  index: -1

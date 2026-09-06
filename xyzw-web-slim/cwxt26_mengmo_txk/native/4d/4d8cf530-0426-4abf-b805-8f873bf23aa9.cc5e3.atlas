@@ -1,0 +1,55 @@
+
+cwxt26_mengmo_txk.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mm_erji
+  rotate: false
+  xy: 187, 36
+  size: 69, 90
+  orig: 69, 91
+  offset: 0, 1
+  index: -1
+mm_maozi01
+  rotate: true
+  xy: 96, 34
+  size: 92, 89
+  orig: 92, 89
+  offset: 0, 0
+  index: -1
+mm_maozi02
+  rotate: true
+  xy: 2, 26
+  size: 100, 92
+  orig: 108, 92
+  offset: 0, 0
+  index: -1
+mm_toufa01
+  rotate: false
+  xy: 144, 4
+  size: 33, 28
+  orig: 33, 28
+  offset: 0, 0
+  index: -1
+mm_toufa02
+  rotate: false
+  xy: 96, 7
+  size: 46, 25
+  orig: 46, 25
+  offset: 0, 0
+  index: -1
+mm_yf01
+  rotate: true
+  xy: 187, 2
+  size: 32, 34
+  orig: 32, 34
+  offset: 0, 0
+  index: -1
+mm_yf02
+  rotate: false
+  xy: 258, 88
+  size: 34, 38
+  orig: 34, 38
+  offset: 0, 0
+  index: -1

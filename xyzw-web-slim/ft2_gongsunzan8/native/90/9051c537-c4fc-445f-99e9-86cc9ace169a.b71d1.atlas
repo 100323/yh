@@ -1,0 +1,97 @@
+
+ft2_gongsunzan8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_bhgsz_htuir
+  rotate: false
+  xy: 267, 135
+  size: 88, 104
+  orig: 88, 104
+  offset: 0, 0
+  index: -1
+ft_bhgsz_jjl
+  rotate: false
+  xy: 460, 15
+  size: 50, 154
+  orig: 50, 154
+  offset: 0, 0
+  index: -1
+ft_bhgsz_jjr
+  rotate: false
+  xy: 2, 73
+  size: 113, 242
+  orig: 113, 242
+  offset: 0, 0
+  index: -1
+ft_bhgsz_lizid
+  rotate: false
+  xy: 357, 68
+  size: 101, 101
+  orig: 101, 101
+  offset: 0, 0
+  index: -1
+ft_bhgsz_lizix
+  rotate: false
+  xy: 267, 241
+  size: 96, 115
+  orig: 96, 115
+  offset: 0, 0
+  index: -1
+ft_bhgsz_pd
+  rotate: false
+  xy: 177, 358
+  size: 186, 152
+  orig: 187, 152
+  offset: 0, 0
+  index: -1
+ft_bhgsz_qtuil
+  rotate: false
+  xy: 365, 337
+  size: 140, 173
+  orig: 140, 173
+  offset: 0, 0
+  index: -1
+ft_bhgsz_qtuir
+  rotate: false
+  xy: 2, 317
+  size: 173, 193
+  orig: 173, 193
+  offset: 0, 0
+  index: -1
+ft_bhgsz_shen
+  rotate: true
+  xy: 365, 171
+  size: 164, 118
+  orig: 164, 118
+  offset: 0, 0
+  index: -1
+ft_bhgsz_tf
+  rotate: false
+  xy: 231, 33
+  size: 110, 100
+  orig: 115, 100
+  offset: 0, 0
+  index: -1
+ft_bhgsz_tou
+  rotate: false
+  xy: 117, 141
+  size: 148, 174
+  orig: 148, 174
+  offset: 0, 0
+  index: -1
+ft_bhgsz_wb
+  rotate: false
+  xy: 117, 2
+  size: 112, 137
+  orig: 112, 137
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 231, 2
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,202 @@
+
+sunce5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 463, 324
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 123, 59
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+sunce5_arm
+  rotate: false
+  xy: 194, 166
+  size: 112, 133
+  orig: 112, 146
+  offset: 0, 0
+  index: -1
+sunce5_body
+  rotate: false
+  xy: 2, 325
+  size: 200, 160
+  orig: 200, 160
+  offset: 0, 0
+  index: -1
+sunce5_cloth
+  rotate: false
+  xy: 2, 65
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+sunce5_hair1
+  rotate: true
+  xy: 308, 177
+  size: 122, 107
+  orig: 122, 124
+  offset: 0, 17
+  index: -1
+sunce5_hair2
+  rotate: true
+  xy: 204, 301
+  size: 184, 155
+  orig: 184, 155
+  offset: 0, 0
+  index: -1
+sunce5_handl
+  rotate: false
+  xy: 167, 33
+  size: 49, 49
+  orig: 49, 52
+  offset: 0, 3
+  index: -1
+sunce5_handr
+  rotate: true
+  xy: 236, 97
+  size: 67, 61
+  orig: 67, 61
+  offset: 0, 0
+  index: -1
+sunce5_handr2
+  rotate: true
+  xy: 2, 2
+  size: 61, 71
+  orig: 61, 71
+  offset: 0, 0
+  index: -1
+sunce5_seffect1
+  rotate: true
+  xy: 398, 344
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+sunce5_seffect2
+  rotate: true
+  xy: 126, 235
+  size: 88, 66
+  orig: 88, 66
+  offset: 0, 0
+  index: -1
+sunce5_seffect3
+  rotate: true
+  xy: 171, 201
+  size: 32, 19
+  orig: 32, 19
+  offset: 0, 0
+  index: -1
+sunce5_seffect4
+  rotate: false
+  xy: 171, 84
+  size: 63, 80
+  orig: 63, 80
+  offset: 0, 0
+  index: -1
+sunce5_shoudler
+  rotate: true
+  xy: 236, 34
+  size: 61, 50
+  orig: 61, 50
+  offset: 0, 0
+  index: -1
+sunce5_weapon1
+  rotate: false
+  xy: 417, 194
+  size: 81, 117
+  orig: 81, 117
+  offset: 0, 0
+  index: -1
+sunce5_weapon2
+  rotate: false
+  xy: 361, 343
+  size: 35, 142
+  orig: 35, 142
+  offset: 0, 0
+  index: -1
+sunce5_weapon3
+  rotate: true
+  xy: 308, 133
+  size: 42, 122
+  orig: 42, 122
+  offset: 0, 0
+  index: -1
+sunce5_weapon4
+  rotate: false
+  xy: 126, 112
+  size: 43, 121
+  orig: 43, 121
+  offset: 0, 0
+  index: -1
+sunce5_weapon5
+  rotate: false
+  xy: 361, 313
+  size: 70, 28
+  orig: 70, 28
+  offset: 0, 0
+  index: -1
+sunce_beard
+  rotate: false
+  xy: 299, 78
+  size: 62, 53
+  orig: 62, 53
+  offset: 0, 0
+  index: -1
+sunce_eye
+  rotate: false
+  xy: 194, 316
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+sunce_eyebrow
+  rotate: true
+  xy: 75, 21
+  size: 42, 28
+  orig: 42, 28
+  offset: 0, 0
+  index: -1
+sunce_eyewhite
+  rotate: false
+  xy: 432, 345
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+sunce_head
+  rotate: false
+  xy: 398, 372
+  size: 99, 113
+  orig: 99, 113
+  offset: 0, 0
+  index: -1
+sunce_jaw
+  rotate: false
+  xy: 2, 194
+  size: 122, 129
+  orig: 122, 130
+  offset: 0, 0
+  index: -1
+sunce_legr
+  rotate: false
+  xy: 105, 26
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 171, 182
+  size: 17, 17
+  orig: 26, 26
+  offset: 6, 5
+  index: -1

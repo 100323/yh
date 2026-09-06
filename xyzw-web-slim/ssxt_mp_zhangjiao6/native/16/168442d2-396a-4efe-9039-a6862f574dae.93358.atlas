@@ -1,0 +1,90 @@
+
+ssxt_mp_zhangjiao6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mp_1
+  rotate: true
+  xy: 226, 6
+  size: 73, 64
+  orig: 73, 64
+  offset: 0, 0
+  index: -1
+mp_2
+  rotate: true
+  xy: 347, 144
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_3
+  rotate: true
+  xy: 226, 81
+  size: 81, 72
+  orig: 81, 72
+  offset: 0, 0
+  index: -1
+mp_zhangjiao6_1
+  rotate: false
+  xy: 2, 238
+  size: 234, 223
+  orig: 234, 223
+  offset: 0, 0
+  index: -1
+mp_zhangjiao6_2
+  rotate: true
+  xy: 238, 227
+  size: 234, 223
+  orig: 234, 223
+  offset: 0, 0
+  index: -1
+mp_zhangjiao6_3
+  rotate: true
+  xy: 2, 2
+  size: 234, 222
+  orig: 234, 222
+  offset: 0, 0
+  index: -1
+mp_zuo_1
+  rotate: false
+  xy: 300, 73
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_2
+  rotate: true
+  xy: 419, 25
+  size: 117, 61
+  orig: 117, 61
+  offset: 0, 0
+  index: -1
+mp_zuo_3
+  rotate: false
+  xy: 226, 164
+  size: 119, 61
+  orig: 119, 61
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 460, 207
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: true
+  xy: 421, 212
+  size: 13, 37
+  orig: 13, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 300, 136
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+znq2024_boss_ft_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_hsly_jn_guangyun
+  rotate: false
+  xy: 453, 217
+  size: 30, 32
+  orig: 30, 32
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_yan1
+  rotate: true
+  xy: 2, 25
+  size: 108, 139
+  orig: 108, 139
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_yan3
+  rotate: false
+  xy: 453, 151
+  size: 25, 64
+  orig: 25, 64
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_zga1
+  rotate: false
+  xy: 306, 251
+  size: 194, 234
+  orig: 194, 234
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_zha2
+  rotate: false
+  xy: 2, 135
+  size: 302, 350
+  orig: 302, 350
+  offset: 0, 0
+  index: -1
+dsqq_hsly_jn_zha3
+  rotate: true
+  xy: 306, 2
+  size: 247, 145
+  orig: 302, 350
+  offset: 55, 205
+  index: -1

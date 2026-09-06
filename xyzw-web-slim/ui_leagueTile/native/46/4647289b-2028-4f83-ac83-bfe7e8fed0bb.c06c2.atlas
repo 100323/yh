@@ -1,0 +1,48 @@
+
+hjls_effect_electric.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo2
+  rotate: false
+  xy: 240, 149
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+hjls_end_thunders1
+  rotate: false
+  xy: 126, 123
+  size: 112, 128
+  orig: 124, 142
+  offset: 5, 8
+  index: -1
+hjls_end_thunders2
+  rotate: true
+  xy: 241, 44
+  size: 103, 98
+  orig: 117, 109
+  offset: 6, 5
+  index: -1
+hjls_end_thunders3
+  rotate: true
+  xy: 126, 2
+  size: 119, 113
+  orig: 143, 138
+  offset: 18, 10
+  index: -1
+hjls_end_thunders4
+  rotate: false
+  xy: 2, 94
+  size: 122, 157
+  orig: 136, 171
+  offset: 9, 5
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 2, 76
+  size: 16, 12
+  orig: 26, 26
+  offset: 5, 8
+  index: -1

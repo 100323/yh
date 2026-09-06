@@ -1,0 +1,55 @@
+
+sunjian6_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 130, 9
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+sunjian6_attack1
+  rotate: true
+  xy: 72, 14
+  size: 39, 56
+  orig: 39, 59
+  offset: 0, 3
+  index: -1
+sunjian6_attack2
+  rotate: false
+  xy: 140, 98
+  size: 68, 24
+  orig: 68, 24
+  offset: 0, 0
+  index: -1
+sunjian6_attack3
+  rotate: true
+  xy: 2, 2
+  size: 51, 68
+  orig: 51, 68
+  offset: 0, 0
+  index: -1
+sunjian6_attack4
+  rotate: true
+  xy: 270, 26
+  size: 96, 86
+  orig: 96, 86
+  offset: 0, 0
+  index: -1
+sunjian6_attack5
+  rotate: false
+  xy: 2, 55
+  size: 136, 67
+  orig: 137, 67
+  offset: 1, 0
+  index: -1
+sunjian6_attack6
+  rotate: false
+  xy: 176, 4
+  size: 92, 92
+  orig: 92, 92
+  offset: 0, 0
+  index: -1

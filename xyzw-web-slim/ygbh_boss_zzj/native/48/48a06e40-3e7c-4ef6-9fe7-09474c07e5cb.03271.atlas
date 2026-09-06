@@ -1,0 +1,69 @@
+
+ygbh_boss_zzj_attack_hit.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 966, 193
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_1
+  rotate: false
+  xy: 543, 27
+  size: 93, 98
+  orig: 93, 98
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_2
+  rotate: true
+  xy: 727, 44
+  size: 81, 94
+  orig: 82, 94
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_dian
+  rotate: false
+  xy: 638, 21
+  size: 87, 104
+  orig: 87, 104
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_g1
+  rotate: false
+  xy: 204, 15
+  size: 172, 224
+  orig: 172, 224
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_g2
+  rotate: true
+  xy: 543, 127
+  size: 112, 287
+  orig: 112, 287
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_zha
+  rotate: false
+  xy: 2, 34
+  size: 200, 205
+  orig: 200, 205
+  offset: 0, 0
+  index: -1
+ygbh_boss_zzj_pg_zhua1
+  rotate: true
+  xy: 832, 2
+  size: 237, 132
+  orig: 238, 134
+  offset: 0, 1
+  index: -1
+ygbh_boss_zzj_pg_zhua2
+  rotate: false
+  xy: 378, 21
+  size: 163, 218
+  orig: 163, 218
+  offset: 0, 0
+  index: -1

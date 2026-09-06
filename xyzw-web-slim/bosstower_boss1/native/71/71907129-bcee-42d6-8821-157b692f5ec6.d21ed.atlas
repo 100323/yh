@@ -1,0 +1,69 @@
+
+bosstower_boss1_attack_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bosstower_boss1_tx11
+  rotate: false
+  xy: 280, 302
+  size: 167, 55
+  orig: 167, 55
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx12
+  rotate: false
+  xy: 164, 316
+  size: 114, 41
+  orig: 114, 41
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx13
+  rotate: false
+  xy: 2, 323
+  size: 96, 34
+  orig: 96, 34
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx14
+  rotate: false
+  xy: 72, 240
+  size: 281, 60
+  orig: 281, 61
+  offset: 0, 1
+  index: -1
+bosstower_boss1_tx15
+  rotate: false
+  xy: 2, 148
+  size: 248, 90
+  orig: 248, 90
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx16
+  rotate: false
+  xy: 252, 2
+  size: 220, 204
+  orig: 221, 204
+  offset: 0, 0
+  index: -1
+bosstower_boss1_tx7
+  rotate: false
+  xy: 355, 208
+  size: 96, 92
+  orig: 99, 94
+  offset: 1, 1
+  index: -1
+bosstower_boss1_tx8
+  rotate: false
+  xy: 100, 320
+  size: 62, 37
+  orig: 65, 38
+  offset: 2, 1
+  index: -1
+bosstower_boss1_tx9
+  rotate: false
+  xy: 2, 253
+  size: 68, 68
+  orig: 77, 76
+  offset: 5, 4
+  index: -1

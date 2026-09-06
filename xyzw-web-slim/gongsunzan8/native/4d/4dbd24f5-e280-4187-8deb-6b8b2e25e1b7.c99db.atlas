@@ -1,0 +1,41 @@
+
+gongsunzan8_buff_bmjj_p3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan8_buff_di
+  rotate: false
+  xy: 222, 2
+  size: 269, 203
+  orig: 269, 203
+  offset: 0, 0
+  index: -1
+gongsunzan8_buff_g
+  rotate: true
+  xy: 2, 272
+  size: 94, 100
+  orig: 94, 100
+  offset: 0, 0
+  index: -1
+gongsunzan8_buff_huo1
+  rotate: true
+  xy: 2, 58
+  size: 169, 218
+  orig: 169, 218
+  offset: 0, 0
+  index: -1
+gongsunzan8_buff_huo2
+  rotate: true
+  xy: 288, 207
+  size: 159, 218
+  orig: 159, 218
+  offset: 0, 0
+  index: -1
+gongsunzan8_buff_huo3
+  rotate: true
+  xy: 104, 229
+  size: 137, 182
+  orig: 137, 182
+  offset: 0, 0
+  index: -1

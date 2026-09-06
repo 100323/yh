@@ -1,0 +1,118 @@
+
+zhouyu4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce_skill1
+  rotate: false
+  xy: 181, 164
+  size: 130, 45
+  orig: 130, 45
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 313, 189
+  size: 19, 20
+  orig: 22, 22
+  offset: 2, 1
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 405, 213
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_boom
+  rotate: false
+  xy: 2, 2
+  size: 75, 73
+  orig: 75, 73
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_effect1
+  rotate: true
+  xy: 476, 456
+  size: 53, 11
+  orig: 53, 11
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_fire1_1
+  rotate: false
+  xy: 174, 211
+  size: 83, 298
+  orig: 83, 298
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_fire1_2
+  rotate: true
+  xy: 259, 287
+  size: 63, 203
+  orig: 63, 203
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_fire1_3
+  rotate: true
+  xy: 259, 211
+  size: 43, 144
+  orig: 43, 144
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_fire2_1
+  rotate: false
+  xy: 92, 198
+  size: 80, 311
+  orig: 80, 311
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_fire2_2
+  rotate: true
+  xy: 259, 352
+  size: 63, 222
+  orig: 63, 222
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_fire2_3
+  rotate: true
+  xy: 181, 85
+  size: 39, 123
+  orig: 39, 123
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_light
+  rotate: false
+  xy: 2, 77
+  size: 88, 432
+  orig: 88, 432
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_lightball
+  rotate: true
+  xy: 92, 83
+  size: 113, 87
+  orig: 114, 88
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_lightline
+  rotate: true
+  xy: 181, 126
+  size: 36, 129
+  orig: 36, 129
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_weapon1
+  rotate: false
+  xy: 259, 256
+  size: 214, 29
+  orig: 214, 29
+  offset: 0, 0
+  index: -1
+zhouyu4_skill_weapon2
+  rotate: false
+  xy: 259, 417
+  size: 215, 92
+  orig: 215, 92
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,125 @@
+
+kpyx6_change.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bianshen_00000
+  rotate: false
+  xy: 263, 226
+  size: 80, 25
+  orig: 138, 146
+  offset: 29, 11
+  index: -1
+bianshen_00001
+  rotate: true
+  xy: 221, 2
+  size: 96, 28
+  orig: 138, 146
+  offset: 21, 10
+  index: -1
+bianshen_00002
+  rotate: false
+  xy: 377, 253
+  size: 109, 31
+  orig: 138, 146
+  offset: 15, 8
+  index: -1
+bianshen_00003
+  rotate: true
+  xy: 345, 133
+  size: 118, 72
+  orig: 138, 146
+  offset: 10, 7
+  index: -1
+bianshen_00004
+  rotate: true
+  xy: 2, 94
+  size: 122, 114
+  orig: 138, 146
+  offset: 8, 6
+  index: -1
+bianshen_00005
+  rotate: false
+  xy: 141, 100
+  size: 126, 124
+  orig: 138, 146
+  offset: 6, 6
+  index: -1
+bianshen_00006
+  rotate: false
+  xy: 138, 364
+  size: 130, 125
+  orig: 138, 146
+  offset: 4, 5
+  index: -1
+bianshen_00007
+  rotate: true
+  xy: 2, 218
+  size: 132, 137
+  orig: 138, 146
+  offset: 3, 4
+  index: -1
+bianshen_00008
+  rotate: false
+  xy: 2, 352
+  size: 134, 137
+  orig: 138, 146
+  offset: 2, 4
+  index: -1
+bianshen_00009
+  rotate: true
+  xy: 141, 226
+  size: 136, 120
+  orig: 138, 146
+  offset: 1, 4
+  index: -1
+bianshen_00010
+  rotate: false
+  xy: 263, 253
+  size: 112, 109
+  orig: 138, 146
+  offset: 13, 9
+  index: -1
+bianshen_00011
+  rotate: false
+  xy: 270, 381
+  size: 108, 108
+  orig: 138, 146
+  offset: 15, 10
+  index: -1
+bianshen_00012
+  rotate: false
+  xy: 377, 286
+  size: 112, 93
+  orig: 138, 146
+  offset: 13, 15
+  index: -1
+bianshen_00013
+  rotate: false
+  xy: 380, 400
+  size: 108, 89
+  orig: 138, 146
+  offset: 15, 15
+  index: -1
+bianshen_00014
+  rotate: false
+  xy: 269, 61
+  size: 104, 70
+  orig: 138, 146
+  offset: 16, 16
+  index: -1
+bianshen_00015
+  rotate: false
+  xy: 118, 45
+  size: 101, 53
+  orig: 138, 146
+  offset: 18, 35
+  index: -1
+bianshen_00016
+  rotate: false
+  xy: 2, 44
+  size: 98, 48
+  orig: 138, 146
+  offset: 19, 40
+  index: -1

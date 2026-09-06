@@ -1,0 +1,34 @@
+
+hjls_chsd_jin_1.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls_ch_guangdian
+  rotate: true
+  xy: 161, 2
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+hjls_ch_shandian1
+  rotate: false
+  xy: 2, 20
+  size: 86, 89
+  orig: 86, 89
+  offset: 0, 0
+  index: -1
+hjls_ch_shandian2
+  rotate: false
+  xy: 161, 43
+  size: 93, 66
+  orig: 93, 66
+  offset: 0, 0
+  index: -1
+hjls_ch_shandian3
+  rotate: true
+  xy: 90, 11
+  size: 98, 69
+  orig: 98, 69
+  offset: 0, 0
+  index: -1

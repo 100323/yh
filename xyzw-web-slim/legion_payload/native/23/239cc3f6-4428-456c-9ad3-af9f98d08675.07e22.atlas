@@ -1,0 +1,160 @@
+
+tgcf_pty_purple.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+binfa_r
+  rotate: true
+  xy: 144, 14
+  size: 33, 46
+  orig: 33, 46
+  offset: 0, 0
+  index: -1
+biyan
+  rotate: false
+  xy: 100, 309
+  size: 58, 50
+  orig: 58, 50
+  offset: 0, 0
+  index: -1
+bozi
+  rotate: true
+  xy: 100, 294
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+dabi_l
+  rotate: true
+  xy: 54, 11
+  size: 33, 20
+  orig: 33, 20
+  offset: 0, 0
+  index: -1
+faji
+  rotate: false
+  xy: 2, 46
+  size: 94, 74
+  orig: 94, 74
+  offset: 0, 0
+  index: -1
+gebo_r
+  rotate: true
+  xy: 144, 49
+  size: 71, 33
+  orig: 71, 33
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 212, 43
+  size: 125, 102
+  orig: 125, 102
+  offset: 0, 0
+  index: -1
+liuhai_r
+  rotate: true
+  xy: 98, 31
+  size: 89, 44
+  orig: 89, 44
+  offset: 0, 0
+  index: -1
+mei
+  rotate: true
+  xy: 298, 327
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+piaodai1
+  rotate: false
+  xy: 2, 291
+  size: 96, 217
+  orig: 96, 217
+  offset: 0, 0
+  index: -1
+piaodai2
+  rotate: false
+  xy: 212, 147
+  size: 84, 212
+  orig: 84, 212
+  offset: 0, 0
+  index: -1
+qin
+  rotate: false
+  xy: 2, 122
+  size: 208, 167
+  orig: 214, 173
+  offset: 3, 3
+  index: -1
+shenti
+  rotate: false
+  xy: 271, 377
+  size: 134, 131
+  orig: 134, 131
+  offset: 0, 0
+  index: -1
+shou_r
+  rotate: true
+  xy: 179, 49
+  size: 22, 30
+  orig: 22, 30
+  offset: 0, 0
+  index: -1
+tgcf_dj_wy_2
+  rotate: false
+  xy: 134, 298
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+toufa
+  rotate: false
+  xy: 100, 361
+  size: 169, 147
+  orig: 169, 147
+  offset: 0, 0
+  index: -1
+toushi1
+  rotate: false
+  xy: 2, 2
+  size: 50, 42
+  orig: 50, 42
+  offset: 0, 0
+  index: -1
+toushi2
+  rotate: true
+  xy: 179, 73
+  size: 47, 31
+  orig: 47, 31
+  offset: 0, 0
+  index: -1
+xiaobi_l
+  rotate: true
+  xy: 76, 2
+  size: 27, 52
+  orig: 27, 52
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 145, 294
+  size: 13, 8
+  orig: 13, 13
+  offset: 0, 4
+  index: -1
+yan
+  rotate: true
+  xy: 160, 297
+  size: 62, 46
+  orig: 62, 47
+  offset: 0, 1
+  index: -1
+zui
+  rotate: true
+  xy: 117, 295
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1

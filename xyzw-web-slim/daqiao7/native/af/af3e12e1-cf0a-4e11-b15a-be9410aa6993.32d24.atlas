@@ -1,0 +1,27 @@
+
+daqiao7_armor_intro.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hudun_2
+  rotate: false
+  xy: 306, 2
+  size: 201, 244
+  orig: 201, 244
+  offset: 0, 0
+  index: -1
+hudun_3
+  rotate: false
+  xy: 2, 12
+  size: 146, 76
+  orig: 146, 76
+  offset: 0, 0
+  index: -1
+hudun_4
+  rotate: false
+  xy: 2, 90
+  size: 302, 156
+  orig: 302, 156
+  offset: 0, 0
+  index: -1

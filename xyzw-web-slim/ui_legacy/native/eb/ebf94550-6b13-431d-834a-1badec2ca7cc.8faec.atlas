@@ -1,0 +1,48 @@
+
+gfjx_cz_xingye.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gfjx26_cz_xy_dx
+  rotate: true
+  xy: 91, 36
+  size: 15, 19
+  orig: 17, 21
+  offset: 1, 1
+  index: -1
+gfjx26_cz_xy_xing1
+  rotate: false
+  xy: 91, 27
+  size: 8, 7
+  orig: 10, 9
+  offset: 1, 1
+  index: -1
+gfjx26_cz_xy_xing1x
+  rotate: false
+  xy: 72, 23
+  size: 17, 28
+  orig: 17, 28
+  offset: 0, 0
+  index: -1
+gfjx26_cz_xy_xw
+  rotate: false
+  xy: 2, 2
+  size: 68, 49
+  orig: 68, 49
+  offset: 0, 0
+  index: -1
+gfjx26_cz_xy_xx1
+  rotate: false
+  xy: 101, 26
+  size: 6, 8
+  orig: 8, 10
+  offset: 1, 1
+  index: -1
+gfjx26_cz_xy_xx4
+  rotate: true
+  xy: 72, 3
+  size: 18, 27
+  orig: 20, 29
+  offset: 1, 1
+  index: -1

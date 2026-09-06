@@ -1,0 +1,62 @@
+
+ydhd25_yu2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ydhd25_yu1_shen
+  rotate: true
+  xy: 2, 21
+  size: 95, 107
+  orig: 95, 107
+  offset: 0, 0
+  index: -1
+ydhd25_yu1_shou1
+  rotate: true
+  xy: 211, 9
+  size: 48, 35
+  orig: 49, 35
+  offset: 0, 0
+  index: -1
+ydhd25_yu1_wei
+  rotate: true
+  xy: 172, 17
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+ydhd25_yu1_weij
+  rotate: false
+  xy: 111, 66
+  size: 108, 50
+  orig: 108, 50
+  offset: 0, 0
+  index: -1
+ydhd25_yu2_shou2
+  rotate: true
+  xy: 2, 2
+  size: 17, 27
+  orig: 17, 28
+  offset: 0, 1
+  index: -1
+ydhd25_yu2_yan
+  rotate: false
+  xy: 221, 59
+  size: 23, 24
+  orig: 25, 24
+  offset: 1, 0
+  index: -1
+ydhd25_yu_yan1
+  rotate: false
+  xy: 221, 85
+  size: 29, 31
+  orig: 29, 31
+  offset: 0, 0
+  index: -1
+ydhd25_yu_yan2
+  rotate: false
+  xy: 111, 17
+  size: 59, 47
+  orig: 59, 47
+  offset: 0, 0
+  index: -1

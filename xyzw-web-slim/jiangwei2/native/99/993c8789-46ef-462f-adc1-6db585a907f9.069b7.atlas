@@ -1,0 +1,69 @@
+
+jiangwei2_skill_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_ensflare
+  rotate: true
+  xy: 252, 41
+  size: 85, 83
+  orig: 85, 83
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 160, 36
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 389, 35
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+jiangwei2_arrow
+  rotate: true
+  xy: 252, 3
+  size: 36, 135
+  orig: 38, 137
+  offset: 1, 1
+  index: -1
+jiangwei2_skill1
+  rotate: false
+  xy: 160, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+jiangwei2_skill2
+  rotate: true
+  xy: 432, 2
+  size: 67, 69
+  orig: 71, 72
+  offset: 2, 2
+  index: -1
+jiangwei2_skill4
+  rotate: false
+  xy: 451, 71
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+jiangwei2_skill5
+  rotate: false
+  xy: 337, 78
+  size: 112, 48
+  orig: 115, 50
+  offset: 1, 1
+  index: -1
+jiangwei2_skill6
+  rotate: false
+  xy: 2, 31
+  size: 156, 95
+  orig: 156, 95
+  offset: 0, 0
+  index: -1

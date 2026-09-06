@@ -1,0 +1,223 @@
+
+dwhd25_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 395, 140
+  size: 150, 84
+  orig: 150, 84
+  offset: 0, 0
+  index: -1
+bgyun1
+  rotate: false
+  xy: 547, 83
+  size: 59, 61
+  orig: 59, 61
+  offset: 0, 0
+  index: -1
+bgyun2
+  rotate: false
+  xy: 395, 226
+  size: 272, 125
+  orig: 272, 125
+  offset: 0, 0
+  index: -1
+bs
+  rotate: false
+  xy: 1003, 472
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+fangzi
+  rotate: true
+  xy: 2, 109
+  size: 379, 391
+  orig: 379, 391
+  offset: 0, 0
+  index: -1
+heye1
+  rotate: true
+  xy: 1003, 340
+  size: 40, 9
+  orig: 40, 9
+  offset: 0, 0
+  index: -1
+heye2
+  rotate: false
+  xy: 822, 199
+  size: 89, 31
+  orig: 89, 31
+  offset: 0, 0
+  index: -1
+heye3
+  rotate: false
+  xy: 608, 101
+  size: 83, 30
+  orig: 85, 30
+  offset: 0, 0
+  index: -1
+heye4
+  rotate: true
+  xy: 620, 133
+  size: 91, 13
+  orig: 92, 13
+  offset: 1, 0
+  index: -1
+heye5
+  rotate: true
+  xy: 499, 48
+  size: 90, 43
+  orig: 90, 43
+  offset: 0, 0
+  index: -1
+heye6
+  rotate: true
+  xy: 635, 187
+  size: 37, 22
+  orig: 37, 22
+  offset: 0, 0
+  index: -1
+heye7
+  rotate: true
+  xy: 1003, 382
+  size: 88, 15
+  orig: 88, 15
+  offset: 0, 0
+  index: -1
+heye8
+  rotate: true
+  xy: 946, 335
+  size: 153, 16
+  orig: 154, 16
+  offset: 1, 0
+  index: -1
+shan
+  rotate: false
+  xy: 395, 353
+  size: 392, 135
+  orig: 393, 135
+  offset: 1, 0
+  index: -1
+yu1_shenti
+  rotate: false
+  xy: 789, 316
+  size: 155, 172
+  orig: 155, 172
+  offset: 0, 0
+  index: -1
+yu1_shoul
+  rotate: false
+  xy: 954, 18
+  size: 62, 66
+  orig: 62, 66
+  offset: 0, 0
+  index: -1
+yu1_shour
+  rotate: false
+  xy: 946, 196
+  size: 74, 137
+  orig: 74, 137
+  offset: 0, 0
+  index: -1
+yu1_yan
+  rotate: false
+  xy: 693, 106
+  size: 38, 45
+  orig: 38, 45
+  offset: 0, 0
+  index: -1
+yu2_maozi
+  rotate: true
+  xy: 822, 232
+  size: 82, 114
+  orig: 82, 114
+  offset: 0, 0
+  index: -1
+yu2_shenti
+  rotate: false
+  xy: 669, 153
+  size: 151, 161
+  orig: 151, 161
+  offset: 0, 0
+  index: -1
+yu2_shou
+  rotate: false
+  xy: 913, 200
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+yu2_yan
+  rotate: true
+  xy: 669, 317
+  size: 34, 49
+  orig: 34, 49
+  offset: 0, 0
+  index: -1
+yu3_dengzi
+  rotate: true
+  xy: 954, 86
+  size: 108, 68
+  orig: 108, 68
+  offset: 0, 0
+  index: -1
+yu3_han
+  rotate: false
+  xy: 635, 173
+  size: 11, 12
+  orig: 17, 34
+  offset: 2, 0
+  index: -1
+yu3_shenti
+  rotate: false
+  xy: 822, 28
+  size: 130, 166
+  orig: 130, 166
+  offset: 0, 0
+  index: -1
+yu3_shou
+  rotate: false
+  xy: 757, 318
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+yu3_weiba
+  rotate: true
+  xy: 547, 146
+  size: 78, 71
+  orig: 78, 72
+  offset: 0, 1
+  index: -1
+yu3_yan
+  rotate: true
+  xy: 720, 322
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+yu3_zongye
+  rotate: false
+  xy: 450, 25
+  size: 47, 113
+  orig: 49, 113
+  offset: 0, 0
+  index: -1
+yun1
+  rotate: true
+  xy: 395, 2
+  size: 136, 53
+  orig: 137, 53
+  offset: 1, 0
+  index: -1
+zhezhao
+  rotate: true
+  xy: 964, 338
+  size: 150, 37
+  orig: 150, 37
+  offset: 0, 0
+  index: -1

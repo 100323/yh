@@ -1,0 +1,55 @@
+
+sqhd26_zhuweiyu2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+y_yu1
+  rotate: false
+  xy: 365, 105
+  size: 91, 99
+  orig: 91, 99
+  offset: 0, 0
+  index: -1
+y_yu2
+  rotate: true
+  xy: 275, 90
+  size: 10, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+y_yu3
+  rotate: false
+  xy: 234, 45
+  size: 39, 55
+  orig: 39, 55
+  offset: 0, 0
+  index: -1
+y_yu4
+  rotate: true
+  xy: 234, 102
+  size: 102, 129
+  orig: 102, 129
+  offset: 0, 0
+  index: -1
+y_yu5
+  rotate: true
+  xy: 2, 2
+  size: 202, 230
+  orig: 202, 230
+  offset: 0, 0
+  index: -1
+y_yu6
+  rotate: true
+  xy: 234, 7
+  size: 36, 47
+  orig: 36, 47
+  offset: 0, 0
+  index: -1
+y_yu7
+  rotate: false
+  xy: 365, 36
+  size: 58, 67
+  orig: 58, 69
+  offset: 0, 2
+  index: -1

@@ -1,0 +1,62 @@
+
+zhenji4_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 409, 54
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 215, 4
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+zhenji4_skill_07
+  rotate: true
+  xy: 2, 2
+  size: 245, 211
+  orig: 245, 211
+  offset: 0, 0
+  index: -1
+zhenji4_skill_08
+  rotate: true
+  xy: 344, 2
+  size: 36, 78
+  orig: 36, 78
+  offset: 0, 0
+  index: -1
+zhenji4_skill_09
+  rotate: false
+  xy: 344, 40
+  size: 63, 113
+  orig: 63, 113
+  offset: 0, 0
+  index: -1
+zhenji4_skill_10
+  rotate: true
+  xy: 344, 155
+  size: 92, 156
+  orig: 92, 156
+  offset: 0, 0
+  index: -1
+zhenji4_skill_11
+  rotate: false
+  xy: 215, 30
+  size: 127, 217
+  orig: 127, 217
+  offset: 0, 0
+  index: -1
+zhenji4_skill_12
+  rotate: true
+  xy: 409, 100
+  size: 53, 74
+  orig: 53, 74
+  offset: 0, 0
+  index: -1

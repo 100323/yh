@@ -1,0 +1,69 @@
+
+dengshenwei_skill_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dengshen_effect01
+  rotate: false
+  xy: 331, 77
+  size: 47, 49
+  orig: 47, 49
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle1
+  rotate: false
+  xy: 170, 71
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle2
+  rotate: false
+  xy: 280, 73
+  size: 49, 53
+  orig: 50, 53
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle3
+  rotate: false
+  xy: 278, 16
+  size: 51, 53
+  orig: 53, 54
+  offset: 1, 1
+  index: -1
+dengshen_effect_circle4
+  rotate: true
+  xy: 331, 49
+  size: 26, 24
+  orig: 26, 25
+  offset: 0, 1
+  index: -1
+dengshen_effect_circle6
+  rotate: false
+  xy: 227, 71
+  size: 51, 55
+  orig: 52, 55
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle7
+  rotate: false
+  xy: 227, 13
+  size: 49, 56
+  orig: 50, 56
+  offset: 0, 0
+  index: -1
+dengshen_effect_circle8
+  rotate: false
+  xy: 170, 14
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+dengshen_skill01
+  rotate: false
+  xy: 2, 2
+  size: 166, 124
+  orig: 171, 128
+  offset: 3, 2
+  index: -1

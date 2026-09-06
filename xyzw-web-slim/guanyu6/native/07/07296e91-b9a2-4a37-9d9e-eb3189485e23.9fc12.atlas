@@ -1,0 +1,41 @@
+
+guanyu6_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu_ua01
+  rotate: false
+  xy: 131, 60
+  size: 104, 112
+  orig: 106, 113
+  offset: 1, 1
+  index: -1
+guanyu_ua02
+  rotate: false
+  xy: 2, 87
+  size: 127, 85
+  orig: 128, 90
+  offset: 1, 1
+  index: -1
+guanyu_ua03
+  rotate: false
+  xy: 2, 2
+  size: 68, 83
+  orig: 68, 83
+  offset: 0, 0
+  index: -1
+guanyu_ua04
+  rotate: false
+  xy: 111, 22
+  size: 59, 36
+  orig: 59, 37
+  offset: 0, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 72, 48
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1

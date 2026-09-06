@@ -1,0 +1,104 @@
+
+cwxt26_axgp_chituma_cardshow.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: true
+  xy: 481, 323
+  size: 15, 13
+  orig: 16, 16
+  offset: 1, 1
+  index: -1
+ctm_jn_heiyan1
+  rotate: false
+  xy: 397, 368
+  size: 100, 119
+  orig: 100, 119
+  offset: 0, 0
+  index: -1
+ctm_jn_heiyan2
+  rotate: false
+  xy: 397, 210
+  size: 67, 72
+  orig: 67, 72
+  offset: 0, 0
+  index: -1
+ctm_jn_heiyan3
+  rotate: false
+  xy: 466, 246
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+ctm_jn_heiyan4
+  rotate: true
+  xy: 341, 221
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+ctm_jn_heiyan5
+  rotate: false
+  xy: 397, 284
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+ctm_jn_huo5_1
+  rotate: true
+  xy: 269, 211
+  size: 60, 70
+  orig: 60, 70
+  offset: 0, 0
+  index: -1
+ctm_jn_huo5_2
+  rotate: true
+  xy: 466, 171
+  size: 73, 33
+  orig: 73, 33
+  offset: 0, 0
+  index: -1
+ctm_jn_huo5_3
+  rotate: true
+  xy: 2, 46
+  size: 57, 77
+  orig: 57, 77
+  offset: 0, 0
+  index: -1
+ctm_jn_huo5_4
+  rotate: false
+  xy: 2, 273
+  size: 393, 214
+  orig: 393, 214
+  offset: 0, 0
+  index: -1
+ctm_jn_huo5_5
+  rotate: true
+  xy: 387, 2
+  size: 167, 66
+  orig: 167, 66
+  offset: 0, 0
+  index: -1
+ctm_jn_huo5_6
+  rotate: false
+  xy: 2, 105
+  size: 265, 166
+  orig: 265, 166
+  offset: 0, 0
+  index: -1
+ctm_jn_mati
+  rotate: false
+  xy: 269, 50
+  size: 116, 158
+  orig: 116, 158
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 481, 340
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

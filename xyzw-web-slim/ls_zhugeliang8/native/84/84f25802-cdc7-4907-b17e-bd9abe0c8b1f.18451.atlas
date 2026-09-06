@@ -1,0 +1,139 @@
+
+ls_zhugeliang8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lsjiangwei9_guangyun1
+  rotate: false
+  xy: 86, 231
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+lsjiangwei9_guangyun2
+  rotate: false
+  xy: 335, 329
+  size: 174, 174
+  orig: 174, 174
+  offset: 0, 0
+  index: -1
+lsjiangwei9_guangyun3
+  rotate: false
+  xy: 298, 11
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+lsjiangwei9_gy
+  rotate: false
+  xy: 298, 225
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+lszhuge9_chi1
+  rotate: true
+  xy: 335, 279
+  size: 48, 118
+  orig: 48, 118
+  offset: 0, 0
+  index: -1
+lszhuge9_chi4
+  rotate: false
+  xy: 455, 293
+  size: 47, 34
+  orig: 47, 34
+  offset: 0, 0
+  index: -1
+lszhuge9_chi5
+  rotate: true
+  xy: 335, 205
+  size: 72, 95
+  orig: 72, 95
+  offset: 0, 0
+  index: -1
+lszhuge9_dhxingx
+  rotate: false
+  xy: 2, 229
+  size: 82, 31
+  orig: 82, 31
+  offset: 0, 0
+  index: -1
+lszhuge9_xing1
+  rotate: false
+  xy: 455, 247
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+lszhugei8_tt
+  rotate: false
+  xy: 2, 2
+  size: 294, 201
+  orig: 294, 201
+  offset: 0, 0
+  index: -1
+lszhugei9_tt
+  rotate: false
+  xy: 2, 262
+  size: 331, 241
+  orig: 331, 241
+  offset: 0, 0
+  index: -1
+shui_000
+  rotate: false
+  xy: 504, 316
+  size: 6, 11
+  orig: 42, 42
+  offset: 21, 3
+  index: -1
+shui_002
+  rotate: false
+  xy: 432, 216
+  size: 15, 34
+  orig: 42, 42
+  offset: 12, 2
+  index: -1
+shui_004
+  rotate: false
+  xy: 485, 179
+  size: 23, 38
+  orig: 42, 42
+  offset: 8, 2
+  index: -1
+shui_006
+  rotate: true
+  xy: 298, 198
+  size: 25, 34
+  orig: 42, 42
+  offset: 7, 7
+  index: -1
+shui_008
+  rotate: true
+  xy: 449, 219
+  size: 26, 31
+  orig: 42, 42
+  offset: 6, 10
+  index: -1
+shui_010
+  rotate: false
+  xy: 485, 219
+  size: 24, 26
+  orig: 42, 42
+  offset: 8, 13
+  index: -1
+shui_012
+  rotate: false
+  xy: 432, 252
+  size: 19, 25
+  orig: 42, 42
+  offset: 10, 13
+  index: -1
+shui_014
+  rotate: false
+  xy: 504, 310
+  size: 6, 4
+  orig: 42, 42
+  offset: 11, 24
+  index: -1

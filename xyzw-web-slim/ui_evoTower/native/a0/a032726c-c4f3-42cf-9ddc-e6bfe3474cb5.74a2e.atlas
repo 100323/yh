@@ -1,0 +1,20 @@
+
+xsxjt_huomiao.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dy_h_huo3
+  rotate: false
+  xy: 2, 2
+  size: 80, 59
+  orig: 80, 59
+  offset: 0, 0
+  index: -1
+dy_h_huo4
+  rotate: true
+  xy: 84, 20
+  size: 41, 35
+  orig: 41, 35
+  offset: 0, 0
+  index: -1

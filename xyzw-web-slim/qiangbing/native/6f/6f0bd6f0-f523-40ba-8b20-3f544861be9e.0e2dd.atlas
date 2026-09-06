@@ -1,0 +1,118 @@
+
+qiangbing.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+monster5_body
+  rotate: true
+  xy: 199, 56
+  size: 91, 78
+  orig: 91, 78
+  offset: 0, 0
+  index: -1
+monster5_eye
+  rotate: true
+  xy: 103, 9
+  size: 34, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+monster5_handl
+  rotate: false
+  xy: 273, 150
+  size: 40, 26
+  orig: 40, 26
+  offset: 0, 0
+  index: -1
+monster5_handr
+  rotate: false
+  xy: 65, 2
+  size: 36, 41
+  orig: 37, 41
+  offset: 1, 0
+  index: -1
+monster5_hat1
+  rotate: false
+  xy: 273, 178
+  size: 62, 76
+  orig: 62, 76
+  offset: 0, 0
+  index: -1
+monster5_hat2
+  rotate: true
+  xy: 115, 149
+  size: 105, 84
+  orig: 106, 84
+  offset: 0, 0
+  index: -1
+monster5_hat3
+  rotate: false
+  xy: 279, 112
+  size: 25, 36
+  orig: 26, 36
+  offset: 1, 0
+  index: -1
+monster5_head
+  rotate: false
+  xy: 115, 52
+  size: 82, 95
+  orig: 82, 95
+  offset: 0, 0
+  index: -1
+monster5_jaw
+  rotate: false
+  xy: 201, 168
+  size: 70, 86
+  orig: 70, 86
+  offset: 0, 0
+  index: -1
+monster5_legl
+  rotate: false
+  xy: 251, 8
+  size: 30, 46
+  orig: 30, 46
+  offset: 0, 0
+  index: -1
+monster5_legr
+  rotate: false
+  xy: 251, 8
+  size: 30, 46
+  orig: 30, 46
+  offset: 0, 0
+  index: -1
+monster5_tail1
+  rotate: true
+  xy: 205, 3
+  size: 51, 44
+  orig: 51, 44
+  offset: 0, 0
+  index: -1
+monster5_tail2
+  rotate: true
+  xy: 279, 76
+  size: 34, 25
+  orig: 48, 40
+  offset: 6, 8
+  index: -1
+monster5_tail3
+  rotate: true
+  xy: 147, 4
+  size: 46, 56
+  orig: 46, 56
+  offset: 0, 0
+  index: -1
+monster5_weapon1
+  rotate: false
+  xy: 2, 9
+  size: 61, 34
+  orig: 61, 34
+  offset: 0, 0
+  index: -1
+monster5_weapon2
+  rotate: false
+  xy: 2, 45
+  size: 111, 209
+  orig: 111, 209
+  offset: 0, 0
+  index: -1

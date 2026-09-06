@@ -1,0 +1,41 @@
+
+kyxb26_cj_jiang.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_jiang1
+  rotate: true
+  xy: 153, 2
+  size: 49, 57
+  orig: 51, 58
+  offset: 1, 1
+  index: -1
+jiang_guang3
+  rotate: false
+  xy: 2, 38
+  size: 149, 76
+  orig: 149, 76
+  offset: 0, 0
+  index: -1
+jiang_guangdian
+  rotate: false
+  xy: 212, 25
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+jiang_guangdian1
+  rotate: true
+  xy: 212, 5
+  size: 18, 22
+  orig: 18, 22
+  offset: 0, 0
+  index: -1
+jiangjindai
+  rotate: true
+  xy: 153, 53
+  size: 61, 60
+  orig: 63, 61
+  offset: 1, 1
+  index: -1

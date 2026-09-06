@@ -1,0 +1,41 @@
+
+gjjl_refresh.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_refresh_01s
+  rotate: false
+  xy: 2, 2
+  size: 113, 113
+  orig: 113, 113
+  offset: 0, 0
+  index: -1
+ui_effect_light_box2
+  rotate: false
+  xy: 117, 32
+  size: 83, 83
+  orig: 85, 85
+  offset: 1, 1
+  index: -1
+ui_jiangli_saoguangline
+  rotate: true
+  xy: 131, 182
+  size: 62, 56
+  orig: 62, 56
+  offset: 0, 0
+  index: -1
+ui_skillup_halo
+  rotate: false
+  xy: 2, 117
+  size: 127, 127
+  orig: 127, 127
+  offset: 0, 0
+  index: -1
+ui_skillup_star
+  rotate: false
+  xy: 131, 151
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

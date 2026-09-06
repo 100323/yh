@@ -1,0 +1,83 @@
+
+mrdj_coins.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+test_00
+  rotate: false
+  xy: 2, 170
+  size: 84, 80
+  orig: 84, 80
+  offset: 0, 0
+  index: -1
+test_01
+  rotate: false
+  xy: 2, 110
+  size: 84, 58
+  orig: 84, 80
+  offset: 0, 8
+  index: -1
+test_02
+  rotate: false
+  xy: 145, 73
+  size: 84, 35
+  orig: 84, 80
+  offset: 0, 17
+  index: -1
+test_03
+  rotate: false
+  xy: 145, 43
+  size: 84, 28
+  orig: 84, 80
+  offset: 0, 18
+  index: -1
+test_04
+  rotate: true
+  xy: 2, 24
+  size: 84, 51
+  orig: 84, 80
+  offset: 0, 10
+  index: -1
+test_05
+  rotate: false
+  xy: 88, 177
+  size: 84, 73
+  orig: 84, 80
+  offset: 0, 2
+  index: -1
+test_06
+  rotate: true
+  xy: 174, 166
+  size: 84, 66
+  orig: 84, 80
+  offset: 0, 5
+  index: -1
+test_07
+  rotate: true
+  xy: 55, 24
+  size: 84, 43
+  orig: 84, 80
+  offset: 0, 13
+  index: -1
+test_08
+  rotate: false
+  xy: 2, 2
+  size: 82, 20
+  orig: 84, 80
+  offset: 2, 21
+  index: -1
+test_09
+  rotate: true
+  xy: 100, 24
+  size: 84, 43
+  orig: 84, 80
+  offset: 0, 13
+  index: -1
+test_10
+  rotate: false
+  xy: 88, 110
+  size: 84, 65
+  orig: 84, 80
+  offset: 0, 6
+  index: -1

@@ -1,0 +1,48 @@
+
+llqj25_cj_fashe.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_jian1
+  rotate: true
+  xy: 780, 50
+  size: 34, 165
+  orig: 35, 165
+  offset: 0, 0
+  index: -1
+choujiang_jian2
+  rotate: true
+  xy: 2, 2
+  size: 82, 270
+  orig: 82, 270
+  offset: 0, 0
+  index: -1
+choujiang_jian3
+  rotate: true
+  xy: 274, 2
+  size: 82, 97
+  orig: 82, 97
+  offset: 0, 0
+  index: -1
+choujiang_jian4
+  rotate: true
+  xy: 780, 5
+  size: 43, 128
+  orig: 45, 130
+  offset: 0, 1
+  index: -1
+choujiang_jian5
+  rotate: true
+  xy: 619, 35
+  size: 49, 159
+  orig: 49, 159
+  offset: 0, 0
+  index: -1
+choujiang_jian_6
+  rotate: true
+  xy: 373, 10
+  size: 74, 244
+  orig: 74, 244
+  offset: 0, 0
+  index: -1

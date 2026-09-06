@@ -1,0 +1,20 @@
+
+kyxb26_cj_guangbiao.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhunxing1
+  rotate: false
+  xy: 2, 2
+  size: 55, 49
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+zhunxing2
+  rotate: false
+  xy: 2, 53
+  size: 65, 65
+  orig: 67, 68
+  offset: 1, 1
+  index: -1

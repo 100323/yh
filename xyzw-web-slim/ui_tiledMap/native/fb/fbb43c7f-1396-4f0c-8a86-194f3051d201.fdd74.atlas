@@ -1,0 +1,27 @@
+
+ycxsz_jlb_dkbs.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 141, 16
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ycxsz_jlb_dkbs_2
+  rotate: false
+  xy: 83, 2
+  size: 56, 46
+  orig: 60, 48
+  offset: 2, 1
+  index: -1
+ycxsz_jlb_dkbs_4
+  rotate: true
+  xy: 2, 6
+  size: 42, 79
+  orig: 42, 79
+  offset: 0, 0
+  index: -1

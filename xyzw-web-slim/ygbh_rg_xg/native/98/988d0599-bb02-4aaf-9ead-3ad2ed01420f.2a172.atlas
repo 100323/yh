@@ -1,0 +1,55 @@
+
+ygbh_rg_xg.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygbh_rg_xg_douli
+  rotate: true
+  xy: 2, 11
+  size: 112, 82
+  orig: 112, 83
+  offset: 0, 0
+  index: -1
+ygbh_rg_xg_dp
+  rotate: false
+  xy: 2, 125
+  size: 115, 102
+  orig: 115, 102
+  offset: 0, 0
+  index: -1
+ygbh_rg_xg_lian
+  rotate: false
+  xy: 180, 2
+  size: 44, 41
+  orig: 44, 41
+  offset: 0, 0
+  index: -1
+ygbh_rg_xg_sha
+  rotate: true
+  xy: 119, 115
+  size: 112, 86
+  orig: 112, 86
+  offset: 0, 0
+  index: -1
+ygbh_rg_xg_shen
+  rotate: false
+  xy: 101, 41
+  size: 77, 72
+  orig: 77, 72
+  offset: 0, 0
+  index: -1
+ygbh_rg_xg_shou
+  rotate: true
+  xy: 180, 45
+  size: 68, 63
+  orig: 70, 66
+  offset: 1, 0
+  index: -1
+ygbh_rg_xg_xing
+  rotate: false
+  xy: 86, 102
+  size: 13, 21
+  orig: 13, 22
+  offset: 0, 1
+  index: -1

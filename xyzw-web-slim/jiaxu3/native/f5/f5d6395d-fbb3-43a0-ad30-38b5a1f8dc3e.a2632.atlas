@@ -1,0 +1,244 @@
+
+jiaxu3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 168, 118
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 160, 25
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 2, 25
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+jiaxu3_balloon1
+  rotate: true
+  xy: 168, 69
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+jiaxu3_balloon2
+  rotate: false
+  xy: 348, 176
+  size: 114, 105
+  orig: 114, 105
+  offset: 0, 0
+  index: -1
+jiaxu3_beard1
+  rotate: false
+  xy: 112, 34
+  size: 46, 55
+  orig: 49, 55
+  offset: 0, 0
+  index: -1
+jiaxu3_beard2
+  rotate: true
+  xy: 308, 243
+  size: 57, 38
+  orig: 57, 38
+  offset: 0, 0
+  index: -1
+jiaxu3_beard3
+  rotate: false
+  xy: 107, 2
+  size: 36, 30
+  orig: 36, 30
+  offset: 0, 0
+  index: -1
+jiaxu3_body
+  rotate: false
+  xy: 2, 243
+  size: 172, 158
+  orig: 172, 158
+  offset: 0, 0
+  index: -1
+jiaxu3_eyebrow
+  rotate: true
+  xy: 488, 178
+  size: 31, 15
+  orig: 31, 15
+  offset: 0, 0
+  index: -1
+jiaxu3_hat
+  rotate: true
+  xy: 352, 283
+  size: 118, 140
+  orig: 118, 140
+  offset: 0, 0
+  index: -1
+jiaxu3_legr
+  rotate: false
+  xy: 464, 218
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+jiaxu3_line
+  rotate: false
+  xy: 480, 169
+  size: 6, 47
+  orig: 6, 47
+  offset: 0, 0
+  index: -1
+jiaxu3_weapon
+  rotate: false
+  xy: 113, 91
+  size: 53, 150
+  orig: 53, 150
+  offset: 0, 0
+  index: -1
+jiaxu_chain1
+  rotate: true
+  xy: 494, 296
+  size: 52, 14
+  orig: 52, 14
+  offset: 0, 0
+  index: -1
+jiaxu_chain2
+  rotate: true
+  xy: 494, 253
+  size: 41, 14
+  orig: 41, 14
+  offset: 0, 0
+  index: -1
+jiaxu_chain3
+  rotate: true
+  xy: 492, 211
+  size: 40, 14
+  orig: 40, 14
+  offset: 0, 0
+  index: -1
+jiaxu_chain4
+  rotate: true
+  xy: 464, 178
+  size: 38, 14
+  orig: 38, 14
+  offset: 0, 0
+  index: -1
+jiaxu_chain5
+  rotate: true
+  xy: 494, 350
+  size: 51, 15
+  orig: 51, 15
+  offset: 0, 0
+  index: -1
+jiaxu_effect1
+  rotate: true
+  xy: 308, 192
+  size: 49, 33
+  orig: 51, 35
+  offset: 1, 1
+  index: -1
+jiaxu_effect2
+  rotate: true
+  xy: 305, 87
+  size: 50, 29
+  orig: 51, 31
+  offset: 0, 1
+  index: -1
+jiaxu_effect3
+  rotate: false
+  xy: 55, 28
+  size: 50, 39
+  orig: 51, 41
+  offset: 1, 1
+  index: -1
+jiaxu_effect4
+  rotate: true
+  xy: 305, 139
+  size: 51, 39
+  orig: 51, 39
+  offset: 0, 0
+  index: -1
+jiaxu_eye
+  rotate: false
+  xy: 464, 170
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+jiaxu_eyewhite
+  rotate: true
+  xy: 464, 251
+  size: 30, 26
+  orig: 30, 26
+  offset: 0, 0
+  index: -1
+jiaxu_handl1
+  rotate: true
+  xy: 346, 132
+  size: 42, 43
+  orig: 42, 46
+  offset: 0, 3
+  index: -1
+jiaxu_handl2
+  rotate: false
+  xy: 270, 55
+  size: 33, 39
+  orig: 35, 42
+  offset: 0, 3
+  index: -1
+jiaxu_handr
+  rotate: true
+  xy: 224, 53
+  size: 41, 44
+  orig: 41, 44
+  offset: 0, 0
+  index: -1
+jiaxu_head
+  rotate: true
+  xy: 176, 202
+  size: 98, 130
+  orig: 98, 130
+  offset: 0, 0
+  index: -1
+jiaxu_skill1
+  rotate: true
+  xy: 176, 302
+  size: 99, 174
+  orig: 102, 177
+  offset: 1, 1
+  index: -1
+jiaxu_skill2
+  rotate: false
+  xy: 252, 149
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+jiaxu_skill3
+  rotate: false
+  xy: 252, 96
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+jiaxu_skill4
+  rotate: true
+  xy: 2, 145
+  size: 96, 109
+  orig: 100, 112
+  offset: 2, 2
+  index: -1
+jiaxu_tail
+  rotate: false
+  xy: 2, 69
+  size: 108, 74
+  orig: 108, 74
+  offset: 0, 0
+  index: -1

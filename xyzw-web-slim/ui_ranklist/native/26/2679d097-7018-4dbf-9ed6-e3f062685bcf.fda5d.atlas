@@ -1,0 +1,48 @@
+
+ssxt_txk_zhouyu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ssxt_txk_1
+  rotate: false
+  xy: 2, 237
+  size: 313, 254
+  orig: 326, 254
+  offset: 12, 0
+  index: -1
+ssxt_txk_2
+  rotate: true
+  xy: 2, 24
+  size: 211, 117
+  orig: 221, 125
+  offset: 5, 4
+  index: -1
+ssxt_txk_3
+  rotate: true
+  xy: 317, 236
+  size: 255, 159
+  orig: 257, 160
+  offset: 1, 1
+  index: -1
+ssxt_txk_h1
+  rotate: true
+  xy: 121, 2
+  size: 120, 151
+  orig: 125, 160
+  offset: 4, 4
+  index: -1
+ssxt_txk_h2
+  rotate: true
+  xy: 121, 124
+  size: 111, 168
+  orig: 119, 176
+  offset: 4, 3
+  index: -1
+ssxt_txk_h23
+  rotate: true
+  xy: 274, 9
+  size: 113, 148
+  orig: 119, 156
+  offset: 3, 3
+  index: -1

@@ -1,0 +1,27 @@
+
+zqhd23_zhuan.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zqhd23_zw_h1
+  rotate: false
+  xy: 2, 2
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+zqhd23_zw_h2
+  rotate: false
+  xy: 183, 77
+  size: 119, 169
+  orig: 119, 169
+  offset: 0, 0
+  index: -1
+zqhd23_zw_h3
+  rotate: false
+  xy: 2, 49
+  size: 179, 197
+  orig: 179, 197
+  offset: 0, 0
+  index: -1

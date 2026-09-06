@@ -1,0 +1,286 @@
+
+zhangjiao5_2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 156, 278
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 231, 279
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+zhangjiao5_at1
+  rotate: true
+  xy: 607, 131
+  size: 101, 105
+  orig: 101, 105
+  offset: 0, 0
+  index: -1
+zhangjiao5_beard
+  rotate: true
+  xy: 269, 284
+  size: 41, 28
+  orig: 41, 28
+  offset: 0, 0
+  index: -1
+zhangjiao5_hz1
+  rotate: true
+  xy: 89, 276
+  size: 43, 65
+  orig: 43, 65
+  offset: 0, 0
+  index: -1
+zhangjiao5_hz2
+  rotate: true
+  xy: 2, 4
+  size: 56, 48
+  orig: 56, 48
+  offset: 0, 0
+  index: -1
+zhangjiao5_jaw
+  rotate: false
+  xy: 496, 148
+  size: 109, 149
+  orig: 109, 149
+  offset: 0, 0
+  index: -1
+zhangjiao5_jiaol
+  rotate: false
+  xy: 519, 303
+  size: 26, 35
+  orig: 26, 35
+  offset: 0, 0
+  index: -1
+zhangjiao5_jiaor
+  rotate: false
+  xy: 567, 340
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn1
+  rotate: false
+  xy: 89, 321
+  size: 84, 189
+  orig: 84, 189
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn2
+  rotate: false
+  xy: 430, 140
+  size: 64, 157
+  orig: 64, 157
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_fc
+  rotate: false
+  xy: 2, 62
+  size: 134, 211
+  orig: 134, 211
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_fc01
+  rotate: true
+  xy: 335, 22
+  size: 64, 67
+  orig: 64, 67
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_fc02
+  rotate: true
+  xy: 269, 327
+  size: 183, 141
+  orig: 183, 141
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_head
+  rotate: false
+  xy: 411, 10
+  size: 128, 114
+  orig: 128, 114
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_hulu
+  rotate: false
+  xy: 125, 10
+  size: 45, 50
+  orig: 45, 50
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_jj1
+  rotate: true
+  xy: 175, 326
+  size: 184, 92
+  orig: 184, 92
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_jzh
+  rotate: true
+  xy: 319, 126
+  size: 158, 109
+  orig: 158, 109
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_mei
+  rotate: true
+  xy: 199, 278
+  size: 46, 30
+  orig: 46, 31
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanbg2
+  rotate: false
+  xy: 541, 4
+  size: 100, 124
+  orig: 100, 124
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanguang
+  rotate: true
+  xy: 707, 272
+  size: 106, 96
+  orig: 106, 96
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanxian
+  rotate: false
+  xy: 138, 88
+  size: 179, 186
+  orig: 179, 186
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shanxian-1
+  rotate: false
+  xy: 204, 5
+  size: 92, 81
+  orig: 92, 81
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shen
+  rotate: true
+  xy: 412, 340
+  size: 170, 153
+  orig: 170, 153
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_shoul
+  rotate: true
+  xy: 52, 7
+  size: 53, 46
+  orig: 53, 47
+  offset: 0, 1
+  index: -1
+zhangjiao5_jn_xiul
+  rotate: false
+  xy: 643, 20
+  size: 107, 109
+  orig: 107, 109
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun
+  rotate: true
+  xy: 172, 4
+  size: 82, 30
+  orig: 82, 30
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun01
+  rotate: false
+  xy: 319, 88
+  size: 90, 36
+  orig: 90, 36
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_zhui
+  rotate: false
+  xy: 100, 7
+  size: 23, 53
+  orig: 23, 53
+  offset: 0, 0
+  index: -1
+zhangjiao5_lh
+  rotate: true
+  xy: 496, 130
+  size: 16, 90
+  orig: 16, 90
+  offset: 0, 0
+  index: -1
+zhangjiao5_sbr
+  rotate: false
+  xy: 670, 380
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: -1
+zhangjiao5_shoul
+  rotate: false
+  xy: 547, 304
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+zhangjiao5_shour
+  rotate: true
+  xy: 298, 18
+  size: 68, 35
+  orig: 68, 35
+  offset: 0, 0
+  index: -1
+zhangjiao5_tf1
+  rotate: false
+  xy: 421, 299
+  size: 96, 39
+  orig: 96, 39
+  offset: 0, 0
+  index: -1
+zhangjiao5_ts
+  rotate: true
+  xy: 567, 373
+  size: 137, 101
+  orig: 140, 102
+  offset: 1, 1
+  index: -1
+zhangjiao5_xiul
+  rotate: false
+  xy: 607, 234
+  size: 98, 137
+  orig: 98, 137
+  offset: 0, 0
+  index: -1
+zhangjiao5_yun_01
+  rotate: false
+  xy: 299, 286
+  size: 120, 39
+  orig: 120, 39
+  offset: 0, 0
+  index: -1
+zhangjiao5_yun_02
+  rotate: true
+  xy: 2, 275
+  size: 235, 85
+  orig: 235, 85
+  offset: 0, 0
+  index: -1
+zhangjiao_eye
+  rotate: false
+  xy: 125, 2
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+zhangjiao_yan
+  rotate: false
+  xy: 138, 62
+  size: 25, 24
+  orig: 27, 24
+  offset: 1, 0
+  index: -1

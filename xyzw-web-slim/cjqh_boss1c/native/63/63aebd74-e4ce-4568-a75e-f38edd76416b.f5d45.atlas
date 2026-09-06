@@ -1,0 +1,41 @@
+
+cjqh_boss1c_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_boss1_skill2
+  rotate: true
+  xy: 2, 32
+  size: 191, 154
+  orig: 193, 154
+  offset: 1, 0
+  index: -1
+cjqh_boss1_skill3
+  rotate: false
+  xy: 285, 17
+  size: 62, 76
+  orig: 62, 76
+  offset: 0, 0
+  index: -1
+cjqh_boss1_skill4
+  rotate: false
+  xy: 285, 95
+  size: 168, 128
+  orig: 168, 128
+  offset: 0, 0
+  index: -1
+cjqh_boss1_skill5
+  rotate: false
+  xy: 158, 2
+  size: 125, 221
+  orig: 125, 221
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 7
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1

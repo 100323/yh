@@ -1,0 +1,55 @@
+
+zbz_ft_jiandui.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_ft_jd_bo
+  rotate: false
+  xy: 362, 116
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+zbz_ft_jd_cb1
+  rotate: true
+  xy: 432, 120
+  size: 159, 70
+  orig: 159, 70
+  offset: 0, 0
+  index: -1
+zbz_ft_jd_cb2
+  rotate: false
+  xy: 411, 10
+  size: 74, 108
+  orig: 90, 109
+  offset: 0, 1
+  index: -1
+zbz_ft_jd_ld
+  rotate: true
+  xy: 265, 2
+  size: 70, 76
+  orig: 70, 76
+  offset: 0, 0
+  index: -1
+zbz_ft_jd_shen
+  rotate: false
+  xy: 2, 23
+  size: 261, 256
+  orig: 261, 256
+  offset: 0, 0
+  index: -1
+zbz_ft_jd_wei
+  rotate: true
+  xy: 265, 165
+  size: 114, 165
+  orig: 126, 189
+  offset: 0, 24
+  index: -1
+zbz_ft_jd_yan
+  rotate: true
+  xy: 265, 74
+  size: 89, 95
+  orig: 89, 95
+  offset: 0, 0
+  index: -1

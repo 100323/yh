@@ -1,0 +1,13 @@
+
+zhenji2_attack_line.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhenji2_skill_ice4
+  rotate: true
+  xy: 2, 2
+  size: 34, 141
+  orig: 34, 141
+  offset: 0, 0
+  index: -1

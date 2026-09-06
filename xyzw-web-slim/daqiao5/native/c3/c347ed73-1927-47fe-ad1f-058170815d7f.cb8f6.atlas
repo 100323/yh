@@ -1,0 +1,111 @@
+
+daqiao5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao5_txsk_hudie1
+  rotate: false
+  xy: 475, 88
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_hudie2
+  rotate: false
+  xy: 472, 40
+  size: 32, 46
+  orig: 32, 46
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_hudie3
+  rotate: true
+  xy: 461, 337
+  size: 32, 46
+  orig: 32, 46
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_yuan2
+  rotate: false
+  xy: 392, 16
+  size: 78, 75
+  orig: 78, 75
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_yuan3
+  rotate: false
+  xy: 194, 6
+  size: 105, 85
+  orig: 105, 85
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_yuan4
+  rotate: true
+  xy: 257, 197
+  size: 109, 97
+  orig: 109, 97
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zha1
+  rotate: false
+  xy: 2, 24
+  size: 190, 160
+  orig: 190, 160
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zha2
+  rotate: false
+  xy: 2, 186
+  size: 253, 322
+  orig: 258, 323
+  offset: 3, 1
+  index: -1
+daqiao5_txsk_zha3
+  rotate: true
+  xy: 423, 248
+  size: 58, 65
+  orig: 58, 65
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zha4
+  rotate: false
+  xy: 461, 371
+  size: 38, 137
+  orig: 38, 137
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zha5
+  rotate: true
+  xy: 356, 202
+  size: 104, 65
+  orig: 104, 65
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zhuan2
+  rotate: true
+  xy: 194, 93
+  size: 41, 279
+  orig: 41, 279
+  offset: 0, 0
+  index: -1
+daqiao5_txsk_zhuan3
+  rotate: true
+  xy: 194, 136
+  size: 48, 283
+  orig: 48, 283
+  offset: 0, 0
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 301, 2
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+quanquan
+  rotate: false
+  xy: 257, 308
+  size: 202, 200
+  orig: 204, 202
+  offset: 1, 1
+  index: -1

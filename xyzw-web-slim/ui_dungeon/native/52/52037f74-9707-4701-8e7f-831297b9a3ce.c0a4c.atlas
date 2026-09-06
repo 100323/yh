@@ -1,0 +1,146 @@
+
+dilao_trader3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 350, 225
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+trader2_arml
+  rotate: false
+  xy: 266, 207
+  size: 82, 88
+  orig: 82, 88
+  offset: 0, 0
+  index: -1
+trader2_body
+  rotate: false
+  xy: 266, 297
+  size: 112, 117
+  orig: 112, 117
+  offset: 0, 0
+  index: -1
+trader2_cloth1
+  rotate: false
+  xy: 395, 105
+  size: 59, 118
+  orig: 59, 118
+  offset: 0, 0
+  index: -1
+trader2_cloth2
+  rotate: false
+  xy: 452, 2
+  size: 53, 101
+  orig: 53, 101
+  offset: 0, 0
+  index: -1
+trader2_cloth3
+  rotate: false
+  xy: 488, 130
+  size: 19, 41
+  orig: 19, 45
+  offset: 0, 0
+  index: -1
+trader2_curtain
+  rotate: true
+  xy: 266, 53
+  size: 152, 58
+  orig: 152, 58
+  offset: 0, 0
+  index: -1
+trader2_eye1
+  rotate: true
+  xy: 2, 74
+  size: 47, 30
+  orig: 47, 30
+  offset: 0, 0
+  index: -1
+trader2_eye2
+  rotate: true
+  xy: 456, 121
+  size: 50, 30
+  orig: 50, 30
+  offset: 0, 0
+  index: -1
+trader2_handr
+  rotate: false
+  xy: 456, 173
+  size: 50, 78
+  orig: 50, 78
+  offset: 0, 0
+  index: -1
+trader2_head1
+  rotate: false
+  xy: 326, 49
+  size: 124, 41
+  orig: 124, 41
+  offset: 0, 0
+  index: -1
+trader2_head2
+  rotate: true
+  xy: 326, 92
+  size: 113, 67
+  orig: 124, 85
+  offset: 11, 0
+  index: -1
+trader2_legl
+  rotate: false
+  xy: 380, 298
+  size: 59, 48
+  orig: 59, 48
+  offset: 0, 0
+  index: -1
+trader2_legr
+  rotate: true
+  xy: 103, 122
+  size: 41, 37
+  orig: 41, 37
+  offset: 0, 0
+  index: -1
+trader2_pocket
+  rotate: false
+  xy: 34, 91
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+trader2_shop
+  rotate: false
+  xy: 2, 165
+  size: 262, 249
+  orig: 278, 249
+  offset: 16, 0
+  index: -1
+trader2_tail
+  rotate: false
+  xy: 380, 348
+  size: 130, 66
+  orig: 130, 66
+  offset: 0, 0
+  index: -1
+trader2_teeth
+  rotate: false
+  xy: 2, 123
+  size: 99, 40
+  orig: 99, 40
+  offset: 0, 0
+  index: -1
+trader2_tie
+  rotate: true
+  xy: 441, 253
+  size: 93, 63
+  orig: 93, 63
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: false
+  xy: 422, 271
+  size: 17, 25
+  orig: 17, 25
+  offset: 0, 0
+  index: -1

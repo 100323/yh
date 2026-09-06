@@ -1,0 +1,195 @@
+
+ft_zhangjiao6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_zhangjiao6_dian
+  rotate: false
+  xy: 2, 362
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_qiu1
+  rotate: true
+  xy: 272, 338
+  size: 32, 45
+  orig: 32, 45
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_qiu2
+  rotate: false
+  xy: 110, 346
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_shenti
+  rotate: true
+  xy: 2, 152
+  size: 74, 148
+  orig: 74, 148
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou1
+  rotate: false
+  xy: 281, 289
+  size: 66, 47
+  orig: 67, 47
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou2
+  rotate: true
+  xy: 153, 2
+  size: 111, 150
+  orig: 111, 150
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou3
+  rotate: true
+  xy: 177, 291
+  size: 45, 102
+  orig: 45, 102
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou4
+  rotate: true
+  xy: 323, 209
+  size: 74, 106
+  orig: 74, 106
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou5
+  rotate: false
+  xy: 104, 228
+  size: 133, 61
+  orig: 133, 61
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou6
+  rotate: true
+  xy: 349, 285
+  size: 50, 99
+  orig: 50, 99
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou7
+  rotate: false
+  xy: 450, 260
+  size: 52, 75
+  orig: 52, 75
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou8
+  rotate: true
+  xy: 12, 354
+  size: 16, 53
+  orig: 16, 53
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_tou9
+  rotate: false
+  xy: 385, 337
+  size: 37, 33
+  orig: 37, 33
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_weiba
+  rotate: true
+  xy: 239, 220
+  size: 67, 82
+  orig: 67, 82
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_weiba1
+  rotate: true
+  xy: 319, 338
+  size: 32, 64
+  orig: 38, 69
+  offset: 3, 2
+  index: -1
+ft_zhangjiao6_weiqi
+  rotate: true
+  xy: 2, 315
+  size: 37, 48
+  orig: 41, 48
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_weiyi1
+  rotate: true
+  xy: 268, 115
+  size: 92, 173
+  orig: 92, 173
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_weiyi2
+  rotate: true
+  xy: 152, 138
+  size: 80, 114
+  orig: 81, 114
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_yzhua1
+  rotate: false
+  xy: 52, 309
+  size: 54, 38
+  orig: 54, 42
+  offset: 0, 1
+  index: -1
+ft_zhangjiao6_yzhua2
+  rotate: false
+  xy: 108, 298
+  size: 67, 42
+  orig: 67, 45
+  offset: 0, 3
+  index: -1
+ft_zhangjiao6_yzhua3
+  rotate: false
+  xy: 424, 337
+  size: 65, 33
+  orig: 68, 33
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_yzhua4
+  rotate: false
+  xy: 2, 34
+  size: 149, 102
+  orig: 150, 105
+  offset: 1, 3
+  index: -1
+ft_zhangjiao6_zzhua1
+  rotate: true
+  xy: 221, 339
+  size: 31, 49
+  orig: 32, 51
+  offset: 1, 0
+  index: -1
+ft_zhangjiao6_zzhua2
+  rotate: true
+  xy: 136, 342
+  size: 28, 52
+  orig: 30, 58
+  offset: 0, 2
+  index: -1
+ft_zhangjiao6_zzhua3
+  rotate: true
+  xy: 67, 349
+  size: 21, 41
+  orig: 23, 44
+  offset: 0, 0
+  index: -1
+ft_zhangjiao6_zzhua4
+  rotate: true
+  xy: 2, 245
+  size: 62, 100
+  orig: 62, 100
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 190, 341
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1

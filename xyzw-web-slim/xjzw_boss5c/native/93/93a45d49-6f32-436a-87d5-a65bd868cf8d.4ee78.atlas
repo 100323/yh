@@ -1,0 +1,55 @@
+
+xjzw_boss5c_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_chest_star
+  rotate: false
+  xy: 175, 273
+  size: 15, 23
+  orig: 15, 23
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1skill1
+  rotate: false
+  xy: 2, 202
+  size: 171, 304
+  orig: 171, 304
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1skill2
+  rotate: false
+  xy: 359, 283
+  size: 150, 223
+  orig: 150, 223
+  offset: 0, 0
+  index: -1
+xjzw_boss5a_skill_s1
+  rotate: false
+  xy: 175, 298
+  size: 182, 208
+  orig: 182, 208
+  offset: 0, 0
+  index: -1
+xjzw_boss5a_skill_s2
+  rotate: true
+  xy: 233, 99
+  size: 182, 208
+  orig: 182, 208
+  offset: 0, 0
+  index: -1
+xjzw_boss5a_skill_s3
+  rotate: true
+  xy: 2, 2
+  size: 198, 229
+  orig: 203, 230
+  offset: 3, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 175, 255
+  size: 16, 10
+  orig: 16, 16
+  offset: 0, 1
+  index: -1

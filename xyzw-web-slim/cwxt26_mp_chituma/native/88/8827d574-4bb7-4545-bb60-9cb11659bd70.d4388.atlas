@@ -1,0 +1,111 @@
+
+cwxt26_mp_chituma.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_chituma_jin_ma
+  rotate: true
+  xy: 668, 178
+  size: 239, 252
+  orig: 239, 252
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_jin_sj1
+  rotate: true
+  xy: 2, 459
+  size: 46, 59
+  orig: 46, 59
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_jin_sj2
+  rotate: true
+  xy: 185, 431
+  size: 74, 91
+  orig: 74, 91
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_jin_sj3
+  rotate: false
+  xy: 2, 255
+  size: 220, 174
+  orig: 220, 174
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_tong_ma
+  rotate: true
+  xy: 2, 14
+  size: 239, 252
+  orig: 239, 252
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_tong_sj1
+  rotate: true
+  xy: 63, 459
+  size: 46, 59
+  orig: 46, 59
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_tong_sj2
+  rotate: true
+  xy: 278, 431
+  size: 74, 91
+  orig: 74, 91
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_tong_sj3
+  rotate: false
+  xy: 224, 255
+  size: 220, 174
+  orig: 220, 174
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_yin_ma
+  rotate: true
+  xy: 256, 2
+  size: 239, 252
+  orig: 239, 252
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_yin_sj1
+  rotate: true
+  xy: 124, 459
+  size: 46, 59
+  orig: 46, 59
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_yin_sj2
+  rotate: true
+  xy: 371, 431
+  size: 74, 91
+  orig: 74, 91
+  offset: 0, 0
+  index: -1
+cwxt26_chituma_yin_sj3
+  rotate: false
+  xy: 446, 243
+  size: 220, 174
+  orig: 220, 174
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_jin_2
+  rotate: false
+  xy: 464, 419
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_tong_2
+  rotate: false
+  xy: 606, 419
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_yin_2
+  rotate: false
+  xy: 748, 419
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,83 @@
+
+ghyd_campfire.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghyd_fire_a1
+  rotate: true
+  xy: 134, 2
+  size: 107, 122
+  orig: 107, 122
+  offset: 0, 0
+  index: -1
+ghyd_fire_a2
+  rotate: true
+  xy: 380, 187
+  size: 51, 49
+  orig: 51, 49
+  offset: 0, 0
+  index: -1
+ghyd_fire_a3
+  rotate: true
+  xy: 263, 90
+  size: 148, 115
+  orig: 148, 115
+  offset: 0, 0
+  index: -1
+ghyd_fire_s1
+  rotate: false
+  xy: 380, 131
+  size: 24, 24
+  orig: 26, 26
+  offset: 1, 1
+  index: -1
+ghyd_fire_s2
+  rotate: false
+  xy: 380, 108
+  size: 21, 21
+  orig: 23, 23
+  offset: 1, 1
+  index: -1
+ghyd_fire_s3
+  rotate: false
+  xy: 2, 3
+  size: 116, 105
+  orig: 116, 105
+  offset: 0, 0
+  index: -1
+ghyd_fire_s4
+  rotate: false
+  xy: 2, 110
+  size: 130, 128
+  orig: 130, 128
+  offset: 0, 0
+  index: -1
+ghyd_fire_smoke
+  rotate: false
+  xy: 258, 8
+  size: 82, 80
+  orig: 82, 80
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 342, 30
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+hero_effect_halo2
+  rotate: false
+  xy: 134, 111
+  size: 127, 127
+  orig: 127, 127
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 380, 157
+  size: 28, 31
+  orig: 32, 32
+  offset: 2, 1
+  index: -1

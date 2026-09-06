@@ -1,0 +1,90 @@
+
+lusu5_skill_position.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu5_skill_dianh1
+  rotate: false
+  xy: 338, 329
+  size: 141, 74
+  orig: 141, 74
+  offset: 0, 0
+  index: -1
+lusu5_skill_dianh2
+  rotate: false
+  xy: 136, 242
+  size: 146, 77
+  orig: 146, 77
+  offset: 0, 0
+  index: -1
+lusu5_skill_dianh3
+  rotate: true
+  xy: 359, 2
+  size: 146, 71
+  orig: 146, 71
+  offset: 0, 0
+  index: -1
+lusu5_skill_dquan1
+  rotate: true
+  xy: 284, 87
+  size: 232, 73
+  orig: 232, 73
+  offset: 0, 0
+  index: -1
+lusu5_skill_dyuanbao
+  rotate: true
+  xy: 359, 150
+  size: 177, 137
+  orig: 177, 137
+  offset: 0, 0
+  index: -1
+lusu5_skill_hongb
+  rotate: true
+  xy: 308, 23
+  size: 62, 38
+  orig: 62, 38
+  offset: 0, 0
+  index: -1
+lusu5_skill_pyuanbao
+  rotate: false
+  xy: 2, 59
+  size: 190, 152
+  orig: 190, 152
+  offset: 0, 0
+  index: -1
+lusu5_skill_qian
+  rotate: true
+  xy: 259, 34
+  size: 51, 47
+  orig: 51, 47
+  offset: 0, 0
+  index: -1
+lusu5_skill_quan1
+  rotate: true
+  xy: 338, 405
+  size: 62, 159
+  orig: 62, 159
+  offset: 0, 0
+  index: -1
+lusu5_skill_xyuanbao
+  rotate: false
+  xy: 194, 35
+  size: 63, 50
+  orig: 63, 50
+  offset: 0, 0
+  index: -1
+lusu5_skill_yun1
+  rotate: false
+  xy: 2, 213
+  size: 132, 254
+  orig: 132, 254
+  offset: 0, 0
+  index: -1
+lusu5_skill_yun2
+  rotate: true
+  xy: 136, 321
+  size: 146, 200
+  orig: 146, 200
+  offset: 0, 0
+  index: -1

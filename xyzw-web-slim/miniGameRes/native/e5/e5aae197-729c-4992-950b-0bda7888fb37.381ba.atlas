@@ -1,0 +1,27 @@
+
+kpyx4_bubble.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kpyx4_bubble1
+  rotate: false
+  xy: 2, 74
+  size: 48, 47
+  orig: 48, 47
+  offset: 0, 0
+  index: -1
+kpyx4_bubble2
+  rotate: false
+  xy: 52, 67
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+kpyx4_bubble3
+  rotate: true
+  xy: 2, 2
+  size: 63, 71
+  orig: 64, 71
+  offset: 0, 0
+  index: -1

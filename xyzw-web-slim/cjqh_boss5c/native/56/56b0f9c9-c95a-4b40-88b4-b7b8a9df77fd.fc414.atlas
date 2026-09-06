@@ -1,0 +1,153 @@
+
+cjqh_boss5c.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjqh_boss52_glasses
+  rotate: true
+  xy: 130, 140
+  size: 114, 47
+  orig: 114, 47
+  offset: 0, 0
+  index: -1
+cjqh_boss52_legl
+  rotate: false
+  xy: 179, 140
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+cjqh_boss53_2
+  rotate: false
+  xy: 179, 194
+  size: 43, 60
+  orig: 43, 60
+  offset: 0, 0
+  index: -1
+cjqh_boss53_arml
+  rotate: false
+  xy: 182, 18
+  size: 40, 68
+  orig: 44, 68
+  offset: 4, 0
+  index: -1
+cjqh_boss53_armr2
+  rotate: false
+  xy: 224, 200
+  size: 34, 54
+  orig: 34, 55
+  offset: 0, 1
+  index: -1
+cjqh_boss53_bag1
+  rotate: true
+  xy: 90, 15
+  size: 70, 90
+  orig: 75, 90
+  offset: 0, 0
+  index: -1
+cjqh_boss53_body
+  rotate: true
+  xy: 2, 3
+  size: 82, 86
+  orig: 82, 86
+  offset: 0, 0
+  index: -1
+cjqh_boss53_eyebrow1
+  rotate: true
+  xy: 216, 141
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+cjqh_boss53_eyebrow2
+  rotate: false
+  xy: 251, 142
+  size: 31, 17
+  orig: 31, 17
+  offset: 0, 0
+  index: -1
+cjqh_boss53_footl
+  rotate: false
+  xy: 90, 4
+  size: 18, 9
+  orig: 18, 9
+  offset: 0, 0
+  index: -1
+cjqh_boss53_head
+  rotate: true
+  xy: 2, 87
+  size: 167, 126
+  orig: 167, 130
+  offset: 0, 4
+  index: -1
+cjqh_boss53_hip
+  rotate: false
+  xy: 179, 158
+  size: 70, 34
+  orig: 70, 35
+  offset: 0, 1
+  index: -1
+cjqh_boss53_legr
+  rotate: false
+  xy: 224, 77
+  size: 25, 27
+  orig: 25, 27
+  offset: 0, 0
+  index: -1
+cjqh_boss53_tag
+  rotate: false
+  xy: 260, 209
+  size: 23, 45
+  orig: 25, 45
+  offset: 2, 0
+  index: -1
+cjqh_boss5_armr1
+  rotate: true
+  xy: 251, 161
+  size: 37, 32
+  orig: 37, 32
+  offset: 0, 0
+  index: -1
+cjqh_boss5_attack1
+  rotate: true
+  xy: 224, 23
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+cjqh_boss5_handl1
+  rotate: true
+  xy: 224, 48
+  size: 27, 22
+  orig: 27, 22
+  offset: 0, 0
+  index: -1
+cjqh_boss5_handl2
+  rotate: true
+  xy: 197, 141
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+cjqh_boss5_nose
+  rotate: true
+  xy: 182, 2
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+cjqh_boss5_skill1
+  rotate: true
+  xy: 209, 106
+  size: 33, 60
+  orig: 33, 60
+  offset: 0, 0
+  index: -1
+cjqh_boss5_skill2
+  rotate: true
+  xy: 130, 88
+  size: 50, 77
+  orig: 52, 78
+  offset: 1, 0
+  index: -1

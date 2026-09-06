@@ -1,0 +1,132 @@
+
+sunce6_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce6_jn_bo1
+  rotate: true
+  xy: 379, 697
+  size: 325, 274
+  orig: 325, 274
+  offset: 0, 0
+  index: -1
+sunce6_jn_bo2
+  rotate: true
+  xy: 2, 23
+  size: 226, 163
+  orig: 226, 163
+  offset: 0, 0
+  index: -1
+sunce6_jn_caidai
+  rotate: false
+  xy: 2, 632
+  size: 375, 390
+  orig: 375, 390
+  offset: 0, 0
+  index: -1
+sunce6_jn_gq1
+  rotate: true
+  xy: 602, 306
+  size: 172, 161
+  orig: 172, 161
+  offset: 0, 0
+  index: -1
+sunce6_jn_guangyun1
+  rotate: false
+  xy: 868, 78
+  size: 101, 93
+  orig: 101, 93
+  offset: 0, 0
+  index: -1
+sunce6_jn_qiu2
+  rotate: false
+  xy: 765, 339
+  size: 172, 139
+  orig: 172, 139
+  offset: 0, 0
+  index: -1
+sunce6_jn_whzd
+  rotate: false
+  xy: 757, 60
+  size: 109, 111
+  orig: 109, 111
+  offset: 0, 0
+  index: -1
+sunce6_jn_wjy2
+  rotate: false
+  xy: 332, 258
+  size: 268, 372
+  orig: 268, 380
+  offset: 0, 0
+  index: -1
+sunce6_jn_wjyd
+  rotate: true
+  xy: 607, 216
+  size: 88, 152
+  orig: 88, 152
+  offset: 0, 0
+  index: -1
+sunce6_jn_wjz12
+  rotate: true
+  xy: 655, 742
+  size: 280, 322
+  orig: 280, 322
+  offset: 0, 0
+  index: -1
+sunce6_jn_wjz2
+  rotate: true
+  xy: 2, 251
+  size: 379, 328
+  orig: 379, 328
+  offset: 0, 0
+  index: -1
+sunce6_jn_xing1
+  rotate: true
+  xy: 167, 2
+  size: 69, 93
+  orig: 69, 93
+  offset: 0, 0
+  index: -1
+sunce6_jn_xing2
+  rotate: true
+  xy: 464, 2
+  size: 78, 106
+  orig: 78, 106
+  offset: 0, 0
+  index: -1
+sunce6_jn_yan1
+  rotate: false
+  xy: 765, 173
+  size: 170, 164
+  orig: 170, 164
+  offset: 0, 0
+  index: -1
+sunce6_jn_yan2
+  rotate: true
+  xy: 607, 7
+  size: 164, 148
+  orig: 164, 148
+  offset: 0, 0
+  index: -1
+sunce6_jn_yan3
+  rotate: true
+  xy: 464, 82
+  size: 174, 141
+  orig: 174, 141
+  offset: 0, 0
+  index: -1
+sunce6_jn_yan4
+  rotate: false
+  xy: 167, 73
+  size: 295, 176
+  orig: 295, 176
+  offset: 0, 0
+  index: -1
+sunce6_jn_zha
+  rotate: false
+  xy: 655, 480
+  size: 312, 260
+  orig: 312, 260
+  offset: 0, 0
+  index: -1

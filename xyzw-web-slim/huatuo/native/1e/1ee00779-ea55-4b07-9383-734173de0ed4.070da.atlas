@@ -1,0 +1,118 @@
+
+huatuo_skill_hit2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hhuatuo_bd_guang
+  rotate: false
+  xy: 2, 261
+  size: 215, 216
+  orig: 215, 216
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hl1
+  rotate: false
+  xy: 204, 109
+  size: 56, 51
+  orig: 56, 51
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hl1h
+  rotate: false
+  xy: 433, 415
+  size: 68, 62
+  orig: 68, 62
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hl2
+  rotate: true
+  xy: 316, 90
+  size: 86, 96
+  orig: 86, 96
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hl2h
+  rotate: true
+  xy: 418, 168
+  size: 93, 92
+  orig: 93, 92
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hl3
+  rotate: false
+  xy: 262, 108
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hl3h
+  rotate: true
+  xy: 136, 106
+  size: 54, 66
+  orig: 54, 66
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_hlhh
+  rotate: false
+  xy: 2, 105
+  size: 132, 154
+  orig: 132, 154
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_huo1
+  rotate: true
+  xy: 296, 178
+  size: 82, 120
+  orig: 82, 120
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_huo2
+  rotate: true
+  xy: 219, 262
+  size: 97, 115
+  orig: 97, 115
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_huo3
+  rotate: false
+  xy: 219, 361
+  size: 110, 116
+  orig: 110, 116
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_huo4
+  rotate: false
+  xy: 331, 365
+  size: 100, 112
+  orig: 100, 112
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_huo5
+  rotate: true
+  xy: 336, 263
+  size: 100, 112
+  orig: 100, 112
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_quan1
+  rotate: false
+  xy: 136, 162
+  size: 158, 97
+  orig: 158, 97
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_quan2
+  rotate: false
+  xy: 2, 2
+  size: 157, 101
+  orig: 157, 101
+  offset: 0, 0
+  index: -1
+hhuatuo_bd_quan3
+  rotate: false
+  xy: 161, 7
+  size: 153, 97
+  orig: 153, 97
+  offset: 0, 0
+  index: -1

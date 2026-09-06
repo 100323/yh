@@ -1,0 +1,55 @@
+
+znq2024_xg_zcyg_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_boss_zcyg_jn_g1
+  rotate: true
+  xy: 301, 239
+  size: 166, 124
+  orig: 166, 124
+  offset: 0, 0
+  index: -1
+2024znq_boss_zcyg_jn_g2
+  rotate: true
+  xy: 2, 2
+  size: 234, 222
+  orig: 234, 222
+  offset: 0, 0
+  index: -1
+2024znq_boss_zcyg_jn_x1
+  rotate: false
+  xy: 416, 52
+  size: 57, 185
+  orig: 57, 185
+  offset: 0, 0
+  index: -1
+2024znq_boss_zcyg_jn_x2
+  rotate: true
+  xy: 226, 11
+  size: 39, 172
+  orig: 39, 172
+  offset: 0, 0
+  index: -1
+2024znq_boss_zcyg_jn_yan
+  rotate: true
+  xy: 301, 113
+  size: 124, 113
+  orig: 124, 113
+  offset: 0, 0
+  index: -1
+2024znq_boss_zcyg_jn_zha
+  rotate: false
+  xy: 2, 238
+  size: 297, 167
+  orig: 297, 167
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 427, 359
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

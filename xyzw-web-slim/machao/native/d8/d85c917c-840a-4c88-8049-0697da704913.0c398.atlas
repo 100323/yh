@@ -1,0 +1,62 @@
+
+machao_skill_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 106, 146
+  size: 82, 43
+  orig: 82, 82
+  offset: 0, 39
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 2, 46
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 190, 143
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+machao_skill1
+  rotate: true
+  xy: 2, 150
+  size: 40, 102
+  orig: 41, 102
+  offset: 0, 0
+  index: -1
+machao_skill2
+  rotate: true
+  xy: 134, 191
+  size: 38, 102
+  orig: 38, 102
+  offset: 0, 0
+  index: -1
+machao_skill3
+  rotate: false
+  xy: 30, 192
+  size: 102, 37
+  orig: 102, 37
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 203
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 106, 2
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

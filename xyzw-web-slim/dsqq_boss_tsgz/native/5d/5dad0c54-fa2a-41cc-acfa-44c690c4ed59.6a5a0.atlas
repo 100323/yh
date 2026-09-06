@@ -1,0 +1,160 @@
+
+dsqq_boss_tsgz.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_boss_tsgz_eh1
+  rotate: false
+  xy: 59, 40
+  size: 20, 36
+  orig: 21, 38
+  offset: 1, 1
+  index: -1
+dsqq_boss_tsgz_eh2
+  rotate: false
+  xy: 59, 40
+  size: 20, 36
+  orig: 21, 38
+  offset: 1, 1
+  index: -1
+dsqq_boss_tsgz_jn_shan1
+  rotate: false
+  xy: 2, 407
+  size: 280, 82
+  orig: 280, 82
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_ying
+  rotate: false
+  xy: 125, 46
+  size: 54, 27
+  orig: 54, 27
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_mei1
+  rotate: false
+  xy: 150, 239
+  size: 26, 11
+  orig: 26, 12
+  offset: 0, 1
+  index: -1
+dsqq_boss_tsgz_mei2
+  rotate: false
+  xy: 187, 108
+  size: 25, 13
+  orig: 25, 13
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_shan
+  rotate: false
+  xy: 2, 145
+  size: 225, 92
+  orig: 225, 92
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_shen
+  rotate: false
+  xy: 229, 180
+  size: 47, 70
+  orig: 48, 71
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_shou2
+  rotate: true
+  xy: 81, 39
+  size: 34, 42
+  orig: 37, 44
+  offset: 1, 1
+  index: -1
+dsqq_boss_tsgz_shoub
+  rotate: true
+  xy: 143, 110
+  size: 33, 41
+  orig: 34, 42
+  offset: 1, 0
+  index: -1
+dsqq_boss_tsgz_shoul
+  rotate: false
+  xy: 85, 75
+  size: 56, 68
+  orig: 56, 68
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_shour
+  rotate: true
+  xy: 143, 82
+  size: 26, 42
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_tf
+  rotate: true
+  xy: 150, 252
+  size: 153, 123
+  orig: 158, 123
+  offset: 5, 0
+  index: -1
+dsqq_boss_tsgz_tou
+  rotate: true
+  xy: 2, 239
+  size: 166, 146
+  orig: 167, 146
+  offset: 1, 0
+  index: -1
+dsqq_boss_tsgz_tui
+  rotate: true
+  xy: 2, 78
+  size: 65, 81
+  orig: 73, 81
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_xiuzil
+  rotate: false
+  xy: 2, 2
+  size: 55, 74
+  orig: 59, 74
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_yanbail
+  rotate: true
+  xy: 59, 9
+  size: 29, 20
+  orig: 30, 22
+  offset: 0, 1
+  index: -1
+dsqq_boss_tsgz_yanbair
+  rotate: true
+  xy: 186, 123
+  size: 20, 24
+  orig: 22, 26
+  offset: 1, 1
+  index: -1
+dsqq_boss_tsgz_yanl
+  rotate: false
+  xy: 212, 124
+  size: 14, 19
+  orig: 14, 20
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_yanr
+  rotate: false
+  xy: 181, 62
+  size: 18, 18
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_yun1
+  rotate: false
+  xy: 229, 73
+  size: 194, 105
+  orig: 194, 105
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_yun2
+  rotate: true
+  xy: 284, 238
+  size: 251, 182
+  orig: 251, 182
+  offset: 0, 0
+  index: -1

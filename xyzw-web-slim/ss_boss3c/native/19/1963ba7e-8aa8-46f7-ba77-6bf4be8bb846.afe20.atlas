@@ -1,0 +1,216 @@
+
+ss_boss3c.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ss_boss3_1eyebrowl
+  rotate: true
+  xy: 345, 122
+  size: 20, 9
+  orig: 20, 10
+  offset: 0, 1
+  index: -1
+ss_boss3_1eyebrowr
+  rotate: false
+  xy: 231, 3
+  size: 39, 10
+  orig: 39, 10
+  offset: 0, 0
+  index: -1
+ss_boss3_1eyel
+  rotate: false
+  xy: 299, 26
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+ss_boss3_1eyer
+  rotate: false
+  xy: 306, 27
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+ss_boss3_1eyewhitel
+  rotate: false
+  xy: 345, 110
+  size: 18, 10
+  orig: 18, 12
+  offset: 0, 2
+  index: -1
+ss_boss3_1eyewhiter
+  rotate: false
+  xy: 323, 197
+  size: 28, 12
+  orig: 28, 12
+  offset: 0, 0
+  index: -1
+ss_boss3_1footl
+  rotate: true
+  xy: 311, 110
+  size: 32, 15
+  orig: 32, 15
+  offset: 0, 0
+  index: -1
+ss_boss3_1fozhu
+  rotate: true
+  xy: 115, 8
+  size: 98, 85
+  orig: 98, 85
+  offset: 0, 0
+  index: -1
+ss_boss3_1nose
+  rotate: true
+  xy: 314, 2
+  size: 30, 33
+  orig: 30, 33
+  offset: 0, 0
+  index: -1
+ss_boss3_3arml1
+  rotate: true
+  xy: 229, 144
+  size: 39, 60
+  orig: 39, 60
+  offset: 0, 0
+  index: -1
+ss_boss3_3arml2
+  rotate: true
+  xy: 291, 144
+  size: 48, 55
+  orig: 48, 55
+  offset: 0, 0
+  index: -1
+ss_boss3_3armr
+  rotate: false
+  xy: 299, 34
+  size: 42, 73
+  orig: 42, 73
+  offset: 0, 0
+  index: -1
+ss_boss3_3body
+  rotate: true
+  xy: 2, 8
+  size: 98, 111
+  orig: 98, 116
+  offset: 0, 5
+  index: -1
+ss_boss3_3bread
+  rotate: false
+  xy: 270, 194
+  size: 35, 60
+  orig: 35, 61
+  offset: 0, 0
+  index: -1
+ss_boss3_3footl
+  rotate: true
+  xy: 328, 110
+  size: 32, 15
+  orig: 32, 15
+  offset: 0, 0
+  index: -1
+ss_boss3_3footr
+  rotate: false
+  xy: 279, 3
+  size: 33, 15
+  orig: 33, 15
+  offset: 0, 0
+  index: -1
+ss_boss3_3handl
+  rotate: false
+  xy: 307, 211
+  size: 23, 43
+  orig: 23, 43
+  offset: 0, 0
+  index: -1
+ss_boss3_3hat
+  rotate: true
+  xy: 2, 108
+  size: 146, 112
+  orig: 146, 112
+  offset: 0, 0
+  index: -1
+ss_boss3_3head
+  rotate: false
+  xy: 116, 141
+  size: 111, 113
+  orig: 111, 113
+  offset: 0, 0
+  index: -1
+ss_boss3_3hip
+  rotate: true
+  xy: 237, 20
+  size: 87, 60
+  orig: 87, 60
+  offset: 0, 0
+  index: -1
+ss_boss3_3lie1
+  rotate: false
+  xy: 202, 15
+  size: 33, 91
+  orig: 33, 91
+  offset: 0, 0
+  index: -1
+ss_boss3_3line2
+  rotate: true
+  xy: 221, 109
+  size: 30, 88
+  orig: 30, 88
+  offset: 0, 0
+  index: -1
+ss_boss3_attack
+  rotate: true
+  xy: 229, 185
+  size: 69, 39
+  orig: 69, 39
+  offset: 0, 0
+  index: -1
+ss_boss3_attack1
+  rotate: true
+  xy: 116, 108
+  size: 31, 58
+  orig: 31, 58
+  offset: 0, 0
+  index: -1
+ss_boss3_attack2
+  rotate: true
+  xy: 176, 108
+  size: 31, 43
+  orig: 31, 43
+  offset: 0, 0
+  index: -1
+ss_boss3_attack3
+  rotate: false
+  xy: 332, 217
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+ss_boss3_eyel2
+  rotate: true
+  xy: 272, 2
+  size: 16, 5
+  orig: 16, 5
+  offset: 0, 0
+  index: -1
+ss_boss3_eyer2
+  rotate: true
+  xy: 343, 86
+  size: 22, 8
+  orig: 22, 10
+  offset: 0, 2
+  index: -1
+ss_boss3_mouth2
+  rotate: false
+  xy: 202, 2
+  size: 27, 11
+  orig: 27, 11
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 307, 194
+  size: 15, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1

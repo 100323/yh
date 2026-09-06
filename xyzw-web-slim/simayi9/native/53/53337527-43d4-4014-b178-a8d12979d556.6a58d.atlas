@@ -1,0 +1,62 @@
+
+simayi9_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+simayi9_skill_du1
+  rotate: true
+  xy: 318, 181
+  size: 202, 130
+  orig: 202, 130
+  offset: 0, 0
+  index: -1
+simayi9_skill_du2
+  rotate: false
+  xy: 2, 2
+  size: 296, 291
+  orig: 296, 291
+  offset: 0, 0
+  index: -1
+simayi9_skill_yan1
+  rotate: true
+  xy: 2, 409
+  size: 42, 88
+  orig: 42, 88
+  offset: 0, 0
+  index: -1
+simayi9_skill_yan2
+  rotate: false
+  xy: 142, 295
+  size: 174, 88
+  orig: 174, 88
+  offset: 0, 0
+  index: -1
+simayi9_skill_yan3
+  rotate: true
+  xy: 2, 319
+  size: 76, 138
+  orig: 76, 138
+  offset: 0, 0
+  index: -1
+simayi9_skill_yan4
+  rotate: false
+  xy: 229, 385
+  size: 192, 66
+  orig: 192, 66
+  offset: 0, 0
+  index: -1
+simayi9_skill_yan5
+  rotate: true
+  xy: 92, 405
+  size: 46, 47
+  orig: 46, 47
+  offset: 0, 0
+  index: -1
+simayi9_skill_yan6
+  rotate: true
+  xy: 141, 397
+  size: 54, 86
+  orig: 54, 86
+  offset: 0, 0
+  index: -1

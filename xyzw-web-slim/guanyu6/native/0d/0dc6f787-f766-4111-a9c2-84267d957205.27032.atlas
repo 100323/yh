@@ -1,0 +1,265 @@
+
+guanyu6.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu6_hz
+  rotate: false
+  xy: 2, 33
+  size: 153, 120
+  orig: 153, 120
+  offset: 0, 0
+  index: -1
+guanyu6_jiaol
+  rotate: true
+  xy: 92, 3
+  size: 28, 36
+  orig: 29, 36
+  offset: 0, 0
+  index: -1
+guanyu6_jiaor
+  rotate: true
+  xy: 130, 5
+  size: 26, 33
+  orig: 27, 34
+  offset: 1, 0
+  index: -1
+guanyu6_jj1
+  rotate: true
+  xy: 269, 397
+  size: 113, 89
+  orig: 116, 90
+  offset: 0, 1
+  index: -1
+guanyu6_jj2
+  rotate: false
+  xy: 2, 7
+  size: 47, 24
+  orig: 49, 27
+  offset: 1, 1
+  index: -1
+guanyu6_jj3
+  rotate: false
+  xy: 165, 5
+  size: 93, 42
+  orig: 94, 46
+  offset: 0, 2
+  index: -1
+guanyu6_jj4
+  rotate: true
+  xy: 157, 49
+  size: 108, 90
+  orig: 108, 99
+  offset: 0, 4
+  index: -1
+guanyu6_jjq1
+  rotate: false
+  xy: 249, 55
+  size: 87, 102
+  orig: 87, 102
+  offset: 0, 0
+  index: -1
+guanyu6_jjq2
+  rotate: false
+  xy: 427, 418
+  size: 67, 92
+  orig: 67, 92
+  offset: 0, 0
+  index: -1
+guanyu6_jjr
+  rotate: true
+  xy: 441, 172
+  size: 72, 62
+  orig: 73, 64
+  offset: 1, 1
+  index: -1
+guanyu6_jjyan
+  rotate: false
+  xy: 338, 49
+  size: 23, 23
+  orig: 25, 25
+  offset: 1, 1
+  index: -1
+guanyu6_mei
+  rotate: false
+  xy: 51, 5
+  size: 39, 26
+  orig: 39, 26
+  offset: 0, 0
+  index: -1
+guanyu6_shen1
+  rotate: true
+  xy: 345, 312
+  size: 83, 80
+  orig: 83, 80
+  offset: 0, 0
+  index: -1
+guanyu6_shen2
+  rotate: false
+  xy: 137, 379
+  size: 130, 131
+  orig: 130, 131
+  offset: 0, 0
+  index: -1
+guanyu6_shoul
+  rotate: true
+  xy: 438, 96
+  size: 74, 50
+  orig: 76, 50
+  offset: 2, 0
+  index: -1
+guanyu6_shour
+  rotate: false
+  xy: 419, 55
+  size: 39, 39
+  orig: 41, 41
+  offset: 2, 1
+  index: -1
+guanyu6_shour02
+  rotate: true
+  xy: 418, 399
+  size: 17, 25
+  orig: 19, 27
+  offset: 1, 1
+  index: -1
+guanyu6_tail
+  rotate: false
+  xy: 258, 173
+  size: 115, 74
+  orig: 115, 74
+  offset: 0, 0
+  index: -1
+guanyu6_tfh
+  rotate: true
+  xy: 137, 159
+  size: 88, 119
+  orig: 88, 119
+  offset: 0, 0
+  index: -1
+guanyu6_tou
+  rotate: true
+  xy: 137, 249
+  size: 128, 110
+  orig: 135, 112
+  offset: 4, 1
+  index: -1
+guanyu6_toukui
+  rotate: false
+  xy: 249, 249
+  size: 94, 128
+  orig: 104, 129
+  offset: 0, 1
+  index: -1
+guanyu6_wq1
+  rotate: false
+  xy: 2, 155
+  size: 133, 355
+  orig: 134, 355
+  offset: 1, 0
+  index: -1
+guanyu6_yan
+  rotate: false
+  xy: 360, 397
+  size: 27, 26
+  orig: 29, 29
+  offset: 0, 2
+  index: -1
+guanyu6_yz
+  rotate: false
+  xy: 269, 384
+  size: 9, 11
+  orig: 14, 15
+  offset: 3, 3
+  index: -1
+guanyu6_zuiba
+  rotate: true
+  xy: 260, 2
+  size: 51, 76
+  orig: 51, 76
+  offset: 0, 0
+  index: -1
+guanyu_daguan01
+  rotate: false
+  xy: 375, 180
+  size: 64, 75
+  orig: 64, 75
+  offset: 0, 0
+  index: -1
+guanyu_daguan02
+  rotate: true
+  xy: 345, 257
+  size: 53, 99
+  orig: 53, 99
+  offset: 0, 0
+  index: -1
+guanyu_jq01
+  rotate: true
+  xy: 372, 42
+  size: 35, 42
+  orig: 35, 42
+  offset: 0, 0
+  index: -1
+guanyu_jq02
+  rotate: false
+  xy: 360, 425
+  size: 60, 85
+  orig: 60, 85
+  offset: 0, 0
+  index: -1
+guanyu_jq03
+  rotate: false
+  xy: 446, 246
+  size: 60, 81
+  orig: 60, 81
+  offset: 0, 0
+  index: -1
+guanyu_jq04
+  rotate: false
+  xy: 445, 329
+  size: 57, 87
+  orig: 57, 87
+  offset: 0, 0
+  index: -1
+guanyu_shoulder1
+  rotate: true
+  xy: 338, 114
+  size: 57, 32
+  orig: 57, 32
+  offset: 0, 0
+  index: -1
+guanyu_shoulder2
+  rotate: true
+  xy: 338, 74
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+guanyu_shoulder3
+  rotate: false
+  xy: 389, 403
+  size: 27, 20
+  orig: 27, 20
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 460, 57
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 372, 79
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 375, 117
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1

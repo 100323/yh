@@ -1,0 +1,48 @@
+
+znq2024_dslb.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+5
+  rotate: false
+  xy: 2, 173
+  size: 269, 286
+  orig: 269, 286
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 50, 143
+  size: 32, 28
+  orig: 32, 32
+  offset: 0, 2
+  index: -1
+znq2024_sdlb_x1
+  rotate: false
+  xy: 2, 88
+  size: 46, 83
+  orig: 48, 85
+  offset: 1, 1
+  index: -1
+znq2024_sdlb_x2
+  rotate: false
+  xy: 2, 45
+  size: 25, 41
+  orig: 27, 43
+  offset: 1, 1
+  index: -1
+znq2024_sdlb_x7
+  rotate: false
+  xy: 370, 412
+  size: 33, 47
+  orig: 35, 49
+  offset: 1, 1
+  index: -1
+znq2024_sdlb_yun
+  rotate: true
+  xy: 273, 2
+  size: 457, 95
+  orig: 457, 95
+  offset: 0, 0
+  index: -1

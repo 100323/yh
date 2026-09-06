@@ -1,0 +1,55 @@
+
+txk_caoren7.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 256, 2
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+txk_cren1
+  rotate: false
+  xy: 356, 5
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+txk_cren2
+  rotate: true
+  xy: 187, 2
+  size: 58, 67
+  orig: 58, 67
+  offset: 0, 0
+  index: -1
+txk_cren3
+  rotate: false
+  xy: 356, 26
+  size: 23, 34
+  orig: 23, 34
+  offset: 0, 0
+  index: -1
+txk_cren4
+  rotate: false
+  xy: 316, 2
+  size: 38, 58
+  orig: 41, 63
+  offset: 0, 3
+  index: -1
+txk_cren5
+  rotate: true
+  xy: 102, 5
+  size: 55, 83
+  orig: 55, 83
+  offset: 0, 0
+  index: -1
+txk_cren6
+  rotate: false
+  xy: 2, 15
+  size: 98, 45
+  orig: 98, 45
+  offset: 0, 0
+  index: -1

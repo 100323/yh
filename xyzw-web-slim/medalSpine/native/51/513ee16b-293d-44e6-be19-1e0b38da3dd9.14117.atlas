@@ -1,0 +1,41 @@
+
+dyzb_huizhang.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dyzb_huizhang
+  rotate: false
+  xy: 2, 26
+  size: 181, 184
+  orig: 181, 184
+  offset: 0, 0
+  index: -1
+dyzb_huizhang_1
+  rotate: false
+  xy: 81, 4
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+dyzb_huizhang_2
+  rotate: true
+  xy: 2, 2
+  size: 22, 24
+  orig: 22, 25
+  offset: 0, 0
+  index: -1
+dyzb_huizhang_3
+  rotate: false
+  xy: 54, 4
+  size: 25, 20
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+dyzb_huizhang_4
+  rotate: true
+  xy: 28, 3
+  size: 21, 24
+  orig: 21, 25
+  offset: 0, 0
+  index: -1

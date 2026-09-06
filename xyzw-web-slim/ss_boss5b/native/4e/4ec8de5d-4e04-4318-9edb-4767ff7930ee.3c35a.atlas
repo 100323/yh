@@ -1,0 +1,216 @@
+
+ss_boss5b.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ss_boss5_1eyebrowl
+  rotate: false
+  xy: 55, 3
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+ss_boss5_1eyebrowr
+  rotate: false
+  xy: 2, 2
+  size: 21, 6
+  orig: 21, 6
+  offset: 0, 0
+  index: -1
+ss_boss5_1eyel
+  rotate: false
+  xy: 72, 4
+  size: 7, 8
+  orig: 7, 8
+  offset: 0, 0
+  index: -1
+ss_boss5_1eyer
+  rotate: false
+  xy: 44, 2
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+ss_boss5_1eyewhitel
+  rotate: false
+  xy: 282, 181
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+ss_boss5_1eyewhiter
+  rotate: true
+  xy: 336, 13
+  size: 14, 13
+  orig: 14, 15
+  offset: 0, 2
+  index: -1
+ss_boss5_1glasses
+  rotate: false
+  xy: 116, 111
+  size: 80, 27
+  orig: 80, 27
+  offset: 0, 0
+  index: -1
+ss_boss5_1handl
+  rotate: true
+  xy: 315, 157
+  size: 36, 49
+  orig: 36, 49
+  offset: 0, 0
+  index: -1
+ss_boss5_1nose
+  rotate: false
+  xy: 133, 2
+  size: 27, 24
+  orig: 27, 24
+  offset: 0, 0
+  index: -1
+ss_boss5_2arml1
+  rotate: true
+  xy: 300, 85
+  size: 62, 46
+  orig: 62, 46
+  offset: 0, 0
+  index: -1
+ss_boss5_2arml2
+  rotate: false
+  xy: 282, 195
+  size: 50, 59
+  orig: 50, 63
+  offset: 0, 4
+  index: -1
+ss_boss5_2armr1
+  rotate: true
+  xy: 334, 196
+  size: 58, 50
+  orig: 58, 50
+  offset: 0, 0
+  index: -1
+ss_boss5_2armr2
+  rotate: false
+  xy: 291, 29
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+ss_boss5_2body
+  rotate: true
+  xy: 2, 111
+  size: 143, 112
+  orig: 143, 112
+  offset: 0, 0
+  index: -1
+ss_boss5_2footl
+  rotate: false
+  xy: 162, 7
+  size: 41, 19
+  orig: 41, 19
+  offset: 0, 0
+  index: -1
+ss_boss5_2footr
+  rotate: false
+  xy: 205, 7
+  size: 37, 19
+  orig: 37, 19
+  offset: 0, 0
+  index: -1
+ss_boss5_2handr
+  rotate: false
+  xy: 243, 28
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+ss_boss5_2head
+  rotate: false
+  xy: 116, 140
+  size: 112, 114
+  orig: 112, 114
+  offset: 0, 0
+  index: -1
+ss_boss5_2hip
+  rotate: true
+  xy: 198, 28
+  size: 110, 43
+  orig: 110, 43
+  offset: 0, 0
+  index: -1
+ss_boss5_2legl
+  rotate: true
+  xy: 230, 176
+  size: 78, 50
+  orig: 78, 50
+  offset: 0, 0
+  index: -1
+ss_boss5_2legr
+  rotate: true
+  xy: 243, 82
+  size: 65, 55
+  orig: 66, 55
+  offset: 0, 0
+  index: -1
+ss_boss5_2mouth
+  rotate: false
+  xy: 276, 149
+  size: 37, 25
+  orig: 37, 25
+  offset: 0, 0
+  index: -1
+ss_boss5_2weapon
+  rotate: false
+  xy: 133, 34
+  size: 63, 75
+  orig: 63, 75
+  offset: 0, 0
+  index: -1
+ss_boss5_skill1
+  rotate: true
+  xy: 282, 8
+  size: 18, 52
+  orig: 18, 52
+  offset: 0, 0
+  index: -1
+ss_boss5_skill2
+  rotate: false
+  xy: 335, 29
+  size: 17, 54
+  orig: 17, 54
+  offset: 0, 0
+  index: -1
+ss_boss5_skill3
+  rotate: true
+  xy: 244, 7
+  size: 19, 36
+  orig: 19, 36
+  offset: 0, 0
+  index: -1
+ss_boss5_skill4
+  rotate: true
+  xy: 230, 149
+  size: 25, 44
+  orig: 25, 44
+  offset: 0, 0
+  index: -1
+ss_boss5_skill6
+  rotate: true
+  xy: 2, 10
+  size: 99, 40
+  orig: 99, 40
+  offset: 0, 0
+  index: -1
+ss_boss5_skill8
+  rotate: false
+  xy: 44, 14
+  size: 87, 95
+  orig: 103, 101
+  offset: 7, 4
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 351, 14
+  size: 13, 12
+  orig: 16, 16
+  offset: 3, 3
+  index: -1

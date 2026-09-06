@@ -1,0 +1,132 @@
+
+wbhj_boss2a.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wbhj_boss2a_arml
+  rotate: false
+  xy: 48, 17
+  size: 34, 86
+  orig: 34, 86
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_armr
+  rotate: false
+  xy: 211, 184
+  size: 48, 70
+  orig: 48, 70
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_armr1
+  rotate: false
+  xy: 146, 105
+  size: 54, 25
+  orig: 54, 26
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_armr2
+  rotate: true
+  xy: 261, 200
+  size: 54, 21
+  orig: 54, 21
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_attack1
+  rotate: false
+  xy: 214, 3
+  size: 76, 19
+  orig: 81, 19
+  offset: 1, 0
+  index: -1
+wbhj_boss2a_body
+  rotate: false
+  xy: 84, 21
+  size: 58, 82
+  orig: 58, 82
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_eye
+  rotate: false
+  xy: 64, 8
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_eye2
+  rotate: false
+  xy: 48, 4
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_eyebrow
+  rotate: false
+  xy: 107, 4
+  size: 22, 15
+  orig: 22, 15
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_eyewhite
+  rotate: false
+  xy: 84, 2
+  size: 21, 17
+  orig: 21, 17
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_hair1
+  rotate: false
+  xy: 146, 132
+  size: 63, 122
+  orig: 63, 122
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_hair2
+  rotate: true
+  xy: 211, 139
+  size: 43, 69
+  orig: 43, 69
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_hair3
+  rotate: false
+  xy: 2, 105
+  size: 142, 149
+  orig: 142, 151
+  offset: 0, 2
+  index: -1
+wbhj_boss2a_handr2
+  rotate: true
+  xy: 202, 105
+  size: 25, 46
+  orig: 25, 46
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_handr3
+  rotate: false
+  xy: 250, 105
+  size: 39, 32
+  orig: 39, 32
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_head
+  rotate: false
+  xy: 144, 22
+  size: 68, 81
+  orig: 68, 82
+  offset: 0, 1
+  index: -1
+wbhj_boss2a_legl
+  rotate: false
+  xy: 214, 24
+  size: 36, 79
+  orig: 36, 79
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_legr
+  rotate: false
+  xy: 2, 6
+  size: 44, 97
+  orig: 44, 97
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,125 @@
+
+js_dstz_win.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 428, 174
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+js_dstz_text1
+  rotate: true
+  xy: 475, 119
+  size: 53, 23
+  orig: 53, 23
+  offset: 0, 0
+  index: -1
+js_dstz_win_bg
+  rotate: false
+  xy: 2, 232
+  size: 320, 251
+  orig: 320, 263
+  offset: 0, 0
+  index: -1
+js_dstz_win_deng
+  rotate: false
+  xy: 2, 2
+  size: 170, 135
+  orig: 178, 135
+  offset: 5, 0
+  index: -1
+js_dstz_win_fish1
+  rotate: true
+  xy: 269, 126
+  size: 52, 37
+  orig: 52, 37
+  offset: 0, 0
+  index: -1
+js_dstz_win_fish2
+  rotate: false
+  xy: 428, 5
+  size: 59, 38
+  orig: 61, 46
+  offset: 2, 0
+  index: -1
+js_dstz_win_fish3
+  rotate: true
+  xy: 428, 222
+  size: 70, 63
+  orig: 70, 63
+  offset: 0, 0
+  index: -1
+js_dstz_win_fish4
+  rotate: true
+  xy: 324, 294
+  size: 189, 163
+  orig: 194, 163
+  offset: 5, 0
+  index: -1
+js_dstz_win_ku
+  rotate: false
+  xy: 174, 30
+  size: 90, 94
+  orig: 90, 94
+  offset: 0, 0
+  index: -1
+js_dstz_win_star
+  rotate: false
+  xy: 489, 458
+  size: 16, 25
+  orig: 16, 25
+  offset: 0, 0
+  index: -1
+js_dstz_win_text
+  rotate: false
+  xy: 2, 139
+  size: 265, 91
+  orig: 265, 91
+  offset: 0, 0
+  index: -1
+js_dstz_win_tz1
+  rotate: true
+  xy: 428, 45
+  size: 71, 42
+  orig: 71, 45
+  offset: 0, 0
+  index: -1
+js_dstz_win_tz2
+  rotate: true
+  xy: 324, 2
+  size: 290, 102
+  orig: 334, 102
+  offset: 44, 0
+  index: -1
+js_dstz_win_tz3
+  rotate: true
+  xy: 472, 63
+  size: 53, 38
+  orig: 57, 38
+  offset: 0, 0
+  index: -1
+js_dstz_win_tz4
+  rotate: true
+  xy: 269, 180
+  size: 50, 39
+  orig: 50, 39
+  offset: 0, 0
+  index: -1
+js_dstz_win_water
+  rotate: false
+  xy: 428, 118
+  size: 45, 54
+  orig: 45, 54
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 489, 432
+  size: 24, 10
+  orig: 26, 26
+  offset: 1, 6
+  index: -1

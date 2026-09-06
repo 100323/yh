@@ -1,0 +1,167 @@
+
+lusu6_sklii_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu6_skill_fg
+  rotate: true
+  xy: 424, 108
+  size: 402, 137
+  orig: 402, 137
+  offset: 0, 0
+  index: -1
+lusu6_skill_fo
+  rotate: true
+  xy: 2, 67
+  size: 443, 402
+  orig: 443, 402
+  offset: 0, 0
+  index: -1
+lusu6_skill_guangy
+  rotate: false
+  xy: 668, 130
+  size: 137, 148
+  orig: 137, 148
+  offset: 0, 0
+  index: -1
+lusu6_skill_sdx1
+  rotate: false
+  xy: 406, 106
+  size: 16, 404
+  orig: 16, 404
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai1
+  rotate: false
+  xy: 842, 412
+  size: 170, 98
+  orig: 170, 98
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai10
+  rotate: true
+  xy: 635, 2
+  size: 113, 143
+  orig: 113, 143
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai2
+  rotate: false
+  xy: 807, 161
+  size: 201, 107
+  orig: 201, 107
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai3
+  rotate: false
+  xy: 462, 3
+  size: 171, 103
+  orig: 171, 103
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai4
+  rotate: true
+  xy: 2, 3
+  size: 62, 128
+  orig: 62, 128
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai5
+  rotate: false
+  xy: 635, 371
+  size: 205, 139
+  orig: 205, 139
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai6
+  rotate: false
+  xy: 563, 117
+  size: 103, 155
+  orig: 103, 155
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai7
+  rotate: true
+  xy: 632, 280
+  size: 89, 114
+  orig: 89, 114
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai8
+  rotate: true
+  xy: 830, 270
+  size: 99, 188
+  orig: 99, 188
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuai9
+  rotate: false
+  xy: 563, 437
+  size: 68, 73
+  orig: 68, 73
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuailizi2
+  rotate: true
+  xy: 132, 3
+  size: 62, 92
+  orig: 62, 92
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuailizi3
+  rotate: false
+  xy: 406, 69
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+lusu6_skill_skuailz1
+  rotate: true
+  xy: 903, 54
+  size: 105, 112
+  orig: 105, 112
+  offset: 0, 0
+  index: -1
+lusu6_skill_yy
+  rotate: false
+  xy: 344, 12
+  size: 116, 53
+  orig: 116, 53
+  offset: 0, 0
+  index: -1
+lusu6_skill_zi1
+  rotate: false
+  xy: 780, 2
+  size: 48, 126
+  orig: 48, 126
+  offset: 0, 0
+  index: -1
+lusu6_skill_zi2
+  rotate: false
+  xy: 830, 37
+  size: 71, 122
+  orig: 71, 122
+  offset: 0, 0
+  index: -1
+lusu6_skill_zi3
+  rotate: true
+  xy: 226, 10
+  size: 55, 116
+  orig: 55, 116
+  offset: 0, 0
+  index: -1
+lusu6_skill_zi4
+  rotate: false
+  xy: 563, 274
+  size: 67, 161
+  orig: 67, 161
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 441, 84
+  size: 22, 15
+  orig: 24, 24
+  offset: 2, 6
+  index: -1

@@ -1,0 +1,62 @@
+
+txk_jiangwei9.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+txk_jiangwei9_biao
+  rotate: true
+  xy: 96, 5
+  size: 16, 23
+  orig: 16, 23
+  offset: 0, 0
+  index: -1
+txk_jiangwei9_guang
+  rotate: true
+  xy: 132, 24
+  size: 35, 53
+  orig: 37, 61
+  offset: 1, 6
+  index: -1
+txk_jiangwei9_jiao
+  rotate: false
+  xy: 187, 13
+  size: 92, 46
+  orig: 92, 46
+  offset: 0, 0
+  index: -1
+txk_jiangwei9_jinse
+  rotate: false
+  xy: 132, 61
+  size: 128, 63
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+txk_jiangwei9_kuang
+  rotate: false
+  xy: 2, 23
+  size: 128, 101
+  orig: 128, 101
+  offset: 0, 0
+  index: -1
+txk_jiangwei9_piao3
+  rotate: true
+  xy: 121, 10
+  size: 11, 23
+  orig: 14, 25
+  offset: 1, 1
+  index: -1
+txk_jiangwei9_piao4
+  rotate: false
+  xy: 146, 9
+  size: 11, 13
+  orig: 12, 15
+  offset: 1, 1
+  index: -1
+txk_jiangwei9_piao51
+  rotate: true
+  xy: 2, 2
+  size: 19, 92
+  orig: 19, 92
+  offset: 0, 0
+  index: -1

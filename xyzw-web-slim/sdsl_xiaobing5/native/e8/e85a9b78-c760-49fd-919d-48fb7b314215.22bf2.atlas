@@ -1,0 +1,97 @@
+
+sdsl_xiaobing5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 109, 158
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_body
+  rotate: false
+  xy: 2, 112
+  size: 79, 75
+  orig: 79, 75
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom1
+  rotate: true
+  xy: 83, 82
+  size: 105, 24
+  orig: 105, 24
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom2
+  rotate: false
+  xy: 56, 35
+  size: 91, 45
+  orig: 91, 45
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom3
+  rotate: true
+  xy: 283, 39
+  size: 175, 128
+  orig: 175, 128
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom4
+  rotate: true
+  xy: 413, 2
+  size: 104, 78
+  orig: 104, 78
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom5
+  rotate: true
+  xy: 413, 108
+  size: 106, 91
+  orig: 106, 91
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom6
+  rotate: false
+  xy: 2, 189
+  size: 279, 261
+  orig: 279, 261
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_boom7
+  rotate: true
+  xy: 283, 216
+  size: 234, 212
+  orig: 234, 212
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_hand1
+  rotate: false
+  xy: 493, 81
+  size: 17, 25
+  orig: 17, 25
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_hand2
+  rotate: false
+  xy: 493, 43
+  size: 11, 18
+  orig: 11, 18
+  offset: 0, 0
+  index: -1
+sdsl_xiaobing5_mask
+  rotate: false
+  xy: 2, 14
+  size: 52, 96
+  orig: 52, 96
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 493, 63
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

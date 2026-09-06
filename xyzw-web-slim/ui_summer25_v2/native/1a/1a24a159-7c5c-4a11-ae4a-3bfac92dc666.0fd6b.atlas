@@ -1,0 +1,104 @@
+
+sqhd25_sqjs.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bauhu
+  rotate: false
+  xy: 741, 620
+  size: 248, 402
+  orig: 248, 402
+  offset: 0, 0
+  index: -1
+bauhug
+  rotate: true
+  xy: 707, 8
+  size: 147, 241
+  orig: 147, 241
+  offset: 0, 0
+  index: -1
+bs
+  rotate: false
+  xy: 991, 996
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+glow
+  rotate: false
+  xy: 2, 525
+  size: 482, 497
+  orig: 482, 497
+  offset: 0, 0
+  index: -1
+juanzhou1
+  rotate: false
+  xy: 688, 397
+  size: 271, 221
+  orig: 271, 221
+  offset: 0, 0
+  index: -1
+juanzhou2
+  rotate: false
+  xy: 519, 174
+  size: 271, 221
+  orig: 271, 221
+  offset: 0, 0
+  index: -1
+juanzhou3
+  rotate: false
+  xy: 519, 2
+  size: 186, 170
+  orig: 186, 170
+  offset: 0, 0
+  index: -1
+qinglong
+  rotate: false
+  xy: 486, 622
+  size: 253, 400
+  orig: 253, 400
+  offset: 0, 0
+  index: -1
+qinglongg
+  rotate: false
+  xy: 792, 157
+  size: 150, 238
+  orig: 150, 238
+  offset: 0, 0
+  index: -1
+qiu1
+  rotate: false
+  xy: 240, 115
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xuanwu
+  rotate: false
+  xy: 285, 129
+  size: 232, 394
+  orig: 232, 394
+  offset: 0, 0
+  index: -1
+xuanwug
+  rotate: true
+  xy: 2, 9
+  size: 138, 236
+  orig: 138, 236
+  offset: 0, 0
+  index: -1
+zhuque
+  rotate: false
+  xy: 2, 149
+  size: 281, 374
+  orig: 281, 374
+  offset: 0, 0
+  index: -1
+zhuqueg
+  rotate: false
+  xy: 519, 397
+  size: 167, 223
+  orig: 167, 223
+  offset: 0, 0
+  index: -1

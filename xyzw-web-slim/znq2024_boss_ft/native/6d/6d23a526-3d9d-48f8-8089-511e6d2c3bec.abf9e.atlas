@@ -1,0 +1,111 @@
+
+znq2024_boss_ft.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2024znq_boss_ft_cb1
+  rotate: false
+  xy: 2, 11
+  size: 107, 49
+  orig: 107, 49
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_cb2
+  rotate: false
+  xy: 251, 11
+  size: 36, 52
+  orig: 36, 52
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_dao
+  rotate: true
+  xy: 289, 2
+  size: 64, 93
+  orig: 65, 94
+  offset: 0, 1
+  index: -1
+2024znq_boss_ft_dd
+  rotate: false
+  xy: 285, 68
+  size: 97, 80
+  orig: 98, 80
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_df
+  rotate: true
+  xy: 348, 170
+  size: 84, 74
+  orig: 85, 74
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_ft
+  rotate: true
+  xy: 2, 62
+  size: 192, 155
+  orig: 193, 166
+  offset: 1, 0
+  index: -1
+2024znq_boss_ft_mao
+  rotate: false
+  xy: 384, 99
+  size: 78, 69
+  orig: 81, 74
+  offset: 1, 1
+  index: -1
+2024znq_boss_ft_pg_2
+  rotate: true
+  xy: 260, 150
+  size: 104, 86
+  orig: 104, 86
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_qian
+  rotate: true
+  xy: 111, 10
+  size: 50, 45
+  orig: 51, 45
+  offset: 1, 0
+  index: -1
+2024znq_boss_ft_shen
+  rotate: true
+  xy: 159, 132
+  size: 122, 99
+  orig: 122, 146
+  offset: 0, 17
+  index: -1
+2024znq_boss_ft_tui
+  rotate: false
+  xy: 424, 204
+  size: 28, 50
+  orig: 28, 50
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_wei
+  rotate: true
+  xy: 159, 65
+  size: 65, 124
+  orig: 65, 124
+  offset: 0, 0
+  index: -1
+2024znq_boss_ft_yz
+  rotate: false
+  xy: 2, 2
+  size: 9, 7
+  orig: 9, 7
+  offset: 0, 0
+  index: -1
+dsqq_hsly_yan2
+  rotate: true
+  xy: 158, 8
+  size: 52, 43
+  orig: 52, 43
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 203, 17
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

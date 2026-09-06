@@ -1,0 +1,125 @@
+
+tgcf_pty_cj_tpxn.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+juese_01
+  rotate: true
+  xy: 34, 13
+  size: 26, 41
+  orig: 27, 44
+  offset: 1, 1
+  index: -1
+juese_010
+  rotate: false
+  xy: 319, 77
+  size: 66, 49
+  orig: 66, 49
+  offset: 0, 0
+  index: -1
+juese_011
+  rotate: false
+  xy: 289, 2
+  size: 64, 61
+  orig: 64, 61
+  offset: 0, 0
+  index: -1
+juese_012
+  rotate: false
+  xy: 87, 44
+  size: 68, 82
+  orig: 68, 83
+  offset: 0, 1
+  index: -1
+juese_013
+  rotate: true
+  xy: 2, 3
+  size: 36, 30
+  orig: 36, 30
+  offset: 0, 0
+  index: -1
+juese_014
+  rotate: true
+  xy: 157, 52
+  size: 74, 72
+  orig: 74, 72
+  offset: 0, 0
+  index: -1
+juese_015
+  rotate: true
+  xy: 401, 6
+  size: 23, 29
+  orig: 23, 29
+  offset: 0, 0
+  index: -1
+juese_016
+  rotate: false
+  xy: 157, 6
+  size: 65, 44
+  orig: 65, 46
+  offset: 0, 2
+  index: -1
+juese_017
+  rotate: false
+  xy: 231, 65
+  size: 86, 61
+  orig: 86, 61
+  offset: 0, 0
+  index: -1
+juese_02
+  rotate: false
+  xy: 355, 23
+  size: 44, 52
+  orig: 45, 54
+  offset: 0, 0
+  index: -1
+juese_03
+  rotate: false
+  xy: 101, 4
+  size: 54, 38
+  orig: 57, 40
+  offset: 0, 2
+  index: -1
+juese_04
+  rotate: false
+  xy: 2, 41
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+juese_05
+  rotate: false
+  xy: 401, 31
+  size: 38, 44
+  orig: 38, 44
+  offset: 0, 0
+  index: -1
+juese_06
+  rotate: true
+  xy: 387, 77
+  size: 49, 46
+  orig: 49, 46
+  offset: 0, 0
+  index: -1
+juese_07
+  rotate: true
+  xy: 77, 6
+  size: 33, 22
+  orig: 33, 22
+  offset: 0, 0
+  index: -1
+juese_08
+  rotate: false
+  xy: 224, 7
+  size: 63, 43
+  orig: 63, 43
+  offset: 0, 0
+  index: -1
+juese_09
+  rotate: true
+  xy: 432, 6
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1

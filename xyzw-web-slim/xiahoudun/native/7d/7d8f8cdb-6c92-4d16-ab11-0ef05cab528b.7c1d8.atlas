@@ -1,0 +1,34 @@
+
+xiahoudun_skill_hit.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 209, 14
+  size: 82, 43
+  orig: 82, 82
+  offset: 0, 39
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 293, 11
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xiahoudun_skill1
+  rotate: false
+  xy: 341, 17
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+xiahoudun_skill2
+  rotate: false
+  xy: 2, 2
+  size: 205, 55
+  orig: 205, 55
+  offset: 0, 0
+  index: -1

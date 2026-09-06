@@ -1,0 +1,111 @@
+
+sqhd26_w4_cj_btn.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+taizi_di
+  rotate: false
+  xy: 77, 73
+  size: 103, 39
+  orig: 104, 39
+  offset: 1, 0
+  index: -1
+taizi_dizuo
+  rotate: true
+  xy: 2, 71
+  size: 171, 73
+  orig: 171, 73
+  offset: 0, 0
+  index: -1
+taizi_gaizi_l
+  rotate: true
+  xy: 294, 129
+  size: 113, 87
+  orig: 113, 87
+  offset: 0, 0
+  index: -1
+taizi_gaizi_r
+  rotate: true
+  xy: 205, 128
+  size: 114, 87
+  orig: 114, 87
+  offset: 0, 0
+  index: -1
+taizi_tanghuangdizuo_l
+  rotate: false
+  xy: 300, 78
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+taizi_tanghuangdizuo_r
+  rotate: true
+  xy: 300, 21
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+taizi_tanhuang_l
+  rotate: true
+  xy: 57, 3
+  size: 66, 54
+  orig: 66, 54
+  offset: 0, 0
+  index: -1
+taizi_tanhuang_r
+  rotate: true
+  xy: 2, 2
+  size: 67, 53
+  orig: 67, 53
+  offset: 0, 0
+  index: -1
+taizi_xue1
+  rotate: false
+  xy: 113, 38
+  size: 62, 33
+  orig: 62, 33
+  offset: 0, 0
+  index: -1
+taizi_xue2
+  rotate: false
+  xy: 383, 188
+  size: 106, 54
+  orig: 106, 54
+  offset: 0, 0
+  index: -1
+taizi_xue3
+  rotate: false
+  xy: 113, 12
+  size: 55, 24
+  orig: 55, 24
+  offset: 0, 0
+  index: -1
+taizi_xue4
+  rotate: true
+  xy: 77, 114
+  size: 128, 63
+  orig: 128, 63
+  offset: 0, 0
+  index: -1
+taizi_xue5
+  rotate: true
+  xy: 142, 124
+  size: 118, 61
+  orig: 118, 61
+  offset: 0, 0
+  index: -1
+taizi_zuqiu
+  rotate: false
+  xy: 182, 6
+  size: 116, 116
+  orig: 116, 116
+  offset: 0, 0
+  index: -1
+taizi_zuqiu_yingzi
+  rotate: false
+  xy: 383, 124
+  size: 101, 62
+  orig: 101, 62
+  offset: 0, 0
+  index: -1

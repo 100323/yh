@@ -1,0 +1,62 @@
+
+lusu4_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: true
+  xy: 491, 88
+  size: 24, 19
+  orig: 24, 24
+  offset: 0, 3
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 411, 7
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+lusu3_pg_sjd
+  rotate: true
+  xy: 361, 4
+  size: 47, 48
+  orig: 47, 48
+  offset: 0, 0
+  index: -1
+lusu3_pg_sjf1
+  rotate: false
+  xy: 258, 40
+  size: 101, 72
+  orig: 107, 72
+  offset: 0, 0
+  index: -1
+lusu3_pg_sjf2
+  rotate: false
+  xy: 149, 31
+  size: 107, 81
+  orig: 109, 81
+  offset: 0, 0
+  index: -1
+lusu3_pg_sjf3
+  rotate: false
+  xy: 361, 53
+  size: 128, 59
+  orig: 128, 59
+  offset: 0, 0
+  index: -1
+lusu3_pg_sjx
+  rotate: false
+  xy: 258, 6
+  size: 74, 32
+  orig: 74, 32
+  offset: 0, 0
+  index: -1
+lusu3_pg_sjyan
+  rotate: false
+  xy: 2, 2
+  size: 145, 110
+  orig: 145, 110
+  offset: 0, 0
+  index: -1

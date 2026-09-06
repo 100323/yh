@@ -1,0 +1,20 @@
+
+jiaxu6_attack_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaxu7_pg_zd1
+  rotate: true
+  xy: 210, 58
+  size: 39, 14
+  orig: 39, 14
+  offset: 0, 0
+  index: -1
+jiaxu7_pg_zd2
+  rotate: false
+  xy: 2, 2
+  size: 206, 95
+  orig: 206, 95
+  offset: 0, 0
+  index: -1

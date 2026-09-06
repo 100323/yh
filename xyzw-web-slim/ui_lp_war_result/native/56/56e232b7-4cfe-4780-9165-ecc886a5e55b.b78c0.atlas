@@ -1,0 +1,20 @@
+
+tgcf_pty_sbjs_yun1.png
+size: 1024,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pty_sljs2_zzh
+  rotate: true
+  xy: 0, 1
+  size: 23, 834
+  orig: 23, 834
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 836, 0
+  size: 26, 24
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

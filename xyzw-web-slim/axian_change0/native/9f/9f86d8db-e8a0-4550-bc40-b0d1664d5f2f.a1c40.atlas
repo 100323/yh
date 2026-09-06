@@ -1,0 +1,167 @@
+
+axian_change0.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_apron
+  rotate: false
+  xy: 2, 227
+  size: 142, 283
+  orig: 142, 283
+  offset: 0, 0
+  index: -1
+axian_armr
+  rotate: true
+  xy: 203, 23
+  size: 67, 215
+  orig: 67, 215
+  offset: 0, 0
+  index: -1
+axian_body
+  rotate: true
+  xy: 303, 165
+  size: 147, 196
+  orig: 147, 196
+  offset: 0, 0
+  index: -1
+axian_eyel2
+  rotate: true
+  xy: 356, 6
+  size: 15, 6
+  orig: 20, 7
+  offset: 2, 1
+  index: -1
+axian_eyer2
+  rotate: true
+  xy: 347, 7
+  size: 14, 7
+  orig: 18, 9
+  offset: 2, 1
+  index: -1
+axian_eyewhitel
+  rotate: true
+  xy: 477, 397
+  size: 21, 26
+  orig: 21, 26
+  offset: 0, 0
+  index: -1
+axian_eyewhiter
+  rotate: true
+  xy: 244, 4
+  size: 17, 26
+  orig: 17, 26
+  offset: 0, 0
+  index: -1
+axian_face
+  rotate: false
+  xy: 146, 269
+  size: 138, 121
+  orig: 138, 121
+  offset: 0, 0
+  index: -1
+axian_hair
+  rotate: true
+  xy: 298, 376
+  size: 134, 107
+  orig: 134, 107
+  offset: 0, 0
+  index: -1
+axian_handl
+  rotate: true
+  xy: 2, 8
+  size: 82, 199
+  orig: 82, 199
+  offset: 0, 0
+  index: -1
+axian_hat
+  rotate: false
+  xy: 2, 92
+  size: 299, 133
+  orig: 299, 133
+  offset: 0, 0
+  index: -1
+axian_hip
+  rotate: false
+  xy: 146, 392
+  size: 150, 118
+  orig: 150, 118
+  offset: 0, 0
+  index: -1
+axian_legl
+  rotate: true
+  xy: 303, 111
+  size: 52, 183
+  orig: 52, 183
+  offset: 0, 0
+  index: -1
+axian_legr
+  rotate: false
+  xy: 420, 314
+  size: 55, 196
+  orig: 55, 196
+  offset: 0, 0
+  index: -1
+axian_mouth1
+  rotate: true
+  xy: 477, 420
+  size: 41, 20
+  orig: 41, 20
+  offset: 0, 0
+  index: -1
+axian_mouth2
+  rotate: true
+  xy: 477, 463
+  size: 47, 25
+  orig: 47, 25
+  offset: 0, 0
+  index: -1
+axian_mouth3
+  rotate: false
+  xy: 203, 9
+  size: 39, 12
+  orig: 39, 12
+  offset: 0, 0
+  index: -1
+axian_mouth4
+  rotate: true
+  xy: 272, 3
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+axian_neck
+  rotate: true
+  xy: 420, 73
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+axian_nose
+  rotate: true
+  xy: 297, 3
+  size: 18, 22
+  orig: 18, 22
+  offset: 0, 0
+  index: -1
+axian_redl
+  rotate: true
+  xy: 334, 7
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+axian_redr
+  rotate: true
+  xy: 321, 4
+  size: 17, 11
+  orig: 17, 11
+  offset: 0, 0
+  index: -1
+axjx_sh_eye
+  rotate: false
+  xy: 2, 2
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1

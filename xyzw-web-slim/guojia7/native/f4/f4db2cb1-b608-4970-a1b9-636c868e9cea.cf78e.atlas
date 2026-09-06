@@ -1,0 +1,41 @@
+
+guojia7_attack_loop.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/pu_gj01
+  rotate: false
+  xy: 2, 18
+  size: 257, 103
+  orig: 257, 121
+  offset: 0, 18
+  index: -1
+images/pu_gj02
+  rotate: false
+  xy: 643, 2
+  size: 142, 119
+  orig: 145, 122
+  offset: 1, 2
+  index: -1
+images/pu_gj03
+  rotate: false
+  xy: 468, 27
+  size: 173, 94
+  orig: 191, 94
+  offset: 17, 0
+  index: -1
+images/pu_gj04
+  rotate: false
+  xy: 261, 53
+  size: 205, 68
+  orig: 206, 68
+  offset: 0, 0
+  index: -1
+images/pu_gj05
+  rotate: false
+  xy: 261, 20
+  size: 34, 31
+  orig: 43, 40
+  offset: 4, 4
+  index: -1

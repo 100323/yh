@@ -1,0 +1,13 @@
+
+tbhdqx_boss_dcc_attack_loop.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tbhdqx_dcc_pg_shan
+  rotate: false
+  xy: 2, 2
+  size: 93, 56
+  orig: 95, 58
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,20 @@
+
+llqj25_cj_guangbiao.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_guangbiao1
+  rotate: false
+  xy: 76, 12
+  size: 57, 57
+  orig: 59, 59
+  offset: 1, 1
+  index: -1
+choujiang_guangbiao2
+  rotate: false
+  xy: 2, 2
+  size: 72, 67
+  orig: 74, 70
+  offset: 1, 2
+  index: -1

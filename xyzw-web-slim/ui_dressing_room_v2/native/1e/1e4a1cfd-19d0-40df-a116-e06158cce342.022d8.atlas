@@ -1,0 +1,27 @@
+
+cangpin_wanjuxiang.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cangpin_wjx_1
+  rotate: false
+  xy: 201, 63
+  size: 189, 104
+  orig: 189, 104
+  offset: 0, 0
+  index: -1
+cangpin_wjx_2
+  rotate: false
+  xy: 2, 2
+  size: 197, 165
+  orig: 197, 166
+  offset: 0, 1
+  index: -1
+cangpin_wjx_3
+  rotate: true
+  xy: 392, 21
+  size: 146, 84
+  orig: 146, 84
+  offset: 0, 0
+  index: -1

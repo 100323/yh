@@ -1,0 +1,286 @@
+
+zhaoyun7.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 606, 183
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 682, 7
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 735, 19
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+zhaoyun2_jdg1
+  rotate: true
+  xy: 489, 37
+  size: 141, 70
+  orig: 141, 70
+  offset: 0, 0
+  index: -1
+zhaoyun2_jdg2
+  rotate: true
+  xy: 486, 365
+  size: 144, 62
+  orig: 144, 62
+  offset: 0, 0
+  index: -1
+zhaoyun2_tfh
+  rotate: true
+  xy: 368, 12
+  size: 166, 119
+  orig: 166, 119
+  offset: 0, 0
+  index: -1
+zhaoyun7_di_g3
+  rotate: false
+  xy: 286, 8
+  size: 80, 170
+  orig: 80, 170
+  offset: 0, 0
+  index: -1
+zhaoyun7_di_g4
+  rotate: false
+  xy: 376, 180
+  size: 131, 162
+  orig: 131, 162
+  offset: 0, 0
+  index: -1
+zhaoyun7_fa1
+  rotate: true
+  xy: 631, 51
+  size: 130, 119
+  orig: 130, 119
+  offset: 0, 0
+  index: -1
+zhaoyun7_fa2
+  rotate: false
+  xy: 752, 65
+  size: 56, 66
+  orig: 56, 66
+  offset: 0, 0
+  index: -1
+zhaoyun7_fa3
+  rotate: true
+  xy: 561, 49
+  size: 132, 68
+  orig: 133, 68
+  offset: 0, 0
+  index: -1
+zhaoyun7_jiaol
+  rotate: false
+  xy: 631, 240
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+zhaoyun7_jiaor
+  rotate: false
+  xy: 631, 240
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_jiao
+  rotate: true
+  xy: 568, 2
+  size: 45, 68
+  orig: 45, 70
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_jl1
+  rotate: false
+  xy: 94, 327
+  size: 165, 182
+  orig: 165, 182
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_jl2
+  rotate: false
+  xy: 94, 175
+  size: 111, 150
+  orig: 111, 150
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_jl3
+  rotate: true
+  xy: 509, 231
+  size: 132, 120
+  orig: 132, 120
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_jl4
+  rotate: false
+  xy: 207, 180
+  size: 167, 145
+  orig: 167, 145
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_mao1
+  rotate: true
+  xy: 795, 412
+  size: 97, 62
+  orig: 99, 63
+  offset: 2, 1
+  index: -1
+zhaoyun7_long_mao2
+  rotate: false
+  xy: 654, 183
+  size: 88, 55
+  orig: 88, 55
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_mao3
+  rotate: false
+  xy: 509, 183
+  size: 95, 46
+  orig: 96, 47
+  offset: 0, 0
+  index: -1
+zhaoyun7_long_tou
+  rotate: true
+  xy: 119, 3
+  size: 170, 165
+  orig: 172, 166
+  offset: 0, 1
+  index: -1
+zhaoyun7_long_xb
+  rotate: true
+  xy: 744, 203
+  size: 69, 54
+  orig: 74, 54
+  offset: 4, 0
+  index: -1
+zhaoyun7_ls
+  rotate: false
+  xy: 261, 344
+  size: 135, 165
+  orig: 135, 165
+  offset: 0, 0
+  index: -1
+zhaoyun7_mei
+  rotate: false
+  xy: 489, 2
+  size: 47, 33
+  orig: 48, 34
+  offset: 1, 0
+  index: -1
+zhaoyun7_pg_1
+  rotate: true
+  xy: 631, 270
+  size: 116, 72
+  orig: 116, 72
+  offset: 0, 0
+  index: -1
+zhaoyun7_pg_2
+  rotate: false
+  xy: 261, 330
+  size: 93, 12
+  orig: 93, 12
+  offset: 0, 0
+  index: -1
+zhaoyun7_pg_3
+  rotate: true
+  xy: 398, 364
+  size: 145, 86
+  orig: 145, 86
+  offset: 0, 0
+  index: -1
+zhaoyun7_pg_4
+  rotate: false
+  xy: 398, 346
+  size: 85, 16
+  orig: 85, 16
+  offset: 0, 0
+  index: -1
+zhaoyun7_shen
+  rotate: true
+  xy: 550, 383
+  size: 126, 64
+  orig: 126, 64
+  offset: 0, 0
+  index: -1
+zhaoyun7_shen2
+  rotate: true
+  xy: 705, 274
+  size: 112, 86
+  orig: 112, 86
+  offset: 0, 0
+  index: -1
+zhaoyun7_shoul
+  rotate: false
+  xy: 638, 6
+  size: 42, 43
+  orig: 42, 45
+  offset: 0, 1
+  index: -1
+zhaoyun7_shour
+  rotate: false
+  xy: 752, 133
+  size: 59, 68
+  orig: 59, 68
+  offset: 0, 0
+  index: -1
+zhaoyun7_tou
+  rotate: false
+  xy: 616, 388
+  size: 105, 121
+  orig: 105, 122
+  offset: 0, 0
+  index: -1
+zhaoyun7_toukui
+  rotate: false
+  xy: 2, 4
+  size: 115, 158
+  orig: 116, 158
+  offset: 0, 0
+  index: -1
+zhaoyun7_wuq
+  rotate: false
+  xy: 2, 164
+  size: 90, 345
+  orig: 91, 367
+  offset: 1, 0
+  index: -1
+zhaoyun7_yan
+  rotate: false
+  xy: 538, 4
+  size: 28, 31
+  orig: 32, 34
+  offset: 4, 0
+  index: -1
+zhaoyun7_yz
+  rotate: true
+  xy: 94, 165
+  size: 8, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+zhaoyun7_zui
+  rotate: false
+  xy: 793, 292
+  size: 50, 106
+  orig: 50, 106
+  offset: 0, 0
+  index: -1
+zhaoyun_tail
+  rotate: true
+  xy: 723, 400
+  size: 109, 70
+  orig: 109, 70
+  offset: 0, 0
+  index: -1

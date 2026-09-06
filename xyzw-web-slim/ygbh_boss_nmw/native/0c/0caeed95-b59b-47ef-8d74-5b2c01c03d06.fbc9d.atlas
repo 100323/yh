@@ -1,0 +1,55 @@
+
+ygbh_boss_nmw_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygbh_boss_nmw_xn1
+  rotate: false
+  xy: 898, 2
+  size: 64, 25
+  orig: 66, 26
+  offset: 1, 1
+  index: -1
+ygbh_boss_nmw_xn2
+  rotate: false
+  xy: 842, 376
+  size: 114, 118
+  orig: 114, 118
+  offset: 0, 0
+  index: -1
+ygbh_boss_nmw_xn3
+  rotate: true
+  xy: 842, 250
+  size: 124, 91
+  orig: 124, 91
+  offset: 0, 0
+  index: -1
+ygbh_boss_nmw_xn4
+  rotate: true
+  xy: 842, 27
+  size: 53, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+ygbh_boss_nmw_xn5
+  rotate: false
+  xy: 898, 29
+  size: 58, 51
+  orig: 58, 51
+  offset: 0, 0
+  index: -1
+ygbh_boss_nmw_xn6
+  rotate: true
+  xy: 842, 82
+  size: 166, 90
+  orig: 166, 90
+  offset: 0, 0
+  index: -1
+ygbh_boss_nmw_xn7
+  rotate: false
+  xy: 2, 52
+  size: 838, 442
+  orig: 838, 442
+  offset: 0, 0
+  index: -1

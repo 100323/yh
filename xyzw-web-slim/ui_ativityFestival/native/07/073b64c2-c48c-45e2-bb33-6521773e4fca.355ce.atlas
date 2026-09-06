@@ -1,0 +1,48 @@
+
+sqhd_dkxb_door.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu3_effect_shine
+  rotate: false
+  xy: 110, 54
+  size: 57, 81
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_door
+  rotate: false
+  xy: 2, 110
+  size: 103, 109
+  orig: 103, 109
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_door2
+  rotate: true
+  xy: 110, 13
+  size: 39, 47
+  orig: 39, 47
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_hole1
+  rotate: true
+  xy: 107, 137
+  size: 82, 104
+  orig: 85, 104
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_hole2
+  rotate: false
+  xy: 2, 2
+  size: 106, 106
+  orig: 106, 106
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 159, 20
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+kpyx_shayu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bhxy_img_sy1
+  rotate: true
+  xy: 133, 43
+  size: 127, 74
+  orig: 127, 74
+  offset: 0, 0
+  index: -1
+bhxy_img_sy2
+  rotate: false
+  xy: 2, 2
+  size: 113, 81
+  orig: 113, 81
+  offset: 0, 0
+  index: -1
+bhxy_img_sy3
+  rotate: false
+  xy: 2, 85
+  size: 129, 85
+  orig: 129, 85
+  offset: 0, 0
+  index: -1

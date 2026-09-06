@@ -1,0 +1,146 @@
+
+zbz_effect_win.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+banner4_star1
+  rotate: true
+  xy: 110, 112
+  size: 51, 59
+  orig: 55, 61
+  offset: 2, 1
+  index: -1
+effect_sc_firework
+  rotate: true
+  xy: 60, 215
+  size: 25, 73
+  orig: 25, 73
+  offset: 0, 0
+  index: -1
+fires01_0
+  rotate: false
+  xy: 10, 234
+  size: 6, 6
+  orig: 61, 63
+  offset: 28, 29
+  index: -1
+fires01_1
+  rotate: true
+  xy: 38, 221
+  size: 19, 20
+  orig: 61, 63
+  offset: 21, 22
+  index: -1
+fires01_2
+  rotate: true
+  xy: 169, 209
+  size: 31, 32
+  orig: 61, 63
+  offset: 15, 16
+  index: -1
+fires01_3
+  rotate: true
+  xy: 44, 176
+  size: 37, 38
+  orig: 61, 63
+  offset: 12, 13
+  index: -1
+fires01_4
+  rotate: true
+  xy: 175, 162
+  size: 43, 44
+  orig: 61, 63
+  offset: 9, 10
+  index: -1
+fires01_5
+  rotate: true
+  xy: 2, 125
+  size: 49, 50
+  orig: 61, 63
+  offset: 6, 7
+  index: -1
+fires01_6
+  rotate: true
+  xy: 171, 106
+  size: 54, 56
+  orig: 61, 63
+  offset: 4, 4
+  index: -1
+fires02_0
+  rotate: false
+  xy: 2, 235
+  size: 6, 5
+  orig: 62, 57
+  offset: 28, 26
+  index: -1
+fires02_1
+  rotate: false
+  xy: 18, 223
+  size: 18, 17
+  orig: 62, 57
+  offset: 22, 20
+  index: -1
+fires02_2
+  rotate: false
+  xy: 135, 211
+  size: 32, 29
+  orig: 62, 57
+  offset: 15, 14
+  index: -1
+fires02_3
+  rotate: false
+  xy: 203, 207
+  size: 36, 33
+  orig: 62, 57
+  offset: 13, 12
+  index: -1
+fires02_4
+  rotate: false
+  xy: 2, 184
+  size: 40, 35
+  orig: 62, 57
+  offset: 11, 11
+  index: -1
+fires02_5
+  rotate: false
+  xy: 127, 165
+  size: 46, 42
+  orig: 62, 57
+  offset: 8, 8
+  index: -1
+fires02_6
+  rotate: false
+  xy: 54, 124
+  size: 54, 49
+  orig: 62, 57
+  offset: 4, 4
+  index: -1
+fires02_7
+  rotate: true
+  xy: 84, 175
+  size: 38, 41
+  orig: 62, 57
+  offset: 12, 8
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 128, 2
+  size: 103, 102
+  orig: 103, 102
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 64
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 62, 46
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

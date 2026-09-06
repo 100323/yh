@@ -1,0 +1,125 @@
+
+daqiao7_skill_hit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao7_skill_bqi
+  rotate: true
+  xy: 590, 19
+  size: 170, 240
+  orig: 170, 240
+  offset: 0, 0
+  index: -1
+daqiao7_skill_ci1
+  rotate: false
+  xy: 435, 440
+  size: 219, 197
+  orig: 219, 197
+  offset: 0, 0
+  index: -1
+daqiao7_skill_ci2
+  rotate: false
+  xy: 327, 54
+  size: 261, 222
+  orig: 261, 222
+  offset: 0, 0
+  index: -1
+daqiao7_skill_diquan
+  rotate: true
+  xy: 590, 191
+  size: 247, 191
+  orig: 247, 191
+  offset: 0, 0
+  index: -1
+daqiao7_skill_gz
+  rotate: true
+  xy: 71, 638
+  size: 299, 307
+  orig: 299, 307
+  offset: 0, 0
+  index: -1
+daqiao7_skill_qi1
+  rotate: false
+  xy: 783, 205
+  size: 144, 242
+  orig: 144, 242
+  offset: 0, 0
+  index: -1
+daqiao7_skill_qi2
+  rotate: true
+  xy: 832, 2
+  size: 201, 153
+  orig: 201, 153
+  offset: 0, 0
+  index: -1
+daqiao7_skill_qi3
+  rotate: true
+  xy: 710, 783
+  size: 154, 271
+  orig: 154, 271
+  offset: 0, 0
+  index: -1
+daqiao7_skill_xian1
+  rotate: false
+  xy: 2, 544
+  size: 67, 393
+  orig: 67, 393
+  offset: 0, 0
+  index: -1
+daqiao7_skill_xwo
+  rotate: false
+  xy: 380, 639
+  size: 328, 298
+  orig: 328, 298
+  offset: 0, 0
+  index: -1
+daqiao7_skill_yl
+  rotate: true
+  xy: 2, 221
+  size: 321, 323
+  orig: 321, 323
+  offset: 0, 0
+  index: -1
+daqiao7_skill_yldi
+  rotate: false
+  xy: 435, 342
+  size: 95, 96
+  orig: 95, 96
+  offset: 0, 0
+  index: -1
+daqiao7_skill_yun1
+  rotate: false
+  xy: 656, 449
+  size: 256, 188
+  orig: 256, 188
+  offset: 0, 0
+  index: -1
+daqiao7_skill_yun2
+  rotate: false
+  xy: 2, 36
+  size: 307, 183
+  orig: 307, 183
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 140, 595
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+yuan_00000
+  rotate: false
+  xy: 71, 569
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+zi1
+  rotate: false
+  xy: 327, 278
+  size: 106, 358
+  orig: 106, 358
+  offset: 0, 0
+  index: -1

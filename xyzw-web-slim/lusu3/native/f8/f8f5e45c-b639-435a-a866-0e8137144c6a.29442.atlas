@@ -1,0 +1,132 @@
+
+lusu3_armor_intro.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lusu3_effect_shield1
+  rotate: false
+  xy: 240, 65
+  size: 113, 70
+  orig: 113, 70
+  offset: 0, 0
+  index: -1
+lusu3_effect_shield2
+  rotate: false
+  xy: 2, 30
+  size: 123, 105
+  orig: 123, 105
+  offset: 0, 0
+  index: -1
+lusu3_effect_shield3
+  rotate: false
+  xy: 2, 137
+  size: 225, 248
+  orig: 225, 248
+  offset: 0, 0
+  index: -1
+lusu3_effect_shield3_2
+  rotate: true
+  xy: 127, 49
+  size: 86, 111
+  orig: 86, 111
+  offset: 0, 0
+  index: -1
+lusu3_effect_shield3_3
+  rotate: true
+  xy: 229, 137
+  size: 79, 111
+  orig: 79, 111
+  offset: 0, 0
+  index: -1
+lusu3_effect_shield3_4
+  rotate: false
+  xy: 342, 141
+  size: 88, 75
+  orig: 88, 76
+  offset: 0, 0
+  index: -1
+lusu3_effect_shield3_5
+  rotate: false
+  xy: 2, 2
+  size: 26, 26
+  orig: 27, 28
+  offset: 1, 1
+  index: -1
+lusu3_effect_shield3_6
+  rotate: false
+  xy: 30, 2
+  size: 26, 26
+  orig: 27, 28
+  offset: 0, 1
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 371, 331
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+xinpf_buff_gy
+  rotate: false
+  xy: 229, 218
+  size: 125, 80
+  orig: 125, 80
+  offset: 0, 0
+  index: -1
+xinpf_buff_kuos
+  rotate: false
+  xy: 229, 300
+  size: 140, 85
+  orig: 140, 85
+  offset: 0, 0
+  index: -1
+xinpf_buff_lizi1
+  rotate: true
+  xy: 240, 21
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+xinpf_buff_lizi2
+  rotate: false
+  xy: 355, 43
+  size: 42, 44
+  orig: 42, 44
+  offset: 0, 0
+  index: -1
+xinpf_buff_lizi3
+  rotate: false
+  xy: 127, 8
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian1
+  rotate: false
+  xy: 356, 226
+  size: 74, 72
+  orig: 74, 72
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian2
+  rotate: false
+  xy: 371, 307
+  size: 51, 22
+  orig: 51, 22
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian3
+  rotate: false
+  xy: 355, 89
+  size: 44, 50
+  orig: 44, 50
+  offset: 0, 0
+  index: -1
+xinpf_buff_xian4
+  rotate: true
+  xy: 427, 325
+  size: 60, 22
+  orig: 60, 22
+  offset: 0, 0
+  index: -1

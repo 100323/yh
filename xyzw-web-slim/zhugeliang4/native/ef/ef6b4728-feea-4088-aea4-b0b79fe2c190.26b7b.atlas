@@ -1,0 +1,20 @@
+
+zhugeliang4_attack_hit.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhugeliang4_attack1
+  rotate: true
+  xy: 98, 2
+  size: 59, 25
+  orig: 59, 25
+  offset: 0, 0
+  index: -1
+zhugeliang4_attack5
+  rotate: false
+  xy: 2, 7
+  size: 94, 54
+  orig: 94, 54
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,279 @@
+
+zhenji7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 454, 18
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 310, 295
+  size: 15, 19
+  orig: 22, 22
+  offset: 3, 2
+  index: -1
+zhenji7_arm1
+  rotate: false
+  xy: 457, 191
+  size: 47, 43
+  orig: 48, 43
+  offset: 1, 0
+  index: -1
+zhenji7_arm2
+  rotate: false
+  xy: 116, 20
+  size: 45, 36
+  orig: 45, 36
+  offset: 0, 0
+  index: -1
+zhenji7_arm3
+  rotate: false
+  xy: 81, 6
+  size: 29, 42
+  orig: 29, 42
+  offset: 0, 0
+  index: -1
+zhenji7_arm4
+  rotate: false
+  xy: 413, 18
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+zhenji7_body
+  rotate: false
+  xy: 457, 236
+  size: 50, 63
+  orig: 50, 63
+  offset: 0, 0
+  index: -1
+zhenji7_body2
+  rotate: false
+  xy: 242, 15
+  size: 33, 48
+  orig: 33, 48
+  offset: 0, 0
+  index: -1
+zhenji7_body3
+  rotate: false
+  xy: 463, 85
+  size: 35, 39
+  orig: 35, 39
+  offset: 0, 0
+  index: -1
+zhenji7_eye1
+  rotate: true
+  xy: 348, 297
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1
+zhenji7_eye2
+  rotate: false
+  xy: 331, 297
+  size: 15, 13
+  orig: 15, 13
+  offset: 0, 0
+  index: -1
+zhenji7_eyebrow1
+  rotate: false
+  xy: 374, 387
+  size: 27, 6
+  orig: 27, 6
+  offset: 0, 0
+  index: -1
+zhenji7_eyebrow2
+  rotate: false
+  xy: 364, 302
+  size: 15, 8
+  orig: 15, 8
+  offset: 0, 0
+  index: -1
+zhenji7_eyelid1
+  rotate: true
+  xy: 324, 7
+  size: 69, 16
+  orig: 69, 16
+  offset: 0, 0
+  index: -1
+zhenji7_eyelid3
+  rotate: false
+  xy: 342, 18
+  size: 63, 29
+  orig: 63, 29
+  offset: 0, 0
+  index: -1
+zhenji7_eyewhite
+  rotate: false
+  xy: 388, 298
+  size: 62, 21
+  orig: 62, 21
+  offset: 0, 0
+  index: -1
+zhenji7_hair1
+  rotate: true
+  xy: 2, 50
+  size: 93, 112
+  orig: 95, 112
+  offset: 2, 0
+  index: -1
+zhenji7_hair2
+  rotate: false
+  xy: 116, 58
+  size: 54, 85
+  orig: 54, 85
+  offset: 0, 0
+  index: -1
+zhenji7_hair3
+  rotate: false
+  xy: 347, 112
+  size: 63, 71
+  orig: 63, 71
+  offset: 0, 0
+  index: -1
+zhenji7_hair4
+  rotate: false
+  xy: 278, 2
+  size: 44, 74
+  orig: 44, 74
+  offset: 0, 0
+  index: -1
+zhenji7_hair5
+  rotate: false
+  xy: 413, 57
+  size: 48, 67
+  orig: 48, 67
+  offset: 0, 0
+  index: -1
+zhenji7_hair6
+  rotate: true
+  xy: 2, 5
+  size: 43, 77
+  orig: 43, 77
+  offset: 0, 0
+  index: -1
+zhenji7_hair7
+  rotate: false
+  xy: 349, 185
+  size: 106, 110
+  orig: 106, 110
+  offset: 0, 0
+  index: -1
+zhenji7_hair8
+  rotate: true
+  xy: 218, 387
+  size: 123, 154
+  orig: 123, 154
+  offset: 0, 0
+  index: -1
+zhenji7_hair9
+  rotate: true
+  xy: 412, 126
+  size: 57, 69
+  orig: 57, 69
+  offset: 0, 0
+  index: -1
+zhenji7_handl
+  rotate: false
+  xy: 452, 301
+  size: 27, 18
+  orig: 27, 18
+  offset: 0, 0
+  index: -1
+zhenji7_head
+  rotate: true
+  xy: 374, 395
+  size: 115, 129
+  orig: 115, 129
+  offset: 0, 0
+  index: -1
+zhenji7_mouth2
+  rotate: false
+  xy: 481, 303
+  size: 20, 16
+  orig: 20, 16
+  offset: 0, 0
+  index: -1
+zhenji7_skill1
+  rotate: false
+  xy: 2, 295
+  size: 214, 215
+  orig: 214, 215
+  offset: 0, 0
+  index: -1
+zhenji7_skill10
+  rotate: true
+  xy: 310, 312
+  size: 73, 76
+  orig: 73, 76
+  offset: 0, 0
+  index: -1
+zhenji7_skill2
+  rotate: true
+  xy: 2, 145
+  size: 148, 169
+  orig: 148, 169
+  offset: 0, 0
+  index: -1
+zhenji7_skill3
+  rotate: true
+  xy: 172, 9
+  size: 54, 68
+  orig: 58, 71
+  offset: 2, 1
+  index: -1
+zhenji7_skill9
+  rotate: false
+  xy: 218, 302
+  size: 90, 83
+  orig: 90, 83
+  offset: 0, 0
+  index: -1
+zhenji7_smoke
+  rotate: false
+  xy: 463, 58
+  size: 37, 25
+  orig: 37, 25
+  offset: 0, 0
+  index: -1
+zhenji7_tail1
+  rotate: true
+  xy: 347, 49
+  size: 61, 64
+  orig: 61, 64
+  offset: 0, 0
+  index: -1
+zhenji7_tail2
+  rotate: true
+  xy: 173, 65
+  size: 124, 103
+  orig: 124, 103
+  offset: 0, 0
+  index: -1
+zhenji7_tail3
+  rotate: true
+  xy: 278, 78
+  size: 111, 67
+  orig: 111, 67
+  offset: 0, 0
+  index: -1
+zhenji7_tail4
+  rotate: false
+  xy: 388, 321
+  size: 113, 64
+  orig: 113, 70
+  offset: 0, 6
+  index: -1
+zhenji7_weapon
+  rotate: false
+  xy: 173, 191
+  size: 174, 102
+  orig: 174, 102
+  offset: 0, 0
+  index: -1

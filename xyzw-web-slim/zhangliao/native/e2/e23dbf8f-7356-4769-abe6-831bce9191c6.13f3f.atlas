@@ -1,0 +1,139 @@
+
+zhangliao.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 252, 176
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 115, 15
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 71, 10
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 102, 370
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 200, 260
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1
+zhangliao_body
+  rotate: true
+  xy: 2, 63
+  size: 154, 145
+  orig: 154, 145
+  offset: 0, 0
+  index: -1
+zhangliao_eye
+  rotate: false
+  xy: 115, 5
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+zhangliao_eyebrow
+  rotate: false
+  xy: 193, 70
+  size: 48, 33
+  orig: 48, 33
+  offset: 0, 0
+  index: -1
+zhangliao_eyewhite
+  rotate: false
+  xy: 135, 221
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+zhangliao_hair
+  rotate: false
+  xy: 243, 380
+  size: 86, 129
+  orig: 90, 137
+  offset: 0, 8
+  index: -1
+zhangliao_handl
+  rotate: true
+  xy: 149, 63
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+zhangliao_handr1
+  rotate: true
+  xy: 163, 18
+  size: 43, 41
+  orig: 45, 45
+  offset: 0, 4
+  index: -1
+zhangliao_handr2
+  rotate: true
+  xy: 200, 224
+  size: 34, 39
+  orig: 34, 42
+  offset: 0, 3
+  index: -1
+zhangliao_head
+  rotate: false
+  xy: 102, 248
+  size: 96, 120
+  orig: 96, 120
+  offset: 0, 0
+  index: -1
+zhangliao_jaw
+  rotate: false
+  xy: 149, 105
+  size: 101, 114
+  orig: 101, 114
+  offset: 0, 0
+  index: -1
+zhangliao_legr
+  rotate: true
+  xy: 102, 223
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+zhangliao_shoulderl
+  rotate: false
+  xy: 2, 7
+  size: 67, 54
+  orig: 67, 54
+  offset: 0, 0
+  index: -1
+zhangliao_tail
+  rotate: false
+  xy: 206, 2
+  size: 78, 66
+  orig: 78, 70
+  offset: 0, 0
+  index: -1
+zhangliao_weapon
+  rotate: false
+  xy: 2, 219
+  size: 98, 290
+  orig: 98, 290
+  offset: 0, 0
+  index: -1

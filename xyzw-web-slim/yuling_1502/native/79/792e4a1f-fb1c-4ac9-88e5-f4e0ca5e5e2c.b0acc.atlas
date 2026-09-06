@@ -1,0 +1,55 @@
+
+yuling_1502.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 41, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_502_body
+  rotate: true
+  xy: 2, 38
+  size: 216, 200
+  orig: 216, 200
+  offset: 0, 0
+  index: -1
+yuling_502_eye
+  rotate: true
+  xy: 75, 2
+  size: 9, 12
+  orig: 9, 12
+  offset: 0, 0
+  index: -1
+yuling_502_eyewhite
+  rotate: false
+  xy: 2, 2
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+yuling_502_fin1
+  rotate: true
+  xy: 204, 193
+  size: 61, 52
+  orig: 61, 52
+  offset: 0, 0
+  index: -1
+yuling_502_fin2
+  rotate: false
+  xy: 204, 151
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+yuling_502_mouth
+  rotate: false
+  xy: 75, 13
+  size: 37, 23
+  orig: 37, 23
+  offset: 0, 0
+  index: -1

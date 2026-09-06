@@ -1,0 +1,76 @@
+
+ycxsz_hgtc.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_hgtc_ft
+  rotate: true
+  xy: 563, 2
+  size: 223, 299
+  orig: 225, 301
+  offset: 1, 1
+  index: -1
+ycxsz_hgtc_gshu
+  rotate: false
+  xy: 563, 227
+  size: 282, 282
+  orig: 282, 282
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_guangyun
+  rotate: false
+  xy: 927, 166
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_hg
+  rotate: false
+  xy: 847, 243
+  size: 112, 103
+  orig: 112, 103
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_laba
+  rotate: false
+  xy: 847, 348
+  size: 155, 161
+  orig: 155, 161
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_qi
+  rotate: true
+  xy: 2, 140
+  size: 369, 559
+  orig: 369, 559
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_sdai
+  rotate: true
+  xy: 2, 64
+  size: 74, 247
+  orig: 74, 247
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_she
+  rotate: true
+  xy: 961, 287
+  size: 59, 38
+  orig: 59, 38
+  offset: 0, 0
+  index: -1
+ycxsz_hgtc_xing
+  rotate: true
+  xy: 927, 98
+  size: 66, 65
+  orig: 71, 71
+  offset: 3, 3
+  index: -1
+ycxsz_hgtc_zi
+  rotate: true
+  xy: 864, 24
+  size: 217, 61
+  orig: 217, 61
+  offset: 0, 0
+  index: -1

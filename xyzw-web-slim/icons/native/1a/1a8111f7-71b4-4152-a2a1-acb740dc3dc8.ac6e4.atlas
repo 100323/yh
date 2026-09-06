@@ -1,0 +1,90 @@
+
+zqhd23_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 146, 456
+  size: 48, 48
+  orig: 52, 52
+  offset: 2, 2
+  index: -1
+zqhd23_banner_bg
+  rotate: false
+  xy: 2, 2
+  size: 461, 258
+  orig: 461, 258
+  offset: 0, 0
+  index: -1
+zqhd23_banner_boat
+  rotate: false
+  xy: 257, 444
+  size: 114, 60
+  orig: 115, 60
+  offset: 0, 0
+  index: -1
+zqhd23_banner_jiang
+  rotate: true
+  xy: 196, 454
+  size: 50, 59
+  orig: 50, 59
+  offset: 0, 0
+  index: -1
+zqhd23_banner_light1
+  rotate: false
+  xy: 2, 494
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+zqhd23_banner_light2
+  rotate: true
+  xy: 16, 489
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+zqhd23_banner_light3
+  rotate: true
+  xy: 34, 486
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+zqhd23_banner_light4
+  rotate: false
+  xy: 55, 481
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+zqhd23_banner_light5
+  rotate: true
+  xy: 113, 474
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+zqhd23_banner_light6
+  rotate: true
+  xy: 82, 476
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+zqhd23_banner_stone
+  rotate: false
+  xy: 184, 262
+  size: 290, 180
+  orig: 290, 180
+  offset: 0, 0
+  index: -1
+zqhd23_banner_tree
+  rotate: false
+  xy: 2, 278
+  size: 180, 176
+  orig: 180, 176
+  offset: 0, 0
+  index: -1

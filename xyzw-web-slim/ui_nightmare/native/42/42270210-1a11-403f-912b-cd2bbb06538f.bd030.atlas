@@ -1,0 +1,174 @@
+
+sdsl_ymsl_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: false
+  xy: 946, 437
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+fz
+  rotate: false
+  xy: 2, 73
+  size: 365, 437
+  orig: 365, 437
+  offset: 0, 0
+  index: -1
+phb_gui1
+  rotate: false
+  xy: 369, 121
+  size: 50, 56
+  orig: 50, 56
+  offset: 0, 0
+  index: -1
+phb_gui2
+  rotate: false
+  xy: 946, 455
+  size: 47, 55
+  orig: 47, 55
+  offset: 0, 0
+  index: -1
+phb_huog
+  rotate: false
+  xy: 421, 153
+  size: 38, 24
+  orig: 38, 24
+  offset: 0, 0
+  index: -1
+phb_lizi3
+  rotate: false
+  xy: 995, 500
+  size: 6, 10
+  orig: 6, 10
+  offset: 0, 0
+  index: -1
+phb_meng
+  rotate: false
+  xy: 473, 252
+  size: 57, 48
+  orig: 57, 48
+  offset: 0, 0
+  index: -1
+phb_menqi10
+  rotate: false
+  xy: 816, 360
+  size: 32, 58
+  orig: 32, 58
+  offset: 0, 0
+  index: -1
+phb_menqi11
+  rotate: true
+  xy: 884, 423
+  size: 10, 35
+  orig: 10, 35
+  offset: 0, 0
+  index: -1
+phb_menqi12
+  rotate: true
+  xy: 211, 22
+  size: 19, 64
+  orig: 19, 64
+  offset: 0, 0
+  index: -1
+phb_menqi13
+  rotate: false
+  xy: 369, 96
+  size: 45, 23
+  orig: 45, 23
+  offset: 0, 0
+  index: -1
+phb_menqi14
+  rotate: true
+  xy: 2, 2
+  size: 13, 41
+  orig: 13, 41
+  offset: 0, 0
+  index: -1
+phb_menqi5
+  rotate: false
+  xy: 211, 2
+  size: 38, 18
+  orig: 38, 18
+  offset: 0, 0
+  index: -1
+phb_menqi6
+  rotate: false
+  xy: 784, 306
+  size: 10, 7
+  orig: 10, 7
+  offset: 0, 0
+  index: -1
+phb_menqi7
+  rotate: true
+  xy: 784, 315
+  size: 103, 30
+  orig: 103, 30
+  offset: 0, 0
+  index: -1
+phb_menqi8
+  rotate: false
+  xy: 295, 54
+  size: 52, 17
+  orig: 52, 17
+  offset: 0, 0
+  index: -1
+phb_menqi9
+  rotate: false
+  xy: 211, 43
+  size: 82, 28
+  orig: 82, 28
+  offset: 0, 0
+  index: -1
+plt_1
+  rotate: false
+  xy: 884, 435
+  size: 60, 75
+  orig: 60, 75
+  offset: 0, 0
+  index: -1
+plt_2
+  rotate: false
+  xy: 369, 179
+  size: 102, 121
+  orig: 102, 121
+  offset: 0, 0
+  index: -1
+qiao
+  rotate: false
+  xy: 369, 302
+  size: 413, 116
+  orig: 413, 116
+  offset: 0, 0
+  index: -1
+sll
+  rotate: true
+  xy: 369, 420
+  size: 90, 513
+  orig: 90, 513
+  offset: 0, 0
+  index: -1
+slr
+  rotate: true
+  xy: 2, 17
+  size: 54, 207
+  orig: 54, 207
+  offset: 0, 0
+  index: -1
+yangl
+  rotate: false
+  xy: 532, 285
+  size: 29, 15
+  orig: 29, 15
+  offset: 0, 0
+  index: -1
+yangr
+  rotate: false
+  xy: 473, 231
+  size: 32, 19
+  orig: 32, 19
+  offset: 0, 0
+  index: -1

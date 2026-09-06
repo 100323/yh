@@ -1,0 +1,41 @@
+
+lusu4_armor_intro.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 333, 36
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+lusu3_buff_cbl
+  rotate: false
+  xy: 333, 82
+  size: 259, 170
+  orig: 259, 170
+  offset: 0, 0
+  index: -1
+lusu3_buff_cbr
+  rotate: false
+  xy: 859, 61
+  size: 82, 191
+  orig: 83, 194
+  offset: 0, 1
+  index: -1
+lusu3_buff_fh
+  rotate: true
+  xy: 594, 110
+  size: 142, 263
+  orig: 143, 263
+  offset: 0, 0
+  index: -1
+lusu3_buff_hudun
+  rotate: true
+  xy: 2, 2
+  size: 250, 329
+  orig: 250, 329
+  offset: 0, 0
+  index: -1

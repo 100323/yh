@@ -1,0 +1,20 @@
+
+ycxsz_jiesuan_hjtg1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_jiesuan_hjtg_biaoqian
+  rotate: true
+  xy: 440, 55
+  size: 129, 64
+  orig: 130, 65
+  offset: 1, 0
+  index: -1
+ycxsz_jiesuan_hjtg_zi
+  rotate: false
+  xy: 2, 2
+  size: 436, 182
+  orig: 436, 182
+  offset: 0, 0
+  index: -1

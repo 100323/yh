@@ -1,0 +1,55 @@
+
+fljs_hands2.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+svip_js_hfinger1
+  rotate: false
+  xy: 452, 35
+  size: 37, 86
+  orig: 37, 86
+  offset: 0, 0
+  index: -1
+svip_js_hfinger2
+  rotate: false
+  xy: 400, 24
+  size: 50, 97
+  orig: 50, 98
+  offset: 0, 0
+  index: -1
+svip_js_hfinger3
+  rotate: true
+  xy: 304, 65
+  size: 56, 94
+  orig: 61, 94
+  offset: 0, 0
+  index: -1
+svip_js_hfinger4
+  rotate: true
+  xy: 304, 14
+  size: 49, 86
+  orig: 49, 86
+  offset: 0, 0
+  index: -1
+svip_js_hfinger5
+  rotate: true
+  xy: 198, 9
+  size: 38, 66
+  orig: 38, 66
+  offset: 0, 0
+  index: -1
+yk_js_harm
+  rotate: true
+  xy: 2, 2
+  size: 119, 194
+  orig: 119, 194
+  offset: 0, 0
+  index: -1
+yk_js_hhand
+  rotate: true
+  xy: 198, 49
+  size: 72, 104
+  orig: 72, 104
+  offset: 0, 0
+  index: -1

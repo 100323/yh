@@ -1,0 +1,41 @@
+
+shhj25_btn.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_anniu1
+  rotate: false
+  xy: 272, 309
+  size: 170, 171
+  orig: 182, 182
+  offset: 6, 6
+  index: -1
+huajuan_choujiang_anniu2
+  rotate: false
+  xy: 272, 139
+  size: 168, 168
+  orig: 172, 172
+  offset: 2, 2
+  index: -1
+huajuan_choujiang_anniu3
+  rotate: false
+  xy: 214, 10
+  size: 117, 127
+  orig: 117, 127
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_anniu4
+  rotate: false
+  xy: 2, 2
+  size: 210, 208
+  orig: 220, 218
+  offset: 5, 4
+  index: -1
+huajuan_choujiang_anniu5
+  rotate: false
+  xy: 2, 212
+  size: 268, 268
+  orig: 278, 288
+  offset: 5, 6
+  index: -1

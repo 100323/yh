@@ -1,0 +1,69 @@
+
+cjhd26_cf.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cjhd26_cf_1
+  rotate: true
+  xy: 2, 117
+  size: 133, 154
+  orig: 133, 154
+  offset: 0, 0
+  index: -1
+cjhd26_cf_1cm
+  rotate: true
+  xy: 158, 90
+  size: 26, 143
+  orig: 26, 143
+  offset: 0, 0
+  index: -1
+cjhd26_cf_2
+  rotate: false
+  xy: 303, 26
+  size: 103, 89
+  orig: 103, 89
+  offset: 0, 0
+  index: -1
+cjhd26_cf_3
+  rotate: false
+  xy: 142, 2
+  size: 118, 86
+  orig: 118, 86
+  offset: 0, 0
+  index: -1
+cjhd26_cf_4
+  rotate: true
+  xy: 314, 117
+  size: 133, 120
+  orig: 133, 120
+  offset: 0, 0
+  index: -1
+cjhd26_cf_5
+  rotate: false
+  xy: 444, 116
+  size: 59, 134
+  orig: 59, 134
+  offset: 0, 0
+  index: -1
+cjhd26_cf_6
+  rotate: false
+  xy: 408, 7
+  size: 34, 108
+  orig: 34, 108
+  offset: 0, 0
+  index: -1
+cjhd26_cf_7
+  rotate: false
+  xy: 2, 11
+  size: 138, 104
+  orig: 159, 116
+  offset: 6, 6
+  index: -1
+cjhd26_cf_8
+  rotate: true
+  xy: 158, 118
+  size: 132, 154
+  orig: 132, 154
+  offset: 0, 0
+  index: -1

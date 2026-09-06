@@ -1,0 +1,104 @@
+
+dengshenqun_skill_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dengshen_effect01
+  rotate: false
+  xy: 274, 4
+  size: 47, 49
+  orig: 47, 49
+  offset: 0, 0
+  index: -1
+dengshen_effect02
+  rotate: false
+  xy: 217, 19
+  size: 20, 20
+  orig: 21, 22
+  offset: 1, 2
+  index: -1
+dengshen_skill02
+  rotate: false
+  xy: 30, 32
+  size: 127, 94
+  orig: 127, 94
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng1
+  rotate: false
+  xy: 385, 60
+  size: 52, 66
+  orig: 53, 66
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng2
+  rotate: false
+  xy: 331, 58
+  size: 52, 68
+  orig: 53, 68
+  offset: 1, 0
+  index: -1
+dengshen_skill_feng3
+  rotate: false
+  xy: 274, 55
+  size: 55, 71
+  orig: 55, 72
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng4
+  rotate: true
+  xy: 31, 9
+  size: 21, 94
+  orig: 21, 94
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng5
+  rotate: true
+  xy: 127, 10
+  size: 20, 88
+  orig: 20, 88
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng6
+  rotate: false
+  xy: 2, 31
+  size: 26, 95
+  orig: 26, 95
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng7
+  rotate: false
+  xy: 225, 44
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng8
+  rotate: false
+  xy: 159, 32
+  size: 29, 94
+  orig: 29, 94
+  offset: 0, 0
+  index: -1
+dengshen_skill_feng9
+  rotate: false
+  xy: 190, 41
+  size: 33, 85
+  orig: 33, 85
+  offset: 0, 0
+  index: -1
+hero_effect_circle
+  rotate: false
+  xy: 331, 3
+  size: 64, 53
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 27, 27
+  orig: 29, 29
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,153 @@
+
+zhaoyun.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 402, 217
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halfcircle1
+  rotate: false
+  xy: 202, 311
+  size: 86, 40
+  orig: 86, 40
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 335, 309
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 2, 149
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: false
+  xy: 210, 123
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 106, 149
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+zhaoyun_body
+  rotate: false
+  xy: 2, 8
+  size: 142, 139
+  orig: 142, 139
+  offset: 0, 0
+  index: -1
+zhaoyun_eye
+  rotate: true
+  xy: 2, 344
+  size: 7, 8
+  orig: 7, 8
+  offset: 0, 0
+  index: -1
+zhaoyun_eyebrow
+  rotate: false
+  xy: 117, 316
+  size: 39, 35
+  orig: 39, 35
+  offset: 0, 0
+  index: -1
+zhaoyun_eyewhite
+  rotate: true
+  xy: 45, 324
+  size: 27, 30
+  orig: 30, 32
+  offset: 3, 0
+  index: -1
+zhaoyun_hair1
+  rotate: true
+  xy: 2, 260
+  size: 56, 96
+  orig: 56, 96
+  offset: 0, 0
+  index: -1
+zhaoyun_hair2
+  rotate: true
+  xy: 100, 253
+  size: 56, 109
+  orig: 56, 109
+  offset: 0, 0
+  index: -1
+zhaoyun_handl
+  rotate: true
+  xy: 158, 312
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+zhaoyun_handr
+  rotate: true
+  xy: 77, 318
+  size: 33, 38
+  orig: 33, 38
+  offset: 0, 0
+  index: -1
+zhaoyun_handr2
+  rotate: true
+  xy: 290, 310
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+zhaoyun_head2
+  rotate: false
+  xy: 320, 91
+  size: 138, 124
+  orig: 138, 124
+  offset: 0, 0
+  index: -1
+zhaoyun_legr
+  rotate: true
+  xy: 12, 328
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+zhaoyun_mouth
+  rotate: true
+  xy: 388, 301
+  size: 50, 78
+  orig: 50, 78
+  offset: 0, 0
+  index: -1
+zhaoyun_shoulderl
+  rotate: true
+  xy: 211, 238
+  size: 70, 78
+  orig: 70, 78
+  offset: 0, 0
+  index: -1
+zhaoyun_tail
+  rotate: false
+  xy: 291, 229
+  size: 109, 70
+  orig: 109, 70
+  offset: 0, 0
+  index: -1
+zhaoyun_weapon
+  rotate: true
+  xy: 146, 2
+  size: 87, 333
+  orig: 87, 333
+  offset: 0, 0
+  index: -1

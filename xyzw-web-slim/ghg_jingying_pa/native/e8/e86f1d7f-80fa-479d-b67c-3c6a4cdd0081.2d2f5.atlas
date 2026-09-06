@@ -1,0 +1,104 @@
+
+ghg_jingying_pa_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_pa_skilla1
+  rotate: false
+  xy: 748, 320
+  size: 218, 190
+  orig: 218, 190
+  offset: 0, 0
+  index: -1
+ghg_pa_skilla2
+  rotate: false
+  xy: 748, 144
+  size: 211, 174
+  orig: 211, 174
+  offset: 0, 0
+  index: -1
+ghg_pa_skilla3
+  rotate: true
+  xy: 481, 2
+  size: 209, 265
+  orig: 209, 265
+  offset: 0, 0
+  index: -1
+ghg_pa_skilla4
+  rotate: true
+  xy: 2, 101
+  size: 409, 377
+  orig: 409, 377
+  offset: 0, 0
+  index: -1
+ghg_pa_skilla5
+  rotate: true
+  xy: 567, 355
+  size: 155, 177
+  orig: 155, 177
+  offset: 0, 0
+  index: -1
+ghg_pa_skilla6
+  rotate: false
+  xy: 748, 32
+  size: 195, 110
+  orig: 195, 110
+  offset: 0, 0
+  index: -1
+ghg_pa_skilla7
+  rotate: false
+  xy: 2, 4
+  size: 342, 95
+  orig: 342, 95
+  offset: 0, 0
+  index: -1
+ghg_pa_skillb1
+  rotate: false
+  xy: 381, 154
+  size: 76, 57
+  orig: 76, 57
+  offset: 0, 0
+  index: -1
+ghg_pa_skillb2
+  rotate: false
+  xy: 381, 213
+  size: 184, 297
+  orig: 184, 297
+  offset: 0, 0
+  index: -1
+ghg_pa_skillb3
+  rotate: false
+  xy: 346, 12
+  size: 133, 87
+  orig: 133, 87
+  offset: 0, 0
+  index: -1
+ghg_pa_skillb4
+  rotate: true
+  xy: 567, 239
+  size: 114, 79
+  orig: 114, 79
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 459, 191
+  size: 20, 20
+  orig: 22, 22
+  offset: 1, 1
+  index: -1
+simayi3_attack1
+  rotate: false
+  xy: 346, 2
+  size: 63, 8
+  orig: 63, 8
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 459, 179
+  size: 11, 10
+  orig: 12, 12
+  offset: 1, 1
+  index: -1

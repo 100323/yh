@@ -1,0 +1,69 @@
+
+lvbu4_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 335, 2
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 210, 39
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+lvbu4_effect_b01
+  rotate: false
+  xy: 335, 106
+  size: 103, 104
+  orig: 103, 104
+  offset: 0, 0
+  index: -1
+lvbu4_effect_c01
+  rotate: false
+  xy: 2, 8
+  size: 206, 202
+  orig: 206, 202
+  offset: 0, 0
+  index: -1
+lvbu4_effect_c02
+  rotate: false
+  xy: 210, 87
+  size: 123, 123
+  orig: 123, 123
+  offset: 0, 0
+  index: -1
+lvbu4_effect_s01
+  rotate: true
+  xy: 210, 3
+  size: 34, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+lvbu4_effect_s02
+  rotate: false
+  xy: 254, 6
+  size: 29, 31
+  orig: 29, 31
+  offset: 0, 0
+  index: -1
+lvbu4_effect_s03
+  rotate: false
+  xy: 258, 67
+  size: 22, 18
+  orig: 22, 18
+  offset: 0, 0
+  index: -1
+lvbu4_effect_s04
+  rotate: false
+  xy: 282, 76
+  size: 14, 9
+  orig: 14, 10
+  offset: 0, 1
+  index: -1

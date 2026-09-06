@@ -1,0 +1,41 @@
+
+ghg_xiaobing_lan.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_xiaobing1_body
+  rotate: false
+  xy: 2, 2
+  size: 84, 80
+  orig: 84, 80
+  offset: 0, 0
+  index: -1
+ghg_xiaobing1_gun
+  rotate: false
+  xy: 88, 7
+  size: 12, 19
+  orig: 12, 19
+  offset: 0, 0
+  index: -1
+ghg_xiaobing1_leg
+  rotate: true
+  xy: 150, 21
+  size: 61, 25
+  orig: 61, 25
+  offset: 0, 0
+  index: -1
+ghg_xiaobing_hit1
+  rotate: false
+  xy: 88, 28
+  size: 60, 54
+  orig: 61, 54
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 102, 11
+  size: 15, 11
+  orig: 16, 16
+  offset: 0, 3
+  index: -1

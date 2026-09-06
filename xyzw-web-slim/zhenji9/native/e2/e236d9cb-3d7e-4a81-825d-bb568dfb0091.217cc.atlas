@@ -1,0 +1,118 @@
+
+zhenji9_skill_hit2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+weiba
+  rotate: false
+  xy: 458, 266
+  size: 197, 223
+  orig: 197, 223
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_baishe
+  rotate: false
+  xy: 2, 30
+  size: 126, 459
+  orig: 126, 459
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_bowen1
+  rotate: false
+  xy: 657, 262
+  size: 266, 68
+  orig: 266, 68
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_bowen2
+  rotate: false
+  xy: 252, 17
+  size: 266, 68
+  orig: 266, 68
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_di3
+  rotate: false
+  xy: 879, 115
+  size: 137, 102
+  orig: 137, 102
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_ks1
+  rotate: false
+  xy: 252, 87
+  size: 201, 170
+  orig: 201, 170
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_ks2
+  rotate: true
+  xy: 896, 337
+  size: 152, 120
+  orig: 152, 120
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_ks3
+  rotate: true
+  xy: 752, 51
+  size: 163, 125
+  orig: 163, 125
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_ks4
+  rotate: true
+  xy: 925, 219
+  size: 116, 92
+  orig: 116, 92
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_qingshe
+  rotate: false
+  xy: 130, 53
+  size: 120, 436
+  orig: 125, 436
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_qiu
+  rotate: true
+  xy: 520, 24
+  size: 51, 215
+  orig: 51, 215
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_shuidi
+  rotate: false
+  xy: 2, 2
+  size: 40, 26
+  orig: 40, 26
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_shuihua1
+  rotate: false
+  xy: 520, 77
+  size: 230, 137
+  orig: 230, 146
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_shuihua2
+  rotate: false
+  xy: 657, 332
+  size: 237, 157
+  orig: 237, 157
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_shuihuah
+  rotate: false
+  xy: 252, 259
+  size: 204, 230
+  orig: 204, 230
+  offset: 0, 0
+  index: -1
+zhenji9_skill2_yun
+  rotate: false
+  xy: 520, 216
+  size: 346, 44
+  orig: 346, 44
+  offset: 0, 0
+  index: -1

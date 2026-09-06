@@ -1,0 +1,90 @@
+
+sdsl_maskdoor.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_maskbox_bian
+  rotate: true
+  xy: 238, 104
+  size: 120, 162
+  orig: 120, 162
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_bu
+  rotate: false
+  xy: 779, 121
+  size: 39, 103
+  orig: 39, 103
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_door1
+  rotate: false
+  xy: 693, 45
+  size: 34, 179
+  orig: 34, 179
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_door2
+  rotate: true
+  xy: 2, 226
+  size: 279, 829
+  orig: 279, 829
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_heye1
+  rotate: false
+  xy: 773, 12
+  size: 26, 105
+  orig: 26, 105
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_insidey
+  rotate: false
+  xy: 833, 79
+  size: 167, 183
+  orig: 167, 183
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_kou1
+  rotate: false
+  xy: 729, 119
+  size: 48, 105
+  orig: 48, 105
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_kou2
+  rotate: false
+  xy: 729, 6
+  size: 42, 111
+  orig: 42, 111
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_mask
+  rotate: true
+  xy: 833, 264
+  size: 241, 169
+  orig: 241, 169
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_ring1
+  rotate: true
+  xy: 2, 2
+  size: 222, 234
+  orig: 222, 234
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_ring2
+  rotate: true
+  xy: 402, 147
+  size: 77, 241
+  orig: 77, 241
+  offset: 0, 0
+  index: -1
+sdsl_maskbox_yan
+  rotate: false
+  xy: 645, 20
+  size: 46, 204
+  orig: 46, 204
+  offset: 0, 0
+  index: -1

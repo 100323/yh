@@ -1,0 +1,41 @@
+
+sdsl_boss2_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_boss2_attack1
+  rotate: true
+  xy: 2, 2
+  size: 27, 91
+  orig: 27, 91
+  offset: 0, 0
+  index: -1
+sdsl_boss2_attack2
+  rotate: true
+  xy: 95, 5
+  size: 24, 67
+  orig: 24, 67
+  offset: 0, 0
+  index: -1
+sdsl_boss2_attack3
+  rotate: true
+  xy: 2, 31
+  size: 88, 268
+  orig: 88, 268
+  offset: 0, 0
+  index: -1
+sdsl_boss2_attack4
+  rotate: true
+  xy: 272, 38
+  size: 81, 59
+  orig: 81, 59
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 164, 13
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

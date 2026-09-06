@@ -1,0 +1,83 @@
+
+guojia5_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia5_attack_hit1
+  rotate: false
+  xy: 2, 74
+  size: 115, 178
+  orig: 115, 178
+  offset: 0, 0
+  index: -1
+guojia5_attack_hit3
+  rotate: false
+  xy: 361, 175
+  size: 38, 77
+  orig: 38, 77
+  offset: 0, 0
+  index: -1
+guojia5_attack_hit4
+  rotate: false
+  xy: 298, 17
+  size: 77, 78
+  orig: 77, 78
+  offset: 0, 0
+  index: -1
+guojia5_attack_hit5
+  rotate: false
+  xy: 2, 26
+  size: 155, 46
+  orig: 155, 46
+  offset: 0, 0
+  index: -1
+guojia5_bird1
+  rotate: false
+  xy: 2, 2
+  size: 33, 22
+  orig: 33, 22
+  offset: 0, 0
+  index: -1
+guojia5_bird2
+  rotate: false
+  xy: 315, 97
+  size: 50, 29
+  orig: 50, 29
+  offset: 0, 0
+  index: -1
+guojia5_bird3
+  rotate: true
+  xy: 119, 94
+  size: 158, 118
+  orig: 158, 118
+  offset: 0, 0
+  index: -1
+guojia5_birdw1
+  rotate: false
+  xy: 239, 97
+  size: 74, 29
+  orig: 74, 29
+  offset: 0, 0
+  index: -1
+guojia5_birdw2
+  rotate: false
+  xy: 239, 128
+  size: 120, 124
+  orig: 120, 124
+  offset: 0, 0
+  index: -1
+guojia5_birdw3
+  rotate: false
+  xy: 159, 11
+  size: 137, 81
+  orig: 137, 81
+  offset: 0, 0
+  index: -1
+guojia5_birdw4
+  rotate: false
+  xy: 361, 142
+  size: 68, 31
+  orig: 68, 31
+  offset: 0, 0
+  index: -1

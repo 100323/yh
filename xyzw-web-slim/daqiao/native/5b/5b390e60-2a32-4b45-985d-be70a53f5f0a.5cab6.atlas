@@ -1,0 +1,76 @@
+
+daqiao_skill_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao_ji_bod
+  rotate: false
+  xy: 2, 265
+  size: 259, 241
+  orig: 259, 241
+  offset: 0, 0
+  index: -1
+daqiao_ji_box
+  rotate: false
+  xy: 120, 31
+  size: 153, 157
+  orig: 153, 157
+  offset: 0, 0
+  index: -1
+daqiao_ji_box2
+  rotate: false
+  xy: 275, 70
+  size: 79, 126
+  orig: 79, 126
+  offset: 0, 0
+  index: -1
+daqiao_ji_boxian
+  rotate: false
+  xy: 356, 77
+  size: 100, 119
+  orig: 100, 119
+  offset: 0, 0
+  index: -1
+daqiao_ji_gy
+  rotate: false
+  xy: 2, 212
+  size: 92, 51
+  orig: 92, 51
+  offset: 0, 0
+  index: -1
+daqiao_ji_hua1
+  rotate: false
+  xy: 120, 190
+  size: 131, 73
+  orig: 131, 73
+  offset: 0, 0
+  index: -1
+daqiao_ji_hua2
+  rotate: false
+  xy: 263, 379
+  size: 212, 127
+  orig: 212, 127
+  offset: 0, 0
+  index: -1
+daqiao_ji_hua3
+  rotate: true
+  xy: 2, 2
+  size: 194, 116
+  orig: 194, 116
+  offset: 0, 0
+  index: -1
+daqiao_ji_xian
+  rotate: true
+  xy: 275, 2
+  size: 66, 102
+  orig: 66, 102
+  offset: 0, 0
+  index: -1
+daqiao_ji_xing
+  rotate: true
+  xy: 263, 198
+  size: 179, 206
+  orig: 179, 206
+  offset: 0, 0
+  index: -1

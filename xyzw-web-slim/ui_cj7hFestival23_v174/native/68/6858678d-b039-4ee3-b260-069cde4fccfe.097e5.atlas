@@ -1,0 +1,167 @@
+
+nznh25_choujiang_cahngjing.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_ditu
+  rotate: false
+  xy: 2, 154
+  size: 264, 356
+  orig: 264, 356
+  offset: 0, 0
+  index: -1
+choujiang_gunagyun1
+  rotate: false
+  xy: 534, 243
+  size: 264, 267
+  orig: 264, 267
+  offset: 0, 0
+  index: -1
+choujiang_gunagyun2
+  rotate: true
+  xy: 2, 18
+  size: 134, 151
+  orig: 264, 299
+  offset: 65, 74
+  index: -1
+choujiang_haicao1
+  rotate: true
+  xy: 262, 67
+  size: 85, 202
+  orig: 85, 209
+  offset: 0, 0
+  index: -1
+choujiang_haicao2
+  rotate: false
+  xy: 228, 62
+  size: 32, 90
+  orig: 32, 90
+  offset: 0, 0
+  index: -1
+choujiang_haicao3
+  rotate: false
+  xy: 155, 23
+  size: 71, 129
+  orig: 72, 129
+  offset: 1, 0
+  index: -1
+choujiang_paopao1
+  rotate: true
+  xy: 155, 2
+  size: 19, 20
+  orig: 20, 20
+  offset: 1, 0
+  index: -1
+choujiang_paopao10
+  rotate: false
+  xy: 34, 3
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+choujiang_paopao11
+  rotate: false
+  xy: 93, 8
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+choujiang_paopao12
+  rotate: true
+  xy: 194, 5
+  size: 16, 15
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+choujiang_paopao13
+  rotate: false
+  xy: 103, 10
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+choujiang_paopao14
+  rotate: false
+  xy: 211, 5
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+choujiang_paopao2
+  rotate: true
+  xy: 2, 2
+  size: 14, 15
+  orig: 15, 16
+  offset: 1, 0
+  index: -1
+choujiang_paopao3
+  rotate: false
+  xy: 61, 6
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+choujiang_paopao4
+  rotate: false
+  xy: 49, 5
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+choujiang_paopao5
+  rotate: false
+  xy: 228, 40
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+choujiang_paopao6
+  rotate: false
+  xy: 177, 5
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+choujiang_paopao7
+  rotate: false
+  xy: 19, 3
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+choujiang_paopao8
+  rotate: true
+  xy: 73, 7
+  size: 9, 8
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+choujiang_paopao9
+  rotate: false
+  xy: 83, 8
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+choujiang_secai2
+  rotate: false
+  xy: 268, 212
+  size: 264, 298
+  orig: 264, 298
+  offset: 0, 0
+  index: -1
+choujiang_secai3
+  rotate: false
+  xy: 535, 7
+  size: 229, 234
+  orig: 239, 244
+  offset: 5, 7
+  index: -1
+choujiang_shitou
+  rotate: true
+  xy: 466, 132
+  size: 78, 67
+  orig: 78, 67
+  offset: 0, 0
+  index: -1

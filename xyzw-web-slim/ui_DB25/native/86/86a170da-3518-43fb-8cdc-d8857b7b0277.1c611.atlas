@@ -1,0 +1,41 @@
+
+zqhd25_xyx_bj.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zqhd25_xyx_bj
+  rotate: false
+  xy: 2, 2
+  size: 452, 424
+  orig: 452, 424
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_bj_fc
+  rotate: false
+  xy: 77, 428
+  size: 257, 82
+  orig: 257, 82
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_bj_xing1
+  rotate: true
+  xy: 24, 490
+  size: 20, 25
+  orig: 20, 27
+  offset: 0, 1
+  index: -1
+zqhd25_xyx_bj_xing2
+  rotate: false
+  xy: 2, 492
+  size: 20, 18
+  orig: 20, 19
+  offset: 0, 1
+  index: -1
+zqhd25_xyx_bj_xing6
+  rotate: true
+  xy: 51, 489
+  size: 21, 24
+  orig: 22, 24
+  offset: 1, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+sunce8_skill2_hit2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce_skill2_gq
+  rotate: true
+  xy: 636, 147
+  size: 205, 146
+  orig: 205, 146
+  offset: 0, 0
+  index: -1
+sunce_skill2_hm1
+  rotate: false
+  xy: 581, 111
+  size: 23, 54
+  orig: 23, 54
+  offset: 0, 0
+  index: -1
+sunce_skill2_hm2
+  rotate: false
+  xy: 606, 130
+  size: 17, 35
+  orig: 17, 35
+  offset: 0, 0
+  index: -1
+sunce_skill2_huo
+  rotate: false
+  xy: 2, 20
+  size: 439, 332
+  orig: 439, 332
+  offset: 0, 0
+  index: -1
+sunce_skill2_hy1
+  rotate: false
+  xy: 443, 167
+  size: 191, 185
+  orig: 191, 185
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_bo
+  rotate: false
+  xy: 625, 52
+  size: 108, 93
+  orig: 110, 95
+  offset: 1, 1
+  index: -1
+zhouyu8_skill2_gq
+  rotate: true
+  xy: 443, 2
+  size: 163, 136
+  orig: 179, 155
+  offset: 8, 8
+  index: -1

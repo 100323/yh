@@ -1,0 +1,48 @@
+
+tgcf_tgsd_light.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lunkuo
+  rotate: false
+  xy: 2, 2
+  size: 331, 408
+  orig: 331, 408
+  offset: 0, 0
+  index: -1
+ui_chest_light4
+  rotate: true
+  xy: 335, 81
+  size: 134, 49
+  orig: 134, 49
+  offset: 0, 0
+  index: -1
+ui_chest_star
+  rotate: true
+  xy: 335, 11
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+ui_effect_light_box
+  rotate: false
+  xy: 335, 217
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 335, 37
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 335, 271
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

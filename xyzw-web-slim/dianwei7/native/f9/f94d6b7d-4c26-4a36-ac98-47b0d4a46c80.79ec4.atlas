@@ -1,0 +1,118 @@
+
+dianwei7_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianwei7_pg1_lz
+  rotate: true
+  xy: 261, 285
+  size: 20, 26
+  orig: 20, 26
+  offset: 0, 0
+  index: -1
+dianwei7_pg1_xzd
+  rotate: false
+  xy: 252, 43
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+dianwei7_pg1_xzx
+  rotate: true
+  xy: 289, 297
+  size: 8, 29
+  orig: 11, 29
+  offset: 2, 0
+  index: -1
+dianwei7_pg1_yan
+  rotate: false
+  xy: 145, 85
+  size: 109, 97
+  orig: 109, 97
+  offset: 0, 0
+  index: -1
+pg_bdh1
+  rotate: false
+  xy: 2, 2
+  size: 52, 60
+  orig: 52, 60
+  offset: 0, 0
+  index: -1
+pg_bdh2
+  rotate: true
+  xy: 261, 307
+  size: 55, 76
+  orig: 55, 76
+  offset: 0, 0
+  index: -1
+pg_bdh3
+  rotate: true
+  xy: 145, 23
+  size: 60, 53
+  orig: 60, 53
+  offset: 0, 0
+  index: -1
+pg_bdh4
+  rotate: false
+  xy: 2, 184
+  size: 161, 178
+  orig: 161, 178
+  offset: 0, 0
+  index: -1
+pg_bdl1
+  rotate: false
+  xy: 165, 205
+  size: 80, 74
+  orig: 80, 74
+  offset: 0, 0
+  index: -1
+pg_bdl2
+  rotate: true
+  xy: 56, 5
+  size: 57, 52
+  orig: 57, 52
+  offset: 0, 0
+  index: -1
+pg_bdl3
+  rotate: false
+  xy: 165, 281
+  size: 94, 81
+  orig: 94, 81
+  offset: 0, 0
+  index: -1
+pg_bdl4
+  rotate: false
+  xy: 2, 64
+  size: 141, 118
+  orig: 141, 118
+  offset: 0, 0
+  index: -1
+pg_bdl5
+  rotate: false
+  xy: 200, 33
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+pg_bdl6
+  rotate: false
+  xy: 247, 215
+  size: 67, 64
+  orig: 67, 64
+  offset: 0, 0
+  index: -1
+yan1
+  rotate: true
+  xy: 256, 81
+  size: 67, 53
+  orig: 67, 53
+  offset: 0, 0
+  index: -1
+yan2
+  rotate: true
+  xy: 256, 150
+  size: 63, 55
+  orig: 63, 55
+  offset: 0, 0
+  index: -1

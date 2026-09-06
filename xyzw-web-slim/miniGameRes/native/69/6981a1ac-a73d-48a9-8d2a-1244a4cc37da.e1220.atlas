@@ -1,0 +1,160 @@
+
+guojia2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia2_arml
+  rotate: true
+  xy: 384, 393
+  size: 117, 99
+  orig: 117, 99
+  offset: 0, 0
+  index: -1
+guojia2_armr
+  rotate: true
+  xy: 81, 76
+  size: 56, 52
+  orig: 57, 54
+  offset: 1, 0
+  index: -1
+guojia2_bag
+  rotate: false
+  xy: 2, 275
+  size: 140, 154
+  orig: 140, 182
+  offset: 0, 21
+  index: -1
+guojia2_body
+  rotate: true
+  xy: 2, 134
+  size: 139, 134
+  orig: 139, 134
+  offset: 0, 0
+  index: -1
+guojia2_effect1
+  rotate: false
+  xy: 155, 15
+  size: 58, 58
+  orig: 60, 60
+  offset: 1, 1
+  index: -1
+guojia2_effect2
+  rotate: false
+  xy: 277, 53
+  size: 33, 33
+  orig: 41, 33
+  offset: 7, 0
+  index: -1
+guojia2_effect3
+  rotate: true
+  xy: 382, 99
+  size: 62, 41
+  orig: 64, 43
+  offset: 1, 1
+  index: -1
+guojia2_effect4
+  rotate: true
+  xy: 2, 59
+  size: 73, 77
+  orig: 75, 79
+  offset: 1, 1
+  index: -1
+guojia2_effect5
+  rotate: false
+  xy: 144, 146
+  size: 139, 139
+  orig: 141, 141
+  offset: 1, 1
+  index: -1
+guojia2_footl
+  rotate: false
+  xy: 285, 88
+  size: 95, 73
+  orig: 95, 73
+  offset: 0, 0
+  index: -1
+guojia2_footr
+  rotate: false
+  xy: 138, 75
+  size: 80, 69
+  orig: 80, 69
+  offset: 0, 0
+  index: -1
+guojia2_handl
+  rotate: false
+  xy: 2, 8
+  size: 54, 49
+  orig: 58, 49
+  offset: 4, 0
+  index: -1
+guojia2_head
+  rotate: true
+  xy: 236, 287
+  size: 223, 146
+  orig: 223, 146
+  offset: 0, 0
+  index: -1
+guojia2_pipe1
+  rotate: false
+  xy: 215, 46
+  size: 25, 26
+  orig: 25, 26
+  offset: 0, 0
+  index: -1
+guojia2_pipe2
+  rotate: false
+  xy: 2, 431
+  size: 232, 79
+  orig: 232, 79
+  offset: 0, 0
+  index: -1
+guojia2_shoulderl
+  rotate: true
+  xy: 144, 307
+  size: 122, 82
+  orig: 122, 82
+  offset: 0, 0
+  index: -1
+guojia2_shoulderr
+  rotate: false
+  xy: 220, 74
+  size: 55, 70
+  orig: 55, 70
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 81, 2
+  size: 72, 71
+  orig: 72, 71
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 382, 56
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hero_effect_ring
+  rotate: false
+  xy: 384, 294
+  size: 97, 97
+  orig: 97, 97
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 58, 35
+  size: 22, 20
+  orig: 22, 22
+  offset: 0, 2
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 285, 163
+  size: 122, 122
+  orig: 122, 122
+  offset: 0, 0
+  index: -1

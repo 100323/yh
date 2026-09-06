@@ -1,0 +1,90 @@
+
+dsqq_boss_tsgz_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_boss_tsgz_jn_bai
+  rotate: true
+  xy: 247, 62
+  size: 145, 93
+  orig: 145, 93
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_baixian1
+  rotate: false
+  xy: 247, 30
+  size: 96, 30
+  orig: 96, 30
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_feng
+  rotate: false
+  xy: 2, 209
+  size: 358, 300
+  orig: 358, 300
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_shan
+  rotate: false
+  xy: 2, 23
+  size: 243, 184
+  orig: 243, 184
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xian1
+  rotate: true
+  xy: 362, 243
+  size: 266, 45
+  orig: 266, 45
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xian2
+  rotate: true
+  xy: 342, 71
+  size: 26, 70
+  orig: 26, 70
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xian3
+  rotate: false
+  xy: 38, 2
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xian4
+  rotate: false
+  xy: 342, 148
+  size: 39, 59
+  orig: 39, 59
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xian5
+  rotate: false
+  xy: 2, 2
+  size: 34, 19
+  orig: 34, 19
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xian6
+  rotate: false
+  xy: 342, 99
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+dsqq_boss_tsgz_jn_xianbaixian2
+  rotate: false
+  xy: 247, 4
+  size: 110, 24
+  orig: 110, 24
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 345, 44
+  size: 23, 25
+  orig: 26, 26
+  offset: 1, 0
+  index: -1

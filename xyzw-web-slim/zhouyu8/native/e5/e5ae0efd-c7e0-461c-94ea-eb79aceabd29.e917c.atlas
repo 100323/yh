@@ -1,0 +1,132 @@
+
+zhouyu8_skill_hit_2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 430, 398
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 477, 370
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_ci
+  rotate: false
+  xy: 374, 352
+  size: 54, 148
+  orig: 54, 148
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_ci1
+  rotate: true
+  xy: 374, 229
+  size: 55, 26
+  orig: 55, 26
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_ci2
+  rotate: false
+  xy: 374, 286
+  size: 31, 64
+  orig: 31, 64
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_g1
+  rotate: false
+  xy: 430, 446
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_g3
+  rotate: false
+  xy: 458, 323
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_huo
+  rotate: false
+  xy: 414, 196
+  size: 42, 154
+  orig: 42, 154
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_yc_xian
+  rotate: true
+  xy: 173, 139
+  size: 33, 255
+  orig: 33, 255
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zha1
+  rotate: false
+  xy: 123, 21
+  size: 100, 91
+  orig: 100, 91
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zha4
+  rotate: false
+  xy: 364, 178
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zha5
+  rotate: false
+  xy: 2, 2
+  size: 119, 110
+  orig: 119, 110
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zhayan1
+  rotate: false
+  xy: 430, 355
+  size: 45, 41
+  orig: 45, 41
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zq_cb1
+  rotate: false
+  xy: 173, 228
+  size: 199, 272
+  orig: 199, 272
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zq_hy
+  rotate: true
+  xy: 173, 174
+  size: 52, 189
+  orig: 52, 189
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zq_shen
+  rotate: false
+  xy: 2, 114
+  size: 169, 386
+  orig: 169, 386
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zq_wei1
+  rotate: false
+  xy: 430, 5
+  size: 50, 189
+  orig: 50, 189
+  offset: 0, 0
+  index: -1
+zhouyu8_jn_zq_wei2
+  rotate: true
+  xy: 225, 87
+  size: 50, 178
+  orig: 50, 178
+  offset: 0, 0
+  index: -1

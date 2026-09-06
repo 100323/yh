@@ -1,0 +1,125 @@
+
+sdsl_axian2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl_axian_awake1
+  rotate: true
+  xy: 395, 143
+  size: 140, 110
+  orig: 140, 110
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake10
+  rotate: false
+  xy: 2, 142
+  size: 212, 141
+  orig: 212, 141
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake11
+  rotate: true
+  xy: 395, 19
+  size: 122, 97
+  orig: 122, 97
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake12
+  rotate: true
+  xy: 216, 129
+  size: 154, 177
+  orig: 154, 177
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake13
+  rotate: false
+  xy: 139, 40
+  size: 47, 100
+  orig: 47, 100
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake15
+  rotate: true
+  xy: 494, 116
+  size: 25, 8
+  orig: 25, 8
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake2
+  rotate: false
+  xy: 188, 72
+  size: 17, 25
+  orig: 17, 25
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake3
+  rotate: false
+  xy: 494, 103
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake4
+  rotate: false
+  xy: 494, 93
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake5
+  rotate: false
+  xy: 180, 2
+  size: 27, 36
+  orig: 27, 36
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake6
+  rotate: true
+  xy: 323, 104
+  size: 23, 29
+  orig: 23, 29
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake7
+  rotate: true
+  xy: 188, 99
+  size: 41, 20
+  orig: 41, 20
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake8
+  rotate: false
+  xy: 2, 7
+  size: 135, 133
+  orig: 135, 133
+  offset: 0, 0
+  index: -1
+sdsl_axian_awake9
+  rotate: true
+  xy: 210, 29
+  size: 98, 111
+  orig: 98, 111
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep6
+  rotate: false
+  xy: 323, 79
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+sdsl_axian_sleep8
+  rotate: false
+  xy: 139, 3
+  size: 39, 35
+  orig: 39, 35
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 354, 103
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

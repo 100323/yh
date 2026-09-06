@@ -1,0 +1,41 @@
+
+livingroom_fishtank_plants.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+livingroom_fishtank1
+  rotate: false
+  xy: 2, 16
+  size: 138, 92
+  orig: 139, 93
+  offset: 0, 0
+  index: -1
+livingroom_fishtank2
+  rotate: false
+  xy: 222, 10
+  size: 66, 98
+  orig: 66, 98
+  offset: 0, 0
+  index: -1
+livingroom_fishtank3
+  rotate: false
+  xy: 142, 3
+  size: 78, 105
+  orig: 82, 112
+  offset: 4, 7
+  index: -1
+livingroom_fishtank4
+  rotate: false
+  xy: 290, 55
+  size: 51, 53
+  orig: 51, 55
+  offset: 0, 2
+  index: -1
+livingroom_fishtank5
+  rotate: false
+  xy: 290, 2
+  size: 31, 51
+  orig: 31, 51
+  offset: 0, 0
+  index: -1

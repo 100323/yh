@@ -1,0 +1,48 @@
+
+yazhi1_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo2
+  rotate: false
+  xy: 16, 416
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+nles_skill_huling1
+  rotate: true
+  xy: 82, 346
+  size: 134, 169
+  orig: 134, 169
+  offset: 0, 0
+  index: -1
+nles_skill_huling2
+  rotate: false
+  xy: 2, 2
+  size: 357, 192
+  orig: 357, 192
+  offset: 0, 0
+  index: -1
+nles_skill_huling3
+  rotate: false
+  xy: 253, 342
+  size: 187, 138
+  orig: 187, 138
+  offset: 0, 0
+  index: -1
+nles_skill_huling4
+  rotate: true
+  xy: 2, 196
+  size: 144, 432
+  orig: 144, 432
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 473
+  size: 12, 7
+  orig: 16, 16
+  offset: 2, 6
+  index: -1

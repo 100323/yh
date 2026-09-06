@@ -1,0 +1,83 @@
+
+effect_clcf.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+clcf_gg1
+  rotate: true
+  xy: 312, 97
+  size: 151, 158
+  orig: 151, 158
+  offset: 0, 0
+  index: -1
+clcf_gg2
+  rotate: false
+  xy: 283, 103
+  size: 19, 70
+  orig: 19, 70
+  offset: 0, 0
+  index: -1
+clcf_gg3
+  rotate: true
+  xy: 161, 58
+  size: 115, 120
+  orig: 115, 120
+  offset: 0, 0
+  index: -1
+clcf_gg4
+  rotate: false
+  xy: 283, 9
+  size: 70, 86
+  orig: 70, 86
+  offset: 0, 0
+  index: -1
+clcf_gg5
+  rotate: false
+  xy: 2, 16
+  size: 157, 157
+  orig: 157, 157
+  offset: 0, 0
+  index: -1
+clcf_tao
+  rotate: true
+  xy: 355, 49
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1
+clcf_tao2
+  rotate: true
+  xy: 393, 14
+  size: 33, 28
+  orig: 33, 28
+  offset: 0, 0
+  index: -1
+clcf_wei
+  rotate: true
+  xy: 2, 175
+  size: 73, 308
+  orig: 73, 308
+  offset: 0, 0
+  index: -1
+clcf_xing
+  rotate: true
+  xy: 355, 9
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+clcf_yaox
+  rotate: true
+  xy: 161, 2
+  size: 54, 47
+  orig: 54, 47
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 210, 4
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1

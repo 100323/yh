@@ -1,0 +1,139 @@
+
+txk_jiaxu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dian_004
+  rotate: false
+  xy: 187, 32
+  size: 65, 62
+  orig: 77, 77
+  offset: 3, 3
+  index: -1
+dian_005
+  rotate: true
+  xy: 393, 258
+  size: 67, 60
+  orig: 77, 77
+  offset: 3, 4
+  index: -1
+dian_006
+  rotate: false
+  xy: 393, 199
+  size: 62, 57
+  orig: 77, 77
+  offset: 5, 5
+  index: -1
+dian_007
+  rotate: true
+  xy: 396, 449
+  size: 60, 55
+  orig: 77, 77
+  offset: 5, 7
+  index: -1
+dian_008
+  rotate: false
+  xy: 422, 2
+  size: 53, 48
+  orig: 77, 77
+  offset: 11, 11
+  index: -1
+jiaxu8_skill_csdian
+  rotate: false
+  xy: 2, 96
+  size: 211, 195
+  orig: 211, 195
+  offset: 0, 0
+  index: -1
+jiaxu8_skill_csquan
+  rotate: true
+  xy: 254, 49
+  size: 99, 101
+  orig: 99, 101
+  offset: 0, 0
+  index: -1
+jiaxu8_skill_heiq
+  rotate: false
+  xy: 2, 293
+  size: 211, 216
+  orig: 211, 216
+  offset: 0, 0
+  index: -1
+jiaxu8_skill_sj1
+  rotate: true
+  xy: 215, 150
+  size: 175, 176
+  orig: 175, 176
+  offset: 0, 0
+  index: -1
+jiaxu8_skill_sj2
+  rotate: false
+  xy: 215, 327
+  size: 179, 182
+  orig: 179, 182
+  offset: 0, 0
+  index: -1
+simayi9_pg_guang
+  rotate: false
+  xy: 357, 52
+  size: 97, 96
+  orig: 97, 96
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan1
+  rotate: false
+  xy: 119, 28
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan2
+  rotate: true
+  xy: 357, 2
+  size: 48, 63
+  orig: 48, 63
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan3
+  rotate: true
+  xy: 393, 159
+  size: 38, 48
+  orig: 38, 48
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: false
+  xy: 187, 3
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 141, 8
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: false
+  xy: 119, 7
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+txk_jiaxu_1
+  rotate: true
+  xy: 254, 5
+  size: 42, 70
+  orig: 44, 72
+  offset: 1, 1
+  index: -1
+txk_jiaxu_4
+  rotate: true
+  xy: 2, 2
+  size: 92, 115
+  orig: 94, 117
+  offset: 1, 1
+  index: -1

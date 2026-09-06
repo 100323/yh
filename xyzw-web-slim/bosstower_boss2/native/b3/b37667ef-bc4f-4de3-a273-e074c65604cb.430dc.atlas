@@ -1,0 +1,48 @@
+
+bosstower_boss2_attack_hit.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 111, 2
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 205, 17
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+tx_10
+  rotate: false
+  xy: 179, 45
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+tx_11
+  rotate: true
+  xy: 2, 19
+  size: 92, 107
+  orig: 104, 114
+  offset: 3, 3
+  index: -1
+tx_12
+  rotate: true
+  xy: 111, 46
+  size: 65, 66
+  orig: 65, 66
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_attack1
+  rotate: true
+  xy: 155, 15
+  size: 28, 48
+  orig: 28, 48
+  offset: 0, 0
+  index: -1

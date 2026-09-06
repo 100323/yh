@@ -1,0 +1,13 @@
+
+nznh25_choujiang_fish.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_shou
+  rotate: false
+  xy: 2, 2
+  size: 131, 158
+  orig: 131, 158
+  offset: 0, 0
+  index: -1

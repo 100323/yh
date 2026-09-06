@@ -1,0 +1,83 @@
+
+sds_mubu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 760, 137
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_zj_1
+  rotate: true
+  xy: 2, 32
+  size: 444, 594
+  orig: 444, 594
+  offset: 0, 0
+  index: -1
+sdsl_zj_2
+  rotate: true
+  xy: 598, 114
+  size: 362, 160
+  orig: 362, 160
+  offset: 0, 0
+  index: -1
+sdsl_zj_3
+  rotate: false
+  xy: 760, 250
+  size: 106, 226
+  orig: 106, 226
+  offset: 0, 0
+  index: -1
+sdsl_zj_eye1
+  rotate: false
+  xy: 886, 132
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+sdsl_zj_eye2
+  rotate: false
+  xy: 808, 137
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_zj_hand
+  rotate: true
+  xy: 598, 2
+  size: 110, 286
+  orig: 110, 286
+  offset: 0, 0
+  index: -1
+sdsl_zj_hand2
+  rotate: true
+  xy: 886, 60
+  size: 23, 51
+  orig: 23, 51
+  offset: 0, 0
+  index: -1
+sdsl_zj_hand3
+  rotate: false
+  xy: 886, 85
+  size: 38, 45
+  orig: 38, 45
+  offset: 0, 0
+  index: -1
+sdsl_zj_hand4
+  rotate: true
+  xy: 760, 185
+  size: 63, 183
+  orig: 63, 183
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 856, 157
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

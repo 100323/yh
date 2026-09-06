@@ -1,0 +1,132 @@
+
+zhaoyun9_skill_line.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhaoyun2_jn_yan1
+  rotate: true
+  xy: 900, 767
+  size: 128, 79
+  orig: 128, 79
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan2
+  rotate: true
+  xy: 900, 712
+  size: 53, 48
+  orig: 53, 48
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan3
+  rotate: false
+  xy: 950, 733
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan4
+  rotate: true
+  xy: 981, 852
+  size: 43, 30
+  orig: 43, 30
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan6
+  rotate: false
+  xy: 981, 823
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+zhaoyun4_jn_di
+  rotate: true
+  xy: 936, 584
+  size: 126, 32
+  orig: 126, 32
+  offset: 0, 0
+  index: -1
+zhaoyun4_jn_di2
+  rotate: true
+  xy: 958, 299
+  size: 116, 14
+  orig: 121, 14
+  offset: 5, 0
+  index: -1
+zhaoyun4_jn_xian
+  rotate: true
+  xy: 936, 211
+  size: 204, 20
+  orig: 206, 20
+  offset: 2, 0
+  index: -1
+zhaoyun4_jn_xian2
+  rotate: true
+  xy: 936, 417
+  size: 165, 23
+  orig: 165, 23
+  offset: 0, 0
+  index: -1
+zhaoyun4_jn_zy
+  rotate: false
+  xy: 550, 508
+  size: 235, 129
+  orig: 236, 129
+  offset: 0, 0
+  index: -1
+zhaoyun4_wqgpu5
+  rotate: true
+  xy: 981, 780
+  size: 41, 24
+  orig: 41, 24
+  offset: 0, 0
+  index: -1
+zhaoyun9_skill_hm
+  rotate: true
+  xy: 2, 430
+  size: 207, 215
+  orig: 207, 215
+  offset: 0, 0
+  index: -1
+zhaoyun9_skill_longs1
+  rotate: false
+  xy: 219, 431
+  size: 329, 206
+  orig: 332, 206
+  offset: 0, 0
+  index: -1
+zhaoyun9_skill_longs2
+  rotate: false
+  xy: 2, 78
+  size: 555, 315
+  orig: 555, 315
+  offset: 0, 0
+  index: -1
+zhaoyun9_skill_longs3
+  rotate: false
+  xy: 559, 2
+  size: 357, 207
+  orig: 357, 207
+  offset: 0, 0
+  index: -1
+zhaoyun9_skill_longs4
+  rotate: false
+  xy: 559, 246
+  size: 241, 147
+  orig: 241, 152
+  offset: 0, 2
+  index: -1
+zhaoyun9_skill_longx
+  rotate: false
+  xy: 2, 639
+  size: 896, 256
+  orig: 896, 256
+  offset: 0, 0
+  index: -1
+zhaoyun9_skill_tw2
+  rotate: true
+  xy: 900, 395
+  size: 315, 34
+  orig: 319, 35
+  offset: 3, 0
+  index: -1

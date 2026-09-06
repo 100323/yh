@@ -1,0 +1,146 @@
+
+zlys_banner.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 834, 232
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 51
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+zlys_banner_bj
+  rotate: false
+  xy: 31, 63
+  size: 542, 162
+  orig: 542, 162
+  offset: 0, 0
+  index: -1
+zlys_banner_d
+  rotate: false
+  xy: 2, 205
+  size: 26, 20
+  orig: 26, 20
+  offset: 0, 0
+  index: -1
+zlys_banner_di
+  rotate: false
+  xy: 2, 227
+  size: 677, 275
+  orig: 677, 275
+  offset: 0, 0
+  index: -1
+zlys_banner_er
+  rotate: false
+  xy: 2, 2
+  size: 34, 38
+  orig: 36, 40
+  offset: 2, 1
+  index: -1
+zlys_banner_guo
+  rotate: true
+  xy: 923, 186
+  size: 164, 99
+  orig: 165, 99
+  offset: 1, 0
+  index: -1
+zlys_banner_lian
+  rotate: false
+  xy: 817, 3
+  size: 88, 75
+  orig: 88, 75
+  offset: 0, 0
+  index: -1
+zlys_banner_mao
+  rotate: true
+  xy: 908, 42
+  size: 142, 93
+  orig: 149, 94
+  offset: 0, 0
+  index: -1
+zlys_banner_sbl
+  rotate: false
+  xy: 670, 20
+  size: 96, 130
+  orig: 102, 130
+  offset: 0, 0
+  index: -1
+zlys_banner_sbr
+  rotate: true
+  xy: 575, 7
+  size: 76, 91
+  orig: 76, 92
+  offset: 0, 0
+  index: -1
+zlys_banner_shen
+  rotate: false
+  xy: 681, 152
+  size: 151, 129
+  orig: 151, 129
+  offset: 0, 0
+  index: -1
+zlys_banner_sheng
+  rotate: true
+  xy: 834, 210
+  size: 20, 49
+  orig: 21, 49
+  offset: 0, 0
+  index: -1
+zlys_banner_shou
+  rotate: true
+  xy: 575, 85
+  size: 140, 93
+  orig: 148, 95
+  offset: 0, 1
+  index: -1
+zlys_banner_tf
+  rotate: true
+  xy: 936, 352
+  size: 150, 77
+  orig: 150, 77
+  offset: 0, 0
+  index: -1
+zlys_banner_tui
+  rotate: false
+  xy: 681, 283
+  size: 219, 110
+  orig: 219, 110
+  offset: 0, 0
+  index: -1
+zlys_banner_wq
+  rotate: false
+  xy: 768, 43
+  size: 47, 107
+  orig: 47, 107
+  offset: 0, 0
+  index: -1
+zlys_banner_ying
+  rotate: false
+  xy: 834, 80
+  size: 72, 122
+  orig: 72, 122
+  offset: 0, 0
+  index: -1
+zlys_banner_yun
+  rotate: false
+  xy: 681, 395
+  size: 253, 107
+  orig: 253, 107
+  offset: 0, 0
+  index: -1
+zlys_banner_zz
+  rotate: false
+  xy: 902, 204
+  size: 19, 189
+  orig: 19, 189
+  offset: 0, 0
+  index: -1

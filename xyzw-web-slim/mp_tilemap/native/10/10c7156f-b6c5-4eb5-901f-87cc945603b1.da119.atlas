@@ -1,0 +1,76 @@
+
+xsxjt_gyxb_daoju_5.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_gyxb_tg_bing
+  rotate: false
+  xy: 2, 6
+  size: 31, 53
+  orig: 31, 53
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_g
+  rotate: false
+  xy: 2, 61
+  size: 95, 65
+  orig: 95, 65
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_guoh
+  rotate: true
+  xy: 99, 64
+  size: 62, 21
+  orig: 62, 21
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_jiaol
+  rotate: false
+  xy: 56, 8
+  size: 17, 19
+  orig: 17, 19
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_jiaor
+  rotate: false
+  xy: 67, 37
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_t1
+  rotate: false
+  xy: 106, 52
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_t2
+  rotate: true
+  xy: 35, 2
+  size: 25, 19
+  orig: 25, 19
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_t3
+  rotate: true
+  xy: 91, 19
+  size: 40, 13
+  orig: 40, 13
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_yan
+  rotate: false
+  xy: 35, 29
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+xsxjt_gyxb_tg_yz
+  rotate: false
+  xy: 106, 40
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1

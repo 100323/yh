@@ -1,0 +1,111 @@
+
+caoren7_buff_shield.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caoren7_skill_dsg
+  rotate: false
+  xy: 356, 274
+  size: 226, 228
+  orig: 226, 228
+  offset: 0, 0
+  index: -1
+caoren7_skill_dyw
+  rotate: false
+  xy: 298, 10
+  size: 33, 42
+  orig: 33, 42
+  offset: 0, 0
+  index: -1
+caoren7_skill_gd
+  rotate: false
+  xy: 2, 54
+  size: 352, 448
+  orig: 352, 448
+  offset: 0, 0
+  index: -1
+d_sg_00000
+  rotate: true
+  xy: 99, 17
+  size: 35, 86
+  orig: 118, 150
+  offset: 10, 53
+  index: -1
+d_sg_00001
+  rotate: false
+  xy: 356, 122
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00002
+  rotate: true
+  xy: 356, 2
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00003
+  rotate: false
+  xy: 476, 122
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00004
+  rotate: true
+  xy: 508, 2
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00005
+  rotate: false
+  xy: 584, 352
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00006
+  rotate: false
+  xy: 596, 137
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00007
+  rotate: true
+  xy: 660, 17
+  size: 118, 150
+  orig: 118, 150
+  offset: 0, 0
+  index: -1
+d_sg_00008
+  rotate: true
+  xy: 584, 289
+  size: 61, 107
+  orig: 118, 150
+  offset: 48, 8
+  index: -1
+d_sg_00009
+  rotate: true
+  xy: 2, 13
+  size: 39, 95
+  orig: 118, 150
+  offset: 69, 10
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 254, 10
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+lvbu3_effect_shine
+  rotate: true
+  xy: 187, 6
+  size: 46, 65
+  orig: 46, 65
+  offset: 0, 0
+  index: -1

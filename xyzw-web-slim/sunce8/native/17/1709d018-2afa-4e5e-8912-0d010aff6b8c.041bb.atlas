@@ -1,0 +1,34 @@
+
+sunce8_skill_hit2.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 154, 8
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sunce8_skill_huo4
+  rotate: false
+  xy: 2, 2
+  size: 150, 203
+  orig: 150, 203
+  offset: 0, 0
+  index: -1
+sunce8_skill_huo47
+  rotate: false
+  xy: 229, 103
+  size: 75, 102
+  orig: 75, 102
+  offset: 0, 0
+  index: -1
+sunce8_skill_huo5
+  rotate: false
+  xy: 154, 68
+  size: 73, 137
+  orig: 73, 137
+  offset: 0, 0
+  index: -1

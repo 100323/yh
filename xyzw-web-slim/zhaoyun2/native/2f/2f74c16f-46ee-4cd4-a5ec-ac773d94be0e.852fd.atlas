@@ -1,0 +1,97 @@
+
+zhaoyun2_skill_line.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhaoyun2_jn_boo1
+  rotate: false
+  xy: 461, 208
+  size: 41, 129
+  orig: 41, 129
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_boo2
+  rotate: false
+  xy: 427, 339
+  size: 76, 163
+  orig: 76, 163
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_boo3
+  rotate: true
+  xy: 276, 40
+  size: 99, 199
+  orig: 99, 199
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_boo4
+  rotate: false
+  xy: 313, 141
+  size: 111, 108
+  orig: 111, 108
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_daoguang
+  rotate: false
+  xy: 2, 36
+  size: 186, 147
+  orig: 227, 147
+  offset: 41, 0
+  index: -1
+zhaoyun2_jn_yan1
+  rotate: true
+  xy: 190, 46
+  size: 137, 84
+  orig: 137, 84
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan2
+  rotate: false
+  xy: 426, 155
+  size: 57, 51
+  orig: 57, 51
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan3
+  rotate: false
+  xy: 276, 149
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan4
+  rotate: false
+  xy: 2, 2
+  size: 46, 32
+  orig: 46, 32
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_yan6
+  rotate: false
+  xy: 50, 5
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_zhah
+  rotate: false
+  xy: 2, 185
+  size: 309, 64
+  orig: 309, 64
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_zhaq
+  rotate: false
+  xy: 2, 251
+  size: 457, 73
+  orig: 457, 73
+  offset: 0, 0
+  index: -1
+zhaoyun2_jn_zy2
+  rotate: false
+  xy: 2, 326
+  size: 423, 176
+  orig: 423, 176
+  offset: 0, 0
+  index: -1

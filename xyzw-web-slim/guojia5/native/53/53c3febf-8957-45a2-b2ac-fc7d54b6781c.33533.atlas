@@ -1,0 +1,55 @@
+
+guojia5_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia5_skilla1
+  rotate: false
+  xy: 2, 93
+  size: 165, 350
+  orig: 165, 350
+  offset: 0, 0
+  index: -1
+guojia5_skilla2
+  rotate: true
+  xy: 169, 163
+  size: 280, 201
+  orig: 280, 209
+  offset: 0, 8
+  index: -1
+guojia5_skilla3
+  rotate: false
+  xy: 93, 20
+  size: 350, 71
+  orig: 350, 71
+  offset: 0, 0
+  index: -1
+simayi7_attack7
+  rotate: false
+  xy: 237, 115
+  size: 68, 46
+  orig: 68, 46
+  offset: 0, 0
+  index: -1
+simayi7_attack8
+  rotate: true
+  xy: 169, 99
+  size: 62, 66
+  orig: 64, 66
+  offset: 2, 0
+  index: -1
+simayi7_attack9
+  rotate: false
+  xy: 372, 297
+  size: 81, 146
+  orig: 81, 147
+  offset: 0, 1
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 2, 2
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1

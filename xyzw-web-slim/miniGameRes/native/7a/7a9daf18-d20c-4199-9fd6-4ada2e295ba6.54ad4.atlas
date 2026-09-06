@@ -1,0 +1,48 @@
+
+guojia2_attack_loop.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia2_skill3
+  rotate: false
+  xy: 82, 6
+  size: 84, 27
+  orig: 84, 27
+  offset: 0, 0
+  index: -1
+guojia2_skill4
+  rotate: false
+  xy: 2, 11
+  size: 78, 12
+  orig: 78, 12
+  offset: 0, 0
+  index: -1
+guojia2_skill5
+  rotate: false
+  xy: 41, 35
+  size: 121, 27
+  orig: 121, 29
+  offset: 0, 0
+  index: -1
+guojia2_skill6
+  rotate: false
+  xy: 13, 4
+  size: 24, 5
+  orig: 24, 5
+  offset: 0, 0
+  index: -1
+guojia2_skill7
+  rotate: true
+  xy: 2, 2
+  size: 7, 9
+  orig: 7, 9
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 25
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1

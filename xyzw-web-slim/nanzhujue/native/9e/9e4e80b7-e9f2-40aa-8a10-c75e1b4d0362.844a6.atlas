@@ -1,0 +1,41 @@
+
+nanzhujue.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Effect/zhujue_dgA0001
+  rotate: false
+  xy: 2, 53
+  size: 289, 85
+  orig: 340, 164
+  offset: 28, 54
+  index: -1
+Effect/zhujue_dgA0003
+  rotate: false
+  xy: 293, 53
+  size: 289, 85
+  orig: 340, 164
+  offset: 28, 54
+  index: -1
+Effect/zhujue_dgA0004
+  rotate: false
+  xy: 584, 62
+  size: 281, 76
+  orig: 340, 164
+  offset: 33, 63
+  index: -1
+Effect/zhujue_dgA0006
+  rotate: false
+  xy: 584, 2
+  size: 271, 58
+  orig: 340, 164
+  offset: 44, 73
+  index: -1
+Effect/zhujue_dgA0007
+  rotate: true
+  xy: 867, 74
+  size: 64, 46
+  orig: 340, 164
+  offset: 63, 82
+  index: -1

@@ -1,0 +1,55 @@
+
+lusu2_buff_jiemeng.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xinpf_jm_dingd
+  rotate: true
+  xy: 243, 25
+  size: 98, 85
+  orig: 98, 85
+  offset: 0, 0
+  index: -1
+xinpf_jm_dingg
+  rotate: true
+  xy: 202, 125
+  size: 125, 88
+  orig: 125, 88
+  offset: 0, 0
+  index: -1
+xinpf_jm_gy
+  rotate: false
+  xy: 2, 50
+  size: 198, 200
+  orig: 198, 200
+  offset: 0, 0
+  index: -1
+xinpf_jm_yun1
+  rotate: false
+  xy: 125, 6
+  size: 57, 42
+  orig: 57, 42
+  offset: 0, 0
+  index: -1
+xinpf_jm_yun2
+  rotate: false
+  xy: 64, 2
+  size: 59, 46
+  orig: 59, 46
+  offset: 0, 0
+  index: -1
+xinpf_jm_yun3
+  rotate: false
+  xy: 184, 6
+  size: 57, 42
+  orig: 57, 42
+  offset: 0, 0
+  index: -1
+xinpf_jm_yun4
+  rotate: false
+  xy: 2, 2
+  size: 60, 46
+  orig: 60, 46
+  offset: 0, 0
+  index: -1

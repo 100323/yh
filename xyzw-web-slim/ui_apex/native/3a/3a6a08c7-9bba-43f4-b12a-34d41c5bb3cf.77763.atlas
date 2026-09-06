@@ -1,0 +1,41 @@
+
+zlys_zhenfa1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zlys_zhenfa_shou1
+  rotate: true
+  xy: 210, 32
+  size: 115, 142
+  orig: 115, 142
+  offset: 0, 0
+  index: -1
+zlys_zhenfa_shou2
+  rotate: true
+  xy: 354, 2
+  size: 34, 58
+  orig: 34, 58
+  offset: 0, 0
+  index: -1
+zlys_zhenfa_shou3
+  rotate: false
+  xy: 354, 83
+  size: 57, 64
+  orig: 58, 64
+  offset: 1, 0
+  index: -1
+zlys_zhenfa_shou4
+  rotate: true
+  xy: 354, 38
+  size: 43, 40
+  orig: 44, 42
+  offset: 0, 1
+  index: -1
+zlys_zhenfa_wu
+  rotate: false
+  xy: 2, 2
+  size: 206, 145
+  orig: 206, 145
+  offset: 0, 0
+  index: -1

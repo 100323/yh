@@ -1,0 +1,48 @@
+
+sdsl_bg5.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 30, 149
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+sdsl_bg5_cloud
+  rotate: false
+  xy: 174, 2
+  size: 214, 115
+  orig: 214, 115
+  offset: 0, 0
+  index: -1
+sdsl_bg5_fire1
+  rotate: true
+  xy: 2, 38
+  size: 81, 170
+  orig: 81, 170
+  offset: 0, 0
+  index: -1
+sdsl_bg5_fire2
+  rotate: true
+  xy: 78, 121
+  size: 74, 142
+  orig: 74, 142
+  offset: 0, 0
+  index: -1
+sdsl_bg5_fire3
+  rotate: true
+  xy: 222, 119
+  size: 76, 161
+  orig: 76, 161
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 169
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

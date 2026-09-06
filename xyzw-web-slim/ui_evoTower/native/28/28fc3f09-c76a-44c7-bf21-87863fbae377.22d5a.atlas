@@ -1,0 +1,13 @@
+
+ui_tower_cloud.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box2
+  rotate: false
+  xy: 2, 2
+  size: 65, 64
+  orig: 128, 128
+  offset: 31, 32
+  index: -1

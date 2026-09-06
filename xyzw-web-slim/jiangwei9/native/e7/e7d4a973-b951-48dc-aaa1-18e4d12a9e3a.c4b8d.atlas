@@ -1,0 +1,76 @@
+
+jiangwei9_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei9_pg_dian
+  rotate: false
+  xy: 152, 3
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+jiangwei9_pg_yan1
+  rotate: false
+  xy: 178, 57
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+jiangwei9_pg_yan2
+  rotate: false
+  xy: 249, 60
+  size: 51, 66
+  orig: 51, 66
+  offset: 0, 0
+  index: -1
+jiangwei9_pg_yan3
+  rotate: true
+  xy: 100, 6
+  size: 39, 50
+  orig: 39, 50
+  offset: 0, 0
+  index: -1
+jiangwei9_pg_zha3
+  rotate: false
+  xy: 196, 7
+  size: 81, 48
+  orig: 83, 51
+  offset: 1, 2
+  index: -1
+jiangwei9_yan01
+  rotate: true
+  xy: 302, 87
+  size: 39, 35
+  orig: 39, 35
+  offset: 0, 0
+  index: -1
+jwtyxingchen11
+  rotate: true
+  xy: 279, 2
+  size: 56, 44
+  orig: 58, 47
+  offset: 1, 1
+  index: -1
+jwtyxingchen2_1
+  rotate: true
+  xy: 2, 12
+  size: 15, 38
+  orig: 15, 38
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_guang
+  rotate: true
+  xy: 2, 29
+  size: 97, 96
+  orig: 97, 96
+  offset: 0, 0
+  index: -1
+zhouyu8_pg_xian
+  rotate: false
+  xy: 100, 47
+  size: 76, 79
+  orig: 76, 79
+  offset: 0, 0
+  index: -1

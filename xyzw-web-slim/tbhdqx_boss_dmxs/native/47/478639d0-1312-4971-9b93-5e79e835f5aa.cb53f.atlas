@@ -1,0 +1,132 @@
+
+tbhdqx_boss_dmxs.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 454, 408
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_huzi
+  rotate: false
+  xy: 454, 370
+  size: 46, 36
+  orig: 46, 36
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_jian
+  rotate: false
+  xy: 2, 382
+  size: 290, 72
+  orig: 291, 74
+  offset: 1, 1
+  index: -1
+tbhdqx_nmss_jian3
+  rotate: true
+  xy: 2, 2
+  size: 144, 121
+  orig: 144, 121
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_jian4
+  rotate: false
+  xy: 2, 236
+  size: 263, 144
+  orig: 264, 146
+  offset: 0, 1
+  index: -1
+tbhdqx_nmss_jian5
+  rotate: false
+  xy: 256, 93
+  size: 114, 109
+  orig: 114, 109
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_meil
+  rotate: false
+  xy: 454, 346
+  size: 30, 22
+  orig: 30, 22
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_meir
+  rotate: false
+  xy: 486, 340
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_shen
+  rotate: true
+  xy: 267, 204
+  size: 99, 146
+  orig: 99, 146
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_shoul1
+  rotate: false
+  xy: 125, 73
+  size: 112, 71
+  orig: 112, 73
+  offset: 0, 1
+  index: -1
+tbhdqx_nmss_shoul2
+  rotate: true
+  xy: 128, 146
+  size: 88, 126
+  orig: 88, 126
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_tou
+  rotate: true
+  xy: 294, 305
+  size: 149, 158
+  orig: 149, 158
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_tuil
+  rotate: false
+  xy: 415, 148
+  size: 94, 62
+  orig: 94, 62
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_tuir
+  rotate: true
+  xy: 125, 3
+  size: 68, 65
+  orig: 68, 65
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_xiu2
+  rotate: true
+  xy: 2, 148
+  size: 86, 124
+  orig: 86, 124
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_xiu3
+  rotate: true
+  xy: 415, 212
+  size: 91, 95
+  orig: 91, 95
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_yz1
+  rotate: false
+  xy: 454, 335
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+tbhdqx_nmss_yz2
+  rotate: false
+  xy: 454, 335
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1

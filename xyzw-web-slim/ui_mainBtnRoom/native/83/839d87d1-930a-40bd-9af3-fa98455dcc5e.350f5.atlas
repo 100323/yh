@@ -1,0 +1,146 @@
+
+ui_axian_btn_livingroom_2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+axian_eyel2
+  rotate: false
+  xy: 37, 6
+  size: 10, 5
+  orig: 14, 5
+  offset: 2, 0
+  index: -1
+axian_eyer2
+  rotate: true
+  xy: 49, 2
+  size: 9, 4
+  orig: 13, 6
+  offset: 2, 1
+  index: -1
+ktax_zzb_bi
+  rotate: false
+  xy: 223, 63
+  size: 10, 12
+  orig: 10, 12
+  offset: 0, 0
+  index: -1
+ktax_zzb_bozi
+  rotate: false
+  xy: 210, 77
+  size: 20, 23
+  orig: 20, 23
+  offset: 0, 0
+  index: -1
+ktax_zzb_boziying
+  rotate: true
+  xy: 210, 102
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+ktax_zzb_lianying
+  rotate: true
+  xy: 2, 48
+  size: 78, 76
+  orig: 78, 76
+  offset: 0, 0
+  index: -1
+ktax_zzb_meil
+  rotate: false
+  xy: 23, 2
+  size: 12, 9
+  orig: 12, 9
+  offset: 0, 0
+  index: -1
+ktax_zzb_meir
+  rotate: false
+  xy: 2, 3
+  size: 19, 8
+  orig: 19, 8
+  offset: 0, 0
+  index: -1
+ktax_zzb_shen
+  rotate: true
+  xy: 155, 57
+  size: 69, 53
+  orig: 69, 53
+  offset: 0, 0
+  index: -1
+ktax_zzb_tf1
+  rotate: true
+  xy: 2, 13
+  size: 33, 59
+  orig: 33, 59
+  offset: 0, 0
+  index: -1
+ktax_zzb_tf2
+  rotate: false
+  xy: 110, 10
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ktax_zzb_tf3
+  rotate: false
+  xy: 152, 10
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ktax_zzb_tf4
+  rotate: true
+  xy: 63, 3
+  size: 43, 45
+  orig: 43, 45
+  offset: 0, 0
+  index: -1
+ktax_zzb_tf5
+  rotate: true
+  xy: 194, 19
+  size: 36, 29
+  orig: 41, 29
+  offset: 5, 0
+  index: -1
+ktax_zzb_tou
+  rotate: true
+  xy: 80, 52
+  size: 74, 73
+  orig: 74, 73
+  offset: 0, 0
+  index: -1
+ktax_zzb_yanl
+  rotate: false
+  xy: 217, 3
+  size: 10, 14
+  orig: 10, 14
+  offset: 0, 0
+  index: -1
+ktax_zzb_yanr
+  rotate: false
+  xy: 210, 63
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+ktax_zzb_yzl
+  rotate: false
+  xy: 55, 7
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+ktax_zzb_yzr
+  rotate: false
+  xy: 55, 2
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+ktax_zzb_zui
+  rotate: false
+  xy: 194, 5
+  size: 21, 12
+  orig: 21, 12
+  offset: 0, 0
+  index: -1

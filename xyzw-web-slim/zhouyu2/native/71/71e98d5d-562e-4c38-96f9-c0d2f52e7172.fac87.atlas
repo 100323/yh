@@ -1,0 +1,20 @@
+
+zhouyu2_skill_loop.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 41, 17
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1

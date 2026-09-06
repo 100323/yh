@@ -1,0 +1,41 @@
+
+gongsunzan5_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan5_attack2
+  rotate: false
+  xy: 2, 33
+  size: 207, 183
+  orig: 218, 187
+  offset: 8, 2
+  index: -1
+gongsunzan5_attack3
+  rotate: true
+  xy: 211, 143
+  size: 73, 194
+  orig: 76, 198
+  offset: 2, 1
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 352, 95
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 352, 74
+  size: 19, 19
+  orig: 26, 26
+  offset: 4, 5
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 211, 2
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

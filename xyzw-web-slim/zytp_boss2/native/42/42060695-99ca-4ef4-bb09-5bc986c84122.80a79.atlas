@@ -1,0 +1,251 @@
+
+zytp_boss2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 427, 382
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+zytp_boss2_arml1
+  rotate: true
+  xy: 384, 96
+  size: 75, 65
+  orig: 75, 65
+  offset: 0, 0
+  index: -1
+zytp_boss2_arml2
+  rotate: false
+  xy: 384, 173
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1
+zytp_boss2_armr1
+  rotate: false
+  xy: 349, 410
+  size: 96, 94
+  orig: 96, 94
+  offset: 0, 0
+  index: -1
+zytp_boss2_armr2
+  rotate: false
+  xy: 447, 403
+  size: 61, 101
+  orig: 69, 102
+  offset: 0, 1
+  index: -1
+zytp_boss2_beard1
+  rotate: false
+  xy: 488, 45
+  size: 20, 51
+  orig: 20, 51
+  offset: 0, 0
+  index: -1
+zytp_boss2_beard2
+  rotate: true
+  xy: 395, 392
+  size: 16, 50
+  orig: 16, 50
+  offset: 0, 0
+  index: -1
+zytp_boss2_beard3
+  rotate: true
+  xy: 343, 246
+  size: 19, 64
+  orig: 30, 64
+  offset: 0, 0
+  index: -1
+zytp_boss2_beard4
+  rotate: false
+  xy: 395, 371
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+zytp_boss2_body
+  rotate: false
+  xy: 2, 336
+  size: 214, 168
+  orig: 214, 168
+  offset: 0, 0
+  index: -1
+zytp_boss2_eye
+  rotate: true
+  xy: 427, 375
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+zytp_boss2_eye2
+  rotate: true
+  xy: 171, 104
+  size: 31, 29
+  orig: 31, 29
+  offset: 0, 0
+  index: -1
+zytp_boss2_footl
+  rotate: true
+  xy: 457, 177
+  size: 69, 33
+  orig: 69, 33
+  offset: 0, 0
+  index: -1
+zytp_boss2_footr
+  rotate: true
+  xy: 451, 98
+  size: 73, 49
+  orig: 95, 49
+  offset: 0, 0
+  index: -1
+zytp_boss2_handl
+  rotate: false
+  xy: 451, 2
+  size: 35, 94
+  orig: 35, 94
+  offset: 0, 0
+  index: -1
+zytp_boss2_handr1
+  rotate: true
+  xy: 205, 99
+  size: 42, 86
+  orig: 42, 86
+  offset: 0, 0
+  index: -1
+zytp_boss2_head
+  rotate: false
+  xy: 218, 233
+  size: 123, 134
+  orig: 138, 134
+  offset: 0, 0
+  index: -1
+zytp_boss2_hip
+  rotate: true
+  xy: 2, 139
+  size: 195, 119
+  orig: 195, 119
+  offset: 0, 0
+  index: -1
+zytp_boss2_mai
+  rotate: true
+  xy: 341, 103
+  size: 38, 35
+  orig: 38, 35
+  offset: 0, 0
+  index: -1
+zytp_boss2_mouth
+  rotate: false
+  xy: 123, 137
+  size: 80, 80
+  orig: 85, 96
+  offset: 0, 16
+  index: -1
+zytp_boss2_mouth2
+  rotate: true
+  xy: 343, 267
+  size: 100, 106
+  orig: 102, 110
+  offset: 0, 4
+  index: -1
+zytp_boss2_mouth3
+  rotate: true
+  xy: 349, 369
+  size: 39, 44
+  orig: 39, 44
+  offset: 0, 0
+  index: -1
+zytp_boss2_mouth3_1
+  rotate: true
+  xy: 451, 248
+  size: 58, 51
+  orig: 59, 51
+  offset: 0, 0
+  index: -1
+zytp_boss2_mouth3_2
+  rotate: true
+  xy: 447, 369
+  size: 32, 49
+  orig: 32, 49
+  offset: 0, 0
+  index: -1
+zytp_boss2_neck
+  rotate: false
+  xy: 123, 219
+  size: 89, 115
+  orig: 89, 115
+  offset: 0, 0
+  index: -1
+zytp_boss2_scarf
+  rotate: false
+  xy: 214, 143
+  size: 168, 88
+  orig: 176, 103
+  offset: 8, 0
+  index: -1
+zytp_boss2_scarf2
+  rotate: false
+  xy: 171, 52
+  size: 54, 45
+  orig: 54, 45
+  offset: 0, 0
+  index: -1
+zytp_boss2_scarf3
+  rotate: true
+  xy: 409, 57
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+zytp_boss2_skill1
+  rotate: false
+  xy: 2, 38
+  size: 64, 99
+  orig: 64, 99
+  offset: 0, 0
+  index: -1
+zytp_boss2_syjl
+  rotate: true
+  xy: 341, 51
+  size: 43, 66
+  orig: 43, 67
+  offset: 0, 1
+  index: -1
+zytp_boss2_syjllight
+  rotate: true
+  xy: 121, 83
+  size: 52, 48
+  orig: 55, 51
+  offset: 1, 2
+  index: -1
+zytp_boss2_syjr
+  rotate: false
+  xy: 68, 72
+  size: 51, 65
+  orig: 51, 65
+  offset: 0, 0
+  index: -1
+zytp_boss2_syjrhandle
+  rotate: false
+  xy: 293, 91
+  size: 46, 50
+  orig: 46, 50
+  offset: 0, 0
+  index: -1
+zytp_boss2_syjrlight
+  rotate: true
+  xy: 451, 308
+  size: 59, 57
+  orig: 62, 59
+  offset: 2, 1
+  index: -1
+zytp_boss2_tail
+  rotate: false
+  xy: 218, 369
+  size: 129, 135
+  orig: 160, 135
+  offset: 0, 0
+  index: -1

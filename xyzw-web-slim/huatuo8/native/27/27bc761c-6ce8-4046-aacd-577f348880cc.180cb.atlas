@@ -1,0 +1,76 @@
+
+huatuo8_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huatuo8_pg_yan1
+  rotate: true
+  xy: 330, 79
+  size: 91, 83
+  orig: 91, 83
+  offset: 0, 0
+  index: -1
+huatuo8_pg_yan2
+  rotate: false
+  xy: 207, 67
+  size: 121, 103
+  orig: 121, 103
+  offset: 0, 0
+  index: -1
+huatuo8_pg_yan3
+  rotate: false
+  xy: 2, 20
+  size: 203, 150
+  orig: 203, 150
+  offset: 0, 0
+  index: -1
+simayi9_pg_diang
+  rotate: false
+  xy: 265, 32
+  size: 29, 33
+  orig: 29, 33
+  offset: 0, 0
+  index: -1
+simayi9_pg_guang
+  rotate: false
+  xy: 330, 5
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+simayi9_pg_xian
+  rotate: false
+  xy: 207, 7
+  size: 56, 58
+  orig: 56, 58
+  offset: 0, 0
+  index: -1
+simayi9_pg_xiang
+  rotate: true
+  xy: 287, 2
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: true
+  xy: 265, 7
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 296, 34
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: true
+  xy: 296, 50
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1

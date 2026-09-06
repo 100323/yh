@@ -1,0 +1,27 @@
+
+gongsunzan8_skill_position.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs
+  rotate: false
+  xy: 264, 237
+  size: 21, 23
+  orig: 24, 24
+  offset: 1, 1
+  index: -1
+gongsunzan8_skill_quan
+  rotate: true
+  xy: 2, 2
+  size: 258, 260
+  orig: 258, 260
+  offset: 0, 0
+  index: -1
+gongsunzan8_skill_zhua
+  rotate: false
+  xy: 2, 262
+  size: 472, 239
+  orig: 472, 239
+  offset: 0, 0
+  index: -1

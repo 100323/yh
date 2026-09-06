@@ -1,0 +1,111 @@
+
+ft2_caoren7.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tyxingchen1
+  rotate: false
+  xy: 2, 452
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+xuanwu1_htuir
+  rotate: true
+  xy: 341, 419
+  size: 62, 126
+  orig: 71, 130
+  offset: 9, 0
+  index: -1
+xuanwu1_huzil
+  rotate: true
+  xy: 178, 428
+  size: 53, 77
+  orig: 53, 77
+  offset: 0, 0
+  index: -1
+xuanwu1_huzir
+  rotate: false
+  xy: 2, 266
+  size: 137, 91
+  orig: 137, 91
+  offset: 0, 0
+  index: -1
+xuanwu1_lizi1
+  rotate: true
+  xy: 2, 379
+  size: 67, 68
+  orig: 67, 68
+  offset: 0, 0
+  index: -1
+xuanwu1_lizix1
+  rotate: true
+  xy: 257, 421
+  size: 60, 82
+  orig: 60, 82
+  offset: 0, 0
+  index: -1
+xuanwu1_qtuil
+  rotate: true
+  xy: 359, 338
+  size: 79, 99
+  orig: 79, 99
+  offset: 0, 0
+  index: -1
+xuanwu1_qtuir
+  rotate: true
+  xy: 141, 252
+  size: 93, 175
+  orig: 96, 183
+  offset: 3, 0
+  index: -1
+xuanwu1_shen
+  rotate: false
+  xy: 253, 2
+  size: 242, 212
+  orig: 242, 212
+  offset: 0, 0
+  index: -1
+xuanwu1_suipian
+  rotate: false
+  xy: 34, 448
+  size: 36, 33
+  orig: 36, 33
+  offset: 0, 0
+  index: -1
+xuanwu1_tjl
+  rotate: true
+  xy: 221, 347
+  size: 70, 136
+  orig: 71, 137
+  offset: 1, 0
+  index: -1
+xuanwu1_tou
+  rotate: true
+  xy: 2, 116
+  size: 134, 249
+  orig: 134, 249
+  offset: 0, 0
+  index: -1
+xuanwu1_wei
+  rotate: false
+  xy: 318, 216
+  size: 170, 120
+  orig: 170, 120
+  offset: 0, 0
+  index: -1
+xuanwu1_yun1
+  rotate: false
+  xy: 72, 359
+  size: 147, 67
+  orig: 147, 67
+  offset: 0, 0
+  index: -1
+xuanwu1_yun2
+  rotate: false
+  xy: 72, 437
+  size: 104, 44
+  orig: 104, 44
+  offset: 0, 0
+  index: -1

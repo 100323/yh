@@ -1,0 +1,62 @@
+
+sqhd25w9_xuanwu_bj.png
+size: 957,727
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xuanwu_beijing1
+  rotate: true
+  xy: 427, 2
+  size: 423, 288
+  orig: 423, 288
+  offset: 0, 0
+  index: -1
+xuanwu_beijing2
+  rotate: false
+  xy: 2, 14
+  size: 423, 255
+  orig: 423, 255
+  offset: 0, 0
+  index: -1
+xuanwu_beijing3
+  rotate: false
+  xy: 2, 271
+  size: 423, 454
+  orig: 423, 454
+  offset: 0, 0
+  index: -1
+xuanwu_haizao1
+  rotate: false
+  xy: 717, 69
+  size: 126, 356
+  orig: 126, 356
+  offset: 0, 0
+  index: -1
+xuanwu_haizao2
+  rotate: true
+  xy: 717, 3
+  size: 64, 199
+  orig: 64, 199
+  offset: 0, 0
+  index: -1
+xuanwu_haizao3
+  rotate: false
+  xy: 845, 107
+  size: 106, 246
+  orig: 106, 246
+  offset: 0, 0
+  index: -1
+xuanwu_haizao4
+  rotate: false
+  xy: 852, 355
+  size: 103, 370
+  orig: 103, 370
+  offset: 0, 0
+  index: -1
+xuanwu_qianjing
+  rotate: false
+  xy: 427, 427
+  size: 423, 298
+  orig: 423, 298
+  offset: 0, 0
+  index: -1

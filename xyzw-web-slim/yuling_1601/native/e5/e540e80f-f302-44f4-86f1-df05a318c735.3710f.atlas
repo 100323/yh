@@ -1,0 +1,41 @@
+
+yuling_1601.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 46, 213
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_601_body
+  rotate: false
+  xy: 2, 2
+  size: 210, 184
+  orig: 210, 184
+  offset: 0, 0
+  index: -1
+yuling_601_eye
+  rotate: true
+  xy: 2, 235
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+yuling_601_eyewhite
+  rotate: false
+  xy: 15, 219
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
+yuling_601_fin
+  rotate: false
+  xy: 80, 188
+  size: 66, 57
+  orig: 66, 57
+  offset: 0, 0
+  index: -1

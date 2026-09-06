@@ -1,0 +1,27 @@
+
+jiangwei9_attack_loop.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiangwei9_cq1
+  rotate: true
+  xy: 34, 84
+  size: 76, 178
+  orig: 81, 182
+  offset: 2, 2
+  index: -1
+jiangwei9_cq2
+  rotate: true
+  xy: 2, 2
+  size: 80, 194
+  orig: 80, 194
+  offset: 0, 0
+  index: -1
+jwtyxingchen1
+  rotate: false
+  xy: 2, 131
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1

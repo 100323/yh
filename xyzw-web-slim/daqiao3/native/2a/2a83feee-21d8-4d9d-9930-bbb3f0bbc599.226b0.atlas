@@ -1,0 +1,55 @@
+
+daqiao3_skill_hit2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao3_dtx_1
+  rotate: false
+  xy: 117, 30
+  size: 101, 84
+  orig: 104, 87
+  offset: 1, 1
+  index: -1
+daqiao3_dtx_2
+  rotate: false
+  xy: 227, 27
+  size: 142, 110
+  orig: 142, 110
+  offset: 0, 0
+  index: -1
+daqiao3_dtx_3
+  rotate: false
+  xy: 227, 139
+  size: 223, 165
+  orig: 229, 169
+  offset: 3, 2
+  index: -1
+daqiao3_dtx_4
+  rotate: false
+  xy: 371, 17
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+daqiao3_dtx_6
+  rotate: false
+  xy: 2, 2
+  size: 113, 112
+  orig: 123, 122
+  offset: 5, 5
+  index: -1
+daqiao3_tx_ty1
+  rotate: false
+  xy: 452, 258
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+daqiao3_tx_ty2
+  rotate: false
+  xy: 2, 116
+  size: 223, 188
+  orig: 236, 201
+  offset: 6, 6
+  index: -1

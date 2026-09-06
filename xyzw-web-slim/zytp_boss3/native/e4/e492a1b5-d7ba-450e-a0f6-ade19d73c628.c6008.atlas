@@ -1,0 +1,27 @@
+
+zytp_boss3_attack_line.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zytp_boss3_attack1
+  rotate: false
+  xy: 2, 2
+  size: 247, 34
+  orig: 255, 40
+  offset: 4, 3
+  index: -1
+zytp_boss3_attack2
+  rotate: false
+  xy: 2, 81
+  size: 284, 52
+  orig: 290, 58
+  offset: 2, 3
+  index: -1
+zytp_boss3_attack3
+  rotate: false
+  xy: 2, 38
+  size: 292, 41
+  orig: 295, 46
+  offset: 0, 3
+  index: -1

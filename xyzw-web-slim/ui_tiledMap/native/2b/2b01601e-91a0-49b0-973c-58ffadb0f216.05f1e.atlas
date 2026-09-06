@@ -1,0 +1,118 @@
+
+ft_simayi9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 262, 101
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+xwft_bei
+  rotate: false
+  xy: 2, 179
+  size: 297, 223
+  orig: 300, 224
+  offset: 3, 0
+  index: -1
+xwft_huo
+  rotate: true
+  xy: 301, 265
+  size: 137, 189
+  orig: 148, 209
+  offset: 8, 11
+  index: -1
+xwft_lizi
+  rotate: false
+  xy: 123, 4
+  size: 82, 82
+  orig: 95, 95
+  offset: 7, 7
+  index: -1
+xwft_pen1
+  rotate: false
+  xy: 399, 44
+  size: 97, 90
+  orig: 97, 90
+  offset: 0, 0
+  index: -1
+xwft_pen2
+  rotate: true
+  xy: 298, 48
+  size: 97, 99
+  orig: 97, 99
+  offset: 0, 0
+  index: -1
+xwft_pen3
+  rotate: true
+  xy: 436, 182
+  size: 81, 59
+  orig: 81, 59
+  offset: 0, 0
+  index: -1
+xwft_pen4
+  rotate: false
+  xy: 207, 10
+  size: 81, 76
+  orig: 81, 76
+  offset: 0, 0
+  index: -1
+xwft_shi1
+  rotate: false
+  xy: 123, 88
+  size: 137, 89
+  orig: 137, 95
+  offset: 0, 5
+  index: -1
+xwft_shi2
+  rotate: true
+  xy: 436, 136
+  size: 44, 53
+  orig: 44, 53
+  offset: 0, 0
+  index: -1
+xwft_tou1
+  rotate: true
+  xy: 301, 147
+  size: 116, 133
+  orig: 116, 133
+  offset: 0, 0
+  index: -1
+xwft_tou2
+  rotate: true
+  xy: 2, 52
+  size: 125, 119
+  orig: 127, 119
+  offset: 2, 0
+  index: -1
+xwft_wei1
+  rotate: false
+  xy: 262, 125
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+xwft_wei2
+  rotate: false
+  xy: 290, 2
+  size: 49, 44
+  orig: 49, 44
+  offset: 0, 0
+  index: -1
+xwft_wei3
+  rotate: false
+  xy: 262, 151
+  size: 36, 26
+  orig: 36, 26
+  offset: 0, 0
+  index: -1
+xwft_wei4
+  rotate: false
+  xy: 341, 6
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1

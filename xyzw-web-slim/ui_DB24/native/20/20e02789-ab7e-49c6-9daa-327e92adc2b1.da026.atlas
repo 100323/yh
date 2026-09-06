@@ -1,0 +1,20 @@
+
+dwhd26_heye3.png
+size: 256,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dwhd25_heye6
+  rotate: false
+  xy: 117, 2
+  size: 107, 28
+  orig: 108, 28
+  offset: 0, 0
+  index: -1
+dwhd25_heye6yy
+  rotate: false
+  xy: 2, 3
+  size: 113, 27
+  orig: 114, 27
+  offset: 1, 0
+  index: -1

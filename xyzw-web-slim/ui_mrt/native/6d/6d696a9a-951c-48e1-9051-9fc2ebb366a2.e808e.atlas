@@ -1,0 +1,41 @@
+
+mrt_cj_daqiao_3.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pingtai
+  rotate: false
+  xy: 2, 2
+  size: 480, 295
+  orig: 480, 295
+  offset: 0, 0
+  index: -1
+wu
+  rotate: true
+  xy: 2, 328
+  size: 27, 44
+  orig: 27, 44
+  offset: 0, 0
+  index: -1
+xfw_1
+  rotate: true
+  xy: 103, 308
+  size: 47, 64
+  orig: 47, 64
+  offset: 0, 0
+  index: -1
+xfw_2
+  rotate: true
+  xy: 169, 299
+  size: 56, 73
+  orig: 56, 73
+  offset: 0, 0
+  index: -1
+zz
+  rotate: false
+  xy: 48, 321
+  size: 53, 34
+  orig: 53, 34
+  offset: 0, 0
+  index: -1

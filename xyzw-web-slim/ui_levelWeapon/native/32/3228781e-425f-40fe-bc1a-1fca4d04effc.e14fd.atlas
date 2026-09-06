@@ -1,0 +1,188 @@
+
+xshd_aidapen.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 192, 59
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+uipen_bi_1
+  rotate: false
+  xy: 2, 259
+  size: 390, 251
+  orig: 406, 265
+  offset: 7, 7
+  index: -1
+uipen_bi_10
+  rotate: true
+  xy: 544, 104
+  size: 99, 58
+  orig: 99, 59
+  offset: 0, 1
+  index: -1
+uipen_bi_11
+  rotate: true
+  xy: 544, 44
+  size: 58, 57
+  orig: 58, 57
+  offset: 0, 0
+  index: -1
+uipen_bi_12
+  rotate: false
+  xy: 2, 115
+  size: 244, 142
+  orig: 244, 142
+  offset: 0, 0
+  index: -1
+uipen_bi_13
+  rotate: true
+  xy: 136, 2
+  size: 111, 54
+  orig: 111, 54
+  offset: 0, 0
+  index: -1
+uipen_bi_14
+  rotate: true
+  xy: 2, 19
+  size: 94, 132
+  orig: 100, 132
+  offset: 6, 0
+  index: -1
+uipen_bi_15
+  rotate: true
+  xy: 636, 267
+  size: 243, 162
+  orig: 245, 162
+  offset: 0, 0
+  index: -1
+uipen_bi_16
+  rotate: false
+  xy: 518, 6
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+uipen_bi_17
+  rotate: false
+  xy: 800, 307
+  size: 48, 35
+  orig: 48, 35
+  offset: 0, 0
+  index: -1
+uipen_bi_2
+  rotate: false
+  xy: 604, 20
+  size: 144, 120
+  orig: 144, 120
+  offset: 0, 0
+  index: -1
+uipen_bi_3
+  rotate: true
+  xy: 891, 202
+  size: 140, 113
+  orig: 140, 125
+  offset: 0, 0
+  index: -1
+uipen_bi_4
+  rotate: true
+  xy: 387, 22
+  size: 51, 57
+  orig: 51, 57
+  offset: 0, 0
+  index: -1
+uipen_bi_5
+  rotate: true
+  xy: 192, 9
+  size: 48, 43
+  orig: 53, 43
+  offset: 1, 0
+  index: -1
+uipen_bi_6
+  rotate: true
+  xy: 605, 305
+  size: 28, 22
+  orig: 28, 22
+  offset: 0, 0
+  index: -1
+uipen_bi_7
+  rotate: true
+  xy: 605, 275
+  size: 28, 21
+  orig: 28, 21
+  offset: 0, 0
+  index: -1
+uipen_bi_8
+  rotate: true
+  xy: 605, 244
+  size: 29, 18
+  orig: 29, 18
+  offset: 0, 0
+  index: -1
+uipen_bi_9
+  rotate: true
+  xy: 604, 174
+  size: 29, 18
+  orig: 29, 18
+  offset: 0, 0
+  index: -1
+uipen_kai_1
+  rotate: true
+  xy: 544, 205
+  size: 128, 59
+  orig: 128, 59
+  offset: 0, 0
+  index: -1
+uipen_kai_10
+  rotate: false
+  xy: 446, 23
+  size: 70, 50
+  orig: 70, 51
+  offset: 0, 1
+  index: -1
+uipen_kai_2
+  rotate: true
+  xy: 625, 142
+  size: 123, 144
+  orig: 123, 144
+  offset: 0, 0
+  index: -1
+uipen_kai_3
+  rotate: true
+  xy: 248, 17
+  size: 240, 137
+  orig: 240, 137
+  offset: 0, 0
+  index: -1
+uipen_kai_4
+  rotate: false
+  xy: 394, 335
+  size: 240, 175
+  orig: 240, 175
+  offset: 0, 0
+  index: -1
+uipen_kai_5
+  rotate: false
+  xy: 800, 344
+  size: 120, 166
+  orig: 120, 166
+  offset: 0, 0
+  index: -1
+uipen_kai_6
+  rotate: false
+  xy: 771, 98
+  size: 118, 167
+  orig: 118, 167
+  offset: 0, 0
+  index: -1
+uipen_kai_9
+  rotate: true
+  xy: 394, 75
+  size: 258, 148
+  orig: 267, 148
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+ygbh_boss_qx_skill_hit.png
+size: 423,224
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ygbh_boss_qx_skll_zha
+  rotate: false
+  xy: 2, 2
+  size: 234, 220
+  orig: 248, 234
+  offset: 9, 7
+  index: -1
+ygbh_boss_qx_skll_zha2
+  rotate: true
+  xy: 238, 38
+  size: 184, 183
+  orig: 209, 212
+  offset: 11, 17
+  index: -1

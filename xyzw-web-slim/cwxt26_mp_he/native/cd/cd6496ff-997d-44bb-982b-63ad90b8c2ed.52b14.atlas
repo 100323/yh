@@ -1,0 +1,90 @@
+
+cwxt26_mp_he.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_he_jin_he
+  rotate: true
+  xy: 480, 257
+  size: 251, 241
+  orig: 251, 241
+  offset: 0, 0
+  index: -1
+cwxt26_he_jin_sj1
+  rotate: true
+  xy: 413, 47
+  size: 50, 27
+  orig: 50, 27
+  offset: 0, 0
+  index: -1
+cwxt26_he_jin_sj2
+  rotate: true
+  xy: 2, 241
+  size: 267, 237
+  orig: 267, 237
+  offset: 0, 0
+  index: -1
+cwxt26_he_tong_he
+  rotate: true
+  xy: 480, 4
+  size: 251, 241
+  orig: 251, 241
+  offset: 0, 0
+  index: -1
+cwxt26_he_tong_sj1
+  rotate: false
+  xy: 413, 18
+  size: 50, 27
+  orig: 50, 27
+  offset: 0, 0
+  index: -1
+cwxt26_he_tong_sj2
+  rotate: false
+  xy: 2, 2
+  size: 267, 237
+  orig: 267, 237
+  offset: 0, 0
+  index: -1
+cwxt26_he_yin_he
+  rotate: false
+  xy: 723, 267
+  size: 251, 241
+  orig: 251, 241
+  offset: 0, 0
+  index: -1
+cwxt26_he_yin_sj1
+  rotate: true
+  xy: 442, 47
+  size: 50, 27
+  orig: 50, 27
+  offset: 0, 0
+  index: -1
+cwxt26_he_yin_sj2
+  rotate: true
+  xy: 241, 241
+  size: 267, 237
+  orig: 267, 237
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_jin_2
+  rotate: true
+  xy: 271, 99
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_tong_2
+  rotate: false
+  xy: 271, 11
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1
+cwxt26_zhangyu_yin_2
+  rotate: true
+  xy: 359, 99
+  size: 140, 86
+  orig: 140, 86
+  offset: 0, 0
+  index: -1

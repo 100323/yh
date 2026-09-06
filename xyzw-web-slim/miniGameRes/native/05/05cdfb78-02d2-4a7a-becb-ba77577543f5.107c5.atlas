@@ -1,0 +1,167 @@
+
+liubei.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halfcircle1
+  rotate: false
+  xy: 420, 211
+  size: 86, 40
+  orig: 86, 40
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 420, 137
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+liubei_back
+  rotate: true
+  xy: 199, 139
+  size: 112, 56
+  orig: 112, 56
+  offset: 0, 0
+  index: -1
+liubei_beard1
+  rotate: false
+  xy: 475, 161
+  size: 21, 48
+  orig: 23, 50
+  offset: 1, 1
+  index: -1
+liubei_beard2
+  rotate: true
+  xy: 420, 181
+  size: 28, 53
+  orig: 29, 54
+  offset: 1, 0
+  index: -1
+liubei_body
+  rotate: false
+  xy: 180, 4
+  size: 114, 106
+  orig: 114, 106
+  offset: 0, 0
+  index: -1
+liubei_crown
+  rotate: false
+  xy: 361, 159
+  size: 57, 92
+  orig: 57, 92
+  offset: 0, 0
+  index: -1
+liubei_eye
+  rotate: false
+  xy: 2, 11
+  size: 7, 8
+  orig: 7, 9
+  offset: 0, 0
+  index: -1
+liubei_eyebrow
+  rotate: true
+  xy: 234, 115
+  size: 22, 38
+  orig: 22, 38
+  offset: 0, 0
+  index: -1
+liubei_eyewhite
+  rotate: false
+  xy: 274, 114
+  size: 37, 33
+  orig: 37, 33
+  offset: 0, 0
+  index: -1
+liubei_handl
+  rotate: true
+  xy: 372, 53
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+liubei_handr1
+  rotate: false
+  xy: 440, 93
+  size: 43, 42
+  orig: 44, 42
+  offset: 1, 0
+  index: -1
+liubei_handr2
+  rotate: true
+  xy: 313, 114
+  size: 33, 37
+  orig: 34, 38
+  offset: 0, 1
+  index: -1
+liubei_head
+  rotate: false
+  xy: 74, 112
+  size: 123, 139
+  orig: 140, 139
+  offset: 17, 0
+  index: -1
+liubei_legl
+  rotate: true
+  xy: 199, 112
+  size: 25, 33
+  orig: 25, 33
+  offset: 0, 0
+  index: -1
+liubei_legr
+  rotate: true
+  xy: 199, 112
+  size: 25, 33
+  orig: 25, 33
+  offset: 0, 0
+  index: -1
+liubei_shoulderl
+  rotate: false
+  xy: 394, 96
+  size: 44, 39
+  orig: 44, 39
+  offset: 0, 0
+  index: -1
+liubei_shoulderr
+  rotate: false
+  xy: 352, 118
+  size: 40, 29
+  orig: 41, 34
+  offset: 0, 4
+  index: -1
+liubei_tail
+  rotate: true
+  xy: 296, 14
+  size: 98, 74
+  orig: 98, 74
+  offset: 0, 0
+  index: -1
+liubei_weaponl
+  rotate: true
+  xy: 2, 21
+  size: 230, 70
+  orig: 230, 70
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 372, 9
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 74, 2
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1
+xysg_hero_guanyu_shadow
+  rotate: false
+  xy: 257, 149
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1

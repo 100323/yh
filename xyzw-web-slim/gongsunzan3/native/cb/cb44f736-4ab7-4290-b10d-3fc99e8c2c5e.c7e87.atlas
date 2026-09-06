@@ -1,0 +1,20 @@
+
+gongsunzan3_skill_loop.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan_skill2
+  rotate: false
+  xy: 189, 2
+  size: 164, 39
+  orig: 164, 39
+  offset: 0, 0
+  index: -1
+gongsunzan_skill3
+  rotate: false
+  xy: 2, 6
+  size: 185, 35
+  orig: 197, 38
+  offset: 5, 2
+  index: -1

@@ -1,0 +1,97 @@
+
+cjqh_boss1a.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zlys_txk_s1_d1
+  rotate: true
+  xy: 123, 94
+  size: 82, 96
+  orig: 86, 100
+  offset: 2, 2
+  index: -1
+zlys_txk_s1_d2
+  rotate: false
+  xy: 416, 42
+  size: 84, 96
+  orig: 88, 100
+  offset: 2, 2
+  index: -1
+zlys_txk_s1_d3
+  rotate: true
+  xy: 329, 155
+  size: 74, 98
+  orig: 78, 102
+  offset: 2, 3
+  index: -1
+zlys_txk_s1_d4
+  rotate: false
+  xy: 429, 140
+  size: 76, 89
+  orig: 80, 93
+  offset: 2, 2
+  index: -1
+zlys_txk_s1_hx1
+  rotate: false
+  xy: 124, 205
+  size: 34, 24
+  orig: 37, 24
+  offset: 1, 0
+  index: -1
+zlys_txk_s1_sd
+  rotate: false
+  xy: 160, 178
+  size: 167, 51
+  orig: 169, 54
+  offset: 1, 0
+  index: -1
+zlys_txk_s1_tx
+  rotate: false
+  xy: 221, 94
+  size: 82, 82
+  orig: 87, 88
+  offset: 3, 3
+  index: -1
+zlys_txk_s1_x1
+  rotate: true
+  xy: 2, 34
+  size: 88, 111
+  orig: 91, 115
+  offset: 1, 2
+  index: -1
+zlys_txk_s1_x2
+  rotate: true
+  xy: 115, 2
+  size: 90, 115
+  orig: 93, 119
+  offset: 1, 2
+  index: -1
+zlys_txk_s1_x3
+  rotate: true
+  xy: 2, 124
+  size: 80, 119
+  orig: 83, 123
+  offset: 1, 2
+  index: -1
+zlys_txk_s1_x4
+  rotate: true
+  xy: 305, 70
+  size: 83, 109
+  orig: 87, 113
+  offset: 2, 1
+  index: -1
+zlys_txk_s1_zi
+  rotate: false
+  xy: 39, 206
+  size: 83, 23
+  orig: 84, 29
+  offset: 1, 3
+  index: -1
+zlys_txk_s1_zi2
+  rotate: false
+  xy: 2, 209
+  size: 35, 20
+  orig: 35, 20
+  offset: 0, 0
+  index: -1

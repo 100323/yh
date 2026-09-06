@@ -1,0 +1,97 @@
+
+shhj25_smoke.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_yanwu1
+  rotate: true
+  xy: 126, 47
+  size: 22, 20
+  orig: 22, 20
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu10
+  rotate: true
+  xy: 80, 56
+  size: 70, 42
+  orig: 70, 42
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu11
+  rotate: true
+  xy: 149, 101
+  size: 25, 23
+  orig: 25, 24
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu12
+  rotate: false
+  xy: 2, 2
+  size: 66, 40
+  orig: 66, 41
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu13
+  rotate: true
+  xy: 2, 44
+  size: 82, 76
+  orig: 82, 76
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu2
+  rotate: false
+  xy: 126, 29
+  size: 22, 16
+  orig: 22, 16
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu3
+  rotate: true
+  xy: 151, 79
+  size: 20, 16
+  orig: 20, 16
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu4
+  rotate: false
+  xy: 98, 26
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu5
+  rotate: true
+  xy: 98, 4
+  size: 20, 28
+  orig: 20, 28
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu6
+  rotate: false
+  xy: 70, 4
+  size: 26, 38
+  orig: 26, 39
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu7
+  rotate: false
+  xy: 124, 71
+  size: 25, 25
+  orig: 26, 26
+  offset: 1, 0
+  index: -1
+huajuan_choujiang_yanwu8
+  rotate: false
+  xy: 124, 98
+  size: 23, 28
+  orig: 23, 28
+  offset: 0, 0
+  index: -1
+huajuan_choujiang_yanwu9
+  rotate: false
+  xy: 148, 51
+  size: 18, 18
+  orig: 19, 18
+  offset: 1, 0
+  index: -1

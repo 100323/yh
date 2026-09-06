@@ -1,0 +1,27 @@
+
+tgcf_rk_banner_ymj.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_rk_banner_ymj1
+  rotate: true
+  xy: 252, 92
+  size: 114, 231
+  orig: 114, 231
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner_ymj2
+  rotate: false
+  xy: 252, 14
+  size: 114, 76
+  orig: 114, 76
+  offset: 0, 0
+  index: -1
+tgcf_rk_banner_ymj3
+  rotate: false
+  xy: 2, 2
+  size: 248, 204
+  orig: 248, 204
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+sqhd25w2_yc_diaoxiang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w2_yc_banner_diaoxiang
+  rotate: false
+  xy: 2, 2
+  size: 354, 508
+  orig: 450, 543
+  offset: 53, 25
+  index: -1

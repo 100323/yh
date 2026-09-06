@@ -1,0 +1,41 @@
+
+ui_bg_change.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_bgchange_loading2
+  rotate: false
+  xy: 2, 100
+  size: 274, 107
+  orig: 274, 107
+  offset: 0, 0
+  index: -1
+ui_bgchange_loading3
+  rotate: false
+  xy: 316, 11
+  size: 175, 46
+  orig: 175, 46
+  offset: 0, 0
+  index: -1
+ui_bgchange_loading4
+  rotate: false
+  xy: 2, 2
+  size: 312, 96
+  orig: 312, 96
+  offset: 0, 0
+  index: -1
+ui_bgchange_loading8
+  rotate: false
+  xy: 316, 59
+  size: 134, 44
+  orig: 134, 44
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box2
+  rotate: false
+  xy: 278, 105
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1

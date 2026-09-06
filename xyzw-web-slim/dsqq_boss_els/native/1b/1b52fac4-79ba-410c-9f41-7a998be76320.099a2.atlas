@@ -1,0 +1,13 @@
+
+dsqq_boss_els_attack_line.png
+size: 323,43
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_els_pg_shexian
+  rotate: false
+  xy: 2, 2
+  size: 319, 39
+  orig: 319, 39
+  offset: 0, 0
+  index: -1

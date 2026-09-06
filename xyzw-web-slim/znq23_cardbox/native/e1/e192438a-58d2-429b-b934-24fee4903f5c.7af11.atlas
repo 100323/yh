@@ -1,0 +1,69 @@
+
+znq23_cardbox.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dyhc_boxlight1
+  rotate: true
+  xy: 2, 3
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+dyhc_boxlight2
+  rotate: true
+  xy: 242, 150
+  size: 196, 195
+  orig: 200, 200
+  offset: 2, 3
+  index: -1
+dyhc_boxlight3
+  rotate: false
+  xy: 371, 2
+  size: 120, 146
+  orig: 120, 146
+  offset: 0, 0
+  index: -1
+dyhc_boxlight4
+  rotate: true
+  xy: 163, 17
+  size: 18, 206
+  orig: 18, 206
+  offset: 0, 0
+  index: -1
+hero_effect_scircle
+  rotate: false
+  xy: 233, 52
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 261, 58
+  size: 20, 23
+  orig: 26, 26
+  offset: 2, 2
+  index: -1
+znq23_cardbox1
+  rotate: false
+  xy: 2, 165
+  size: 238, 181
+  orig: 238, 181
+  offset: 0, 0
+  index: -1
+znq23_cardbox2
+  rotate: true
+  xy: 163, 37
+  size: 126, 68
+  orig: 126, 68
+  offset: 0, 0
+  index: -1
+znq23_cardbox3
+  rotate: false
+  xy: 233, 80
+  size: 126, 68
+  orig: 126, 68
+  offset: 0, 0
+  index: -1

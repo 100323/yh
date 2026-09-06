@@ -1,0 +1,398 @@
+
+zhouyu8.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00001
+  rotate: false
+  xy: 86, 4
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00003
+  rotate: true
+  xy: 839, 387
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00005
+  rotate: false
+  xy: 886, 462
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00007
+  rotate: true
+  xy: 801, 113
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00009
+  rotate: true
+  xy: 676, 81
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00011
+  rotate: true
+  xy: 723, 81
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00013
+  rotate: true
+  xy: 848, 113
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00015
+  rotate: false
+  xy: 877, 269
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00017
+  rotate: false
+  xy: 770, 66
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00019
+  rotate: false
+  xy: 892, 66
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00021
+  rotate: true
+  xy: 895, 147
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00023
+  rotate: true
+  xy: 942, 147
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+00025
+  rotate: false
+  xy: 673, 19
+  size: 120, 45
+  orig: 120, 45
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 588, 11
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: true
+  xy: 337, 77
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+tyxingchen2
+  rotate: true
+  xy: 177, 160
+  size: 22, 66
+  orig: 22, 66
+  offset: 0, 0
+  index: -1
+zhouyu8_beiguang1
+  rotate: true
+  xy: 886, 389
+  size: 71, 90
+  orig: 71, 90
+  offset: 0, 0
+  index: -1
+zhouyu8_beiguang2
+  rotate: false
+  xy: 594, 341
+  size: 103, 118
+  orig: 103, 118
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_beiguang
+  rotate: true
+  xy: 931, 353
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_cir
+  rotate: false
+  xy: 463, 461
+  size: 234, 46
+  orig: 235, 46
+  offset: 1, 0
+  index: -1
+zhouyu8_bs_ciy
+  rotate: true
+  xy: 634, 133
+  size: 206, 40
+  orig: 206, 40
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_gg
+  rotate: false
+  xy: 676, 203
+  size: 123, 77
+  orig: 123, 77
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_jian2
+  rotate: false
+  xy: 676, 282
+  size: 20, 57
+  orig: 20, 57
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_jiao1
+  rotate: true
+  xy: 698, 287
+  size: 26, 31
+  orig: 26, 31
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_shoub3
+  rotate: false
+  xy: 463, 184
+  size: 125, 137
+  orig: 125, 137
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_shoub4
+  rotate: false
+  xy: 250, 159
+  size: 118, 140
+  orig: 118, 140
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_shoul
+  rotate: false
+  xy: 801, 235
+  size: 74, 78
+  orig: 74, 78
+  offset: 0, 0
+  index: -1
+zhouyu8_bs_yanwu
+  rotate: false
+  xy: 177, 184
+  size: 66, 37
+  orig: 66, 37
+  offset: 0, 0
+  index: -1
+zhouyu8_guan1
+  rotate: false
+  xy: 775, 283
+  size: 20, 30
+  orig: 20, 30
+  offset: 0, 0
+  index: -1
+zhouyu8_guan2
+  rotate: false
+  xy: 250, 301
+  size: 211, 206
+  orig: 211, 206
+  offset: 0, 0
+  index: -1
+zhouyu8_guan3
+  rotate: false
+  xy: 370, 187
+  size: 84, 112
+  orig: 85, 112
+  offset: 0, 0
+  index: -1
+zhouyu8_gyil
+  rotate: true
+  xy: 588, 59
+  size: 47, 46
+  orig: 47, 46
+  offset: 0, 0
+  index: -1
+zhouyu8_ht
+  rotate: false
+  xy: 2, 274
+  size: 246, 233
+  orig: 246, 233
+  offset: 0, 0
+  index: -1
+zhouyu8_jiao1
+  rotate: true
+  xy: 101, 223
+  size: 49, 145
+  orig: 52, 146
+  offset: 3, 1
+  index: -1
+zhouyu8_jiar
+  rotate: true
+  xy: 101, 51
+  size: 106, 113
+  orig: 106, 113
+  offset: 0, 0
+  index: -1
+zhouyu8_jjl
+  rotate: false
+  xy: 370, 68
+  size: 171, 114
+  orig: 171, 114
+  offset: 0, 0
+  index: -1
+zhouyu8_ltr
+  rotate: false
+  xy: 636, 35
+  size: 35, 46
+  orig: 35, 46
+  offset: 0, 0
+  index: -1
+zhouyu8_sbl1
+  rotate: true
+  xy: 2, 19
+  size: 98, 82
+  orig: 98, 82
+  offset: 0, 0
+  index: -1
+zhouyu8_sbr
+  rotate: true
+  xy: 839, 316
+  size: 69, 90
+  orig: 70, 90
+  offset: 0, 0
+  index: -1
+zhouyu8_shen
+  rotate: false
+  xy: 699, 315
+  size: 138, 192
+  orig: 138, 198
+  offset: 0, 0
+  index: -1
+zhouyu8_shoul1
+  rotate: false
+  xy: 731, 291
+  size: 42, 22
+  orig: 42, 22
+  offset: 0, 0
+  index: -1
+zhouyu8_shoul2
+  rotate: true
+  xy: 101, 161
+  size: 60, 74
+  orig: 60, 74
+  offset: 0, 0
+  index: -1
+zhouyu8_shour
+  rotate: false
+  xy: 472, 10
+  size: 62, 56
+  orig: 63, 56
+  offset: 1, 0
+  index: -1
+zhouyu8_tuil
+  rotate: false
+  xy: 2, 119
+  size: 97, 153
+  orig: 97, 154
+  offset: 0, 1
+  index: -1
+zhouyu8_tuils
+  rotate: true
+  xy: 405, 3
+  size: 63, 65
+  orig: 63, 65
+  offset: 0, 0
+  index: -1
+zhouyu8_tuir
+  rotate: true
+  xy: 463, 323
+  size: 136, 129
+  orig: 137, 130
+  offset: 1, 1
+  index: -1
+zhouyu8_tuirs
+  rotate: true
+  xy: 337, 2
+  size: 64, 66
+  orig: 64, 66
+  offset: 0, 0
+  index: -1
+zhouyu8_tuixl
+  rotate: true
+  xy: 588, 108
+  size: 45, 44
+  orig: 47, 46
+  offset: 1, 1
+  index: -1
+zhouyu8_xingtou1
+  rotate: false
+  xy: 304, 111
+  size: 49, 46
+  orig: 49, 46
+  offset: 0, 0
+  index: -1
+zhouyu8_xingtou2
+  rotate: false
+  xy: 246, 109
+  size: 56, 48
+  orig: 58, 50
+  offset: 1, 1
+  index: -1
+zhouyu8_xingtou3
+  rotate: true
+  xy: 216, 108
+  size: 50, 28
+  orig: 51, 29
+  offset: 0, 0
+  index: -1
+zhouyu8_xingtr
+  rotate: true
+  xy: 536, 3
+  size: 40, 50
+  orig: 42, 52
+  offset: 1, 1
+  index: -1
+zhouyu8_yanguang
+  rotate: true
+  xy: 636, 83
+  size: 48, 36
+  orig: 48, 36
+  offset: 0, 0
+  index: -1
+zhouyu8_yz_dong
+  rotate: true
+  xy: 590, 155
+  size: 166, 42
+  orig: 166, 42
+  offset: 0, 0
+  index: -1
+zhouyu8_yz_guang
+  rotate: false
+  xy: 216, 12
+  size: 119, 94
+  orig: 119, 94
+  offset: 0, 0
+  index: -1
+zhouyu8_yz_xing
+  rotate: true
+  xy: 543, 45
+  size: 137, 43
+  orig: 137, 43
+  offset: 0, 0
+  index: -1

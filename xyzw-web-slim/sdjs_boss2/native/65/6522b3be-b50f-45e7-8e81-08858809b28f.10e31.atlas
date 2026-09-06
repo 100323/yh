@@ -1,0 +1,13 @@
+
+touqu_attack_curve_loop.png
+size: 64,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl3_huner
+  rotate: false
+  xy: 2, 2
+  size: 50, 111
+  orig: 50, 111
+  offset: 0, 0
+  index: -1

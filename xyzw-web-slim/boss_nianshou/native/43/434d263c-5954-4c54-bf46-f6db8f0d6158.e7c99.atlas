@@ -1,0 +1,202 @@
+
+boss_nianshou.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+nianshou_arml
+  rotate: true
+  xy: 2, 578
+  size: 125, 181
+  orig: 125, 181
+  offset: 0, 0
+  index: -1
+nianshou_armr
+  rotate: true
+  xy: 353, 686
+  size: 109, 130
+  orig: 109, 130
+  offset: 0, 0
+  index: -1
+nianshou_beard
+  rotate: true
+  xy: 2, 173
+  size: 225, 289
+  orig: 225, 289
+  offset: 0, 0
+  index: -1
+nianshou_body
+  rotate: false
+  xy: 293, 2
+  size: 349, 300
+  orig: 349, 300
+  offset: 0, 0
+  index: -1
+nianshou_earl
+  rotate: true
+  xy: 717, 770
+  size: 89, 112
+  orig: 89, 112
+  offset: 0, 0
+  index: -1
+nianshou_earr
+  rotate: true
+  xy: 129, 806
+  size: 53, 93
+  orig: 53, 93
+  offset: 0, 0
+  index: -1
+nianshou_effect1
+  rotate: true
+  xy: 626, 773
+  size: 86, 89
+  orig: 86, 89
+  offset: 0, 0
+  index: -1
+nianshou_effect2
+  rotate: false
+  xy: 211, 693
+  size: 140, 102
+  orig: 140, 102
+  offset: 0, 0
+  index: -1
+nianshou_effect3
+  rotate: false
+  xy: 481, 523
+  size: 171, 136
+  orig: 171, 136
+  offset: 0, 0
+  index: -1
+nianshou_effect4
+  rotate: false
+  xy: 224, 799
+  size: 66, 60
+  orig: 66, 60
+  offset: 0, 0
+  index: -1
+nianshou_eye
+  rotate: true
+  xy: 18, 845
+  size: 14, 15
+  orig: 14, 16
+  offset: 0, 1
+  index: -1
+nianshou_eye2
+  rotate: false
+  xy: 35, 826
+  size: 42, 33
+  orig: 42, 33
+  offset: 0, 0
+  index: -1
+nianshou_eyewhite
+  rotate: true
+  xy: 79, 812
+  size: 47, 48
+  orig: 48, 48
+  offset: 1, 0
+  index: -1
+nianshou_face
+  rotate: false
+  xy: 654, 497
+  size: 164, 162
+  orig: 164, 162
+  offset: 0, 0
+  index: -1
+nianshou_foot
+  rotate: false
+  xy: 822, 636
+  size: 157, 120
+  orig: 157, 120
+  offset: 0, 0
+  index: -1
+nianshou_hair
+  rotate: false
+  xy: 2, 705
+  size: 207, 99
+  orig: 207, 99
+  offset: 0, 0
+  index: -1
+nianshou_handl
+  rotate: false
+  xy: 490, 783
+  size: 134, 76
+  orig: 134, 76
+  offset: 0, 0
+  index: -1
+nianshou_handr
+  rotate: false
+  xy: 831, 758
+  size: 116, 101
+  orig: 118, 101
+  offset: 2, 0
+  index: -1
+nianshou_head
+  rotate: false
+  xy: 2, 421
+  size: 214, 139
+  orig: 214, 139
+  offset: 0, 0
+  index: -1
+nianshou_jaw
+  rotate: false
+  xy: 218, 400
+  size: 213, 160
+  orig: 213, 160
+  offset: 0, 0
+  index: -1
+nianshou_leg
+  rotate: false
+  xy: 820, 461
+  size: 173, 173
+  orig: 173, 173
+  offset: 0, 0
+  index: -1
+nianshou_mouth
+  rotate: false
+  xy: 292, 797
+  size: 196, 62
+  orig: 196, 62
+  offset: 0, 0
+  index: -1
+nianyu_body
+  rotate: false
+  xy: 743, 236
+  size: 255, 223
+  orig: 255, 223
+  offset: 0, 0
+  index: -1
+nianyu_bread1
+  rotate: true
+  xy: 485, 669
+  size: 102, 155
+  orig: 102, 155
+  offset: 0, 0
+  index: -1
+nianyu_eye
+  rotate: false
+  xy: 2, 848
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+nianyu_fin1
+  rotate: true
+  xy: 642, 661
+  size: 107, 178
+  orig: 107, 178
+  offset: 0, 0
+  index: -1
+nianyu_mouth
+  rotate: false
+  xy: 185, 562
+  size: 294, 122
+  orig: 294, 122
+  offset: 0, 0
+  index: -1
+nianyu_tail
+  rotate: true
+  xy: 433, 304
+  size: 191, 308
+  orig: 191, 308
+  offset: 0, 0
+  index: -1

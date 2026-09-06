@@ -1,0 +1,20 @@
+
+guojia_fahai_xizhang_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojiafh_attack_hit1
+  rotate: false
+  xy: 2, 2
+  size: 186, 187
+  orig: 186, 187
+  offset: 0, 0
+  index: -1
+guojiafh_attack_hit2
+  rotate: true
+  xy: 190, 19
+  size: 170, 160
+  orig: 170, 160
+  offset: 0, 0
+  index: -1

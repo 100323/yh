@@ -1,0 +1,48 @@
+
+daqiao4_attack_loop.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daqiao4_tx_pg1
+  rotate: false
+  xy: 2, 2
+  size: 167, 124
+  orig: 167, 124
+  offset: 0, 0
+  index: -1
+daqiao4_tx_pg2
+  rotate: true
+  xy: 396, 278
+  size: 109, 65
+  orig: 110, 65
+  offset: 0, 0
+  index: -1
+daqiao4_tx_pg3
+  rotate: true
+  xy: 396, 43
+  size: 233, 63
+  orig: 242, 65
+  offset: 6, 1
+  index: -1
+daqiao4_tx_pg4
+  rotate: false
+  xy: 2, 128
+  size: 392, 259
+  orig: 397, 262
+  offset: 3, 1
+  index: -1
+daqiao4_tx_pg41
+  rotate: true
+  xy: 171, 28
+  size: 98, 40
+  orig: 102, 41
+  offset: 3, 0
+  index: -1
+daqiao4_tx_pg5
+  rotate: true
+  xy: 213, 51
+  size: 75, 39
+  orig: 75, 39
+  offset: 0, 0
+  index: -1

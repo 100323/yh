@@ -1,0 +1,118 @@
+
+jlbsd_waiter.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghsd_trader1
+  rotate: true
+  xy: 289, 35
+  size: 52, 75
+  orig: 52, 75
+  offset: 0, 0
+  index: -1
+ghsd_trader10
+  rotate: true
+  xy: 120, 2
+  size: 50, 13
+  orig: 50, 13
+  offset: 0, 0
+  index: -1
+ghsd_trader11
+  rotate: false
+  xy: 367, 263
+  size: 4, 5
+  orig: 4, 5
+  offset: 0, 0
+  index: -1
+ghsd_trader12
+  rotate: true
+  xy: 488, 454
+  size: 42, 18
+  orig: 42, 18
+  offset: 0, 0
+  index: -1
+ghsd_trader13
+  rotate: true
+  xy: 455, 189
+  size: 79, 39
+  orig: 79, 39
+  offset: 0, 0
+  index: -1
+ghsd_trader14
+  rotate: true
+  xy: 380, 103
+  size: 165, 73
+  orig: 165, 73
+  offset: 0, 0
+  index: -1
+ghsd_trader15
+  rotate: false
+  xy: 147, 110
+  size: 155, 151
+  orig: 155, 151
+  offset: 0, 0
+  index: -1
+ghsd_trader16
+  rotate: false
+  xy: 367, 270
+  size: 103, 77
+  orig: 103, 77
+  offset: 0, 0
+  index: -1
+ghsd_trader2
+  rotate: true
+  xy: 304, 89
+  size: 172, 74
+  orig: 172, 74
+  offset: 0, 0
+  index: -1
+ghsd_trader3
+  rotate: false
+  xy: 455, 164
+  size: 20, 23
+  orig: 20, 23
+  offset: 0, 0
+  index: -1
+ghsd_trader4
+  rotate: true
+  xy: 380, 41
+  size: 60, 62
+  orig: 60, 62
+  offset: 0, 0
+  index: -1
+ghsd_trader5
+  rotate: true
+  xy: 367, 349
+  size: 147, 119
+  orig: 147, 121
+  offset: 0, 0
+  index: -1
+ghsd_trader6
+  rotate: false
+  xy: 147, 263
+  size: 218, 233
+  orig: 218, 233
+  offset: 0, 0
+  index: -1
+ghsd_trader7
+  rotate: false
+  xy: 2, 2
+  size: 116, 50
+  orig: 116, 50
+  offset: 0, 0
+  index: -1
+ghsd_trader8
+  rotate: true
+  xy: 147, 17
+  size: 91, 140
+  orig: 91, 140
+  offset: 0, 0
+  index: -1
+ghsd_trader9
+  rotate: false
+  xy: 2, 54
+  size: 143, 442
+  orig: 143, 442
+  offset: 0, 0
+  index: -1

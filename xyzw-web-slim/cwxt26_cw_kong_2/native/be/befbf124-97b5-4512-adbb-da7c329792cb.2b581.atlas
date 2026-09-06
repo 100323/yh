@@ -1,0 +1,132 @@
+
+cwxt26_cw_kong_2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bi
+  rotate: true
+  xy: 124, 123
+  size: 85, 38
+  orig: 87, 41
+  offset: 1, 1
+  index: -1
+chi
+  rotate: true
+  xy: 6, 6
+  size: 87, 101
+  orig: 87, 101
+  offset: 0, 0
+  index: -1
+chu_y
+  rotate: false
+  xy: 452, 301
+  size: 47, 44
+  orig: 49, 46
+  offset: 1, 1
+  index: -1
+chu_z
+  rotate: true
+  xy: 261, 11
+  size: 65, 66
+  orig: 67, 69
+  offset: 1, 1
+  index: -1
+duzi
+  rotate: false
+  xy: 318, 259
+  size: 128, 86
+  orig: 132, 88
+  offset: 3, 1
+  index: -1
+duzi2
+  rotate: false
+  xy: 176, 161
+  size: 119, 112
+  orig: 123, 112
+  offset: 0, 0
+  index: -1
+houchi
+  rotate: true
+  xy: 452, 265
+  size: 30, 47
+  orig: 32, 49
+  offset: 1, 1
+  index: -1
+hua1
+  rotate: true
+  xy: 301, 159
+  size: 94, 115
+  orig: 98, 117
+  offset: 1, 1
+  index: -1
+hua2
+  rotate: false
+  xy: 168, 84
+  size: 109, 71
+  orig: 111, 74
+  offset: 1, 1
+  index: -1
+hua3
+  rotate: true
+  xy: 283, 82
+  size: 71, 96
+  orig: 73, 98
+  offset: 1, 1
+  index: -1
+hua4
+  rotate: true
+  xy: 385, 43
+  size: 89, 90
+  orig: 91, 93
+  offset: 1, 2
+  index: -1
+hua5
+  rotate: true
+  xy: 163, 6
+  size: 72, 92
+  orig: 74, 108
+  offset: 1, 15
+  index: -1
+shangli
+  rotate: false
+  xy: 176, 279
+  size: 136, 66
+  orig: 136, 66
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 6, 99
+  size: 112, 109
+  orig: 112, 109
+  offset: 0, 0
+  index: -1
+wei
+  rotate: false
+  xy: 6, 214
+  size: 164, 131
+  orig: 164, 131
+  offset: 0, 0
+  index: -1
+weizhen
+  rotate: true
+  xy: 124, 59
+  size: 58, 33
+  orig: 60, 40
+  offset: 1, 6
+  index: -1
+weizhen2
+  rotate: true
+  xy: 452, 203
+  size: 56, 41
+  orig: 58, 43
+  offset: 1, 1
+  index: -1
+xial
+  rotate: false
+  xy: 422, 138
+  size: 81, 59
+  orig: 81, 59
+  offset: 0, 0
+  index: -1

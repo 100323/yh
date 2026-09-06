@@ -1,0 +1,251 @@
+
+zhenji5.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 289, 15
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+zhenji5_armr
+  rotate: false
+  xy: 365, 59
+  size: 33, 34
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+zhenji5_attack_effect1
+  rotate: true
+  xy: 289, 95
+  size: 66, 112
+  orig: 68, 115
+  offset: 1, 2
+  index: -1
+zhenji5_band
+  rotate: true
+  xy: 403, 89
+  size: 77, 60
+  orig: 77, 60
+  offset: 0, 0
+  index: -1
+zhenji5_body
+  rotate: false
+  xy: 90, 269
+  size: 62, 90
+  orig: 62, 90
+  offset: 0, 0
+  index: -1
+zhenji5_effect_star
+  rotate: false
+  xy: 419, 300
+  size: 64, 65
+  orig: 78, 83
+  offset: 7, 9
+  index: -1
+zhenji5_face
+  rotate: false
+  xy: 2, 2
+  size: 114, 99
+  orig: 114, 102
+  offset: 0, 0
+  index: -1
+zhenji5_hair1
+  rotate: true
+  xy: 118, 50
+  size: 51, 43
+  orig: 51, 43
+  offset: 0, 0
+  index: -1
+zhenji5_hair2
+  rotate: true
+  xy: 472, 253
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+zhenji5_hair3
+  rotate: false
+  xy: 471, 367
+  size: 35, 31
+  orig: 35, 31
+  offset: 0, 0
+  index: -1
+zhenji5_hair4
+  rotate: true
+  xy: 118, 4
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: -1
+zhenji5_handl
+  rotate: false
+  xy: 472, 190
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+zhenji5_handr
+  rotate: false
+  xy: 336, 364
+  size: 60, 25
+  orig: 60, 25
+  offset: 0, 0
+  index: -1
+zhenji5_hat
+  rotate: false
+  xy: 90, 361
+  size: 181, 144
+  orig: 181, 144
+  offset: 0, 0
+  index: -1
+zhenji5_hip
+  rotate: false
+  xy: 393, 186
+  size: 77, 66
+  orig: 77, 66
+  offset: 0, 0
+  index: -1
+zhenji5_ring1
+  rotate: true
+  xy: 472, 213
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+zhenji5_ring2
+  rotate: false
+  xy: 419, 257
+  size: 45, 41
+  orig: 45, 41
+  offset: 0, 0
+  index: -1
+zhenji5_skill_a1
+  rotate: false
+  xy: 2, 103
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+zhenji5_skill_a2
+  rotate: true
+  xy: 452, 449
+  size: 56, 54
+  orig: 60, 57
+  offset: 2, 2
+  index: -1
+zhenji5_skill_a3
+  rotate: false
+  xy: 164, 149
+  size: 122, 210
+  orig: 122, 210
+  offset: 0, 0
+  index: -1
+zhenji5_skill_handl
+  rotate: true
+  xy: 273, 363
+  size: 26, 61
+  orig: 26, 61
+  offset: 0, 0
+  index: -1
+zhenji5_skill_mouth
+  rotate: true
+  xy: 485, 311
+  size: 18, 12
+  orig: 18, 12
+  offset: 0, 0
+  index: -1
+zhenji5_tail1
+  rotate: false
+  xy: 273, 391
+  size: 177, 114
+  orig: 177, 114
+  offset: 0, 0
+  index: -1
+zhenji5_tail2
+  rotate: true
+  xy: 288, 254
+  size: 107, 129
+  orig: 107, 129
+  offset: 0, 0
+  index: -1
+zhenji5_weapon2
+  rotate: true
+  xy: 452, 400
+  size: 47, 48
+  orig: 47, 48
+  offset: 0, 0
+  index: -1
+zhenji5_weapon3
+  rotate: false
+  xy: 2, 265
+  size: 86, 240
+  orig: 86, 240
+  offset: 0, 0
+  index: -1
+zhenji5_xiu2
+  rotate: true
+  xy: 288, 163
+  size: 89, 103
+  orig: 89, 103
+  offset: 0, 0
+  index: -1
+zhenji5_xiur
+  rotate: false
+  xy: 164, 39
+  size: 123, 108
+  orig: 123, 108
+  offset: 0, 0
+  index: -1
+zhenji_eye1
+  rotate: true
+  xy: 485, 350
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+zhenji_eye2
+  rotate: true
+  xy: 485, 331
+  size: 17, 13
+  orig: 17, 13
+  offset: 0, 0
+  index: -1
+zhenji_eyebrow1
+  rotate: true
+  xy: 154, 317
+  size: 18, 6
+  orig: 18, 6
+  offset: 0, 0
+  index: -1
+zhenji_eyebrow2
+  rotate: true
+  xy: 154, 337
+  size: 22, 6
+  orig: 22, 6
+  offset: 0, 0
+  index: -1
+zhenji_eyelid1
+  rotate: false
+  xy: 393, 168
+  size: 78, 16
+  orig: 78, 16
+  offset: 0, 0
+  index: -1
+zhenji_eyelid2
+  rotate: false
+  xy: 289, 63
+  size: 74, 30
+  orig: 74, 30
+  offset: 0, 0
+  index: -1
+zhenji_eyewhite
+  rotate: false
+  xy: 398, 367
+  size: 71, 22
+  orig: 71, 22
+  offset: 0, 0
+  index: -1

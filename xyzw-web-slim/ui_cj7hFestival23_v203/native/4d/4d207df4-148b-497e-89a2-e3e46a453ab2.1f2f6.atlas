@@ -1,0 +1,34 @@
+
+llqj25_cj_jiantou.png
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_jiantou1
+  rotate: true
+  xy: 59, 72
+  size: 62, 65
+  orig: 62, 65
+  offset: 0, 0
+  index: -1
+choujiang_jiantou2
+  rotate: true
+  xy: 2, 2
+  size: 63, 65
+  orig: 63, 65
+  offset: 0, 0
+  index: -1
+choujiang_jiantou3
+  rotate: false
+  xy: 69, 5
+  size: 54, 65
+  orig: 54, 66
+  offset: 0, 1
+  index: -1
+choujiang_jiantou4
+  rotate: false
+  xy: 2, 67
+  size: 55, 67
+  orig: 55, 67
+  offset: 0, 0
+  index: -1

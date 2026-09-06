@@ -1,0 +1,62 @@
+
+sdsl_boss7_attack_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 252, 44
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack2
+  rotate: false
+  xy: 141, 44
+  size: 56, 78
+  orig: 56, 78
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack3
+  rotate: false
+  xy: 199, 63
+  size: 51, 59
+  orig: 51, 59
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack4
+  rotate: true
+  xy: 252, 66
+  size: 22, 21
+  orig: 22, 21
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack5
+  rotate: true
+  xy: 252, 90
+  size: 32, 30
+  orig: 32, 30
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack6
+  rotate: true
+  xy: 141, 15
+  size: 27, 109
+  orig: 27, 109
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack7
+  rotate: false
+  xy: 93, 10
+  size: 46, 112
+  orig: 46, 112
+  offset: 0, 0
+  index: -1
+sdsl_boss7_attack8
+  rotate: true
+  xy: 2, 2
+  size: 120, 89
+  orig: 120, 89
+  offset: 0, 0
+  index: -1

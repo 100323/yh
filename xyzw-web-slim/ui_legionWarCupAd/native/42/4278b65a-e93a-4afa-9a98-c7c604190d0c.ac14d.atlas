@@ -1,0 +1,41 @@
+
+ycxsz_dhxd.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 152
+  size: 23, 11
+  orig: 26, 26
+  offset: 0, 4
+  index: -1
+ycxsz_dhxd_1
+  rotate: false
+  xy: 27, 126
+  size: 82, 37
+  orig: 82, 37
+  offset: 0, 0
+  index: -1
+ycxsz_dhxd_wz
+  rotate: false
+  xy: 111, 120
+  size: 159, 43
+  orig: 159, 43
+  offset: 0, 0
+  index: -1
+ycxsz_zhi1
+  rotate: false
+  xy: 2, 2
+  size: 360, 101
+  orig: 485, 101
+  offset: 0, 0
+  index: -1
+ycxsz_zhi3
+  rotate: true
+  xy: 272, 105
+  size: 58, 122
+  orig: 58, 122
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+zhugeliang8_attack_loop.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 60, 51
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: false
+  xy: 35, 75
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 2, 81
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: false
+  xy: 18, 81
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+zhugeliang8_pg_zd
+  rotate: false
+  xy: 106, 2
+  size: 271, 93
+  orig: 271, 93
+  offset: 0, 0
+  index: -1

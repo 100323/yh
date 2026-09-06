@@ -1,0 +1,13 @@
+
+dsqq_boss_hsly_attack_line.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_hsly_pu_hit_xian
+  rotate: false
+  xy: 2, 2
+  size: 339, 50
+  orig: 339, 50
+  offset: 0, 0
+  index: -1

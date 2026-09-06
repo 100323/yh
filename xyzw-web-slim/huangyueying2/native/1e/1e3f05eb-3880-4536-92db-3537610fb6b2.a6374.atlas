@@ -1,0 +1,230 @@
+
+huangyueying2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 369, 121
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 157, 8
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_effect_ring
+  rotate: false
+  xy: 294, 399
+  size: 111, 111
+  orig: 111, 111
+  offset: 0, 0
+  index: -1
+huangyueying2_arml
+  rotate: true
+  xy: 407, 448
+  size: 62, 67
+  orig: 70, 78
+  offset: 8, 11
+  index: -1
+huangyueying2_armr1
+  rotate: false
+  xy: 285, 56
+  size: 79, 62
+  orig: 79, 62
+  offset: 0, 0
+  index: -1
+huangyueying2_armr2
+  rotate: false
+  xy: 366, 58
+  size: 75, 60
+  orig: 75, 60
+  offset: 0, 0
+  index: -1
+huangyueying2_chest
+  rotate: false
+  xy: 233, 205
+  size: 105, 70
+  orig: 105, 70
+  offset: 0, 0
+  index: -1
+huangyueying2_effect1
+  rotate: true
+  xy: 2, 4
+  size: 33, 86
+  orig: 33, 86
+  offset: 0, 0
+  index: -1
+huangyueying2_effect2
+  rotate: true
+  xy: 90, 3
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+huangyueying2_effect3
+  rotate: false
+  xy: 305, 4
+  size: 93, 50
+  orig: 93, 50
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerl1
+  rotate: true
+  xy: 264, 35
+  size: 15, 28
+  orig: 15, 28
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerl2
+  rotate: true
+  xy: 125, 6
+  size: 31, 30
+  orig: 31, 35
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerl3
+  rotate: true
+  xy: 241, 24
+  size: 26, 21
+  orig: 26, 21
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerr1
+  rotate: false
+  xy: 241, 4
+  size: 24, 18
+  orig: 24, 18
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerr2
+  rotate: false
+  xy: 284, 14
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerr2_1
+  rotate: false
+  xy: 269, 408
+  size: 20, 18
+  orig: 20, 18
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerr3
+  rotate: false
+  xy: 267, 5
+  size: 15, 28
+  orig: 15, 28
+  offset: 0, 0
+  index: -1
+huangyueying2_fingerr4
+  rotate: false
+  xy: 269, 393
+  size: 19, 13
+  orig: 19, 13
+  offset: 0, 0
+  index: -1
+huangyueying2_handr
+  rotate: true
+  xy: 201, 7
+  size: 43, 38
+  orig: 43, 38
+  offset: 0, 0
+  index: -1
+huangyueying2_hat
+  rotate: false
+  xy: 143, 52
+  size: 140, 126
+  orig: 143, 126
+  offset: 3, 0
+  index: -1
+huangyueying2_head
+  rotate: false
+  xy: 2, 335
+  size: 151, 175
+  orig: 151, 175
+  offset: 0, 0
+  index: -1
+huangyueying2_hip
+  rotate: true
+  xy: 155, 337
+  size: 89, 112
+  orig: 89, 112
+  offset: 0, 0
+  index: -1
+huangyueying2_shoulderl
+  rotate: true
+  xy: 400, 2
+  size: 54, 78
+  orig: 64, 80
+  offset: 10, 0
+  index: -1
+huangyueying2_shoulderr
+  rotate: false
+  xy: 285, 120
+  size: 82, 83
+  orig: 82, 83
+  offset: 0, 0
+  index: -1
+huangyueying2_skill1
+  rotate: true
+  xy: 340, 205
+  size: 70, 93
+  orig: 70, 93
+  offset: 0, 0
+  index: -1
+huangyueying2_skill2
+  rotate: false
+  xy: 353, 304
+  size: 70, 93
+  orig: 70, 93
+  offset: 0, 0
+  index: -1
+huangyueying2_skill6
+  rotate: false
+  xy: 443, 61
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+huangyueying2_tail1
+  rotate: true
+  xy: 269, 277
+  size: 114, 82
+  orig: 114, 82
+  offset: 0, 0
+  index: -1
+huangyueying2_tail2
+  rotate: true
+  xy: 155, 221
+  size: 114, 76
+  orig: 114, 76
+  offset: 0, 0
+  index: -1
+huangyueying2_tail3
+  rotate: false
+  xy: 155, 428
+  size: 126, 82
+  orig: 126, 82
+  offset: 0, 0
+  index: -1
+huangyueying2_tail4
+  rotate: true
+  xy: 2, 180
+  size: 153, 151
+  orig: 153, 151
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 2, 39
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+txk_zhangjiao6.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+txk_zhangjiao6_1
+  rotate: false
+  xy: 182, 161
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+txk_zhangjiao6_2
+  rotate: false
+  xy: 182, 126
+  size: 39, 33
+  orig: 39, 33
+  offset: 0, 0
+  index: -1
+txk_zhangjiao6_3
+  rotate: true
+  xy: 2, 2
+  size: 118, 88
+  orig: 118, 88
+  offset: 0, 0
+  index: -1
+txk_zhangjiao6_4
+  rotate: true
+  xy: 154, 204
+  size: 50, 69
+  orig: 50, 69
+  offset: 0, 0
+  index: -1
+txk_zhangjiao6_5
+  rotate: false
+  xy: 154, 86
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+txk_zhangjiao6_6
+  rotate: true
+  xy: 92, 28
+  size: 92, 60
+  orig: 92, 64
+  offset: 0, 4
+  index: -1
+zhangjiao6_skill2_sjks
+  rotate: false
+  xy: 131, 153
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+zhangjiao6_wqdg1
+  rotate: false
+  xy: 2, 122
+  size: 127, 132
+  orig: 127, 132
+  offset: 0, 0
+  index: -1

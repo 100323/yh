@@ -1,0 +1,146 @@
+
+ymj_bg_tu.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghg_bg_tubody
+  rotate: true
+  xy: 361, 33
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+ghg_bg_tuchu
+  rotate: true
+  xy: 124, 9
+  size: 46, 96
+  orig: 47, 96
+  offset: 0, 0
+  index: -1
+ghg_bg_tuear1
+  rotate: true
+  xy: 267, 31
+  size: 89, 92
+  orig: 90, 93
+  offset: 0, 1
+  index: -1
+ghg_bg_tuear2
+  rotate: false
+  xy: 2, 13
+  size: 120, 61
+  orig: 122, 62
+  offset: 0, 0
+  index: -1
+ghg_bg_tuhand1
+  rotate: true
+  xy: 453, 68
+  size: 60, 30
+  orig: 60, 30
+  offset: 0, 0
+  index: -1
+ghg_bg_tuhand2
+  rotate: true
+  xy: 288, 8
+  size: 21, 23
+  orig: 22, 23
+  offset: 1, 0
+  index: -1
+ghg_bg_tuhead1
+  rotate: false
+  xy: 137, 130
+  size: 132, 124
+  orig: 132, 124
+  offset: 0, 0
+  index: -1
+ghg_bg_tuhead2
+  rotate: false
+  xy: 2, 128
+  size: 133, 126
+  orig: 133, 126
+  offset: 0, 0
+  index: -1
+ghg_bg_tuhead3
+  rotate: true
+  xy: 271, 122
+  size: 132, 124
+  orig: 132, 124
+  offset: 0, 0
+  index: -1
+ghg_bg_tuleg1
+  rotate: true
+  xy: 361, 3
+  size: 28, 67
+  orig: 28, 67
+  offset: 0, 0
+  index: -1
+ghg_bg_tuleg2
+  rotate: false
+  xy: 222, 3
+  size: 36, 52
+  orig: 37, 52
+  offset: 1, 0
+  index: -1
+ghg_bg_tuleg3
+  rotate: false
+  xy: 397, 130
+  size: 72, 45
+  orig: 72, 45
+  offset: 0, 0
+  index: -1
+ghg_bg_tus1
+  rotate: true
+  xy: 313, 10
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1
+ghg_bg_tus2
+  rotate: false
+  xy: 260, 3
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+ghg_bg_tus3
+  rotate: false
+  xy: 430, 2
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+ghg_bg_tuwan1
+  rotate: false
+  xy: 137, 57
+  size: 128, 71
+  orig: 129, 71
+  offset: 1, 0
+  index: -1
+ghg_bg_tuwan2
+  rotate: true
+  xy: 397, 177
+  size: 77, 39
+  orig: 78, 42
+  offset: 1, 0
+  index: -1
+ghg_bg_tuwan3
+  rotate: false
+  xy: 2, 76
+  size: 128, 50
+  orig: 129, 50
+  offset: 0, 0
+  index: -1
+wbhj_game3_hiteffect1
+  rotate: false
+  xy: 453, 33
+  size: 40, 33
+  orig: 48, 40
+  offset: 6, 4
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 124, 63
+  size: 11, 11
+  orig: 16, 16
+  offset: 3, 3
+  index: -1

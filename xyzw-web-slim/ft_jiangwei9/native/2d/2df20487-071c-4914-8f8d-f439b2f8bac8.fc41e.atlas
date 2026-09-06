@@ -1,0 +1,76 @@
+
+ft_jiangwei9.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+feiting_ql_1
+  rotate: false
+  xy: 2, 405
+  size: 313, 103
+  orig: 332, 124
+  offset: 8, 7
+  index: -1
+feiting_ql_2
+  rotate: false
+  xy: 185, 10
+  size: 33, 33
+  orig: 39, 39
+  offset: 3, 3
+  index: -1
+feiting_ql_3
+  rotate: true
+  xy: 2, 4
+  size: 164, 181
+  orig: 165, 216
+  offset: 1, 0
+  index: -1
+feiting_ql_31
+  rotate: true
+  xy: 396, 6
+  size: 72, 103
+  orig: 83, 104
+  offset: 11, 0
+  index: -1
+feiting_ql_32
+  rotate: false
+  xy: 185, 45
+  size: 101, 106
+  orig: 101, 106
+  offset: 0, 0
+  index: -1
+feiting_ql_4
+  rotate: true
+  xy: 295, 80
+  size: 211, 194
+  orig: 211, 194
+  offset: 0, 0
+  index: -1
+feiting_ql_5
+  rotate: true
+  xy: 288, 2
+  size: 76, 106
+  orig: 81, 106
+  offset: 5, 0
+  index: -1
+feiting_ql_6
+  rotate: true
+  xy: 317, 293
+  size: 215, 192
+  orig: 218, 194
+  offset: 3, 2
+  index: -1
+feiting_ql_7
+  rotate: true
+  xy: 2, 170
+  size: 233, 196
+  orig: 233, 196
+  offset: 0, 0
+  index: -1
+feiting_ql_8
+  rotate: false
+  xy: 200, 153
+  size: 93, 250
+  orig: 112, 273
+  offset: 9, 8
+  index: -1

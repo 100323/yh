@@ -1,0 +1,104 @@
+
+ft_huatuo8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_bh_10
+  rotate: true
+  xy: 130, 68
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+ft_bh_11
+  rotate: false
+  xy: 344, 316
+  size: 51, 50
+  orig: 63, 64
+  offset: 6, 7
+  index: -1
+ft_bh_hy
+  rotate: true
+  xy: 293, 54
+  size: 104, 112
+  orig: 104, 112
+  offset: 0, 0
+  index: -1
+ft_bh_hz
+  rotate: true
+  xy: 2, 2
+  size: 109, 126
+  orig: 109, 126
+  offset: 0, 0
+  index: -1
+ft_bh_hzwb
+  rotate: false
+  xy: 2, 282
+  size: 171, 178
+  orig: 171, 178
+  offset: 0, 0
+  index: -1
+ft_bh_st
+  rotate: true
+  xy: 2, 113
+  size: 167, 175
+  orig: 167, 175
+  offset: 0, 0
+  index: -1
+ft_bh_tou
+  rotate: true
+  xy: 175, 316
+  size: 144, 167
+  orig: 144, 167
+  offset: 0, 0
+  index: -1
+ft_bh_tou1
+  rotate: false
+  xy: 302, 220
+  size: 94, 94
+  orig: 102, 102
+  offset: 4, 4
+  index: -1
+ft_bh_tou2
+  rotate: true
+  xy: 344, 368
+  size: 92, 94
+  orig: 92, 94
+  offset: 0, 0
+  index: -1
+ft_bh_tou3
+  rotate: false
+  xy: 398, 186
+  size: 62, 99
+  orig: 62, 99
+  offset: 0, 0
+  index: -1
+ft_bh_zy
+  rotate: false
+  xy: 179, 48
+  size: 112, 110
+  orig: 122, 119
+  offset: 5, 8
+  index: -1
+ft_bh_zz
+  rotate: false
+  xy: 179, 160
+  size: 121, 126
+  orig: 131, 131
+  offset: 5, 5
+  index: -1
+ft_jiaxu_tou1
+  rotate: false
+  xy: 398, 287
+  size: 65, 79
+  orig: 65, 79
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 175, 288
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

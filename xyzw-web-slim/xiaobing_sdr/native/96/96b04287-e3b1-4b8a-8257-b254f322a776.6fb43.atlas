@@ -1,0 +1,34 @@
+
+xiaobing_sdr.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xiaobing_sdr1
+  rotate: true
+  xy: 2, 2
+  size: 83, 144
+  orig: 85, 146
+  offset: 1, 1
+  index: -1
+xiaobing_sdr2
+  rotate: true
+  xy: 89, 99
+  size: 137, 298
+  orig: 139, 300
+  offset: 1, 1
+  index: -1
+xiaobing_sdr3
+  rotate: false
+  xy: 148, 22
+  size: 125, 75
+  orig: 127, 77
+  offset: 1, 1
+  index: -1
+xiaobing_sdr4
+  rotate: false
+  xy: 2, 87
+  size: 85, 149
+  orig: 85, 149
+  offset: 0, 0
+  index: -1

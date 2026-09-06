@@ -1,0 +1,55 @@
+
+guojia4_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guojia4_skill2
+  rotate: true
+  xy: 2, 2
+  size: 40, 200
+  orig: 40, 200
+  offset: 0, 0
+  index: -1
+guojia4_skill3
+  rotate: false
+  xy: 345, 286
+  size: 73, 217
+  orig: 73, 217
+  offset: 0, 0
+  index: -1
+guojia4_skill4
+  rotate: false
+  xy: 293, 50
+  size: 25, 158
+  orig: 25, 158
+  offset: 0, 0
+  index: -1
+guojia4_skill5
+  rotate: false
+  xy: 2, 210
+  size: 341, 293
+  orig: 341, 293
+  offset: 0, 0
+  index: -1
+guojia4_skill6
+  rotate: false
+  xy: 2, 44
+  size: 289, 164
+  orig: 298, 174
+  offset: 4, 6
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 345, 243
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_die3
+  rotate: false
+  xy: 420, 482
+  size: 21, 21
+  orig: 23, 23
+  offset: 1, 1
+  index: -1

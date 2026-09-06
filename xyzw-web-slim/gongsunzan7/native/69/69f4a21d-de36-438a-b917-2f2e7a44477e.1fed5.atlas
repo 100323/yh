@@ -1,0 +1,146 @@
+
+gongsunzan7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jineng_guangyun
+  rotate: false
+  xy: 283, 3
+  size: 72, 73
+  orig: 88, 89
+  offset: 8, 8
+  index: -1
+jinengshouji03
+  rotate: false
+  xy: 445, 161
+  size: 54, 63
+  orig: 54, 63
+  offset: 0, 0
+  index: -1
+jinengshouji04
+  rotate: false
+  xy: 445, 104
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+jinengshouji05
+  rotate: true
+  xy: 183, 78
+  size: 161, 119
+  orig: 161, 119
+  offset: 0, 0
+  index: -1
+jinengshouji06
+  rotate: true
+  xy: 304, 173
+  size: 165, 104
+  orig: 165, 104
+  offset: 0, 0
+  index: -1
+jinengshouji07
+  rotate: false
+  xy: 2, 241
+  size: 222, 121
+  orig: 222, 121
+  offset: 0, 0
+  index: -1
+jinengshouji08
+  rotate: false
+  xy: 410, 226
+  size: 96, 64
+  orig: 96, 64
+  offset: 0, 0
+  index: -1
+jinengshouji09
+  rotate: false
+  xy: 304, 83
+  size: 107, 88
+  orig: 107, 88
+  offset: 0, 0
+  index: -1
+jinengshouji10
+  rotate: false
+  xy: 265, 390
+  size: 203, 103
+  orig: 203, 103
+  offset: 0, 0
+  index: -1
+jinengshouji11
+  rotate: false
+  xy: 2, 88
+  size: 179, 151
+  orig: 179, 151
+  offset: 0, 0
+  index: -1
+jinengshouji12
+  rotate: false
+  xy: 2, 364
+  size: 261, 129
+  orig: 261, 129
+  offset: 0, 0
+  index: -1
+jinengshouji13
+  rotate: false
+  xy: 433, 292
+  size: 77, 96
+  orig: 77, 96
+  offset: 0, 0
+  index: -1
+jinengshouji14
+  rotate: true
+  xy: 178, 2
+  size: 74, 103
+  orig: 74, 103
+  offset: 0, 0
+  index: -1
+jinengshouji15
+  rotate: false
+  xy: 2, 9
+  size: 174, 77
+  orig: 174, 77
+  offset: 0, 0
+  index: -1
+jinengshouji16
+  rotate: true
+  xy: 413, 89
+  size: 135, 30
+  orig: 135, 30
+  offset: 0, 0
+  index: -1
+jinengshouji17
+  rotate: false
+  xy: 265, 340
+  size: 166, 48
+  orig: 166, 48
+  offset: 0, 0
+  index: -1
+jinengyanwu01
+  rotate: false
+  xy: 470, 452
+  size: 35, 41
+  orig: 35, 41
+  offset: 0, 0
+  index: -1
+jinengyanwu02
+  rotate: false
+  xy: 226, 258
+  size: 69, 80
+  orig: 69, 80
+  offset: 0, 0
+  index: -1
+jinengyanwu03
+  rotate: true
+  xy: 357, 19
+  size: 62, 41
+  orig: 62, 41
+  offset: 0, 0
+  index: -1
+jinengyanwu04
+  rotate: true
+  xy: 445, 59
+  size: 43, 53
+  orig: 43, 53
+  offset: 0, 0
+  index: -1

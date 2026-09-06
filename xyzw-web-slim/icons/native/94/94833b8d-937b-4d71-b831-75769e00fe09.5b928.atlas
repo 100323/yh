@@ -1,0 +1,27 @@
+
+sqhd26_cardbox_4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd26_chouka_ka1
+  rotate: false
+  xy: 2, 2
+  size: 215, 287
+  orig: 219, 287
+  offset: 0, 0
+  index: -1
+sqhd26_chouka_ka2
+  rotate: false
+  xy: 219, 2
+  size: 215, 287
+  orig: 219, 290
+  offset: 0, 2
+  index: -1
+sqhd26_chouka_ka3
+  rotate: false
+  xy: 219, 2
+  size: 215, 287
+  orig: 219, 290
+  offset: 0, 2
+  index: -1

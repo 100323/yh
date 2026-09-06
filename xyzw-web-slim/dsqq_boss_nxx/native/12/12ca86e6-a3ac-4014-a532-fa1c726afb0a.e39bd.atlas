@@ -1,0 +1,20 @@
+
+dsqq_boss_nxx_attack_loop.png
+size: 250,203
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_boss_nxx_pg_tw
+  rotate: false
+  xy: 2, 67
+  size: 246, 134
+  orig: 246, 134
+  offset: 0, 0
+  index: -1
+dsqq_boss_nxx_pg_xq
+  rotate: false
+  xy: 2, 2
+  size: 68, 63
+  orig: 69, 64
+  offset: 1, 0
+  index: -1

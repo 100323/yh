@@ -1,0 +1,41 @@
+
+ycxsz2026_plt_qjs_2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ycxsz_plt2_tz
+  rotate: true
+  xy: 765, 103
+  size: 67, 48
+  orig: 68, 48
+  offset: 1, 0
+  index: -1
+ycxsz_plt_di
+  rotate: true
+  xy: 421, 156
+  size: 351, 283
+  orig: 351, 283
+  offset: 0, 0
+  index: -1
+ycxsz_plt_jil
+  rotate: false
+  xy: 706, 172
+  size: 175, 335
+  orig: 175, 335
+  offset: 0, 0
+  index: -1
+ycxsz_plt_jq3
+  rotate: false
+  xy: 2, 20
+  size: 417, 487
+  orig: 417, 487
+  offset: 0, 0
+  index: -1
+ycxsz_plt_jqr
+  rotate: true
+  xy: 421, 2
+  size: 152, 342
+  orig: 152, 342
+  offset: 0, 0
+  index: -1

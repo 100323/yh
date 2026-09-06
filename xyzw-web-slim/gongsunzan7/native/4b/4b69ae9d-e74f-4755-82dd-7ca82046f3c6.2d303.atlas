@@ -1,0 +1,41 @@
+
+gongsunzan7_attack_loop.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gongsunzan_qiu1
+  rotate: false
+  xy: 233, 139
+  size: 107, 107
+  orig: 108, 107
+  offset: 0, 0
+  index: -1
+gongsunzan_qiu2
+  rotate: false
+  xy: 79, 171
+  size: 75, 75
+  orig: 76, 77
+  offset: 0, 0
+  index: -1
+gongsunzan_qiu3
+  rotate: false
+  xy: 156, 171
+  size: 75, 75
+  orig: 76, 77
+  offset: 0, 0
+  index: -1
+gongsunzan_qiu4
+  rotate: false
+  xy: 2, 171
+  size: 75, 75
+  orig: 76, 77
+  offset: 0, 0
+  index: -1
+paowuxian
+  rotate: false
+  xy: 2, 2
+  size: 312, 135
+  orig: 312, 135
+  offset: 0, 0
+  index: -1

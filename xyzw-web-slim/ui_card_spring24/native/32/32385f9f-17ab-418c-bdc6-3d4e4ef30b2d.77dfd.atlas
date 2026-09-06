@@ -1,0 +1,13 @@
+
+cjhd24_foodshine.png
+size: 32,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 23, 24
+  orig: 32, 32
+  offset: 5, 4
+  index: -1

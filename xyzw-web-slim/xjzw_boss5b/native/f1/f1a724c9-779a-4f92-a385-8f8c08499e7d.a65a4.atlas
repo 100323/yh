@@ -1,0 +1,153 @@
+
+xjzw_boss5b.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xjzw_boss5_1eye1
+  rotate: true
+  xy: 282, 229
+  size: 25, 19
+  orig: 26, 19
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1eye2
+  rotate: true
+  xy: 267, 141
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1eyebrow1
+  rotate: false
+  xy: 45, 2
+  size: 41, 21
+  orig: 41, 21
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1eyebrow2
+  rotate: true
+  xy: 245, 191
+  size: 22, 25
+  orig: 22, 25
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1footl
+  rotate: false
+  xy: 116, 3
+  size: 58, 23
+  orig: 58, 24
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1footr
+  rotate: true
+  xy: 198, 124
+  size: 63, 26
+  orig: 63, 26
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1handl
+  rotate: false
+  xy: 96, 28
+  size: 38, 71
+  orig: 39, 71
+  offset: 1, 0
+  index: -1
+xjzw_boss5_1handr
+  rotate: false
+  xy: 226, 133
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1highlight
+  rotate: true
+  xy: 2, 7
+  size: 7, 25
+  orig: 7, 25
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1jiu1
+  rotate: false
+  xy: 272, 193
+  size: 26, 20
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1jiu2
+  rotate: false
+  xy: 88, 2
+  size: 26, 21
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1jiu3
+  rotate: true
+  xy: 267, 163
+  size: 26, 21
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+xjzw_boss5_1mouth
+  rotate: false
+  xy: 131, 104
+  size: 37, 15
+  orig: 37, 19
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2arml1
+  rotate: false
+  xy: 245, 215
+  size: 35, 39
+  orig: 35, 39
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2arml2
+  rotate: false
+  xy: 136, 43
+  size: 36, 59
+  orig: 36, 59
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2armr
+  rotate: false
+  xy: 2, 16
+  size: 41, 83
+  orig: 41, 87
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2body
+  rotate: false
+  xy: 176, 7
+  size: 130, 112
+  orig: 130, 114
+  offset: 0, 1
+  index: -1
+xjzw_boss5_2glasses
+  rotate: true
+  xy: 131, 121
+  size: 133, 65
+  orig: 133, 65
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2head
+  rotate: false
+  xy: 2, 101
+  size: 127, 153
+  orig: 127, 153
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2legl
+  rotate: true
+  xy: 198, 189
+  size: 65, 45
+  orig: 65, 45
+  offset: 0, 0
+  index: -1
+xjzw_boss5_2legr
+  rotate: true
+  xy: 45, 25
+  size: 74, 49
+  orig: 74, 49
+  offset: 0, 0
+  index: -1

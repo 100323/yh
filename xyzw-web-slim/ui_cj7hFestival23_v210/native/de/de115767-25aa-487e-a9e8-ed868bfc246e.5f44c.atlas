@@ -1,0 +1,13 @@
+
+llqj25_cj_box3.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+choujiang_daocaoren
+  rotate: true
+  xy: 2, 2
+  size: 50, 62
+  orig: 55, 64
+  offset: 0, 0
+  index: -1

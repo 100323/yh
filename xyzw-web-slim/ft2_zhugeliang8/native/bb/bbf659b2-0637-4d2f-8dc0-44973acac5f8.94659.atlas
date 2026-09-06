@@ -1,0 +1,97 @@
+
+ft2_zhugeliang8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ft_qlzgl_lizi1
+  rotate: false
+  xy: 446, 179
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+ft_qlzgl_lizix1
+  rotate: true
+  xy: 463, 2
+  size: 71, 41
+  orig: 71, 41
+  offset: 0, 0
+  index: -1
+ft_qlzgl_ltuir
+  rotate: true
+  xy: 352, 14
+  size: 91, 109
+  orig: 91, 109
+  offset: 0, 0
+  index: -1
+ft_qlzgl_lxul
+  rotate: false
+  xy: 463, 75
+  size: 44, 102
+  orig: 44, 102
+  offset: 0, 0
+  index: -1
+ft_qlzgl_lxur
+  rotate: false
+  xy: 2, 366
+  size: 237, 104
+  orig: 237, 104
+  offset: 0, 0
+  index: -1
+ft_qlzgl_lzhual
+  rotate: true
+  xy: 128, 31
+  size: 67, 88
+  orig: 67, 88
+  offset: 0, 0
+  index: -1
+ft_qlzgl_lzhuar
+  rotate: false
+  xy: 156, 269
+  size: 73, 95
+  orig: 73, 95
+  offset: 0, 0
+  index: -1
+ft_qlzgl_shen
+  rotate: false
+  xy: 2, 45
+  size: 124, 160
+  orig: 124, 160
+  offset: 0, 0
+  index: -1
+ft_qlzgl_tou
+  rotate: false
+  xy: 241, 240
+  size: 204, 230
+  orig: 205, 230
+  offset: 1, 0
+  index: -1
+ft_qlzgl_wb
+  rotate: false
+  xy: 352, 107
+  size: 92, 131
+  orig: 92, 131
+  offset: 0, 0
+  index: -1
+ft_qlzgl_zsl
+  rotate: true
+  xy: 2, 207
+  size: 157, 152
+  orig: 157, 152
+  offset: 0, 0
+  index: -1
+ft_qlzgl_zsr
+  rotate: true
+  xy: 156, 100
+  size: 138, 194
+  orig: 138, 194
+  offset: 0, 0
+  index: -1
+tyxingchen1
+  rotate: false
+  xy: 2, 14
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1

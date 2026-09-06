@@ -1,0 +1,27 @@
+
+zhangjiao2_attack_line.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 33
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+zhangjiao2_pg_1
+  rotate: true
+  xy: 281, 2
+  size: 245, 108
+  orig: 245, 108
+  offset: 0, 0
+  index: -1
+zhangjiao2_pg_2
+  rotate: false
+  xy: 2, 73
+  size: 277, 174
+  orig: 277, 174
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,104 @@
+
+zbz_ft_qizai.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zbz_fish_box
+  rotate: true
+  xy: 381, 5
+  size: 120, 118
+  orig: 120, 118
+  offset: 0, 0
+  index: -1
+zbz_fish_handl
+  rotate: true
+  xy: 217, 82
+  size: 32, 56
+  orig: 36, 58
+  offset: 4, 2
+  index: -1
+zbz_ft6_body
+  rotate: true
+  xy: 2, 96
+  size: 154, 141
+  orig: 154, 141
+  offset: 0, 0
+  index: -1
+zbz_ft6_box
+  rotate: false
+  xy: 303, 127
+  size: 145, 123
+  orig: 145, 123
+  offset: 0, 0
+  index: -1
+zbz_ft6_h1
+  rotate: false
+  xy: 234, 40
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+zbz_ft6_h2
+  rotate: true
+  xy: 450, 210
+  size: 40, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+zbz_ft6_head
+  rotate: false
+  xy: 145, 116
+  size: 156, 134
+  orig: 156, 134
+  offset: 0, 0
+  index: -1
+zbz_ft6_leg1
+  rotate: false
+  xy: 196, 13
+  size: 36, 50
+  orig: 36, 50
+  offset: 0, 0
+  index: -1
+zbz_ft6_leg2
+  rotate: false
+  xy: 178, 65
+  size: 37, 49
+  orig: 37, 49
+  offset: 0, 0
+  index: -1
+zbz_ft6_leg3
+  rotate: true
+  xy: 66, 2
+  size: 46, 56
+  orig: 46, 56
+  offset: 0, 0
+  index: -1
+zbz_ft6_rope
+  rotate: true
+  xy: 124, 12
+  size: 36, 70
+  orig: 36, 70
+  offset: 0, 0
+  index: -1
+zbz_ft6_w1
+  rotate: true
+  xy: 275, 9
+  size: 105, 104
+  orig: 114, 114
+  offset: 4, 5
+  index: -1
+zbz_ft6_w2
+  rotate: true
+  xy: 66, 50
+  size: 44, 110
+  orig: 47, 122
+  offset: 2, 6
+  index: -1
+zbz_ft6_wifi
+  rotate: false
+  xy: 2, 9
+  size: 62, 85
+  orig: 62, 85
+  offset: 0, 0
+  index: -1

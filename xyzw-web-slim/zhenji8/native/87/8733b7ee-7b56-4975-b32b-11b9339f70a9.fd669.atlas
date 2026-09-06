@@ -1,0 +1,41 @@
+
+zhenji8_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 137, 162
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhenji8_jn_sj1
+  rotate: true
+  xy: 304, 2
+  size: 216, 174
+  orig: 216, 174
+  offset: 0, 0
+  index: -1
+zhenji8_jn_sj2
+  rotate: true
+  xy: 304, 220
+  size: 228, 195
+  orig: 228, 195
+  offset: 0, 0
+  index: -1
+zhenji8_jn_sj3
+  rotate: true
+  xy: 2, 75
+  size: 128, 133
+  orig: 128, 133
+  offset: 0, 0
+  index: -1
+zhenji8_jn_sj4
+  rotate: false
+  xy: 2, 205
+  size: 300, 243
+  orig: 300, 243
+  offset: 0, 0
+  index: -1

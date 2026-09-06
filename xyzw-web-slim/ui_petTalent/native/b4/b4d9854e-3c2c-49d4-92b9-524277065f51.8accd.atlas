@@ -1,0 +1,48 @@
+
+cwxt26_tf_chonggou3.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tw_cheng
+  rotate: false
+  xy: 2, 86
+  size: 82, 135
+  orig: 98, 144
+  offset: 6, 4
+  index: -1
+tw_hong
+  rotate: false
+  xy: 86, 86
+  size: 82, 135
+  orig: 98, 144
+  offset: 6, 4
+  index: -1
+tw_jin
+  rotate: true
+  xy: 2, 2
+  size: 82, 135
+  orig: 98, 144
+  offset: 6, 4
+  index: -1
+tw_lan
+  rotate: false
+  xy: 170, 86
+  size: 82, 135
+  orig: 98, 144
+  offset: 6, 4
+  index: -1
+tw_lv
+  rotate: false
+  xy: 254, 86
+  size: 82, 135
+  orig: 98, 144
+  offset: 6, 4
+  index: -1
+tw_zi
+  rotate: true
+  xy: 139, 2
+  size: 82, 135
+  orig: 98, 144
+  offset: 6, 4
+  index: -1

@@ -1,0 +1,69 @@
+
+js_xjt_win.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_xjt_win_bg
+  rotate: false
+  xy: 2, 236
+  size: 528, 274
+  orig: 528, 274
+  offset: 0, 0
+  index: -1
+js_xjt_win_fire
+  rotate: true
+  xy: 2, 31
+  size: 203, 148
+  orig: 203, 154
+  offset: 0, 0
+  index: -1
+js_xjt_win_fish1
+  rotate: false
+  xy: 279, 3
+  size: 43, 31
+  orig: 43, 31
+  offset: 0, 0
+  index: -1
+js_xjt_win_fish2
+  rotate: false
+  xy: 414, 88
+  size: 137, 146
+  orig: 140, 146
+  offset: 3, 0
+  index: -1
+js_xjt_win_fish3
+  rotate: true
+  xy: 324, 2
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+js_xjt_win_fish4
+  rotate: false
+  xy: 360, 36
+  size: 66, 39
+  orig: 74, 43
+  offset: 8, 4
+  index: -1
+js_xjt_win_fish5
+  rotate: false
+  xy: 279, 77
+  size: 133, 157
+  orig: 133, 157
+  offset: 0, 0
+  index: -1
+js_xjt_win_fish6
+  rotate: false
+  xy: 279, 36
+  size: 79, 39
+  orig: 79, 39
+  offset: 0, 0
+  index: -1
+js_xjt_win_title
+  rotate: true
+  xy: 152, 34
+  size: 200, 125
+  orig: 200, 125
+  offset: 0, 0
+  index: -1

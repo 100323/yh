@@ -1,0 +1,20 @@
+
+shhj25_guangbiao.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huajuan_choujiang_zhunxing1
+  rotate: false
+  xy: 2, 3
+  size: 81, 67
+  orig: 93, 77
+  offset: 6, 5
+  index: -1
+huajuan_choujiang_zhunxing2
+  rotate: false
+  xy: 85, 2
+  size: 70, 68
+  orig: 72, 70
+  offset: 1, 1
+  index: -1

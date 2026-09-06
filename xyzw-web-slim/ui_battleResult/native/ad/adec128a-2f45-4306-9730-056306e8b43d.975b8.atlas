@@ -1,0 +1,90 @@
+
+js_xwmj_lose.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_xwmj_lose_0
+  rotate: false
+  xy: 21, 3
+  size: 78, 23
+  orig: 78, 23
+  offset: 0, 0
+  index: -1
+js_xwmj_lose_1
+  rotate: false
+  xy: 276, 96
+  size: 158, 138
+  orig: 158, 138
+  offset: 0, 0
+  index: -1
+js_xwmj_lose_2
+  rotate: false
+  xy: 276, 236
+  size: 182, 118
+  orig: 182, 118
+  offset: 0, 0
+  index: -1
+js_xwmj_lose_bg
+  rotate: false
+  xy: 2, 356
+  size: 508, 151
+  orig: 508, 151
+  offset: 0, 0
+  index: -1
+js_xwmj_lose_fish1
+  rotate: true
+  xy: 276, 3
+  size: 91, 98
+  orig: 92, 107
+  offset: 1, 7
+  index: -1
+js_xwmj_lose_fish2
+  rotate: false
+  xy: 436, 158
+  size: 73, 76
+  orig: 77, 86
+  offset: 0, 6
+  index: -1
+js_xwmj_lose_fish3
+  rotate: false
+  xy: 460, 293
+  size: 42, 61
+  orig: 44, 61
+  offset: 2, 0
+  index: -1
+js_xwmj_lose_fish4
+  rotate: true
+  xy: 2, 28
+  size: 326, 272
+  orig: 326, 272
+  offset: 0, 0
+  index: -1
+js_xwmj_lose_fish5
+  rotate: false
+  xy: 376, 8
+  size: 80, 86
+  orig: 80, 86
+  offset: 0, 0
+  index: -1
+js_xwmj_lose_fish6
+  rotate: true
+  xy: 436, 96
+  size: 60, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+js_xwmj_text
+  rotate: false
+  xy: 101, 11
+  size: 62, 15
+  orig: 62, 15
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 2, 2
+  size: 24, 17
+  orig: 24, 24
+  offset: 0, 3
+  index: -1

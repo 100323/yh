@@ -1,0 +1,41 @@
+
+xkhj25_cj_dajiang2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bhjx8_heidong_bj
+  rotate: false
+  xy: 2, 2
+  size: 464, 485
+  orig: 464, 485
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 468, 231
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+xingchen1
+  rotate: false
+  xy: 468, 395
+  size: 92, 92
+  orig: 92, 92
+  offset: 0, 0
+  index: -1
+xingchen2
+  rotate: false
+  xy: 468, 277
+  size: 65, 116
+  orig: 65, 116
+  offset: 0, 0
+  index: -1
+zhouyu8_skill2_zz
+  rotate: false
+  xy: 468, 168
+  size: 29, 61
+  orig: 29, 61
+  offset: 0, 0
+  index: -1

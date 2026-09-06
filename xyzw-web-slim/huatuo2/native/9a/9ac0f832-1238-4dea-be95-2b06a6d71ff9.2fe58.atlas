@@ -1,0 +1,153 @@
+
+huatuo2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 230, 160
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 124, 81
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+huatuo2_armr
+  rotate: false
+  xy: 230, 53
+  size: 56, 105
+  orig: 56, 105
+  offset: 0, 0
+  index: -1
+huatuo2_attack2
+  rotate: false
+  xy: 172, 83
+  size: 51, 44
+  orig: 53, 46
+  offset: 1, 1
+  index: -1
+huatuo2_chest
+  rotate: false
+  xy: 2, 246
+  size: 121, 126
+  orig: 121, 126
+  offset: 0, 0
+  index: -1
+huatuo2_effect1
+  rotate: false
+  xy: 100, 80
+  size: 22, 49
+  orig: 22, 49
+  offset: 0, 0
+  index: -1
+huatuo2_effect2
+  rotate: true
+  xy: 349, 299
+  size: 64, 70
+  orig: 64, 70
+  offset: 0, 0
+  index: -1
+huatuo2_effect3
+  rotate: true
+  xy: 186, 37
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+huatuo2_glow1
+  rotate: false
+  xy: 110, 234
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+huatuo2_glow2
+  rotate: false
+  xy: 100, 2
+  size: 84, 76
+  orig: 87, 78
+  offset: 2, 1
+  index: -1
+huatuo2_handr1
+  rotate: false
+  xy: 408, 371
+  size: 37, 28
+  orig: 37, 28
+  offset: 0, 0
+  index: -1
+huatuo2_handr2
+  rotate: true
+  xy: 314, 154
+  size: 88, 78
+  orig: 88, 78
+  offset: 0, 0
+  index: -1
+huatuo2_head
+  rotate: false
+  xy: 2, 374
+  size: 263, 130
+  orig: 263, 130
+  offset: 0, 0
+  index: -1
+huatuo2_legl
+  rotate: true
+  xy: 2, 131
+  size: 113, 106
+  orig: 113, 106
+  offset: 0, 0
+  index: -1
+huatuo2_legr
+  rotate: false
+  xy: 240, 244
+  size: 107, 119
+  orig: 107, 119
+  offset: 0, 0
+  index: -1
+huatuo2_mouth
+  rotate: true
+  xy: 408, 401
+  size: 103, 48
+  orig: 103, 48
+  offset: 0, 0
+  index: -1
+huatuo2_shoulderl
+  rotate: false
+  xy: 2, 19
+  size: 96, 110
+  orig: 96, 110
+  offset: 0, 0
+  index: -1
+huatuo2_shoulderr
+  rotate: true
+  xy: 125, 129
+  size: 124, 103
+  orig: 124, 103
+  offset: 0, 0
+  index: -1
+huatuo2_skill2
+  rotate: true
+  xy: 288, 59
+  size: 99, 19
+  orig: 99, 19
+  offset: 0, 0
+  index: -1
+huatuo2_weaponr
+  rotate: true
+  xy: 125, 255
+  size: 117, 113
+  orig: 117, 113
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 267, 365
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

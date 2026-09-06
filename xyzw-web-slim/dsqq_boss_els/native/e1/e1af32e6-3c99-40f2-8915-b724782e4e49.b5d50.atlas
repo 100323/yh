@@ -1,0 +1,97 @@
+
+dsqq_boss_els_skill_hit.png
+size: 959,474
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dsqq_els_skill_yao1
+  rotate: false
+  xy: 552, 17
+  size: 145, 183
+  orig: 145, 183
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_yao2
+  rotate: false
+  xy: 699, 4
+  size: 111, 120
+  orig: 111, 120
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_yao3
+  rotate: true
+  xy: 428, 16
+  size: 152, 122
+  orig: 152, 122
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_yao4
+  rotate: true
+  xy: 2, 138
+  size: 334, 251
+  orig: 334, 251
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zj1
+  rotate: true
+  xy: 311, 5
+  size: 163, 115
+  orig: 163, 115
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zj2
+  rotate: false
+  xy: 491, 202
+  size: 185, 270
+  orig: 185, 270
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zui1
+  rotate: true
+  xy: 726, 126
+  size: 126, 221
+  orig: 126, 221
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zui2
+  rotate: false
+  xy: 812, 11
+  size: 98, 113
+  orig: 98, 113
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zui3
+  rotate: true
+  xy: 2, 2
+  size: 134, 123
+  orig: 134, 251
+  offset: 0, 128
+  index: -1
+dsqq_els_skill_zui4
+  rotate: true
+  xy: 255, 170
+  size: 302, 234
+  orig: 302, 234
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zui5
+  rotate: false
+  xy: 699, 254
+  size: 258, 218
+  orig: 258, 218
+  offset: 0, 0
+  index: -1
+dsqq_els_skill_zui6
+  rotate: true
+  xy: 127, 7
+  size: 129, 182
+  orig: 129, 182
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 678, 206
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1

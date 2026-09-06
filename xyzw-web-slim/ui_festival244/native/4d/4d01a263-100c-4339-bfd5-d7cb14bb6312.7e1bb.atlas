@@ -1,0 +1,111 @@
+
+dzxy_bingo_mofabang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+moarm
+  rotate: false
+  xy: 279, 145
+  size: 181, 180
+  orig: 181, 180
+  offset: 0, 0
+  index: -1
+moco7
+  rotate: true
+  xy: 384, 308
+  size: 183, 116
+  orig: 183, 116
+  offset: 0, 0
+  index: -1
+mofabang
+  rotate: true
+  xy: 42, 121
+  size: 207, 236
+  orig: 207, 237
+  offset: 0, 1
+  index: -1
+mofabang2
+  rotate: false
+  xy: 132, 281
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+mofabang3
+  rotate: false
+  xy: 233, 200
+  size: 55, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+mofabang4
+  rotate: false
+  xy: 2, 317
+  size: 216, 175
+  orig: 216, 175
+  offset: 0, 0
+  index: -1
+mofabang5
+  rotate: false
+  xy: 419, 224
+  size: 89, 83
+  orig: 89, 83
+  offset: 0, 0
+  index: -1
+mofinger1
+  rotate: true
+  xy: 2, 255
+  size: 61, 115
+  orig: 61, 115
+  offset: 0, 0
+  index: -1
+mofinger2
+  rotate: false
+  xy: 305, 3
+  size: 67, 63
+  orig: 67, 63
+  offset: 0, 0
+  index: -1
+mofinger3
+  rotate: true
+  xy: 305, 69
+  size: 74, 62
+  orig: 74, 62
+  offset: 0, 0
+  index: -1
+mofinger4
+  rotate: false
+  xy: 2, 66
+  size: 70, 83
+  orig: 70, 83
+  offset: 0, 0
+  index: -1
+mohand
+  rotate: true
+  xy: 380, 62
+  size: 96, 130
+  orig: 96, 133
+  offset: 0, 3
+  index: -1
+moshanshan
+  rotate: false
+  xy: 220, 329
+  size: 162, 162
+  orig: 162, 162
+  offset: 0, 0
+  index: -1
+moshanshan22
+  rotate: true
+  xy: 174, 53
+  size: 128, 129
+  orig: 128, 129
+  offset: 0, 0
+  index: -1
+mostar1
+  rotate: false
+  xy: 74, 46
+  size: 75, 73
+  orig: 75, 73
+  offset: 0, 0
+  index: -1

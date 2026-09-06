@@ -1,0 +1,62 @@
+
+zhangjiao8_attack_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangjiao8_pg_ld1
+  rotate: false
+  xy: 2, 99
+  size: 164, 387
+  orig: 164, 387
+  offset: 0, 0
+  index: -1
+zhangjiao8_pg_ld2
+  rotate: true
+  xy: 2, 13
+  size: 84, 359
+  orig: 84, 359
+  offset: 0, 0
+  index: -1
+zhangjiao8_pg_ld3
+  rotate: false
+  xy: 168, 133
+  size: 263, 353
+  orig: 263, 359
+  offset: 0, 6
+  index: -1
+zhangjiao8_pg_lz1
+  rotate: true
+  xy: 363, 13
+  size: 54, 57
+  orig: 54, 57
+  offset: 0, 0
+  index: -1
+zhangjiao8_pg_lz2
+  rotate: false
+  xy: 422, 2
+  size: 41, 65
+  orig: 41, 65
+  offset: 0, 0
+  index: -1
+zhangjiao8_pg_lz3
+  rotate: true
+  xy: 426, 75
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+zhangjiao8_pg_lz4
+  rotate: false
+  xy: 426, 99
+  size: 44, 32
+  orig: 44, 32
+  offset: 0, 0
+  index: -1
+zhangjiao8_pg_lz5
+  rotate: false
+  xy: 363, 69
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1

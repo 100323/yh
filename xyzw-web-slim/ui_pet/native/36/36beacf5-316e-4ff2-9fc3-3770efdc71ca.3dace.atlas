@@ -1,0 +1,139 @@
+
+cwxt26_hecheng_chenggong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cwxt26_hecheng_bo1
+  rotate: false
+  xy: 130, 332
+  size: 87, 75
+  orig: 89, 77
+  offset: 1, 1
+  index: -1
+cwxt26_hecheng_bo2
+  rotate: true
+  xy: 2, 336
+  size: 71, 126
+  orig: 75, 131
+  offset: 2, 1
+  index: -1
+cwxt26_hecheng_bo3
+  rotate: false
+  xy: 2, 419
+  size: 71, 31
+  orig: 73, 33
+  offset: 1, 1
+  index: -1
+cwxt26_hecheng_caidai
+  rotate: false
+  xy: 116, 20
+  size: 184, 168
+  orig: 186, 173
+  offset: 1, 4
+  index: -1
+cwxt26_hecheng_guangshu
+  rotate: false
+  xy: 302, 2
+  size: 186, 186
+  orig: 186, 186
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_gy
+  rotate: false
+  xy: 318, 304
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_huangguan
+  rotate: false
+  xy: 219, 319
+  size: 97, 87
+  orig: 99, 89
+  offset: 1, 1
+  index: -1
+cwxt26_hecheng_xing_bai
+  rotate: true
+  xy: 252, 408
+  size: 42, 57
+  orig: 44, 60
+  offset: 1, 2
+  index: -1
+cwxt26_hecheng_xing_cheng
+  rotate: true
+  xy: 311, 408
+  size: 42, 57
+  orig: 44, 60
+  offset: 1, 2
+  index: -1
+cwxt26_hecheng_xing_hong
+  rotate: true
+  xy: 370, 408
+  size: 42, 57
+  orig: 44, 60
+  offset: 1, 2
+  index: -1
+cwxt26_hecheng_xing_huang
+  rotate: true
+  xy: 75, 409
+  size: 41, 57
+  orig: 44, 60
+  offset: 2, 1
+  index: -1
+cwxt26_hecheng_xing_lan
+  rotate: true
+  xy: 134, 409
+  size: 41, 57
+  orig: 44, 60
+  offset: 2, 1
+  index: -1
+cwxt26_hecheng_xing_lv
+  rotate: true
+  xy: 193, 409
+  size: 41, 57
+  orig: 44, 60
+  offset: 2, 1
+  index: -1
+cwxt26_hecheng_xing_zi
+  rotate: true
+  xy: 429, 408
+  size: 42, 57
+  orig: 44, 60
+  offset: 1, 2
+  index: -1
+cwxt26_hecheng_yuan_bai
+  rotate: false
+  xy: 112, 205
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_yuan_cheng
+  rotate: false
+  xy: 226, 190
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_yuan_hong
+  rotate: false
+  xy: 340, 190
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_yuan_jin
+  rotate: false
+  xy: 2, 226
+  size: 108, 108
+  orig: 108, 108
+  offset: 0, 0
+  index: -1
+cwxt26_hecheng_yuan_zi
+  rotate: false
+  xy: 2, 91
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1

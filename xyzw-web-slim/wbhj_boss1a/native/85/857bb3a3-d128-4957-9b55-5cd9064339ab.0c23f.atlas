@@ -1,0 +1,20 @@
+
+wbhj_boss1a_attack_loop.png
+size: 128,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wbhj_boss1a_attack2
+  rotate: false
+  xy: 2, 2
+  size: 60, 26
+  orig: 60, 26
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 64, 16
+  size: 12, 5
+  orig: 16, 16
+  offset: 0, 6
+  index: -1

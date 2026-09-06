@@ -1,0 +1,13 @@
+
+xiaobing5_xie_loop.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sc3_monster4_line
+  rotate: true
+  xy: 2, 2
+  size: 53, 66
+  orig: 53, 66
+  offset: 0, 0
+  index: -1

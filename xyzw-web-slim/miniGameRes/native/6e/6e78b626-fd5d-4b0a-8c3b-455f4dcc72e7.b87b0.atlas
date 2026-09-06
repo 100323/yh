@@ -1,0 +1,41 @@
+
+jiaxu2_skill_loop.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_circle
+  rotate: false
+  xy: 2, 2
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+hero_effect_halfcircle1
+  rotate: false
+  xy: 94, 19
+  size: 75, 35
+  orig: 75, 35
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 171, 17
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+jiaxu2_skill1
+  rotate: false
+  xy: 94, 56
+  size: 127, 15
+  orig: 127, 15
+  offset: 0, 0
+  index: -1
+jiaxu2_skill1_1
+  rotate: false
+  xy: 94, 73
+  size: 137, 19
+  orig: 138, 19
+  offset: 1, 0
+  index: -1

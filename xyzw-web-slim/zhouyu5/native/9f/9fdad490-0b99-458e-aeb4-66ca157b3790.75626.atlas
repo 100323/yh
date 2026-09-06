@@ -1,0 +1,41 @@
+
+zhouyu5_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 333, 23
+  size: 38, 38
+  orig: 46, 46
+  offset: 4, 4
+  index: -1
+sdsl_boss7_skill_b1
+  rotate: false
+  xy: 333, 63
+  size: 153, 184
+  orig: 153, 185
+  offset: 0, 1
+  index: -1
+sdsl_boss7_skill_b2
+  rotate: false
+  xy: 177, 37
+  size: 154, 210
+  orig: 154, 210
+  offset: 0, 0
+  index: -1
+sdsl_boss7_skill_b3
+  rotate: false
+  xy: 2, 21
+  size: 173, 226
+  orig: 173, 226
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 2
+  size: 18, 17
+  orig: 26, 26
+  offset: 6, 5
+  index: -1

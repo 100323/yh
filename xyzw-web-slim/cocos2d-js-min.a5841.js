@@ -8234,16 +8234,17 @@
             _initRenderer: function() {
                 if (!this._rendererInitialized) {
                     var t, e, i, n, a = this.config.id, o = a instanceof HTMLElement ? a : document.querySelector(a) || document.querySelector("#" + a);
-                    if ("CANVAS" === o.tagName ? (t = o.width,
+                    if(!o){o=document.createElement("CANVAS");o.id="GameCanvas";if(document.body)document.body.appendChild(o);}
+                    if (o&&"CANVAS" === o.tagName ? (t = o.width,
                     e = o.height,
                     this.canvas = i = o,
                     this.container = n = document.createElement("DIV"),
-                    i.parentNode && i.parentNode.insertBefore(n, i)) : ("DIV" !== o.tagName && cc.warnID(3819),
-                    t = o.clientWidth,
-                    e = o.clientHeight,
+                    i.parentNode && i.parentNode.insertBefore(n, i)) : (o&&"DIV" !== o.tagName && cc.warnID(3819),
+                    t = o ? o.clientWidth : 480,
+                    e = o ? o.clientHeight : 320,
                     this.canvas = i = document.createElement("CANVAS"),
                     this.container = n = document.createElement("DIV"),
-                    o.appendChild(n)),
+                    o&&o.appendChild(n)),
                     n.setAttribute("id", "Cocos2dGameContainer"),
                     n.appendChild(i),
                     this.frame = n.parentNode === document.body ? document.documentElement : n.parentNode,

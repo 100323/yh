@@ -1,0 +1,27 @@
+
+sqhd_dkxb_glow.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 85, 5
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1
+lvbu3_effect_shine
+  rotate: true
+  xy: 2, 2
+  size: 57, 81
+  orig: 57, 81
+  offset: 0, 0
+  index: -1
+sqhd_dkxb_star
+  rotate: false
+  xy: 141, 34
+  size: 18, 25
+  orig: 18, 25
+  offset: 0, 0
+  index: -1

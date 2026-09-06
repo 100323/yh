@@ -1,0 +1,69 @@
+
+txk_guanyu8.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dian_000
+  rotate: true
+  xy: 295, 58
+  size: 66, 58
+  orig: 77, 77
+  offset: 5, 8
+  index: -1
+dian_001
+  rotate: false
+  xy: 295, 3
+  size: 70, 53
+  orig: 77, 77
+  offset: 3, 13
+  index: -1
+dian_002
+  rotate: true
+  xy: 232, 52
+  size: 72, 61
+  orig: 77, 77
+  offset: 1, 6
+  index: -1
+dian_003
+  rotate: true
+  xy: 355, 62
+  size: 62, 55
+  orig: 77, 77
+  offset: 5, 7
+  index: -1
+guanyu8_2_lyg11
+  rotate: false
+  xy: 124, 12
+  size: 45, 112
+  orig: 50, 112
+  offset: 3, 0
+  index: -1
+guanyu8_2_lyg13
+  rotate: false
+  xy: 72, 12
+  size: 50, 112
+  orig: 50, 112
+  offset: 0, 0
+  index: -1
+txk_qlguanyu_1
+  rotate: true
+  xy: 232, 2
+  size: 48, 53
+  orig: 48, 53
+  offset: 0, 0
+  index: -1
+txk_qlguanyu_3
+  rotate: true
+  xy: 2, 36
+  size: 88, 68
+  orig: 101, 69
+  offset: 7, 0
+  index: -1
+txk_qlguanyu_4
+  rotate: true
+  xy: 171, 44
+  size: 80, 59
+  orig: 84, 59
+  offset: 1, 0
+  index: -1

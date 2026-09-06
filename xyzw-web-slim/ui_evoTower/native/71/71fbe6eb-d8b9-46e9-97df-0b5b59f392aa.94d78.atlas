@@ -1,0 +1,41 @@
+
+xsxjt_qipao.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xsxjt_qipao_pao1
+  rotate: false
+  xy: 2, 2
+  size: 207, 163
+  orig: 209, 167
+  offset: 1, 3
+  index: -1
+xsxjt_qipao_pao2
+  rotate: true
+  xy: 76, 182
+  size: 30, 53
+  orig: 30, 53
+  offset: 0, 0
+  index: -1
+xsxjt_qipao_pao3
+  rotate: true
+  xy: 131, 167
+  size: 45, 49
+  orig: 45, 49
+  offset: 0, 0
+  index: -1
+xsxjt_qipao_pao4
+  rotate: true
+  xy: 30, 192
+  size: 20, 44
+  orig: 20, 44
+  offset: 0, 0
+  index: -1
+xsxjt_qipao_pao5
+  rotate: true
+  xy: 2, 193
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1

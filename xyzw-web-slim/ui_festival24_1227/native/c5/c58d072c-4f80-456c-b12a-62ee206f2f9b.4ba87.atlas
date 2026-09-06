@@ -1,0 +1,55 @@
+
+ydhd25_qiang2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ydhd25_qiang_tb_q1
+  rotate: false
+  xy: 392, 291
+  size: 73, 97
+  orig: 73, 97
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_tb_q2
+  rotate: false
+  xy: 392, 192
+  size: 73, 97
+  orig: 73, 97
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_tb_qiang
+  rotate: false
+  xy: 2, 183
+  size: 388, 205
+  orig: 397, 206
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_tb_shoul
+  rotate: true
+  xy: 170, 2
+  size: 179, 162
+  orig: 180, 162
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_tb_shour
+  rotate: true
+  xy: 2, 17
+  size: 164, 166
+  orig: 165, 166
+  offset: 1, 0
+  index: -1
+ydhd25_qiang_tb_sz
+  rotate: false
+  xy: 431, 151
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+ydhd25_qiang_tb_wenz
+  rotate: true
+  xy: 392, 120
+  size: 70, 37
+  orig: 70, 37
+  offset: 0, 0
+  index: -1

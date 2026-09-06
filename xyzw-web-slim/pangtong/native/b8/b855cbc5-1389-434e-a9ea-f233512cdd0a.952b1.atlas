@@ -1,0 +1,125 @@
+
+pangtong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 95, 280
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: true
+  xy: 2, 57
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+pangtong_body
+  rotate: true
+  xy: 187, 222
+  size: 140, 138
+  orig: 140, 138
+  offset: 0, 0
+  index: -1
+pangtong_eye
+  rotate: false
+  xy: 156, 270
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+pangtong_eyewhite
+  rotate: false
+  xy: 55, 17
+  size: 39, 39
+  orig: 39, 47
+  offset: 0, 2
+  index: -1
+pangtong_handl
+  rotate: false
+  xy: 100, 57
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+pangtong_handr
+  rotate: false
+  xy: 2, 17
+  size: 33, 38
+  orig: 33, 38
+  offset: 0, 0
+  index: -1
+pangtong_handr2
+  rotate: true
+  xy: 55, 58
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+pangtong_hat1
+  rotate: true
+  xy: 2, 101
+  size: 145, 183
+  orig: 145, 183
+  offset: 0, 0
+  index: -1
+pangtong_hat2
+  rotate: true
+  xy: 95, 364
+  size: 142, 182
+  orig: 142, 182
+  offset: 0, 0
+  index: -1
+pangtong_head
+  rotate: true
+  xy: 279, 392
+  size: 114, 141
+  orig: 114, 141
+  offset: 0, 0
+  index: -1
+pangtong_legr
+  rotate: true
+  xy: 123, 255
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+pangtong_mouth
+  rotate: false
+  xy: 187, 106
+  size: 116, 114
+  orig: 116, 114
+  offset: 0, 0
+  index: -1
+pangtong_tail
+  rotate: true
+  xy: 305, 99
+  size: 121, 69
+  orig: 121, 69
+  offset: 0, 0
+  index: -1
+pangtong_weapon
+  rotate: false
+  xy: 2, 248
+  size: 91, 258
+  orig: 91, 258
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 187, 2
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 95, 252
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

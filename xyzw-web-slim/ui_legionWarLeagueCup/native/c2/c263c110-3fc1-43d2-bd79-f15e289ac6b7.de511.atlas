@@ -1,0 +1,104 @@
+
+hjls_banner.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 249, 7
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+hjls_banner_bg
+  rotate: false
+  xy: 2, 292
+  size: 358, 211
+  orig: 358, 211
+  offset: 0, 0
+  index: -1
+hjls_banner_body
+  rotate: false
+  xy: 2, 60
+  size: 287, 230
+  orig: 287, 230
+  offset: 0, 0
+  index: -1
+hjls_banner_head
+  rotate: false
+  xy: 362, 329
+  size: 121, 174
+  orig: 121, 174
+  offset: 0, 0
+  index: -1
+hjls_banner_z1
+  rotate: true
+  xy: 126, 8
+  size: 50, 57
+  orig: 50, 57
+  offset: 0, 0
+  index: -1
+hjls_banner_z2
+  rotate: false
+  xy: 64, 8
+  size: 60, 50
+  orig: 60, 50
+  offset: 0, 0
+  index: -1
+hjls_banner_z3
+  rotate: false
+  xy: 185, 13
+  size: 62, 45
+  orig: 62, 45
+  offset: 0, 0
+  index: -1
+hjls_banner_z4
+  rotate: false
+  xy: 398, 73
+  size: 71, 66
+  orig: 71, 66
+  offset: 0, 0
+  index: -1
+hjls_gc_longelec1
+  rotate: true
+  xy: 291, 50
+  size: 64, 74
+  orig: 64, 74
+  offset: 0, 0
+  index: -1
+hjls_gc_longelec2
+  rotate: false
+  xy: 398, 141
+  size: 75, 71
+  orig: 75, 71
+  offset: 0, 0
+  index: -1
+hjls_gc_longelec3
+  rotate: false
+  xy: 2, 2
+  size: 60, 56
+  orig: 60, 56
+  offset: 0, 0
+  index: -1
+hjls_gc_longelec4
+  rotate: true
+  xy: 398, 214
+  size: 113, 102
+  orig: 113, 102
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 485, 481
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+zbz_newbanner_light2
+  rotate: true
+  xy: 291, 116
+  size: 174, 105
+  orig: 174, 105
+  offset: 0, 0
+  index: -1

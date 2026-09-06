@@ -1,0 +1,104 @@
+
+wbhj_boss2b_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 327, 46
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill1
+  rotate: true
+  xy: 362, 52
+  size: 89, 88
+  orig: 89, 88
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill10
+  rotate: true
+  xy: 327, 77
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill2
+  rotate: true
+  xy: 86, 27
+  size: 115, 98
+  orig: 115, 98
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill3
+  rotate: false
+  xy: 2, 298
+  size: 292, 195
+  orig: 292, 195
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill4
+  rotate: true
+  xy: 296, 271
+  size: 222, 187
+  orig: 222, 187
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill5
+  rotate: false
+  xy: 214, 39
+  size: 111, 117
+  orig: 111, 117
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill5_1
+  rotate: true
+  xy: 214, 158
+  size: 111, 152
+  orig: 111, 153
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill6
+  rotate: false
+  xy: 2, 2
+  size: 82, 128
+  orig: 82, 128
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill6_1
+  rotate: false
+  xy: 2, 132
+  size: 82, 164
+  orig: 82, 164
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill7
+  rotate: true
+  xy: 368, 143
+  size: 126, 116
+  orig: 126, 116
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill7_1
+  rotate: false
+  xy: 86, 144
+  size: 126, 152
+  orig: 126, 152
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill8
+  rotate: false
+  xy: 358, 23
+  size: 43, 27
+  orig: 43, 27
+  offset: 0, 0
+  index: -1
+wbhj_boss2a_skill9
+  rotate: true
+  xy: 327, 113
+  size: 43, 33
+  orig: 43, 33
+  offset: 0, 0
+  index: -1

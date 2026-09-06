@@ -1,0 +1,48 @@
+
+yuling_1101.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_01
+  rotate: false
+  xy: 110, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 144, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yuling_101_body
+  rotate: false
+  xy: 2, 66
+  size: 247, 174
+  orig: 247, 174
+  offset: 0, 0
+  index: -1
+yuling_101_eye
+  rotate: false
+  xy: 68, 11
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+yuling_101_eyewhite
+  rotate: false
+  xy: 68, 26
+  size: 40, 38
+  orig: 40, 38
+  offset: 0, 0
+  index: -1
+yuling_101_fin
+  rotate: false
+  xy: 2, 2
+  size: 64, 62
+  orig: 66, 63
+  offset: 1, 0
+  index: -1

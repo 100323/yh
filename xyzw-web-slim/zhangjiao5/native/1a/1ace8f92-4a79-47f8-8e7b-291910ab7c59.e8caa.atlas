@@ -1,0 +1,76 @@
+
+zhangjiao5_skill_hit.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 622, 29
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhangjiao5_he1
+  rotate: true
+  xy: 676, 244
+  size: 264, 133
+  orig: 270, 137
+  offset: 3, 2
+  index: -1
+zhangjiao5_jn_beiguang1
+  rotate: false
+  xy: 2, 187
+  size: 135, 321
+  orig: 135, 321
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_lei
+  rotate: false
+  xy: 353, 238
+  size: 219, 270
+  orig: 219, 270
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun1
+  rotate: true
+  xy: 2, 2
+  size: 183, 150
+  orig: 183, 150
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun2
+  rotate: true
+  xy: 622, 72
+  size: 169, 104
+  orig: 169, 104
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yun3
+  rotate: false
+  xy: 154, 24
+  size: 264, 170
+  orig: 264, 170
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yunshan
+  rotate: true
+  xy: 420, 25
+  size: 211, 200
+  orig: 211, 200
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_yunzha1
+  rotate: false
+  xy: 574, 243
+  size: 100, 265
+  orig: 100, 265
+  offset: 0, 0
+  index: -1
+zhangjiao5_jn_zha1
+  rotate: true
+  xy: 139, 196
+  size: 312, 212
+  orig: 312, 212
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,118 @@
+
+ft_jiaxu8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 408, 295
+  size: 84, 68
+  orig: 84, 68
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 242, 35
+  size: 84, 68
+  orig: 84, 68
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 2, 35
+  size: 83, 74
+  orig: 83, 74
+  offset: 0, 0
+  index: -1
+4
+  rotate: true
+  xy: 162, 35
+  size: 84, 78
+  orig: 84, 78
+  offset: 0, 0
+  index: -1
+ft_guanyu_10
+  rotate: false
+  xy: 223, 276
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ft_jiaxu_gy
+  rotate: true
+  xy: 158, 262
+  size: 54, 63
+  orig: 54, 63
+  offset: 0, 0
+  index: -1
+ft_jiaxu_hy
+  rotate: false
+  xy: 328, 2
+  size: 93, 139
+  orig: 93, 139
+  offset: 0, 0
+  index: -1
+ft_jiaxu_hz
+  rotate: false
+  xy: 328, 143
+  size: 131, 145
+  orig: 131, 145
+  offset: 0, 0
+  index: -1
+ft_jiaxu_hzqiu2
+  rotate: false
+  xy: 334, 291
+  size: 72, 72
+  orig: 72, 72
+  offset: 0, 0
+  index: -1
+ft_jiaxu_hzwb
+  rotate: false
+  xy: 2, 257
+  size: 154, 204
+  orig: 154, 204
+  offset: 0, 0
+  index: -1
+ft_jiaxu_qiu1
+  rotate: false
+  xy: 265, 287
+  size: 39, 29
+  orig: 39, 29
+  offset: 0, 0
+  index: -1
+ft_jiaxu_st
+  rotate: true
+  xy: 162, 121
+  size: 139, 164
+  orig: 139, 164
+  offset: 0, 0
+  index: -1
+ft_jiaxu_tou
+  rotate: true
+  xy: 158, 318
+  size: 143, 174
+  orig: 143, 174
+  offset: 0, 0
+  index: -1
+ft_jiaxu_zy
+  rotate: true
+  xy: 334, 365
+  size: 96, 142
+  orig: 96, 142
+  offset: 0, 0
+  index: -1
+ft_jiaxu_zz
+  rotate: false
+  xy: 2, 111
+  size: 158, 144
+  orig: 158, 144
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 306, 290
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

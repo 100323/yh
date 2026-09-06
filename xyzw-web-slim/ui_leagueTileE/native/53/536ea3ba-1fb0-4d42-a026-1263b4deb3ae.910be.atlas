@@ -1,0 +1,237 @@
+
+hjls_jingying.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bawanglong_guang
+  rotate: false
+  xy: 509, 422
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+hjls_ctgz_guangnei
+  rotate: false
+  xy: 375, 227
+  size: 118, 80
+  orig: 118, 80
+  offset: 0, 0
+  index: -1
+hjls_ctgz_guangyun
+  rotate: false
+  xy: 567, 174
+  size: 61, 63
+  orig: 61, 63
+  offset: 0, 0
+  index: -1
+hjls_ctgz_guangzhu
+  rotate: true
+  xy: 2, 2
+  size: 21, 533
+  orig: 35, 546
+  offset: 7, 13
+  index: -1
+hjls_ctgz_qi
+  rotate: false
+  xy: 2, 25
+  size: 215, 114
+  orig: 215, 114
+  offset: 0, 0
+  index: -1
+hjls_ctgz_xian
+  rotate: true
+  xy: 421, 112
+  size: 45, 143
+  orig: 45, 143
+  offset: 0, 0
+  index: -1
+hjls_jingying_di
+  rotate: true
+  xy: 2, 141
+  size: 359, 277
+  orig: 360, 277
+  offset: 0, 0
+  index: -1
+hjls_jingying_fengshan4
+  rotate: false
+  xy: 509, 444
+  size: 23, 27
+  orig: 23, 27
+  offset: 0, 0
+  index: -1
+hjls_jingying_fenshan3
+  rotate: false
+  xy: 509, 473
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+hjls_jingying_gai
+  rotate: false
+  xy: 281, 309
+  size: 226, 191
+  orig: 227, 193
+  offset: 1, 1
+  index: -1
+hjls_jingying_guan
+  rotate: false
+  xy: 537, 239
+  size: 262, 261
+  orig: 262, 261
+  offset: 0, 0
+  index: -1
+hjls_jingying_gun1
+  rotate: true
+  xy: 272, 30
+  size: 14, 12
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hjls_jingying_gun2
+  rotate: true
+  xy: 286, 30
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+hjls_jingying_gun3
+  rotate: false
+  xy: 256, 29
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+hjls_jingying_gun4
+  rotate: false
+  xy: 219, 27
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+hjls_jingying_pian1
+  rotate: true
+  xy: 495, 272
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+hjls_jingying_pian2
+  rotate: true
+  xy: 495, 239
+  size: 31, 39
+  orig: 31, 39
+  offset: 0, 0
+  index: -1
+hjls_jingying_qi1
+  rotate: true
+  xy: 547, 25
+  size: 85, 48
+  orig: 85, 48
+  offset: 0, 0
+  index: -1
+hjls_jingying_qi2
+  rotate: false
+  xy: 281, 143
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+hjls_jingying_qi3
+  rotate: true
+  xy: 597, 55
+  size: 56, 44
+  orig: 56, 44
+  offset: 0, 0
+  index: -1
+hjls_jingying_qi4
+  rotate: false
+  xy: 328, 142
+  size: 36, 38
+  orig: 36, 38
+  offset: 0, 0
+  index: -1
+hjls_jingying_qizi
+  rotate: true
+  xy: 478, 162
+  size: 63, 87
+  orig: 63, 87
+  offset: 0, 0
+  index: -1
+hjls_jingying_shao
+  rotate: false
+  xy: 566, 113
+  size: 78, 47
+  orig: 78, 47
+  offset: 0, 0
+  index: -1
+hjls_jingying_shoul
+  rotate: true
+  xy: 219, 46
+  size: 93, 127
+  orig: 93, 127
+  offset: 0, 0
+  index: -1
+hjls_jingying_shour
+  rotate: false
+  xy: 281, 182
+  size: 92, 125
+  orig: 92, 125
+  offset: 0, 0
+  index: -1
+hjls_jingying_xing
+  rotate: true
+  xy: 597, 10
+  size: 43, 41
+  orig: 44, 41
+  offset: 1, 0
+  index: -1
+hjls_jingying_yan
+  rotate: false
+  xy: 630, 180
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+hjls_jingying_zhou1
+  rotate: false
+  xy: 421, 29
+  size: 64, 81
+  orig: 64, 81
+  offset: 0, 0
+  index: -1
+hjls_jingying_zhou2
+  rotate: false
+  xy: 487, 31
+  size: 58, 79
+  orig: 58, 79
+  offset: 0, 0
+  index: -1
+hjls_jingying_zhou3
+  rotate: true
+  xy: 375, 159
+  size: 66, 101
+  orig: 66, 101
+  offset: 0, 0
+  index: -1
+hjls_jingying_zhou4
+  rotate: false
+  xy: 348, 40
+  size: 71, 100
+  orig: 73, 101
+  offset: 2, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: true
+  xy: 300, 32
+  size: 12, 10
+  orig: 16, 16
+  offset: 2, 3
+  index: -1
+xysg_hero_effect_kuang
+  rotate: false
+  xy: 238, 28
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

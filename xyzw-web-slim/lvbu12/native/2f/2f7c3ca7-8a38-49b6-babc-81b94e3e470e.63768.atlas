@@ -1,0 +1,41 @@
+
+lvbu12_skill_hit1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lvbu12_skill_lt
+  rotate: false
+  xy: 95, 79
+  size: 282, 169
+  orig: 290, 175
+  offset: 7, 3
+  index: -1
+lvbu12_skill_sdx
+  rotate: false
+  xy: 2, 2
+  size: 74, 8
+  orig: 74, 8
+  offset: 0, 0
+  index: -1
+lvbu12_skill_tw
+  rotate: true
+  xy: 2, 12
+  size: 236, 91
+  orig: 236, 91
+  offset: 0, 0
+  index: -1
+lvbu12_skill_twg
+  rotate: false
+  xy: 182, 54
+  size: 140, 23
+  orig: 140, 23
+  offset: 0, 0
+  index: -1
+lvbu12_skill_yd
+  rotate: false
+  xy: 95, 2
+  size: 85, 75
+  orig: 85, 75
+  offset: 0, 0
+  index: -1

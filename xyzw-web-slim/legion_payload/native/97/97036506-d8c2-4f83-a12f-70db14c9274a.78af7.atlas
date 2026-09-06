@@ -1,0 +1,20 @@
+
+tgcf_pty_dj_mingdeng.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tgcf_dj_mingdeng1
+  rotate: false
+  xy: 2, 2
+  size: 204, 202
+  orig: 204, 202
+  offset: 0, 0
+  index: -1
+tgcf_dj_mingdeng2
+  rotate: false
+  xy: 208, 88
+  size: 115, 116
+  orig: 118, 118
+  offset: 1, 1
+  index: -1

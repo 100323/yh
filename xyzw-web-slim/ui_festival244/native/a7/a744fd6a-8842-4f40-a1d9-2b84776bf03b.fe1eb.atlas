@@ -1,0 +1,55 @@
+
+dzxy_bubble.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dian1
+  rotate: true
+  xy: 127, 8
+  size: 108, 123
+  orig: 112, 124
+  offset: 4, 0
+  index: -1
+dian10
+  rotate: true
+  xy: 2, 5
+  size: 111, 123
+  orig: 112, 124
+  offset: 1, 0
+  index: -1
+qwgh_bubble1
+  rotate: false
+  xy: 252, 2
+  size: 28, 17
+  orig: 28, 17
+  offset: 0, 0
+  index: -1
+qwgh_bubble3
+  rotate: false
+  xy: 2, 118
+  size: 136, 136
+  orig: 136, 136
+  offset: 0, 0
+  index: -1
+qwgh_bubble4
+  rotate: false
+  xy: 140, 118
+  size: 136, 136
+  orig: 136, 136
+  offset: 0, 0
+  index: -1
+qwgh_bubble5
+  rotate: true
+  xy: 278, 166
+  size: 88, 74
+  orig: 88, 74
+  offset: 0, 0
+  index: -1
+qwgh_bubble6
+  rotate: true
+  xy: 252, 21
+  size: 95, 88
+  orig: 95, 88
+  offset: 0, 0
+  index: -1

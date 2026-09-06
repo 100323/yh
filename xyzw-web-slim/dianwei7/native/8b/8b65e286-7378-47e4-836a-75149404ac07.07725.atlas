@@ -1,0 +1,83 @@
+
+dianwei7_skill_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 339, 130
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+pg_bdh1
+  rotate: false
+  xy: 123, 9
+  size: 52, 60
+  orig: 52, 60
+  offset: 0, 0
+  index: -1
+pg_bdh2
+  rotate: false
+  xy: 285, 173
+  size: 55, 76
+  orig: 55, 76
+  offset: 0, 0
+  index: -1
+pg_bdh3
+  rotate: true
+  xy: 68, 9
+  size: 60, 53
+  orig: 60, 53
+  offset: 0, 0
+  index: -1
+pg_bdh4
+  rotate: false
+  xy: 2, 71
+  size: 161, 178
+  orig: 161, 178
+  offset: 0, 0
+  index: -1
+pg_bdl1
+  rotate: true
+  xy: 260, 26
+  size: 80, 74
+  orig: 80, 74
+  offset: 0, 0
+  index: -1
+pg_bdl2
+  rotate: true
+  xy: 285, 114
+  size: 57, 52
+  orig: 57, 52
+  offset: 0, 0
+  index: -1
+pg_bdl3
+  rotate: true
+  xy: 177, 12
+  size: 94, 81
+  orig: 94, 81
+  offset: 0, 0
+  index: -1
+pg_bdl4
+  rotate: true
+  xy: 165, 108
+  size: 141, 118
+  orig: 141, 118
+  offset: 0, 0
+  index: -1
+pg_bdl5
+  rotate: false
+  xy: 336, 62
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+pg_bdl6
+  rotate: true
+  xy: 2, 2
+  size: 67, 64
+  orig: 67, 64
+  offset: 0, 0
+  index: -1

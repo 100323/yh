@@ -1,0 +1,132 @@
+
+xuhuang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 205, 20
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 175, 209
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+ui_effect_light_circle3
+  rotate: false
+  xy: 150, 104
+  size: 102, 102
+  orig: 102, 102
+  offset: 0, 0
+  index: -1
+xuhuang_body
+  rotate: true
+  xy: 130, 372
+  size: 138, 118
+  orig: 138, 118
+  offset: 0, 0
+  index: -1
+xuhuang_eye
+  rotate: true
+  xy: 219, 208
+  size: 7, 8
+  orig: 7, 8
+  offset: 0, 0
+  index: -1
+xuhuang_eyebrow
+  rotate: true
+  xy: 114, 6
+  size: 35, 24
+  orig: 35, 24
+  offset: 0, 0
+  index: -1
+xuhuang_eyewhite
+  rotate: false
+  xy: 81, 7
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+xuhuang_hair
+  rotate: false
+  xy: 254, 142
+  size: 61, 73
+  orig: 61, 83
+  offset: 0, 10
+  index: -1
+xuhuang_handl
+  rotate: true
+  xy: 2, 2
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+xuhuang_handr
+  rotate: false
+  xy: 46, 3
+  size: 33, 38
+  orig: 33, 38
+  offset: 0, 0
+  index: -1
+xuhuang_handr2
+  rotate: false
+  xy: 219, 217
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+xuhuang_head
+  rotate: true
+  xy: 2, 43
+  size: 163, 146
+  orig: 163, 146
+  offset: 0, 0
+  index: -1
+xuhuang_legr
+  rotate: false
+  xy: 140, 10
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+xuhuang_mouth
+  rotate: false
+  xy: 130, 208
+  size: 43, 52
+  orig: 43, 52
+  offset: 0, 0
+  index: -1
+xuhuang_shoulderl
+  rotate: false
+  xy: 150, 49
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+xuhuang_tail
+  rotate: true
+  xy: 236, 263
+  size: 107, 70
+  orig: 107, 70
+  offset: 0, 0
+  index: -1
+xuhuang_weapon
+  rotate: false
+  xy: 2, 208
+  size: 126, 302
+  orig: 126, 303
+  offset: 0, 1
+  index: -1
+xysg_hero_effect_swordlight2
+  rotate: true
+  xy: 130, 262
+  size: 108, 104
+  orig: 108, 104
+  offset: 0, 0
+  index: -1

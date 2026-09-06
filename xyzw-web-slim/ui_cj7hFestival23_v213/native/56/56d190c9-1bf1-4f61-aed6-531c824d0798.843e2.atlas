@@ -1,0 +1,20 @@
+
+xkhj25_cj_dajiang3.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bhjx8_heidong_hu_xing
+  rotate: true
+  xy: 62, 2
+  size: 203, 205
+  orig: 203, 205
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 2, 147
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1

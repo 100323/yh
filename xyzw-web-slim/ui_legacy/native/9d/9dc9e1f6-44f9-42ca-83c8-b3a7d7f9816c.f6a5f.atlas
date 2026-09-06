@@ -1,0 +1,125 @@
+
+gfjx_cz_zhuming.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cizhui_zhuming1_guang
+  rotate: false
+  xy: 2, 15
+  size: 118, 47
+  orig: 118, 47
+  offset: 0, 0
+  index: -1
+cizhui_zhuming1_hua1
+  rotate: false
+  xy: 44, 7
+  size: 6, 6
+  orig: 8, 8
+  offset: 1, 1
+  index: -1
+cizhui_zhuming1_hua10
+  rotate: false
+  xy: 198, 14
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+cizhui_zhuming1_hua2
+  rotate: false
+  xy: 16, 4
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+cizhui_zhuming1_hua3
+  rotate: false
+  xy: 214, 17
+  size: 12, 12
+  orig: 14, 14
+  offset: 1, 1
+  index: -1
+cizhui_zhuming1_hua4
+  rotate: false
+  xy: 143, 3
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+cizhui_zhuming1_hua5
+  rotate: false
+  xy: 36, 6
+  size: 6, 7
+  orig: 8, 9
+  offset: 1, 1
+  index: -1
+cizhui_zhuming1_hua6
+  rotate: false
+  xy: 211, 31
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+cizhui_zhuming1_hua7
+  rotate: false
+  xy: 2, 2
+  size: 12, 11
+  orig: 14, 13
+  offset: 1, 1
+  index: -1
+cizhui_zhuming1_hua8
+  rotate: false
+  xy: 195, 30
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+cizhui_zhuming1_hua9
+  rotate: false
+  xy: 122, 2
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+cizhui_zhuming_guang
+  rotate: false
+  xy: 122, 22
+  size: 71, 40
+  orig: 71, 40
+  offset: 0, 0
+  index: -1
+cizhui_zhuming_hua
+  rotate: false
+  xy: 162, 3
+  size: 16, 17
+  orig: 18, 19
+  offset: 1, 1
+  index: -1
+cizhui_zhuming_hua2
+  rotate: true
+  xy: 195, 46
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1
+cizhui_zhuming_hua3
+  rotate: true
+  xy: 180, 3
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+cizhui_zhuming_hua4
+  rotate: false
+  xy: 212, 49
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+cizhui_zhuming_hua7
+  rotate: false
+  xy: 26, 4
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1

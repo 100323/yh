@@ -1,0 +1,160 @@
+
+smsd_trader_head.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+smsd_trader_arml
+  rotate: false
+  xy: 363, 2
+  size: 123, 179
+  orig: 123, 179
+  offset: 0, 0
+  index: -1
+smsd_trader_armr
+  rotate: false
+  xy: 2, 274
+  size: 108, 234
+  orig: 108, 234
+  offset: 0, 0
+  index: -1
+smsd_trader_beard1
+  rotate: true
+  xy: 366, 232
+  size: 121, 75
+  orig: 121, 75
+  offset: 0, 0
+  index: -1
+smsd_trader_beard2
+  rotate: false
+  xy: 222, 49
+  size: 139, 132
+  orig: 139, 132
+  offset: 0, 0
+  index: -1
+smsd_trader_body
+  rotate: false
+  xy: 2, 93
+  size: 218, 179
+  orig: 218, 179
+  offset: 0, 0
+  index: -1
+smsd_trader_body2
+  rotate: true
+  xy: 112, 330
+  size: 9, 97
+  orig: 9, 99
+  offset: 0, 2
+  index: -1
+smsd_trader_eyebrowl
+  rotate: true
+  xy: 469, 370
+  size: 30, 22
+  orig: 30, 22
+  offset: 0, 0
+  index: -1
+smsd_trader_eyebrowr
+  rotate: true
+  xy: 185, 281
+  size: 47, 24
+  orig: 47, 24
+  offset: 0, 0
+  index: -1
+smsd_trader_eyel
+  rotate: false
+  xy: 211, 325
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+smsd_trader_eyer
+  rotate: false
+  xy: 211, 333
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+smsd_trader_eyewhitel
+  rotate: false
+  xy: 479, 346
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+smsd_trader_eyewhiter
+  rotate: true
+  xy: 480, 196
+  size: 46, 30
+  orig: 46, 30
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerl1
+  rotate: true
+  xy: 443, 279
+  size: 76, 34
+  orig: 76, 34
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerl2
+  rotate: true
+  xy: 112, 282
+  size: 46, 71
+  orig: 46, 71
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerl3
+  rotate: true
+  xy: 343, 355
+  size: 45, 73
+  orig: 45, 73
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerl4
+  rotate: true
+  xy: 414, 194
+  size: 36, 64
+  orig: 36, 64
+  offset: 0, 0
+  index: -1
+smsd_trader_fingerl5
+  rotate: true
+  xy: 366, 191
+  size: 39, 46
+  orig: 39, 46
+  offset: 0, 0
+  index: -1
+smsd_trader_handle
+  rotate: false
+  xy: 343, 402
+  size: 167, 106
+  orig: 167, 106
+  offset: 0, 0
+  index: -1
+smsd_trader_head1
+  rotate: false
+  xy: 222, 183
+  size: 142, 156
+  orig: 142, 156
+  offset: 0, 0
+  index: -1
+smsd_trader_head2
+  rotate: true
+  xy: 112, 341
+  size: 167, 229
+  orig: 167, 229
+  offset: 0, 0
+  index: -1
+smsd_trader_nose
+  rotate: true
+  xy: 443, 244
+  size: 33, 53
+  orig: 33, 53
+  offset: 0, 0
+  index: -1
+smsd_trader_ring
+  rotate: true
+  xy: 418, 357
+  size: 43, 49
+  orig: 43, 49
+  offset: 0, 0
+  index: -1

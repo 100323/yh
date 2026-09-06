@@ -1,0 +1,27 @@
+
+dzfj_mrt_hz1_cj_zhouyu.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: true
+  xy: 226, 34
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+zhouyu
+  rotate: true
+  xy: 2, 2
+  size: 243, 222
+  orig: 255, 222
+  offset: 12, 0
+  index: -1
+zhouyu-fx
+  rotate: true
+  xy: 226, 80
+  size: 165, 67
+  orig: 165, 67
+  offset: 0, 0
+  index: -1

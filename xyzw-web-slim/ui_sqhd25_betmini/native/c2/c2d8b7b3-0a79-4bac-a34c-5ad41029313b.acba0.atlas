@@ -1,0 +1,20 @@
+
+sqhd25w9_lxxyx_bianshen2.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sqhd25w3_lxxyx_gq
+  rotate: true
+  xy: 643, 68
+  size: 153, 144
+  orig: 154, 144
+  offset: 0, 0
+  index: -1
+sqhd25w3_lxxyx_gz
+  rotate: true
+  xy: 2, 2
+  size: 219, 639
+  orig: 219, 639
+  offset: 0, 0
+  index: -1

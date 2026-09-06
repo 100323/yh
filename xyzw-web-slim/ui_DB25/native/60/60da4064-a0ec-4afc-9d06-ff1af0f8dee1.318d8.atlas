@@ -1,0 +1,97 @@
+
+zqhd25_xyx_checang.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zqhd25_xyx_cc1
+  rotate: false
+  xy: 2, 210
+  size: 702, 271
+  orig: 702, 272
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_chuang3
+  rotate: false
+  xy: 949, 424
+  size: 49, 57
+  orig: 49, 58
+  offset: 0, 1
+  index: -1
+zqhd25_xyx_cc_fxp
+  rotate: false
+  xy: 2, 34
+  size: 286, 174
+  orig: 286, 174
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_g1
+  rotate: false
+  xy: 713, 135
+  size: 120, 78
+  orig: 120, 78
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_g2
+  rotate: false
+  xy: 290, 22
+  size: 120, 78
+  orig: 120, 78
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_h1
+  rotate: false
+  xy: 706, 375
+  size: 241, 106
+  orig: 241, 106
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_h2
+  rotate: false
+  xy: 706, 295
+  size: 178, 78
+  orig: 178, 78
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_h4
+  rotate: false
+  xy: 886, 344
+  size: 36, 29
+  orig: 36, 29
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_l1
+  rotate: false
+  xy: 835, 185
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_l3
+  rotate: false
+  xy: 706, 215
+  size: 178, 78
+  orig: 178, 78
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_l4
+  rotate: false
+  xy: 290, 102
+  size: 241, 106
+  orig: 241, 106
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_sl1
+  rotate: false
+  xy: 533, 130
+  size: 178, 78
+  orig: 178, 78
+  offset: 0, 0
+  index: -1
+zqhd25_xyx_cc_sl2
+  rotate: true
+  xy: 412, 2
+  size: 98, 102
+  orig: 98, 102
+  offset: 0, 0
+  index: -1

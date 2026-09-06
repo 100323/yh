@@ -1,0 +1,104 @@
+
+zytp_js_lose.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zytp_js_lose1
+  rotate: false
+  xy: 196, 2
+  size: 287, 160
+  orig: 287, 160
+  offset: 0, 0
+  index: -1
+zytp_js_lose10
+  rotate: true
+  xy: 280, 253
+  size: 46, 56
+  orig: 46, 56
+  offset: 0, 0
+  index: -1
+zytp_js_lose11
+  rotate: true
+  xy: 2, 291
+  size: 8, 11
+  orig: 8, 11
+  offset: 0, 0
+  index: -1
+zytp_js_lose12
+  rotate: true
+  xy: 414, 245
+  size: 54, 59
+  orig: 54, 59
+  offset: 0, 0
+  index: -1
+zytp_js_lose13
+  rotate: true
+  xy: 2, 10
+  size: 152, 192
+  orig: 152, 192
+  offset: 0, 0
+  index: -1
+zytp_js_lose14
+  rotate: false
+  xy: 2, 164
+  size: 360, 85
+  orig: 360, 86
+  offset: 0, 1
+  index: -1
+zytp_js_lose2
+  rotate: true
+  xy: 180, 260
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+zytp_js_lose3
+  rotate: true
+  xy: 15, 281
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+zytp_js_lose4
+  rotate: false
+  xy: 140, 264
+  size: 38, 35
+  orig: 38, 35
+  offset: 0, 0
+  index: -1
+zytp_js_lose5
+  rotate: true
+  xy: 61, 265
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
+zytp_js_lose7
+  rotate: true
+  xy: 98, 265
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
+zytp_js_lose8
+  rotate: false
+  xy: 38, 280
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+zytp_js_lose9
+  rotate: true
+  xy: 224, 253
+  size: 46, 54
+  orig: 46, 56
+  offset: 0, 2
+  index: -1
+zytp_js_losev6
+  rotate: true
+  xy: 338, 251
+  size: 48, 74
+  orig: 48, 76
+  offset: 0, 0
+  index: -1

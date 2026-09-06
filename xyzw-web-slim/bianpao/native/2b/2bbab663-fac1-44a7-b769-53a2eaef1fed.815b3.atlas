@@ -1,0 +1,244 @@
+
+bianpao.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_skill_circle
+  rotate: false
+  xy: 326, 31
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+hero_effect_box2
+  rotate: false
+  xy: 421, 403
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 326, 63
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 467, 24
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+simayi3_beard
+  rotate: false
+  xy: 196, 237
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+simayi3_beard2
+  rotate: false
+  xy: 222, 28
+  size: 42, 43
+  orig: 42, 43
+  offset: 0, 0
+  index: -1
+simayi3_board2
+  rotate: false
+  xy: 2, 375
+  size: 294, 110
+  orig: 294, 111
+  offset: 0, 1
+  index: -1
+simayi3_body
+  rotate: true
+  xy: 2, 212
+  size: 161, 120
+  orig: 161, 120
+  offset: 0, 0
+  index: -1
+simayi3_cloth1
+  rotate: true
+  xy: 378, 232
+  size: 33, 99
+  orig: 33, 99
+  offset: 0, 0
+  index: -1
+simayi3_cloth2
+  rotate: true
+  xy: 196, 267
+  size: 106, 99
+  orig: 106, 99
+  offset: 0, 0
+  index: -1
+simayi3_eye
+  rotate: false
+  xy: 421, 335
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+simayi3_eyebrow
+  rotate: false
+  xy: 479, 249
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+simayi3_eyewhite
+  rotate: false
+  xy: 476, 183
+  size: 34, 47
+  orig: 34, 47
+  offset: 0, 0
+  index: -1
+simayi3_glass
+  rotate: false
+  xy: 282, 163
+  size: 94, 102
+  orig: 94, 102
+  offset: 0, 0
+  index: -1
+simayi3_glass2
+  rotate: false
+  xy: 124, 172
+  size: 156, 62
+  orig: 156, 62
+  offset: 0, 0
+  index: -1
+simayi3_gun1
+  rotate: true
+  xy: 449, 282
+  size: 59, 51
+  orig: 59, 52
+  offset: 0, 1
+  index: -1
+simayi3_gun2
+  rotate: false
+  xy: 378, 177
+  size: 96, 53
+  orig: 96, 53
+  offset: 0, 0
+  index: -1
+simayi3_gun3
+  rotate: false
+  xy: 232, 242
+  size: 41, 23
+  orig: 41, 24
+  offset: 0, 0
+  index: -1
+simayi3_gun4
+  rotate: false
+  xy: 2, 2
+  size: 106, 65
+  orig: 106, 65
+  offset: 0, 0
+  index: -1
+simayi3_gun5
+  rotate: true
+  xy: 270, 58
+  size: 47, 54
+  orig: 52, 54
+  offset: 0, 0
+  index: -1
+simayi3_hair
+  rotate: false
+  xy: 174, 25
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+simayi3_handl
+  rotate: false
+  xy: 471, 131
+  size: 37, 44
+  orig: 42, 45
+  offset: 2, 0
+  index: -1
+simayi3_handr
+  rotate: true
+  xy: 467, 77
+  size: 45, 43
+  orig: 45, 43
+  offset: 0, 0
+  index: -1
+simayi3_head
+  rotate: false
+  xy: 2, 69
+  size: 116, 141
+  orig: 116, 141
+  offset: 0, 0
+  index: -1
+simayi3_legr
+  rotate: false
+  xy: 266, 25
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+simayi3_mouth
+  rotate: true
+  xy: 421, 343
+  size: 58, 86
+  orig: 58, 86
+  offset: 0, 0
+  index: -1
+simayi3_skill1
+  rotate: false
+  xy: 270, 107
+  size: 146, 54
+  orig: 146, 54
+  offset: 0, 0
+  index: -1
+simayi3_skill2
+  rotate: true
+  xy: 120, 20
+  size: 150, 52
+  orig: 150, 52
+  offset: 0, 0
+  index: -1
+simayi3_skill3
+  rotate: false
+  xy: 297, 267
+  size: 150, 53
+  orig: 150, 53
+  offset: 0, 0
+  index: -1
+simayi3_skill8
+  rotate: true
+  xy: 174, 73
+  size: 97, 94
+  orig: 106, 95
+  offset: 1, 1
+  index: -1
+simayi3_skill9
+  rotate: true
+  xy: 298, 322
+  size: 163, 121
+  orig: 163, 121
+  offset: 0, 0
+  index: -1
+simayi3_tail
+  rotate: true
+  xy: 124, 236
+  size: 137, 70
+  orig: 137, 70
+  offset: 0, 0
+  index: -1
+simayi3_weapon2
+  rotate: true
+  xy: 418, 42
+  size: 80, 47
+  orig: 80, 47
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_lightcircles
+  rotate: false
+  xy: 418, 124
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1

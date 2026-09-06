@@ -1,0 +1,41 @@
+
+buff_fire_1.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdsl3_huoda_g
+  rotate: false
+  xy: 2, 3
+  size: 97, 106
+  orig: 97, 106
+  offset: 0, 0
+  index: -1
+sdsl3_huox_huo1
+  rotate: true
+  xy: 233, 2
+  size: 47, 42
+  orig: 50, 45
+  offset: 2, 1
+  index: -1
+sdsl3_huox_huo2
+  rotate: false
+  xy: 101, 18
+  size: 74, 91
+  orig: 74, 91
+  offset: 0, 0
+  index: -1
+sdsl3_huox_huo3
+  rotate: false
+  xy: 233, 51
+  size: 47, 58
+  orig: 52, 62
+  offset: 2, 2
+  index: -1
+sdsl3_huox_huo4
+  rotate: true
+  xy: 177, 12
+  size: 97, 54
+  orig: 101, 57
+  offset: 2, 2
+  index: -1

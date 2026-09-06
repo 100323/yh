@@ -1,0 +1,104 @@
+
+guanyu7_skill_hit.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guanyu6_bao12
+  rotate: true
+  xy: 2, 97
+  size: 114, 133
+  orig: 116, 136
+  offset: 1, 1
+  index: -1
+guanyu6_bao4
+  rotate: true
+  xy: 137, 2
+  size: 209, 197
+  orig: 227, 212
+  offset: 10, 7
+  index: -1
+guanyu6_huo
+  rotate: true
+  xy: 344, 138
+  size: 106, 108
+  orig: 106, 108
+  offset: 0, 0
+  index: -1
+guanyu6_huoqiu21
+  rotate: true
+  xy: 318, 367
+  size: 66, 69
+  orig: 71, 74
+  offset: 1, 2
+  index: -1
+guanyu6_skill1
+  rotate: true
+  xy: 389, 338
+  size: 95, 109
+  orig: 95, 113
+  offset: 0, 3
+  index: -1
+guanyu6_skill11
+  rotate: false
+  xy: 2, 317
+  size: 190, 74
+  orig: 259, 103
+  offset: 21, 8
+  index: -1
+guanyu6_skill2
+  rotate: false
+  xy: 194, 276
+  size: 150, 89
+  orig: 169, 89
+  offset: 8, 0
+  index: -1
+guanyu6_skill4
+  rotate: false
+  xy: 2, 213
+  size: 340, 61
+  orig: 340, 61
+  offset: 0, 0
+  index: -1
+guanyu6_yan1
+  rotate: false
+  xy: 233, 375
+  size: 83, 58
+  orig: 83, 58
+  offset: 0, 0
+  index: -1
+guanyu6_yan2
+  rotate: false
+  xy: 70, 396
+  size: 119, 37
+  orig: 119, 37
+  offset: 0, 0
+  index: -1
+guanyu6_yuansu2
+  rotate: true
+  xy: 2, 412
+  size: 21, 30
+  orig: 21, 30
+  offset: 0, 0
+  index: -1
+guanyu6_yuansu3
+  rotate: true
+  xy: 346, 246
+  size: 90, 155
+  orig: 90, 155
+  offset: 0, 0
+  index: -1
+guanyu6_yuanwu
+  rotate: true
+  xy: 34, 401
+  size: 32, 34
+  orig: 32, 34
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 191, 393
+  size: 40, 40
+  orig: 44, 44
+  offset: 2, 2
+  index: -1

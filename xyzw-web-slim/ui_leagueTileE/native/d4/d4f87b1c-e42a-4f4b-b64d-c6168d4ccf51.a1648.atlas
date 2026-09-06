@@ -1,0 +1,41 @@
+
+hjls_boss1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hjls_gc_longelec1
+  rotate: false
+  xy: 157, 26
+  size: 83, 95
+  orig: 91, 105
+  offset: 4, 5
+  index: -1
+hjls_gc_longelec2
+  rotate: true
+  xy: 157, 123
+  size: 89, 84
+  orig: 107, 102
+  offset: 14, 7
+  index: -1
+hjls_gc_longelec3
+  rotate: false
+  xy: 2, 2
+  size: 77, 72
+  orig: 86, 80
+  offset: 4, 4
+  index: -1
+hjls_gc_longelec4
+  rotate: false
+  xy: 2, 76
+  size: 153, 136
+  orig: 162, 146
+  offset: 6, 3
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 81, 42
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

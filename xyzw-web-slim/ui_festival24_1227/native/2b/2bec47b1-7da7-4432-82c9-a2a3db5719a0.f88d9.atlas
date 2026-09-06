@@ -1,0 +1,139 @@
+
+ydhd25_dxr.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ydhd25_dxr_xueren1
+  rotate: false
+  xy: 283, 111
+  size: 117, 140
+  orig: 117, 140
+  offset: 0, 0
+  index: -1
+ydhd25_dxr_xueren2
+  rotate: false
+  xy: 2, 126
+  size: 279, 125
+  orig: 279, 125
+  offset: 0, 0
+  index: -1
+ydhd25_dxr_yan1
+  rotate: true
+  xy: 402, 31
+  size: 88, 83
+  orig: 88, 83
+  offset: 0, 0
+  index: -1
+ydhd25_dxr_yan2
+  rotate: true
+  xy: 127, 43
+  size: 81, 86
+  orig: 81, 86
+  offset: 0, 0
+  index: -1
+ydhd25_dxr_yu1_jiaol
+  rotate: true
+  xy: 162, 13
+  size: 28, 31
+  orig: 30, 33
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu1_jiaor
+  rotate: true
+  xy: 127, 12
+  size: 29, 33
+  orig: 31, 36
+  offset: 1, 2
+  index: -1
+ydhd25_dxr_yu1_shen
+  rotate: false
+  xy: 402, 121
+  size: 101, 130
+  orig: 101, 130
+  offset: 0, 0
+  index: -1
+ydhd25_dxr_yu1_shouh
+  rotate: false
+  xy: 347, 47
+  size: 53, 62
+  orig: 55, 64
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu1_shoul
+  rotate: true
+  xy: 215, 61
+  size: 63, 62
+  orig: 67, 64
+  offset: 3, 1
+  index: -1
+ydhd25_dxr_yu1_wj
+  rotate: false
+  xy: 279, 4
+  size: 47, 63
+  orig: 49, 65
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu1_xueqiu
+  rotate: false
+  xy: 328, 7
+  size: 44, 38
+  orig: 46, 40
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu1_yz
+  rotate: false
+  xy: 487, 111
+  size: 8, 8
+  orig: 15, 11
+  offset: 1, 2
+  index: -1
+ydhd25_dxr_yu2_jiaol
+  rotate: false
+  xy: 374, 9
+  size: 25, 36
+  orig: 27, 38
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu2_jiaor
+  rotate: true
+  xy: 431, 4
+  size: 25, 29
+  orig: 27, 31
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu2_shen
+  rotate: true
+  xy: 2, 24
+  size: 100, 123
+  orig: 100, 123
+  offset: 0, 0
+  index: -1
+ydhd25_dxr_yu2_shoul
+  rotate: true
+  xy: 215, 7
+  size: 52, 53
+  orig: 54, 55
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu2_shour
+  rotate: true
+  xy: 401, 2
+  size: 27, 28
+  orig: 29, 30
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu2_weijin
+  rotate: true
+  xy: 279, 69
+  size: 40, 66
+  orig: 42, 68
+  offset: 1, 1
+  index: -1
+ydhd25_dxr_yu2_yz
+  rotate: false
+  xy: 487, 101
+  size: 8, 8
+  orig: 10, 10
+  offset: 1, 1
+  index: -1

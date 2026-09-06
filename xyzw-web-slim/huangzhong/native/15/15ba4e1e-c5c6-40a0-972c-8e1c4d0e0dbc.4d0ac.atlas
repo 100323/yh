@@ -1,0 +1,160 @@
+
+huangzhong.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_box2
+  rotate: false
+  xy: 186, 146
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 314, 342
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+hero_eye_cry
+  rotate: false
+  xy: 314, 418
+  size: 42, 51
+  orig: 42, 51
+  offset: 0, 0
+  index: -1
+huangzhong_arrowbag
+  rotate: true
+  xy: 402, 316
+  size: 72, 65
+  orig: 91, 65
+  offset: 19, 0
+  index: -1
+huangzhong_body
+  rotate: false
+  xy: 2, 2
+  size: 182, 168
+  orig: 182, 168
+  offset: 0, 0
+  index: -1
+huangzhong_eye
+  rotate: true
+  xy: 173, 221
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+huangzhong_eyebrow
+  rotate: true
+  xy: 476, 439
+  size: 39, 14
+  orig: 39, 14
+  offset: 0, 0
+  index: -1
+huangzhong_eyewhite
+  rotate: false
+  xy: 314, 390
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
+huangzhong_hair
+  rotate: true
+  xy: 301, 260
+  size: 68, 99
+  orig: 71, 99
+  offset: 0, 0
+  index: -1
+huangzhong_handl
+  rotate: true
+  xy: 433, 436
+  size: 42, 41
+  orig: 42, 42
+  offset: 0, 1
+  index: -1
+huangzhong_handr1
+  rotate: false
+  xy: 433, 394
+  size: 45, 40
+  orig: 46, 43
+  offset: 0, 3
+  index: -1
+huangzhong_handr2
+  rotate: false
+  xy: 362, 350
+  size: 34, 38
+  orig: 34, 41
+  offset: 0, 3
+  index: -1
+huangzhong_head
+  rotate: false
+  xy: 173, 230
+  size: 126, 98
+  orig: 145, 99
+  offset: 0, 1
+  index: -1
+huangzhong_legl
+  rotate: true
+  xy: 402, 291
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+huangzhong_legr
+  rotate: true
+  xy: 402, 266
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+huangzhong_mouth
+  rotate: false
+  xy: 270, 122
+  size: 81, 106
+  orig: 81, 106
+  offset: 0, 0
+  index: -1
+huangzhong_shoulderl
+  rotate: true
+  xy: 186, 54
+  size: 90, 80
+  orig: 90, 80
+  offset: 0, 0
+  index: -1
+huangzhong_skill1
+  rotate: true
+  xy: 301, 234
+  size: 24, 102
+  orig: 24, 102
+  offset: 0, 0
+  index: -1
+huangzhong_tail
+  rotate: true
+  xy: 373, 390
+  size: 88, 58
+  orig: 88, 58
+  offset: 0, 0
+  index: -1
+huangzhong_weapon1
+  rotate: true
+  xy: 173, 471
+  size: 7, 198
+  orig: 7, 198
+  offset: 0, 0
+  index: -1
+huangzhong_weapon2
+  rotate: false
+  xy: 2, 172
+  size: 169, 306
+  orig: 170, 308
+  offset: 1, 1
+  index: -1
+xysg_hero_effect_lightcircle
+  rotate: false
+  xy: 173, 330
+  size: 139, 139
+  orig: 139, 139
+  offset: 0, 0
+  index: -1

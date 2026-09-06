@@ -1,0 +1,34 @@
+
+sdsl_boss1_attack_hit.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_dilie
+  rotate: false
+  xy: 2, 4
+  size: 132, 56
+  orig: 132, 56
+  offset: 0, 0
+  index: -1
+hero_effect_halo1
+  rotate: false
+  xy: 136, 2
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+sdsl_boss1_effect1
+  rotate: true
+  xy: 196, 11
+  size: 49, 47
+  orig: 49, 47
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 245, 28
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
