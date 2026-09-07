@@ -385,7 +385,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, h, reactive } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, h, reactive } from "vue";
 import {
   useMessage,
   NDataTable,
@@ -421,35 +421,88 @@ const tokenStore = useTokenStore();
 const info = computed(() => tokenStore.gameData?.legionInfo || null);
 const club = computed(() => info.value?.info || null);
 const exportDom = ref(null);
+const payloadBattleStartTime = ref(0);
+
+const PAYLOAD_MATCH_DATES = [
+  "2025/11/02",
+  "2025/11/09",
+  "2025/11/16",
+  "2025/12/07",
+  "2025/12/14",
+  "2025/12/21",
+  "2026/01/04",
+  "2026/01/11",
+  "2026/01/18",
+  "2026/02/01",
+  "2026/02/08",
+  "2026/02/15",
+  "2026/03/08",
+  "2026/03/15",
+  "2026/03/22",
+  "2026/04/05",
+  "2026/04/12",
+  "2026/04/19",
+  "2026/05/03",
+  "2026/05/10",
+  "2026/05/17",
+  "2026/06/07",
+  "2026/06/14",
+  "2026/06/21",
+  "2026/07/05",
+  "2026/07/12",
+  "2026/07/19",
+  "2026/08/02",
+  "2026/08/09",
+  "2026/08/16",
+  "2026/09/06",
+  "2026/09/13",
+  "2026/09/20",
+  "2026/10/04",
+  "2026/10/11",
+  "2026/10/18",
+  "2026/11/01",
+  "2026/11/08",
+  "2026/11/15",
+  "2026/12/06",
+  "2026/12/13",
+  "2026/12/20",
+  "2027/01/03",
+  "2027/01/10",
+  "2027/01/17",
+];
+const PAYLOAD_MATCH_DATE_SET = new Set(PAYLOAD_MATCH_DATES);
+const PAYLOAD_PREPARE_START_HOUR = 18;
+const PAYLOAD_MATCH_START_HOUR = 20;
+const PAYLOAD_TOTAL_DURATION = 30 * 60 * 1000;
+const PAYLOAD_INFO_LEAD_TIME = 10 * 60 * 1000;
+const PAYLOAD_POLL_INTERVAL = 90 * 1000;
 
 const getLastSunday = () => {
   const today = new Date();
-  const dayOfWeek = today.getDay(); // 0=周日, 1=周一, ..., 6=周六
-  const hour = today.getHours();
+  const formatTargetDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}/${month}/${day}`;
+  };
 
+  // 比赛日当天固定查当日，18:00 后可从配对记录提前获取对手信息。
+  const todayDate = formatTargetDate(today);
+  if (PAYLOAD_MATCH_DATE_SET.has(todayDate)) {
+    return todayDate;
+  }
+
+  const dayOfWeek = today.getDay(); // 0=周日, 1=周一, ..., 6=周六
   let daysToSubtract = 0;
   if (dayOfWeek === 0) {
-    // 今天是周日
-    if (hour < 18) {
-      // 18:00 之前，返回上周日
-      daysToSubtract = 7;
-    } else {
-      // 18:00 之后，返回今天
-      daysToSubtract = 0;
-    }
+    daysToSubtract = 0;
   } else {
-    // 周一到周六，计算距离上周日的天数
     daysToSubtract = dayOfWeek;
   }
 
   const targetDate = new Date(today);
   targetDate.setDate(today.getDate() - daysToSubtract);
-
-  const targetYear = targetDate.getFullYear();
-  const targetMonth = String(targetDate.getMonth() + 1).padStart(2, "0");
-  const targetDay = String(targetDate.getDate()).padStart(2, "0");
-
-  return `${targetYear}/${targetMonth}/${targetDay}`;
+  return formatTargetDate(targetDate);
 };
 
 // Helper: Format Power
@@ -478,16 +531,51 @@ const formatDateToShort = (dateStr) => {
   return year.slice(2) + month + day
 }
 
-// Helper: Check if Sunday 18:00 - 20:30
-const isSundayBattleTime = () => {
-  const now = new Date();
-  const day = now.getDay();
-  const hour = now.getHours();
-  const minute = now.getMinutes();
+const isPayloadMatchDate = (dateStr) => PAYLOAD_MATCH_DATE_SET.has(dateStr);
+
+const getPayloadDayStartTime = (dateStr) => {
+  return new Date(`${dateStr} 00:00:00`).getTime();
+};
+
+const getPayloadFirstRoundStartTime = (dateStr) => {
+  if (payloadBattleStartTime.value) {
+    const cachedDate = new Date(payloadBattleStartTime.value);
+    const cachedDateStr = `${cachedDate.getFullYear()}/${String(cachedDate.getMonth() + 1).padStart(2, "0")}/${String(cachedDate.getDate()).padStart(2, "0")}`;
+    if (cachedDateStr === dateStr) {
+      return payloadBattleStartTime.value;
+    }
+  }
+
   return (
-    day === 0 &&
-    ((hour >= 18 && hour < 20) || (hour === 20 && minute <= 30))
+    getPayloadDayStartTime(dateStr) +
+    PAYLOAD_MATCH_START_HOUR * 60 * 60 * 1000
   );
+};
+
+const getPayloadMatchWindow = (dateStr) => {
+  const firstRoundStartTime = getPayloadFirstRoundStartTime(dateStr);
+  return {
+    firstRoundStartTime,
+    prepareStartTime:
+      getPayloadDayStartTime(dateStr) +
+      PAYLOAD_PREPARE_START_HOUR * 60 * 60 * 1000,
+    infoStartTime: firstRoundStartTime - PAYLOAD_INFO_LEAD_TIME,
+    endTime: firstRoundStartTime + PAYLOAD_TOTAL_DURATION,
+  };
+};
+
+const isPayloadPrepareWindow = (dateStr) => {
+  if (!isPayloadMatchDate(dateStr)) return false;
+  const now = Date.now();
+  const matchWindow = getPayloadMatchWindow(dateStr);
+  return now >= matchWindow.prepareStartTime && now < matchWindow.infoStartTime;
+};
+
+const isPayloadMatchActive = (dateStr) => {
+  if (!isPayloadMatchDate(dateStr)) return false;
+  const now = Date.now();
+  const matchWindow = getPayloadMatchWindow(dateStr);
+  return now >= matchWindow.infoStartTime && now <= matchWindow.endTime;
 };
 
 // Helper: Check if date string is today
@@ -505,6 +593,8 @@ const loading = ref(false);
 const battleInfo = ref(null); // Opponent Club Info
 const opponentMembers = ref([]);
 const queryDate = ref(getLastSunday());
+const payloadFetchedDate = ref("");
+const payloadPreparedDate = ref("");
 
 // 新增查询对手相关状态
 const queryLoading = ref(false);
@@ -1108,22 +1198,73 @@ const fetchBattleRecordsByDate = (val) => {
 }
 
 // Fetch Data
-const fetchBattleInfo = async () => {
+let payloadPollTimer = null;
+let lastPayloadPollAt = 0;
+
+const stopPayloadAutoRefresh = () => {
+  if (payloadPollTimer) {
+    clearInterval(payloadPollTimer);
+    payloadPollTimer = null;
+  }
+};
+
+const startPayloadAutoRefresh = () => {
+  stopPayloadAutoRefresh();
+  payloadPollTimer = setInterval(() => {
+    const tokenId = tokenStore.selectedToken?.id;
+    if (!tokenId) return;
+
+    const wsStatus = tokenStore.getWebSocketStatus(tokenId);
+    if (wsStatus !== "connected") return;
+
+    const nowDate = new Date();
+    const formattedDate = `${nowDate.getFullYear()}/${String(nowDate.getMonth() + 1).padStart(2, "0")}/${String(nowDate.getDate()).padStart(2, "0")}`;
+    if (!isPayloadMatchDate(queryDate.value) || queryDate.value !== formattedDate) {
+      return;
+    }
+
+    const matchWindow = getPayloadMatchWindow(queryDate.value);
+    if (Date.now() > matchWindow.endTime) {
+      stopPayloadAutoRefresh();
+      return;
+    }
+
+    if (Date.now() < matchWindow.prepareStartTime) return;
+
+    const isPrepared = payloadPreparedDate.value === queryDate.value;
+    const isFetched = payloadFetchedDate.value === queryDate.value;
+    if (
+      (isPrepared && Date.now() < matchWindow.infoStartTime) ||
+      isFetched ||
+      loading.value ||
+      queryLoading.value ||
+      Date.now() - lastPayloadPollAt < PAYLOAD_POLL_INTERVAL
+    ) {
+      return;
+    }
+
+    lastPayloadPollAt = Date.now();
+    fetchBattleInfo({ silent: true });
+  }, 1000);
+};
+
+const fetchBattleInfo = async (options = {}) => {
+  const silent = options?.silent === true;
   if (!tokenStore.selectedToken) {
-    message.warning("请先选择游戏角色");
+    if (!silent) message.warning("请先选择游戏角色");
     return;
   }
 
   const tokenId = tokenStore.selectedToken.id;
   const wsStatus = tokenStore.getWebSocketStatus(tokenId);
   if (wsStatus !== "connected") {
-    message.error("WebSocket未连接，无法查询");
+    if (!silent) message.error("WebSocket未连接，无法查询");
     return;
   }
 
   const ownClubId = club.value?.id;
   if (!ownClubId) {
-    message.warning("尚未获取到俱乐部信息，请稍后重试");
+    if (!silent) message.warning("尚未获取到俱乐部信息，请稍后重试");
     return;
   }
 
@@ -1136,41 +1277,47 @@ const fetchBattleInfo = async () => {
     let killRes;
     const shortDate = formatDateToShort(queryDate.value);
 
-    // Time-based Logic
-    // If selected date is today AND it is currently battle time, fetch live data
-    if (queryDate.value === getLastSunday() && isSundayBattleTime()) {
-      // Sunday 18:00-20:30: Use legion_getpayloadbf
+    // 比赛日 18:00 后查配对记录；开战前 10 分钟起尝试实时战场数据。
+    if (isPayloadMatchActive(queryDate.value)) {
       const res = await tokenStore.sendMessageWithPromise(
         tokenId,
         "legion_getpayloadbf",
         {},
         10000
       );
-      if (!res || !res.legions) {
-        message.error("未获取到战场信息");
+      if (res?.info?.startTime) {
+        payloadBattleStartTime.value = res.info.startTime * 1000;
+      }
+
+      const legions = Array.isArray(res?.legions) ? res.legions : [];
+      const ownLegionData = legions.find(
+        (legion) => String(legion?.id) === String(ownClubId)
+      );
+      const enemyLegionData = legions.find(
+        (legion) => String(legion?.id) !== String(ownClubId)
+      );
+
+      if (!enemyLegionData) {
+        if (!silent) {
+          const beforeDataWindow = Date.now() < getPayloadMatchWindow(queryDate.value).infoStartTime;
+          message.warning(
+            beforeDataWindow
+              ? "战场信息尚未开放，将在可获取时自动刷新"
+              : "暂未获取到战场信息，请稍后刷新"
+          );
+        }
         loading.value = false;
         return;
       }
+
       ownLegionId = ownClubId;
-      opponentLegionId = res.legions[0].id;
-      if (ownLegionId === opponentLegionId) {
-        opponentLegionId = res.legions[1].id;
-      }
+      opponentLegionId = enemyLegionData.id;
       if (!opponentLegionId) {
-        message.error("未获取到对战俱乐部ID");
+        if (!silent) message.error("未获取到对战俱乐部ID");
         return;
       }
     } else {
-      // Other times: Use legion_getpayloadrecord + legion_getpayloadkillrecord
-      // 1. Get Task (for own ID reference, though not strictly needed if we trust the map)
-      const taskRes = await tokenStore.sendMessageWithPromise(
-        tokenId,
-        "legion_getpayloadtask",
-        {},
-        10000
-      );
-
-      // 2. Get Record Map
+      // 其他时间用当天配对记录找对手，备战期可提前约 2 小时拿到名单。
       ownLegionId = ownClubId;
       const res = await tokenStore.sendMessageWithPromise(
         tokenId,
@@ -1179,7 +1326,7 @@ const fetchBattleInfo = async () => {
         10000
       );
       if (!res || !res.enemyLegionMap) {
-        message.warning("未获取到历史对战记录");
+        if (!silent) message.warning("未获取到历史对战记录");
         loading.value = false;
         return;
       }
@@ -1187,17 +1334,21 @@ const fetchBattleInfo = async () => {
       if (record) {
         opponentLegionId = record.id;
       } else {
-        message.warning(`未找到 ${queryDate.value} 的对战记录`);
+        if (!silent) {
+          message.warning(
+            isPayloadPrepareWindow(queryDate.value)
+              ? "配对记录尚未生成，将在可获取时自动刷新"
+              : `未找到 ${queryDate.value} 的对战记录`
+          );
+        }
         loading.value = false;
         return;
       }
       if (!opponentLegionId) {
-        message.error("未获取到对战俱乐部ID");
+        if (!silent) message.error("未获取到对战俱乐部ID");
         return;
       }
     }
-
-
     killRes = await tokenStore.sendMessageWithPromise(
       tokenId,
       "legion_getpayloadkillrecord",
@@ -1209,7 +1360,7 @@ const fetchBattleInfo = async () => {
       const records = killRes.recordsMap[opponentLegionId];
       memberIds = records.map(r => r.roleInfo.roleId);
     }
-
+    const killRecordsMap = killRes?.recordsMap || {};
 
     // Get Opponent Club Details (Name, Logo, etc.)
     const ownLegionIdInfo = await tokenStore.sendMessageWithPromise(
@@ -1241,7 +1392,7 @@ const fetchBattleInfo = async () => {
         logo: ownLegionIdInfo?.legionData?.logo || '',
         quenchNum: ownLegionIdInfo?.legionData?.quenchNum || 0,
         announcement: ownLegionIdInfo?.legionData?.announcement || '',
-        memberCount: killRes.recordsMap[ownLegionId]?.length || 0,
+        memberCount: killRecordsMap[ownLegionId]?.length || 0,
       },
       opponentClub: {
         id: opponentLegionId,
@@ -1252,7 +1403,7 @@ const fetchBattleInfo = async () => {
         logo: clubInfoRes?.legionData?.logo || '',
         quenchNum: clubInfoRes?.legionData?.quenchNum || 0,
         announcement: clubInfoRes?.legionData?.announcement || '',
-        memberCount: killRes.recordsMap[opponentLegionId]?.length || 0,
+        memberCount: killRecordsMap[opponentLegionId]?.length || 0,
       }
     }
 
@@ -1353,8 +1504,16 @@ const fetchBattleInfo = async () => {
       }
       return b.power - a.power;
     });
+
+    if (isPayloadMatchDate(queryDate.value)) {
+      if (Date.now() < getPayloadMatchWindow(queryDate.value).infoStartTime) {
+        payloadPreparedDate.value = queryDate.value;
+      } else {
+        payloadFetchedDate.value = queryDate.value;
+      }
+    }
   } catch (error) {
-    message.error(`获取数据失败: ${error.message}`);
+    if (!silent) message.error(`获取数据失败: ${error.message}`);
     console.error(error);
   } finally {
     loading.value = false;
@@ -1448,6 +1607,11 @@ const handleExportImage = async () => {
 onMounted(() => {
   queryDate.value = getLastSunday()
   fetchBattleInfo()
+  startPayloadAutoRefresh()
+});
+
+onBeforeUnmount(() => {
+  stopPayloadAutoRefresh();
 });
 </script>
 
