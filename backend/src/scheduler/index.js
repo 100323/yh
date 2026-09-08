@@ -179,6 +179,8 @@ let dailyCatchupJob = null;
 let saturdayBlackoutReplayJob = null;
 let dailyCatchupRunPromise = null;
 let dailyCatchupSettledState = null;
+let dailyCatchupTimeoutMs = 25 * 60 * 1000;
+let dailyCatchupTimeoutHandle = null;
 const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
 const DAILY_REWARD_RETRY_DELAY_MS = 30000;
 const DAILY_REWARD_MAX_RETRIES = 3;
@@ -1320,18 +1322,21 @@ async function runCatchupTask(task) {
 }
 
 export async function runDailyTaskCatchup(options = {}) {
+  const {
+    cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
+    now = new Date(),
+    overrideTasks = null,
+    overrideCollect = null,
+    overrideRunCatchup = null,
+  } = options;
+
   if (dailyCatchupRunPromise) {
     console.log('⏭️ 跳过重叠的每日任务补偿检查');
     return dailyCatchupRunPromise;
   }
 
   dailyCatchupRunPromise = (async () => {
-    const {
-      cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
-      now = new Date(),
-    } = options;
-
-    const tasks = getEnabledTasks();
+    const tasks = overrideTasks !== null ? overrideTasks : getEnabledTasks();
     if (isDailyCatchupSettled(tasks, now)) {
       return {
         total: 0,
@@ -1345,7 +1350,9 @@ export async function runDailyTaskCatchup(options = {}) {
       };
     }
 
-    const catchup = collectDailyCatchupTasks(tasks, cutoffHour, now);
+    const catchup = overrideCollect
+      ? overrideCollect()
+      : collectDailyCatchupTasks(tasks, cutoffHour, now);
 
     console.log('🛟 每日任务补偿检查完成', {
       cutoffHour,
@@ -1388,7 +1395,9 @@ export async function runDailyTaskCatchup(options = {}) {
 
     const groupedResults = await Promise.all(
       Array.from(groupedTasks.values()).map(async (tasksOfAccount) => {
-        const promises = tasksOfAccount.map((task) => runCatchupTask(task));
+        const promises = tasksOfAccount.map((task) =>
+          overrideRunCatchup ? overrideRunCatchup(task) : runCatchupTask(task)
+        );
         return await Promise.all(promises);
       })
     );
@@ -1417,9 +1426,15 @@ export async function runDailyTaskCatchup(options = {}) {
     };
   })();
 
+  dailyCatchupTimeoutHandle = setTimeout(() => {
+    console.warn('⏰ 每日任务补偿检查超时，释放锁让下一轮检查继续');
+    dailyCatchupRunPromise = null;
+  }, dailyCatchupTimeoutMs);
+
   try {
     return await dailyCatchupRunPromise;
   } finally {
+    clearTimeout(dailyCatchupTimeoutHandle);
     dailyCatchupRunPromise = null;
   }
 }
@@ -4109,6 +4124,12 @@ export const __testing = {
   executeWeirdTowerCore,
   collectDailyCatchupTasks,
   shouldSettleDailyCatchup,
+  get DAILY_CATCHUP_TIMEOUT_MS() {
+    return dailyCatchupTimeoutMs;
+  },
+  set DAILY_CATCHUP_TIMEOUT_MS(value) {
+    dailyCatchupTimeoutMs = value;
+  },
 };
 
 export default {

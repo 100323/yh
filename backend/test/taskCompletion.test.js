@@ -197,6 +197,43 @@ test('日周活跃奖励在 22:30 兜底补做', () => {
   ]);
 });
 
+test('补查执行卡住时下一轮检查不会被永久跳过', async () => {
+  const originalDelay = scheduler.__testing.DAILY_CATCHUP_TIMEOUT_MS;
+  try {
+    scheduler.__testing.DAILY_CATCHUP_TIMEOUT_MS = 50;
+    scheduler.runDailyTaskCatchup({
+      now: new Date('2026-09-06T12:00:00.000Z'),
+      overrideTasks: [],
+      overrideCollect: () => ({
+        tasks: [{ id: 1, account_id: 1, task_type: 'DAILY_TASK_CLAIM' }],
+        missingTasks: [],
+        failedTasks: [],
+        incompleteTasks: [],
+      }),
+      overrideRunCatchup: () => new Promise(() => {}),
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    const secondRun = await scheduler.runDailyTaskCatchup({
+      now: new Date('2026-09-06T12:01:00.000Z'),
+      overrideTasks: [],
+      overrideCollect: () => ({
+        tasks: [],
+        missingTasks: [],
+        failedTasks: [],
+        incompleteTasks: [],
+      }),
+      overrideRunCatchup: async () => [],
+    });
+
+    assert.equal(secondRun.skipped, undefined);
+    assert.equal(secondRun.total, 0);
+  } finally {
+    scheduler.__testing.DAILY_CATCHUP_TIMEOUT_MS = originalDelay;
+  }
+});
+
 test('weekly task is not a catchup candidate outside its configured weekday', () => {
   const task = {
     id: 104,
