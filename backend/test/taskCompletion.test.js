@@ -187,8 +187,8 @@ test('catchup 识别成功但完成度不足的点金并只补剩余次数', () 
   assert.equal(JSON.parse(catchup.tasks[0].config_json).buyNum, 1);
 });
 
-test('补做检查从 14:00 起每半小时触发', () => {
-  assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '0,30 14-22 * * *');
+test('补做检查从 14:00 到 23:30 每半小时触发', () => {
+  assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '0,30 14-23 * * *');
 });
 
 test('日周活跃奖励在 22:30 兜底补做', () => {
