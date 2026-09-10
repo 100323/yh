@@ -1212,6 +1212,18 @@ async function runTaskByType(client, taskType, config, context = {}) {
     case 'GENIE_SWEEP':
       return await executeGenieSweep(client, config);
 
+    case 'LEGION_SALT_SIGNUP':
+      return await executeLegionSignup(client);
+
+    case 'LEGION_PEACH_SIGNUP':
+      return await executeLegionPayloadSignup(client);
+
+    case 'GENIE_SWEEP_DEEP_SEA':
+      return await executeGenieDeepSeaSweep(client);
+
+    case 'CLUB_BONFIRE_SIGNUP':
+      return await executeClubSignup(client);
+
     case 'GACHA':
       return await executeGacha(client, config);
     
@@ -1242,6 +1254,21 @@ async function executeLegionSignIn(client) {
     }
     throw error;
   }
+}
+
+async function executeLegionSignup(client) {
+  const result = await client.legionSignup();
+  return { message: '盐场报名成功', data: result };
+}
+
+async function executeLegionPayloadSignup(client) {
+  const result = await client.legionPayloadSignup();
+  return { message: '蟠桃报名成功', data: result };
+}
+
+async function executeClubSignup(client) {
+  const result = await client.clubSignup();
+  return { message: '营地篝火报名成功', data: result };
 }
 
 async function executeArena(client, config) {
@@ -1929,6 +1956,18 @@ async function executeGenieSweep(client, config) {
   return {
     message: `灯神扫荡${data.completion.complete ? '完成' : '部分完成'} (扫荡:${sweptSummary}, 领取扫荡券:${result?.claimedTickets || 0}次)`,
     data,
+  };
+}
+
+async function executeGenieDeepSeaSweep(client) {
+  const result = await client.genieDeepSeaSweep({ genieId: 5, sweepCnt: 1 });
+  return {
+    message: '深海扫荡成功',
+    data: {
+      ...result,
+      genieId: 5,
+      sweepCnt: 1,
+    },
   };
 }
 

@@ -191,6 +191,9 @@ export function registerDefaultCommands(reg) {
     // 军团
     .register("legion_getinfo")
     .register("legion_signin")
+    .register("legion_signup")
+    .register("legion_payloadsignup")
+    .register("club_signup")
     .register("legion_getwarrank")
     .register("legionwar_getdetails")
     .register("legion_storebuygoods")

@@ -1847,6 +1847,8 @@ import {
   createTasksArena,
   createTasksStore,
   createTasksLegacy,
+  scheduledTaskBackendTypeMap,
+  scheduledTaskFrontendTypeMap,
 } from "@/utils/batch";
 import TaskConfigPanel from "@/components/Daily/TaskConfigPanel.vue";
 
@@ -2437,9 +2439,11 @@ const loadScheduledTasks = async () => {
         runTime: task.run_time,
         cronExpression: task.cron_expression,
         selectedTokens: task.selectedAccountIds || [],
-        selectedTasks: (task.selectedTaskTypes || []).filter(
-          (taskName) => !disabledScheduledTaskNames.has(taskName),
-        ),
+        selectedTasks: (task.selectedTaskTypes || [])
+          .map((taskName) => scheduledTaskFrontendTypeMap[taskName] || taskName)
+          .filter(
+            (taskName) => !disabledScheduledTaskNames.has(taskName),
+          ),
         enabled: task.enabled,
         lastRunAt: task.last_run_at,
         nextRunAt: task.next_run_at,
@@ -2576,7 +2580,9 @@ const saveTask = async () => {
     runTime: formattedRunTime,
     cronExpression: taskForm.runType === "cron" ? taskForm.cronExpression : "",
     selectedAccountIds: [...taskForm.selectedTokens],
-    selectedTaskTypes: [...taskForm.selectedTasks],
+    selectedTaskTypes: taskForm.selectedTasks.map(
+      (taskName) => scheduledTaskBackendTypeMap[taskName] || taskName,
+    ),
     enabled: taskForm.enabled,
   };
 
@@ -2821,7 +2827,9 @@ const importConfig = async ({ file }) => {
                 runTime: task.runTime,
                 cronExpression: task.cronExpression,
                 selectedAccountIds: task.selectedTokens || [],
-                selectedTaskTypes: task.selectedTasks || [],
+                selectedTaskTypes: (task.selectedTasks || []).map(
+                  (taskName) => scheduledTaskBackendTypeMap[taskName] || taskName,
+                ),
                 enabled: task.enabled !== false,
               };
               const result = await api.batchScheduler.create(taskData);

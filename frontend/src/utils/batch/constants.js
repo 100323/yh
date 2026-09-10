@@ -2,7 +2,7 @@
  * 批量日常任务常量配置
  */
 
-import { DREAM_OPEN_WEEKDAYS, goldItemsConfig } from "@/utils/dreamConstants";
+import { DREAM_OPEN_WEEKDAYS, goldItemsConfig } from "../dreamConstants.js";
 import { TOWER_MAX_FLOORS, TOWER_MIN_FLOORS } from "./towerConfig.js";
 
 export const FISH_TARGET = 320;
@@ -53,6 +53,19 @@ export const taskGroupDefinitions = [
   { name: "dungeon", label: "副本", icon: "🏰" },
   { name: "resource", label: "资源", icon: "💰" },
 ];
+
+export const scheduledTaskBackendTypeMap = {
+  legionSignup: "LEGION_SALT_SIGNUP",
+  legionPayloadSignup: "LEGION_PEACH_SIGNUP",
+  genieDeepSeaSweep: "GENIE_SWEEP_DEEP_SEA",
+  clubSignup: "CLUB_BONFIRE_SIGNUP",
+};
+
+export const scheduledTaskFrontendTypeMap = Object.fromEntries(
+  Object.entries(scheduledTaskBackendTypeMap).map(
+    ([frontendKey, backendType]) => [backendType, frontendKey],
+  ),
+);
 
 // 任务详细配置定义
 export const taskConfigDefinitions = {
@@ -340,6 +353,34 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [],
   },
+  legionSignup: {
+    label: "盐场报名",
+    group: "dungeon",
+    description: "每周六 16:00 自动报名盐场",
+    defaultEnabled: false,
+    configFields: [],
+  },
+  legionPayloadSignup: {
+    label: "蟠桃报名",
+    group: "dungeon",
+    description: "每周日 16:00 自动报名蟠桃",
+    defaultEnabled: false,
+    configFields: [],
+  },
+  genieDeepSeaSweep: {
+    label: "深海扫荡",
+    group: "resource",
+    description: "每周一 00:01 自动深海扫荡",
+    defaultEnabled: true,
+    configFields: [],
+  },
+  clubSignup: {
+    label: "营地篝火报名",
+    group: "dungeon",
+    description: "每周日 22:00 自动报名营地篝火",
+    defaultEnabled: false,
+    configFields: [],
+  },
   batchGacha: {
     label: "免费扭蛋抽奖",
     group: "resource",
@@ -401,6 +442,10 @@ const defaultTaskScheduleOverrides = {
   batchFish: { runTime: createDefaultRunTime(12, 1) },
   batchOpenBox: { runTime: createDefaultRunTime(12, 1) },
   batchGenieSweep: { runTime: createDefaultRunTime(0, 1) },
+  legionSignup: { scheduleType: "weekly", weekdays: [6], runTime: createDefaultRunTime(16, 0) },
+  legionPayloadSignup: { scheduleType: "weekly", weekdays: [0], runTime: createDefaultRunTime(16, 0) },
+  genieDeepSeaSweep: { scheduleType: "weekly", weekdays: [1], runTime: createDefaultRunTime(0, 1) },
+  clubSignup: { scheduleType: "weekly", weekdays: [0], runTime: createDefaultRunTime(22, 0) },
   batchGacha: { scheduleType: "weekly", weekdays: [2, 4, 6], runTime: createDefaultRunTime(0, 1) },
   freeJadePack: { scheduleType: "weekly", weekdays: [1], runTime: createDefaultRunTime(12, 5) },
 };

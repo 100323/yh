@@ -61,6 +61,10 @@ export const TASK_TYPES = {
   BOX_OPEN: { name: '批量开箱', cron: '7 12 * * *', group: 'resource' },
   LEGION_STORE_FRAGMENT: { name: '购买四圣碎片', cron: '0 8 * * 1', group: 'resource' },
   GENIE_SWEEP: { name: '灯神扫荡', cron: '1 0 * * *', group: 'resource' },
+  LEGION_SALT_SIGNUP: { name: '盐场报名', cron: '0 16 * * 6', group: 'dungeon' },
+  LEGION_PEACH_SIGNUP: { name: '蟠桃报名', cron: '0 16 * * 0', group: 'dungeon' },
+  GENIE_SWEEP_DEEP_SEA: { name: '深海扫荡', cron: '1 0 * * 1', group: 'resource' },
+  CLUB_BONFIRE_SIGNUP: { name: '营地篝火报名', cron: '0 22 * * 0', group: 'dungeon' },
   GACHA: { name: '免费扭蛋抽奖', cron: '1 0 * * 2,4,6', group: 'resource' },
 };
 
@@ -155,8 +159,27 @@ export const DEFAULT_TASK_CONFIG_SEEDS = {
   },
   DREAM_PURCHASE: { enabled: true, config: { purchaseList: DREAM_GOLD_PURCHASE_LIST } },
   GENIE_SWEEP: { enabled: true, config: {} },
+  LEGION_SALT_SIGNUP: { enabled: false, config: {} },
+  LEGION_PEACH_SIGNUP: { enabled: false, config: {} },
+  GENIE_SWEEP_DEEP_SEA: { enabled: true, config: {} },
+  CLUB_BONFIRE_SIGNUP: { enabled: false, config: {} },
   GACHA: { enabled: true, config: {} },
 };
+
+const LOCKED_CRON_TASK_TYPES = {
+  LEGION_SALT_SIGNUP: '0 16 * * 6',
+  LEGION_PEACH_SIGNUP: '0 16 * * 0',
+  GENIE_SWEEP_DEEP_SEA: '1 0 * * 1',
+  CLUB_BONFIRE_SIGNUP: '0 22 * * 0',
+};
+
+export function normalizeLockedTaskCronExpression(taskType, cronExpression) {
+  const lockedCron = LOCKED_CRON_TASK_TYPES[taskType];
+  if (lockedCron) {
+    return lockedCron;
+  }
+  return String(cronExpression || '').trim();
+}
 
 function getTaskDefaultCronVersion(taskType) {
   return TASK_TYPES[taskType] ? CURRENT_DEFAULT_CRON_VERSION : 1;
@@ -887,9 +910,12 @@ router.put('/account/:accountId/batch', async (req, res) => {
           throw typeError;
         }
 
-        const cronExpression = normalizeTowerCronExpression(
+        const cronExpression = normalizeLockedTaskCronExpression(
           taskType,
-          taskItem?.cronExpression || TASK_TYPES[taskType].cron,
+          normalizeTowerCronExpression(
+            taskType,
+            taskItem?.cronExpression || TASK_TYPES[taskType].cron,
+          ),
         ) || TASK_TYPES[taskType].cron;
         const normalizedConfig = normalizeTaskConfigPayload(taskType, taskItem?.config);
         const configJson = JSON.stringify(normalizedConfig || {});
@@ -1084,9 +1110,12 @@ router.post('/account/:accountId', async (req, res) => {
       [accountId, taskType]
     );
 
-    const cron = normalizeTowerCronExpression(
+    const cron = normalizeLockedTaskCronExpression(
       taskType,
-      cronExpression || TASK_TYPES[taskType].cron,
+      normalizeTowerCronExpression(
+        taskType,
+        cronExpression || TASK_TYPES[taskType].cron,
+      ),
     ) || TASK_TYPES[taskType].cron;
     const normalizedConfig = normalizeTaskConfigPayload(taskType, config);
     const configJson = normalizedConfig ? JSON.stringify(normalizedConfig) : null;
@@ -1232,7 +1261,10 @@ router.put('/:id', async (req, res) => {
       updateValues.push(enabled ? 1 : 0);
     }
     if (cronExpression !== undefined) {
-      const normalizedCron = normalizeTowerCronExpression(taskConfig.task_type, cronExpression);
+      const normalizedCron = normalizeLockedTaskCronExpression(
+        taskConfig.task_type,
+        normalizeTowerCronExpression(taskConfig.task_type, cronExpression),
+      );
       updateFields.push('cron_expression = ?');
       updateValues.push(normalizedCron);
       updateFields.push('cron_is_customized = ?');

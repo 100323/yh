@@ -277,6 +277,10 @@ const taskTypeNames = {
   BOX_OPEN: '批量开箱',
   LEGION_STORE_FRAGMENT: '购买四圣碎片',
   GENIE_SWEEP: '灯神扫荡',
+  LEGION_SALT_SIGNUP: '盐场报名',
+  LEGION_PEACH_SIGNUP: '蟠桃报名',
+  GENIE_SWEEP_DEEP_SEA: '深海扫荡',
+  CLUB_BONFIRE_SIGNUP: '营地篝火报名',
   GACHA: '免费扭蛋抽奖'
 };
 

@@ -1133,6 +1133,18 @@ export class GameClient {
     return this.sendWithPromise('legion_signin', {});
   }
 
+  async legionSignup() {
+    return this.sendWithPromise('legion_signup', {});
+  }
+
+  async legionPayloadSignup() {
+    return this.sendWithPromise('legion_payloadsignup', {});
+  }
+
+  async clubSignup() {
+    return this.sendWithPromise('club_signup', {});
+  }
+
   async claimDailyReward(rewardId = 0) {
     return this.sendWithPromise('task_claimdailyreward', { rewardId });
   }
@@ -1989,6 +2001,18 @@ export class GameClient {
       requestCount: results.length,
       results
     };
+  }
+
+  async genieDeepSeaSweep() {
+    const params = {
+      genieId: 5,
+      sweepCnt: 1,
+    };
+    const result = await runTaskTypeCommandThrottled('GENIE_SWEEP_DEEP_SEA', {
+      command: 'genie_sweep',
+      genieId: params.genieId,
+    }, () => this.sendWithPromise('genie_sweep', params));
+    return { ...result, genieId: params.genieId, sweepCnt: params.sweepCnt };
   }
 
   async genieDailySweep(options = {}) {

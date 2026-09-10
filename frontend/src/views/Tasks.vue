@@ -131,7 +131,7 @@
                         :options="getTaskScheduleOptions(task.value)"
                         size="small"
                         class="task-schedule-mode"
-                        :disabled="taskConfigOperating"
+                        :disabled="taskConfigOperating || isLockedScheduleTask(task.value)"
                         @update:value="(val) => setTaskScheduleType(task.value, val)"
                       />
                       <n-select
@@ -141,7 +141,7 @@
                         multiple
                         size="small"
                         class="task-weekday-select"
-                        :disabled="taskConfigOperating"
+                        :disabled="taskConfigOperating || isLockedScheduleTask(task.value)"
                         placeholder="选择星期"
                         @update:value="(val) => setTaskWeekdays(task.value, val)"
                       />
@@ -150,8 +150,8 @@
                         :value="getTaskRunTime(task.value)"
                         format="HH:mm"
                         size="small"
-                        :clearable="!isTowerTask(task.value)"
-                        :disabled="taskConfigOperating || isTowerTask(task.value)"
+                        :clearable="!isLockedScheduleTask(task.value)"
+                        :disabled="taskConfigOperating || isLockedScheduleTask(task.value)"
                         placeholder="默认时间"
                         @update:value="(val) => setTaskRunTime(task.value, val)"
                       />
@@ -162,7 +162,7 @@
                         :max="23"
                         size="small"
                         class="task-interval-input"
-                        :disabled="taskConfigOperating"
+                        :disabled="taskConfigOperating || isLockedScheduleTask(task.value)"
                         placeholder="每N小时"
                         @update:value="(val) => setTaskIntervalHours(task.value, val)"
                       />
@@ -226,6 +226,22 @@ const legacyImporting = ref(false);
 const dismissedLegacyAccounts = ref({});
 const TOWER_TASK_KEYS = new Set(['climbTower', 'climbWeirdTower']);
 const TOWER_DEFAULT_RUN_TIME = new Date(2000, 0, 1, 9, 20, 0, 0).getTime();
+const LOCKED_TASK_SCHEDULES = {
+  climbTower: { scheduleType: 'daily', runTime: TOWER_DEFAULT_RUN_TIME, weekdays: [] },
+  climbWeirdTower: { scheduleType: 'daily', runTime: TOWER_DEFAULT_RUN_TIME, weekdays: [] },
+  legionSignup: { scheduleType: 'weekly', weekdays: [6], runTime: new Date(2000, 0, 1, 16, 0, 0, 0).getTime() },
+  legionPayloadSignup: { scheduleType: 'weekly', weekdays: [0], runTime: new Date(2000, 0, 1, 16, 0, 0, 0).getTime() },
+  genieDeepSeaSweep: { scheduleType: 'weekly', weekdays: [1], runTime: new Date(2000, 0, 1, 0, 1, 0, 0).getTime() },
+  clubSignup: { scheduleType: 'weekly', weekdays: [0], runTime: new Date(2000, 0, 1, 22, 0, 0, 0).getTime() },
+};
+const LOCKED_TASK_CRON_EXPRESSIONS = {
+  climbTower: '20 9 * * *',
+  climbWeirdTower: '20 9 * * *',
+  legionSignup: '0 16 * * 6',
+  legionPayloadSignup: '0 16 * * 0',
+  genieDeepSeaSweep: '1 0 * * 1',
+  clubSignup: '0 22 * * 0',
+};
 
 const scheduleModeOptions = [
   { label: '每日固定时间', value: 'daily' },
@@ -277,6 +293,10 @@ const frontendToBackendTaskMap = {
   batchWelfareClaim: 'WELFARE_CLAIM',
   batchDailyTaskClaim: 'DAILY_TASK_CLAIM',
   pkroomAppoint: 'PKROOM_APPOINT',
+  legionSignup: 'LEGION_SALT_SIGNUP',
+  legionPayloadSignup: 'LEGION_PEACH_SIGNUP',
+  genieDeepSeaSweep: 'GENIE_SWEEP_DEEP_SEA',
+  clubSignup: 'CLUB_BONFIRE_SIGNUP',
   freeJadePack: 'FREE_JADE_PACK',
 };
 
@@ -304,14 +324,14 @@ const normalizeTaskConfigs = (taskConfigs = {}) => {
     };
   });
 
-  TOWER_TASK_KEYS.forEach((taskKey) => {
+  Object.entries(LOCKED_TASK_SCHEDULES).forEach(([taskKey, schedule]) => {
     if (!normalized[taskKey]) return;
     normalized[taskKey] = {
       ...normalized[taskKey],
-      scheduleType: 'daily',
-      runTime: TOWER_DEFAULT_RUN_TIME,
+      scheduleType: schedule.scheduleType,
+      runTime: schedule.runTime,
       intervalHours: 4,
-      weekdays: [],
+      weekdays: [...schedule.weekdays],
     };
   });
 
@@ -424,8 +444,8 @@ const parseCronWeekdays = (dayField = '') => {
 };
 
 const buildCronExpressionForConfig = (taskKey, taskConfig, fallbackDailyRunTime = null) => {
-  if (TOWER_TASK_KEYS.has(taskKey)) {
-    return '20 9 * * *';
+  if (isLockedScheduleTask(taskKey)) {
+    return LOCKED_TASK_CRON_EXPRESSIONS[taskKey];
   }
 
   const scheduleType = taskConfig?.scheduleType || 'daily';
@@ -516,8 +536,8 @@ const setTaskEnabled = (taskValue, enabled) => {
 };
 
 const getTaskRunTime = (taskValue) => {
-  if (TOWER_TASK_KEYS.has(taskValue)) {
-    return TOWER_DEFAULT_RUN_TIME;
+  if (isLockedScheduleTask(taskValue)) {
+    return LOCKED_TASK_SCHEDULES[taskValue].runTime;
   }
   const config = currentAccountConfig.value.taskConfigs[taskValue];
   return config?.runTime || null;
@@ -527,20 +547,23 @@ const setTaskRunTime = (taskValue, runTime) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
     currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
-  currentAccountConfig.value.taskConfigs[taskValue].runTime = TOWER_TASK_KEYS.has(taskValue)
-    ? TOWER_DEFAULT_RUN_TIME
+  currentAccountConfig.value.taskConfigs[taskValue].runTime = isLockedScheduleTask(taskValue)
+    ? LOCKED_TASK_SCHEDULES[taskValue].runTime
     : runTime;
 };
 
 const isTowerTask = (taskValue) => TOWER_TASK_KEYS.has(taskValue);
+const isLockedScheduleTask = (taskValue) => Object.prototype.hasOwnProperty.call(LOCKED_TASK_SCHEDULES, taskValue);
 
 const getTaskScheduleOptions = (taskValue) => (
-  isTowerTask(taskValue) ? scheduleModeOptions.filter(({ value }) => value === 'daily') : scheduleModeOptions
+  isLockedScheduleTask(taskValue)
+    ? scheduleModeOptions.filter(({ value }) => value === LOCKED_TASK_SCHEDULES[taskValue].scheduleType)
+    : scheduleModeOptions
 );
 
 const getTaskScheduleType = (taskValue) => {
-  if (isTowerTask(taskValue)) {
-    return 'daily';
+  if (isLockedScheduleTask(taskValue)) {
+    return LOCKED_TASK_SCHEDULES[taskValue].scheduleType;
   }
   const config = currentAccountConfig.value.taskConfigs[taskValue];
   return config?.scheduleType || 'daily';
@@ -550,10 +573,12 @@ const setTaskScheduleType = (taskValue, scheduleType) => {
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
     currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
-  if (isTowerTask(taskValue)) {
-    currentAccountConfig.value.taskConfigs[taskValue].scheduleType = 'daily';
-    currentAccountConfig.value.taskConfigs[taskValue].runTime = TOWER_DEFAULT_RUN_TIME;
-    currentAccountConfig.value.taskConfigs[taskValue].weekdays = [];
+  if (isLockedScheduleTask(taskValue)) {
+    const schedule = LOCKED_TASK_SCHEDULES[taskValue];
+    currentAccountConfig.value.taskConfigs[taskValue].scheduleType = schedule.scheduleType;
+    currentAccountConfig.value.taskConfigs[taskValue].runTime = schedule.runTime;
+    currentAccountConfig.value.taskConfigs[taskValue].weekdays = [...schedule.weekdays];
+    currentAccountConfig.value.taskConfigs[taskValue].intervalHours = 4;
     return;
   }
 
@@ -573,11 +598,17 @@ const setTaskScheduleType = (taskValue, scheduleType) => {
 };
 
 const getTaskWeekdays = (taskValue) => {
+  if (isLockedScheduleTask(taskValue)) {
+    return normalizeWeekdays(LOCKED_TASK_SCHEDULES[taskValue].weekdays);
+  }
   const config = currentAccountConfig.value.taskConfigs[taskValue];
   return normalizeWeekdays(config?.weekdays || []);
 };
 
 const setTaskWeekdays = (taskValue, weekdays) => {
+  if (isLockedScheduleTask(taskValue)) {
+    return;
+  }
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
     currentAccountConfig.value.taskConfigs[taskValue] = createEmptyTaskScheduleConfig();
   }
@@ -593,7 +624,7 @@ const getTaskIntervalHours = (taskValue) => {
 };
 
 const setTaskIntervalHours = (taskValue, intervalHours) => {
-  if (isTowerTask(taskValue)) {
+  if (isLockedScheduleTask(taskValue)) {
     return;
   }
   if (!currentAccountConfig.value.taskConfigs[taskValue]) {
@@ -620,12 +651,13 @@ const getGroupLabel = (groupName) => {
 };
 
 const parseCronToSchedule = (cronExpression, taskKey = '') => {
-  if (TOWER_TASK_KEYS.has(taskKey)) {
+  if (isLockedScheduleTask(taskKey)) {
+    const schedule = LOCKED_TASK_SCHEDULES[taskKey];
     return {
-      scheduleType: 'daily',
-      runTime: TOWER_DEFAULT_RUN_TIME,
+      scheduleType: schedule.scheduleType,
+      runTime: schedule.runTime,
       intervalHours: 4,
-      weekdays: [],
+      weekdays: [...schedule.weekdays],
     };
   }
 
@@ -995,9 +1027,6 @@ const applyDailyTime = () => {
     }
 
     if (isTowerTask(key)) {
-      taskConfig.scheduleType = 'daily';
-      taskConfig.runTime = TOWER_DEFAULT_RUN_TIME;
-      taskConfig.weekdays = [];
       return;
     }
 

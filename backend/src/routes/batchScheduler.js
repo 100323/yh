@@ -4,6 +4,7 @@ import { authMiddleware } from '../middleware/auth.js';
 import { scheduleBatchTask, unscheduleBatchTask, executeBatchTask } from '../batchScheduler/index.js';
 import { containsDisabledTaskType, filterDisabledTaskTypes } from '../utils/disabledTaskTypes.js';
 import { TOWER_DAILY_CRON } from '../utils/towerTaskConfig.js';
+import { normalizeLockedTaskCronExpression } from './tasks.js';
 
 const router = Router();
 
@@ -13,6 +14,30 @@ function containsTowerTask(taskTypes = []) {
   return Array.isArray(taskTypes) && taskTypes.some((taskType) =>
     taskType === 'TOWER' || taskType === 'WEIRD_TOWER'
   );
+}
+
+const LOCKED_BATCH_TASK_TYPES = new Set([
+  'LEGION_SALT_SIGNUP',
+  'LEGION_PEACH_SIGNUP',
+  'GENIE_SWEEP_DEEP_SEA',
+  'CLUB_BONFIRE_SIGNUP',
+]);
+
+export function normalizeLockedBatchTaskSchedule(taskTypes = []) {
+  if (!Array.isArray(taskTypes)) {
+    return null;
+  }
+
+  const lockedTaskTypes = taskTypes.filter((taskType) => LOCKED_BATCH_TASK_TYPES.has(taskType));
+  if (taskTypes.length !== 1 || lockedTaskTypes.length !== 1) {
+    return null;
+  }
+
+  return {
+    runType: 'cron',
+    runTime: null,
+    cronExpression: normalizeLockedTaskCronExpression(taskTypes[0]),
+  };
 }
 
 export const BATCH_TASK_TYPES = {
@@ -44,6 +69,10 @@ export const BATCH_TASK_TYPES = {
   PEACH_TASK: { name: '蟠桃园任务', group: 'dungeon' },
   BOX_OPEN: { name: '批量开箱', group: 'resource' },
   GENIE_SWEEP: { name: '灯神扫荡', group: 'resource' },
+  LEGION_SALT_SIGNUP: { name: '盐场报名', group: 'dungeon' },
+  LEGION_PEACH_SIGNUP: { name: '蟠桃报名', group: 'dungeon' },
+  GENIE_SWEEP_DEEP_SEA: { name: '深海扫荡', group: 'resource' },
+  CLUB_BONFIRE_SIGNUP: { name: '营地篝火报名', group: 'dungeon' },
   GACHA: { name: '免费扭蛋抽奖', group: 'resource' },
 };
 
@@ -151,10 +180,24 @@ router.post('/', (req, res) => {
       });
     }
 
+    const lockedBatchSchedule = normalizeLockedBatchTaskSchedule(selectedTaskTypes);
+    const containsLockedBatchTask = selectedTaskTypes.some((taskType) =>
+      LOCKED_BATCH_TASK_TYPES.has(taskType)
+    );
+    if (lockedBatchSchedule === null && containsLockedBatchTask) {
+      return res.status(400).json({
+        success: false,
+        error: '固定时间任务必须单独创建或更新'
+      });
+    }
+
     const hasTowerTask = containsTowerTask(selectedTaskTypes);
-    const normalizedRunType = hasTowerTask ? 'daily' : (runType || 'daily');
-    const normalizedRunTime = hasTowerTask ? '09:20' : (runTime || null);
-    const normalizedCronExpression = hasTowerTask ? null : (cronExpression || null);
+    const normalizedRunType = lockedBatchSchedule?.runType
+      ?? (hasTowerTask ? 'daily' : (runType || 'daily'));
+    const normalizedRunTime = lockedBatchSchedule?.runTime
+      ?? (hasTowerTask ? '09:20' : (runTime || null));
+    const normalizedCronExpression = lockedBatchSchedule?.cronExpression
+      ?? (hasTowerTask ? null : (cronExpression || null));
 
     if (normalizedRunType === 'daily' && !normalizedRunTime) {
       return res.status(400).json({
@@ -232,9 +275,28 @@ router.put('/:id', (req, res) => {
 
     const updateFields = [];
     const updateValues = [];
-    const hasTowerTask = containsTowerTask(effectiveTaskTypes);
+    const lockedBatchSchedule = normalizeLockedBatchTaskSchedule(effectiveTaskTypes);
+    const containsLockedBatchTask = effectiveTaskTypes.some((taskType) =>
+      LOCKED_BATCH_TASK_TYPES.has(taskType)
+    );
+    if (lockedBatchSchedule === null && containsLockedBatchTask) {
+      return res.status(400).json({
+        success: false,
+        error: '固定时间任务必须单独创建或更新'
+      });
+    }
 
-    if (hasTowerTask) {
+    const hasTowerTask = containsTowerTask(effectiveTaskTypes);
+    const forceSchedule = hasTowerTask || lockedBatchSchedule !== null;
+
+    if (lockedBatchSchedule) {
+      updateFields.push('run_type = ?', 'run_time = ?', 'cron_expression = ?');
+      updateValues.push(
+        lockedBatchSchedule.runType,
+        lockedBatchSchedule.runTime,
+        lockedBatchSchedule.cronExpression,
+      );
+    } else if (hasTowerTask) {
       updateFields.push('run_type = ?', 'run_time = ?', 'cron_expression = ?');
       updateValues.push('daily', '09:20', null);
     }
@@ -243,15 +305,15 @@ router.put('/:id', (req, res) => {
       updateFields.push('name = ?');
       updateValues.push(name);
     }
-    if (!hasTowerTask && runType !== undefined) {
+    if (!forceSchedule && runType !== undefined) {
       updateFields.push('run_type = ?');
       updateValues.push(runType);
     }
-    if (!hasTowerTask && runTime !== undefined) {
+    if (!forceSchedule && runTime !== undefined) {
       updateFields.push('run_time = ?');
       updateValues.push(runTime);
     }
-    if (!hasTowerTask && cronExpression !== undefined) {
+    if (!forceSchedule && cronExpression !== undefined) {
       updateFields.push('cron_expression = ?');
       updateValues.push(cronExpression);
     }

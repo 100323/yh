@@ -485,6 +485,45 @@ export class GameCommands {
   }
 
   /**
+   * 盐场报名
+   */
+  legion_signup(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({}),
+      cmd: "legion_signup",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 蟠桃报名
+   */
+  legion_payloadsignup(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({}),
+      cmd: "legion_payloadsignup",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
+   * 营地篝火报名
+   */
+  club_signup(ack = 0, seq = 0, params = {}) {
+    return {
+      ack,
+      body: this.g_utils.bon.encode({}),
+      cmd: "club_signup",
+      seq,
+      time: Date.now(),
+    };
+  }
+
+  /**
    * 开始军团BOSS战
    */
   fight_startlegionboss(ack = 0, seq = 0, params = {}) {
