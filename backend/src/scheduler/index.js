@@ -186,6 +186,7 @@ const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
 const DAILY_REWARD_RETRY_DELAY_MS = 30000;
 const DAILY_REWARD_MAX_RETRIES = 3;
 const ACCOUNT_BATCH_MIN_DELAY_MS = 1500;
+const TASK_LOG_SNAPSHOT_PAIR_BATCH_SIZE = 100;
 const DAILY_POINT_TASK_ID_MAP = {
   SIGN_IN: [1],
   HANGUP_ADD_TIME: [2],
@@ -497,29 +498,36 @@ function getTodayTaskLogSnapshots(tasks = []) {
     return new Map();
   }
 
-  const whereClauses = [];
-  const params = [];
-  uniquePairs.forEach(({ accountId, taskType }) => {
-    whereClauses.push('(account_id = ? AND task_type = ?)');
-    params.push(accountId, taskType);
-  });
-
-  const rows = all(
-    `SELECT account_id, task_type, status, message, details, created_at,
-            datetime(created_at, '+8 hours') AS local_created_at
-       FROM task_logs
-      WHERE datetime(created_at, '+8 hours') >= date('now', '+8 hours')
-        AND datetime(created_at, '+8 hours') < datetime(date('now', '+8 hours'), '+1 day')
-        AND (${whereClauses.join(' OR ')})
-      ORDER BY created_at DESC, id DESC`,
-    params,
-  );
-
   const snapshotMap = new Map();
-  for (const row of rows) {
-    const key = `${row.account_id}_${row.task_type}`;
-    if (!snapshotMap.has(key)) {
-      snapshotMap.set(key, row);
+  const pairs = Array.from(uniquePairs.values());
+
+  // Keep each query's boolean expression shallow enough for SQLite when many
+  // accounts and task types are enabled at the same time.
+  for (let offset = 0; offset < pairs.length; offset += TASK_LOG_SNAPSHOT_PAIR_BATCH_SIZE) {
+    const pairBatch = pairs.slice(offset, offset + TASK_LOG_SNAPSHOT_PAIR_BATCH_SIZE);
+    const whereClauses = [];
+    const params = [];
+    pairBatch.forEach(({ accountId, taskType }) => {
+      whereClauses.push('(account_id = ? AND task_type = ?)');
+      params.push(accountId, taskType);
+    });
+
+    const rows = all(
+      `SELECT account_id, task_type, status, message, details, created_at,
+              datetime(created_at, '+8 hours') AS local_created_at
+         FROM task_logs
+        WHERE datetime(created_at, '+8 hours') >= date('now', '+8 hours')
+          AND datetime(created_at, '+8 hours') < datetime(date('now', '+8 hours'), '+1 day')
+          AND (${whereClauses.join(' OR ')})
+        ORDER BY created_at DESC, id DESC`,
+      params,
+    );
+
+    for (const row of rows) {
+      const key = `${row.account_id}_${row.task_type}`;
+      if (!snapshotMap.has(key)) {
+        snapshotMap.set(key, row);
+      }
     }
   }
   return snapshotMap;
