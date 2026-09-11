@@ -179,6 +179,7 @@ let dailyCatchupJob = null;
 let saturdayBlackoutReplayJob = null;
 let dailyCatchupRunPromise = null;
 let dailyCatchupSettledState = null;
+let dailyCatchupLastSlot = null;
 let dailyCatchupTimeoutMs = 25 * 60 * 1000;
 let dailyCatchupTimeoutHandle = null;
 const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
@@ -214,7 +215,9 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
   DAILY_TASK_CLAIM: ['30 22 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
-const DAILY_CATCHUP_CRON = '0,30 14-23 * * *';
+// Use a minute heartbeat and deduplicate by Shanghai-local half-hour slot so a
+// busy event loop cannot silently lose the exact second at :00 or :30.
+const DAILY_CATCHUP_CRON = '* * * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -320,6 +323,35 @@ function getTaskCronSignature(task) {
 function getShanghaiBusinessDate(now = new Date()) {
   const parts = getShanghaiDateParts(now);
   return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)}`;
+}
+
+function getDailyCatchupSlotKey(now = new Date()) {
+  const parts = getShanghaiDateParts(now);
+  if (parts.hour < 14 || parts.hour > 23) {
+    return null;
+  }
+
+  const slotMinute = parts.minute < 30 ? '00' : '30';
+  return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(parts.hour)}:${slotMinute}`;
+}
+
+function runDailyCatchupOnHeartbeat() {
+  const now = new Date();
+  const slotKey = getDailyCatchupSlotKey(now);
+  if (!slotKey || dailyCatchupLastSlot === slotKey) {
+    return;
+  }
+
+  dailyCatchupLastSlot = slotKey;
+  void runDailyTaskCatchup({
+    cutoffHour: DAILY_CATCHUP_CUTOFF_HOUR,
+    now,
+  }).catch((error) => {
+    if (dailyCatchupLastSlot === slotKey) {
+      dailyCatchupLastSlot = null;
+    }
+    console.error('❌ 每日任务补偿检查失败:', error);
+  });
 }
 
 function getDailyCatchupTaskSignature(tasks = []) {
@@ -1736,12 +1768,9 @@ export async function initScheduler() {
     dailyCatchupJob.stop();
     dailyCatchupJob = null;
   }
-  dailyCatchupJob = cron.schedule(DAILY_CATCHUP_CRON, async () => {
-    await runDailyTaskCatchup({
-      cutoffHour: DAILY_CATCHUP_CUTOFF_HOUR,
-    });
-  }, {
+  dailyCatchupJob = cron.schedule(DAILY_CATCHUP_CRON, runDailyCatchupOnHeartbeat, {
     timezone: config.cron.timezone,
+    recoverMissedExecutions: true,
   });
 
   if (saturdayBlackoutReplayJob) {
@@ -4103,6 +4132,11 @@ async function executeGenieDeepSeaSweep(client) {
 export function stopScheduler() {
   dailyCatchupRunPromise = null;
   dailyCatchupSettledState = null;
+  dailyCatchupLastSlot = null;
+  if (dailyCatchupTimeoutHandle) {
+    clearTimeout(dailyCatchupTimeoutHandle);
+    dailyCatchupTimeoutHandle = null;
+  }
 
   if (schedulerRefreshJob) {
     schedulerRefreshJob.stop();
@@ -4157,6 +4191,7 @@ export function getScheduledJobs() {
 
 export const __testing = {
   DAILY_CATCHUP_CRON,
+  getDailyCatchupSlotKey,
   TASK_EXTRA_CRON_EXPRESSIONS,
   runTaskByType,
   executeTowerCore,
