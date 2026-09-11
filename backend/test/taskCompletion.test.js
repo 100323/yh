@@ -257,6 +257,17 @@ test('日周活跃奖励在 22:30 兜底补做', () => {
   ]);
 });
 
+test('catchup heartbeat does not consume a slot while the previous run is active', () => {
+  assert.equal(
+    scheduler.__testing.shouldRunDailyCatchupSlot('2026-09-11 14:30', '2026-09-11 14:00', true),
+    false,
+  );
+  assert.equal(
+    scheduler.__testing.shouldRunDailyCatchupSlot('2026-09-11 14:30', '2026-09-11 14:00', false),
+    true,
+  );
+});
+
 test('补查执行卡住时下一轮检查不会被永久跳过', async () => {
   const originalDelay = scheduler.__testing.DAILY_CATCHUP_TIMEOUT_MS;
   try {

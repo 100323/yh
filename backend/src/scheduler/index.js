@@ -336,10 +336,14 @@ function getDailyCatchupSlotKey(now = new Date()) {
   return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(parts.hour)}:${slotMinute}`;
 }
 
+function shouldRunDailyCatchupSlot(slotKey, lastSlotKey, isRunning = false) {
+  return Boolean(slotKey) && slotKey !== lastSlotKey && !isRunning;
+}
+
 function runDailyCatchupOnHeartbeat() {
   const now = new Date();
   const slotKey = getDailyCatchupSlotKey(now);
-  if (!slotKey || dailyCatchupLastSlot === slotKey) {
+  if (!shouldRunDailyCatchupSlot(slotKey, dailyCatchupLastSlot, Boolean(dailyCatchupRunPromise))) {
     return;
   }
 
@@ -4200,6 +4204,7 @@ export function getScheduledJobs() {
 export const __testing = {
   DAILY_CATCHUP_CRON,
   getDailyCatchupSlotKey,
+  shouldRunDailyCatchupSlot,
   TASK_EXTRA_CRON_EXPRESSIONS,
   runTaskByType,
   executeTowerCore,
