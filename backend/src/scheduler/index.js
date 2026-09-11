@@ -216,8 +216,8 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
   DAILY_TASK_CLAIM: ['30 22 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
-// Use a minute heartbeat and deduplicate by Shanghai-local half-hour slot so a
-// busy event loop cannot silently lose the exact second at :00 or :30.
+// Use a minute heartbeat and deduplicate by Shanghai-local two-hour slot so a
+// busy event loop cannot silently lose the exact second at a slot boundary.
 const DAILY_CATCHUP_CRON = '* * * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
@@ -332,8 +332,8 @@ function getDailyCatchupSlotKey(now = new Date()) {
     return null;
   }
 
-  const slotMinute = parts.minute < 30 ? '00' : '30';
-  return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(parts.hour)}:${slotMinute}`;
+  const slotHour = 14 + Math.floor((parts.hour - 14) / 2) * 2;
+  return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(slotHour)}:00`;
 }
 
 function shouldRunDailyCatchupSlot(slotKey, lastSlotKey, isRunning = false) {
