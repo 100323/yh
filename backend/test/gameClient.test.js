@@ -223,6 +223,31 @@ test('genieDailySweep records a transient kingdom failure and preserves other re
   assert.equal(result.ticketResults[0].skipped, true);
 });
 
+test('genieDailySweep marks terminal skip responses as handled for catchup', async () => {
+  const skipReasons = ['活动未开放', '物品不存在', '冷却时间未过，不能操作'];
+
+  for (const reason of skipReasons) {
+    const client = new GameClient('dummy-token');
+    client.getRoleInfo = async () => ({ role: { statisticsTime: {} } });
+    client.sendWithPromise = async () => {
+      throw new Error(reason);
+    };
+
+    const result = await client.genieDailySweep({
+      commandDelayMs: 0,
+      sweepDelayMs: 0,
+      ticketDelayMs: 0,
+      maxCommandRetries: 0,
+      commandThrottleEnabled: false,
+    });
+
+    assert.equal(result.skipped, true, reason);
+    assert.equal(result.reason, '四国已扫荡且今日扫荡券已领完', reason);
+    assert.equal(result.sweepResults.every((item) => item.skipped), true, reason);
+    assert.equal(result.ticketResults[0].skipped, true, reason);
+  }
+});
+
 test('buildGenieSweepTaskOptions slows sweep commands more than ticket claims', () => {
   const options = buildGenieSweepTaskOptions({ dryRun: true });
 

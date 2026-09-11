@@ -388,8 +388,16 @@ function isGenieTransientError(error) {
   ]);
 }
 
+function isGenieTerminalSkipError(error) {
+  return errorMatches(error, new Set(), [
+    '活动未开放',
+    '物品不存在',
+    '冷却时间未过',
+  ]);
+}
+
 function isGenieSweepSkippableError(error) {
-  return errorMatches(error, new Set([3300060, 200160]), [
+  return isGenieTerminalSkipError(error) || errorMatches(error, new Set([3300060, 200160]), [
     '扫荡条件不满足',
     '今日已扫荡',
     '模块未开启',
@@ -397,7 +405,7 @@ function isGenieSweepSkippableError(error) {
 }
 
 function isGenieTicketLimitError(error) {
-  return errorMatches(error, new Set([3300050, 1000020, 12000116]), [
+  return isGenieTerminalSkipError(error) || errorMatches(error, new Set([3300050, 1000020, 12000116]), [
     '购买数量超出限制',
     '今天已经领取过奖励了',
     '今日已领取免费奖励',

@@ -27,6 +27,23 @@ function isGenieTicketExhausted(ticketResults = []) {
   });
 }
 
+function isGenieTerminalSkipReason(value) {
+  const reason = String(value || '');
+  return [
+    '四国已扫荡且今日扫荡券已领完',
+    '活动未开放',
+    '物品不存在',
+    '冷却时间未过',
+  ].some((keyword) => reason.includes(keyword));
+}
+
+function isGenieTerminalSkipResult(item) {
+  return (
+    (item?.skipped === true || item?.success === false)
+    && isGenieTerminalSkipReason(item?.reason || item?.error)
+  );
+}
+
 function normalizeStoredCompletion(completion) {
   if (!completion || typeof completion !== 'object' || typeof completion.complete !== 'boolean') {
     return null;
@@ -163,6 +180,29 @@ function getBuyGoldCompletion(data = {}) {
 function getGenieSweepCompletion(data = {}) {
   const sweepResults = Array.isArray(data.sweepResults) ? data.sweepResults : [];
   const ticketResults = Array.isArray(data.ticketResults) ? data.ticketResults : [];
+  const terminallySkipped = (
+    data?.skipped === true
+    && isGenieTerminalSkipReason(data?.reason)
+  ) || (
+    sweepResults.length >= 4
+    && sweepResults.every(isGenieTerminalSkipResult)
+    && ticketResults.some(isGenieTerminalSkipResult)
+  );
+
+  if (terminallySkipped) {
+    return {
+      complete: true,
+      status: 'complete',
+      retryable: false,
+      reason: 'terminal_skip',
+      missingGenieIds: [],
+      failedGenieIds: [],
+      ticketsComplete: true,
+      ticketsFailed: false,
+      claimedTickets: 0,
+    };
+  }
+
   const resultByGenieId = new Map(
     sweepResults
       .filter((item) => Number.isInteger(Number(item?.genieId)))
@@ -203,12 +243,21 @@ function getGenieSweepCompletion(data = {}) {
 
 export function getTaskCompletionState(taskType, details) {
   const data = parseTaskDetails(details) || {};
+  const normalizedTaskType = String(taskType || '').trim();
+
+  if (normalizedTaskType === 'GENIE_SWEEP') {
+    const completion = getGenieSweepCompletion(data);
+    if (completion.reason === 'terminal_skip') {
+      return completion;
+    }
+  }
+
   const storedCompletion = normalizeStoredCompletion(data.completion);
   if (storedCompletion) {
     return storedCompletion;
   }
 
-  switch (String(taskType || '').trim()) {
+  switch (normalizedTaskType) {
     case 'BUY_GOLD':
       return getBuyGoldCompletion(data);
     case 'GENIE_SWEEP':

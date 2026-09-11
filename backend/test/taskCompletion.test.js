@@ -93,6 +93,50 @@ test('灯神今日扫荡券已领完属于正常结束', () => {
   assert.equal(shouldRetryTaskCompletion('GENIE_SWEEP', 'success', completion), false);
 });
 
+test('灯神明确跳过原因不会被 30 分钟补查重复执行', () => {
+  const skipReasons = [
+    '四国已扫荡且今日扫荡券已领完',
+    '活动未开放',
+    '物品不存在',
+    '冷却时间未过，不能操作',
+  ];
+
+  for (const reason of skipReasons) {
+    const completion = getTaskCompletionState('GENIE_SWEEP', {
+      sweepResults: [1, 2, 3, 4].map((genieId) => ({ genieId, skipped: true, reason })),
+      ticketResults: [{ index: 1, skipped: true, reason }],
+    });
+
+    assert.equal(completion.complete, true, reason);
+    assert.equal(completion.retryable, false, reason);
+    assert.equal(shouldRetryTaskCompletion('GENIE_SWEEP', 'success', completion), false, reason);
+  }
+});
+
+test('灯神旧日志中的终态错误也不会继续进入补查', () => {
+  const completion = getTaskCompletionState('GENIE_SWEEP', {
+    sweepResults: [1, 2, 3, 4].map((genieId) => ({
+      genieId,
+      success: false,
+      error: '冷却时间未过，不能操作',
+    })),
+    ticketResults: [{
+      index: 1,
+      success: false,
+      error: '冷却时间未过，不能操作',
+    }],
+    completion: {
+      complete: false,
+      retryable: true,
+      reason: 'partial',
+    },
+  });
+
+  assert.equal(completion.complete, true);
+  assert.equal(completion.reason, 'terminal_skip');
+  assert.equal(shouldRetryTaskCompletion('GENIE_SWEEP', 'success', completion), false);
+});
+
 test('任务详情支持 JSON 字符串和对象输入', () => {
   assert.deepEqual(parseTaskDetails('{"successCount":2}'), { successCount: 2 });
   assert.deepEqual(parseTaskDetails({ successCount: 2 }), { successCount: 2 });
