@@ -1163,6 +1163,11 @@ export class XyzwWebSocketClient {
       // 军团信息
       legion_getinforesp: "legion_getinfo",
       legion_getinforresp: "legion_getinfo",
+      legion_getinfobyidresp: "legion_getinfobyid",
+      legion_getpayloadbfresp: "legion_getpayloadbf",
+      legion_getpayloadkillrecordresp: "legion_getpayloadkillrecord",
+      legion_getpayloadrecordresp: "legion_getpayloadrecord",
+      legion_getpayloadtaskresp: "legion_getpayloadtask",
       // 车辆相关响应映射
       car_getrolecarresp: "car_getrolecar",
       car_refreshresp: "car_refresh",

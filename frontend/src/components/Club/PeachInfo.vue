@@ -1262,7 +1262,20 @@ const fetchBattleInfo = async (options = {}) => {
     return;
   }
 
-  const ownClubId = club.value?.id;
+  let legionInfoRes = null;
+  try {
+    legionInfoRes = await tokenStore.sendMessageWithPromise(
+      tokenId,
+      "legion_getinfo",
+      {},
+      10000
+    );
+  } catch (error) {
+    if (!silent) message.error(`获取俱乐部信息失败: ${error.message}`);
+    console.error(error);
+    return;
+  }
+  const ownClubId = legionInfoRes?.info?.id || club.value?.id;
   if (!ownClubId) {
     if (!silent) message.warning("尚未获取到俱乐部信息，请稍后重试");
     return;

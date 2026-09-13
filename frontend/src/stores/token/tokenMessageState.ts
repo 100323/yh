@@ -79,7 +79,12 @@ export function createTokenMessageStateManager({
           updateToken(tokenId, { avatar: body.role.headImg });
         }
       }
-    } else if (cmd.includes('legion')) {
+    } else if (
+      cmd === 'legion_getinfo' ||
+      cmd === 'legion_getinforesp' ||
+      cmd === 'legion_getinfor' ||
+      cmd === 'legion_getinforresp'
+    ) {
       gameData.value.legionInfo = body;
       gameData.value.lastUpdated = new Date().toISOString();
     } else if (cmd.includes('commonactivity')) {
