@@ -56,7 +56,10 @@ export function parseCronField(field, min, max) {
   return Array.from(values).sort((a, b) => a - b);
 }
 
-export function calculateNextRunAt(cronExpression, now = new Date()) {
+const DEFAULT_CRON_TIMEZONE = 'Asia/Shanghai';
+const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
+
+export function calculateNextRunAt(cronExpression, now = new Date(), timeZone = DEFAULT_CRON_TIMEZONE) {
   if (!cronExpression) return null;
 
   const parts = String(cronExpression).trim().split(/\s+/);
@@ -73,32 +76,38 @@ export function calculateNextRunAt(cronExpression, now = new Date()) {
     return null;
   }
 
-  const candidate = new Date(now);
-  candidate.setSeconds(0, 0);
-  candidate.setMinutes(candidate.getMinutes() + 1);
+  const offsetMs = timeZone === DEFAULT_CRON_TIMEZONE ? SHANGHAI_OFFSET_MS : 0;
+  const candidate = new Date(now.getTime() + offsetMs);
+  candidate.setUTCSeconds(0, 0);
+  candidate.setUTCMinutes(candidate.getUTCMinutes() + 1);
 
-  const maxCheck = new Date(now);
-  maxCheck.setFullYear(maxCheck.getFullYear() + 1);
+  const maxCheck = new Date(candidate);
+  maxCheck.setUTCFullYear(maxCheck.getUTCFullYear() + 1);
 
   while (candidate <= maxCheck) {
-    const minute = candidate.getMinutes();
-    const hour = candidate.getHours();
-    const dayOfMonth = candidate.getDate();
-    const month = candidate.getMonth() + 1;
-    const dayOfWeek = candidate.getDay();
+    const minute = candidate.getUTCMinutes();
+    const hour = candidate.getUTCHours();
+    const dayOfMonth = candidate.getUTCDate();
+    const month = candidate.getUTCMonth() + 1;
+    const dayOfWeek = candidate.getUTCDay();
+
+    const dayOfMonthRestricted = dayOfMonthField !== '*' && dayOfMonthField !== '?';
+    const dayOfWeekRestricted = dayOfWeekField !== '*' && dayOfWeekField !== '?';
+    const dayMatches = dayOfMonthRestricted && dayOfWeekRestricted
+      ? daysOfMonth.includes(dayOfMonth) || daysOfWeek.includes(dayOfWeek)
+      : daysOfMonth.includes(dayOfMonth) && daysOfWeek.includes(dayOfWeek);
 
     const matches =
       minutes.includes(minute) &&
       hours.includes(hour) &&
-      daysOfMonth.includes(dayOfMonth) &&
       months.includes(month) &&
-      daysOfWeek.includes(dayOfWeek);
+      dayMatches;
 
     if (matches) {
-      return candidate.toISOString();
+      return new Date(candidate.getTime() - offsetMs).toISOString();
     }
 
-    candidate.setMinutes(candidate.getMinutes() + 1);
+    candidate.setUTCMinutes(candidate.getUTCMinutes() + 1);
   }
 
   return null;
