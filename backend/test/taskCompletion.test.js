@@ -255,12 +255,20 @@ test('补做检查由每分钟心跳驱动并按上海两小时槽位补查', ()
     '2026-09-11 16:00',
   );
   assert.equal(
+    scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T09:59:00.000Z')),
+    '2026-09-11 16:00',
+  );
+  assert.equal(
+    scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T10:00:00.000Z')),
+    null,
+  );
+  assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T15:01:00.000Z')),
-    '2026-09-11 22:00',
+    null,
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T15:59:00.000Z')),
-    '2026-09-11 22:00',
+    null,
   );
 });
 

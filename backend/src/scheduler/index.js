@@ -329,11 +329,7 @@ function getShanghaiBusinessDate(now = new Date()) {
 
 function getDailyCatchupSlotKey(now = new Date()) {
   const parts = getShanghaiDateParts(now);
-  if (parts.hour < 14 || parts.hour > 23) {
-    return null;
-  }
-
-  if (parts.weekday === 'Sat' && parts.hour >= 20) {
+  if (parts.hour < 14 || parts.hour >= 18) {
     return null;
   }
 
