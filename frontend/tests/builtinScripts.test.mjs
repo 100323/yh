@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
+import path from 'node:path';
 
 test('normalizes enabled builtin script IDs to known values', async () => {
   const { normalizeEnabledBuiltinScriptIds } = await import('../src/utils/builtinScripts.js');
@@ -21,11 +24,40 @@ test('launch payload contains enabled builtin script IDs', async () => {
 
 test('exposes the bundled scripts as opt-in entries', async () => {
   const { BUILTIN_GAME_SCRIPTS } = await import('../src/utils/builtinScripts.js');
+  const expectedScripts = [
+    { id: 'xingchi', file: 'xingchi.js' },
+    { id: 'peach-auto', file: 'peach-auto.js' },
+    { id: 'salt-lineup', file: 'salt-lineup.js' },
+    { id: 'nightmareAccel', file: 'nightmare_accel.js' },
+    { id: 'nightmareEnhance', file: 'nightmare_enhance.js' },
+    { id: 'simulateBattle', file: 'simulate_battle.js' },
+    { id: 'evoTowerMerge', file: 'evo_tower_merge.js' },
+  ];
 
   assert.deepEqual(
     BUILTIN_GAME_SCRIPTS.map((script) => script.id),
-    ['xingchi', 'peach-auto', 'salt-lineup'],
+    expectedScripts.map((script) => script.id),
   );
+
+  const bootstrapSource = await import('node:fs').then((fs) =>
+    fs.promises.readFile(
+      path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'xyzw-web-slim/bootstrap.js'),
+      'utf8',
+    ),
+  );
+
+  expectedScripts.forEach(({ id, file }) => {
+    assert.match(
+      bootstrapSource,
+      new RegExp(`id:\\s*["']${id}["'][\\s\\S]{0,200}?url:\\s*["']/slim-game/builtin-scripts/${file}["']`),
+    );
+    assert.ok(
+      existsSync(
+        path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'xyzw-web-slim/builtin-scripts', file),
+      ),
+      `missing bundled script: ${file}`,
+    );
+  });
 });
 
 test('persists and reads enabled builtin script IDs', async () => {

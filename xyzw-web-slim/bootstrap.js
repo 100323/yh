@@ -1234,6 +1234,22 @@
       id: "salt-lineup",
       url: "/slim-game/builtin-scripts/salt-lineup.js",
     },
+    {
+      id: "nightmareAccel",
+      url: "/slim-game/builtin-scripts/nightmare_accel.js",
+    },
+    {
+      id: "nightmareEnhance",
+      url: "/slim-game/builtin-scripts/nightmare_enhance.js",
+    },
+    {
+      id: "simulateBattle",
+      url: "/slim-game/builtin-scripts/simulate_battle.js",
+    },
+    {
+      id: "evoTowerMerge",
+      url: "/slim-game/builtin-scripts/evo_tower_merge.js",
+    },
   ];
 
   function normalizeBuiltinScriptIds(value) {

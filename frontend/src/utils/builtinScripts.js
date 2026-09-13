@@ -16,6 +16,26 @@ export const BUILTIN_GAME_SCRIPTS = [
     title: '盐场显示阵容',
     description: '盐场排队阵容显示助手，默认关闭。',
   },
+  {
+    id: 'nightmareAccel',
+    title: '十殿加速',
+    description: '十殿挑战加速助手，默认关闭。',
+  },
+  {
+    id: 'nightmareEnhance',
+    title: '十殿增强',
+    description: '十殿挑战增强助手，默认关闭。',
+  },
+  {
+    id: 'simulateBattle',
+    title: '模拟对战',
+    description: '模拟对战辅助脚本，默认关闭。',
+  },
+  {
+    id: 'evoTowerMerge',
+    title: '怪异塔合成',
+    description: '怪异塔合成辅助脚本，默认关闭。',
+  },
 ];
 
 export function normalizeEnabledBuiltinScriptIds(value, knownIds = BUILTIN_GAME_SCRIPTS) {
