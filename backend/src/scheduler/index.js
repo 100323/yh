@@ -220,6 +220,7 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
 // busy event loop cannot silently lose the exact second at a slot boundary.
 const DAILY_CATCHUP_CRON = '* * * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
+const DAILY_CATCHUP_SLOT_READY_GRACE_MS = 60 * 1000;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
@@ -332,6 +333,10 @@ function getDailyCatchupSlotKey(now = new Date()) {
     return null;
   }
 
+  if (parts.weekday === 'Sat' && parts.hour >= 20) {
+    return null;
+  }
+
   const slotHour = 14 + Math.floor((parts.hour - 14) / 2) * 2;
   return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(slotHour)}:00`;
 }
@@ -399,7 +404,7 @@ function shouldSettleDailyCatchup(tasks = [], catchup = {}, now = new Date()) {
     return true;
   }
 
-  const graceMs = Math.max(0, Number(config?.scheduler?.staggerWindowMs) || 0);
+  const graceMs = DAILY_CATCHUP_SLOT_READY_GRACE_MS;
   const readyBoundary = new Date(now.getTime() - graceMs);
   return latestSlot <= formatShanghaiLocalDateTime(getShanghaiDateParts(readyBoundary));
 }
@@ -567,7 +572,7 @@ function getLatestDueSlotForToday(task, now = new Date()) {
     return null;
   }
 
-  const catchupGraceMs = Math.max(0, Number(config?.scheduler?.staggerWindowMs) || 0);
+  const catchupGraceMs = DAILY_CATCHUP_SLOT_READY_GRACE_MS;
   const readyBoundary = new Date(now.getTime() - catchupGraceMs);
   const nowLocal = formatShanghaiLocalDateTime(getShanghaiDateParts(readyBoundary));
   const shanghaiParts = getShanghaiDateParts(now);

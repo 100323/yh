@@ -7,6 +7,8 @@ import {
   sortDeferredRuns,
 } from './saturdaySchedulerBlackout.js';
 
+const MAX_DEFERRED_RUN_ATTEMPTS = 3;
+
 function toShanghaiBusinessDate(value = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Shanghai',
@@ -97,11 +99,28 @@ export function deferScheduledRun({
 
 export function listReplayableDeferredRuns(now = new Date()) {
   const staleClaimCutoff = new Date(now.getTime() - DEFERRED_RUN_CLAIM_LEASE_MS);
+  const todayShanghai = toShanghaiBusinessDate(now);
   run(
     `UPDATE scheduler_deferred_runs
         SET status = 'pending', claimed_at = NULL, updated_at = CURRENT_TIMESTAMP
       WHERE status = 'running' AND datetime(claimed_at) <= datetime(?)`,
     [toIsoString(staleClaimCutoff)],
+  );
+
+  run(
+    `UPDATE scheduler_deferred_runs
+        SET status = 'expired', updated_at = CURRENT_TIMESTAMP
+      WHERE status = 'pending' AND attempt_count >= ?
+        AND datetime(release_at) <= datetime(?)`,
+    [MAX_DEFERRED_RUN_ATTEMPTS, toIsoString(now)],
+  );
+
+  run(
+    `UPDATE scheduler_deferred_runs
+        SET status = 'expired', updated_at = CURRENT_TIMESTAMP
+      WHERE status IN ('pending', 'running')
+        AND substr(deferred_identity, 1, 10) < ?`,
+    [todayShanghai],
   );
 
   const rows = all(
@@ -133,10 +152,19 @@ export function completeDeferredRun(id) {
 }
 
 export function releaseDeferredRun(id, error) {
+  const row = get(
+    'SELECT attempt_count FROM scheduler_deferred_runs WHERE id = ? LIMIT 1',
+    [id],
+  );
+  const shouldExpire = row && Number(row.attempt_count) >= MAX_DEFERRED_RUN_ATTEMPTS;
   run(
     `UPDATE scheduler_deferred_runs
-        SET status = 'pending', claimed_at = NULL, last_error = ?, updated_at = CURRENT_TIMESTAMP
+        SET status = ?, claimed_at = NULL, last_error = ?, updated_at = CURRENT_TIMESTAMP
       WHERE id = ? AND status = 'running'`,
-    [String(error?.message || error || 'Deferred run failed').slice(0, 500), id],
+    [
+      shouldExpire ? 'expired' : 'pending',
+      String(error?.message || error || 'Deferred run failed').slice(0, 500),
+      id,
+    ],
   );
 }

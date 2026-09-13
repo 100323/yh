@@ -1,6 +1,6 @@
 const SHANGHAI_TIMEZONE = 'Asia/Shanghai';
 const DEFERRED_RUN_CLAIM_LEASE_MS = 15 * 60 * 1000;
-const AUTOMATIC_SOURCES = new Set(['scheduler', 'scheduler-catchup', 'batch']);
+const AUTOMATIC_SOURCES = new Set(['scheduler', 'batch']);
 
 function getShanghaiDateParts(date = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -64,7 +64,7 @@ export function normalizeSaturdaySchedulerPolicy(policy = {}) {
   return {
     saturdayBlackoutEnabled: toBoolean(
       policy.saturdayBlackoutEnabled ?? policy.saturday_blackout_enabled,
-      true,
+      false,
     ),
   };
 }
