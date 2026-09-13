@@ -912,7 +912,7 @@ function markScheduledTaskSuccess(task, result) {
     createTaskCompletionLogDetails(task.task_type, result?.data || {})
   );
   if (task.id) {
-    markTaskRunTime(task.id, new Date().toISOString(), calculateNextRunAt(task.cron_expression));
+    markTaskRunTime(task.id, new Date().toISOString(), getTaskNextRunAt(task));
   }
   console.log(`✅ 任务执行成功: ${getTaskAccountName(task)} - ${task.task_type}`);
 }
@@ -929,7 +929,7 @@ function markScheduledTaskFailure(task, error) {
     error?.details ? createTaskCompletionLogDetails(task.task_type, error.details) : null
   );
   if (task.id) {
-    markTaskRunTime(task.id, new Date().toISOString(), calculateNextRunAt(task.cron_expression));
+    markTaskRunTime(task.id, new Date().toISOString(), getTaskNextRunAt(task));
   }
 }
 

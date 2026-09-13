@@ -7,6 +7,7 @@ import {
   shouldRetryTaskCompletion,
 } from '../src/utils/taskCompletion.js';
 import scheduler from '../src/scheduler/index.js';
+import { calculateNextRunAt } from '../src/utils/cronSchedule.js';
 import batchScheduler from '../src/batchScheduler/index.js';
 
 test('点金 2/3 遇到请求超时会标记部分完成并需要补偿', () => {
@@ -352,6 +353,12 @@ test('weekly task becomes a catchup candidate after its configured weekday slot'
 
   assert.equal(catchup.missingTasks.length, 1);
   assert.equal(catchup.tasks[0].catchupExpectedAt, '2026-09-06 08:00:00');
+});
+
+test('cron next run uses Shanghai time independently of host timezone', () => {
+  const now = new Date('2026-09-13T00:00:00.000Z');
+  assert.equal(calculateNextRunAt('0 8 * * 1', now), '2026-09-14T00:00:00.000Z');
+  assert.equal(calculateNextRunAt('30 22 * * *', now), '2026-09-13T14:30:00.000Z');
 });
 
 test('batch scheduler executes daily boss with one challenge by default', async () => {
