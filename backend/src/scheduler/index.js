@@ -434,12 +434,20 @@ function shouldIgnoreFailure(error) {
     '模块未开启',
     '活动未开放',
     '不在开启时间内',
+    '不在蟠桃大会报名时间内',
+    '不在盐场报名时间内',
     '出了点小问题',
     '扫荡条件不满足',
     '已经选择过上阵武将了',
     '今日已领取免费奖励',
     '今天已经签到过了',
+    '冷却时间未过',
+    '物品不存在',
   ].some((keyword) => message.includes(keyword));
+}
+
+function isTerminalCatchupErrorMessage(message) {
+  return shouldIgnoreFailure({ message: String(message || '') });
 }
 
 function isRetryableWsError(error) {
@@ -654,7 +662,11 @@ function collectDailyCatchupTasks(tasks, cutoffHour = DAILY_CATCHUP_CUTOFF_HOUR,
       continue;
     }
 
-    if (latestStatus === 'error' && shouldRetryTaskCompletion(task.task_type, latestStatus, completion)) {
+    if (
+      latestStatus === 'error'
+      && !isTerminalCatchupErrorMessage(latestMessage)
+      && shouldRetryTaskCompletion(task.task_type, latestStatus, completion)
+    ) {
       failedTasks.push(buildCatchupTask(task, {
         catchupReason: 'latest_error',
         catchupExpectedAt: latestDueSlot,
