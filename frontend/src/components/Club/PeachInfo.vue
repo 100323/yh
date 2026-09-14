@@ -13,7 +13,7 @@
               <Copy />
             </n-icon></template>导出图片
         </n-button>
-        <n-button size="small" :disabled="loading" @click="fetchBattleRecordsByDate" class="refresh-btn">
+        <n-button size="small" :disabled="loading" @click="refreshBattleInfo" class="refresh-btn">
           <template #icon>
             <n-icon>
               <Refresh />
@@ -1196,6 +1196,12 @@ const fetchBattleRecordsByDate = (val) => {
   }
   fetchBattleInfo();
 }
+
+//刷新按钮会传入 click 事件，这里显式重置回最近比赛日再查询
+const refreshBattleInfo = () => {
+  queryDate.value = getLastSunday();
+  fetchBattleInfo();
+};
 
 // Fetch Data
 let payloadPollTimer = null;
