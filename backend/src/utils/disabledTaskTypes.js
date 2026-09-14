@@ -1,4 +1,4 @@
-const DISABLED_TASK_TYPES = new Set(['CAR_SEND', 'CAR_CLAIM']);
+export const DISABLED_TASK_TYPES = new Set(['CAR_SEND', 'CAR_CLAIM', 'STAR_TEMPLE']);
 
 export function isDisabledTaskType(taskType) {
   return DISABLED_TASK_TYPES.has(String(taskType || '').trim());

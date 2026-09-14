@@ -205,25 +205,23 @@
           </div>
         </div>
 
-        <div class="star-temple-section">
+        <div v-if="showStarTempleSection" class="star-temple-section">
           <div class="star-temple-header">
-            <div>
-              <h4>星级十殿</h4>
-              <p>仅使用星级十殿预设阵容与玩具挑战 1-8 关</p>
-            </div>
-            <div class="star-temple-header-actions">
-              <span v-if="starTempleResetTimeText" class="star-temple-reset">
-                重置：{{ starTempleResetTimeText }}
-              </span>
-              <n-button
-                size="small"
-                @click="refreshStarTempleInfo"
-                :loading="starTemple.loading"
-                :disabled="state.isRunning || starTemple.running"
-              >
-                刷新十殿
-              </n-button>
-            </div>
+            <h4>星级十殿</h4>
+            <p>仅使用星级十殿预设阵容与玩具挑战 1-8 关</p>
+          </div>
+          <div class="star-temple-header-actions">
+            <span v-if="starTempleResetTimeText" class="star-temple-reset">
+              重置：{{ starTempleResetTimeText }}
+            </span>
+            <n-button
+              size="small"
+              @click="refreshStarTempleInfo"
+              :loading="starTemple.loading"
+              :disabled="state.isRunning || starTemple.running"
+            >
+              刷新十殿
+            </n-button>
           </div>
 
           <div class="star-temple-toolbar">
@@ -942,6 +940,7 @@ const dragOverPosition = ref(null);
 const STORAGE_KEY = "saved_lineups";
 const MAX_SAVED_LINEUPS = 30;
 const TEAM_SLOT_COUNT = 5;
+const showStarTempleSection = false;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 let lineupSyncPromise = Promise.resolve(false);
 
@@ -5463,7 +5462,6 @@ watch(
       const status = tokenStore.getWebSocketStatus(newToken.id);
       if (status === "connected") {
         refreshTeamInfo({ silent: true });
-        refreshStarTempleInfo({ silent: true, preserveSelectedBoss: false });
       }
     }
   },
@@ -5482,7 +5480,6 @@ watch(
   ) {
     setTimeout(() => {
         refreshTeamInfo({ silent: true });
-        refreshStarTempleInfo({ silent: true, preserveSelectedBoss: false });
       }, 500);
     }
   },
@@ -5506,7 +5503,6 @@ onMounted(() => {
     const status = tokenStore.getWebSocketStatus(token.id);
     if (status === "connected") {
       refreshTeamInfo({ silent: true });
-      refreshStarTempleInfo({ silent: true });
     }
   }
 });

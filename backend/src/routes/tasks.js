@@ -9,7 +9,7 @@ import {
   normalizeTowerCronExpression,
   TOWER_DAILY_CRON,
 } from '../utils/towerTaskConfig.js';
-import { isDisabledTaskType, filterDisabledTaskTypes, containsDisabledTaskType } from '../utils/disabledTaskTypes.js';
+import { DISABLED_TASK_TYPES, isDisabledTaskType, filterDisabledTaskTypes, containsDisabledTaskType } from '../utils/disabledTaskTypes.js';
 import {
   getSaturdaySchedulerPolicy,
   updateSaturdaySchedulerPolicy,
@@ -777,12 +777,14 @@ async function migrateHistoricalPkroomAppointmentCronExpressions() {
 }
 
 router.get('/types', (req, res) => {
-  const types = Object.entries(TASK_TYPES).map(([key, value]) => ({
-    type: key,
-    name: value.name,
-    defaultCron: value.cron,
-    group: value.group || 'other'
-  }));
+  const types = Object.entries(TASK_TYPES)
+    .filter(([taskType]) => !isDisabledTaskType(taskType))
+    .map(([key, value]) => ({
+      type: key,
+      name: value.name,
+      defaultCron: value.cron,
+      group: value.group || 'other'
+    }));
 
   res.json({
     success: true,
@@ -904,7 +906,7 @@ router.put('/account/:accountId/batch', async (req, res) => {
 
       taskList.forEach((taskItem) => {
         const taskType = String(taskItem?.taskType || '').trim();
-        if (!taskType || !TASK_TYPES[taskType]) {
+        if (!taskType || isDisabledTaskType(taskType) || !TASK_TYPES[taskType]) {
           const typeError = new Error(`INVALID_TASK_TYPE:${taskType}`);
           typeError.code = 'INVALID_TASK_TYPE';
           throw typeError;
@@ -1063,7 +1065,7 @@ router.post('/account/:accountId', async (req, res) => {
       });
     }
 
-    if (!taskType || !TASK_TYPES[taskType]) {
+    if (!taskType || isDisabledTaskType(taskType) || !TASK_TYPES[taskType]) {
       return res.status(400).json({
         success: false,
         error: '无效的任务类型'
@@ -1410,10 +1412,11 @@ export function updateTaskRunTime(taskId, nextRunAt) {
 }
 
 export async function disableRetiredTaskTypes() {
-  const retiredPlaceholders = ['CAR_SEND', 'CAR_CLAIM'].map(() => '?').join(', ');
+  const retiredTaskTypes = Array.from(DISABLED_TASK_TYPES);
+  const retiredPlaceholders = retiredTaskTypes.map(() => '?').join(', ');
   const disabledTaskConfigRows = all(
     `SELECT id FROM task_configs WHERE task_type IN (${retiredPlaceholders}) AND enabled = 1`,
-    ['CAR_SEND', 'CAR_CLAIM']
+    retiredTaskTypes
   );
   if (disabledTaskConfigRows.length > 0) {
     run(

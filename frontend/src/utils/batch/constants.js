@@ -245,21 +245,6 @@ export const taskConfigDefinitions = {
     defaultEnabled: true,
     configFields: [],
   },
-  starTemple: {
-    label: "星级十殿",
-    group: "dungeon",
-    description: "按关卡配置目标星级与最大挑战次数，默认从第一关开始执行",
-    defaultEnabled: false,
-    configFields: [
-      {
-        key: "stages",
-        label: "关卡配置",
-        type: "starTempleStages",
-        default: createDefaultStarTempleStages(),
-      },
-    ],
-  },
-
   batchBuyDreamItems: {
     label: "购买梦境商品",
     group: "dungeon",
@@ -435,7 +420,6 @@ const defaultTaskScheduleOverrides = {
   pkroomAppoint: { runTime: createDefaultRunTime(16, 6) },
   batchmengjing: { scheduleType: "weekly", weekdays: DREAM_OPEN_WEEKDAYS, runTime: createDefaultRunTime(12, 10) },
   skinChallenge: { runTime: createDefaultRunTime(12, 1) },
-  starTemple: { runTime: createDefaultRunTime(12, 1) },
   batchBuyDreamItems: { scheduleType: "weekly", weekdays: DREAM_OPEN_WEEKDAYS, runTime: createDefaultRunTime(12, 10) },
   batchBuyGold: { runTime: createDefaultRunTime(12, 1) },
   batchRecruit: { runTime: createDefaultRunTime(12, 1) },

@@ -174,7 +174,7 @@ app.post('/api/tasks/execute', authMiddleware, async (req, res) => {
     if (isDisabledTaskType(taskType)) {
       return res.status(400).json({
         success: false,
-        error: '智能发车和一键收车已停用'
+        error: `任务已停用：${taskType}`
       });
     }
 

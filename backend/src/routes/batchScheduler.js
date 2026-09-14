@@ -176,7 +176,7 @@ router.post('/', (req, res) => {
     if (containsDisabledTaskType(selectedTaskTypes)) {
       return res.status(400).json({
         success: false,
-        error: '智能发车和一键收车已停用'
+        error: '批量任务包含已停用任务类型'
       });
     }
 
@@ -269,7 +269,7 @@ router.put('/:id', (req, res) => {
     if (containsDisabledTaskType(effectiveTaskTypes)) {
       return res.status(400).json({
         success: false,
-        error: '智能发车和一键收车已停用'
+        error: '批量任务包含已停用任务类型'
       });
     }
 
@@ -381,7 +381,7 @@ router.delete('/:id', (req, res) => {
     if (containsDisabledTaskType(JSON.parse(task.selected_task_types || '[]'))) {
       return res.status(400).json({
         success: false,
-        error: '批量任务包含已停用的智能发车或一键收车'
+        error: '批量任务包含已停用任务类型'
       });
     }
 

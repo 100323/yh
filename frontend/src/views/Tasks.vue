@@ -284,7 +284,6 @@ const frontendToBackendTaskMap = {
   legion_storebuygoods: 'LEGION_STORE_FRAGMENT',
   batchmengjing: 'DREAM',
   skinChallenge: 'SKIN_CHALLENGE',
-  starTemple: 'STAR_TEMPLE',
   batchGenieSweep: 'GENIE_SWEEP',
   batchGacha: 'GACHA',
   batchLegionBoss: 'LEGION_BOSS',

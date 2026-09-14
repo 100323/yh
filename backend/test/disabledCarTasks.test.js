@@ -7,6 +7,7 @@ import {
 import { BATCH_TASK_TYPES } from '../src/routes/batchScheduler.js';
 import * as batchScheduler from '../src/batchScheduler/index.js';
 import * as scheduler from '../src/scheduler/index.js';
+import { isDisabledTaskType } from '../src/utils/disabledTaskTypes.js';
 
 const DISABLED_TASK_TYPES = ['CAR_SEND', 'CAR_CLAIM'];
 
@@ -32,4 +33,17 @@ test('both task schedulers reject disabled car task execution', async () => {
       /任务已停用/,
     );
   }
+});
+
+test('both task schedulers reject star temple execution', async () => {
+  assert.equal(isDisabledTaskType('STAR_TEMPLE'), true);
+
+  await assert.rejects(
+    () => batchScheduler.__testing.runTaskByType({}, 'STAR_TEMPLE', {}),
+    /任务已停用/,
+  );
+  await assert.rejects(
+    () => scheduler.__testing.runTaskByType({}, 'STAR_TEMPLE', {}),
+    /任务已停用/,
+  );
 });
