@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Before Publish"
+  short_description: "Verify commit, build, and server release before publishing"
+  default_prompt: "Use $committing-before-publish to verify the exact Git commit and build manifest before pushing or deploying."
