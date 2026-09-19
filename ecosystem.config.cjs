@@ -9,19 +9,30 @@
       autorestart: true,
       watch: false,
       max_memory_restart: '512M',
+      // 生产密钥（JWT_SECRET / ENCRYPTION_KEY）不写入版本库，统一由 backend/.env 提供。
+      // .env 已被 .gitignore 忽略；--env-file-if-exists 在文件缺失时只提示、不中断启动。
+      // ⚠️ 部署前必须先创建 backend/.env 并写入这两个变量，否则 NODE_ENV=production 会直接启动失败。
+      node_args: ['--env-file-if-exists=.env'],
       env: {
         NODE_ENV: 'production',
         HOST: '0.0.0.0',
         PORT: 3001,
         DB_PATH: './data/xyzw.db',
+        // 数据库实际位于 backend/data/ 内（项目目录），生产环境必须显式放行，否则启动即崩溃
+        ALLOW_PROJECT_LOCAL_DB_PATH: process.env.ALLOW_PROJECT_LOCAL_DB_PATH || '1',
 
-        // Replace these before production use.
-        JWT_SECRET: process.env.JWT_SECRET || 'replace_with_a_strong_jwt_secret',
-        ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || 'replace_with_a_strong_32_byte_key',
+        // JWT_SECRET / ENCRYPTION_KEY 一律由 backend/.env 注入。
+        // 切勿在此处写死真实值；也不要写占位符回落 —— 占位符会让 Node 的 --env-file
+        // 认为变量已存在而不覆盖，导致进程用占位符启动并直接失败。
 
         GAME_CLIENT_VERSION: '2.3.9-wx',
         GAME_BATTLE_VERSION: 241201,
         MAX_CONCURRENT_ACCOUNTS: 5,
+        // 方向A：延长连接复用，避免跨档期反复重连（原 600000/1800000）
+        WS_REUSE_MAX_IDLE_MS: process.env.WS_REUSE_MAX_IDLE_MS || '3600000',
+        WS_REUSE_MAX_AGE_MS: process.env.WS_REUSE_MAX_AGE_MS || '14400000',
+        // 缩短攒批窗口，让单次连接占用尽快释放（原代码默认 600000）
+        SCHEDULER_STAGGER_WINDOW_MS: process.env.SCHEDULER_STAGGER_WINDOW_MS || '120000',
         SCHEDULER_OBSERVABILITY_ENABLED: process.env.SCHEDULER_OBSERVABILITY_ENABLED || '1',
         SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS: process.env.SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS || '10000',
         SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS: process.env.SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS || '5000',

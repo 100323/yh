@@ -64,6 +64,11 @@ jspm_packages/
 # Local/private files
 server/config.json
 
+# 本地 AI 工作目录（含排查脚本、临时凭据、报告），绝不入库
+.workbuddy-ai/
+.tmp-*/
+.pnpm-store/
+
 docker/**/*.docker
 docker/**/*.zip
 docker/**/*.tar

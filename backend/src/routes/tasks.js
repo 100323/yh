@@ -8,6 +8,7 @@ import {
   normalizeTowerTaskConfig,
   normalizeTowerCronExpression,
   TOWER_DAILY_CRON,
+  WEIRD_TOWER_DAILY_CRON,
 } from '../utils/towerTaskConfig.js';
 import { DISABLED_TASK_TYPES, isDisabledTaskType, filterDisabledTaskTypes, containsDisabledTaskType } from '../utils/disabledTaskTypes.js';
 import {
@@ -19,7 +20,7 @@ const router = Router();
 
 router.use(authMiddleware);
 
-export const CURRENT_DEFAULT_CRON_VERSION = 6;
+export const CURRENT_DEFAULT_CRON_VERSION = 7;
 
 const DREAM_OPEN_CRON = '10 12 * * 0,1,3,4';
 const DREAM_GOLD_PURCHASE_LIST = ['1-5', '1-6', '2-6', '2-7', '3-5', '3-6', '3-7'];
@@ -28,13 +29,13 @@ export const TASK_TYPES = {
   SIGN_IN: { name: '每日签到', cron: '0 8 * * *', group: 'daily' },
   LEGION_SIGN: { name: '军团签到', cron: '0 8 * * *', group: 'daily' },
   ARENA: { name: '竞技场战斗', cron: '4 12 * * *', group: 'daily' },
-  TOWER: { name: '爬塔', cron: TOWER_DAILY_CRON, group: 'dungeon' },
+  TOWER: { name: '爬塔', cron: '0 4 * * *', group: 'dungeon' },
   BOSS_TOWER: { name: '咸王宝库', cron: '0 10 * * *', group: 'dungeon' },
-  WEIRD_TOWER: { name: '怪异塔', cron: TOWER_DAILY_CRON, group: 'dungeon' },
-  WEIRD_TOWER_FREE_ITEM: { name: '怪异塔免费道具', cron: '13 12 * * *', group: 'dungeon' },
-  WEIRD_TOWER_USE_ITEM: { name: '使用怪异塔道具', cron: '16 12 * * *', group: 'dungeon' },
-  WEIRD_TOWER_MERGE_ITEM: { name: '怪异塔合成', cron: '16 12 * * *', group: 'dungeon' },
-  LEGION_BOSS: { name: '军团BOSS', cron: '1 0 * * *', group: 'dungeon' },
+  WEIRD_TOWER: { name: '怪异塔', cron: '0 19 * * *', group: 'dungeon' },
+  WEIRD_TOWER_FREE_ITEM: { name: '怪异塔免费道具', cron: '10 19 * * *', group: 'dungeon' },
+  WEIRD_TOWER_USE_ITEM: { name: '使用怪异塔道具', cron: '20 19 * * *', group: 'dungeon' },
+  WEIRD_TOWER_MERGE_ITEM: { name: '怪异塔合成', cron: '30 19 * * *', group: 'dungeon' },
+  LEGION_BOSS: { name: '军团BOSS', cron: '0 2 * * *', group: 'dungeon' },
   DAILY_BOSS: { name: '每日咸王', cron: '10 12 * * *', group: 'dungeon' },
   RECRUIT: { name: '武将招募', cron: '1 12 * * *', group: 'resource' },
   FRIEND_GOLD: { name: '送好友金币', cron: '1 12 * * *', group: 'daily' },
@@ -42,7 +43,7 @@ export const TASK_TYPES = {
   FISHING: { name: '钓鱼', cron: '7 12 * * *', group: 'resource' },
   MAIL_CLAIM: { name: '领取邮件', cron: '0 8 * * *', group: 'daily' },
   HANGUP_CLAIM: { name: '领取挂机奖励', cron: '0 */8 * * *', group: 'daily' },
-  STUDY: { name: '答题', cron: '1 12 * * *', group: 'daily' },
+  STUDY: { name: '答题', cron: '0 3 * * *', group: 'daily' },
   HANGUP_ADD_TIME: { name: '一键加钟', cron: '11 */3 * * *', group: 'daily' },
   BOTTLE_RESET: { name: '重置罐子', cron: '0 */7 * * *', group: 'daily' },
   BOTTLE_CLAIM: { name: '领取罐子', cron: '13 12 * * *', group: 'daily' },
@@ -72,11 +73,11 @@ export const LEGACY_DEFAULT_TASK_CRONS = {
   HANGUP_ADD_TIME: ['0 */3 * * *'],
   LEGACY_CLAIM: ['0 */6 * * *'],
   ARENA: ['1 12 * * *'],
-  TOWER: ['1 12 * * *'],
-  WEIRD_TOWER: ['1 12 * * *'],
-  WEIRD_TOWER_FREE_ITEM: ['1 12 * * *'],
-  WEIRD_TOWER_USE_ITEM: ['1 12 * * *'],
-  WEIRD_TOWER_MERGE_ITEM: ['1 12 * * *'],
+  TOWER: ['1 12 * * *', '13 12 * * *', '20 9 * * *'],
+  WEIRD_TOWER: ['1 12 * * *', '13 12 * * *', '20 9 * * *'],
+  WEIRD_TOWER_FREE_ITEM: ['1 12 * * *', '13 12 * * *'],
+  WEIRD_TOWER_USE_ITEM: ['1 12 * * *', '16 12 * * *'],
+  WEIRD_TOWER_MERGE_ITEM: ['1 12 * * *', '16 12 * * *'],
   DAILY_BOSS: ['1 12 * * *'],
   FRIEND_GOLD: ['1 12 * * *'],
   BUY_GOLD: ['1 12 * * *'],
@@ -88,6 +89,7 @@ export const LEGACY_DEFAULT_TASK_CRONS = {
   WELFARE_CLAIM: ['1 12 * * *'],
   DAILY_TASK_CLAIM: ['1 12 * * *', '4 12 * * *'],
   PKROOM_APPOINT: ['6 8 * * *'],
+  LEGION_BOSS: ['1 0 * * *'],
   DREAM: ['1 12 * * *', '10 12 * * *', '10 12 * * 0,3,6'],
   SKIN_CHALLENGE: ['1 12 * * *'],
   DREAM_PURCHASE: ['1 12 * * *', '10 12 * * *', '10 12 * * 0,3,6'],
@@ -333,6 +335,7 @@ export async function migrateHistoricalTowerTaskCrons(targetDb = getDatabase()) 
   const targets = rows.filter((row) => isHourlyCronExpression(row.cron_expression));
 
   targets.forEach((row) => {
+    const targetCron = row.task_type === 'WEIRD_TOWER' ? WEIRD_TOWER_DAILY_CRON : TOWER_DAILY_CRON;
     targetDb.run(
       `UPDATE task_configs
           SET cron_expression = ?,
@@ -341,7 +344,7 @@ export async function migrateHistoricalTowerTaskCrons(targetDb = getDatabase()) 
               default_cron_version = ?,
               updated_at = CURRENT_TIMESTAMP
         WHERE id = ?`,
-      [TOWER_DAILY_CRON, calculateNextRunAt(TOWER_DAILY_CRON), CURRENT_DEFAULT_CRON_VERSION, row.id],
+      [targetCron, calculateNextRunAt(targetCron), CURRENT_DEFAULT_CRON_VERSION, row.id],
     );
   });
 
@@ -355,7 +358,7 @@ export async function migrateHistoricalTowerTaskCrons(targetDb = getDatabase()) 
       id: row.id,
       taskType: row.task_type,
       from: row.cron_expression,
-      to: TOWER_DAILY_CRON,
+      to: row.task_type === 'WEIRD_TOWER' ? WEIRD_TOWER_DAILY_CRON : TOWER_DAILY_CRON,
     })),
   };
 }

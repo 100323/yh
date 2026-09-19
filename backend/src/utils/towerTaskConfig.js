@@ -2,7 +2,8 @@ export const TOWER_MIN_FLOORS = 0;
 export const TOWER_MAX_FLOORS = 10;
 export const TOWER_DEFAULT_MAX_FLOORS = 10;
 export const TOWER_DAILY_BATTLE_LIMIT = 10;
-export const TOWER_DAILY_CRON = '20 9 * * *';
+export const TOWER_DAILY_CRON = '0 4 * * *';
+export const WEIRD_TOWER_DAILY_CRON = '0 19 * * *';
 
 export function isHourlyCronExpression(value) {
   const parts = String(value || '').trim().split(/\s+/);
@@ -13,8 +14,11 @@ export function isHourlyCronExpression(value) {
 }
 
 export function normalizeTowerCronExpression(taskType, cronExpression) {
-  if (taskType === 'TOWER' || taskType === 'WEIRD_TOWER') {
+  if (taskType === 'TOWER') {
     return TOWER_DAILY_CRON;
+  }
+  if (taskType === 'WEIRD_TOWER') {
+    return WEIRD_TOWER_DAILY_CRON;
   }
   return String(cronExpression || '').trim();
 }
