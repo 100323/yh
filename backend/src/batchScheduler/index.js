@@ -118,6 +118,8 @@ export function runBatchTaskObserved(context, executor, observer = schedulerObse
 }
 const DAILY_REWARD_POST_RETRY_DELAY_MS = 15000;
 const DAILY_REWARD_POST_RETRY_MAX_ATTEMPTS = 3;
+// 与 scheduler/index.js 保持同一份映射（两套编号：领取 id vs complete key）。
+// 实测确认：8 竞技场战斗 / 9 黑市采购 / 10 一键领取罐子；合法 id 仅 1-10。
 const DAILY_POINT_TASK_ID_MAP = {
   SIGN_IN: [1],
   HANGUP_ADD_TIME: [2],
@@ -127,9 +129,9 @@ const DAILY_POINT_TASK_ID_MAP = {
   BUY_GOLD: [6],
   BOX_OPEN: [7],
   ARENA: [8],
-  BOTTLE_RESET: [9],
-  BOTTLE_CLAIM: [9],
-  BLACK_MARKET: [12],
+  BOTTLE_RESET: [10],
+  BOTTLE_CLAIM: [10],
+  BLACK_MARKET: [9],
 };
 
 const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);

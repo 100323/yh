@@ -9,9 +9,11 @@ const DAILY_POINT_CLAIMABLE_TASKS = [
   { claimTaskId: 5, completeKey: 5, requiredProgress: 5 },
   { claimTaskId: 6, completeKey: 6, requiredProgress: 3 },
   { claimTaskId: 7, completeKey: 7, requiredProgress: 3 },
+  // 8/9/10 两套编号不重合，实测确认：8↔13 竞技场战斗 / 9↔12 黑市采购 / 10↔14 一键领取罐子。
+  // 修复前 9、10 两行的 completeKey 写反，会让「已做未领」判定错位。
   { claimTaskId: 8, completeKey: 13, requiredProgress: 1 },
-  { claimTaskId: 9, completeKey: 14, requiredProgress: 1 },
-  { claimTaskId: 10, completeKey: 12, requiredProgress: 1 },
+  { claimTaskId: 9, completeKey: 12, requiredProgress: 1 },
+  { claimTaskId: 10, completeKey: 14, requiredProgress: 1 },
 ];
 const DAILY_REWARD_THRESHOLDS = [20, 40, 60, 80, 100];
 const WEEKLY_REWARD_THRESHOLDS = [100, 200, 300, 400, 500, 600, 700];

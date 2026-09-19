@@ -185,8 +185,21 @@ let dailyCatchupTimeoutHandle = null;
 const DAILY_REWARD_FLUSH_DELAY_MS = 15000;
 const DAILY_REWARD_RETRY_DELAY_MS = 30000;
 const DAILY_REWARD_MAX_RETRIES = 3;
+// 「脏任务 debounce」开关：点金/开宝箱/招募等计分任务跑完后，15s 再补跑一次 DAILY_TASK_CLAIM。
+// 默认关闭 —— 每个号每天会多出 6~10 次额外连接与领取请求，在已经存在游戏限速的情况下可能加重限速。
+// 本次只启用「被限速打断后的收尾重试」，见 scheduleDailyRewardFlushAfterTask。
+const DAILY_REWARD_DIRTY_DEBOUNCE_ENABLED = false;
 const ACCOUNT_BATCH_MIN_DELAY_MS = 1500;
 const TASK_LOG_SNAPSHOT_PAIR_BATCH_SIZE = 100;
+// 每日活跃值有两套编号：
+//   ① task_claimdailypoint 的 taskId（下面这张表用的）
+//   ② role.dailyTask.complete 的 key（scheduledTaskHelpers.DAILY_POINT_CLAIMABLE_TASKS 用的）
+// 两套编号只在 1-7 上重合，8 及以上完全不同。以下映射为 2026-09-19 在实验账号上逐 id 试领实测确认：
+//   1 登录 / 2 一键加钟 / 3 送好友金币 / 4 招募 / 5 领5次挂机奖励 / 6 点金 / 7 开宝箱
+//   8 竞技场战斗(=complete key 13) / 9 黑市采购(=complete key 12) / 10 一键领取罐子(=complete key 14)
+// 合法领取 id 仅 1-10，11 及以上返回「缺少参数」。
+// 修复前 BLACK_MARKET 误用 [12]（key 当成了 id，必然「缺少参数」）、BOTTLE_CLAIM 误用 [9]（打到了黑市），
+// 导致「黑市采购」「一键领取罐子」即使做完也领不到活跃值 —— 即 B 类故障根因。
 const DAILY_POINT_TASK_ID_MAP = {
   SIGN_IN: [1],
   HANGUP_ADD_TIME: [2],
@@ -196,9 +209,11 @@ const DAILY_POINT_TASK_ID_MAP = {
   BUY_GOLD: [6],
   BOX_OPEN: [7],
   ARENA: [8],
-  BOTTLE_RESET: [9],
-  BOTTLE_CLAIM: [9],
-  BLACK_MARKET: [12],
+  // 重置罐子 = bottlehelper_stop + bottlehelper_start，本身不是计分任务，
+  // 沿用原表「两个罐子任务都指向罐子分」的意图，统一指向罐子的领取 id 10。
+  BOTTLE_RESET: [10],
+  BOTTLE_CLAIM: [10],
+  BLACK_MARKET: [9],
 };
 
 const DAILY_REWARD_DIRTY_TASKS = new Set([
@@ -999,6 +1014,7 @@ async function executeScheduledTaskWithClient(task, context = {}) {
       taskType,
       afterTask: async (completedExecution) => {
         await claimDailyPointRewardsByTask(completedExecution.client, taskType, taskConfig);
+        scheduleDailyRewardFlushAfterTask(task, taskType, completedExecution.result);
       },
     }, () => (
       executeTaskWithFlowControl({
@@ -2154,9 +2170,51 @@ function ensureDailyRewardFlushEntry(accountId) {
   return entry;
 }
 
+// 判定本次 DAILY_TASK_CLAIM 是否「被游戏限速/连接问题打断」。
+// 注意：不能用 didDailyTaskClaimConfirmReward —— 它只看宝箱是否领到，看不到任务点数是否被打断。
+// 实例（账号 368，2026-09-19 12:29）：
+//   results=[任务奖励1 deferred「操作过快，请稍后重试」, 日常宝箱 ok, 周常宝箱 ok]
+//   claimedCount=2、dailyRewardPending=false → didDailyTaskClaimConfirmReward=true（误判为成功）
+//   但 pointClaimInterrupted=true → 4 个任务点数（含黑市 15 分）全部没领到。
+// 全站实测：今日 145 个有记录的账号里 pointClaimInterrupted===true 的正好 46 个，
+// 而「有可领 id 却一点没涨、且非 interrupted」的账号为 0 —— 即该信号零漏报零误报。
+function isDailyRewardClaimInterrupted(result) {
+  const data = result?.data && typeof result.data === 'object' ? result.data : null;
+  return data?.pointClaimInterrupted === true;
+}
+
+function scheduleDailyRewardFlushAfterTask(task, taskType, result) {
+  const isDailyClaim = taskType === 'DAILY_TASK_CLAIM';
+  const isDirtyTask = DAILY_REWARD_DIRTY_TASKS.has(taskType);
+  if (!isDailyClaim && !(DAILY_REWARD_DIRTY_DEBOUNCE_ENABLED && isDirtyTask)) {
+    return;
+  }
+
+  try {
+    const accountId = getTaskAccountId(task);
+    if (!accountId) {
+      return;
+    }
+    const snapshot = getLatestScheduledAccountSnapshot(accountId);
+    const connectionContext = buildTaskConnectionContext(
+      mergeTaskWithLatestAccountSnapshot(task, snapshot)
+    );
+    updateDailyRewardFlushAfterTask(accountId, {
+      taskType,
+      result,
+      accountName: connectionContext.accountName,
+      tokenCandidates: connectionContext.tokenCandidates,
+      wsUrl: connectionContext.wsUrl,
+      importMethod: connectionContext.importMethod,
+      updatedAt: connectionContext.updatedAt,
+    });
+  } catch (error) {
+    console.warn(`⚠️ 登记日周活跃收尾补领失败（不影响主任务）: ${error?.message || error}`);
+  }
+}
+
 function updateDailyRewardFlushAfterTask(accountId, context = {}) {
   const entry = ensureDailyRewardFlushEntry(accountId);
-  const wasDirty = entry.dirty === true;
   entry.accountName = context.accountName || entry.accountName;
   entry.tokenCandidates = Array.isArray(context.tokenCandidates) ? [...context.tokenCandidates] : entry.tokenCandidates;
   entry.roleId = context.roleId ?? entry.roleId;
@@ -2166,7 +2224,7 @@ function updateDailyRewardFlushAfterTask(accountId, context = {}) {
   entry.retryCount = 0;
 
   if (context.taskType === 'DAILY_TASK_CLAIM') {
-    if (!wasDirty || didDailyTaskClaimConfirmReward(context.result)) {
+    if (!isDailyRewardClaimInterrupted(context.result)) {
       clearDailyRewardFlush(accountId);
       return;
     }
@@ -2176,12 +2234,12 @@ function updateDailyRewardFlushAfterTask(accountId, context = {}) {
       clearTimeout(entry.timer);
     }
     entry.timer = setTimeout(() => {
-      void flushDailyRewardClaim(accountId, 'daily-claim-no-reward-confirmed');
+      void flushDailyRewardClaim(accountId, 'daily-claim-interrupted');
     }, DAILY_REWARD_RETRY_DELAY_MS);
     return;
   }
 
-  if (!DAILY_REWARD_DIRTY_TASKS.has(context.taskType)) {
+  if (!(DAILY_REWARD_DIRTY_DEBOUNCE_ENABLED && DAILY_REWARD_DIRTY_TASKS.has(context.taskType))) {
     return;
   }
 
@@ -4224,6 +4282,23 @@ export const __testing = {
   executeWeirdTowerCore,
   collectDailyCatchupTasks,
   shouldSettleDailyCatchup,
+  isDailyRewardClaimInterrupted,
+  scheduleDailyRewardFlushAfterTask,
+  updateDailyRewardFlushAfterTask,
+  clearDailyRewardFlush,
+  getDailyRewardFlushState(accountId) {
+    const entry = dailyRewardFlushState.get(accountId);
+    if (!entry) {
+      return null;
+    }
+    return {
+      dirty: entry.dirty === true,
+      hasTimer: Boolean(entry.timer),
+      retryCount: entry.retryCount,
+      accountName: entry.accountName,
+      tokenCandidateCount: Array.isArray(entry.tokenCandidates) ? entry.tokenCandidates.length : 0,
+    };
+  },
   get DAILY_CATCHUP_TIMEOUT_MS() {
     return dailyCatchupTimeoutMs;
   },
