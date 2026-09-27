@@ -1,0 +1,20 @@
+
+zqhd26_xyx_tmz.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jl_chanzi
+  rotate: false
+  xy: 2, 2
+  size: 224, 85
+  orig: 224, 85
+  offset: 0, 0
+  index: -1
+jl_lakuai
+  rotate: false
+  xy: 228, 38
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+zhangliao2_skill_hit.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 291, 36
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sj
+  rotate: false
+  xy: 134, 42
+  size: 155, 83
+  orig: 155, 83
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sjdi
+  rotate: false
+  xy: 2, 9
+  size: 130, 116
+  orig: 130, 116
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sjks1
+  rotate: false
+  xy: 189, 10
+  size: 18, 30
+  orig: 18, 30
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sjks2
+  rotate: false
+  xy: 209, 13
+  size: 17, 27
+  orig: 17, 27
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sjks3
+  rotate: false
+  xy: 209, 3
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sjks4
+  rotate: true
+  xy: 291, 79
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1
+zhangliao2_skill_sjks5
+  rotate: false
+  xy: 134, 2
+  size: 53, 38
+  orig: 53, 38
+  offset: 0, 0
+  index: -1

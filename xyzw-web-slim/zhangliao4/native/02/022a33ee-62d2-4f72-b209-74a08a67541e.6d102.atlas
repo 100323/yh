@@ -1,0 +1,153 @@
+
+zhangliao4_skill_hit5.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zs2_dg
+  rotate: false
+  xy: 2, 264
+  size: 333, 239
+  orig: 333, 239
+  offset: 0, 0
+  index: -1
+zs2_dgl
+  rotate: true
+  xy: 668, 112
+  size: 169, 184
+  orig: 173, 184
+  offset: 0, 0
+  index: -1
+zs2_dh1
+  rotate: true
+  xy: 2, 164
+  size: 98, 295
+  orig: 98, 295
+  offset: 0, 0
+  index: -1
+zs2_dh2
+  rotate: true
+  xy: 677, 283
+  size: 77, 263
+  orig: 77, 263
+  offset: 0, 0
+  index: -1
+zs2_dh3
+  rotate: true
+  xy: 2, 63
+  size: 99, 270
+  orig: 99, 270
+  offset: 0, 0
+  index: -1
+zs2_dh4
+  rotate: true
+  xy: 149, 18
+  size: 43, 116
+  orig: 43, 116
+  offset: 0, 0
+  index: -1
+zs2_gy
+  rotate: false
+  xy: 274, 36
+  size: 217, 83
+  orig: 217, 83
+  offset: 0, 0
+  index: -1
+zs2_kqi
+  rotate: true
+  xy: 337, 302
+  size: 201, 338
+  orig: 201, 338
+  offset: 0, 0
+  index: -1
+zs2_ksdql
+  rotate: true
+  xy: 677, 362
+  size: 63, 286
+  orig: 63, 286
+  offset: 0, 0
+  index: -1
+zs2_ksdqr
+  rotate: false
+  xy: 677, 427
+  size: 308, 76
+  orig: 308, 80
+  offset: 0, 4
+  index: -1
+zs2_ksl
+  rotate: true
+  xy: 267, 2
+  size: 32, 140
+  orig: 32, 140
+  offset: 0, 0
+  index: -1
+zs2_ksr
+  rotate: false
+  xy: 2, 11
+  size: 145, 50
+  orig: 145, 53
+  offset: 0, 3
+  index: -1
+zs2_ksx
+  rotate: true
+  xy: 337, 219
+  size: 81, 230
+  orig: 81, 230
+  offset: 0, 0
+  index: -1
+zs2_sd1
+  rotate: true
+  xy: 569, 123
+  size: 177, 97
+  orig: 177, 97
+  offset: 0, 0
+  index: -1
+zs2_sd2
+  rotate: false
+  xy: 735, 33
+  size: 141, 53
+  orig: 141, 53
+  offset: 0, 0
+  index: -1
+zs2_yun1
+  rotate: false
+  xy: 854, 88
+  size: 114, 193
+  orig: 114, 193
+  offset: 0, 0
+  index: -1
+zs2_yun4
+  rotate: false
+  xy: 493, 30
+  size: 71, 89
+  orig: 71, 89
+  offset: 0, 0
+  index: -1
+zs2_yw
+  rotate: true
+  xy: 878, 8
+  size: 78, 127
+  orig: 78, 127
+  offset: 0, 0
+  index: -1
+zs2_zq1
+  rotate: true
+  xy: 299, 121
+  size: 96, 224
+  orig: 96, 224
+  offset: 0, 0
+  index: -1
+zs2_zq2
+  rotate: false
+  xy: 987, 399
+  size: 35, 104
+  orig: 35, 104
+  offset: 0, 0
+  index: -1
+zs2_zq3
+  rotate: false
+  xy: 566, 39
+  size: 167, 71
+  orig: 167, 71
+  offset: 0, 0
+  index: -1

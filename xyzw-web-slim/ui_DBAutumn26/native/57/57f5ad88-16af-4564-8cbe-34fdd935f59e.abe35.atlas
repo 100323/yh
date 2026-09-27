@@ -1,0 +1,41 @@
+
+zqhd26_xyx_yun.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg_dih
+  rotate: false
+  xy: 16, 235
+  size: 60, 34
+  orig: 60, 34
+  offset: 0, 0
+  index: -1
+bg_wu1
+  rotate: true
+  xy: 293, 102
+  size: 167, 171
+  orig: 167, 171
+  offset: 0, 0
+  index: -1
+bg_yunl
+  rotate: false
+  xy: 78, 141
+  size: 213, 128
+  orig: 213, 128
+  offset: 0, 0
+  index: -1
+bg_yunr
+  rotate: true
+  xy: 2, 2
+  size: 137, 264
+  orig: 137, 264
+  offset: 0, 0
+  index: -1
+xysg_hero_effect_box
+  rotate: false
+  xy: 2, 260
+  size: 12, 9
+  orig: 13, 13
+  offset: 0, 1
+  index: -1

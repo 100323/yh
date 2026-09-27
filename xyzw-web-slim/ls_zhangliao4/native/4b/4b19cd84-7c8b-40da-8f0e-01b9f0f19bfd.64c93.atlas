@@ -1,0 +1,167 @@
+
+ls_zhangliao4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw9_dhxingx
+  rotate: false
+  xy: 311, 38
+  size: 62, 42
+  orig: 62, 42
+  offset: 0, 0
+  index: -1
+dw9_guangyun1
+  rotate: true
+  xy: 276, 51
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+dw9_guangyun2
+  rotate: false
+  xy: 2, 103
+  size: 158, 159
+  orig: 158, 159
+  offset: 0, 0
+  index: -1
+dw9_guangyun3
+  rotate: false
+  xy: 227, 237
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+dw9_sui
+  rotate: false
+  xy: 226, 155
+  size: 76, 80
+  orig: 76, 82
+  offset: 0, 1
+  index: -1
+dw9_tt
+  rotate: false
+  xy: 2, 264
+  size: 223, 175
+  orig: 223, 175
+  offset: 0, 0
+  index: -1
+dw9_xing1
+  rotate: false
+  xy: 225, 33
+  size: 49, 52
+  orig: 49, 52
+  offset: 0, 0
+  index: -1
+shui_000
+  rotate: false
+  xy: 159, 18
+  size: 7, 12
+  orig: 46, 46
+  offset: 23, 4
+  index: -1
+shui_002
+  rotate: true
+  xy: 334, 160
+  size: 17, 36
+  orig: 46, 46
+  offset: 13, 3
+  index: -1
+shui_004
+  rotate: false
+  xy: 276, 9
+  size: 26, 40
+  orig: 46, 46
+  offset: 8, 3
+  index: -1
+shui_006
+  rotate: false
+  xy: 129, 63
+  size: 28, 38
+  orig: 46, 46
+  offset: 7, 7
+  index: -1
+shui_008
+  rotate: false
+  xy: 129, 27
+  size: 28, 34
+  orig: 46, 46
+  offset: 7, 11
+  index: -1
+shui_010
+  rotate: false
+  xy: 225, 2
+  size: 26, 29
+  orig: 46, 46
+  offset: 9, 14
+  index: -1
+shui_012
+  rotate: true
+  xy: 304, 157
+  size: 20, 28
+  orig: 46, 46
+  offset: 11, 14
+  index: -1
+shui_014
+  rotate: true
+  xy: 129, 18
+  size: 7, 4
+  orig: 46, 46
+  offset: 12, 27
+  index: -1
+zlys_txk_s1_d1
+  rotate: false
+  xy: 162, 32
+  size: 61, 72
+  orig: 69, 80
+  offset: 4, 4
+  index: -1
+zlys_txk_s1_d2
+  rotate: false
+  xy: 162, 106
+  size: 62, 72
+  orig: 70, 80
+  offset: 4, 4
+  index: -1
+zlys_txk_s1_d3
+  rotate: false
+  xy: 315, 82
+  size: 54, 73
+  orig: 62, 82
+  offset: 4, 5
+  index: -1
+zlys_txk_s1_d4
+  rotate: true
+  xy: 304, 179
+  size: 56, 66
+  orig: 64, 74
+  offset: 4, 4
+  index: -1
+zlys_txk_s1_x1
+  rotate: false
+  xy: 62, 17
+  size: 65, 84
+  orig: 73, 92
+  offset: 4, 4
+  index: -1
+zlys_txk_s1_x2
+  rotate: true
+  xy: 226, 87
+  size: 66, 87
+  orig: 74, 95
+  offset: 4, 4
+  index: -1
+zlys_txk_s1_x3
+  rotate: false
+  xy: 2, 11
+  size: 58, 90
+  orig: 66, 98
+  offset: 4, 4
+  index: -1
+zlys_txk_s1_x4
+  rotate: false
+  xy: 162, 180
+  size: 62, 82
+  orig: 70, 90
+  offset: 5, 4
+  index: -1

@@ -1,0 +1,146 @@
+
+dzfj_mrt_hz_xuanwu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 756, 16
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+mre_hz_bh_dian
+  rotate: false
+  xy: 809, 70
+  size: 127, 119
+  orig: 127, 119
+  offset: 0, 0
+  index: -1
+mre_hz_bh_hu
+  rotate: true
+  xy: 322, 276
+  size: 234, 342
+  orig: 234, 342
+  offset: 0, 0
+  index: -1
+mre_hz_bh_xc1
+  rotate: false
+  xy: 248, 94
+  size: 53, 63
+  orig: 55, 66
+  offset: 1, 2
+  index: -1
+mre_hz_bh_xc2
+  rotate: false
+  xy: 952, 221
+  size: 59, 76
+  orig: 62, 80
+  offset: 1, 2
+  index: -1
+mre_hz_bh_xc3
+  rotate: true
+  xy: 707, 13
+  size: 44, 47
+  orig: 47, 50
+  offset: 1, 2
+  index: -1
+mre_hz_bh_xc4
+  rotate: false
+  xy: 248, 159
+  size: 69, 79
+  orig: 72, 81
+  offset: 1, 1
+  index: -1
+mre_hz_bh_xc6
+  rotate: false
+  xy: 248, 38
+  size: 51, 54
+  orig: 53, 57
+  offset: 1, 1
+  index: -1
+mre_hz_bh_xing
+  rotate: true
+  xy: 272, 5
+  size: 31, 37
+  orig: 37, 45
+  offset: 3, 4
+  index: -1
+mre_hz_bh_yan1
+  rotate: false
+  xy: 809, 42
+  size: 46, 26
+  orig: 46, 26
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan2
+  rotate: true
+  xy: 952, 192
+  size: 27, 46
+  orig: 27, 46
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan3
+  rotate: false
+  xy: 809, 191
+  size: 141, 106
+  orig: 141, 106
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan4
+  rotate: false
+  xy: 629, 18
+  size: 76, 39
+  orig: 76, 39
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan5
+  rotate: true
+  xy: 248, 2
+  size: 34, 22
+  orig: 34, 22
+  offset: 0, 0
+  index: -1
+mre_hz_bh_yan6
+  rotate: true
+  xy: 938, 36
+  size: 153, 79
+  orig: 153, 79
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo1
+  rotate: false
+  xy: 2, 8
+  size: 244, 230
+  orig: 244, 230
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo2
+  rotate: true
+  xy: 629, 59
+  size: 215, 178
+  orig: 215, 178
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo3
+  rotate: true
+  xy: 322, 4
+  size: 270, 305
+  orig: 270, 305
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo4
+  rotate: false
+  xy: 2, 240
+  size: 318, 270
+  orig: 318, 270
+  offset: 0, 0
+  index: -1
+mre_hz_bh_zuo5
+  rotate: false
+  xy: 666, 299
+  size: 345, 211
+  orig: 346, 218
+  offset: 0, 6
+  index: -1

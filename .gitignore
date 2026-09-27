@@ -84,3 +84,23 @@ bin/
 !scripts/bin/sing-box-zenproxy-linux-amd64
 
 # GitHub related files are allowed by default.
+
+# ---- 禁止入库：本地部署脚本（含明文服务器凭据） ----
+deploy.py
+deploy_*.py
+*.pem
+id_rsa*
+known_hosts
+
+# ---- 禁止入库：发布归档（单个 400MB+，仓库不承载二进制发布物） ----
+release-*.tar
+release-*.bundle
+release-*.tar.gz
+release-*.zip
+
+# ---- Python 缓存 ----
+__pycache__/
+*.py[cod]
+
+# ---- 资源同步工具的本地产物（过期 bundle 暂存区） ----
+_old_bundles/

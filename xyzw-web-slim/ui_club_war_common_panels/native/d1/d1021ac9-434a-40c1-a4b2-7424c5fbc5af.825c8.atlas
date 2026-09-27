@@ -1,0 +1,97 @@
+
+sdlb_huoche_lihua.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zjd_pdc1
+  rotate: false
+  xy: 418, 15
+  size: 52, 109
+  orig: 52, 109
+  offset: 0, 0
+  index: -1
+zjd_pdc2
+  rotate: false
+  xy: 103, 46
+  size: 99, 78
+  orig: 99, 78
+  offset: 0, 0
+  index: -1
+zjd_pdc3
+  rotate: false
+  xy: 2, 45
+  size: 99, 79
+  orig: 99, 79
+  offset: 0, 0
+  index: -1
+zjd_pdc4
+  rotate: false
+  xy: 305, 64
+  size: 111, 60
+  orig: 111, 61
+  offset: 0, 0
+  index: -1
+zjd_pdc5
+  rotate: false
+  xy: 204, 46
+  size: 99, 78
+  orig: 99, 78
+  offset: 0, 0
+  index: -1
+zjd_pdc6
+  rotate: true
+  xy: 472, 32
+  size: 92, 37
+  orig: 92, 38
+  offset: 0, 0
+  index: -1
+zjd_pdd1
+  rotate: false
+  xy: 103, 3
+  size: 48, 41
+  orig: 49, 41
+  offset: 1, 0
+  index: -1
+zjd_pdd2
+  rotate: false
+  xy: 153, 12
+  size: 39, 32
+  orig: 41, 32
+  offset: 1, 0
+  index: -1
+zjd_pdd4
+  rotate: false
+  xy: 354, 5
+  size: 35, 57
+  orig: 36, 59
+  offset: 1, 1
+  index: -1
+zjd_pdd5
+  rotate: false
+  xy: 2, 2
+  size: 44, 41
+  orig: 44, 41
+  offset: 0, 0
+  index: -1
+zjd_pdd6
+  rotate: true
+  xy: 305, 18
+  size: 44, 47
+  orig: 44, 47
+  offset: 0, 0
+  index: -1
+zjd_pdd7
+  rotate: true
+  xy: 48, 8
+  size: 35, 39
+  orig: 36, 39
+  offset: 0, 0
+  index: -1
+zjd_pdd8
+  rotate: true
+  xy: 391, 14
+  size: 48, 23
+  orig: 49, 25
+  offset: 0, 1
+  index: -1

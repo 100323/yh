@@ -1,0 +1,76 @@
+
+txk_zhangliao4.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw9_lz
+  rotate: false
+  xy: 2, 93
+  size: 142, 143
+  orig: 168, 167
+  offset: 13, 12
+  index: -1
+dw9_lz1
+  rotate: false
+  xy: 372, 46
+  size: 74, 74
+  orig: 94, 95
+  offset: 10, 11
+  index: -1
+huo0
+  rotate: false
+  xy: 334, 122
+  size: 112, 59
+  orig: 114, 62
+  offset: 1, 1
+  index: -1
+huo1
+  rotate: true
+  xy: 236, 2
+  size: 116, 69
+  orig: 118, 72
+  offset: 1, 1
+  index: -1
+huo2
+  rotate: true
+  xy: 264, 121
+  size: 115, 68
+  orig: 117, 71
+  offset: 1, 1
+  index: -1
+huo3
+  rotate: false
+  xy: 2, 10
+  size: 116, 81
+  orig: 118, 85
+  offset: 1, 2
+  index: -1
+huo4
+  rotate: false
+  xy: 120, 16
+  size: 114, 75
+  orig: 116, 77
+  offset: 1, 1
+  index: -1
+huo5
+  rotate: true
+  xy: 307, 3
+  size: 116, 63
+  orig: 118, 66
+  offset: 1, 1
+  index: -1
+txk_dw9_jin
+  rotate: false
+  xy: 334, 183
+  size: 126, 53
+  orig: 128, 55
+  offset: 1, 1
+  index: -1
+txk_dw9_kuang
+  rotate: false
+  xy: 146, 120
+  size: 116, 116
+  orig: 118, 118
+  offset: 1, 1
+  index: -1

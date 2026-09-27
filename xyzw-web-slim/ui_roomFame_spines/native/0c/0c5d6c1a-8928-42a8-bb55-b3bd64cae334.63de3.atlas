@@ -1,0 +1,69 @@
+
+dzfj_mrt_hz1_zhouyu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: true
+  xy: 720, 191
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+hz1_01
+  rotate: false
+  xy: 406, 237
+  size: 364, 219
+  orig: 364, 219
+  offset: 0, 0
+  index: -1
+hz1_03
+  rotate: false
+  xy: 720, 9
+  size: 246, 180
+  orig: 246, 182
+  offset: 0, 2
+  index: -1
+hz1_05
+  rotate: false
+  xy: 2, 131
+  size: 402, 325
+  orig: 402, 326
+  offset: 0, 0
+  index: -1
+xg_01
+  rotate: false
+  xy: 651, 29
+  size: 32, 39
+  orig: 38, 47
+  offset: 3, 4
+  index: -1
+xg_02
+  rotate: true
+  xy: 651, 2
+  size: 25, 23
+  orig: 32, 29
+  offset: 4, 3
+  index: -1
+zhouyu
+  rotate: true
+  xy: 772, 213
+  size: 243, 222
+  orig: 255, 222
+  offset: 12, 0
+  index: -1
+zhouyu-fx
+  rotate: true
+  xy: 651, 70
+  size: 165, 67
+  orig: 165, 67
+  offset: 0, 0
+  index: -1
+zhouyu-fx2
+  rotate: true
+  xy: 406, 22
+  size: 213, 243
+  orig: 213, 243
+  offset: 0, 0
+  index: -1

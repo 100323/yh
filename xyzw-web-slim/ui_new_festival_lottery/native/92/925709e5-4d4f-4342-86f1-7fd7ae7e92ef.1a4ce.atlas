@@ -1,0 +1,27 @@
+
+wzxyj26_cj_xuanzhong.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wzxyj26_cj_xz_huang
+  rotate: false
+  xy: 2, 2
+  size: 102, 99
+  orig: 102, 99
+  offset: 0, 0
+  index: -1
+wzxyj26_cj_xz_lan
+  rotate: false
+  xy: 106, 2
+  size: 102, 99
+  orig: 102, 99
+  offset: 0, 0
+  index: -1
+wzxyj26_cj_xz_xing1
+  rotate: false
+  xy: 210, 86
+  size: 14, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1

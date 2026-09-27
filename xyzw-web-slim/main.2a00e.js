@@ -363,8 +363,87 @@ window.parseRemoteBundleVers = function (settingsObj) {
   return bundleVers
 }
 
+window.getGameManifestUrl = function () {
+  if (!window.GAME_VERSION) throw new Error('缺少内嵌客户端基础版本')
+  return 'https://xxz-xyzw.hortorgames.com/login/manifest?platform=hortor&version=' +
+    encodeURIComponent(window.GAME_VERSION) + '&_t=' + Date.now()
+}
+
+window.applyGameManifest = function (settings, response) {
+  const body = typeof response.body === 'string' ? JSON.parse(response.body) : response.body
+  if (response.code || !body) throw new Error('游戏更新服务返回错误')
+  if (body.isLast === false) {
+    const error = new Error('官方已停止支持当前内嵌基础客户端，请更新内嵌游戏资源')
+    error.clientUpgradeRequired = true
+    throw error
+  }
+  const versions = window.parseRemoteBundleVers(response)
+  // 官方启动器会用 dataBundleVer 覆盖 config；不能只更新代码而继续加载旧配置。
+  const bundleVers = Object.assign({}, versions)
+  if (typeof body.dataBundleVer === 'string' && body.dataBundleVer) bundleVers.config = body.dataBundleVer
+  window.applyRemoteBundleVers(settings, bundleVers)
+  settings.battleVersion = Number(body.battleVersion) || 0
+  settings.dataBundleVer = body.dataBundleVer || ''
+  // role_getroleinfo must carry the same client version as the official
+  // launcher.  The manifest is authoritative; keep the wx suffix only when
+  // the service does not expose a platform-specific value.
+  const explicitClientVersion = [body.clientVersion, body.gameClientVersion, body.gameVersion]
+    .find((value) => typeof value === 'string' && /^\d+(?:\.\d+){1,3}(?:-[A-Za-z0-9._-]+)?$/.test(value.trim()))
+  const manifestCodeVersion = typeof bundleVers.codeVersion === 'string' ? bundleVers.codeVersion.trim() : ''
+  const resolvedClientVersion = explicitClientVersion || (manifestCodeVersion ? `${manifestCodeVersion}-wx` : '')
+  if (resolvedClientVersion) {
+    window.__XYZW_CLIENT_VERSION__ = resolvedClientVersion
+    window.__gameManifestClientVersion__ = resolvedClientVersion
+    window.__gameManifestCodeVersion__ = manifestCodeVersion
+  }
+  window.BATTLE_VERSION = settings.battleVersion
+  window.DATA_BUNDLE_VERSION = settings.dataBundleVer
+  window.__gameManifestCheckedAt__ = Date.now()
+  window.__gameManifestIdentity__ = JSON.stringify([bundleVers.codeVersion, bundleVers.game, bundleVers.launcher, bundleVers.config, bundleVers.TEST_REMOTE_MODULE, settings.battleVersion])
+  return body
+}
+
+// ★ 把全局 CODE_VERSION 锁定为官方清单的 codeVersion。
+//   游戏内 GameVersionTask 会计算 IsLastVersion = (CODE_VERSION === 清单codeVersion)，
+//   并作为全局变量上报服务端；两者不等时盐场 / 蟠桃等独立战场服务端会直接回
+//   「检测到您使用的客户端数据异常，请使用官方最新客户端」。
+//   game-defines 里的 CODE_VERSION 只是 APK 基础版本，不能拿来冒充热更新版本。
+function lockGlobalCodeVersion(ver) {
+  if (!ver) return
+  try {
+    Object.defineProperty(globalThis, 'CODE_VERSION', {
+      get: function () { return ver },
+      set: function () { /* 忽略 launcher 覆盖 */ },
+      configurable: true
+    })
+    Object.defineProperty(window, 'CODE_VERSION', {
+      get: function () { return ver },
+      set: function () { /* 忽略 */ },
+      configurable: true
+    })
+  } catch (e) {
+    globalThis.CODE_VERSION = ver
+    window.CODE_VERSION = ver
+  }
+}
+
+window.applyRemoteBundleVers = function (settings, bundleVers) {
+  if (!bundleVers || typeof bundleVers !== 'object' || Array.isArray(bundleVers)) {
+    throw new Error('游戏更新清单格式无效')
+  }
+  for (const key of ['codeVersion', 'game', 'launcher']) {
+    if (typeof bundleVers[key] !== 'string' || !bundleVers[key].trim()) {
+      throw new Error('游戏更新清单缺少必要版本：' + key)
+    }
+  }
+  // 验证完整后一起替换，缓存和网络清单使用同一路径，不能只更新资源哈希。
+  settings.bundleVers = Object.assign({}, settings.bundleVers, bundleVers)
+  settings.codeVersion = bundleVers.codeVersion
+  lockGlobalCodeVersion(bundleVers.codeVersion)
+}
+
 window.loadRemoteBundleVers = async function () {
-  const manifestUrl = `https://xxz-xyzw.hortorgames.com/login/manifest?platform=hortor&version=0.32.0-android`
+  const manifestUrl = window.getGameManifestUrl()
   console.log('[remoteAssets] POST manifest', manifestUrl)
 
   const settingsRes = await fetch(
@@ -392,8 +471,8 @@ window.loadRemoteBundleVers = async function () {
     throw err
   }
 
-  const bundleVers = window.parseRemoteBundleVers(settingsObj)
-  Object.assign(window._CCSettings.bundleVers, bundleVers)
+  window.applyGameManifest(window._CCSettings, settingsObj)
+  const bundleVers = window._CCSettings.bundleVers
   console.log('[remoteAssets] 远程版本已拉取', {
     launcher: bundleVers.launcher,
     game: bundleVers.game,

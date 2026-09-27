@@ -1,0 +1,160 @@
+
+dzfj_mrt_hz_shengbei.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hz_sb_gy
+  rotate: false
+  xy: 714, 311
+  size: 236, 199
+  orig: 236, 199
+  offset: 0, 0
+  index: -1
+hz_sb_gy1
+  rotate: true
+  xy: 760, 21
+  size: 36, 90
+  orig: 36, 90
+  offset: 0, 0
+  index: -1
+hz_sb_gy2
+  rotate: false
+  xy: 852, 10
+  size: 69, 47
+  orig: 69, 47
+  offset: 0, 0
+  index: -1
+hz_sb_gy3
+  rotate: true
+  xy: 940, 232
+  size: 77, 79
+  orig: 77, 79
+  offset: 0, 0
+  index: -1
+hz_sb_gy4
+  rotate: false
+  xy: 923, 20
+  size: 65, 37
+  orig: 65, 37
+  offset: 0, 0
+  index: -1
+hz_sb_lun1
+  rotate: false
+  xy: 2, 15
+  size: 420, 115
+  orig: 420, 115
+  offset: 0, 0
+  index: -1
+hz_sb_lun2
+  rotate: false
+  xy: 701, 59
+  size: 237, 250
+  orig: 237, 250
+  offset: 0, 0
+  index: -1
+hz_sb_xc1
+  rotate: false
+  xy: 696, 4
+  size: 62, 53
+  orig: 62, 53
+  offset: 0, 0
+  index: -1
+hz_sb_xc2
+  rotate: true
+  xy: 614, 158
+  size: 42, 67
+  orig: 42, 67
+  offset: 0, 0
+  index: -1
+hz_sb_xc3
+  rotate: false
+  xy: 587, 70
+  size: 112, 82
+  orig: 112, 82
+  offset: 0, 0
+  index: -1
+hz_sb_xc4
+  rotate: true
+  xy: 529, 154
+  size: 46, 83
+  orig: 46, 83
+  offset: 0, 0
+  index: -1
+hz_sb_xing
+  rotate: true
+  xy: 587, 10
+  size: 58, 77
+  orig: 58, 77
+  offset: 0, 0
+  index: -1
+hz_sb_xing2
+  rotate: true
+  xy: 529, 202
+  size: 107, 170
+  orig: 107, 170
+  offset: 0, 0
+  index: -1
+hz_sb_yan1
+  rotate: false
+  xy: 324, 311
+  size: 388, 199
+  orig: 388, 199
+  offset: 0, 0
+  index: -1
+hz_sb_yan2
+  rotate: true
+  xy: 990, 212
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+hz_sb_yan3
+  rotate: true
+  xy: 2, 132
+  size: 378, 320
+  orig: 378, 320
+  offset: 0, 0
+  index: -1
+hz_sb_yan4
+  rotate: false
+  xy: 760, 2
+  size: 18, 17
+  orig: 18, 17
+  offset: 0, 0
+  index: -1
+hz_sb_yan5
+  rotate: true
+  xy: 666, 6
+  size: 21, 28
+  orig: 21, 28
+  offset: 0, 0
+  index: -1
+hz_sb_yan6
+  rotate: true
+  xy: 324, 132
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hz_sb_yu1
+  rotate: true
+  xy: 324, 147
+  size: 162, 203
+  orig: 162, 203
+  offset: 0, 0
+  index: -1
+hz_sb_yu2
+  rotate: false
+  xy: 424, 7
+  size: 161, 138
+  orig: 161, 138
+  offset: 0, 0
+  index: -1
+mre_hz_bh_xing
+  rotate: false
+  xy: 666, 29
+  size: 28, 39
+  orig: 39, 47
+  offset: 5, 4
+  index: -1

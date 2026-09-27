@@ -1,0 +1,41 @@
+
+yuling_1124_buff.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 156, 2
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+yuling_pz_effect_fish
+  rotate: false
+  xy: 156, 39
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+yuling_pz_effect_ring
+  rotate: false
+  xy: 2, 169
+  size: 152, 50
+  orig: 152, 50
+  offset: 0, 0
+  index: -1
+yuling_pz_effect_shine
+  rotate: false
+  xy: 156, 125
+  size: 63, 94
+  orig: 63, 94
+  offset: 0, 0
+  index: -1
+yuling_pz_effect_spark
+  rotate: false
+  xy: 2, 15
+  size: 152, 152
+  orig: 152, 152
+  offset: 0, 0
+  index: -1

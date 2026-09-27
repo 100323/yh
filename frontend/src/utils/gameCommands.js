@@ -3,7 +3,7 @@
  * 基于mirror代码中的游戏指令实现完整的游戏功能
  */
 
-import { g_utils } from "./bonProtocol.js";
+import { g_utils, resolveClientVersion } from "./bonProtocol.js";
 
 // 生成随机数工具函数
 function randomInt(min, max) {
@@ -39,7 +39,7 @@ export class GameCommands {
     return {
       cmd: "role_getroleinfo",
       body: this.g_utils.bon.encode({
-        clientVersion: "2.3.9-wx",
+        clientVersion: resolveClientVersion(),
         inviteUid: 0,
         platform: "hortor",
         platformExt: "mix",

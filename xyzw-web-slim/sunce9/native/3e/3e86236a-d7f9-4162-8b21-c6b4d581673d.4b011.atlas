@@ -1,0 +1,20 @@
+
+sunce9_attack_loop.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sunce9_pg_lz3
+  rotate: false
+  xy: 2, 2
+  size: 47, 46
+  orig: 47, 46
+  offset: 0, 0
+  index: -1
+sunce9_pg_zd
+  rotate: false
+  xy: 2, 50
+  size: 227, 170
+  orig: 227, 170
+  offset: 0, 0
+  index: -1

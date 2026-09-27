@@ -1,0 +1,20 @@
+
+wzxyj26_cj_guangbiao.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wzxyj26_cj_gb_1
+  rotate: false
+  xy: 157, 74
+  size: 74, 77
+  orig: 78, 80
+  offset: 2, 1
+  index: -1
+wzxyj26_cj_xz_gb2
+  rotate: false
+  xy: 2, 2
+  size: 153, 149
+  orig: 161, 156
+  offset: 4, 3
+  index: -1

@@ -1,0 +1,27 @@
+
+zhangliao3_skill_hit1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 263, 56
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhangliao3_skill_1
+  rotate: true
+  xy: 2, 2
+  size: 190, 259
+  orig: 193, 261
+  offset: 1, 0
+  index: -1
+zhangliao3_skill_2
+  rotate: true
+  xy: 263, 99
+  size: 93, 85
+  orig: 95, 88
+  offset: 0, 1
+  index: -1

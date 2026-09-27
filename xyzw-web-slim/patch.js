@@ -7,7 +7,7 @@
 (function() {
     'use strict';
 
-    var PATCH_VERSION = 'v11.5';
+    var PATCH_VERSION = 'v12.0';
     if (window.__PATCH_LOADED__) { return; }
     window.__PATCH_LOADED__ = true;
 
@@ -305,6 +305,155 @@
     // ══════════════════════════════════════════
     //  ★ v1.0 核心修复: Canvas尺寸强制同步
     // ══════════════════════════════════════════
+    function effectiveRenderDpr() {
+        var dpr = window.devicePixelRatio || 1;
+        // 画质开关必须同时影响后续 resize；仅调用 enableRetina 不足以覆盖
+        // 本补丁自己的 canvas.width/height 写入，否则省资源模式会马上被还原。
+        if (window.__multiWindowMode && window.__gameQualityMode === 'performance') return 1;
+        return dpr;
+    }
+
+    // 移动端内嵌游戏的可见舞台可能是横向的（例如手机横屏或分屏）。
+    // 舞台可以铺满 iframe，但游戏内容必须保持竖屏比例并固定到右侧，不能把
+    // 竖屏画布直接拉伸成横向舞台。参考原生上号器的 GameShell 布局，左侧
+    // 是可用黑边，右侧才是实际游戏视口；这里把舞台尺寸与游戏视口分开处理。
+    var MOBILE_GAME_ASPECT = 9 / 16;
+
+    function mobileViewportBox(stageW, stageH) {
+        var w = Math.max(1, Number(stageW) || 1);
+        var h = Math.max(1, Number(stageH) || 1);
+        var aspect = Number(window.__mobileGameAspect__) || MOBILE_GAME_ASPECT;
+        if (!isFinite(aspect) || aspect <= 0 || aspect >= 1) aspect = MOBILE_GAME_ASPECT;
+        var boxW = Math.min(w, Math.round(h * aspect));
+        var boxH = Math.min(h, Math.round(boxW / aspect));
+        // 外层 BattleAutomation 会把 iframe 本身放到舞台右侧；Cocos 内部
+        // 必须从视口原点开始，避免“右移一次 + Cocos 再计算一次”只露出窄条。
+        var align = String(window.__mobileGameAlign__ || 'left').toLowerCase();
+        var x = align === 'left'
+            ? 0
+            : align === 'center'
+                ? Math.round((w - boxW) / 2)
+                : w - boxW;
+        return {
+            stageW: w,
+            stageH: h,
+            x: Math.max(0, Math.min(w - boxW, Math.round(x))),
+            y: Math.max(0, Math.round((h - boxH) / 2)),
+            w: Math.max(1, boxW),
+            h: Math.max(1, boxH)
+        };
+    }
+
+    function mobileCanvasElements() {
+        var elements = [];
+        var canvas = (window.cc && window.cc.game && window.cc.game.canvas) || document.getElementById('GameCanvas') || document.querySelector('canvas');
+        var container = (window.cc && window.cc.game && window.cc.game.container)
+            || document.getElementById('Cocos2dGameContainer')
+            || (canvas && canvas.parentElement);
+        if (container) elements.push(container);
+        if (canvas && elements.indexOf(canvas) < 0) elements.push(canvas);
+        return { canvas: canvas, container: container, elements: elements };
+    }
+
+    function enforceMobileViewport(stageW, stageH) {
+        if (!window.__mobileGameViewport__ || !stageW || !stageH) return false;
+        try {
+            var box = mobileViewportBox(stageW, stageH);
+            var found = mobileCanvasElements();
+            var canvas = found.canvas;
+            var container = found.container;
+            var applyContainerBox = function(el) {
+                if (!el || !el.style) return;
+                el.style.boxSizing = 'border-box';
+                el.style.position = 'absolute';
+                el.style.left = box.x + 'px';
+                el.style.top = box.y + 'px';
+                el.style.width = box.w + 'px';
+                el.style.height = box.h + 'px';
+                el.style.minWidth = '0px';
+                el.style.minHeight = '0px';
+                el.style.maxWidth = 'none';
+                el.style.maxHeight = 'none';
+                el.style.margin = '0';
+                el.style.padding = '0';
+                el.style.transform = 'none';
+                el.style['-webkit-transform'] = 'none';
+                el.style.transformOrigin = '0 0';
+                el.style['-webkit-transform-origin'] = '0 0';
+                el.style.overflow = 'hidden';
+            };
+            if (container) applyContainerBox(container);
+            if (canvas) {
+                canvas.style.boxSizing = 'border-box';
+                canvas.style.position = 'absolute';
+                canvas.style.left = container ? '0px' : box.x + 'px';
+                canvas.style.top = container ? '0px' : box.y + 'px';
+                canvas.style.width = box.w + 'px';
+                canvas.style.height = box.h + 'px';
+                canvas.style.minWidth = '0px';
+                canvas.style.minHeight = '0px';
+                canvas.style.maxWidth = 'none';
+                canvas.style.maxHeight = 'none';
+                canvas.style.margin = '0';
+                canvas.style.padding = '0';
+                canvas.style.transform = 'none';
+                canvas.style['-webkit-transform'] = 'none';
+                canvas.style.transformOrigin = '0 0';
+                canvas.style['-webkit-transform-origin'] = '0 0';
+                canvas.style.display = 'block';
+                canvas.style.objectFit = 'contain';
+                var dpr = effectiveRenderDpr();
+                var pixelW = Math.round(box.w * dpr);
+                var pixelH = Math.round(box.h * dpr);
+                if (canvas.width !== pixelW) canvas.width = pixelW;
+                if (canvas.height !== pixelH) canvas.height = pixelH;
+            }
+            if (document.documentElement && document.documentElement.style) {
+                document.documentElement.style.width = box.stageW + 'px';
+                document.documentElement.style.height = box.stageH + 'px';
+                document.documentElement.style.margin = '0';
+                document.documentElement.style.padding = '0';
+            }
+            if (document.body && document.body.style) {
+                document.body.style.position = 'relative';
+                document.body.style.width = box.stageW + 'px';
+                document.body.style.height = box.stageH + 'px';
+                document.body.style.minWidth = '0px';
+                document.body.style.minHeight = '0px';
+                document.body.style.margin = '0';
+                document.body.style.padding = '0';
+                document.body.style.overflow = 'hidden';
+            }
+            window.__mobileFrameSize__ = { w: box.w, h: box.h };
+            return !!canvas || !!container;
+        } catch (_e) { return false; }
+    }
+
+    function stopMobileViewportGuard() {
+        if (window.__mobileViewportGuard__) {
+            clearInterval(window.__mobileViewportGuard__);
+            window.__mobileViewportGuard__ = null;
+        }
+    }
+
+    function startMobileViewportGuard() {
+        stopMobileViewportGuard();
+        if (!window.__mobileGameViewport__ || !window.__mobileViewportTarget__) return;
+        var tick = function() {
+            var target = window.__mobileViewportTarget__;
+            if (!target || !window.__mobileGameViewport__) return;
+            enforceMobileViewport(target.w, target.h);
+            // Cocos 场景切换时会重写一次样式，短周期守护到场景稳定后停止。
+        };
+        tick();
+        var elapsed = 0;
+        window.__mobileViewportGuard__ = setInterval(function() {
+            tick();
+            elapsed += 250;
+            if (elapsed >= 15000) stopMobileViewportGuard();
+        }, 250);
+    }
+
     function forceCanvasResize(reason) {
         // ★ v7.0: 防递归 — guard防止无限重入
         if (window.__canvasResizeInProgress__) return false;
@@ -354,7 +503,7 @@
                     console.log('[Patch ' + PATCH_VERSION + '] 🔄 强制 _isRotated=false');
                 }
                 var canvas = document.getElementById('GameCanvas');
-                var dpr = window.devicePixelRatio || 1;
+                var dpr = effectiveRenderDpr();
 
                 // ★ v5.9-fix: 先用 CSS 设置显示尺寸，再精确设置缓冲区 = CSS尺寸 × 真实DPR
                 if (canvas) {
@@ -369,6 +518,8 @@
                 cc.view.resizeWithBrowserSize(true);
                 try { cc.view.emit('canvas-resize'); } catch(e2) {}
                 try { cc.view.emit('design-resolution-changed'); } catch(e2) {}
+                var mobileTarget = window.__mobileViewportTarget__;
+                enforceMobileViewport(mobileTarget ? mobileTarget.w : w, mobileTarget ? mobileTarget.h : h);
 
                 console.log('[Patch ' + PATCH_VERSION + '] Canvas已调整 (' + reason + '):',
                     Math.round(w) + 'x' + Math.round(h) + ' @' + dpr.toFixed(1) + 'x → ' +
@@ -582,16 +733,29 @@
         }
 
         if (e.data.type === 'GAME_RESIZE') {
-            // ★ v11.9: 如果消息带 masterW/masterH, 临时覆盖 window.innerWidth/innerHeight
-            //   让 cocos 看到的主控高宽比永远跟主控一致 → 永远不触发 _isRotated 翻转
-            //   关键: canvas 仍渲染主控尺寸, 但通过 CSS transform: scale 缩到当前wrap实际尺寸
-            var _w = (e.data.masterW && e.data.masterW > 0) ? e.data.masterW : (window.__realInnerWidth__ || window.innerWidth);
-            var _h = (e.data.masterH && e.data.masterH > 0) ? e.data.masterH : (window.__realInnerHeight__ || window.innerHeight);
-            // 缓存真实尺寸
-            if (!window.__realInnerWidth__) {
-                window.__realInnerWidth__ = window.innerWidth;
-                window.__realInnerHeight__ = window.innerHeight;
-            }
+            // 23 号之前由 iframe 自己管理 viewport。保留消息类型兼容旧
+            // 页面，但不再接受外层传入的二次缩放尺寸。
+            return;
+            // ★ v12.0: 舞台尺寸与竖屏游戏视口分离。
+            //   手机分屏时舞台可能是横向或接近正方形，不能把竖屏游戏直接拉伸到
+            //   wrapW×wrapH；移动端使用等比竖屏框并右对齐，左侧保留黑边，匹配原生 GameShell。
+            var _wrapW = (e.data.wrapW && e.data.wrapW > 0) ? e.data.wrapW : (window.__realInnerWidth__ || window.innerWidth);
+            var _wrapH = (e.data.wrapH && e.data.wrapH > 0) ? e.data.wrapH : (window.__realInnerHeight__ || window.innerHeight);
+            window.__mobileGameViewport__ = e.data.mobileViewport === true;
+            var _mobileBox = window.__mobileGameViewport__ ? mobileViewportBox(_wrapW, _wrapH) : null;
+            var _w = window.__mobileGameViewport__
+                ? _mobileBox.w
+                : ((e.data.masterW && e.data.masterW > 0) ? e.data.masterW : _wrapW);
+            var _h = window.__mobileGameViewport__
+                ? _mobileBox.h
+                : ((e.data.masterH && e.data.masterH > 0) ? e.data.masterH : _wrapH);
+            window.__mobileViewportTarget__ = window.__mobileGameViewport__
+                ? { w: _wrapW, h: _wrapH, masterW: _w, masterH: _h }
+                : null;
+            // 优先使用父页面传入的实时可见尺寸；手机旋转、系统分屏和
+            // 标签切换后不能继续沿用第一次打开时的 innerWidth/innerHeight。
+            window.__realInnerWidth__ = _wrapW;
+            window.__realInnerHeight__ = _wrapH;
             // 覆盖 getter
             try {
                 Object.defineProperty(window, 'innerWidth', { get: function() { return _w; }, configurable: true });
@@ -603,28 +767,37 @@
             window.__maxInnerWidth__ = 0;
             window.__lastInnerWidth__ = null;
             window.__lastInnerHeight__ = null;
-            // ★ v11.9: canvas 渲染主控尺寸 _w×_h, 但 CSS transform scale 缩到当前wrap实际尺寸
+            // 先按普通 DOM 尺寸校正，不能等待 cc.view；消息可能早于游戏场景初始化。
+            if (window.__mobileGameViewport__) {
+                enforceMobileViewport(_wrapW, _wrapH);
+                startMobileViewportGuard();
+            } else {
+                stopMobileViewportGuard();
+            }
             try {
                 var canvas = document.getElementById('GameCanvas');
                 if (canvas) {
-                    var dpr = window.devicePixelRatio || 1;
+                    var dpr = effectiveRenderDpr();
                     canvas.style.width = _w + 'px';
                     canvas.style.height = _h + 'px';
                     canvas.width = Math.round(_w * dpr);
                     canvas.height = Math.round(_h * dpr);
-                    // ★ 关键: 计算当前wrap实际尺寸, 用 transform: scale 缩到目标
-                    var realWrapW = window.__realInnerWidth__ || window.innerWidth;
-                    var realWrapH = window.__realInnerHeight__ || window.innerHeight;
-                    if (realWrapW > 0 && realWrapH > 0 && (_w !== realWrapW || _h !== realWrapH)) {
+                    // 桌面端使用 master 尺寸 + 等比缩放；移动端由
+                    // enforceMobileViewport 将竖屏视口恢复到舞台右侧。
+                    var realWrapW = _wrapW;
+                    var realWrapH = _wrapH;
+                    if (!window.__mobileGameViewport__ && realWrapW > 0 && realWrapH > 0 && (_w !== realWrapW || _h !== realWrapH)) {
                         var scale = Math.min(realWrapW / _w, realWrapH / _h);
-                        // canvas 用绝对定位 + transform-origin: top left + scale
+                        // 桌面端 canvas 用绝对定位 + 等比缩放并居中，适配窄高舞台。
+                        var scaledW = _w * scale;
+                        var scaledH = _h * scale;
                         canvas.style.position = 'absolute';
-                        canvas.style.left = '0';
-                        canvas.style.top = '0';
+                        canvas.style.left = Math.max(0, (realWrapW - scaledW) / 2) + 'px';
+                        canvas.style.top = Math.max(0, (realWrapH - scaledH) / 2) + 'px';
                         canvas.style.transformOrigin = '0 0';
                         canvas.style.transform = 'scale(' + scale + ')';
                         console.log('[Patch ' + PATCH_VERSION + '] 🔄 canvas scale=' + scale.toFixed(3) + ' (主控' + _w + '×' + _h + ' → wrap' + realWrapW + '×' + realWrapH + ')');
-                    } else {
+                    } else if (!window.__mobileGameViewport__) {
                         canvas.style.position = '';
                         canvas.style.left = '';
                         canvas.style.top = '';
@@ -642,8 +815,17 @@
                         cc.view._isRotated = false;
                         try { cc.game.container.style.transform = 'rotate(0deg)'; cc.game.container.style['-webkit-transform'] = 'rotate(0deg)'; } catch(_e3) {}
                     }
+                    // Cocos 的分辨率策略可能在上述调用后再次改写容器，
+                // 移动端最后再恢复竖屏视口的右侧位置。
+                    enforceMobileViewport(_wrapW, _wrapH);
                 }
             } catch(_ex2) {}
+            if (window.__mobileGameViewport__) {
+                // 场景首帧/布局完成后由守护器持续校正；这里保留两次快速校正，
+                // 让首屏不等待守护器的第一个 tick。
+                setTimeout(function() { enforceMobileViewport(_wrapW, _wrapH); }, 50);
+                setTimeout(function() { enforceMobileViewport(_wrapW, _wrapH); }, 250);
+            }
             try { var _evt = new Event('resize'); window.dispatchEvent(_evt); } catch(_e) {}
         }
 
@@ -669,6 +851,23 @@
         if (e.data.type === 'SET_GAME_FRAME_RATE') {
             window.__targetGameFrameRate = e.data.fps;
             window.__applyGameFrameRate();
+        }
+
+        // 多开画质由自动战场页面控制。省资源模式关闭 Retina，高清模式恢复原始清晰度。
+        if (e.data.type === 'SET_GAME_QUALITY') {
+            var reduceQuality = !!e.data.reduceQuality;
+            window.__gameQualityMode = reduceQuality ? 'performance' : 'quality';
+            try {
+                if (typeof cc !== 'undefined' && cc.view && typeof cc.view.enableRetina === 'function') {
+                    cc.view.enableRetina(!reduceQuality);
+                    cc.view.resizeWithBrowserSize(true);
+                }
+                // 立即同步像素缓冲区，避免切换下拉框后只改了引擎标志、
+                // 下一次窗口 resize 才生效。
+                if (typeof forceCanvasResize === 'function') forceCanvasResize('qualityMode');
+            } catch (_qualityError) {
+                console.warn('[Patch ' + PATCH_VERSION + '] 画质模式切换失败', _qualityError);
+            }
         }
 
         // ★ v6.41: 飘字优化开关

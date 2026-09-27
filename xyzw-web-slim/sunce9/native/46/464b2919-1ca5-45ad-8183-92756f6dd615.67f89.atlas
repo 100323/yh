@@ -1,0 +1,55 @@
+
+sunce9_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 205
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+sunce9_pg_ksl
+  rotate: false
+  xy: 202, 170
+  size: 158, 79
+  orig: 158, 79
+  offset: 0, 0
+  index: -1
+sunce9_pg_ksr
+  rotate: false
+  xy: 2, 84
+  size: 117, 85
+  orig: 117, 85
+  offset: 0, 0
+  index: -1
+sunce9_pg_lang
+  rotate: false
+  xy: 121, 2
+  size: 286, 163
+  orig: 286, 163
+  offset: 0, 0
+  index: -1
+sunce9_pg_sd1
+  rotate: true
+  xy: 362, 167
+  size: 82, 91
+  orig: 96, 100
+  offset: 7, 1
+  index: -1
+sunce9_pg_sd3
+  rotate: true
+  xy: 100, 171
+  size: 78, 100
+  orig: 86, 107
+  offset: 4, 4
+  index: -1
+sunce9_pg_sd4
+  rotate: false
+  xy: 48, 201
+  size: 50, 48
+  orig: 59, 56
+  offset: 4, 4
+  index: -1

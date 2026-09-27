@@ -1,0 +1,160 @@
+
+ft2_zhangliao4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tyxingchen1
+  rotate: false
+  xy: 482, 189
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+zhangliao4_bozis
+  rotate: true
+  xy: 187, 246
+  size: 74, 116
+  orig: 74, 116
+  offset: 0, 0
+  index: -1
+zhangliao4_bozix
+  rotate: true
+  xy: 424, 346
+  size: 97, 85
+  orig: 97, 85
+  offset: 0, 0
+  index: -1
+zhangliao4_dian
+  rotate: false
+  xy: 434, 116
+  size: 47, 48
+  orig: 47, 48
+  offset: 0, 0
+  index: -1
+zhangliao4_huo1
+  rotate: true
+  xy: 285, 340
+  size: 103, 137
+  orig: 103, 137
+  offset: 0, 0
+  index: -1
+zhangliao4_huo2
+  rotate: false
+  xy: 154, 108
+  size: 104, 136
+  orig: 104, 136
+  offset: 0, 0
+  index: -1
+zhangliao4_huo3
+  rotate: true
+  xy: 154, 2
+  size: 104, 135
+  orig: 104, 135
+  offset: 0, 0
+  index: -1
+zhangliao4_huo4
+  rotate: true
+  xy: 305, 232
+  size: 106, 125
+  orig: 106, 125
+  offset: 0, 0
+  index: -1
+zhangliao4_huolz1
+  rotate: true
+  xy: 446, 67
+  size: 47, 43
+  orig: 47, 43
+  offset: 0, 0
+  index: -1
+zhangliao4_huolz2
+  rotate: true
+  xy: 446, 28
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
+zhangliao4_shen
+  rotate: false
+  xy: 2, 246
+  size: 183, 259
+  orig: 183, 259
+  offset: 0, 0
+  index: -1
+zhangliao4_tjhr
+  rotate: false
+  xy: 432, 218
+  size: 61, 55
+  orig: 61, 55
+  offset: 0, 0
+  index: -1
+zhangliao4_tjql
+  rotate: false
+  xy: 427, 166
+  size: 53, 50
+  orig: 53, 50
+  offset: 0, 0
+  index: -1
+zhangliao4_tjqr
+  rotate: false
+  xy: 434, 275
+  size: 76, 69
+  orig: 76, 69
+  offset: 0, 0
+  index: -1
+zhangliao4_tou
+  rotate: true
+  xy: 2, 5
+  size: 239, 150
+  orig: 239, 150
+  offset: 0, 0
+  index: -1
+zhangliao4_tuihr
+  rotate: true
+  xy: 291, 20
+  size: 72, 116
+  orig: 72, 116
+  offset: 0, 0
+  index: -1
+zhangliao4_tuiql
+  rotate: false
+  xy: 298, 94
+  size: 134, 54
+  orig: 134, 55
+  offset: 0, 0
+  index: -1
+zhangliao4_tuiqr
+  rotate: false
+  xy: 187, 322
+  size: 96, 183
+  orig: 96, 183
+  offset: 0, 0
+  index: -1
+zhangliao4_weiba
+  rotate: false
+  xy: 298, 150
+  size: 127, 80
+  orig: 127, 80
+  offset: 0, 0
+  index: -1
+zhangliao4_xian
+  rotate: false
+  xy: 409, 28
+  size: 35, 64
+  orig: 35, 64
+  offset: 0, 0
+  index: -1
+zhangliao4_zsl
+  rotate: true
+  xy: 260, 116
+  size: 128, 36
+  orig: 128, 36
+  offset: 0, 0
+  index: -1
+zhangliao4_zsr
+  rotate: false
+  xy: 285, 445
+  size: 190, 60
+  orig: 190, 60
+  offset: 0, 0
+  index: -1

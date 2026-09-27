@@ -1,0 +1,83 @@
+
+zhangliao4_attack_hit.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+simayi9_pg_diang
+  rotate: false
+  xy: 215, 24
+  size: 29, 33
+  orig: 29, 33
+  offset: 0, 0
+  index: -1
+simayi9_pg_guang
+  rotate: true
+  xy: 89, 18
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+simayi9_pg_xian
+  rotate: false
+  xy: 163, 59
+  size: 56, 58
+  orig: 56, 58
+  offset: 0, 0
+  index: -1
+simayi9_pg_xiang
+  rotate: false
+  xy: 89, 2
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan1
+  rotate: false
+  xy: 163, 7
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan4
+  rotate: true
+  xy: 90, 94
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan5
+  rotate: false
+  xy: 136, 2
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+simayi9_pg_yan6
+  rotate: false
+  xy: 119, 2
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+zhangliao4_pg_xg
+  rotate: true
+  xy: 2, 93
+  size: 161, 86
+  orig: 161, 86
+  offset: 0, 0
+  index: -1
+zhangliao4_pg_yan2
+  rotate: false
+  xy: 2, 3
+  size: 85, 88
+  orig: 85, 88
+  offset: 0, 0
+  index: -1
+zhangliao4_pg_yan3
+  rotate: false
+  xy: 90, 119
+  size: 130, 135
+  orig: 130, 135
+  offset: 0, 0
+  index: -1

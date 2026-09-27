@@ -1,0 +1,20 @@
+
+zqhd24_yun.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+24zq_img_yun1
+  rotate: false
+  xy: 2, 102
+  size: 410, 118
+  orig: 410, 118
+  offset: 0, 0
+  index: -1
+24zq_img_yun2
+  rotate: false
+  xy: 2, 2
+  size: 410, 98
+  orig: 410, 98
+  offset: 0, 0
+  index: -1

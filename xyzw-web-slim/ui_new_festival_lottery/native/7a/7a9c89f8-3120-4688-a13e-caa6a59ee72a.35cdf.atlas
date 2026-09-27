@@ -1,0 +1,13 @@
+
+sqhd_dkxb_fly.png
+size: 64,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 2, 2
+  size: 54, 54
+  orig: 58, 58
+  offset: 2, 2
+  index: -1

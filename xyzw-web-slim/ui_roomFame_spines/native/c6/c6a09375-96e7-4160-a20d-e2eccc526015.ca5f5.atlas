@@ -1,0 +1,76 @@
+
+dzfj_mrt_hz1_zhaoyun.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: false
+  xy: 289, 135
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+houfx
+  rotate: false
+  xy: 654, 2
+  size: 196, 187
+  orig: 196, 187
+  offset: 0, 0
+  index: -1
+hz1_01
+  rotate: false
+  xy: 406, 277
+  size: 364, 219
+  orig: 364, 219
+  offset: 0, 0
+  index: -1
+hz1_03
+  rotate: false
+  xy: 406, 95
+  size: 246, 180
+  orig: 246, 182
+  offset: 0, 2
+  index: -1
+hz1_05
+  rotate: false
+  xy: 2, 171
+  size: 402, 325
+  orig: 402, 326
+  offset: 0, 0
+  index: -1
+qianfx
+  rotate: true
+  xy: 2, 7
+  size: 162, 285
+  orig: 163, 294
+  offset: 0, 9
+  index: -1
+weaponfx
+  rotate: false
+  xy: 852, 65
+  size: 123, 124
+  orig: 123, 124
+  offset: 0, 0
+  index: -1
+xg_01
+  rotate: false
+  xy: 654, 236
+  size: 32, 39
+  orig: 38, 47
+  offset: 3, 4
+  index: -1
+xg_02
+  rotate: false
+  xy: 852, 40
+  size: 25, 23
+  orig: 32, 29
+  offset: 4, 3
+  index: -1
+zhaoyun
+  rotate: true
+  xy: 772, 191
+  size: 305, 229
+  orig: 305, 229
+  offset: 0, 0
+  index: -1

@@ -90,15 +90,64 @@
    }
  }
  
- /** 预注册游戏命令 */
- export function registerDefaultCommands(reg) {
-   const registry = reg.registerHeartbeat()
-     //盐场-获取战场信息
-     .register("war_getbattlefieldinfo")
-     .register("war_enterbattlefield")
-   
-   return registry
- }
+/** 预注册游戏命令 */
+export function registerDefaultCommands(reg) {
+  // 命令族对齐官方战场服务（xxz-xyzw-new.hortorgames.com）。
+  // 注意：不注册的命令在 send()/build() 时会直接抛 "Unknown cmd"，
+  // 盐场/蟠桃的「布阵 / 开战 / 行军」全都落在这个缺口里。
+  const registry = reg.registerHeartbeat()
+    // —— 盐场（俱乐部盐场战 / war_*）——
+    .register("war_enterbattlefield")      // 进入战场
+    .register("war_getbattlefieldinfo")    // 战场快照
+    .register("war_setbattleteam")         // 布阵
+    .register("war_startbattle")           // 开战
+    .register("war_startmarch")            // 行军
+    .register("war_startattackbuilding")   // 攻打建筑
+    .register("war_resurrect")             // 复活
+    .register("war_speedup")               // 加速
+    // —— 蟠桃 / 物资战（payload_*）——
+    .register("payload_enterbf")           // 进入战场
+    .register("payload_setbattleteam")     // 布阵
+    .register("payload_startbattle")       // 开战
+    .register("payload_startmarch")        // 行军
+    .register("payload_startpickitem")     // 拾取物资
+    .register("payload_useitem")           // 使用道具
+    // —— 战场查询 ——
+    .register("legion_getbattlefield")
+    .register("legion_getpayloadbf")
+    .register("legion_getpayloadrecord")
+    .register("legion_getpayloadkillrecord")
+
+  return registry
+}
+
+/**
+ * 战场命令的响应后缀映射：服务端对大多数 war_ / payload_ 命令
+ * 会回 "<cmd>resp"，个别是 notify / gzipresp。send() 时把
+ * respKey 设成对应值才能匹配到响应（否则会一直等到超时）。
+ */
+export const BATTLE_RESP_SUFFIX = {
+  war_enterbattlefield: "war_enterbattlefieldresp",
+  war_enterbattlefieldgzipresp: "war_enterbattlefield",
+  war_getbattlefieldinfo: "war_getbattlefieldinforesp",
+  war_setbattleteam: "war_setbattleteamresp",
+  war_resurrect: "war_resurrectnotify",
+  war_speedup: "war_speedupresp",
+  war_startbattle: "war_startbattleresp",
+  war_startmarch: "war_startmarchresp",
+  war_startattackbuilding: "war_startattackbuildingresp",
+  payload_enterbf: "payload_enterbfresp",
+  payload_setbattleteam: "payload_setbattleteamresp",
+  payload_startbattle: "payload_startbattleresp",
+  payload_startmarch: "payload_startmarchresp",
+  payload_startpickitem: "payload_startpickitemresp",
+  payload_useitem: "payload_useitemresp",
+}
+
+/** 取某战场命令对应的响应 cmd（默认回退为 "<cmd>resp"） */
+export function battleRespKey(cmd) {
+  return BATTLE_RESP_SUFFIX[cmd] || `${cmd}resp`
+}
  
  /**
   * XYZW WebSocket 盐场客户端

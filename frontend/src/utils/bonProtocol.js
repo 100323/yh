@@ -802,6 +802,29 @@ export function getEnc(name) {
   return registry.get(name) ?? passthrough;
 }
 
+/**
+ * 解析 role_getroleinfo 上报的 clientVersion。
+ *
+ * 盐场/蟠桃等独立战场服务会校验客户端上报版本，版本不被认可就回
+ * 「检测到您使用的客户端数据异常，请使用官方最新客户端」。
+ * 取值优先级（与官方/参考实现一致）：
+ *   window.__XYZW_CLIENT_VERSION__ → globalThis.GAME_VERSION
+ *   → globalThis.CODE_VERSION → "2.3.9-wx"
+ * 允许带 "-wx" / "-h5" 等渠道后缀；带 android/ios/release 的一律跳过。
+ */
+export function resolveClientVersion() {
+  const g = typeof globalThis !== "undefined" ? globalThis : {};
+  const candidates = [g.__XYZW_CLIENT_VERSION__, g.GAME_VERSION, g.CODE_VERSION];
+  for (const raw of candidates) {
+    const v = String(raw ?? "").trim();
+    if (!v) continue;
+    if (!/^\d+(?:\.\d+){1,3}(?:-[A-Za-z0-9._-]+)?$/.test(v)) continue;
+    if (/(?:android|ios|release)/i.test(v)) continue;
+    return v.includes("-") ? v : `${v}-wx`;
+  }
+  return "2.3.9-wx";
+}
+
 /** 对外：encode（bon.encode → 加密） */
 export function encode(obj, enc) {
   let bytes = bon.encode(obj, false);
@@ -849,7 +872,7 @@ export const GameMessages = {
     cmd: "role_getroleinfo",
     body: encode(
       {
-        clientVersion: "2.3.9-wx",
+        clientVersion: resolveClientVersion(),
         inviteUid: 0,
         platform: "hortor",
         platformExt: "mix",

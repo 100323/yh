@@ -4,7 +4,7 @@
  */
 
 import { $CacheManager } from "@/stores/cache";
-import { bonProtocol, g_utils } from "./bonProtocol.js";
+import { bonProtocol, g_utils, resolveClientVersion } from "./bonProtocol.js";
 import { wsLogger, gameLogger } from "./logger.js";
 
 /**
@@ -139,13 +139,20 @@ export class CommandRegistry {
   }
 }
 
+/**
+ * role_getroleinfo 的 clientVersion 由 bonProtocol.resolveClientVersion() 统一解析：
+ * 服务端（尤其盐场/蟠桃这类独立战场服务）会校验客户端上报版本，写死旧版本会被判
+ * 「检测到您使用的客户端数据异常，请使用官方最新客户端」。
+ * 需要临时对齐线上版本时，可在控制台设置 window.__XYZW_CLIENT_VERSION__ = "x.y.z-wx"。
+ */
+
 /** 预注册游戏命令 */
 export function registerDefaultCommands(reg) {
   const registry = reg
     .registerHeartbeat()
     // 角色/系统
     .register("role_getroleinfo", {
-      clientVersion: "2.3.9-wx",
+      clientVersion: resolveClientVersion(),
       inviteUid: 0,
       platform: "hortor",
       platformExt: "mix",

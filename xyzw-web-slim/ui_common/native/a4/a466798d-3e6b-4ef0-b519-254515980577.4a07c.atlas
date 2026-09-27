@@ -1,0 +1,41 @@
+
+gfjx_cz_yuehua.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cz_yh_gang
+  rotate: false
+  xy: 2, 59
+  size: 97, 48
+  orig: 97, 48
+  offset: 0, 0
+  index: -1
+cz_yh_hua
+  rotate: false
+  xy: 101, 96
+  size: 12, 11
+  orig: 14, 13
+  offset: 1, 1
+  index: -1
+cz_yh_yan1
+  rotate: true
+  xy: 88, 9
+  size: 48, 31
+  orig: 48, 31
+  offset: 0, 0
+  index: -1
+cz_yh_yan2
+  rotate: true
+  xy: 2, 2
+  size: 55, 34
+  orig: 55, 34
+  offset: 0, 0
+  index: -1
+cz_yh_yue
+  rotate: true
+  xy: 38, 4
+  size: 53, 48
+  orig: 55, 50
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,97 @@
+
+ft_zhangliao4.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dw9_h1
+  rotate: true
+  xy: 432, 412
+  size: 94, 77
+  orig: 94, 77
+  offset: 0, 0
+  index: -1
+dw9_q1
+  rotate: true
+  xy: 432, 412
+  size: 94, 77
+  orig: 94, 77
+  offset: 0, 0
+  index: -1
+dw9_h2
+  rotate: false
+  xy: 270, 47
+  size: 178, 122
+  orig: 178, 122
+  offset: 0, 0
+  index: -1
+dw9_hy1
+  rotate: true
+  xy: 286, 171
+  size: 149, 127
+  orig: 170, 138
+  offset: 12, 11
+  index: -1
+dw9_lz
+  rotate: true
+  xy: 432, 329
+  size: 81, 74
+  orig: 81, 74
+  offset: 0, 0
+  index: -1
+dw9_q2
+  rotate: false
+  xy: 2, 122
+  size: 179, 122
+  orig: 179, 122
+  offset: 0, 0
+  index: -1
+dw9_qy1
+  rotate: false
+  xy: 415, 236
+  size: 81, 84
+  orig: 93, 84
+  offset: 12, 0
+  index: -1
+dw9_qy2
+  rotate: false
+  xy: 2, 2
+  size: 170, 118
+  orig: 170, 118
+  offset: 0, 0
+  index: -1
+dw9_st
+  rotate: false
+  xy: 2, 246
+  size: 282, 260
+  orig: 282, 263
+  offset: 0, 1
+  index: -1
+dw9_t
+  rotate: false
+  xy: 286, 322
+  size: 144, 184
+  orig: 144, 184
+  offset: 0, 0
+  index: -1
+dw9_wb
+  rotate: false
+  xy: 415, 179
+  size: 64, 55
+  orig: 66, 55
+  offset: 2, 0
+  index: -1
+dw9_youjia
+  rotate: false
+  xy: 183, 30
+  size: 81, 103
+  orig: 82, 104
+  offset: 0, 1
+  index: -1
+dw9_zuojia
+  rotate: false
+  xy: 183, 135
+  size: 85, 109
+  orig: 86, 110
+  offset: 0, 1
+  index: -1

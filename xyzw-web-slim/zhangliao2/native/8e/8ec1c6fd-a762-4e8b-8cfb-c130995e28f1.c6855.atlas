@@ -1,0 +1,41 @@
+
+zhangliao2_attack_hit.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 268, 80
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+zhangliao2_pg_bd
+  rotate: true
+  xy: 175, 82
+  size: 87, 91
+  orig: 87, 91
+  offset: 0, 0
+  index: -1
+zhangliao2_pg_lz1
+  rotate: false
+  xy: 175, 42
+  size: 36, 38
+  orig: 36, 38
+  offset: 0, 0
+  index: -1
+zhangliao2_pg_lz2
+  rotate: true
+  xy: 268, 123
+  size: 46, 41
+  orig: 46, 41
+  offset: 0, 0
+  index: -1
+zhangliao2_pg_xg
+  rotate: true
+  xy: 2, 2
+  size: 167, 171
+  orig: 167, 171
+  offset: 0, 0
+  index: -1

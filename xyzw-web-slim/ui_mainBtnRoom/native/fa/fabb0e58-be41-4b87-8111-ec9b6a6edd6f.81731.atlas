@@ -1,0 +1,118 @@
+
+ui_axian_btn_livingroom_6003.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiandai
+  rotate: true
+  xy: 187, 74
+  size: 38, 59
+  orig: 38, 59
+  offset: 0, 0
+  index: -1
+jianl
+  rotate: false
+  xy: 187, 114
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+jianr
+  rotate: true
+  xy: 116, 12
+  size: 43, 53
+  orig: 43, 53
+  offset: 0, 0
+  index: -1
+lian
+  rotate: true
+  xy: 66, 80
+  size: 65, 50
+  orig: 65, 50
+  offset: 0, 0
+  index: -1
+maozis
+  rotate: true
+  xy: 120, 57
+  size: 104, 65
+  orig: 104, 65
+  offset: 0, 0
+  index: -1
+mb
+  rotate: false
+  xy: 2, 147
+  size: 116, 96
+  orig: 116, 96
+  offset: 0, 0
+  index: -1
+mzh
+  rotate: true
+  xy: 66, 26
+  size: 52, 48
+  orig: 52, 48
+  offset: 0, 0
+  index: -1
+shen
+  rotate: false
+  xy: 2, 18
+  size: 62, 55
+  orig: 65, 56
+  offset: 3, 0
+  index: -1
+tf
+  rotate: true
+  xy: 120, 163
+  size: 80, 70
+  orig: 80, 70
+  offset: 0, 0
+  index: -1
+tfh
+  rotate: true
+  xy: 2, 75
+  size: 70, 62
+  orig: 70, 62
+  offset: 0, 0
+  index: -1
+tfh2
+  rotate: true
+  xy: 171, 17
+  size: 38, 64
+  orig: 38, 64
+  offset: 0, 0
+  index: -1
+yanl
+  rotate: true
+  xy: 98, 7
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+yanr
+  rotate: true
+  xy: 2, 2
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+yzl
+  rotate: false
+  xy: 27, 11
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+yzr
+  rotate: true
+  xy: 19, 11
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+zui
+  rotate: false
+  xy: 66, 3
+  size: 30, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1

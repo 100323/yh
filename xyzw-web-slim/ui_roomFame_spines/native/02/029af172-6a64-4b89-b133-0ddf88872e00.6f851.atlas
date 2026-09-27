@@ -1,0 +1,69 @@
+
+dzfj_mrt_hz1_zhangjiao.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hg
+  rotate: true
+  xy: 2, 2
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+hz1_01
+  rotate: false
+  xy: 624, 283
+  size: 364, 219
+  orig: 364, 219
+  offset: 0, 0
+  index: -1
+hz1_03
+  rotate: false
+  xy: 329, 18
+  size: 246, 180
+  orig: 246, 182
+  offset: 0, 2
+  index: -1
+hz1_05
+  rotate: true
+  xy: 2, 100
+  size: 402, 325
+  orig: 402, 326
+  offset: 0, 0
+  index: -1
+xg_01
+  rotate: false
+  xy: 36, 59
+  size: 32, 39
+  orig: 38, 47
+  offset: 3, 4
+  index: -1
+xg_02
+  rotate: true
+  xy: 38, 32
+  size: 25, 23
+  orig: 32, 29
+  offset: 4, 3
+  index: -1
+zhangjiao_shenti
+  rotate: true
+  xy: 624, 54
+  size: 227, 307
+  orig: 228, 307
+  offset: 1, 0
+  index: -1
+zhangjiao_shou
+  rotate: false
+  xy: 2, 48
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+zhangjiao_texiao
+  rotate: true
+  xy: 329, 200
+  size: 302, 293
+  orig: 302, 293
+  offset: 0, 0
+  index: -1

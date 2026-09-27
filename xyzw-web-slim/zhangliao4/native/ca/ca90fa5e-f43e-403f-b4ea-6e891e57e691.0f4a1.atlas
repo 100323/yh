@@ -1,0 +1,97 @@
+
+zhangliao4_skill_hit4.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangliao4_skill2_bd
+  rotate: false
+  xy: 2, 2
+  size: 432, 170
+  orig: 432, 170
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dg1
+  rotate: true
+  xy: 201, 394
+  size: 173, 543
+  orig: 173, 543
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dg2
+  rotate: true
+  xy: 436, 66
+  size: 326, 128
+  orig: 326, 128
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dg3
+  rotate: true
+  xy: 786, 603
+  size: 418, 145
+  orig: 422, 145
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dian1
+  rotate: false
+  xy: 201, 243
+  size: 172, 149
+  orig: 172, 149
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dian2
+  rotate: true
+  xy: 746, 141
+  size: 457, 164
+  orig: 457, 164
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dian3
+  rotate: false
+  xy: 644, 600
+  size: 140, 421
+  orig: 140, 421
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_dian4
+  rotate: false
+  xy: 2, 174
+  size: 197, 847
+  orig: 197, 847
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_gy
+  rotate: true
+  xy: 201, 569
+  size: 452, 441
+  orig: 452, 441
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_lz
+  rotate: true
+  xy: 566, 14
+  size: 68, 111
+  orig: 68, 111
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_yun1
+  rotate: true
+  xy: 566, 231
+  size: 161, 122
+  orig: 161, 122
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_yun2
+  rotate: false
+  xy: 690, 31
+  size: 149, 108
+  orig: 149, 108
+  offset: 0, 0
+  index: -1
+zhangliao4_skill2_yun3
+  rotate: false
+  xy: 566, 84
+  size: 122, 145
+  orig: 122, 145
+  offset: 0, 0
+  index: -1

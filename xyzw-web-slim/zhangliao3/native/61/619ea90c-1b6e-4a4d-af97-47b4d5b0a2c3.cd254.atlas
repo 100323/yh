@@ -1,0 +1,132 @@
+
+zhangliao3_skill_position2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangliao3_jn_xz_ct1
+  rotate: false
+  xy: 2, 2
+  size: 221, 204
+  orig: 221, 204
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_ct2
+  rotate: true
+  xy: 331, 53
+  size: 167, 112
+  orig: 167, 112
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_ct3
+  rotate: true
+  xy: 225, 17
+  size: 193, 104
+  orig: 193, 104
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_ct4
+  rotate: false
+  xy: 185, 212
+  size: 106, 74
+  orig: 106, 74
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_ct5
+  rotate: false
+  xy: 379, 298
+  size: 104, 51
+  orig: 104, 51
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_di
+  rotate: true
+  xy: 100, 226
+  size: 284, 83
+  orig: 284, 83
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_hz
+  rotate: false
+  xy: 293, 222
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_no
+  rotate: false
+  xy: 413, 269
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_shen
+  rotate: true
+  xy: 185, 288
+  size: 222, 169
+  orig: 222, 169
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_tu1
+  rotate: false
+  xy: 356, 297
+  size: 21, 52
+  orig: 21, 52
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_tu2
+  rotate: true
+  xy: 375, 10
+  size: 41, 112
+  orig: 41, 112
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_tu3
+  rotate: true
+  xy: 355, 226
+  size: 60, 56
+  orig: 60, 56
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_tu4
+  rotate: true
+  xy: 331, 2
+  size: 49, 42
+  orig: 49, 42
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_tu5
+  rotate: true
+  xy: 2, 208
+  size: 302, 96
+  orig: 302, 96
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_zhua
+  rotate: false
+  xy: 489, 25
+  size: 141, 110
+  orig: 141, 110
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_zt1
+  rotate: true
+  xy: 356, 351
+  size: 159, 148
+  orig: 159, 148
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_zt2
+  rotate: true
+  xy: 445, 137
+  size: 159, 148
+  orig: 159, 148
+  offset: 0, 0
+  index: -1
+zhangliao3_jn_xz_zt3
+  rotate: true
+  xy: 506, 351
+  size: 159, 148
+  orig: 159, 148
+  offset: 0, 0
+  index: -1

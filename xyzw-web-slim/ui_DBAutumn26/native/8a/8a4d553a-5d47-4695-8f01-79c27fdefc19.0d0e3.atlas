@@ -1,0 +1,34 @@
+
+zqhd24_xyx_liuxing.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 29, 41
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+zqhd24_liuxing1
+  rotate: true
+  xy: 29, 2
+  size: 21, 31
+  orig: 21, 31
+  offset: 0, 0
+  index: -1
+zqhd24_liuxing2
+  rotate: false
+  xy: 2, 2
+  size: 25, 97
+  orig: 25, 97
+  offset: 0, 0
+  index: -1
+zqhd24_liuxing3
+  rotate: true
+  xy: 29, 25
+  size: 14, 82
+  orig: 16, 84
+  offset: 1, 1
+  index: -1

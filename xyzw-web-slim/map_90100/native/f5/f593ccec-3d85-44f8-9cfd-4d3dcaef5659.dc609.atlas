@@ -1,0 +1,90 @@
+
+dzfj_mrt_cj_shengbei.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hz_sb_gy
+  rotate: true
+  xy: 636, 21
+  size: 226, 191
+  orig: 226, 191
+  offset: 0, 0
+  index: -1
+hz_sb_gy1
+  rotate: false
+  xy: 986, 161
+  size: 34, 86
+  orig: 34, 86
+  offset: 0, 0
+  index: -1
+hz_sb_gy2
+  rotate: false
+  xy: 829, 5
+  size: 67, 45
+  orig: 67, 45
+  offset: 0, 0
+  index: -1
+hz_sb_gy3
+  rotate: true
+  xy: 553, 60
+  size: 74, 76
+  orig: 74, 76
+  offset: 0, 0
+  index: -1
+hz_sb_gy4
+  rotate: true
+  xy: 986, 97
+  size: 62, 36
+  orig: 62, 36
+  offset: 0, 0
+  index: -1
+hz_sb_lun1
+  rotate: false
+  xy: 231, 136
+  size: 403, 111
+  orig: 403, 111
+  offset: 0, 0
+  index: -1
+hz_sb_lun2
+  rotate: false
+  xy: 2, 7
+  size: 227, 240
+  orig: 227, 240
+  offset: 0, 0
+  index: -1
+hz_sb_xing
+  rotate: true
+  xy: 553, 2
+  size: 56, 74
+  orig: 56, 74
+  offset: 0, 0
+  index: -1
+hz_sb_xing2
+  rotate: true
+  xy: 388, 31
+  size: 103, 163
+  orig: 103, 163
+  offset: 0, 0
+  index: -1
+hz_sb_yu1
+  rotate: false
+  xy: 829, 52
+  size: 155, 195
+  orig: 155, 195
+  offset: 0, 0
+  index: -1
+hz_sb_yu2
+  rotate: false
+  xy: 231, 2
+  size: 155, 132
+  orig: 155, 132
+  offset: 0, 0
+  index: -1
+mre_hz_bh_xing
+  rotate: false
+  xy: 986, 58
+  size: 27, 37
+  orig: 37, 45
+  offset: 5, 4
+  index: -1

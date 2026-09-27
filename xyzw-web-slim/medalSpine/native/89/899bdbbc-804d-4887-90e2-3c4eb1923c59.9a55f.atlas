@@ -1,0 +1,62 @@
+
+qjs26_medal_8.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero_effect_halo1
+  rotate: false
+  xy: 292, 204
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+qjs26_xz_dian1
+  rotate: true
+  xy: 200, 15
+  size: 51, 79
+  orig: 53, 80
+  offset: 1, 1
+  index: -1
+qjs26_xz_dian2
+  rotate: true
+  xy: 215, 264
+  size: 102, 163
+  orig: 104, 165
+  offset: 1, 1
+  index: -1
+qjs26_xz_fengye
+  rotate: false
+  xy: 2, 153
+  size: 211, 213
+  orig: 211, 213
+  offset: 0, 0
+  index: -1
+qjs26_xz_ying
+  rotate: false
+  xy: 200, 68
+  size: 210, 83
+  orig: 210, 83
+  offset: 0, 0
+  index: -1
+xjs26_medal_3
+  rotate: false
+  xy: 2, 2
+  size: 196, 149
+  orig: 196, 149
+  offset: 0, 0
+  index: -1
+xjs26_medal_huo
+  rotate: false
+  xy: 380, 194
+  size: 77, 172
+  orig: 77, 172
+  offset: 0, 0
+  index: -1
+xjs26_medal_xing3
+  rotate: true
+  xy: 215, 204
+  size: 58, 75
+  orig: 58, 75
+  offset: 0, 0
+  index: -1

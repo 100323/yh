@@ -4,7 +4,9 @@ import fetch from 'node-fetch';
 const router = express.Router();
 
 const DEFAULT_PLATFORM = 'hortor';
-const DEFAULT_VERSION = '0.32.0-ios';
+// 必须与内嵌客户端 game-defines 的 GAME_VERSION 一致，否则会拿到另一套 bundleVers，
+// 与 main.2a00e.js 应用的那套混在一起，导致红点/战场版本校验异常。
+const DEFAULT_VERSION = '0.32.0-android';
 const MANIFEST_ORIGIN = 'https://xxz-xyzw.hortorgames.com';
 const MANIFEST_PATH = '/login/manifest';
 const CACHE_TTL_MS = 30 * 1000;

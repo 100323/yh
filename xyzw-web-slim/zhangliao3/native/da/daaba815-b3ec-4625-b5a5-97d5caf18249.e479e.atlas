@@ -1,0 +1,62 @@
+
+zhangliao3_skill_loop.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhangliao3_js_tx_guang
+  rotate: false
+  xy: 2, 82
+  size: 414, 172
+  orig: 414, 172
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_guang1
+  rotate: true
+  xy: 588, 10
+  size: 134, 81
+  orig: 134, 81
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_guang2
+  rotate: true
+  xy: 473, 25
+  size: 119, 113
+  orig: 119, 113
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_guang3
+  rotate: true
+  xy: 760, 11
+  size: 243, 190
+  orig: 243, 190
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_xian1
+  rotate: false
+  xy: 952, 138
+  size: 34, 116
+  orig: 34, 116
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_xian2
+  rotate: true
+  xy: 418, 146
+  size: 108, 340
+  orig: 108, 340
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_xian3
+  rotate: true
+  xy: 2, 2
+  size: 78, 258
+  orig: 78, 258
+  offset: 0, 0
+  index: -1
+zhangliao3_js_tx_xian4
+  rotate: true
+  xy: 262, 18
+  size: 62, 209
+  orig: 62, 209
+  offset: 0, 0
+  index: -1

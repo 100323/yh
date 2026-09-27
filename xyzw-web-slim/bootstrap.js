@@ -29,8 +29,13 @@
     fallback: "#ff9f0a",
     error: "#ff453a",
   };
+  // ★ 关闭「按周推算 codeVersion」的自造版本机制。
+  //   它会用 baseVersion + 周数猜一个版本号去覆盖官方清单的真实 codeVersion，
+  //   一旦猜错，客户端上报的版本/IsLastVersion 就与官方不一致，
+  //   盐场 / 蟠桃等独立战场服务端会回「检测到您使用的客户端数据异常，请使用官方最新客户端」。
+  //   版本必须以官方 login/manifest 为准（由 main.2a00e.js 的 applyGameManifest 处理）。
   var AUTO_CODE_VERSION = {
-    enabled: true,
+    enabled: false,
     baseVersion: "2.22.3",
     anchorFriday: "2026-04-03",
     timezoneOffsetMinutes: 8 * 60,
@@ -38,7 +43,7 @@
   var DEFAULT_MANIFEST_CONFIG = {
     enabled: true,
     proxyUrl: "/api/slim/manifest",
-    url: "https://xxz-xyzw.hortorgames.com/login/manifest?platform=hortor&version=0.32.0-ios",
+    url: "https://xxz-xyzw.hortorgames.com/login/manifest?platform=hortor&version=0.32.0-android",
     method: "POST",
     mode: "cors",
     credentials: "omit",
@@ -49,6 +54,36 @@
     },
     body: "",
   };
+  // ★ 清单基础版本必须与 game-defines 的 GAME_VERSION 保持一致。
+  //   官方 login/manifest 是按 version 参数返回不同 bundleVers 的：
+  //     0.32.0-ios     -> codeVersion 2.33.6 / game 44273 / launcher b9488 / config ceb78
+  //     0.32.0-android -> codeVersion 2.47.1 / game 1f870 / launcher d4599 / config 75e1f  (isLast=true)
+  //   之前 proxyUrl(/api/slim/manifest，默认 0.32.0-ios) 与 direct url 走的是 ios 那套，
+  //   而 main.2a00e.js 的 getGameManifestUrl() 走 window.GAME_VERSION(0.32.0-android)，
+  //   两套结果被 applyRemoteBundleVers 的 Object.assign 混在一起，且 patchSlimManifestRuntimeModules()
+  //   把游戏内 LoginService.manifest / PlatformManager.getManifest 打桩成这里的状态，
+  //   于是游戏拿到的清单版本与全局 CODE_VERSION 不一致：
+  //   红点配置找不到（未找到该redPoint）、盐场/蟠桃被判客户端版本异常。
+  var MANIFEST_BASE_VERSION_FALLBACK = "0.32.0-android";
+  function resolveManifestBaseVersion() {
+    var ver = typeof window.GAME_VERSION === "string" ? window.GAME_VERSION.trim() : "";
+    return ver || MANIFEST_BASE_VERSION_FALLBACK;
+  }
+
+  function withManifestVersion(url) {
+    if (typeof url !== "string" || !url) {
+      return url;
+    }
+    if (url.indexOf("/login/manifest") === -1 && url.indexOf("/api/slim/manifest") === -1) {
+      return url;
+    }
+    var ver = encodeURIComponent(resolveManifestBaseVersion());
+    if (/[?&]version=[^&]*/.test(url)) {
+      return url.replace(/([?&])version=[^&]*/, "$1version=" + ver);
+    }
+    return url + (url.indexOf("?") >= 0 ? "&" : "?") + "version=" + ver;
+  }
+
   var MANIFEST_CACHE_PREFIX = "xyzw-slim-manifest-cache:";
   var MANIFEST_CACHE_TTL_MS = 5 * 60 * 1000;
   var MANIFEST_FETCH_TIMEOUT_MS = 2500;
@@ -2680,11 +2715,11 @@
     var isFile = isFileProtocolRuntime();
 
     if (proxyUrl && !isFile) {
-      candidates.push(cloneManifestFetchConfig(config, proxyUrl, "proxy"));
+      candidates.push(cloneManifestFetchConfig(config, withManifestVersion(proxyUrl), "proxy"));
     }
 
     if (typeof config.url === "string" && config.url) {
-      candidates.push(cloneManifestFetchConfig(config, config.url, "direct"));
+      candidates.push(cloneManifestFetchConfig(config, withManifestVersion(config.url), "direct"));
     }
 
     return candidates;

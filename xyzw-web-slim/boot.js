@@ -31,14 +31,29 @@
         return new Promise(function(resolve, reject) {
             var CACHE_KEY = '__boot_manifest_cache__';
             var appliedCache = false;
+            var gameVersion = window.GAME_VERSION;
+            var CACHE_TTL = 5 * 60 * 1000;
+
+            function useFallback(reason) {
+                if (appliedCache) {
+                    console.warn('[boot] ' + reason + '，使用完整缓存版本：', settings.codeVersion);
+                    resolve();
+                    return;
+                }
+                var message = '无法获取有效的游戏更新清单（' + reason + '），请检查网络后重新加载游戏';
+                notifyGameHost('GAME_LOAD_FAILED', { message: message });
+                reject(new Error(message));
+            }
 
             // ★ v1.0: 优先应用本地缓存（秒开，避免阻塞）
             try {
                 var cached = localStorage.getItem(CACHE_KEY);
                 if (cached) {
                     var cacheData = JSON.parse(cached);
-                    if (cacheData && cacheData.bundleVers && typeof cacheData.bundleVers === 'object') {
-                        Object.assign(settings.bundleVers, cacheData.bundleVers);
+                    var age = Date.now() - Number(cacheData.time);
+                    if (cacheData && cacheData.gameVersion === gameVersion && age >= 0 && age < CACHE_TTL && cacheData.manifest) {
+                        window.applyGameManifest(settings, { body: cacheData.manifest });
+                        window.__gameManifestCheckedAt__ = Number(cacheData.time);
                         appliedCache = true;
                         console.log('[boot v1.0] ✅ 已应用本地manifest缓存, 条目:', Object.keys(cacheData.bundleVers).length);
                     }
@@ -46,7 +61,7 @@
             } catch(e) {}
 
             var xhr = new XMLHttpRequest();
-            var manifestUrl = 'https://xxz-xyzw.hortorgames.com/login/manifest?platform=hortor&version=0.32.0-android';
+            var manifestUrl = window.getGameManifestUrl();
             console.log('[boot v1.0] POST', manifestUrl);
 
             xhr.open('POST', manifestUrl, true);
@@ -57,51 +72,50 @@
                 if (xhr.status === 200) {
                     try {
                         var data = JSON.parse(xhr.responseText);
-                        var body = data.body;
-                        if (typeof body === 'string') body = JSON.parse(body);
-                        var bv = body && body.bundleVers;
-                        if (typeof bv === 'string') bv = JSON.parse(bv);
+                        var body = window.applyGameManifest(settings, data);
+                        var bv = settings.bundleVers;
 
                         if (bv && typeof bv === 'object') {
+                            window.applyRemoteBundleVers(settings, bv);
                             // 缓存到localStorage（下次启动秒开）
                             try {
                                 localStorage.setItem(CACHE_KEY, JSON.stringify({
                                     bundleVers: bv,
+                                    manifest: body,
+                                    gameVersion: gameVersion,
                                     time: Date.now()
                                 }));
                             } catch(e) {}
 
-                            // 合并到 settings.bundleVers
-                            var oldCount = Object.keys(settings.bundleVers || {}).length;
-                            Object.assign(settings.bundleVers, bv);
-                            var newCount = Object.keys(settings.bundleVers || {}).length;
-
                             console.log('[boot v1.0] ✅ Manifest 获取成功! (缓存:', appliedCache ? '已预加载' : '首次', ')');
-                            console.log('[boot v1.0]   条目:', oldCount, '→', newCount);
-                            if (bv.codeVersion) {
-                                settings.codeVersion = bv.codeVersion;  // ★ v1.0: 自动同步服务器版本
-                                console.log('[boot v1.0]   远程codeVersion:', bv.codeVersion);
-                            }
+                            console.log('[boot] 资源与代码版本已同步：', settings.codeVersion);
                         } else {
-                            if (!appliedCache) console.warn('[boot v1.0] ⚠ Manifest无有效bundleVers，使用本地版本');
+                            useFallback('更新清单缺少资源版本');
+                            return;
                         }
                     } catch(e) {
-                        if (!appliedCache) console.warn('[boot v1.0] ⚠ Manifest解析失败:', e.message);
+                        if (e.clientUpgradeRequired) {
+                            try { localStorage.removeItem(CACHE_KEY); } catch (_) {}
+                            notifyGameHost('GAME_LOAD_FAILED', { message: e.message });
+                            reject(e);
+                            return;
+                        }
+                        useFallback('更新清单解析或版本校验失败');
+                        return;
                     }
                 } else {
-                    if (!appliedCache) console.warn('[boot v1.0] ⚠ Manifest HTTP', xhr.status);
+                    useFallback('更新服务 HTTP ' + xhr.status);
+                    return;
                 }
-                resolve(); // 总是resolve（有缓存或本地版本兜底）
+                resolve();
             };
 
             xhr.onerror = function() {
-                if (!appliedCache) console.warn('[boot v1.0] ⚠ Manifest网络错误');
-                resolve();
+                useFallback('网络连接失败');
             };
 
             xhr.ontimeout = function() {
-                if (!appliedCache) console.warn('[boot v1.0] ⚠ Manifest超时(5s)');
-                resolve();
+                useFallback('更新请求超时');
             };
 
             xhr.send('');
@@ -111,11 +125,9 @@
     // ========== 2. 锁定 CODE_VERSION ==========
     // 防止 Cocos launcher bundle 覆盖版本号导致启动卡住
     function lockCodeVersion(settings) {
-        var ver = settings.codeVersion ||
-                  (typeof globalThis !== 'undefined' && globalThis.CODE_VERSION) ||
-                  (typeof window !== 'undefined' && window.CODE_VERSION) ||
-                  '2.29.2';
-        var gameVer = (typeof globalThis !== 'undefined' && globalThis.GAME_VERSION) || '0.32.0-android';
+        var ver = settings.bundleVers && settings.bundleVers.codeVersion;
+        if (!ver || ver !== settings.codeVersion) throw new Error('游戏资源版本与代码版本不一致，请重新加载');
+        var gameVer = window.GAME_VERSION;
         var commitId = (typeof globalThis !== 'undefined' && globalThis.COMMIT_ID) || '';
 
         try { delete globalThis.CODE_VERSION; } catch(e) {}
@@ -162,7 +174,14 @@
         console.log(TAG, 'bundleVers 条目数:', Object.keys(settings.bundleVers || {}).length);
 
         var multiWindowMode = false;
-        try { multiWindowMode = new URLSearchParams(window.location.search).get('multi') === '1'; } catch(e) {}
+        var qualityMode = 'performance';
+        try {
+            var bootParams = new URLSearchParams(window.location.search);
+            multiWindowMode = bootParams.get('multi') === '1';
+            qualityMode = bootParams.get('quality') === 'quality' ? 'quality' : 'performance';
+        } catch(e) {}
+        window.__multiWindowMode = multiWindowMode;
+        window.__gameQualityMode = qualityMode;
 
         window._CCSettings = undefined;
 
@@ -171,8 +190,8 @@
         var MAIN = cc.AssetManager.BuiltinBundleName.MAIN;
 
         var onStart = function (isPreheat) {
-            // 多开时关闭 Retina 帧缓冲，明显降低每个 WebGL 实例的显存占用。
-            cc.view.enableRetina(!multiWindowMode);
+            // 多开省资源模式才关闭 Retina；高清模式保留原始清晰度，由用户自行选择。
+            cc.view.enableRetina(!multiWindowMode || qualityMode === 'quality');
             cc.view.resizeWithBrowserSize(true);
 
             if (cc.sys.isMobile) {
@@ -320,6 +339,29 @@
 
     // ★ v9.3: finishDeepBoot — 若登录场景已预加载则直接显示，否则回退 cc.game.run()
     window.finishDeepBoot = function() {
+        // 预热页可能放置很久才进入，进入前重新核对；代码已加载时不能热换一半资源。
+        if (window.__gameManifestCheckedAt__ && Date.now() - window.__gameManifestCheckedAt__ > 60000) {
+            if (window.__checkingPreloadedVersion__) return;
+            window.__checkingPreloadedVersion__ = true;
+            var identity = window.__gameManifestIdentity__;
+            return fetchRemoteBundleVers({ bundleVers: {} }).then(function() {
+                window.__checkingPreloadedVersion__ = false;
+                if (identity !== window.__gameManifestIdentity__) {
+                    console.log('[boot] 游戏版本已更新，重新加载完整资源');
+                    window.location.reload();
+                    return;
+                }
+                // 刚确认服务器版本相同，再进入已预热的游戏。
+                if (Date.now() - window.__gameManifestCheckedAt__ > 60000) {
+                    notifyGameHost('GAME_LOAD_FAILED', { message: '无法确认预热游戏版本，请重新加载游戏' });
+                    return;
+                }
+                return window.finishDeepBoot();
+            }).catch(function(error) {
+                window.__checkingPreloadedVersion__ = false;
+                console.warn('[boot] 预热版本核对失败', error);
+            });
+        }
         // 登录场景已预加载完毕 → 直接显示游戏 (跳过 cc.game.run 和场景加载)
         if (window.__loginSceneReady__) {
             console.log('[boot v9.2] 🚀 登录场景已预加载, 直接显示游戏!');
@@ -362,7 +404,7 @@
                 } else if (waited >= MAX_WAIT) {
                     clearInterval(check);
                     console.warn('[boot v9.3] ⚠ 等待超时, 强制显示');
-                    window.finishDeepBoot();  // 回退重试
+                    notifyGameHost('GAME_LOAD_FAILED', { message: '游戏预热超时，请重新加载游戏' });
                 }
             }, 100);
             return;

@@ -1,0 +1,48 @@
+
+mrt_huizhang_zlys.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mrt_bj_zlys_tz
+  rotate: true
+  xy: 2, 2
+  size: 478, 575
+  orig: 478, 575
+  offset: 0, 0
+  index: -1
+mrt_bj_zlys_xing
+  rotate: false
+  xy: 907, 448
+  size: 22, 32
+  orig: 23, 33
+  offset: 1, 1
+  index: -1
+mrt_bj_zlys_yu1
+  rotate: false
+  xy: 579, 312
+  size: 161, 168
+  orig: 161, 168
+  offset: 0, 0
+  index: -1
+mrt_bj_zlys_yu2
+  rotate: false
+  xy: 783, 185
+  size: 144, 144
+  orig: 144, 144
+  offset: 0, 0
+  index: -1
+mrt_bj_zlys_yu33
+  rotate: true
+  xy: 742, 331
+  size: 149, 163
+  orig: 149, 164
+  offset: 0, 1
+  index: -1
+mrt_bj_zlys_yu4
+  rotate: false
+  xy: 579, 152
+  size: 202, 158
+  orig: 202, 158
+  offset: 0, 0
+  index: -1

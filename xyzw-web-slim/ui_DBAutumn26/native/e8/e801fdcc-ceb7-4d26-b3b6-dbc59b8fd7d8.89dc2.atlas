@@ -1,0 +1,55 @@
+
+zqhd26_xyx_anniu.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+anniu_chanzi
+  rotate: false
+  xy: 829, 266
+  size: 130, 168
+  orig: 130, 168
+  offset: 0, 0
+  index: -1
+anniu_fengchao
+  rotate: false
+  xy: 605, 211
+  size: 222, 223
+  orig: 222, 223
+  offset: 0, 0
+  index: -1
+anniu_lakuai1
+  rotate: false
+  xy: 873, 175
+  size: 86, 89
+  orig: 86, 89
+  offset: 0, 0
+  index: -1
+anniu_lakuai2
+  rotate: true
+  xy: 873, 2
+  size: 83, 78
+  orig: 83, 78
+  offset: 0, 0
+  index: -1
+anniu_lakuai3
+  rotate: true
+  xy: 873, 87
+  size: 86, 82
+  orig: 86, 82
+  offset: 0, 0
+  index: -1
+anniu_yeti
+  rotate: true
+  xy: 605, 41
+  size: 168, 266
+  orig: 168, 266
+  offset: 0, 0
+  index: -1
+pen
+  rotate: false
+  xy: 2, 102
+  size: 601, 332
+  orig: 601, 332
+  offset: 0, 0
+  index: -1
