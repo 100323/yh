@@ -79,6 +79,11 @@ export const config = {
     proxyAccountDispatchIntervalMs: Number(process.env.PROXY_ACCOUNT_DISPATCH_INTERVAL_MS) || 12000,
     dailyCatchupMaxConcurrency: Number(process.env.DAILY_CATCHUP_MAX_CONCURRENCY) || 2,
     staggerWindowMs: Number(process.env.SCHEDULER_STAGGER_WINDOW_MS) || 600000,
+    // 调度器"注册对账"心跳（checkAndRunDueTasks）：只做停用移除 / cron 变更重注册 / 新任务注册，
+    // **不执行任务**，所以间隔只影响"UI 改配置后多久生效"。
+    // 由每分钟放宽到每 3 分钟，省掉每分钟一次的全表查询 + 5000+ 次 cron 签名拼接比较。
+    // 注意：已注册的 cron job 各自独立触发，与本心跳无关，改大不会漏做任务。
+    refreshCron: process.env.SCHEDULER_REFRESH_CRON || '*/3 * * * *',
     reusableConnection: {
       maxIdleMs: Number(process.env.WS_REUSE_MAX_IDLE_MS) || 600000,
       maxAgeMs: Number(process.env.WS_REUSE_MAX_AGE_MS) || 1800000,

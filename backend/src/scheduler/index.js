@@ -250,6 +250,24 @@ const DAILY_CATCHUP_SLOT_READY_GRACE_MS = 5 * 60 * 1000;
 // 启动后延迟多久执行首次补偿：等 5000+ 个 cron job 注册完、内存回稳后再跑，
 // 避免启动期内存峰值叠加把 max_memory_restart 顶穿，形成"启动→补偿→超限→重启"循环。
 const DAILY_CATCHUP_STARTUP_DELAY_MS = 60 * 1000;
+// 调度器"注册对账"心跳（checkAndRunDueTasks）的 cron。
+// 该心跳**不执行任务**，只做三件事：停用任务移除 job、cron 签名变更的任务重新注册、
+// 新启用任务注册。所以间隔只决定"UI 改配置后多久生效"，与任务是否漏做无关
+// （已注册的 job 各自独立触发，不受本心跳间隔影响）。
+// 由每分钟放宽到每 3 分钟，省掉每分钟一次的全表查询 + 5000+ 次 cron 签名拼接比较。
+// 取值可由 SCHEDULER_REFRESH_CRON 覆盖；非法值回退默认，避免 cron.schedule 抛错中断初始化。
+const DEFAULT_SCHEDULER_REFRESH_CRON = '*/3 * * * *';
+
+function normalizeRefreshCron(value, fallback = DEFAULT_SCHEDULER_REFRESH_CRON) {
+  const text = String(value ?? '').trim();
+  // node-cron 需要 5 段（分 时 日 月 周），段数不对会在 schedule() 时抛错。
+  if (text && text.split(/\s+/).length === 5) {
+    return text;
+  }
+  return fallback;
+}
+
+const SCHEDULER_REFRESH_CRON = normalizeRefreshCron(config.scheduler?.refreshCron);
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
@@ -1826,11 +1844,13 @@ export async function initScheduler() {
     schedulerRefreshJob.stop();
     schedulerRefreshJob = null;
   }
-  schedulerRefreshJob = cron.schedule('* * * * *', async () => {
+  schedulerRefreshJob = cron.schedule(SCHEDULER_REFRESH_CRON, async () => {
     await checkAndRunDueTasks();
   }, {
     timezone: config.cron.timezone
   });
+  // 打出来便于运维核对：该值同时是"UI 改配置后多久生效"的上限
+  console.log(`⏱️ 调度器注册对账心跳: ${SCHEDULER_REFRESH_CRON}（配置变更生效延迟上限 = 心跳间隔）`);
 
   if (dailyCatchupJob) {
     dailyCatchupJob.stop();
@@ -4331,6 +4351,9 @@ export function getScheduledJobs() {
 
 export const __testing = {
   DAILY_CATCHUP_CRON,
+  SCHEDULER_REFRESH_CRON,
+  DEFAULT_SCHEDULER_REFRESH_CRON,
+  normalizeRefreshCron,
   getDailyCatchupSlotKey,
   getLatestDueSlotForToday,
   shanghaiLocalToEpochMs,

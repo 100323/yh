@@ -38,6 +38,11 @@
         // 取值权衡：代码默认 600000（10 分钟）削峰更彻底，但会拉长单次连接占用窗口；
         // 120000（2 分钟）连接释放快但削峰不足。折中取 300000（5 分钟）。
         SCHEDULER_STAGGER_WINDOW_MS: process.env.SCHEDULER_STAGGER_WINDOW_MS || '300000',
+        // 调度器"注册对账"心跳间隔（checkAndRunDueTasks）：只补注册，不执行任务。
+        // 由每分钟放宽到每 3 分钟，省掉每分钟一次的全表查询 + 5000+ 次 cron 签名比较。
+        // 代价：用户在 UI 改任务配置后，最长 3 分钟才生效（原 1 分钟）。
+        // 想调回去改成 '* * * * *' 即可；非法值会自动回退到 */3。
+        SCHEDULER_REFRESH_CRON: process.env.SCHEDULER_REFRESH_CRON || '*/3 * * * *',
         SCHEDULER_OBSERVABILITY_ENABLED: process.env.SCHEDULER_OBSERVABILITY_ENABLED || '1',
         SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS: process.env.SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS || '10000',
         SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS: process.env.SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS || '5000',
