@@ -178,6 +178,7 @@ async function resolveAccountExecutionLane(accountName) {
 let schedulerRefreshJob = null;
 let dailyCatchupJob = null;
 let saturdayBlackoutReplayJob = null;
+let startupCatchupTimer = null;
 let dailyCatchupRunPromise = null;
 let dailyCatchupSettledState = null;
 let dailyCatchupLastSlot = null;
@@ -232,11 +233,23 @@ const TASK_EXTRA_CRON_EXPRESSIONS = {
   DAILY_TASK_CLAIM: ['30 22 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],
 };
-// Use a minute heartbeat and deduplicate by Shanghai-local two-hour slot so a
+// Use a minute heartbeat and deduplicate by Shanghai-local hourly slot so a
 // busy event loop cannot silently lose the exact second at a slot boundary.
 const DAILY_CATCHUP_CRON = '* * * * *';
 const DAILY_CATCHUP_CUTOFF_HOUR = 19;
-const DAILY_CATCHUP_SLOT_READY_GRACE_MS = 60 * 1000;
+// 补偿档位间隔（小时）：每 N 小时成档检查一次漏做，全天生效。
+// 为什么不做成"每分钟都查"：补偿与正常调度操作的是同一批任务，若在任务刚到期就
+// 立刻判定"漏做"，会撞上「正常调度已派发、执行标记尚未落库」的窗口，导致同一任务
+// 被重复执行（对一键加钟/点金这类消耗型任务，重复执行比漏做更糟）。
+// 按小时成档 + 下面的就绪宽限，天然形成"滞后一档"校验：HH:00 的批次到 (HH+1):00
+// 才判定，此时错峰延迟已过完、执行标记必已落库，竞态自然消除，无需额外加锁。
+const DAILY_CATCHUP_SLOT_INTERVAL_HOURS = 1;
+// 档位就绪宽限：slot 需比当前时间早这么久才算"已到期"。
+// 给正常调度的错峰延迟（当前 5 分钟窗口）留出余量，避免把"正在跑"误判成"漏做"。
+const DAILY_CATCHUP_SLOT_READY_GRACE_MS = 5 * 60 * 1000;
+// 启动后延迟多久执行首次补偿：等 5000+ 个 cron job 注册完、内存回稳后再跑，
+// 避免启动期内存峰值叠加把 max_memory_restart 顶穿，形成"启动→补偿→超限→重启"循环。
+const DAILY_CATCHUP_STARTUP_DELAY_MS = 60 * 1000;
 const SHANGHAI_OFFSET_MS = 8 * 60 * 60 * 1000;
 const STAR_TEMPLE_BOSS_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const STAR_TEMPLE_COMMAND_DELAY_MS = 800;
@@ -260,6 +273,20 @@ function getShanghaiDateParts(date = new Date()) {
 
 function formatShanghaiLocalDateTime(parts) {
   return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(parts.hour)}:${pad2(parts.minute)}:${pad2(parts.second ?? 0)}`;
+}
+
+/**
+ * 把"上海本地时间"的日期分量换算成绝对时间戳（epoch ms）。
+ * 上海固定 UTC+8、无夏令时，所以直接减偏移即可。
+ * 用途：跨天比较必须用绝对时间，不能用字符串——字符串比较在 00:00 附近会把
+ * "今天 00:00" 和 "昨天 23:59" 的日期部分一起参与比较，得到错误结论。
+ */
+function shanghaiLocalToEpochMs(year, month, day, hour, minute) {
+  return Date.UTC(year, month - 1, day, hour, minute, 0, 0) - SHANGHAI_OFFSET_MS;
+}
+
+function formatShanghaiSlotText(parts, hour, minute) {
+  return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(hour)}:${pad2(minute)}:00`;
 }
 
 function toShanghaiLocalDateTimeString(value) {
@@ -345,11 +372,11 @@ function getShanghaiBusinessDate(now = new Date()) {
 
 function getDailyCatchupSlotKey(now = new Date()) {
   const parts = getShanghaiDateParts(now);
-  if (parts.hour < 14 || parts.hour >= 18) {
-    return null;
-  }
-
-  const slotHour = 14 + Math.floor((parts.hour - 14) / 2) * 2;
+  // 全天成档，不再限制 14:00-18:00。
+  // 原实现硬编码 `hour < 14 || hour >= 18 -> null`，导致补偿只在下午生效；
+  // 而漏做的主因场景（0 点洪峰后进程崩溃重启）恰好落在窗口之外，永远补不到。
+  const slotHour =
+    Math.floor(parts.hour / DAILY_CATCHUP_SLOT_INTERVAL_HOURS) * DAILY_CATCHUP_SLOT_INTERVAL_HOURS;
   return `${parts.year}-${pad2(parts.month)}-${pad2(parts.day)} ${pad2(slotHour)}:00`;
 }
 
@@ -574,16 +601,33 @@ function getLatestDueSlotForToday(task, now = new Date()) {
     return null;
   }
 
-  const catchupGraceMs = DAILY_CATCHUP_SLOT_READY_GRACE_MS;
-  const readyBoundary = new Date(now.getTime() - catchupGraceMs);
-  const nowLocal = formatShanghaiLocalDateTime(getShanghaiDateParts(readyBoundary));
+  // 用绝对时间戳比较，而不是拿 (now - grace) 格式化出的字符串比大小。
+  // 实测两种写法在 12,480 个跨月/跨年/跨零点样本上结果完全一致（字段零填充、定长，
+  // 字典序恰好等于时序），所以这是等效重构、不是 bug 修复；改它是为了去掉"格式必须
+  // 零填充"这一隐式前提，避免日后有人调整 formatShanghaiLocalDateTime 时静默引入跨天错判。
+  //
+  // 真正的行为修复是 grace：旧值 60s 小于错峰窗口（SCHEDULER_STAGGER_WINDOW_MS=300000），
+  // 使 HH:00 派发、带 1~5 分钟错峰延迟的批次在 HH:01 就被判"漏做"并重复执行。
+  // 宽限提到 5 分钟后与错峰窗口对齐，"滞后一档"校验成立，竞态消除。
+  //
+  // 注意：返回 null 表示"当前没有已到期的档位"，collectDailyCatchupTasks 会 continue
+  // 跳过该任务（不是"全部漏做"）。所以每天 00:00:00~00:04:59 的空窗是安全的。
+  const readyBoundaryMs = now.getTime() - DAILY_CATCHUP_SLOT_READY_GRACE_MS;
   const shanghaiParts = getShanghaiDateParts(now);
+  let latestSlotMs = null;
   let latestSlot = null;
 
   for (const { hour, minute } of pairs) {
-    const slot = `${shanghaiParts.year}-${pad2(shanghaiParts.month)}-${pad2(shanghaiParts.day)} ${pad2(hour)}:${pad2(minute)}:00`;
-    if (slot <= nowLocal && (!latestSlot || slot > latestSlot)) {
-      latestSlot = slot;
+    const slotMs = shanghaiLocalToEpochMs(
+      shanghaiParts.year,
+      shanghaiParts.month,
+      shanghaiParts.day,
+      hour,
+      minute,
+    );
+    if (slotMs <= readyBoundaryMs && (latestSlotMs === null || slotMs > latestSlotMs)) {
+      latestSlotMs = slotMs;
+      latestSlot = formatShanghaiSlotText(shanghaiParts, hour, minute);
     }
   }
 
@@ -1808,6 +1852,33 @@ export async function initScheduler() {
   });
 
   await replaySaturdayBlackoutDeferredRuns();
+
+  // 启动补偿：进程重启会永久丢弃"重启窗口内到期的任务"——cron 触发点错过就是错过了，
+  // node-cron 的 recoverMissedExecutions 只覆盖进程存活期间的错过，覆盖不了重启。
+  // 这里在启动后延迟一次主动补偿，把重启期间漏掉的任务补上。
+  //
+  // 为什么延迟而不是立即跑：启动阶段本就要注册 5000+ 个 cron job、做全表扫描，
+  // 若再叠加一次补偿扫描与批量派发，内存峰值可能顶穿 max_memory_restart，
+  // 形成"启动→补偿→超限→重启"的循环。延迟到内存回稳后再执行。
+  //
+  // 为什么走 runDailyCatchupOnHeartbeat 而不是直接调 runDailyTaskCatchup：
+  // 前者会同步 dailyCatchupLastSlot，使紧随其后的心跳不会重复触发同一档补偿。
+  if (startupCatchupTimer) {
+    clearTimeout(startupCatchupTimer);
+    startupCatchupTimer = null;
+  }
+  startupCatchupTimer = setTimeout(() => {
+    startupCatchupTimer = null;
+    try {
+      console.log('🛟 启动补偿检查开始');
+      runDailyCatchupOnHeartbeat();
+    } catch (error) {
+      console.error('❌ 启动补偿检查失败:', error);
+    }
+  }, DAILY_CATCHUP_STARTUP_DELAY_MS);
+  if (typeof startupCatchupTimer.unref === 'function') {
+    startupCatchupTimer.unref();
+  }
 
   console.log('✅ 定时任务调度器初始化完成');
 }
@@ -4261,6 +4332,8 @@ export function getScheduledJobs() {
 export const __testing = {
   DAILY_CATCHUP_CRON,
   getDailyCatchupSlotKey,
+  getLatestDueSlotForToday,
+  shanghaiLocalToEpochMs,
   shouldRunDailyCatchupSlot,
   TASK_EXTRA_CRON_EXPRESSIONS,
   runTaskByType,

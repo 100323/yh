@@ -232,11 +232,13 @@ test('catchup 识别成功但完成度不足的点金并只补剩余次数', () 
   assert.equal(JSON.parse(catchup.tasks[0].config_json).buyNum, 1);
 });
 
-test('补做检查由每分钟心跳驱动并按上海两小时槽位补查', () => {
+test('补做检查由每分钟心跳驱动并按上海整点槽位全天补查', () => {
   assert.equal(scheduler.__testing.DAILY_CATCHUP_CRON, '* * * * *');
+  // 旧实现把补偿限制在 14:00-18:00（两小时一档），凌晨等漏做主因时段永远补不到；
+  // 现改为全天每小时一档，任意时刻都返回非空档位。
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T05:01:00.000Z')),
-    null,
+    '2026-09-11 13:00',
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T06:01:00.000Z')),
@@ -244,7 +246,7 @@ test('补做检查由每分钟心跳驱动并按上海两小时槽位补查', ()
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T07:59:00.000Z')),
-    '2026-09-11 14:00',
+    '2026-09-11 15:00',
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T08:00:00.000Z')),
@@ -252,23 +254,28 @@ test('补做检查由每分钟心跳驱动并按上海两小时槽位补查', ()
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T09:30:00.000Z')),
-    '2026-09-11 16:00',
+    '2026-09-11 17:00',
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T09:59:00.000Z')),
-    '2026-09-11 16:00',
+    '2026-09-11 17:00',
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T10:00:00.000Z')),
-    null,
+    '2026-09-11 18:00',
   );
+  // 深夜与凌晨同样成档（旧实现在这两个时刻返回 null）
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T15:01:00.000Z')),
-    null,
+    '2026-09-11 23:00',
   );
   assert.equal(
     scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T15:59:00.000Z')),
-    null,
+    '2026-09-11 23:00',
+  );
+  assert.equal(
+    scheduler.__testing.getDailyCatchupSlotKey(new Date('2026-09-11T16:30:00.000Z')),
+    '2026-09-12 00:00',
   );
 });
 
