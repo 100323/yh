@@ -775,6 +775,9 @@ const BENIGN_FAILURE_KEYWORDS = [
   '已经选择过上阵武将了',
   '今日已领取免费奖励',
   '今天已经签到过了',
+  // 与 utils/taskFailureKeywords.js 保持同步：新记录会因 status='ignored' 自动归类，
+  // 这里补上是为了让**历史** error 记录也能被统计为良性失败。
+  '新赛季已开启',
 ];
 const SHANGHAI_UTC_OFFSET_MS = 8 * 60 * 60 * 1000;
 

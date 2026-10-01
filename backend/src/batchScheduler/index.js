@@ -47,6 +47,7 @@ import {
   executeStudyChallenge,
 } from '../utils/studyTask.js';
 import { proxyConfigManager } from '../utils/proxyConfigManager.js';
+import { shouldIgnoreFailure } from '../utils/taskFailureKeywords.js';
 import { buildGenieSweepTaskOptions } from '../utils/genieSweepConfig.js';
 import { createTaskCompletionLogDetails, getTaskCompletionState } from '../utils/taskCompletion.js';
 import { isDisabledTaskType, filterDisabledTaskTypes } from '../utils/disabledTaskTypes.js';
@@ -370,24 +371,6 @@ function resolveWsUrl(wsUrl, token) {
   }
   const sep = raw.includes('?') ? '&' : '?';
   return `${raw}${sep}p=${encodeURIComponent(payload)}&e=x&lang=chinese`;
-}
-
-function shouldIgnoreFailure(error) {
-  const message = String(error?.message || '');
-  return [
-    '模块未开启',
-    '活动未开放',
-    '不在开启时间内',
-    '不在蟠桃大会报名时间内',
-    '不在盐场报名时间内',
-    '出了点小问题',
-    '扫荡条件不满足',
-    '已经选择过上阵武将了',
-    '今日已领取免费奖励',
-    '今天已经签到过了',
-    '冷却时间未过',
-    '物品不存在',
-  ].some((keyword) => message.includes(keyword));
 }
 
 function deferAutomaticBatchTaskIfNeeded(task, plannedAt = new Date()) {
