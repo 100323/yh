@@ -8,7 +8,10 @@
       exec_mode: 'fork',
       autorestart: true,
       watch: false,
-      max_memory_restart: '512M',
+      // 原 512M：RSS 长期在 430~543MB 徘徊，整点任务洪峰时频繁触及上限触发重启，
+      // 而每次重启都会丢失重启窗口内到期的定时任务。先放宽上限止血，
+      // 同时需要抓 heapdump 定位 RSS 持续增长的真实来源（未执行）。
+      max_memory_restart: '1G',
       // 生产密钥（JWT_SECRET / ENCRYPTION_KEY）不写入版本库，统一由 backend/.env 提供。
       // .env 已被 .gitignore 忽略；--env-file-if-exists 在文件缺失时只提示、不中断启动。
       // ⚠️ 部署前必须先创建 backend/.env 并写入这两个变量，否则 NODE_ENV=production 会直接启动失败。

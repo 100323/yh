@@ -1870,7 +1870,10 @@ export function scheduleTask(task, options = {}) {
         updateTaskRunTime(task.id, getTaskNextRunAt(task));
       }
     }, {
-      timezone: config.cron.timezone
+      timezone: config.cron.timezone,
+      // node-cron 3.x 默认 recoverMissedExecutions=false：事件循环繁忙跨过分钟边界时，
+      // 触发会被静默丢弃且不补跑。整点洪峰期间正是高发场景，这里必须开启。
+      recoverMissedExecutions: true,
     }));
 
     scheduledJobs.set(jobKey, {
