@@ -34,9 +34,10 @@
         // 方向A：延长连接复用，避免跨档期反复重连（原 600000/1800000）
         WS_REUSE_MAX_IDLE_MS: process.env.WS_REUSE_MAX_IDLE_MS || '3600000',
         WS_REUSE_MAX_AGE_MS: process.env.WS_REUSE_MAX_AGE_MS || '14400000',
-        // 整点任务洪峰削峰：把执行时刻分散到 0~10 分钟窗口内，触发时间点保持不变。
-        // 注：此前为「让单次连接占用尽快释放」曾调低到 120000，本次为削峰改回代码默认值 600000。
-        SCHEDULER_STAGGER_WINDOW_MS: process.env.SCHEDULER_STAGGER_WINDOW_MS || '600000',
+        // 整点任务洪峰削峰：把执行时刻分散到 0~5 分钟窗口内，触发时间点保持不变。
+        // 取值权衡：代码默认 600000（10 分钟）削峰更彻底，但会拉长单次连接占用窗口；
+        // 120000（2 分钟）连接释放快但削峰不足。折中取 300000（5 分钟）。
+        SCHEDULER_STAGGER_WINDOW_MS: process.env.SCHEDULER_STAGGER_WINDOW_MS || '300000',
         SCHEDULER_OBSERVABILITY_ENABLED: process.env.SCHEDULER_OBSERVABILITY_ENABLED || '1',
         SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS: process.env.SCHEDULER_OBSERVABILITY_FLUSH_INTERVAL_MS || '10000',
         SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS: process.env.SCHEDULER_OBSERVABILITY_SLOW_COMMAND_MS || '5000',
