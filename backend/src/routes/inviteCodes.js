@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { run, get, all } from '../database/index.js';
 import { authMiddleware, adminOnly } from '../middleware/auth.js';
 import crypto from 'crypto';
-import { normalizeRegisteredUserAccessDays } from '../utils/inviteCodeAccess.js';
+import { normalizeRegisteredUserAccessDays, normalizeRegisteredMaxGameAccounts } from '../utils/inviteCodeAccess.js';
 
 const router = Router();
 
@@ -19,6 +19,7 @@ router.post('/generate', authMiddleware, adminOnly, (req, res) => {
   try {
     const { maxUses = 1, expiresInDays } = req.body;
     const registeredUserAccessDays = normalizeRegisteredUserAccessDays(req.body?.registeredUserAccessDays);
+    const registeredMaxGameAccounts = normalizeRegisteredMaxGameAccounts(req.body?.registeredMaxGameAccounts);
 
     if (maxUses < 1 || maxUses > 1000) {
       return res.status(400).json({
@@ -35,8 +36,8 @@ router.post('/generate', authMiddleware, adminOnly, (req, res) => {
     }
 
     const result = run(
-      'INSERT INTO invite_codes (code, max_uses, created_by, expires_at, registered_user_access_days) VALUES (?, ?, ?, ?, ?)',
-      [code, maxUses, req.user.userId, expiresAt, registeredUserAccessDays]
+      'INSERT INTO invite_codes (code, max_uses, created_by, expires_at, registered_user_access_days, registered_max_game_accounts) VALUES (?, ?, ?, ?, ?, ?)',
+      [code, maxUses, req.user.userId, expiresAt, registeredUserAccessDays, registeredMaxGameAccounts]
     );
 
     res.status(201).json({
@@ -48,12 +49,16 @@ router.post('/generate', authMiddleware, adminOnly, (req, res) => {
         usedCount: 0,
         expiresAt,
         registeredUserAccessDays,
+        registeredMaxGameAccounts,
         createdAt: new Date().toISOString()
       }
     });
   } catch (error) {
     console.error('生成邀请码错误:', error);
-    if (String(error?.message || '').includes('注册账号有效期')) {
+    if (
+      String(error?.message || '').includes('注册账号有效期') ||
+      String(error?.message || '').includes('注册账号数量')
+    ) {
       return res.status(400).json({
         success: false,
         error: error.message
@@ -70,6 +75,7 @@ router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
   try {
     const { count = 1, maxUses = 1, expiresInDays } = req.body;
     const registeredUserAccessDays = normalizeRegisteredUserAccessDays(req.body?.registeredUserAccessDays);
+    const registeredMaxGameAccounts = normalizeRegisteredMaxGameAccounts(req.body?.registeredMaxGameAccounts);
 
     if (count < 1 || count > 100) {
       return res.status(400).json({
@@ -94,8 +100,8 @@ router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
     for (let i = 0; i < count; i++) {
       const code = generateInviteCode();
       const result = run(
-        'INSERT INTO invite_codes (code, max_uses, created_by, expires_at, registered_user_access_days) VALUES (?, ?, ?, ?, ?)',
-        [code, maxUses, req.user.userId, expiresAt, registeredUserAccessDays]
+        'INSERT INTO invite_codes (code, max_uses, created_by, expires_at, registered_user_access_days, registered_max_game_accounts) VALUES (?, ?, ?, ?, ?, ?)',
+        [code, maxUses, req.user.userId, expiresAt, registeredUserAccessDays, registeredMaxGameAccounts]
       );
       codes.push({
         id: result.lastInsertRowid,
@@ -103,7 +109,8 @@ router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
         maxUses,
         usedCount: 0,
         expiresAt,
-        registeredUserAccessDays
+        registeredUserAccessDays,
+        registeredMaxGameAccounts
       });
     }
 
@@ -113,7 +120,10 @@ router.post('/batch-generate', authMiddleware, adminOnly, (req, res) => {
     });
   } catch (error) {
     console.error('批量生成邀请码错误:', error);
-    if (String(error?.message || '').includes('注册账号有效期')) {
+    if (
+      String(error?.message || '').includes('注册账号有效期') ||
+      String(error?.message || '').includes('注册账号数量')
+    ) {
       return res.status(400).json({
         success: false,
         error: error.message

@@ -1,6 +1,36 @@
 const ALLOWED_REGISTERED_USER_ACCESS_DAYS = new Set([1, 30, 180, 365]);
 const DAY_MS = 24 * 60 * 60 * 1000;
 
+const DEFAULT_REGISTERED_MAX_GAME_ACCOUNTS = 1;
+const MIN_REGISTERED_MAX_GAME_ACCOUNTS = 1;
+const MAX_REGISTERED_MAX_GAME_ACCOUNTS = 9999;
+
+export function normalizeRegisteredMaxGameAccounts(
+  value,
+  defaultValue = DEFAULT_REGISTERED_MAX_GAME_ACCOUNTS
+) {
+  if (value === undefined || value === '') {
+    return defaultValue;
+  }
+
+  if (value === null) {
+    return null;
+  }
+
+  const accounts = Number(value);
+  if (
+    !Number.isInteger(accounts) ||
+    accounts < MIN_REGISTERED_MAX_GAME_ACCOUNTS ||
+    accounts > MAX_REGISTERED_MAX_GAME_ACCOUNTS
+  ) {
+    throw new Error(
+      `注册账号数量需为 ${MIN_REGISTERED_MAX_GAME_ACCOUNTS}-${MAX_REGISTERED_MAX_GAME_ACCOUNTS} 的整数`
+    );
+  }
+
+  return accounts;
+}
+
 export function normalizeRegisteredUserAccessDays(value, defaultValue = 30) {
   if (value === undefined || value === '') {
     return defaultValue;
@@ -30,4 +60,5 @@ export function resolveRegisteredUserAccessEndAt(days, now = new Date()) {
 export default {
   normalizeRegisteredUserAccessDays,
   resolveRegisteredUserAccessEndAt,
+  normalizeRegisteredMaxGameAccounts,
 };

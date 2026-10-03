@@ -1,4 +1,4 @@
-export const DEFAULT_MAX_GAME_ACCOUNTS = 2;
+export const DEFAULT_MAX_GAME_ACCOUNTS = 1;
 
 export function normalizeMaxGameAccountsForCreate(value) {
   if (value === undefined || value === '') return DEFAULT_MAX_GAME_ACCOUNTS;

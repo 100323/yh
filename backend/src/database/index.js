@@ -209,6 +209,7 @@ CREATE TABLE IF NOT EXISTS invite_codes (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   expires_at DATETIME,
   registered_user_access_days INTEGER DEFAULT 30,
+  registered_max_game_accounts INTEGER DEFAULT 1,
   is_active INTEGER DEFAULT 1,
   FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -725,6 +726,12 @@ function ensureInviteCodeSchema() {
     if (!columns.has('registered_user_access_days')) {
       rawDb.exec('ALTER TABLE invite_codes ADD COLUMN registered_user_access_days INTEGER DEFAULT 30');
       rawDb.exec('UPDATE invite_codes SET registered_user_access_days = 30 WHERE registered_user_access_days IS NULL');
+      changed = true;
+    }
+
+    if (!columns.has('registered_max_game_accounts')) {
+      rawDb.exec('ALTER TABLE invite_codes ADD COLUMN registered_max_game_accounts INTEGER DEFAULT 1');
+      rawDb.exec('UPDATE invite_codes SET registered_max_game_accounts = 1 WHERE registered_max_game_accounts IS NULL');
       changed = true;
     }
   } catch (error) {

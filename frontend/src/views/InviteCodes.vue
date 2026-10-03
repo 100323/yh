@@ -53,6 +53,11 @@
             {{ formatRegisteredUserAccessDays(row.registered_user_access_days) }}
           </template>
         </el-table-column>
+        <el-table-column label="注册账号数量" width="130">
+          <template #default="{ row }">
+            {{ formatRegisteredMaxGameAccounts(row.registered_max_game_accounts) }}
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="150" fixed="right">
           <template #default="{ row }">
             <el-button 
@@ -111,6 +116,15 @@
             <el-option :value="365" label="365天" />
           </el-select>
         </el-form-item>
+        <el-form-item label="注册账号数量">
+          <el-input-number
+            v-model="generateForm.registeredMaxGameAccounts"
+            :min="1"
+            :max="9999"
+            controls-position="right"
+            style="width: 100%"
+          />
+        </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="showGenerateDialog = false">取消</el-button>
@@ -148,6 +162,15 @@
             <el-option :value="365" label="365天" />
           </el-select>
         </el-form-item>
+        <el-form-item label="注册账号数量">
+          <el-input-number
+            v-model="batchForm.registeredMaxGameAccounts"
+            :min="1"
+            :max="9999"
+            controls-position="right"
+            style="width: 100%"
+          />
+        </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="showBatchDialog = false">取消</el-button>
@@ -171,14 +194,16 @@ const showBatchDialog = ref(false);
 const generateForm = reactive({
   maxUses: 1,
   expiresInDays: null,
-  registeredUserAccessDays: 30
+  registeredUserAccessDays: 30,
+  registeredMaxGameAccounts: 1
 });
 
 const batchForm = reactive({
   count: 10,
   maxUses: 1,
   expiresInDays: null,
-  registeredUserAccessDays: 30
+  registeredUserAccessDays: 30,
+  registeredMaxGameAccounts: 1
 });
 
 const formatTime = (timestamp) => {
@@ -200,6 +225,13 @@ const formatRegisteredUserAccessDays = (days) => {
   const normalized = Number(days);
   if (!Number.isFinite(normalized)) return '-';
   return `${normalized}天`;
+};
+
+const formatRegisteredMaxGameAccounts = (count) => {
+  if (count === null || count === undefined || count === '') return '不限';
+  const normalized = Number(count);
+  if (!Number.isFinite(normalized)) return '-';
+  return `${normalized}个`;
 };
 
 const fetchInviteCodes = async () => {

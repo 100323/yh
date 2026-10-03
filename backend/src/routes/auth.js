@@ -6,7 +6,7 @@ import { authMiddleware } from '../middleware/auth.js';
 import { validateInviteCode, useInviteCode } from './inviteCodes.js';
 import { buildUserAccessSummary, getUserAvailabilityStatus } from '../utils/userAccess.js';
 import { createSlimEntryTicket } from '../utils/slimEntryTicketStore.js';
-import { resolveRegisteredUserAccessEndAt } from '../utils/inviteCodeAccess.js';
+import { resolveRegisteredUserAccessEndAt, normalizeRegisteredMaxGameAccounts } from '../utils/inviteCodeAccess.js';
 import { DEFAULT_MAX_GAME_ACCOUNTS } from '../utils/userLimits.js';
 
 const router = Router();
@@ -86,10 +86,14 @@ router.post('/register', async (req, res) => {
     const accessEndAt = resolveRegisteredUserAccessEndAt(
       codeValidation.inviteCode?.registered_user_access_days
     );
+    const maxGameAccounts = normalizeRegisteredMaxGameAccounts(
+      codeValidation.inviteCode?.registered_max_game_accounts,
+      DEFAULT_MAX_GAME_ACCOUNTS
+    );
 
     const result = run(
       'INSERT INTO users (username, password_hash, salt, role, max_game_accounts, access_end_at) VALUES (?, ?, ?, ?, ?, ?)',
-      [username, hash, salt, 'user', DEFAULT_MAX_GAME_ACCOUNTS, accessEndAt]
+      [username, hash, salt, 'user', maxGameAccounts, accessEndAt]
     );
 
     useInviteCode(inviteCode);
