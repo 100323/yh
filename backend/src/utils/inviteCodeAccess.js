@@ -13,8 +13,10 @@ export function normalizeRegisteredMaxGameAccounts(
     return defaultValue;
   }
 
+  // 注意：与 registered_user_access_days 不同，这里 null 不代表“不限”。
+  // 账号数量必须有具体值，null 一律回落到默认值，避免注册出无限制账号的用户。
   if (value === null) {
-    return null;
+    return defaultValue;
   }
 
   const accounts = Number(value);
