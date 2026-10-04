@@ -1044,10 +1044,16 @@ const fetchBattleRecordsByDate = (val)=>{
         10000
       );
       
-      // 处理我方战绩
-      const ownRecords = result.recordsMap && result.recordsMap[Number(firstLegionId)] ? [...result.recordsMap[Number(firstLegionId)]] : []
+      // 处理我方战绩（recordsMap 键类型可能存在字符串/数字差异，统一按字符串匹配）
+      const pickRecords = (map, id) => {
+        if (!map || id == null) return [];
+        if (Array.isArray(map[id])) return map[id];
+        const hit = Object.keys(map).find(k => String(k) === String(id));
+        return hit ? map[hit] : [];
+      };
+      const ownRecords = [...pickRecords(result.recordsMap, firstLegionId)]
       // 处理敌方战绩
-      const opponentRecords = result.recordsMap && result.recordsMap[Number(secondLegionId)] ? [...result.recordsMap[Number(secondLegionId)]] : []
+      const opponentRecords = [...pickRecords(result.recordsMap, secondLegionId)]
       
       // 计算每个玩家的K/D值
       const calculateKD = (player) => {

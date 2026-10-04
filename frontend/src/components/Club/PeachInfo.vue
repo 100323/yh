@@ -1410,9 +1410,20 @@ const fetchBattleInfo = async (options = {}) => {
       );
     }
 
-    if (killRes && killRes.recordsMap && killRes.recordsMap[opponentLegionId]) {
-      const records = killRes.recordsMap[opponentLegionId];
-      memberIds = records.map(r => r.roleInfo.roleId);
+    // 兼容 recordsMap 的键类型差异（BON 解码后键均为字符串，
+    // 但服务端/工具链不同实现下可能出现数字键，这里统一探测）。
+    const lookupRecords = (map, id) => {
+      if (!map || id == null) return null;
+      if (Array.isArray(map[id])) return map[id];
+      const hit = Object.keys(map).find(k => String(k) === String(id));
+      return hit ? map[hit] : null;
+    };
+
+    if (killRes && killRes.recordsMap) {
+      const records = lookupRecords(killRes.recordsMap, opponentLegionId);
+      if (Array.isArray(records)) {
+        memberIds = records.map(r => r?.roleInfo?.roleId).filter(x => x != null);
+      }
     }
     const killRecordsMap = killRes?.recordsMap || {};
 
@@ -1422,18 +1433,19 @@ const fetchBattleInfo = async (options = {}) => {
       "legion_getinfobyid",
       { legionId: ownLegionId },
       10000
-    );
+    ).catch(() => null);
     const clubInfoRes = await tokenStore.sendMessageWithPromise(
       tokenId,
       "legion_getinfobyid",
       { legionId: opponentLegionId },
       10000
-    );
+    ).catch(() => null);
 
+    // 俱乐部详情失败不应阻断成员明细：降级继续，用默认名占位。
     if (!clubInfoRes || !clubInfoRes.legionData) {
-      message.error("无法获取对手俱乐部详情");
-      loading.value = false;
-      return;
+      console.warn('[蟠桃园] legion_getinfobyid 未返回 legionData，降级继续', {
+        opponentLegionId,
+      });
     }
     // Set Battle Info (Header)
     battleInfo.value = {
@@ -1446,7 +1458,7 @@ const fetchBattleInfo = async (options = {}) => {
         logo: ownLegionIdInfo?.legionData?.logo || '',
         quenchNum: ownLegionIdInfo?.legionData?.quenchNum || 0,
         announcement: ownLegionIdInfo?.legionData?.announcement || '',
-        memberCount: killRecordsMap[ownLegionId]?.length || 0,
+        memberCount: (lookupRecords(killRecordsMap, ownLegionId) || []).length,
       },
       opponentClub: {
         id: opponentLegionId,
@@ -1457,19 +1469,23 @@ const fetchBattleInfo = async (options = {}) => {
         logo: clubInfoRes?.legionData?.logo || '',
         quenchNum: clubInfoRes?.legionData?.quenchNum || 0,
         announcement: clubInfoRes?.legionData?.announcement || '',
-        memberCount: killRecordsMap[opponentLegionId]?.length || 0,
+        memberCount: (lookupRecords(killRecordsMap, opponentLegionId) || []).length,
       }
     }
 
     // Get Members List
     // If we didn't get memberIds from killrecord (e.g. Live mode or empty kill record), fallback to club info
     if (memberIds.length === 0) {
-      const members = clubInfoRes.legionData.members || {};
+      const members = clubInfoRes?.legionData?.members || {};
       memberIds = Object.keys(members);
     }
 
     const totalMembers = memberIds.length;
     let processedCount = 0;
+
+    console.log(
+      `[蟠桃园] 敌方成员抓取开始: opponentLegionId=${opponentLegionId}, members=${totalMembers}`
+    );
 
     // Fetch details for each member
     // We'll process them in chunks to avoid overwhelming the server/client
@@ -1490,7 +1506,7 @@ const fetchBattleInfo = async (options = {}) => {
               includeHeroDetail: true,
               includePearl: true,
             },
-            5000
+            15000
           );
 
           if (roleRes && roleRes.roleInfo) {
@@ -1528,6 +1544,13 @@ const fetchBattleInfo = async (options = {}) => {
                 .sort((a, b) => a.battleTeamSlot - b.battleTeamSlot);
             }
 
+            let lineupType = "";
+            try {
+              lineupType = getLineupType(heroList);
+            } catch (lineupErr) {
+              console.warn(`[蟠桃园] getLineupType 失败 roleId=${roleId}`, lineupErr);
+            }
+
             return {
               id: roleRes.roleInfo.roleId,
               name: roleRes.roleInfo.name,
@@ -1536,9 +1559,11 @@ const fetchBattleInfo = async (options = {}) => {
               legacy: roleRes.roleInfo.legacy?.color || 0,
               redQuench: totalRed,
               heroList: heroList,
-              lineupType: getLineupType(heroList),
+              lineupType,
             };
           }
+          console.warn(`[蟠桃园] rank_getroleinfo 无 roleInfo roleId=${roleId}`, roleRes);
+          return null;
         } catch (e) {
           console.error(`Failed to fetch info for ${roleId}`, e);
           return null;
@@ -1549,7 +1574,12 @@ const fetchBattleInfo = async (options = {}) => {
       results.forEach((r) => {
         if (r) opponentMembers.value.push(r);
       });
+      processedCount += results.filter(Boolean).length;
     }
+
+    console.log(
+      `[蟠桃园] 敌方成员抓取完成: 成功=${opponentMembers.value.length}/${totalMembers} (processedCount=${processedCount})`
+    );
 
     // Sort by redQuench Descending, then Power Descending
     opponentMembers.value.sort((a, b) => {
