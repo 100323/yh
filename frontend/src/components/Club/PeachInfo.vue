@@ -72,7 +72,8 @@
     <!-- Data Table -->
     <div v-else-if="opponentMembers.length > 0" class="members-table">
       <div class="table-title">敌方信息</div>
-      <n-data-table :columns="columns" :data="opponentMembers" :bordered="false" size="small" striped flex-height />
+      <n-data-table :columns="columns" :data="opponentMembers" :bordered="false" size="small" striped :max-height="600"
+        :scroll-x="900" />
     </div>
 
     <!-- Empty State -->
@@ -1705,11 +1706,12 @@ onBeforeUnmount(() => {
   border-radius: 8px;
   padding: 16px;
   min-height: 400px;
-  height: 100%;
+  /* 置于 el-tab-pane（height:auto）内时 height:100% 会退化为内容高度，
+     导致下游 .members-table(flex:1) → .n-data-table(height:100%) 高度算成 0，
+     表格渲染但不可见。这里不再依赖父级高度。 */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .toolbar {
@@ -1834,11 +1836,9 @@ onBeforeUnmount(() => {
 
 .members-table {
   margin-top: 20px;
-  flex: 1;
-  overflow: hidden;
-  /* Use NDataTable's scroll or auto here */
-  display: flex;
-  flex-direction: column;
+  /* 不再依赖 flex:1 + 父级高度（el-tab-pane 内父级为 auto，会导致表格高度为 0）。 */
+  display: block;
+  overflow: visible;
 }
 
 .table-title {
@@ -1850,8 +1850,10 @@ onBeforeUnmount(() => {
   border-left: 4px solid #1890ff;
 }
 
+/* 表格用内容自然高度，超过上限再滚动，避免依赖父容器高度。 */
 :deep(.n-data-table) {
-  height: 100%;
+  height: auto;
+  max-height: 70vh;
 }
 
 :deep(.n-data-table .n-data-table-th) {
