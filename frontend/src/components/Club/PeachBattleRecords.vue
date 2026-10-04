@@ -951,34 +951,81 @@ const fetchBattleRecordsByDate = (val)=>{
     }
     loading.value = true
     try {
-      const payloadTaskRes = await tokenStore.sendMessageWithPromise(
-      tokenId,
-      "legion_getpayloadtask",
-      {},
-      10000
-      );
-      if (!payloadTaskRes) {
-        message.error("未获取到对战俱乐部");
-        return;
-      }
-      const firstLegionId = payloadTaskRes.firstLegionId
-      const payloadrecord = await tokenStore.sendMessageWithPromise(
-      tokenId,
-      "legion_getpayloadrecord",
-      {},
-      10000
-      );
-      if (!payloadrecord) {
-        message.error("未获取到对战俱乐部");
-        return;
-      }
       const shortDate = formatDateToShort(queryDate.value);
-      if (!payloadrecord.enemyLegionMap || !payloadrecord.enemyLegionMap[shortDate]) {
-         message.warning(`未找到日期 ${queryDate.value} 的对战记录`);
-         battleRecords.value = null;
-         return;
+
+      // 先取本军团ID作为基准。
+      const legionInfoRes = await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "legion_getinfo",
+        {},
+        10000
+      ).catch(() => null);
+      let firstLegionId =
+        legionInfoRes?.info?.id ||
+        legionInfoRes?.legion?.id ||
+        legionInfoRes?.legionData?.id ||
+        club.value?.id;
+
+      // 蟠桃园服务端可能未开启 legion_getpayloadtask / legion_getpayloadrecord
+      // （返回 200160 模块未开启 或空对象），此时用 killrecord 的 recordsMap 反推双方军团。
+      let secondLegionId = null;
+      let result = null;
+
+      const payloadrecord = await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "legion_getpayloadrecord",
+        {},
+        10000
+      ).catch(() => null);
+      if (!firstLegionId) {
+        const payloadTaskRes = await tokenStore.sendMessageWithPromise(
+          tokenId,
+          "legion_getpayloadtask",
+          {},
+          10000
+        ).catch(() => null);
+        firstLegionId = payloadTaskRes?.firstLegionId;
       }
-      const secondLegionId = payloadrecord.enemyLegionMap[shortDate].id
+      if (payloadrecord?.enemyLegionMap?.[shortDate]?.id) {
+        secondLegionId = payloadrecord.enemyLegionMap[shortDate].id;
+      }
+
+      // 关键回退：killrecord 在 payload 模块未开启时仍然可用，
+      // recordsMap 的两个 key 分别对应我方与敌方军团。
+      result = await tokenStore.sendMessageWithPromise(
+        tokenId,
+        'legion_getpayloadkillrecord',
+        { date: shortDate },
+        10000
+      ).catch(() => null);
+
+      if (!secondLegionId && result?.recordsMap) {
+        const keys = Object.keys(result.recordsMap);
+        secondLegionId =
+          keys.find(k => String(k) !== String(firstLegionId)) || null;
+        if (!firstLegionId && keys.length) {
+          // 无法确定我方ID时，用记录内 legionName 与当前俱乐部名比对。
+          const ownName = club.value?.name;
+          for (const k of keys) {
+            const rows = result.recordsMap[k];
+            if (rows?.[0]?.roleInfo?.legionName === ownName) {
+              firstLegionId = k;
+              break;
+            }
+          }
+          secondLegionId = keys.find(k => String(k) !== String(firstLegionId)) || null;
+        }
+      }
+
+      if (!result) {
+        message.error("未获取到对战俱乐部战绩");
+        return;
+      }
+      if (!secondLegionId) {
+        message.warning(`未找到日期 ${queryDate.value} 的对战记录`);
+        battleRecords.value = null;
+        return;
+      }
       if (!firstLegionId || !secondLegionId) {
         message.error("未获取到对战俱乐部ID");
         return;
@@ -996,16 +1043,6 @@ const fetchBattleRecordsByDate = (val)=>{
         { legionId: secondLegionId },
         10000
       );
-      const result = await tokenStore.sendMessageWithPromise(
-        tokenId,
-        'legion_getpayloadkillrecord',
-        { date: formatDateToShort(queryDate.value) },
-        10000
-      );
-      if (!result) {
-        message.error("未获取到对战俱乐部战绩");
-        return;
-      }
       
       // 处理我方战绩
       const ownRecords = result.recordsMap && result.recordsMap[Number(firstLegionId)] ? [...result.recordsMap[Number(firstLegionId)]] : []

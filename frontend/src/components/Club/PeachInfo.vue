@@ -1309,14 +1309,26 @@ const fetchBattleInfo = async (options = {}) => {
       }
 
       const legions = Array.isArray(res?.legions) ? res.legions : [];
-      const ownLegionData = legions.find(
-        (legion) => String(legion?.id) === String(ownClubId)
-      );
       const enemyLegionData = legions.find(
         (legion) => String(legion?.id) !== String(ownClubId)
       );
 
       if (!enemyLegionData) {
+        // 实时战场未返回 legion 列表时，回退用 killrecord 的 recordsMap 反推对手。
+        killRes = await tokenStore.sendMessageWithPromise(
+          tokenId,
+          "legion_getpayloadkillrecord",
+          { date: shortDate },
+          10000
+        ).catch(() => null);
+        const keys = killRes?.recordsMap ? Object.keys(killRes.recordsMap) : [];
+        if (keys.length > 1) {
+          ownLegionId = ownClubId;
+          opponentLegionId = keys.find(k => String(k) !== String(ownClubId));
+        }
+      }
+
+      if (!enemyLegionData && !opponentLegionId) {
         if (!silent) {
           const beforeDataWindow = Date.now() < getPayloadMatchWindow(queryDate.value).infoStartTime;
           message.warning(
@@ -1329,8 +1341,10 @@ const fetchBattleInfo = async (options = {}) => {
         return;
       }
 
-      ownLegionId = ownClubId;
-      opponentLegionId = enemyLegionData.id;
+      if (enemyLegionData) {
+        ownLegionId = ownClubId;
+        opponentLegionId = enemyLegionData.id;
+      }
       if (!opponentLegionId) {
         if (!silent) message.error("未获取到对战俱乐部ID");
         return;
@@ -1343,37 +1357,58 @@ const fetchBattleInfo = async (options = {}) => {
         "legion_getpayloadrecord",
         {},
         10000
-      );
-      if (!res || !res.enemyLegionMap) {
-        if (!silent) message.warning("未获取到历史对战记录");
-        loading.value = false;
-        return;
-      }
-      const record = res.enemyLegionMap[shortDate];
-      if (record) {
+      ).catch(() => null);
+
+      const record = res?.enemyLegionMap?.[shortDate];
+      if (record?.id) {
         opponentLegionId = record.id;
       } else {
+        // 回退：服务器可能未开启 legion_getpayloadrecord（返回空对象 / 200160 模块未开启）。
+        // legion_getpayloadkillrecord 仍可用，其 recordsMap 的两个 key 即我方与敌方军团。
+        killRes = await tokenStore.sendMessageWithPromise(
+          tokenId,
+          "legion_getpayloadkillrecord",
+          { date: shortDate },
+          10000
+        ).catch(() => null);
+
+        const keys = killRes?.recordsMap ? Object.keys(killRes.recordsMap) : [];
+        if (keys.length > 1) {
+          opponentLegionId = keys.find(k => String(k) !== String(ownLegionId));
+        } else if (keys.length === 1) {
+          // 仅一条军团记录时，用记录里的 legionName 与当前俱乐部名区分归属。
+          const onlyKey = keys[0];
+          const legionName = killRes.recordsMap[onlyKey]?.[0]?.roleInfo?.legionName;
+          if (legionName && club.value?.name && legionName !== club.value.name) {
+            opponentLegionId = onlyKey;
+          }
+        }
+      }
+
+      if (!opponentLegionId) {
         if (!silent) {
-          message.warning(
-            isPayloadPrepareWindow(queryDate.value)
-              ? "配对记录尚未生成，将在可获取时自动刷新"
-              : `未找到 ${queryDate.value} 的对战记录`
-          );
+          if (!isPayloadMatchDate(queryDate.value)) {
+            message.warning(`未找到 ${queryDate.value} 的对战记录`);
+          } else {
+            message.warning(
+              isPayloadPrepareWindow(queryDate.value)
+                ? "配对记录尚未生成，将在可获取时自动刷新"
+                : "未获取到历史对战记录"
+            );
+          }
         }
         loading.value = false;
         return;
       }
-      if (!opponentLegionId) {
-        if (!silent) message.error("未获取到对战俱乐部ID");
-        return;
-      }
     }
-    killRes = await tokenStore.sendMessageWithPromise(
-      tokenId,
-      "legion_getpayloadkillrecord",
-      { date: shortDate },
-      10000
-    );
+    if (!killRes) {
+      killRes = await tokenStore.sendMessageWithPromise(
+        tokenId,
+        "legion_getpayloadkillrecord",
+        { date: shortDate },
+        10000
+      );
+    }
 
     if (killRes && killRes.recordsMap && killRes.recordsMap[opponentLegionId]) {
       const records = killRes.recordsMap[opponentLegionId];
