@@ -72,8 +72,8 @@
     <!-- Data Table -->
     <div v-else-if="opponentMembers.length > 0" class="members-table">
       <div class="table-title">敌方信息</div>
-      <n-data-table :columns="columns" :data="opponentMembers" :bordered="false" size="small" striped :max-height="600"
-        :scroll-x="900" />
+      <n-data-table :columns="columns" :data="opponentMembers" :bordered="false" size="small" striped
+        :max-height="exportingForImage ? undefined : 600" :scroll-x="900" />
     </div>
 
     <!-- Empty State -->
@@ -386,7 +386,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed, h, reactive } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, h, reactive, nextTick } from "vue";
 import {
   useMessage,
   NDataTable,
@@ -593,6 +593,8 @@ const isToday = (dateStr) => {
 const loading = ref(false);
 const battleInfo = ref(null); // Opponent Club Info
 const opponentMembers = ref([]);
+// 导出图片时置 true：去掉表格最大高度限制，让全部行进入 DOM（否则虚拟滚动只渲染可视区）
+const exportingForImage = ref(false);
 const queryDate = ref(getLastSunday());
 const payloadFetchedDate = ref("");
 const payloadPreparedDate = ref("");
@@ -1612,80 +1614,68 @@ const handleExportImage = async () => {
     return;
   }
 
-  // 获取 table-container
-  const tableContainer = exportDom.value.querySelector('.n-data-table');
-  // 保存滚动位置
-  const scrollTop = tableContainer ? tableContainer.scrollTop : 0;
-
   try {
     message.loading("正在生成图片，请稍候...");
 
-    // 临时调整表格容器高度，确保所有内容可见
-    // 对于 n-data-table，我们需要处理它的内部滚动容器
-    if (tableContainer) {
-      // 尝试找到 n-data-table 的滚动容器
-      const scrollContainer = tableContainer.querySelector('.n-data-table-base-table-body');
-      if (scrollContainer) {
-        // 保存原始样式
-        scrollContainer.dataset.originalHeight = scrollContainer.style.height;
-        scrollContainer.dataset.originalOverflow = scrollContainer.style.overflow;
+    // 关键：n-data-table 设了 max-height 会启用固定高度滚动（虚拟渲染），
+    // 只有可视区约 12 行进入 DOM，导出必然缺行。
+    // 这里通过响应式解除高度限制，让 Naive UI 重新渲染全部行。
+    exportingForImage.value = true;
 
-        // 强制展开
-        scrollContainer.style.height = "auto";
-        scrollContainer.style.overflow = "visible";
-      }
-    }
-
-    // 调整外层容器
+    // 同时放开外层的溢出裁剪（双保险）
     const originalHeight = exportDom.value.style.height;
     const originalOverflow = exportDom.value.style.overflow;
     exportDom.value.style.height = "auto";
     exportDom.value.style.overflow = "visible";
 
-    // 等待DOM更新
+    // 等待 Vue 重渲染 + 浏览器完成布局（多等几帧，行数多时更稳）
+    await nextTick();
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // 5. 用html2canvas渲染DOM为Canvas
+    // 再强制展开可能残留的内部滚动容器
+    const tableContainer = exportDom.value.querySelector('.n-data-table');
+    let patched = [];
+    if (tableContainer) {
+      tableContainer.querySelectorAll('.n-data-table-base-table-body, .n-data-table-base-table').forEach((el) => {
+        patched.push({ el, h: el.style.height, o: el.style.overflow });
+        el.style.height = "auto";
+        el.style.overflow = "visible";
+      });
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 200));
+
+    // 用 html2canvas 渲染完整 DOM
     const canvas = await html2canvas(exportDom.value, {
       scale: 2, // 放大2倍，解决图片模糊问题
       useCORS: true, // 允许跨域图片
       backgroundColor: "#ffffff", // 避免透明背景
       logging: false, // 关闭控制台日志
       allowTaint: true, // 允许跨域图片污染画布
+      windowHeight: exportDom.value.scrollHeight + 100,
+      height: exportDom.value.scrollHeight,
     });
 
-    // 6. Canvas转图片链接并下载
+    // Canvas转图片链接并下载
     const filename = `蟠桃园敌方信息_${queryDate.value.replace(/\//g, "-")}.png`;
     downloadCanvasAsImage(canvas, filename);
+
+    // 恢复被强改样式的容器
+    patched.forEach(({ el, h, o }) => {
+      if (h) el.style.height = h; else el.style.removeProperty('height');
+      if (o) el.style.overflow = o; else el.style.removeProperty('overflow');
+    });
 
     message.success("图片导出成功");
   } catch (err) {
     console.error("DOM转图片失败：", err);
     message.error("导出图片失败，请重试");
   } finally {
-    // 恢复原始样式
+    // 恢复外层容器样式与表格高度限制
     exportDom.value.style.height = "";
     exportDom.value.style.overflow = "";
-
-    if (tableContainer) {
-      const scrollContainer = tableContainer.querySelector('.n-data-table-base-table-body');
-      if (scrollContainer) {
-        if (scrollContainer.dataset.originalHeight) {
-          scrollContainer.style.height = scrollContainer.dataset.originalHeight;
-        } else {
-          scrollContainer.style.removeProperty('height');
-        }
-
-        if (scrollContainer.dataset.originalOverflow) {
-          scrollContainer.style.overflow = scrollContainer.dataset.originalOverflow;
-        } else {
-          scrollContainer.style.removeProperty('overflow');
-        }
-
-        delete scrollContainer.dataset.originalHeight;
-        delete scrollContainer.dataset.originalOverflow;
-      }
-    }
+    exportingForImage.value = false;
+    await nextTick();
   }
 };
 

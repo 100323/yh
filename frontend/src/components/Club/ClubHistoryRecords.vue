@@ -7,10 +7,10 @@
           :columns="columns"
           :data="tableData"
           :loading="loading"
-          :pagination="pagination"
           :bordered="false"
           size="small"
-          :max-height="400"
+          :max-height="isExporting ? undefined : 400"
+          :pagination="isExporting ? false : pagination"
         />
       </div>
     </div>
@@ -42,10 +42,10 @@
           :columns="columns"
           :data="tableData"
           :loading="loading"
-          :pagination="pagination"
           :bordered="false"
           size="small"
-          :max-height="500"
+          :max-height="isExporting ? undefined : 500"
+          :pagination="isExporting ? false : pagination"
         />
       </div>
     </n-modal>
@@ -274,8 +274,9 @@ const handleExportImage = async () => {
     isExporting.value = true;
     message.loading("正在生成图片，请稍候...");
 
-    // 等待Vue更新DOM（移除操作列等）
+    // 等待Vue更新DOM（移除操作列、解除分页与高度限制）
     await nextTick();
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     // 获取 table-container
     const tableContainer = exportDom.value.querySelector('.n-data-table');

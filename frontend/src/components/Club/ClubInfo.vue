@@ -277,9 +277,9 @@
                 size="small"
                 striped
                 :row-key="(row) => row.roleId"
-                flex-height
+                :flex-height="!isExporting"
                 :scroll-x="650"
-                style="height: 600px"
+                :style="isExporting ? 'height: auto' : 'height: 600px'"
               />
             </div>
           </n-tab-pane>
@@ -830,8 +830,9 @@ const handleExportImage = async () => {
     isExporting.value = true;
     message.loading("正在生成图片，请稍候...");
 
-    // 等待Vue更新DOM（移除操作列等）
+    // 等待Vue更新DOM（移除操作列、解除固定高度）
     await nextTick();
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     // 获取 table-container
     const tableContainer = exportDom.value.querySelector('.n-data-table');
