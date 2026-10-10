@@ -104,3 +104,17 @@ __pycache__/
 
 # ---- 资源同步工具的本地产物（过期 bundle 暂存区） ----
 _old_bundles/
+
+# 逆向分析产物（体积大，不入库）
+work/
+*.apk
+咸鱼之王_*.apk
+
+# 本地一次性调试脚本
+scripts/_peach_*.mjs
+scripts/_probe_*.cjs
+scripts/__pycache__/
+
+# 运行时配置（含账号白名单，各环境独立）
+backend/data/proxy_config.json
+/data/

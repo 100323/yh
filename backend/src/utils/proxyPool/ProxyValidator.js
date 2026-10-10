@@ -9,6 +9,63 @@ import fetch from 'node-fetch';
 import http from 'http';
 import tls from 'tls';
 
+/**
+ * 共享的 socket 级 uncaughtException 兜底。
+ *
+ * 原实现是「每次验证都 process.prependListener('uncaughtException', guard)」，
+ * 而 VALIDATION_CONFIG.concurrency 默认 10，于是并发验证时进程上会同时挂 11+ 个
+ * 同名监听器，触发：
+ *   MaxListenersExceededWarning: 11 uncaughtException listeners added to [process]
+ * 线上 error 日志被这条警告刷屏（最后 3000 行里 56 次），真实错误被淹没。
+ *
+ * 改为进程级单例 + 引用计数：无论多少并发，进程上最多只有 1 个监听器。
+ */
+const SOCKET_PROXY_ERROR_CODES = [
+  'ECONNRESET',
+  'ECONNREFUSED',
+  'EHOSTUNREACH',
+  'ENETUNREACH',
+  'ETIMEDOUT',
+  'EPIPE',
+  'TLS_ERROR',
+];
+
+function isSocketProxyError(error) {
+  const code = error?.code || '';
+  const message = error?.message || '';
+  return (
+    SOCKET_PROXY_ERROR_CODES.includes(code) ||
+    /socket|proxy|TLS connection/i.test(message)
+  );
+}
+
+/** 当前正在进行的验证操作，用于把吞掉的错误归因回各自的调用方 */
+const activeCollectors = new Set();
+let sharedGuardInstalled = false;
+
+function sharedUncaughtGuard(error) {
+  if (!isSocketProxyError(error)) {
+    // 非 socket 类错误：保持原语义，交回 Node 默认行为
+    throw error;
+  }
+  for (const collector of activeCollectors) {
+    collector.push(error);
+  }
+}
+
+function ensureSharedGuard() {
+  if (sharedGuardInstalled) return;
+  process.prependListener('uncaughtException', sharedUncaughtGuard);
+  sharedGuardInstalled = true;
+}
+
+function releaseSharedGuard() {
+  if (!sharedGuardInstalled) return;
+  if (activeCollectors.size > 0) return; // 还有并发验证在跑，保留监听器
+  process.removeListener('uncaughtException', sharedUncaughtGuard);
+  sharedGuardInstalled = false;
+}
+
 export class ProxyValidator {
   constructor(config = {}) {
     this.config = { ...VALIDATION_CONFIG, ...config };
@@ -95,30 +152,14 @@ export class ProxyValidator {
   /**
    * 部分坏代理/坏 SOCKS 节点会在底层 socket 上异步抛 error，而不是通过 fetch promise reject。
    * 验证阶段临时兜底，避免单个坏代理把整个后端进程打崩。
+   *
+   * 监听器走进程级单例（见 sharedUncaughtGuard），并发多少都只挂 1 个。
    */
   async withTemporarySocketErrorGuard(operation) {
     const swallowedErrors = [];
-    const guard = (error) => {
-      const code = error?.code || '';
-      const message = error?.message || '';
-      const isSocketProxyError = [
-        'ECONNRESET',
-        'ECONNREFUSED',
-        'EHOSTUNREACH',
-        'ENETUNREACH',
-        'ETIMEDOUT',
-        'EPIPE',
-        'TLS_ERROR',
-      ].includes(code) || /socket|proxy|TLS connection/i.test(message);
+    activeCollectors.add(swallowedErrors);
+    ensureSharedGuard();
 
-      if (!isSocketProxyError) {
-        throw error;
-      }
-
-      swallowedErrors.push(error);
-    };
-
-    process.prependListener('uncaughtException', guard);
     try {
       const result = await operation();
       if (swallowedErrors.length > 0) {
@@ -126,7 +167,8 @@ export class ProxyValidator {
       }
       return result;
     } finally {
-      process.removeListener('uncaughtException', guard);
+      activeCollectors.delete(swallowedErrors);
+      releaseSharedGuard();
     }
   }
 

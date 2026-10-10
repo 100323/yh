@@ -361,20 +361,27 @@ export class ProxyPoolManager {
       console.log('[ProxyPoolManager] 代理池正在后台刷新/验证，任务快路径使用当前可用快照');
     }
 
-    // 如果该账号已分配代理且仍在冷却期内，返回同一个代理
+    // 如果该账号已分配代理且仍可用，优先复用同一个出口 IP。
+    //
+    // 原实现只在 proxyCooldown（默认 30s）内复用，超时就把账号重新随机分配，
+    // 结果是「同一账号每隔几分钟换一个 IP」——这正是官方 IP 风控最容易命中的特征
+    // （同账号短时间多 IP 登录）。改为按 accountProxyStickyMs（默认 6h）长粘性：
+    // 只要代理仍有效且未被熔断，就固定给同一个账号。
     if (accountId && this.assignedProxies.has(accountId)) {
       const assigned = this.assignedProxies.get(accountId);
-      const cooldownRemaining = assigned.lastUsed + this.config.proxyCooldown - Date.now();
+      const stickyMs = Number(this.config.accountProxyStickyMs) > 0
+        ? Number(this.config.accountProxyStickyMs)
+        : 6 * 60 * 60 * 1000;
+      const stickyRemaining = assigned.lastUsed + stickyMs - Date.now();
 
-      if (cooldownRemaining > 0) {
+      if (stickyRemaining > 0) {
         const currentProxy = this.proxyPool.find(p => p.id === assigned.proxy.id);
         if (!currentProxy || !currentProxy.isValid) {
           console.log(`[ProxyPoolManager] 已分配代理 ${assigned.proxy.id} 不可用，重新选择`);
           this.assignedProxies.delete(accountId);
         } else {
           assigned.proxy = currentProxy;
-          console.log(`[ProxyPoolManager] 复用已分配代理 ${assigned.proxy.id} (冷却剩余 ${Math.ceil(cooldownRemaining / 1000)}s)`);
-          return assigned.proxy;
+          return currentProxy;
         }
       } else {
         this.assignedProxies.delete(accountId);
@@ -383,11 +390,38 @@ export class ProxyPoolManager {
 
     // 获取可用代理列表
     const now = Date.now();
-    const availableProxies = this.proxyPool.filter(proxy => {
+
+    // 统计每个出口 IP 当前已绑定多少个账号（不含当前账号）
+    const proxyAccountCount = new Map();
+    for (const [aid, assigned] of this.assignedProxies.entries()) {
+      if (String(aid) === String(accountId)) continue;
+      const pid = assigned?.proxy?.id;
+      if (!pid) continue;
+      proxyAccountCount.set(pid, (proxyAccountCount.get(pid) || 0) + 1);
+    }
+
+    const maxAccountsPerProxy = Number(this.config.maxAccountsPerProxy);
+    const enforceAccountCap = Number.isFinite(maxAccountsPerProxy) && maxAccountsPerProxy > 0;
+
+    const isCooledDown = (proxy) => {
       if (!proxy.isValid) return false;
       if (!proxy.lastUsed) return true;
       return (now - proxy.lastUsed) > this.config.proxyCooldown;
+    };
+
+    let availableProxies = this.proxyPool.filter((proxy) => {
+      if (!isCooledDown(proxy)) return false;
+      if (enforceAccountCap && (proxyAccountCount.get(proxy.id) || 0) >= maxAccountsPerProxy) {
+        return false;
+      }
+      return true;
     });
+
+    // 一账号一 IP 的前提下池子可能被占满：放宽「每 IP 账号数」限制，
+    // 但仍然优先选占用最少的那个，避免所有账号都挤到同一个 IP。
+    if (availableProxies.length === 0 && enforceAccountCap) {
+      availableProxies = this.proxyPool.filter(isCooledDown);
+    }
 
     if (availableProxies.length === 0) {
       console.warn('[ProxyPoolManager] 没有可用代理');
@@ -399,7 +433,16 @@ export class ProxyPoolManager {
       return null;
     }
 
-    // 选择最优代理
+    // 选择最优代理：先看账号占用数，再看延迟/成功率
+    if (enforceAccountCap) {
+      availableProxies = [...availableProxies].sort((a, b) => {
+        const loadA = proxyAccountCount.get(a.id) || 0;
+        const loadB = proxyAccountCount.get(b.id) || 0;
+        if (loadA !== loadB) return loadA - loadB;
+        return 0;
+      });
+    }
+
     const bestProxy = this.selectBestProxy(availableProxies);
     return this.assignProxy(bestProxy, accountId);
   }

@@ -135,7 +135,14 @@ const DAILY_POINT_TASK_ID_MAP = {
   BLACK_MARKET: [9],
 };
 
-const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
+// 与 scheduler/index.js 保持一致：TOWER / WEIRD_TOWER 也会命中
+// 「操作过快，请稍后重试」（2026-10-10 线上实测），需纳入退避重试。
+const SENSITIVE_TASK_TYPES = new Set([
+  'HANGUP_ADD_TIME',
+  'LEGACY_CLAIM',
+  'TOWER',
+  'WEIRD_TOWER',
+]);
 
 function getTodayBossId() {
   const dayBossMap = [9904, 9905, 9901, 9902, 9903, 9904, 9905];

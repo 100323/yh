@@ -52,13 +52,37 @@ export const config = {
     path: process.env.DB_PATH || './data/xyzw.db'
   },
   game: {
-    wsUrl: 'wss://xxz-xyzw-new.hortorgames.com/agent',
+    // 主服地址。可用 GAME_WS_URL 覆盖（不同环境/灰度域名不同）。
+    // 注意：盐场/蟠桃的战场专用服**不在这里**，要用服务端下发的 domainName
+    //（legion_getbattlefield.info.domainName / legion_getpayloadbf.info.domainName），
+    // 见 backend/src/utils/gameClient.js 的 domainName 选项。
+    wsUrl: process.env.GAME_WS_URL || 'wss://xxz-xyzw-new.hortorgames.com/agent',
     heartbeatInterval: 30000,
     reconnectDelay: 5000,
     clientVersion: process.env.GAME_CLIENT_VERSION || '2.3.9-wx',
     battleVersion: Number(process.env.GAME_BATTLE_VERSION) || 241201,
     launchTokenRefreshTtlMs: Number(process.env.GAME_LAUNCH_TOKEN_REFRESH_TTL_MS) || 15 * 60 * 1000,
     launchTokenRefreshTimeoutMs: Number(process.env.GAME_LAUNCH_TOKEN_REFRESH_TIMEOUT_MS) || 4000,
+    // 连接频率闸门：官方客户端 60s 内建 30 条 WS 会主动断网退出，
+    // 服务端另有 IPisBan(-10008)。
+    //
+    // 2026-10-10 实测校准（服务器 11 小时日志，7786 个握手）：
+    //   · 直连建连稳态 28 次/分钟、整点峰值 70 次/分钟、极端 135 次/分钟；
+    //   · 连续 7 天（10-04~10-10）error 日志中 IPisBan/RoleIsBan/踢下线 均为 0 次。
+    //   → 原来的 limit=24 低于实测稳态均值，闸门几乎每个整点都饱和，
+    //     而 fail-open 又会在 30s 后放行，等于「只加延迟、不降速率」。
+    //   故把 limit 放宽到 90（覆盖实测整点峰值 70 + 余量），让它只当
+    //   **病态熔断器**（拦未来可能的 1 秒重连 10 次级风暴），不再当限速器。
+    //
+    // 闸门只延迟不阻断：单次最多等 maxWaitMs，超时 fail-open 放行并打警告，
+    // 不会抛异常、不会让任务失败。maxWaitMs 由 30s 收紧到 10s——
+    // limit 放宽后正常几乎不触发，真触发时也不该让任务等 30s。
+    connectThrottle: {
+      enabled: String(process.env.WS_CONNECT_THROTTLE_ENABLED || '1').trim() !== '0',
+      limit: Number(process.env.WS_CONNECT_THROTTLE_LIMIT) || 90,
+      windowMs: Number(process.env.WS_CONNECT_THROTTLE_WINDOW_MS) || 60000,
+      maxWaitMs: Number(process.env.WS_CONNECT_THROTTLE_MAX_WAIT_MS) || 10000,
+    },
   },
   cron: {
     timezone: 'Asia/Shanghai'
@@ -105,10 +129,14 @@ export const config = {
       GENIE_SWEEP: Number(process.env.GENIE_SWEEP_COMMAND_THROTTLE_MS) || 5000,
       GENIE_SWEEP_DEEP_SEA: Number(process.env.GENIE_SWEEP_COMMAND_THROTTLE_MS) || 5000,
     },
+    // 「操作过快，请稍后重试」的退避重试。
+    // 2026-10-10 由 2 次/3s 基准/8s 上限 放宽到 3 次/5s 基准/30s 上限：
+    // 线上实测该错误集中在整点洪峰（04:00–04:05），原 3s/6s 的退避太短，
+    // 重试仍落在同一段限频窗口内。新退避为 5s → 10s → 20s，更可能跨出限频窗口。
     sensitiveTaskRetry: {
-      maxRetries: Number(process.env.SENSITIVE_TASK_MAX_RETRIES) || 2,
-      baseDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_BASE_DELAY_MS) || 3000,
-      maxDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_MAX_DELAY_MS) || 8000,
+      maxRetries: Number(process.env.SENSITIVE_TASK_MAX_RETRIES) || 3,
+      baseDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_BASE_DELAY_MS) || 5000,
+      maxDelayMs: Number(process.env.SENSITIVE_TASK_RETRY_MAX_DELAY_MS) || 30000,
     }
   },
   proxy: {

@@ -228,7 +228,17 @@ const DAILY_REWARD_DIRTY_TASKS = new Set([
   'BOTTLE_CLAIM',
   'BLACK_MARKET'
 ]);
-const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME', 'LEGACY_CLAIM']);
+// 命中「操作过快，请稍后重试」时需要退避重试的任务类型。
+// 2026-10-10 补充 TOWER / WEIRD_TOWER：线上实测 11 小时内 41 次
+// `爬塔执行失败: 操作过快，请稍后重试` 全部集中在 04:00–04:05（138 个账号的
+// TOWER 都是 `0 4 * * *`，整点撞车），而此前 TOWER 不在本集合里，
+// 导致「敏感任务触发操作过快，退避后重试」日志出现 0 次、失败直接落库。
+const SENSITIVE_TASK_TYPES = new Set([
+  'HANGUP_ADD_TIME',
+  'LEGACY_CLAIM',
+  'TOWER',
+  'WEIRD_TOWER',
+]);
 const TASK_EXTRA_CRON_EXPRESSIONS = {
   DAILY_TASK_CLAIM: ['30 22 * * *'],
   LEGION_STORE_FRAGMENT: ['0 10 * * 0'],

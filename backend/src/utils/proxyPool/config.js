@@ -35,6 +35,24 @@ export const PROXY_CONFIG = {
   // 代理使用后冷却时间（毫秒）
   proxyCooldown: 30 * 1000, // 30秒
 
+  // 账号级代理粘性时长（毫秒）
+  //
+  // 同一账号在此时长内固定使用同一个出口 IP。原实现只在 proxyCooldown(30s) 内复用，
+  // 超时就重新随机分配 → 「同一账号每隔几分钟换一个 IP」，
+  // 这是官方 IP 风控最容易命中的特征（同账号短时间多 IP 登录）。
+  // 默认 6 小时，可用 PROXY_ACCOUNT_STICKY_MS 覆盖。
+  accountProxyStickyMs: Number(process.env.PROXY_ACCOUNT_STICKY_MS) || 6 * 60 * 60 * 1000,
+
+  // 单个出口 IP 最多同时承载的账号数（0 = 不限制）
+  //
+  // 免费公开代理的出口 IP 往往已被大量用户共用，多个账号挤同一 IP 会提高
+  // 「多账号同 IP」的风控概率。理想值是 1（一账号一 IP），
+  // 但当前池子里只有 ~25 个可用代理而白名单有 40 个账号，设 1 会导致
+  // 大部分账号拿不到代理而反复走「无可用代理」降级分支、刷日志。
+  // 因此默认 0（保持原行为）；等代理数量 ≥ 账号数后再用
+  // PROXY_MAX_ACCOUNTS_PER_IP=1 打开。
+  maxAccountsPerProxy: Number(process.env.PROXY_MAX_ACCOUNTS_PER_IP ?? 0),
+
   // 灰度发布策略
   rollout: {
     strategy: 'whitelist', // whitelist | percentage | all | none

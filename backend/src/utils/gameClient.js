@@ -12,6 +12,8 @@ import {
   sanitizeObservationMessage,
 } from '../observability/schedulerObservationCore.js';
 import * as schedulerObservationService from '../observability/schedulerObservationService.js';
+import { normalizeDomainName, DEFAULT_BATTLE_WS_URL } from '../../../frontend/src/utils/battleFieldUrl.js';
+import { getWsConnectThrottle, resolveThrottleKey, isIpBanned, isBanLikeError } from './wsConnectThrottle.js';
 
 const OBSERVATION_IDENTIFIER_MAX_LENGTH = 160;
 const OBSERVATION_ERROR_MAX_LENGTH = 300;
@@ -566,7 +568,16 @@ export class GameClient {
     this.roleId = Number.isFinite(Number(options.roleId)) && Number(options.roleId) > 0
       ? Math.trunc(Number(options.roleId))
       : null;
-    this.wsUrl = options.wsUrl || `${config.game.wsUrl}?p=${encodeURIComponent(token)}&e=x&lang=chinese`;
+
+    // —— 连接目标 ——
+    // domainName：服务端下发的专用服地址（战场等场景），优先级最高。
+    //              对应官方 LegionWarNetworkData.setDomainName() / LegionPayloadNetworkData.setDomainName()。
+    // sid：战场会话 id，作为 query 参数 sid2 传递（官方 setSId → connectOptions.sid2）。
+    this.domainName = options.domainName || null;
+    this.sid = options.sid === undefined || options.sid === null ? null : String(options.sid);
+    this.baseWsUrl = options.baseWsUrl || config.game.wsUrl;
+    this.wsUrl = options.wsUrl || this.buildWsUrl();
+
     this.heartbeatInterval = options.heartbeatInterval || config.game.heartbeatInterval;
     this.defaultBattleVersion = Number(options.battleVersion ?? config.game.battleVersion) || 241201;
     this.battleVersion = this.defaultBattleVersion;
@@ -576,6 +587,11 @@ export class GameClient {
     this.proxy = options.proxy || null; // { host, port, protocol }
     this.activeEgressProxy = null;
     this.commandObserver = options.commandObserver || schedulerObservationService;
+
+    // 连接频率闸门：与客户端自保护（60s/30 次）及服务端 IPisBan 对齐
+    this.connectThrottleEnabled = options.connectThrottle !== false
+      && config.game.connectThrottle?.enabled !== false;
+    this.throttleKey = options.throttleKey || resolveThrottleKey(this.proxy);
 
     this.ws = null;
     this.seq = 0;
@@ -592,6 +608,51 @@ export class GameClient {
     this.onUnexpectedResponse = null;
     this.lastConnectMeta = null;
     this.lastMessageAt = null;
+    /** 最近一次收到的封禁类错误码（如 IPisBan = -10008） */
+    this.lastBanCode = null;
+  }
+
+  /**
+   * 构建连接地址。
+   *
+   * domainName 存在时以它为准（战场专用服），否则回落到 baseWsUrl（主服）。
+   * query 顺序与官方 @o4e 一致：?p=…&e=…&sid2=…&lang=…
+   * 编码用 encodeURIComponent（保持与既有实现一致的语义，不引入 + → %2B 的差异）。
+   */
+  buildWsUrl() {
+    const normalized = normalizeDomainName(this.domainName);
+    const target = normalized || this.baseWsUrl || DEFAULT_BATTLE_WS_URL;
+
+    let parsed;
+    try {
+      parsed = new URL(target);
+    } catch {
+      parsed = new URL(DEFAULT_BATTLE_WS_URL);
+    }
+
+    const origin = `${parsed.protocol}//${parsed.host}`;
+    const pathname = parsed.pathname && parsed.pathname !== '/' ? parsed.pathname : '/agent';
+
+    const parts = [
+      `p=${encodeURIComponent(this.token)}`,
+      'e=x',
+    ];
+    if (this.sid) {
+      parts.push(`sid2=${encodeURIComponent(this.sid)}`);
+    }
+    parts.push('lang=chinese');
+
+    return `${origin}${pathname}?${parts.join('&')}`;
+  }
+
+  /** 打日志用的安全目标描述（不含 token） */
+  describeTarget() {
+    try {
+      const parsed = new URL(this.wsUrl);
+      return `${parsed.protocol}//${parsed.host}${parsed.pathname}${this.sid ? ` sid2=${this.sid}` : ''}`;
+    } catch {
+      return '(invalid ws url)';
+    }
   }
 
   /**
@@ -617,7 +678,35 @@ export class GameClient {
     return getCurrentSkinChallengeActId(date);
   }
 
-  connect() {
+  /**
+   * 建立连接（带连接频率闸门）
+   *
+   * 闸门按出口（代理 / 直连）分桶，确保 60s 内的建连次数低于官方自保护阈值（30），
+   * 避免触发客户端 FixO4eConnectErr 与服务端 IPisBan(-10008)。
+   *
+   * 闸门**只延迟、不阻断**：`acquire()` 恒返回 true，超时走 fail-open。
+   * 因此这里不会因为限流而让任务失败——最坏情况只是多等一会儿。
+   */
+  async connect() {
+    if (this.connectThrottleEnabled) {
+      try {
+        const gate = getWsConnectThrottle(config.game.connectThrottle);
+        await gate.acquire(this.throttleKey, {
+          logger: console,
+          label: this.accountName || this.roleId || '',
+        });
+        // 建连前记账：服务端限频计的是「尝试次数」，
+        // 握手被拒（HTTP 500/401）同样会被计数，所以不能等 open 才记。
+        gate.record(this.throttleKey);
+      } catch (error) {
+        // 闸门自身异常绝不能阻断业务
+        console.warn(`[GameClient] 连接闸门异常，跳过限流: ${error?.message || error}`);
+      }
+    }
+    return this._connectInternal();
+  }
+
+  _connectInternal() {
     return new Promise((resolve, reject) => {
       let settled = false;
       let opened = false;
@@ -941,9 +1030,29 @@ export class GameClient {
       const body = raw.body ? (hasPreDecodedBody ? raw.body : bon.decode(raw.body)) : raw;
 
       this._updateBattleVersion(body, raw);
-      
+
       if (raw.seq !== undefined) {
         this.ack = raw.seq;
+      }
+
+      // 记录封禁类错误码（IPisBan = -10008 等），供调度层做退避/摘除决策
+      if (raw.code !== undefined && raw.code !== null && raw.code !== 0) {
+        const numericCode = Number(raw.code);
+        if (isBanLikeError(numericCode)) {
+          this.lastBanCode = numericCode;
+          const banLabel = isIpBanned(numericCode) ? 'IPisBan' : `AuthUserError(${numericCode})`;
+          console.warn(`[GameClient] 收到封禁类错误 ${banLabel}，出口 ${this.throttleKey}，目标 ${this.describeTarget()}`);
+          // IP 被封时把该出口的闸门配额直接打满，强制后续连接排队等待
+          if (isIpBanned(numericCode) && this.connectThrottleEnabled) {
+            try {
+              const gate = getWsConnectThrottle();
+              const limit = gate.limit;
+              for (let i = 0; i < limit; i++) gate.record(this.throttleKey);
+            } catch {
+              /* ignore */
+            }
+          }
+        }
       }
 
       const buildResponseError = () => {

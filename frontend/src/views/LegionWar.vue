@@ -69,6 +69,7 @@ import { getCurrentTimeByFormat } from "@/utils/DateTimeUtils"
 import { XyzwLegionWarWebSocketClient } from '@/utils/xyzwLegionWarWebSocket'
 import { useTokenStore } from '@/stores/tokenStore'
 import { useMessage } from 'naive-ui'
+import { buildBattleFieldWsUrl, pickBattleFieldInfo, describeBattleFieldTarget } from '@/utils/battleFieldUrl'
 
 const tokenStore = useTokenStore()
 const message = useMessage()
@@ -697,6 +698,10 @@ const connectWebSocket = () => {
 
 /**
  * 建立盐场连接请求与处理
+ *
+ * 战场专用服地址来自 legion_getbattlefield 返回的 info.domainName
+ * （官方实现：LegionWarNetworkData.setDomainName(info.domainName) + setSId(info.sid)，
+ *  再用该地址开第二条 WebSocket）。原来这里写死了主服域名，且 sid2 被拼了两遍。
  */
 const fetchBattleRecords1 = async (getbattlefield) => {
   if (tokenStore.selectedToken) {
@@ -706,12 +711,21 @@ const fetchBattleRecords1 = async (getbattlefield) => {
       connectWebSocket();
       return;
     }
-    const baseWsUrl = 'wss://xxz-xyzw-new.hortorgames.com/agent' +`?p=${encodeURIComponent(tokenStore.selectedToken.token)}&e=x&sid2=${getbattlefield?.info.sid}&lang=chinese&sid2=${getbattlefield?.info.sid}`
-    hint.value = getbattlefield?.info.battlefieldId;
+
+    const info = pickBattleFieldInfo(getbattlefield?.info, 'war');
+    const built = buildBattleFieldWsUrl({
+      token: tokenStore.selectedToken.token,
+      sid: info.sid,
+      domainName: info.domainName,
+    });
+    console.log(`[盐场] 战场服=${describeBattleFieldTarget(built.url)} domainName=${built.usedDomainName ? '服务端下发' : '兜底'}`);
+
+    hint.value = info.battlefieldId;
     legionWarWebSocket =  new XyzwLegionWarWebSocketClient({
-      url: baseWsUrl,
+      url: built.url,
           utils: null,
           hint: hint.value,
+          kind: 'war',
           heartbeatMs: 5000
     })
 
