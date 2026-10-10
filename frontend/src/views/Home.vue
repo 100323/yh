@@ -162,7 +162,7 @@
       </template>
       <div class="quick-actions-grid">
         <el-button type="primary" @click="$router.push('/tokens')">账号管理</el-button>
-        <el-button type="success" @click="$router.push('/daily-tasks')">日常任务</el-button>
+        <el-button type="success" @click="$router.push('/tasks')">任务配置</el-button>
         <el-button type="warning" @click="$router.push('/game-features')">游戏功能</el-button>
         <el-button type="info" @click="$router.push('/logs')">执行日志</el-button>
         <el-button type="primary" plain @click="wechatDialogVisible = true">微信联系</el-button>

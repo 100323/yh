@@ -14,7 +14,6 @@ These pages are currently reachable from the app router:
 - `frontend/src/views/Home.vue` -> `/`
 - `frontend/src/views/TokenImport/index.vue` -> `/tokens`
 - `frontend/src/views/GameFeatures.vue` -> `/game-features`
-- `frontend/src/views/DailyTasks.vue` -> `/daily-tasks`
 - `frontend/src/views/BatchDailyTasks.vue` -> `/batch-daily-tasks`
 - `frontend/src/views/LegionWar.vue` -> `/legion-war`
 - `frontend/src/views/Tasks.vue` -> `/tasks`

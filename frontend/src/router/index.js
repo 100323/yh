@@ -33,12 +33,6 @@ const routes = [
         meta: { title: '游戏功能', requiresNaive: true, requiresArco: true }
       },
       {
-        path: 'daily-tasks',
-        name: 'DailyTasks',
-        component: () => import('@views/DailyTasks.vue'),
-        meta: { title: '日常任务' }
-      },
-      {
         path: 'batch-daily-tasks',
         name: 'BatchDailyTasks',
         redirect: '/tasks'

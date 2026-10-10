@@ -176,7 +176,6 @@ import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import {
   ArrowDown,
-  Clock,
   DataAnalysis,
   Document,
   HomeFilled,
@@ -215,7 +214,6 @@ const menuItems = [
   { index: '/', label: '首页', icon: HomeFilled },
   { index: '/tokens', label: '账号管理', icon: Key },
   { index: '/game-features', label: '游戏功能', icon: Trophy },
-  { index: '/daily-tasks', label: '日常任务', icon: Clock },
   { index: '/tasks', label: '任务配置', icon: Setting },
   { index: '/logs', label: '执行日志', icon: Document },
   { index: '/scheduler-observability', label: '调度观测', icon: DataAnalysis, adminOnly: true },
