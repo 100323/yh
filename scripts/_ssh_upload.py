@@ -48,30 +48,45 @@ report = []
 staging = "/tmp/newcode_upload"
 run(f"mkdir -p {staging}")
 
+def stage_name(remote):
+    """staging 内的唯一文件名。
+
+    不能用 basename：manifest 里可能同时有 backend/src/scheduler/index.js 与
+    backend/src/batchScheduler/index.js，两者 basename 都是 index.js，
+    会互相覆盖，最终把同一份内容写到两个目标上（静默写错代码）。
+    """
+    digest = hashlib.md5(remote.encode("utf-8")).hexdigest()[:12]
+    return f"{digest}_{posixpath.basename(remote)}"
+
 for local, remote in entries:
-    base = posixpath.basename(remote)
-    tmp_remote = posixpath.join(staging, base)
+    tmp_remote = posixpath.join(staging, stage_name(remote))
     sftp.put(local, tmp_remote)
     local_md5 = md5_local(local)
     rc, o, e = run(f"md5sum {tmp_remote} | cut -d' ' -f1")
     remote_md5 = o.strip()
     ok = (local_md5 == remote_md5)
     report.append((remote, local_md5, remote_md5, ok))
-    print(f"{'OK ' if ok else 'BAD'} {base}  local={local_md5} remote={remote_md5}")
+    print(f"{'OK ' if ok else 'BAD'} {posixpath.basename(remote)}  local={local_md5} remote={remote_md5}")
     if not ok:
         print("MISMATCH, aborting")
         sys.exit(2)
 
 # all verified -> atomic replace with backup
+# 注意：目标文件可能尚不存在（新增文件），此时 cp 备份会失败，
+# 因此备份用 `[ -f ] && cp ... || true` 包起来，不能让它短路掉后续写入。
 print("--- all payloads verified, replacing ---")
 for local, remote in entries:
-    base = posixpath.basename(remote)
-    tmp_remote = posixpath.join(staging, base)
+    tmp_remote = posixpath.join(staging, stage_name(remote))
+    rdir = posixpath.dirname(remote)
     rc, o, e = run(
-        f"cp -f {remote} {remote}.bak-invite && "
+        f"mkdir -p {rdir} && "
+        f"( [ -f {remote} ] && cp -f {remote} {remote}.bak-invite || true ) && "
         f"cat {tmp_remote} > {remote} && "
         f"md5sum {remote} | cut -d' ' -f1"
     )
+    if rc != 0:
+        print(f"REPLACE FAILED {remote}: {e}")
+        sys.exit(3)
     print(f"replace {remote} -> {o.strip()}")
 
 sftp.close()
