@@ -702,3 +702,109 @@ ProxyPoolManager 一账号一 IP             ✅ 5 个账号分到 5 个不同�
 用户最初描述「官方搞了 IP 限频导致项目跑不动」，但 7 天日志中**找不到任何封禁证据**。
 需要确认当时观察到的**实际症状**（HTTP 状态码 / 错误码 / 具体表现），
 否则整轮限频防护可能瞄准了错误的目标。
+
+---
+
+## §9 部署记录（2026-10-10 18:20–18:35）
+
+### 9.1 根因更正（推翻 §8 的「错峰没接」判断）
+
+复核后发现 **错峰一直在生效**：
+
+- 执行层错峰 = `getAccountBatchDelayMs`（`backend/src/scheduler/index.js:795`），
+  对 `${source}:${accountId}:${YYYY-MM-DD HH:MM}` 做确定性哈希取模，
+  经 `schedulePendingAccountTaskBatch` 的 timer 延迟入队（**不阻塞 cron 回调**）。
+- **窗口值的真实来源是 `ecosystem.config.cjs` 的 `SCHEDULER_STAGGER_WINDOW_MS`**，
+  线上是 **300000（5 分钟）**，不是 `config/index.js` 的默认 600000。
+  反推依据：本地复算哈希，window=600000 时延迟均匀铺满 0–600s；
+  window=300000 时上限 299629 —— 与线上实测最大 299917 吻合。
+- 所以「线上错峰日志 0 次」只是因为 `waitForScheduledTaskStagger` 仅被
+  `batchScheduler` 调用、不打日志，**不代表 cron 路径没错峰**。
+
+### 9.2 真正的两个问题
+
+1. **任务 cron 高度集中**：全库 5535 个启用任务，最大簇 `1 12 * * *` **576 个**，
+   其次 `1 0 * * *` 290、`4 12 * * *` 266、`0 8 * * *` 251；
+   **TOWER 158 个里有 138 个是 `0 4 * * *`**。5 分钟窗口把 138 个摊成 ~28 次/分，
+   仍会在 04:00 触发服务端「操作过快」。
+2. **`SENSITIVE_TASK_TYPES` 漏了 TOWER**：
+   `const SENSITIVE_TASK_TYPES = new Set(['HANGUP_ADD_TIME','LEGACY_CLAIM'])`
+   → `allowTooFastRetry=false` → 「操作过快」**从不退避重试**
+   （线上「敏感任务触发操作过快，退避后重试」日志 **0 次**，而失败 **41 次**）。
+
+### 9.3 本次改动
+
+| 文件 | 改动 |
+|---|---|
+| `ecosystem.config.cjs` | `SCHEDULER_STAGGER_WINDOW_MS` 300000 → **900000** |
+| `backend/src/config/index.js` | `connectThrottle.limit` 24 → **90**；`maxWaitMs` 30000 → **10000**；`sensitiveTaskRetry` 2次/3s/8s → **3次/5s/30s** |
+| `backend/src/scheduler/index.js` | `SENSITIVE_TASK_TYPES` += **TOWER / WEIRD_TOWER** |
+| `backend/src/batchScheduler/index.js` | 同上 |
+| `scripts/_ssh_upload.py` | 修两个静默写错缺陷（见 9.6） |
+
+**错峰摊平效果（按真实 accountId 复算）**
+
+| 簇 | 旧 5 分钟 | 新 15 分钟 |
+|---|---|---|
+| 04:00 TOWER（138） | 峰值 32 次/分 | **15 次/分** |
+| 12:01（576） | 峰值 125 次/分 | **49 次/分** |
+| 00:01（290） | 峰值 67 次/分 | **29 次/分** |
+
+### 9.4 提交与部署
+
+| 位置 | 提交 | 说明 |
+|---|---|---|
+| GitHub `codex/integrate-release` | `70d8ea85a` → `d41273363` | 21 文件（`4f8c6545a..d41273363`） |
+| 服务器 `deploy/production` | `b978cfbc0` | 16 文件，本地登记不 push |
+| 服务器备份 | `backups/predeploy-20261010-182650/` | 部署前 8 个文件 |
+
+**验收结果（部署后）**
+
+| 项 | 结果 |
+|---|---|
+| pm2 | `status=online`，restarts=262，mem 337MB |
+| `SCHEDULER_STAGGER_WINDOW_MS` | **900000**（运行进程 env 确认） |
+| 本地健康 5 连测 | 200 / 200 / 200 / 200 / 200 |
+| 公网首页 | 200 |
+| 关键产物（index / vendor-vue / vendor-icons） | 均 200 |
+| `_verify_dist.cjs` 完整性 | 引用 118，可达 100，**缺失 0** |
+| 错峰延迟实测 | 最大 **893879ms ≈ 14.9 分钟**（原上限 5 分钟） |
+| 闸门回归测试 | **10/10 PASS** |
+
+### 9.5 ⚠️ 部署过程中的事故与恢复
+
+部署后端 9 文件 + 前端 dist 后重启，进程立刻崩溃：
+
+```
+ERR_MODULE_NOT_FOUND: Cannot find module
+'/home/ubuntu/zy/frontend/src/utils/battleFieldUrl.js'
+imported from '/home/ubuntu/zy/backend/src/utils/gameClient.js'
+```
+
+HTTP 连续 000（中断约 2 分钟）。**根因：后端直接 import 前端源码**：
+
+- `backend/src/utils/gameClient.js:2` → `frontend/src/utils/bonProtocol.js`
+- `backend/src/utils/gameClient.js:15` → `frontend/src/utils/battleFieldUrl.js`
+- `backend/src/routes/accounts.js:16`、`backend/src/utils/accountTokenRefresh.js:2` → 同上
+
+只同步 `frontend/dist/` **不够**，必须把后端引用的前端源码一并上传到
+`/home/ubuntu/zy/frontend/src/utils/`。补传该文件后 `pm2 restart` 即恢复。
+
+→ **已写入 `MEMORY.md` 的部署检查清单。**
+
+### 9.6 `scripts/_ssh_upload.py` 的两个静默缺陷（已修）
+
+1. **staging 重名覆盖**：原用 `basename` 做暂存名，而 manifest 里
+   `backend/src/scheduler/index.js` 与 `backend/src/batchScheduler/index.js`
+   basename 都是 `index.js` → 互相覆盖 → **把同一份内容写到两个目标**（静默写错代码）。
+   → 改为 `md5(remote)[:12] + '_' + basename`。
+2. **新增文件静默不写**：原 `cp -f {remote} {remote}.bak-invite && cat ...`，
+   目标不存在时 `cp` 失败、`&&` 短路 → **文件没写但仍打印 DONE**。
+   → 改为 `mkdir -p 目标目录 && ([ -f remote ] && cp || true) && cat ...` 并检查 rc。
+
+### 9.7 后续建议
+
+- 观察下一个 **04:00**（明日）与 **12:01**（今日）的实际效果：
+  看 `❌ 任务执行失败: * - TOWER: 爬塔执行失败: 操作过快` 是否归零。
+- 若仍不足：**根治方向是按账号错开 cron 分钟**（如 `{hash%60} 4 * * *`），
+  而不是继续拉长错峰窗口（窗口越长任务实际执行时刻越晚）。
